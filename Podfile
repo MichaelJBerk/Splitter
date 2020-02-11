@@ -9,8 +9,6 @@ target 'Splitter' do
   	pod 'Preferences'
   	pod 'AppCenter'
   	pod 'Sparkle'
-  	pod 'SwiftyXMLParser'
-  	pod 'SWXMLHash'
 
 plugin 'cocoapods-keys', {
   :project => "Splitter",
