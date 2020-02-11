@@ -14,11 +14,7 @@ extension ViewController {
 		
 	
 	//MARK - File Menu
-	@IBAction func importLiveSplitMenuItem(_ sender: Any?) {
-		let ls = LiveSplit()
-		ls.displayImportDialog()
-		loadLS(ls: ls)
-	}
+	
 	func loadLS(ls: LiveSplit) {
 		ls.parseLivesplit()
 		if ls.loadedSplits.count > 0 {
@@ -34,8 +30,17 @@ extension ViewController {
 				i = i + 1
 			}
 		}
-		if let gn = ls.gameName {GameTitleLabel.stringValue = gn}
-		if let sb = ls.subtitle {SubtitleLabel.stringValue = sb}
+		
+		if let gn = ls.gameName {
+			if gn.count > 0 {
+				GameTitleLabel.stringValue = gn
+			}
+		}
+		if let sb = ls.subtitle {
+			if sb.count > 0 {
+				SubtitleLabel.stringValue = sb
+			}
+		}
 		self.gameIcon = ls.img
 		splitsTableView.reloadData()
 	}
