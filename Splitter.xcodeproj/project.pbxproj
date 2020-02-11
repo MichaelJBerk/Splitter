@@ -44,6 +44,7 @@
 		4A85471823C66D42001F968F /* GamepadIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4A85471723C66D42001F968F /* GamepadIcon.icns */; };
 		4A87265523BD53F8003A14AF /* runInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87265423BD53F8003A14AF /* runInfo.swift */; };
 		4A87265723BD5423003A14AF /* Prefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87265623BD5423003A14AF /* Prefs.swift */; };
+		4A87DEA523F251C700975EB8 /* livesplit.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4A87DEA423F251C700975EB8 /* livesplit.icns */; };
 		4A968C7C23F1F5FE001B74E8 /* lss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A968C7B23F1F5FE001B74E8 /* lss.swift */; };
 		4AA3DAB423E23DA900ADFA4A /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA3DAB323E23DA900ADFA4A /* IconButton.swift */; };
 		4AC24DBA23EB4EC5003008BF /* Split Table Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC24DB923EB4EC5003008BF /* Split Table Row.swift */; };
@@ -127,6 +128,7 @@
 		4A85471723C66D42001F968F /* GamepadIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = GamepadIcon.icns; sourceTree = "<group>"; };
 		4A87265423BD53F8003A14AF /* runInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = runInfo.swift; sourceTree = "<group>"; };
 		4A87265623BD5423003A14AF /* Prefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prefs.swift; sourceTree = "<group>"; };
+		4A87DEA423F251C700975EB8 /* livesplit.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = livesplit.icns; sourceTree = "<group>"; };
 		4A968C7B23F1F5FE001B74E8 /* lss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lss.swift; sourceTree = "<group>"; };
 		4AA3DAB323E23DA900ADFA4A /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 		4AB3B93D23D96C10009C6AA6 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
@@ -316,6 +318,7 @@
 				4AEA928123C4F140004F6CF9 /* GeneralPreferenceViewController.swift */,
 				4AEA928223C4F140004F6CF9 /* GeneralPreferenceViewController.xib */,
 				4A18663123C5376900FEEE54 /* SettingsKeys.swift */,
+				4A87DEA423F251C700975EB8 /* livesplit.icns */,
 				4A87265623BD5423003A14AF /* Prefs.swift */,
 				4A66A43523DE3921005952FA /* UI Settings */,
 				4A5F10AC23CF754E00DA043B /* Hotkeys */,
@@ -456,6 +459,7 @@
 				4A4D392323C4FAE500BF3FCD /* HotkeysViewController.xib in Resources */,
 				4AEA928423C4F140004F6CF9 /* GeneralPreferenceViewController.xib in Resources */,
 				4A7DDCE223BBDD0900A36AD1 /* Credits.html in Resources */,
+				4A87DEA523F251C700975EB8 /* livesplit.icns in Resources */,
 				4A4D391F23C4F29C00BF3FCD /* blankWindow.xib in Resources */,
 				4A5F10AE23CFAA1F00DA043B /* Assets.xcassets in Resources */,
 				4A66572E23E3CD8D00D14A67 /* SplitterDocIcon.icns in Resources */,
@@ -744,7 +748,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 23;
+				CURRENT_PROJECT_VERSION = 31;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 39SZK2C73D;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -788,7 +792,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 23;
+				CURRENT_PROJECT_VERSION = 31;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 39SZK2C73D;
 				ENABLE_HARDENED_RUNTIME = YES;
