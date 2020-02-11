@@ -1,9 +1,9 @@
 ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES
-FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Keys" "${PODS_CONFIGURATION_BUILD_DIR}/Preferences" "${PODS_CONFIGURATION_BUILD_DIR}/SWXMLHash" "${PODS_CONFIGURATION_BUILD_DIR}/SwiftyXMLParser" "${PODS_ROOT}/AppCenter/AppCenter-SDK-Apple/macOS" "${PODS_ROOT}/Sparkle"
+FRAMEWORK_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Keys" "${PODS_CONFIGURATION_BUILD_DIR}/Preferences" "${PODS_ROOT}/AppCenter/AppCenter-SDK-Apple/macOS" "${PODS_ROOT}/Sparkle"
 GCC_PREPROCESSOR_DEFINITIONS = $(inherited) COCOAPODS=1
-HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Keys/Keys.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/Preferences/Preferences.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/SWXMLHash/SWXMLHash.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/SwiftyXMLParser/SwiftyXMLParser.framework/Headers"
+HEADER_SEARCH_PATHS = $(inherited) "${PODS_CONFIGURATION_BUILD_DIR}/Keys/Keys.framework/Headers" "${PODS_CONFIGURATION_BUILD_DIR}/Preferences/Preferences.framework/Headers"
 LD_RUNPATH_SEARCH_PATHS = $(inherited) '@executable_path/../Frameworks' '@loader_path/Frameworks' @loader_path/../Frameworks
-OTHER_LDFLAGS = $(inherited) -ObjC -l"c++" -l"sqlite3" -l"z" -framework "AppCenter" -framework "AppCenterAnalytics" -framework "AppCenterCrashes" -framework "AppKit" -framework "Foundation" -framework "Keys" -framework "Preferences" -framework "SWXMLHash" -framework "Sparkle" -framework "SwiftyXMLParser" -framework "SystemConfiguration"
+OTHER_LDFLAGS = $(inherited) -ObjC -l"c++" -l"sqlite3" -l"z" -framework "AppCenter" -framework "AppCenterAnalytics" -framework "AppCenterCrashes" -framework "AppKit" -framework "Foundation" -framework "Keys" -framework "Preferences" -framework "Sparkle" -framework "SystemConfiguration"
 OTHER_SWIFT_FLAGS = $(inherited) -D COCOAPODS
 PODS_BUILD_DIR = ${BUILD_DIR}
 PODS_CONFIGURATION_BUILD_DIR = ${PODS_BUILD_DIR}/$(CONFIGURATION)$(EFFECTIVE_PLATFORM_NAME)

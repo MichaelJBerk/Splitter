@@ -9,8 +9,6 @@
 import Foundation
 import Cocoa
 import Files
-//import SwiftyXMLParser
-import SWXMLHash
 
 
 
