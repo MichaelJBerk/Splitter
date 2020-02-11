@@ -1,0 +1,198 @@
+{
+	"_schemaVersion": "v1.0.1",
+	"links": {},
+	"timer": {
+		"shortname": "exchange",
+		"longname": "Splits.io Exchange Format",
+		"website": "https://github.com/glacials/splits-io/tree/master/public/schema",
+		"version": ""
+	},
+	"attempts": {
+		"total": 0,
+		"histories": []
+	},
+	"game": {
+		"longname": "Super Mario Odyssey",
+		"shortname": "smo",
+		"links": {
+			"splitsioID": "6854"
+		}
+	},
+	"category": {
+		"longname": "Any%",
+		"shortname": "anypct",
+		"links": {
+			"splitsioID": "19589"
+		}
+	},
+	"runners": [],
+	"segments": [{
+		"name": "Cap",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "Cascade",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "Sand",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "Lake",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "Wooded",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "Cloud Battle",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "Lost",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "Metro",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "Snow",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "Seaside",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "Luncheon",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "Ruined",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "Bowser",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "Moon",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}]
+}

@@ -1,0 +1,46 @@
+PODS:
+  - AppCenter (2.5.3):
+    - AppCenter/Analytics (= 2.5.3)
+    - AppCenter/Crashes (= 2.5.3)
+  - AppCenter/Analytics (2.5.3):
+    - AppCenter/Core
+  - AppCenter/Core (2.5.3)
+  - AppCenter/Crashes (2.5.3):
+    - AppCenter/Core
+  - Keys (1.0.1)
+  - Preferences (1.0.1)
+  - Sparkle (1.22.0)
+  - SwiftyXMLParser (5.0.0)
+  - SWXMLHash (5.0.1)
+
+DEPENDENCIES:
+  - AppCenter
+  - Keys (from `Pods/CocoaPodsKeys`)
+  - Preferences
+  - Sparkle
+  - SwiftyXMLParser
+  - SWXMLHash
+
+SPEC REPOS:
+  trunk:
+    - AppCenter
+    - Preferences
+    - Sparkle
+    - SwiftyXMLParser
+    - SWXMLHash
+
+EXTERNAL SOURCES:
+  Keys:
+    :path: Pods/CocoaPodsKeys
+
+SPEC CHECKSUMS:
+  AppCenter: 765ff38c4d360fc5ec61b61a8be24d74cd6d4d83
+  Keys: a576f4c9c1c641ca913a959a9c62ed3f215a8de9
+  Preferences: a5afbe0ae3e6bd886328b1960f4998e65d58f2c4
+  Sparkle: 593ac2e677c07bcb6c3b22d621240e7cbedaab57
+  SwiftyXMLParser: 5ebb8793192f403fa8cc691045143906122a7a75
+  SWXMLHash: 9cc0c2e4807926c74377724aa8722ee5707a0485
+
+PODFILE CHECKSUM: d87006dac8f24f5ee4c55bcc617f5e40f128dd99
+
+COCOAPODS: 1.8.4
