@@ -1,0 +1,11 @@
+/Users/michaelberk/Documents/Splitter/livesplit-core/target/release/deps/approx-039a6c499b73f256.rmeta: /Users/michaelberk/.cargo/registry/src/github.com-1ecc6299db9ec823/approx-0.3.2/src/lib.rs /Users/michaelberk/.cargo/registry/src/github.com-1ecc6299db9ec823/approx-0.3.2/src/abs_diff_eq.rs /Users/michaelberk/.cargo/registry/src/github.com-1ecc6299db9ec823/approx-0.3.2/src/relative_eq.rs /Users/michaelberk/.cargo/registry/src/github.com-1ecc6299db9ec823/approx-0.3.2/src/ulps_eq.rs /Users/michaelberk/.cargo/registry/src/github.com-1ecc6299db9ec823/approx-0.3.2/src/macros.rs
+
+/Users/michaelberk/Documents/Splitter/livesplit-core/target/release/deps/libapprox-039a6c499b73f256.rlib: /Users/michaelberk/.cargo/registry/src/github.com-1ecc6299db9ec823/approx-0.3.2/src/lib.rs /Users/michaelberk/.cargo/registry/src/github.com-1ecc6299db9ec823/approx-0.3.2/src/abs_diff_eq.rs /Users/michaelberk/.cargo/registry/src/github.com-1ecc6299db9ec823/approx-0.3.2/src/relative_eq.rs /Users/michaelberk/.cargo/registry/src/github.com-1ecc6299db9ec823/approx-0.3.2/src/ulps_eq.rs /Users/michaelberk/.cargo/registry/src/github.com-1ecc6299db9ec823/approx-0.3.2/src/macros.rs
+
+/Users/michaelberk/Documents/Splitter/livesplit-core/target/release/deps/approx-039a6c499b73f256.d: /Users/michaelberk/.cargo/registry/src/github.com-1ecc6299db9ec823/approx-0.3.2/src/lib.rs /Users/michaelberk/.cargo/registry/src/github.com-1ecc6299db9ec823/approx-0.3.2/src/abs_diff_eq.rs /Users/michaelberk/.cargo/registry/src/github.com-1ecc6299db9ec823/approx-0.3.2/src/relative_eq.rs /Users/michaelberk/.cargo/registry/src/github.com-1ecc6299db9ec823/approx-0.3.2/src/ulps_eq.rs /Users/michaelberk/.cargo/registry/src/github.com-1ecc6299db9ec823/approx-0.3.2/src/macros.rs
+
+/Users/michaelberk/.cargo/registry/src/github.com-1ecc6299db9ec823/approx-0.3.2/src/lib.rs:
+/Users/michaelberk/.cargo/registry/src/github.com-1ecc6299db9ec823/approx-0.3.2/src/abs_diff_eq.rs:
+/Users/michaelberk/.cargo/registry/src/github.com-1ecc6299db9ec823/approx-0.3.2/src/relative_eq.rs:
+/Users/michaelberk/.cargo/registry/src/github.com-1ecc6299db9ec823/approx-0.3.2/src/ulps_eq.rs:
+/Users/michaelberk/.cargo/registry/src/github.com-1ecc6299db9ec823/approx-0.3.2/src/macros.rs:

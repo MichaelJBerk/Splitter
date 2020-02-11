@@ -1,0 +1,47 @@
+//
+//  DefaultHotkeys.swift
+//  Splitter
+//
+//  Created by Michael Berk on 1/31/20.
+//  Copyright © 2020 Michael Berk. All rights reserved.
+//
+
+import Foundation
+import Cocoa
+import HotKey
+
+enum KeybindTitle: String {
+	case BringToFront = "Bring To Front"
+	case StartPauseTimer = "Start/Pause Timer"
+	case NextSplit = "Next Split"
+	case PrevSplit = "Previous Split"
+	case StopTimer = "Stop Timer"
+	case ClearTimer = "Reset Run"
+	case resetCurrentSplit = "Reset Current Split"
+	
+}
+
+	
+
+
+extension AppDelegate {
+	
+	func setDefaultKeybindValues() {
+		
+		var newKeybinds: [Keybind] = []
+		if let vc = self.viewController {
+			newKeybinds.append(contentsOf: [
+				Keybind(title: .BringToFront, keyDownHandler: self.frontHandler),
+				Keybind(title: .StartPauseTimer, keyDownHandler: self.StartPauseHandler, menuItemID: menuIdentifiers.timerMenu.startPause),
+				Keybind(title: .NextSplit, keyDownHandler: vc.goToNextSplit, menuItemID: menuIdentifiers.timerMenu.next),
+				Keybind(title: .PrevSplit, keyDownHandler: vc.goToPrevSplit, menuItemID: menuIdentifiers.timerMenu.back),
+				Keybind(title: .StopTimer, keyDownHandler: vc.stopTimer, menuItemID: menuIdentifiers.timerMenu.stop),
+				Keybind(title: .ClearTimer, keyDownHandler: vc.resetRun),
+				Keybind(title: .resetCurrentSplit, keyDownHandler: vc.resetCurrentSplit, menuItemID: menuIdentifiers.timerMenu.reset)
+			])
+			
+		}
+		
+		self.keybinds = newKeybinds
+	}
+}

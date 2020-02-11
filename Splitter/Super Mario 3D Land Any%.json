@@ -1,0 +1,462 @@
+{
+	"_schemaVersion": "v1.0.1",
+	"links": {},
+	"timer": {
+		"shortname": "exchange",
+		"longname": "Splits.io Exchange Format",
+		"website": "https://github.com/glacials/splits-io/tree/master/public/schema",
+		"version": ""
+	},
+	"attempts": {
+		"total": 0,
+		"histories": []
+	},
+	"game": {
+		"longname": "Super Mario 3D Land",
+		"shortname": "sm3dl",
+		"links": {
+			"splitsioID": "462"
+		}
+	},
+	"category": {
+		"longname": "Any%",
+		"shortname": "anypct",
+		"links": {
+			"splitsioID": "955"
+		}
+	},
+	"runners": [],
+	"segments": [{
+		"name": "1-1",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "1-2",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "2-1",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "2-2",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "2-3",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "2-4",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "2-ship",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "3-1",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "3-2",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "3-3",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "3-4",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "3-ship",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "4-1",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "4-2",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "5-1",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "5-2",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "5-3",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "5-4",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "5-castle",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "6-1",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "6-2",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "6-3",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "6-4",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "6-ship",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "7-1",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "7-2",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "7-3",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "7-4",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "7-ship",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "8-1",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "8-2",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "8-3",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "8-4",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "8-5",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "8-6",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}, {
+		"name": "8-castle",
+		"endedAt": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"bestDuration": {
+			"realtimeMS": 0,
+			"gametimeMS": 0
+		},
+		"isSkipped": false,
+		"histories": []
+	}]
+}
