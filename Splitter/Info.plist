@@ -28,7 +28,7 @@
 				<string>lss</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>SplitterDocIcon</string>
+			<string>livesplit</string>
 			<key>CFBundleTypeName</key>
 			<string>LiveSplit File</string>
 			<key>CFBundleTypeRole</key>
@@ -54,7 +54,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
-	<string>29</string>
+	<string>$(CURRENT_PROJECT_VERSION)</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.utilities</string>
 	<key>LSMinimumSystemVersion</key>
@@ -102,7 +102,7 @@
 			<key>UTTypeDescription</key>
 			<string>LiveSplit file</string>
 			<key>UTTypeIconFile</key>
-			<string></string>
+			<string>livesplit</string>
 			<key>UTTypeIdentifier</key>
 			<string>mibe.liveSplit</string>
 			<key>UTTypeTagSpecification</key>
