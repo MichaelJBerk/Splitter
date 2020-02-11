@@ -8,7 +8,6 @@
 
 import Foundation
 import Cocoa
-import SplitsIOExchangeFramework
 import Files
 //MARK: Import/Export splits.io data from .json
 
@@ -28,49 +27,53 @@ extension ViewController {
 				let result = dialog.url // Pathname of the file
 			   
 				if (result != nil) {
-					let path = result!.path
-					loadedFilePath = path
-					let pathURL = URL(fileURLWithPath: path)
-					do {
-						let jsonData = try Data(contentsOf: pathURL)
-						let newJSONDecoder = JSONDecoder()
-						let splitsIO = try? newJSONDecoder.decode(SplitsIOExchangeFormat.self, from: jsonData)
-						//SplitsIOExchangeFormat(jsonData, links: nil, timer: nil)
-						GameTitleLabel.stringValue = splitsIO!.game!.longname!
-						SubtitleLabel.stringValue = splitsIO!.category!.longname!
-						currentSplits = []
-//						loadedSplits = []
-						let exportJSON = view.window?.menu?.item(withTag: 1)
-						exportJSON?.isEnabled = true
-						//Loading of json into TimeSplits
-						
-						
-						for sT in (splitsIO?.segments!)! {
-							let splitTitle = sT.name!
-							let bestSplitIO = sT.bestDuration?.realtimeMS
-							let currentSplitIO = sT.endedAt?.realtimeMS
-							let bestTS = TimeSplit(mil: bestSplitIO!)
-							let currentTS = TimeSplit(mil: currentSplitIO!)
-							var newTableRow = splitTableRow(splitName: splitTitle, bestSplit: bestTS, currentSplit: currentTS)
-							
-							
-//							loadedSplits.append(newTableRow)
-							currentSplits.append(newTableRow)
-							
-						}
-						shouldLoadSplits = true
-						self.splitsIOData = splitsIO
-						splitsTableView.reloadData()
-
-					} catch {
-						
-					}
+					self.parseSplitsIO(result!.path)
 				}
 			} else {
-				// User clicked on "Cancel"
-				return
-		   }
+				//Clicked "Cancel"
 		}
+	}
+				
+				
+	func parseSplitsIO(_ path: String) {
+					
+		loadedFilePath = path
+		let pathURL = URL(fileURLWithPath: path)
+		do {
+			let jsonData = try Data(contentsOf: pathURL)
+			let newJSONDecoder = JSONDecoder()
+			let splitsIO = try? newJSONDecoder.decode(SplitsIOExchangeFormat.self, from: jsonData)
+			//SplitsIOExchangeFormat(jsonData, links: nil, timer: nil)
+			GameTitleLabel.stringValue = splitsIO!.game!.longname!
+			SubtitleLabel.stringValue = splitsIO!.category!.longname!
+			currentSplits = []
+	//						loadedSplits = []
+			let exportJSON = view.window?.menu?.item(withTag: 1)
+			exportJSON?.isEnabled = true
+			//Loading of json into TimeSplits
+			
+			
+			for sT in (splitsIO?.segments!)! {
+				let splitTitle = sT.name!
+				let bestSplitIO = sT.bestDuration?.realtimeMS
+				let currentSplitIO = sT.endedAt?.realtimeMS
+				let bestTS = TimeSplit(mil: bestSplitIO!)
+				let currentTS = TimeSplit(mil: currentSplitIO!)
+				var newTableRow = splitTableRow(splitName: splitTitle, bestSplit: bestTS, currentSplit: currentTS)
+				
+				
+	//							loadedSplits.append(newTableRow)
+				currentSplits.append(newTableRow)
+				
+			}
+			shouldLoadSplits = true
+			self.splitsIOData = splitsIO
+			splitsTableView.reloadData()
+
+		} catch {
+			
+		}
+	}
 		///Handles exporting data to a splits.io .json file
 		@IBAction func exportToSplitsIO(_ sender: Any) {
 			updateAllBestSplits()

@@ -10,6 +10,11 @@ import XCTest
 @testable import Splitter
 
 class SplitterTests: XCTestCase {
+	
+	//Path to the SplitterTests folder
+	fileprivate let testPath = URL(fileURLWithPath: #file).pathComponents.dropLast().joined(separator: "/").dropFirst() //.pathComponents
+		//.prefix(while: { $0 != "Tests" }).joined(separator: "/").dropFirst()
+
 
 	var viewController: ViewController?
 	
@@ -24,46 +29,28 @@ class SplitterTests: XCTestCase {
 			XCTAssert((hotkey1Paused != globalHotkeySetting))
 		}
 	}
+	
+	
+	func testOpenSplit() {
+		let path = String(testPath + "/Odyssey.split")
+		let url = URL(fileURLWithPath: path)
+		let doc = try? Document(contentsOf: url, ofType: "Split file")
+		let dc = NSDocumentController.shared
+		dc.addDocument(doc!)
+	}
+	
+	func testImportSplitsIO() {
+		let path = String("/robobot.json")
+	}
+	
 
 	func testImportLiveSplit() {
 		let ls = LiveSplit()
-////		ls.displayImportDialog()
-//		ls.path = "/Users/michaelberk/Documents/KIU.lss"
-		ls.path = "/Users/michaelberk/Documents/mario.timesplittracker"
-//		ls.parseLivesplit()
-		
-//		vc.current
-		if let vc = viewController {
-			
-			vc.loadLS(ls: ls)
-		}
-		
-//		var i = 0
-//		viewController!.iconArray = []
-//		while i < viewController!.currentSplits.count {
-//			if ls.iconArray[i] != nil {
-//			viewController!.iconArray.append(ls.iconArray[i])
-//			}
-//			i = i + 1
-//		}
-//		
-//		XCTAssert(ls.img != nil)
+
+		ls.path = String(testPath + "/KIU.lss")
+		ls.parseLivesplit()
 	}
 	
-	func testCompImport() {
-//		let path = "/Users/michaelberk/Documents/Mario64.lfs"
-		let comp = CompositeImport()
-//		comp.path = "/Users/michaelberk/Documents/KIU.lss"
-//		comp.cImport()
-//		let path = URL(fileURLWithPath: "/Users/michaelberk/Documents/m2.lfs")
-//		do {
-//			let hey = try lfs(contentsOf: path, ofType: "Llanfair split")
-//		} catch {
-//			print("error: ", error)
-//		}
-		
-		
-	}
 	
 	
     override func tearDown() {
