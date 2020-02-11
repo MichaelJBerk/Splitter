@@ -27,11 +27,16 @@ class SplitterTests: XCTestCase {
 
 	func testImportLiveSplit() {
 		let ls = LiveSplit()
-//		ls.displayImportDialog()
-		ls.path = "/Users/michaelberk/Documents/KIU.lss"
-		ls.parseLivesplit()
+////		ls.displayImportDialog()
+//		ls.path = "/Users/michaelberk/Documents/KIU.lss"
+		ls.path = "/Users/michaelberk/Documents/mario.timesplittracker"
+//		ls.parseLivesplit()
 		
-		
+//		vc.current
+		if let vc = viewController {
+			
+			vc.loadLS(ls: ls)
+		}
 		
 //		var i = 0
 //		viewController!.iconArray = []
@@ -43,6 +48,21 @@ class SplitterTests: XCTestCase {
 //		}
 //		
 //		XCTAssert(ls.img != nil)
+	}
+	
+	func testCompImport() {
+//		let path = "/Users/michaelberk/Documents/Mario64.lfs"
+		let comp = CompositeImport()
+//		comp.path = "/Users/michaelberk/Documents/KIU.lss"
+//		comp.cImport()
+//		let path = URL(fileURLWithPath: "/Users/michaelberk/Documents/m2.lfs")
+//		do {
+//			let hey = try lfs(contentsOf: path, ofType: "Llanfair split")
+//		} catch {
+//			print("error: ", error)
+//		}
+		
+		
 	}
 	
 	

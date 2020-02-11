@@ -126,12 +126,6 @@
                                                             <action selector="importSplitsio:" target="Ady-hI-5gd" id="zWo-my-DwR"/>
                                                         </connections>
                                                     </menuItem>
-                                                    <menuItem title="LiveSplit (.lss)" identifier="importLiveSplit" id="twq-Qw-GR9">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="importLiveSplitMenuItem:" target="Ady-hI-5gd" id="fA6-B5-Yro"/>
-                                                        </connections>
-                                                    </menuItem>
                                                 </items>
                                             </menu>
                                         </menuItem>
@@ -556,7 +550,7 @@
                                             <tableColumns>
                                                 <tableColumn identifier="ImageColumn" width="32" minWidth="10" maxWidth="3.4028234663852886e+38" id="ljG-co-EDf">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
-                                                        <font key="font" metaFont="controlContent" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -591,7 +585,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="SplitTitle" width="80" minWidth="40" maxWidth="1000" id="rA7-ZF-Uc6">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Split">
-                                                        <font key="font" metaFont="controlContent" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -628,7 +622,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="Difference" width="76.5" minWidth="40" maxWidth="1000" id="PYF-Yr-8bh">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Difference">
-                                                        <font key="font" metaFont="controlContent" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -644,7 +638,7 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="o9G-nL-h8J">
-                                                                    <rect key="frame" x="0.0" y="2" width="76" height="15"/>
+                                                                    <rect key="frame" x="0.0" y="2" width="75" height="15"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" alignment="right" title="+-00:00.00" id="apn-BN-ypm">
                                                                         <font key="font" metaFont="label" size="12"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -665,7 +659,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="CurrentSplit" width="76" minWidth="76" maxWidth="34028234663852888" id="b45-li-jb9">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Current">
-                                                        <font key="font" metaFont="controlContent" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -681,7 +675,7 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="AaA-Ba-UKe">
-                                                                    <rect key="frame" x="1" y="11" width="74" height="16"/>
+                                                                    <rect key="frame" x="1" y="11" width="73" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="00:00:00:00" id="NyR-TC-MBh">
                                                                         <font key="font" size="13" name="HelveticaNeue-Bold"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -702,7 +696,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="B" width="113" minWidth="76" maxWidth="3.4028234663852886e+38" hidden="YES" id="DAb-bp-lWc">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Best">
-                                                        <font key="font" metaFont="controlContent" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
