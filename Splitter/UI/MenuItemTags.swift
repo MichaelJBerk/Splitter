@@ -25,7 +25,6 @@ enum menuIdentifiers {
 	enum fileMenu {
 		enum importFromMenu{
 			static let splitsIO = NSUserInterfaceItemIdentifier("importSplitsIO")
-			static let liveSplit = NSUserInterfaceItemIdentifier("importLiveSplit")
 		}
 		enum exportFromMenu {
 			static let splitsIO = NSUserInterfaceItemIdentifier("exportSplitsIO")
