@@ -12,7 +12,8 @@ import HotKey
 
 enum KeybindTitle: String {
 	case BringToFront = "Bring To Front"
-	case StartPauseTimer = "Start/Pause Timer"
+	case StartSplitTimer = "Start Timer/Split"
+	case PauseTimer = "Pause Timer"
 	case NextSplit = "Next Split"
 	case PrevSplit = "Previous Split"
 	case StopTimer = "Stop Timer"
@@ -32,7 +33,8 @@ extension AppDelegate {
 		if let vc = self.viewController {
 			newKeybinds.append(contentsOf: [
 				Keybind(title: .BringToFront, keyDownHandler: self.frontHandler),
-				Keybind(title: .StartPauseTimer, keyDownHandler: self.StartPauseHandler, menuItemID: menuIdentifiers.timerMenu.startPause),
+				Keybind(title: .StartSplitTimer, keyDownHandler: vc.startSplitTimer, menuItemID: menuIdentifiers.timerMenu.StartSplit),
+				Keybind(title: .PauseTimer, keyDownHandler: vc.pauseResumeTimer),
 				Keybind(title: .NextSplit, keyDownHandler: vc.goToNextSplit, menuItemID: menuIdentifiers.timerMenu.next),
 				Keybind(title: .PrevSplit, keyDownHandler: vc.goToPrevSplit, menuItemID: menuIdentifiers.timerMenu.back),
 				Keybind(title: .StopTimer, keyDownHandler: vc.stopTimer, menuItemID: menuIdentifiers.timerMenu.stop),

@@ -58,7 +58,7 @@ class ViewController: NSViewController {
 	}
 	
 	var startPauseItem: NSMenuItem? {
-		if let stopStart = view.window?.menu?.item(withIdentifier: menuIdentifiers.timerMenu.startPause) {
+		if let stopStart = view.window?.menu?.item(withIdentifier: menuIdentifiers.timerMenu.StartSplit) {
 			return stopStart
 		}
 		return nil

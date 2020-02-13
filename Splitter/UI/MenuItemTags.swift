@@ -34,7 +34,7 @@ enum menuIdentifiers {
 	
 	//MARK: - Timer Menu
 	enum timerMenu{
-		static let startPause = NSUserInterfaceItemIdentifier("timerStartStop")
+		static let StartSplit = NSUserInterfaceItemIdentifier("timerStartStop")
 		static let stop = NSUserInterfaceItemIdentifier("timerPause")
 		
 		static let next = NSUserInterfaceItemIdentifier("timerNext")
