@@ -56,8 +56,12 @@ extension ViewController {
 			}
 		
 	}
-	
+	//TODO: Update labels on menu bar items
 	@IBAction func pauseMenuItem(_ sender: Any?) {
+		pauseResumeTimer()
+	}
+	
+	@IBAction func stopMenuItem(_ sender: Any?) {
 		stopTimer()
 	}
 

@@ -13,7 +13,7 @@
 		4A1657B323EA4F3C0008CB5F /* Button Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1657B223EA4F3C0008CB5F /* Button Actions.swift */; };
 		4A1657B523EA5C320008CB5F /* Icon Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1657B423EA5C320008CB5F /* Icon Actions.swift */; };
 		4A18662E23C51D2800FEEE54 /* UISettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A18662D23C51D2800FEEE54 /* UISettings.swift */; };
-		4A18663023C5257800FEEE54 /* MenuItemTags.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A18662F23C5257800FEEE54 /* MenuItemTags.swift */; };
+		4A18663023C5257800FEEE54 /* MenuItemConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A18662F23C5257800FEEE54 /* MenuItemConstants.swift */; };
 		4A18663223C5376900FEEE54 /* SettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A18663123C5376900FEEE54 /* SettingsKeys.swift */; };
 		4A230E9323B00A1D00959C57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A230E9223B00A1D00959C57 /* AppDelegate.swift */; };
 		4A230E9523B00A1D00959C57 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A230E9423B00A1D00959C57 /* ViewController.swift */; };
@@ -98,7 +98,7 @@
 		4A1657B223EA4F3C0008CB5F /* Button Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Button Actions.swift"; sourceTree = "<group>"; };
 		4A1657B423EA5C320008CB5F /* Icon Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Icon Actions.swift"; sourceTree = "<group>"; };
 		4A18662D23C51D2800FEEE54 /* UISettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISettings.swift; sourceTree = "<group>"; };
-		4A18662F23C5257800FEEE54 /* MenuItemTags.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemTags.swift; sourceTree = "<group>"; };
+		4A18662F23C5257800FEEE54 /* MenuItemConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemConstants.swift; sourceTree = "<group>"; };
 		4A18663123C5376900FEEE54 /* SettingsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsKeys.swift; sourceTree = "<group>"; };
 		4A230E8F23B00A1D00959C57 /* Splitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Splitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A230E9223B00A1D00959C57 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -366,7 +366,7 @@
 				4A4D391E23C4F29C00BF3FCD /* blankWindow.xib */,
 				4AEA927D23C4EF32004F6CF9 /* MainWindowController.swift */,
 				4A6A3BE523CD6463002C20AE /* BlankWindowController.swift */,
-				4A18662F23C5257800FEEE54 /* MenuItemTags.swift */,
+				4A18662F23C5257800FEEE54 /* MenuItemConstants.swift */,
 				4AA3DAB323E23DA900ADFA4A /* IconButton.swift */,
 			);
 			path = UI;
@@ -607,7 +607,7 @@
 				4ADFAE4923E4A0760049F57A /* QuickAlert.swift in Sources */,
 				4A18662E23C51D2800FEEE54 /* UISettings.swift in Sources */,
 				4AA3DAB423E23DA900ADFA4A /* IconButton.swift in Sources */,
-				4A18663023C5257800FEEE54 /* MenuItemTags.swift in Sources */,
+				4A18663023C5257800FEEE54 /* MenuItemConstants.swift in Sources */,
 				4A0F716323F4A9E400E5948E /* SplitterDocBundle.swift in Sources */,
 				4A4D392223C4FAE500BF3FCD /* HotkeysViewController.swift in Sources */,
 				4AF953B723EB507800ED540C /* Splits.swift in Sources */,
