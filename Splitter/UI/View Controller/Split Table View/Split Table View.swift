@@ -75,12 +75,12 @@ extension ViewController: NSTableViewDelegate {
 				let sDiff = currentSplits[row].splitDiff
 				
 				cell.textField?.stringValue = sDiff
-				if sDiff.hasPrefix("+-") {
-					cell.textField?.textColor = .systemBlue
-				} else if sDiff.hasPrefix("+"){
+				if sDiff.hasPrefix("+"){
 					cell.textField?.textColor = .systemRed
 				} else if sDiff.hasPrefix("-"){
 					cell.textField?.textColor = .systemGreen
+				} else {
+					cell.textField?.textColor = .systemBlue
 				}
 			}
 			
