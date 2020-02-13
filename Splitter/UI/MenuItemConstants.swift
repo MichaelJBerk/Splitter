@@ -35,7 +35,8 @@ enum menuIdentifiers {
 	//MARK: - Timer Menu
 	enum timerMenu{
 		static let StartSplit = NSUserInterfaceItemIdentifier("timerStartStop")
-		static let stop = NSUserInterfaceItemIdentifier("timerPause")
+		static let stop = NSUserInterfaceItemIdentifier("stopTimer")
+		static let pause = NSUserInterfaceItemIdentifier("pauseTimer")
 		
 		static let next = NSUserInterfaceItemIdentifier("timerNext")
 		static let back = NSUserInterfaceItemIdentifier("timerBack")
@@ -79,6 +80,8 @@ enum buttonIdentifiers {
 }
 
 extension NSMenu {
+	
+	///Returns the menu item with the given identifier
 	func item(withIdentifier: NSUserInterfaceItemIdentifier) -> NSMenuItem? {
 		for i in items {
 			if let id = i.identifier {

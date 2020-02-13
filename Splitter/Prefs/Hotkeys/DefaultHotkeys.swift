@@ -34,7 +34,7 @@ extension AppDelegate {
 			newKeybinds.append(contentsOf: [
 				Keybind(title: .BringToFront, keyDownHandler: self.frontHandler),
 				Keybind(title: .StartSplitTimer, keyDownHandler: vc.startSplitTimer, menuItemID: menuIdentifiers.timerMenu.StartSplit),
-				Keybind(title: .PauseTimer, keyDownHandler: vc.pauseResumeTimer),
+				Keybind(title: .PauseTimer, keyDownHandler: vc.pauseResumeTimer, menuItemID: menuIdentifiers.timerMenu.pause),
 				Keybind(title: .NextSplit, keyDownHandler: vc.goToNextSplit, menuItemID: menuIdentifiers.timerMenu.next),
 				Keybind(title: .PrevSplit, keyDownHandler: vc.goToPrevSplit, menuItemID: menuIdentifiers.timerMenu.back),
 				Keybind(title: .StopTimer, keyDownHandler: vc.stopTimer, menuItemID: menuIdentifiers.timerMenu.stop),
