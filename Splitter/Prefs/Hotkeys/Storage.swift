@@ -27,7 +27,7 @@ public class Storage {
     /// Returns URL constructed from specified directory
     static fileprivate func getURL(for directory: Directory) -> URL {
 		var searchPathDirectory: URL? //FileManager.SearchPathDirectory
-		let appSupport = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first?.appendingPathComponent("/Splitter/splitter.splitKeys", isDirectory: true)
+		let appSupport = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first?.appendingPathComponent("/Splitter/splitter.splitkeys", isDirectory: true)
         switch directory {
 //        case .documents:
 //			searchPathDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first

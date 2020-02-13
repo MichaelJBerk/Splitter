@@ -21,6 +21,7 @@ extension ViewController {
 		}
 	}
 	
+	///Shows or hides the title bar, depending on the current setting
 	func showHideTitleBar() {
 		if titleBarHidden {
 			view.window?.styleMask.insert(.fullSizeContentView)
@@ -49,7 +50,7 @@ extension ViewController {
 		showHideTitleBarItem?.title = showHideTitleBarItemText
 	}
 	
-	
+	///Shows or hides the Best Splits column, depending on the current setting
 	func showHideBestSplits() {
 		 let menuItem = NSApp.mainMenu?.item(withIdentifier: menuIdentifiers.appearanceMenu.showBestSplits)
 			
