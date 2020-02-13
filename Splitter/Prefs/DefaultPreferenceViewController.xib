@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -54,7 +55,7 @@
                                 <rect key="frame" x="81" y="291" width="105" height="18"/>
                                 <buttonCell key="cell" type="check" title="Hide Title Bar" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="6az-ux-hex">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="titleBarToggled:" target="-2" id="9Nf-lD-wYS"/>
@@ -78,7 +79,7 @@
                                 <rect key="frame" x="81" y="212" width="139" height="18"/>
                                 <buttonCell key="cell" type="check" title="Hide Timer Buttons" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="QQt-U4-Fwj">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="buttonsToggled:" target="-2" id="h6V-uk-aCF"/>
@@ -103,7 +104,7 @@
                                 <rect key="frame" x="81" y="118" width="174" height="18"/>
                                 <buttonCell key="cell" type="check" title="Show Best Splits Column" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="9y5-gL-jbw">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="bestSplitsToggled:" target="-2" id="GZl-zd-XgN"/>
@@ -137,7 +138,7 @@
                                 <rect key="frame" x="81" y="39" width="234" height="18"/>
                                 <buttonCell key="cell" type="check" title="Keep window above other windows" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="fsw-j9-9qg">
                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="floatToggle:" target="-2" id="IxP-gV-prf"/>
