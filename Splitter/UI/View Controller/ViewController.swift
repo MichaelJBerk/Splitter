@@ -10,7 +10,6 @@ import Cocoa
 import Preferences
 import HotKey
 import Carbon
-import SplitsIOExchangeFramework
 
 class ViewController: NSViewController {
 	
@@ -162,8 +161,10 @@ class ViewController: NSViewController {
 
 	//MARK: - External File Split Data
 	//Stuff that holds data from files
-		var splitsIOData: SplitsIOExchangeFormat!
-		var runInfoData: runInfo?
+	var splitsIOData: SplitsIOExchangeFormat!
+	var runInfoData: runInfo?
+	
+	var appearance: splitterAppearance?
 		
 		var shouldLoadSplits = false//: Bool {
 	//		if loadedSplits.isEmpty && runInfoData == nil {
@@ -266,7 +267,11 @@ class ViewController: NSViewController {
 		
 		timerStopItem?.isEnabled = false
 	
-		setUpDefaults()
+		if appearance != nil {
+			setSplitterAppearance(appearance: appearance!)
+		} else {
+			setUpDefaults()
+		}
 		
 		if currentSplits.count == 0 {
 			addBlankSplit()
@@ -288,7 +293,7 @@ class ViewController: NSViewController {
 		showHideUI()
 		
 		windowFloat = Settings.floatWindow
-		floatingWindow()
+		setFloatingWindow()
 		
 		showBestSplits = Settings.showBestSplits
 		showHideBestSplits()

@@ -136,15 +136,13 @@ extension ViewController {
 		//TODO: Figure out what this and `floatingWindow` are used for
 		@IBAction func toggleKeepOnTop(_ sender: Any? ) {
 			windowFloat.toggle()
-			floatingWindow()
+			setFloatingWindow()
 			
 		}
-		
-		func floatingWindow() {
+		///Sets the window to stay on top, depending on the current setting
+		func setFloatingWindow() {
 			let id = menuIdentifiers.windowMenu.windowFloat
 			if let menuItem = NSApp.mainMenu?.item(withIdentifier: id) {
-				print(windowFloat)
-	
 				if windowFloat {
 					view.window?.level = .floating
 					menuItem.state = .on

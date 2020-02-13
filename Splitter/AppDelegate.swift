@@ -37,6 +37,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		
 
 	}
+	
 	func setPaused(paused: Bool) {
 		for var k in keybinds {
 			if var h = k.hotkey {
@@ -45,8 +46,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		}
 	}
 	
-
-
+	
 	func applicationDidFinishLaunching(_ notification: Notification) {
 		
 		if !Settings.notFirstUse {

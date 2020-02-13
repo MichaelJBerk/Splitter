@@ -38,20 +38,6 @@
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).lss</string>
 		</dict>
-		<dict>
-			<key>CFBundleTypeExtensions</key>
-			<array>
-				<string>lfs</string>
-			</array>
-			<key>CFBundleTypeName</key>
-			<string>Llanfair Split</string>
-			<key>CFBundleTypeRole</key>
-			<string>Editor</string>
-			<key>LSTypeIsPackage</key>
-			<integer>0</integer>
-			<key>NSDocumentClass</key>
-			<string>$(PRODUCT_MODULE_NAME).lss</string>
-		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
@@ -68,7 +54,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
-	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<string>36</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.utilities</string>
 	<key>LSMinimumSystemVersion</key>
@@ -124,23 +110,6 @@
 				<key>public.filename-extension</key>
 				<array>
 					<string>lss</string>
-				</array>
-			</dict>
-		</dict>
-		<dict>
-			<key>UTTypeConformsTo</key>
-			<array>
-				<string>public.xml</string>
-			</array>
-			<key>UTTypeDescription</key>
-			<string>Llanfair Splits</string>
-			<key>UTTypeIdentifier</key>
-			<string>mibe.lfs</string>
-			<key>UTTypeTagSpecification</key>
-			<dict>
-				<key>public.filename-extension</key>
-				<array>
-					<string>lfs</string>
 				</array>
 			</dict>
 		</dict>

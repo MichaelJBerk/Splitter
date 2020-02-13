@@ -39,6 +39,15 @@ class SplitterTests: XCTestCase {
 		dc.addDocument(doc!)
 	}
 	
+	func testOpenSplitFromExternalVolume() {
+		let path = "/Volumes/Blue Shell/Odyssey.split"
+		let url = URL(fileURLWithPath: path)
+		let doc = try? Document(contentsOf: url, ofType: "Split File")
+		let dc = NSDocumentController.shared
+		dc.addDocument(doc!)
+		
+	}
+	
 	func testImportSplitsIO() {
 		let path = String("/robobot.json")
 	}
@@ -47,7 +56,7 @@ class SplitterTests: XCTestCase {
 	func testImportLiveSplit() {
 		let ls = LiveSplit()
 
-		ls.path = String(testPath + "/KIU.lss")
+		ls.path = String(testPath + "/Super Mario Odyssey.lss")
 		ls.parseLivesplit()
 	}
 	
