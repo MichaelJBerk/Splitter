@@ -60,7 +60,7 @@
 		4AD7663223DB5C3A0052409C /* ImportExportSplitsIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD7663123DB5C3A0052409C /* ImportExportSplitsIO.swift */; };
 		4ADFAE4923E4A0760049F57A /* QuickAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADFAE4823E4A0760049F57A /* QuickAlert.swift */; };
 		4AEA927E23C4EF32004F6CF9 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEA927D23C4EF32004F6CF9 /* MainWindowController.swift */; };
-		4AEA928323C4F140004F6CF9 /* GeneralPreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEA928123C4F140004F6CF9 /* GeneralPreferenceViewController.swift */; };
+		4AEA928323C4F140004F6CF9 /* DefaultPreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEA928123C4F140004F6CF9 /* DefaultPreferenceViewController.swift */; };
 		4AEA928423C4F140004F6CF9 /* GeneralPreferenceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AEA928223C4F140004F6CF9 /* GeneralPreferenceViewController.xib */; };
 		4AF953B523EB503100ED540C /* Timer Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF953B423EB503100ED540C /* Timer Functions.swift */; };
 		4AF953B723EB507800ED540C /* Splits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF953B623EB507800ED540C /* Splits.swift */; };
@@ -148,7 +148,7 @@
 		4AD7665923DB5CFC0052409C /* SplitsIOExchangeFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SplitsIOExchangeFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4ADFAE4823E4A0760049F57A /* QuickAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickAlert.swift; sourceTree = "<group>"; };
 		4AEA927D23C4EF32004F6CF9 /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
-		4AEA928123C4F140004F6CF9 /* GeneralPreferenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPreferenceViewController.swift; sourceTree = "<group>"; };
+		4AEA928123C4F140004F6CF9 /* DefaultPreferenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPreferenceViewController.swift; sourceTree = "<group>"; };
 		4AEA928223C4F140004F6CF9 /* GeneralPreferenceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralPreferenceViewController.xib; sourceTree = "<group>"; };
 		4AF953B423EB503100ED540C /* Timer Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timer Functions.swift"; sourceTree = "<group>"; };
 		4AF953B623EB507800ED540C /* Splits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Splits.swift; sourceTree = "<group>"; };
@@ -344,7 +344,7 @@
 			isa = PBXGroup;
 			children = (
 				4A66572D23E3CD8D00D14A67 /* SplitterDocIcon.icns */,
-				4AEA928123C4F140004F6CF9 /* GeneralPreferenceViewController.swift */,
+				4AEA928123C4F140004F6CF9 /* DefaultPreferenceViewController.swift */,
 				4AEA928223C4F140004F6CF9 /* GeneralPreferenceViewController.xib */,
 				4A18663123C5376900FEEE54 /* SettingsKeys.swift */,
 				4A87DEA423F251C700975EB8 /* livesplit.icns */,
@@ -621,7 +621,7 @@
 				4A968C7C23F1F5FE001B74E8 /* lss.swift in Sources */,
 				4A6A3BE023CD1C39002C20AE /* GlobalKeybindPrefs.swift in Sources */,
 				4AD7663223DB5C3A0052409C /* ImportExportSplitsIO.swift in Sources */,
-				4AEA928323C4F140004F6CF9 /* GeneralPreferenceViewController.swift in Sources */,
+				4AEA928323C4F140004F6CF9 /* DefaultPreferenceViewController.swift in Sources */,
 				4A0F715F23F4A0A500E5948E /* SplitterDoc.swift in Sources */,
 				4A66A43023DE2682005952FA /* ImageButtonCellView.swift in Sources */,
 				4A3BDFA123E4C3B6001EA7FF /* DefaultHotkeys.swift in Sources */,
