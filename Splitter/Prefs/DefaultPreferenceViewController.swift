@@ -14,7 +14,7 @@ final class DefaultPreferenceViewController: NSViewController, PreferencePane {
 	let preferencePaneTitle = "Defaults"
 	let toolbarItemIcon = NSImage(named: NSImage.preferencesGeneralName)!
 
-	override var nibName: NSNib.Name? { "GeneralPreferenceViewController" }
+	override var nibName: NSNib.Name? { "DefaultPreferenceViewController" }
 	
 	@IBOutlet weak var titleBarCheck: NSButton!
 	@IBOutlet weak var timerButtonCheck: NSButton!
