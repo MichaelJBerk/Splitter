@@ -9,7 +9,7 @@
 import Cocoa
 import Preferences
 
-final class GeneralPreferenceViewController: NSViewController, PreferencePane {
+final class DefaultPreferenceViewController: NSViewController, PreferencePane {
 	let preferencePaneIdentifier = PreferencePane.Identifier.general
 	let preferencePaneTitle = "Defaults"
 	let toolbarItemIcon = NSImage(named: NSImage.preferencesGeneralName)!
@@ -21,35 +21,10 @@ final class GeneralPreferenceViewController: NSViewController, PreferencePane {
 	@IBOutlet weak var floatWindowCheck: NSButton!
 	@IBOutlet weak var bestSplitsCheck: NSButton!
 	
-//	var hideStoplightButtons: Bool {
-//		get{
-//			UserDefaults.standard.bool(forKey: SettingsKeys.hideTitleBar)
-//		}
-//		set{
-//			UserDefaults.standard.set(!newValue, forKey: SettingsKeys.hideTitleBar)
-//		}
-//	}
-//	var hideButtons: Bool {
-//		get{
-//			UserDefaults.standard.bool(forKey: SettingsKeys.hideTimerButtons)
-//		}
-//		set {
-//			UserDefaults.standard.set(newValue, forKey: SettingsKeys.hideTimerButtons)
-//		}
-//	}
-//	var floatWindow: Bool {
-//		get{
-//			UserDefaults.standard.bool(forKey: SettingsKeys.floatWindow)
-//		}
-//		set {
-//			UserDefaults.standard.set(newValue, forKey: SettingsKeys.floatWindow)
-//		}
-//
-//	}
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-//		hideStoplightButtons = false
-//		stoplightCheck.state = .off
+		
 		if timerButtonCheck.state == .on {
 			print("state: on")
 		} else if timerButtonCheck.state == .off {

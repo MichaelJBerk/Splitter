@@ -99,7 +99,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
 	lazy var preferencesWindowController = PreferencesWindowController(
 		preferencePanes: [
-			GeneralPreferenceViewController(),
+			DefaultPreferenceViewController(),
 			HotkeysViewController()
 //			AdvancedPreferenceViewController()
 		]
