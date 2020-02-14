@@ -8,7 +8,6 @@
 
 import Cocoa
 import Preferences
-import HotKey
 import Carbon
 import Files
 
@@ -24,8 +23,6 @@ final class HotkeysViewController: NSViewController, PreferencePane {
 	
 	var cellButton: NSButton!
 	var cellForEvent: buttonCell?
-	
-	var currentKeybind: Keybind?
 	
 	var viewController: ViewController? {
 		if let vc =  NSApp.windows.first?.contentViewController as? ViewController {
@@ -105,10 +102,9 @@ final class HotkeysViewController: NSViewController, PreferencePane {
 	
 	@IBAction func clearHotkeyButtons(_ sender: Any) {
 		if let app = NSApp.delegate as? AppDelegate {
-			app.clearHotkeys()
 			
 		}
-		self.currentKeybind = nil
+		
 		hotkeysTableView.reloadData()
 	}
 	
@@ -132,26 +128,7 @@ final class HotkeysViewController: NSViewController, PreferencePane {
 	func updateGlobalShortcut(_ event: NSEvent) {
 		self.listening = false
 		
-		if let ck = currentKeybind {
-			
-			if let newBindD = ck.eventToKeybindPrefs(from: event)?.description {
-				ck.updateKeybind(from: event)
-				cellForEvent?.cellButton.title = newBindD
-				
-				
-				let app = NSApplication.shared.delegate as! AppDelegate
-			
-				// Need to dinitalize the hotkeys. Since they will soon be reloaded from the file, it's not a problem.
-				// You may wonder why I don't just clear out the keybinds array. Well, I tried doing that, and it would still remember the previous hotkey, so 🤷‍♂️
-				for i in app.keybinds {
-					i.hotkey = nil
-				}
-
-				app.setDefaultKeybindValues()
-				app.loadHotkeys()
-				
-			}
-		}
+		
 		
 		//udpate keybind button
 		self.cellForEvent = nil
@@ -160,9 +137,7 @@ final class HotkeysViewController: NSViewController, PreferencePane {
 	//	}
 		
 	func getNewGlobalKeybind(_ event: NSEvent) -> GlobalKeybindPreferences? {
-		if let ck = currentKeybind {
-			return ck.eventToKeybindPrefs(from: event)
-		}
+		
 		//return keybind.getKeybindFromEvent
 		return nil
 	}
@@ -170,7 +145,7 @@ final class HotkeysViewController: NSViewController, PreferencePane {
 	
 	func updateKeybindButton(_ globalKeybindPreference : GlobalKeybindPreferences) {
 		
-		cellForEvent?.cellButton.title = globalKeybindPreference.description
+		//TODO: Update title
 	}
 	
 	//Needs to be here in case this is already activated
@@ -191,7 +166,7 @@ final class HotkeysViewController: NSViewController, PreferencePane {
 extension HotkeysViewController: NSTableViewDataSource {
 	func  numberOfRows(in tableView: NSTableView) -> Int {
 		let app = NSApp.delegate as? AppDelegate
-		return app!.keybinds.count
+		return 0
 	}
 }
 
@@ -200,15 +175,13 @@ extension HotkeysViewController: NSTableViewDelegate {
 		var cellText = ""
 		var cellIdentifier = ""
 		let app = NSApp.delegate as! AppDelegate
-		let h = app.keybinds[row]
 		if tableColumn == tableView.tableColumns[0] {
-			cellText = h.Title.rawValue
 			cellIdentifier = "HotkeyNames"
 			
 			
 			if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: nil) as? NSTableCellView {
 				
-				cell.textField?.stringValue = cellText
+				cell.textField?.stringValue = "Nothing for now"
 				
 				return cell
 			}
@@ -218,11 +191,7 @@ extension HotkeysViewController: NSTableViewDelegate {
 			cellIdentifier = "Hotkeys"
 			
 			if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: nil) as? buttonCell {
-				if let g = h.hotkey?.keyCombo.description{
-					cell.cellButton.title = g
-				} else {
 					cell.cellButton.title = "[Not set]"
-				}
 				return cell
 			}
 		}
@@ -261,10 +230,10 @@ class buttonCell: NSTableCellView {
 		let app = NSApplication.shared.delegate as! AppDelegate
 		if let h = app.hotkeyController {
 			let row = h.hotkeysTableView.row(for: self)
-			let currentKeybind = app.keybinds[row]
+			
 			
 //			let cb = cellButton
-			h.currentKeybind = currentKeybind
+			
 			h.cellForEvent = self
 			h.register(self)
 		}

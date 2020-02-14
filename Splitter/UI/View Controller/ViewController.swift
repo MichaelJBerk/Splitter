@@ -8,7 +8,7 @@
 
 import Cocoa
 import Preferences
-import HotKey
+
 import Carbon
 
 class ViewController: NSViewController {

@@ -8,7 +8,6 @@
 
 import Foundation
 import Cocoa
-import HotKey
 
 enum KeybindTitle: String {
 	case BringToFront = "Bring To Front"
@@ -26,22 +25,5 @@ enum KeybindTitle: String {
 
 extension AppDelegate {
 	
-	func setDefaultKeybindValues() {
-		
-		var newKeybinds: [Keybind] = []
-		if let vc = self.viewController {
-			newKeybinds.append(contentsOf: [
-				Keybind(title: .BringToFront, keyDownHandler: self.frontHandler),
-				Keybind(title: .StartSplitTimer, keyDownHandler: vc.startSplitTimer, menuItemID: menuIdentifiers.timerMenu.StartSplit),
-				Keybind(title: .PauseTimer, keyDownHandler: vc.pauseResumeTimer, menuItemID: menuIdentifiers.timerMenu.pause),
-				Keybind(title: .PrevSplit, keyDownHandler: vc.goToPrevSplit, menuItemID: menuIdentifiers.timerMenu.back),
-				Keybind(title: .StopTimer, keyDownHandler: vc.stopTimer, menuItemID: menuIdentifiers.timerMenu.stop),
-				Keybind(title: .ClearTimer, keyDownHandler: vc.resetRun),
-				Keybind(title: .resetCurrentSplit, keyDownHandler: vc.resetCurrentSplit, menuItemID: menuIdentifiers.timerMenu.reset)
-			])
-			
-		}
-		
-		self.keybinds = newKeybinds
-	}
+	
 }
