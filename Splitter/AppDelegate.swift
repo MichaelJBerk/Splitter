@@ -8,7 +8,6 @@
 
 import Cocoa
 import Preferences
-import HotKey
 import Carbon
 import AppCenter
 import AppCenterAnalytics
@@ -22,28 +21,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	
 	public var hotkeyController: HotkeysViewController?
 
-	public var keybinds: [Keybind] = []
+	
 	
 	func loadHotkeys() {
-//		keybinds.append(Keybind(title: .NextSplit, keyDownHandler: self.viewController!.goToNextSplit))
-		for var k in keybinds {
-			
-			if Storage.fileExists(k.KeybindFileName, in: .appSupport) {
-				let globalK = Storage.retrieve(k.KeybindFileName, from: .appSupport, as: GlobalKeybindPreferences.self)
-				k.globalKeybind = globalK
-			}
-		}
+
 		
 		
 
 	}
 	
 	func setPaused(paused: Bool) {
-		for var k in keybinds {
-			if var h = k.hotkey {
-				h.isPaused = paused
-			}
-		}
+		
 	}
 	
 	
@@ -61,9 +49,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		
 //		keybinds.append(Keybind(title: .NextSplit, keyDownHandler: self.viewController!.goToNextSplit))
 		
-		setDefaultKeybindValues()
 		
-		loadHotkeys()
+		
+		
 		
 		// Insert code here to initialize your application
 		
@@ -73,29 +61,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			MSAnalytics.self,
 			MSCrashes.self
 		])
-		self.setPaused(paused: !Settings.enableGlobalHotkeys)
+		
 
 	}
 
 	func applicationWillTerminate(_ aNotification: Notification) {
 		// Insert code here to tear down your application
 	}
-	func clearHotkeys() {
-		if let keybindsFolder = try? Folder(path: "~/Library/Application Support/Splitter/Keybinds") {
-					for f in keybindsFolder.files {
-						try? f.delete()
-					}
-				}
-		for i in keybinds {
-			i.globalKeybind = nil
-			i.hotkey = nil
-		}
-//		keybinds = []
-		setDefaultKeybindValues()
-		loadHotkeys()
-		
-	}
-	
 
 	lazy var preferencesWindowController = PreferencesWindowController(
 		preferencePanes: [
@@ -118,11 +90,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		preferencesWindowController.show()
 	}
 	
-	
+	///Brings the current window to the front. Intended for use with keybinds.
 	func frontHandler()  {
-//		print(keybinds.count)
-		let h = keybinds[0].hotkey
-		print(h?.isPaused)
+		
 		NSApplication.shared.orderedWindows.forEach({ (window) in
 			if let mainWindow = window as? MainWindow {
 				NSApplication.shared.activate(ignoringOtherApps: true)
@@ -139,17 +109,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			vc.clearCurrentTime()
 			vc.startTimer()
 		}
-	}
-	func otherHandler() {
-//		NSApplication.shared.orderedWindows.forEach({ (window) in
-//			if let mainWindow = window as? MainWindow {
-//				print("ahh")
-//				NSApplication.shared.activate(ignoringOtherApps: true)
-//				mainWindow.makeKeyAndOrderFront(nil)
-//				mainWindow.makeKey()
-//			}
-//		})
-		
 	}
 	func StartPauseHandler() {
 		if let vc = viewController {
