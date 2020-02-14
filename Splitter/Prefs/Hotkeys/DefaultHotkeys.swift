@@ -14,7 +14,6 @@ enum KeybindTitle: String {
 	case BringToFront = "Bring To Front"
 	case StartSplitTimer = "Start Timer/Split"
 	case PauseTimer = "Pause Timer"
-	case NextSplit = "Next Split"
 	case PrevSplit = "Previous Split"
 	case StopTimer = "Stop Timer"
 	case ClearTimer = "Reset Run"
@@ -35,7 +34,6 @@ extension AppDelegate {
 				Keybind(title: .BringToFront, keyDownHandler: self.frontHandler),
 				Keybind(title: .StartSplitTimer, keyDownHandler: vc.startSplitTimer, menuItemID: menuIdentifiers.timerMenu.StartSplit),
 				Keybind(title: .PauseTimer, keyDownHandler: vc.pauseResumeTimer, menuItemID: menuIdentifiers.timerMenu.pause),
-				Keybind(title: .NextSplit, keyDownHandler: vc.goToNextSplit, menuItemID: menuIdentifiers.timerMenu.next),
 				Keybind(title: .PrevSplit, keyDownHandler: vc.goToPrevSplit, menuItemID: menuIdentifiers.timerMenu.back),
 				Keybind(title: .StopTimer, keyDownHandler: vc.stopTimer, menuItemID: menuIdentifiers.timerMenu.stop),
 				Keybind(title: .ClearTimer, keyDownHandler: vc.resetRun),

@@ -3,7 +3,12 @@
 A native Speedrunning timer for macOS
 
 Splitter is officially in Beta, but you can test it out with the link below, and give feedback.
+
 [Download Latest Beta Build](https://install.appcenter.ms/users/mjosephberk/apps/splittertest/distribution_groups/public%20beta)
+
+If you'd like to see what features are in the works, you can look at the [Roadmap](https://github.com/MichaelJBerk/Splitter/wiki/Roadmap)
+
+Info about the `.Split`format
 
 ## Formats & Files
 

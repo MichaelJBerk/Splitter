@@ -57,7 +57,7 @@ class ViewController: NSViewController {
 		return nil
 	}
 	
-	var startPauseItem: NSMenuItem? {
+	var startSplitItem: NSMenuItem? {
 		if let stopStart = view.window?.menu?.item(withIdentifier: menuIdentifiers.timerMenu.StartSplit) {
 			return stopStart
 		}
@@ -97,7 +97,7 @@ class ViewController: NSViewController {
 				timerStopItem?.isEnabled = false
 				timerStopItem?.title = "Stop Timer"
 				
-				startPauseItem?.title = "Start Timer"
+				startSplitItem?.title = "Start Timer"
 				
 				addDeleteEnabled(true)
 				nextBackEnabled(false)
@@ -105,7 +105,7 @@ class ViewController: NSViewController {
 				timerStopItem?.title = "Stop Timer"
 				timerStopItem?.isEnabled = true
 				
-				startPauseItem?.title = "Pause Timer"
+				startSplitItem?.title = "Split"
 				
 				addDeleteEnabled(false)
 				nextBackEnabled(true)
@@ -113,7 +113,7 @@ class ViewController: NSViewController {
 				timerStopItem?.isEnabled = true
 				timerStopItem?.title = "Stop Timer"
 				
-				startPauseItem?.title = "Resume Timer"
+				startSplitItem?.title = "Resume Timer"
 				addDeleteEnabled(true)
 				nextBackEnabled(false)
 			}
@@ -360,5 +360,4 @@ extension ViewController: NSWindowDelegate {
 		let showHideBestSplitsItem = NSApp.mainMenu?.item(withIdentifier: menuIdentifiers.appearanceMenu.showBestSplits)
 		showHideBestSplitsItem?.title = showHideBestSplitsItemText
 	}
-	
 }

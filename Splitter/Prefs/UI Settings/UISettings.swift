@@ -29,10 +29,6 @@ extension ViewController {
 			view.window?.standardWindowButton(.documentIconButton)?.isHidden = true
 			view.window?.titleVisibility = .hidden
 			
-			
-		
-			var mI0 = NSApp.mainMenu?.items[5]
-			print(mI0?.hasSubmenu)
 //
 		} else {
 			view.window?.standardWindowButton(.closeButton)?.isHidden = false
