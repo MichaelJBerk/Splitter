@@ -38,7 +38,6 @@ enum menuIdentifiers {
 		static let stop = NSUserInterfaceItemIdentifier("stopTimer")
 		static let pause = NSUserInterfaceItemIdentifier("pauseTimer")
 		
-		static let next = NSUserInterfaceItemIdentifier("timerNext")
 		static let back = NSUserInterfaceItemIdentifier("timerBack")
 		static let reset = NSUserInterfaceItemIdentifier("ResetCurrentSplitMenuItem")
 	}

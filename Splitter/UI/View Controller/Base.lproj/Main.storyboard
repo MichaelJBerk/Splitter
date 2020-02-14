@@ -371,7 +371,7 @@
                                         <menuItem title="Start Timer" identifier="timerStartStop" id="3tG-fh-bQJ">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="startPauseTimerMenuItem:" target="Ady-hI-5gd" id="ibx-2m-D5i"/>
+                                                <action selector="startSplitMenuItem:" target="Ady-hI-5gd" id="ibx-2m-D5i"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Pause Timer" identifier="pauseTimer" id="eYh-u1-RUX">
@@ -387,12 +387,6 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="n5c-GI-xuS"/>
-                                        <menuItem title="Next Split" identifier="timerNext" id="eN2-vv-lMq">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="nextSplitMenuItem:" target="Ady-hI-5gd" id="XAB-fw-Cn5"/>
-                                            </connections>
-                                        </menuItem>
                                         <menuItem title="Previous Split" identifier="timerBack" id="JbY-xM-DFE">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
@@ -556,12 +550,12 @@
                                             <tableColumns>
                                                 <tableColumn identifier="ImageColumn" width="32" minWidth="10" maxWidth="3.4028234663852886e+38" id="ljG-co-EDf">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
                                                     <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="Fye-y2-bpH">
-                                                        <font key="font" metaFont="label" size="13"/>
+                                                        <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
@@ -576,7 +570,7 @@
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Game Controller" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="R44-Yj-mVf">
                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                        <font key="font" metaFont="label" size="13"/>
+                                                                        <font key="font" metaFont="system"/>
                                                                     </buttonCell>
                                                                     <connections>
                                                                         <action selector="rowPictureButtonPressed:" target="5gI-5U-AMq" id="ZyA-Zo-Kt8"/>
@@ -591,12 +585,12 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="SplitTitle" width="80" minWidth="40" maxWidth="1000" id="rA7-ZF-Uc6">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Split">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
                                                     <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" placeholderString="Llaaa" id="jcv-dW-os6">
-                                                        <font key="font" metaFont="label" size="13"/>
+                                                        <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
@@ -609,7 +603,7 @@
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Zgl-iF-pqa">
                                                                     <rect key="frame" x="0.0" y="2" width="95" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" alignment="left" title="Cap" id="3Pe-jP-c4b">
-                                                                        <font key="font" metaFont="label" size="13"/>
+                                                                        <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
@@ -628,12 +622,12 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="Difference" width="61" minWidth="40" maxWidth="1000" id="PYF-Yr-8bh">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Diff">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
                                                     <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" id="XFJ-mS-GZ1">
-                                                        <font key="font" metaFont="label" size="13"/>
+                                                        <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
@@ -665,12 +659,12 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="CurrentSplit" width="76" minWidth="76" maxWidth="34028234663852888" id="b45-li-jb9">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Current">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
                                                     <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="Gw0-eu-hlI">
-                                                        <font key="font" metaFont="label" size="13"/>
+                                                        <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
@@ -702,19 +696,19 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="B" width="113" minWidth="76" maxWidth="3.4028234663852886e+38" hidden="YES" id="DAb-bp-lWc">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Best">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
                                                     <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="ydB-Ju-Fie">
-                                                        <font key="font" metaFont="label" size="13"/>
+                                                        <font key="font" metaFont="system"/>
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView translatesAutoresizingMaskIntoConstraints="NO" id="dmp-Ec-niB">
-                                                            <rect key="frame" x="1" y="1" width="10" height="38"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="10" height="38"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="lzf-ub-vJg">
                                                                     <rect key="frame" x="3" y="11" width="4" height="16"/>
@@ -764,7 +758,7 @@
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mj4-Ky-5e7">
                                 <rect key="frame" x="8" y="99" width="88" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Current Time:" id="JfQ-8T-Ydb">
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -777,7 +771,7 @@
                                 </constraints>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0Mt-iS-tkw">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="RemoveButtonClick:" target="5gI-5U-AMq" id="Rqp-0v-Ncb"/>
@@ -787,7 +781,7 @@
                                 <rect key="frame" x="135" y="-1" width="138" height="32"/>
                                 <buttonCell key="cell" type="push" title="Next" bezelStyle="rounded" alignment="center" scrollable="YES" lineBreakMode="clipping" truncatesLastVisibleLine="YES" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xSV-AL-F6u">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="nextButtonClick:" target="5gI-5U-AMq" id="fjE-Ya-6Ng"/>
@@ -801,7 +795,7 @@
                                 </constraints>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5oS-Ne-nTD">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="addButtonClick:" target="5gI-5U-AMq" id="t7j-Yl-6Hn"/>
@@ -819,7 +813,7 @@
                                 <rect key="frame" x="4" y="-1" width="138" height="32"/>
                                 <buttonCell key="cell" type="push" title="Prev" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ux6-T5-kx5">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="prevButtonClick:" target="5gI-5U-AMq" id="SRm-CB-TOB"/>
@@ -832,7 +826,7 @@
                                 </constraints>
                                 <buttonCell key="cell" type="push" title=" " bezelStyle="rounded" image="stop" imagePosition="leading" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Iag-Q5-zEr">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <color key="contentTintColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                 <connections>
@@ -846,7 +840,7 @@
                                 </constraints>
                                 <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" autoenablesItems="NO" selectedItem="E4A-EA-ALB" id="gAh-qk-bIO">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                     <menu key="menu" showsStateColumn="NO" autoenablesItems="NO" id="EQW-m1-UW4">
                                         <items>
                                             <menuItem image="trash" hidden="YES" id="E4A-EA-ALB"/>
@@ -871,8 +865,9 @@
                                 </constraints>
                                 <buttonCell key="cell" type="push" title="Start" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Z21-jw-aXO">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="label" size="13"/>
-                                    <string key="keyEquivalent">s</string>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent">r</string>
+                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </buttonCell>
                                 <color key="contentTintColor" name="systemGreenColor" catalog="System" colorSpace="catalog"/>
                                 <connections>
@@ -895,7 +890,7 @@
                                 </constraints>
                                 <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Game Controller" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="vor-TO-Uyw">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="label" size="13"/>
+                                    <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <color key="contentTintColor" name="systemPinkColor" catalog="System" colorSpace="catalog"/>
                                 <connections>

@@ -111,13 +111,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		}
 		return nil
 	}
-		
-	
-	
 
-
-	@IBAction
-	func preferencesMenuItemActionHandler(_ sender: NSMenuItem) {
+	@IBAction func preferencesMenuItemActionHandler(_ sender: NSMenuItem) {
 //		preferencesWindowController.window = self.window
 		
 		preferencesWindowController.show()
@@ -162,29 +157,4 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		}
 	}
 	
-
-	
-
-	
-	
-	
-//	func setUpHandlers(){
-//		for k in keybinds {
-//			k.hotkey?.isPaused = false
-//			if let h = k.hotkey {
-//				switch k.Title {
-//				case .BringToFront:
-//					h.keyDownHandler = frontHandler
-//				case .StartStopTimer:
-//					h.keyDownHandler = startStopHandler
-//				default:
-//					break
-////					h.keyDownHandler = otherHandler
-//				}
-//
-//			}
-//		}
-//		
-//	}
 }
-

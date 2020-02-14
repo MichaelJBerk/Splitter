@@ -47,13 +47,8 @@ extension ViewController {
 	
 	//MARK: Timer Menu
 	///Action for Menu Bar that starts/pauses the timer
-	@IBAction func startPauseTimerMenuItem(_ sender: Any?) {
-			switch timerState {
-			case .stopped:
-				startTimer()
-			default:
-				pauseResumeTimer()
-			}
+	@IBAction func startSplitMenuItem(_ sender: Any?) {
+		startSplitTimer()
 		
 	}
 	//TODO: Update labels on menu bar items
