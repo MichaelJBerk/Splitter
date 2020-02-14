@@ -10,6 +10,8 @@ import Foundation
 import Cocoa
 
 extension ViewController {
+	
+	///Shows or hides the UI, depending on the current setting
 	func showHideUI() {
 			if UIHidden {
 				StartButton.isHidden = true

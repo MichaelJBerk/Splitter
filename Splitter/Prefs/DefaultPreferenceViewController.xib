@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="DefaultPreferenceViewController" customModule="Splitter" customModuleProvider="target">
+            <connections>
+                <outlet property="bestSplitsCheck" destination="R4c-s0-725" id="pP1-ZF-RYV"/>
+                <outlet property="floatWindowCheck" destination="ydO-7I-4hZ" id="9g4-NA-fxh"/>
+                <outlet property="timerButtonCheck" destination="VkQ-Dp-TII" id="lTU-p0-NSg"/>
+                <outlet property="titleBarCheck" destination="H8d-7b-WTT" id="jra-Ab-5tz"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView translatesAutoresizingMaskIntoConstraints="NO" id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="510" height="363"/>
+            <subviews>
+                <gridView xPlacement="center" yPlacement="center" rowAlignment="none" rowSpacing="8" columnSpacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="xSK-Ra-JdC">
+                    <rect key="frame" x="30" y="35" width="450" height="308"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="450" id="K8B-YA-f0B"/>
+                    </constraints>
+                    <rows>
+                        <gridRow id="OuP-ao-d9M"/>
+                        <gridRow id="bV7-LH-cEg"/>
+                        <gridRow id="L7a-sj-6hm"/>
+                        <gridRow id="UPJ-i1-7kk"/>
+                        <gridRow id="rk7-qM-68F"/>
+                        <gridRow id="imo-ky-rrH"/>
+                        <gridRow id="iMg-HT-bdP"/>
+                        <gridRow id="YTG-br-qZ1"/>
+                    </rows>
+                    <columns>
+                        <gridColumn xPlacement="trailing" id="LzZ-pJ-X3k"/>
+                        <gridColumn xPlacement="leading" id="9aw-ML-kpu"/>
+                    </columns>
+                    <gridCells>
+                        <gridCell row="OuP-ao-d9M" column="LzZ-pJ-X3k" xPlacement="leading" id="m6p-5B-MRb">
+                            <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Udf-eT-uOf">
+                                <rect key="frame" x="-2" y="292" width="77" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Appearance" id="Pzj-xm-v4Y">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </gridCell>
+                        <gridCell row="OuP-ao-d9M" column="9aw-ML-kpu" id="u2m-gO-QeP">
+                            <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="H8d-7b-WTT">
+                                <rect key="frame" x="81" y="291" width="105" height="18"/>
+                                <buttonCell key="cell" type="check" title="Hide Title Bar" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="6az-ux-hex">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="titleBarToggled:" target="-2" id="9Nf-lD-wYS"/>
+                                </connections>
+                            </button>
+                        </gridCell>
+                        <gridCell row="bV7-LH-cEg" column="LzZ-pJ-X3k" id="uTA-RQ-IFd"/>
+                        <gridCell row="bV7-LH-cEg" column="9aw-ML-kpu" id="1Iw-RA-Un5">
+                            <textField key="contentView" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="abd-NS-xfd">
+                                <rect key="frame" x="81" y="236" width="371" height="48"/>
+                                <textFieldCell key="cell" selectable="YES" title="When opening a new window, hide the title bar and close button at the top of the window for a more compact appearance." id="HbJ-Ov-BRM">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </gridCell>
+                        <gridCell row="L7a-sj-6hm" column="LzZ-pJ-X3k" id="M2E-KF-12o"/>
+                        <gridCell row="L7a-sj-6hm" column="9aw-ML-kpu" id="rhf-nZ-Ts4">
+                            <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VkQ-Dp-TII">
+                                <rect key="frame" x="81" y="212" width="139" height="18"/>
+                                <buttonCell key="cell" type="check" title="Hide Timer Buttons" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="QQt-U4-Fwj">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="buttonsToggled:" target="-2" id="h6V-uk-aCF"/>
+                                </connections>
+                            </button>
+                        </gridCell>
+                        <gridCell row="UPJ-i1-7kk" column="LzZ-pJ-X3k" id="BTs-5s-l3S"/>
+                        <gridCell row="UPJ-i1-7kk" column="9aw-ML-kpu" id="Aca-rL-b1b">
+                            <textField key="contentView" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="iNp-Tx-d7w">
+                                <rect key="frame" x="81" y="142" width="371" height="64"/>
+                                <textFieldCell key="cell" selectable="YES" id="JjW-lb-rrM">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <string key="title">When opening a new window, hide the buttons for adding/removing segments, moving to the previous/next segment, and stopping/starting the timer from the window. You can always use the Menu Bar or Hotkeys to control the timer.  </string>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </gridCell>
+                        <gridCell row="rk7-qM-68F" column="LzZ-pJ-X3k" id="OnY-7Q-qtB"/>
+                        <gridCell row="rk7-qM-68F" column="9aw-ML-kpu" id="Bt8-RG-HEb">
+                            <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="R4c-s0-725">
+                                <rect key="frame" x="81" y="118" width="174" height="18"/>
+                                <buttonCell key="cell" type="check" title="Show Best Splits Column" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="9y5-gL-jbw">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="bestSplitsToggled:" target="-2" id="GZl-zd-XgN"/>
+                                </connections>
+                            </button>
+                        </gridCell>
+                        <gridCell row="imo-ky-rrH" column="LzZ-pJ-X3k" id="TsP-Kz-GNT"/>
+                        <gridCell row="imo-ky-rrH" column="9aw-ML-kpu" id="Bqf-6C-Bhs">
+                            <textField key="contentView" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="8Zc-MO-zX6">
+                                <rect key="frame" x="81" y="64" width="371" height="48"/>
+                                <textFieldCell key="cell" selectable="YES" id="Ctf-mX-TaH">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <string key="title">When opening a new window, make the "best splits" column visibile. Note that you may have to scroll horizontally to it if the window is not wide enough.</string>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </gridCell>
+                        <gridCell row="iMg-HT-bdP" column="LzZ-pJ-X3k" id="a3u-1K-IyC">
+                            <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="zdk-2r-nds">
+                                <rect key="frame" x="36" y="40" width="39" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Other" id="o5v-hn-HtH">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </gridCell>
+                        <gridCell row="iMg-HT-bdP" column="9aw-ML-kpu" id="Cyw-Mc-Ih0">
+                            <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ydO-7I-4hZ">
+                                <rect key="frame" x="81" y="39" width="234" height="18"/>
+                                <buttonCell key="cell" type="check" title="Keep window above other windows" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="fsw-j9-9qg">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="floatToggle:" target="-2" id="IxP-gV-prf"/>
+                                </connections>
+                            </button>
+                        </gridCell>
+                        <gridCell row="YTG-br-qZ1" column="LzZ-pJ-X3k" id="P8S-MZ-una"/>
+                        <gridCell row="YTG-br-qZ1" column="9aw-ML-kpu" id="62D-PO-V7e">
+                            <textField key="contentView" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Ses-aq-wsJ">
+                                <rect key="frame" x="81" y="0.0" width="371" height="32"/>
+                                <textFieldCell key="cell" selectable="YES" title="When opening a new window, it wil &quot;float&quot; above any other windows you have open" id="gt5-yk-vrr">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </gridCell>
+                    </gridCells>
+                </gridView>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="xSK-Ra-JdC" secondAttribute="trailing" priority="750" constant="30" id="7bp-j4-L8C"/>
+                <constraint firstItem="xSK-Ra-JdC" firstAttribute="centerX" secondItem="Hz6-mo-xeY" secondAttribute="centerX" id="TCE-aK-ua0"/>
+                <constraint firstItem="xSK-Ra-JdC" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="Hz6-mo-xeY" secondAttribute="leading" priority="750" constant="30" id="h3x-O5-nk5"/>
+                <constraint firstItem="xSK-Ra-JdC" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" priority="750" constant="20" id="tCd-8P-Jnd"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="199.5"/>
+        </customView>
+    </objects>
+</document>

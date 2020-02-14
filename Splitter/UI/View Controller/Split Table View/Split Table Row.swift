@@ -24,13 +24,13 @@ struct splitTableRow {
 		}
 		let diff = og - currentSplit
 		if currentSplit.longTimeString == "00:00:00.00" {
-			return "+-00:00.00"
+			return "00:00.00"
 		} else if currentSplit > bestSplit {
 			return "+\(diff.veryShortTimeString)"
 		} else if currentSplit < bestSplit {
 			return "-\(diff.veryShortTimeString)"
 		} else {
-			return "+-00:00.00"
+			return "00:00.00"
 		}
 	}
 	

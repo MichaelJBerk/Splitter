@@ -27,10 +27,6 @@ final class HotkeysViewController: NSViewController, PreferencePane {
 	
 	var currentKeybind: Keybind?
 	
-	
-	let hotkeyNames = ["Start Timer", "Pause Timer"]
-	let defaultHotkeys = ["[Space Bar]"]
-	
 	var viewController: ViewController? {
 		if let vc =  NSApp.windows.first?.contentViewController as? ViewController {
 			return vc

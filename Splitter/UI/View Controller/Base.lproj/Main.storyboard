@@ -371,22 +371,22 @@
                                         <menuItem title="Start Timer" identifier="timerStartStop" id="3tG-fh-bQJ">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="startPauseTimerMenuItem:" target="Ady-hI-5gd" id="ibx-2m-D5i"/>
+                                                <action selector="startSplitMenuItem:" target="Ady-hI-5gd" id="ibx-2m-D5i"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Stop Timer" identifier="timerPause" id="TFi-Xy-CSu">
+                                        <menuItem title="Pause Timer" identifier="pauseTimer" id="eYh-u1-RUX">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="pauseMenuItem:" target="Ady-hI-5gd" id="Tje-Uj-H0p"/>
+                                                <action selector="pauseMenuItem:" target="Ady-hI-5gd" id="5Gw-DN-mHA"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Stop Timer" identifier="stopTimer" id="TFi-Xy-CSu">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="stopMenuItem:" target="Ady-hI-5gd" id="Tje-Uj-H0p"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="n5c-GI-xuS"/>
-                                        <menuItem title="Next Split" identifier="timerNext" id="eN2-vv-lMq">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="nextSplitMenuItem:" target="Ady-hI-5gd" id="XAB-fw-Cn5"/>
-                                            </connections>
-                                        </menuItem>
                                         <menuItem title="Previous Split" identifier="timerBack" id="JbY-xM-DFE">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
@@ -542,7 +542,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnReordering="NO" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="30" headerView="aVs-1A-u0Q" viewBased="YES" id="Ww4-Jn-tNR">
-                                            <rect key="frame" x="0.0" y="0.0" width="277" height="165"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="272" height="165"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -567,7 +567,7 @@
                                                             <subviews>
                                                                 <button id="VZF-y0-fze" customClass="IconButton" customModule="Splitter" customModuleProvider="target">
                                                                     <rect key="frame" x="0.0" y="-12" width="30" height="30"/>
-                                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Game Controller" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="R44-Yj-mVf">
                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                                         <font key="font" metaFont="system"/>
@@ -620,8 +620,8 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="Difference" width="76.5" minWidth="40" maxWidth="1000" id="PYF-Yr-8bh">
-                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Difference">
+                                                <tableColumn identifier="Difference" width="61" minWidth="40" maxWidth="1000" id="PYF-Yr-8bh">
+                                                    <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Diff">
                                                         <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -634,12 +634,12 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="Rg4-wW-NSz">
-                                                            <rect key="frame" x="119" y="1" width="76" height="19"/>
+                                                            <rect key="frame" x="119" y="1" width="61" height="19"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="o9G-nL-h8J">
-                                                                    <rect key="frame" x="0.0" y="2" width="75" height="15"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" alignment="right" title="+-00:00.00" id="apn-BN-ypm">
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="o9G-nL-h8J">
+                                                                    <rect key="frame" x="-2" y="2" width="65" height="15"/>
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" alignment="right" title="00:00.00" id="apn-BN-ypm">
                                                                         <font key="font" metaFont="label" size="12"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -648,8 +648,8 @@
                                                             </subviews>
                                                             <constraints>
                                                                 <constraint firstItem="o9G-nL-h8J" firstAttribute="centerY" secondItem="Rg4-wW-NSz" secondAttribute="centerY" id="1kr-wM-uUn"/>
-                                                                <constraint firstItem="o9G-nL-h8J" firstAttribute="leading" secondItem="Rg4-wW-NSz" secondAttribute="leading" constant="2" id="mkS-xK-vkJ"/>
-                                                                <constraint firstAttribute="trailing" secondItem="o9G-nL-h8J" secondAttribute="trailing" constant="3" id="tNk-qA-Ouc"/>
+                                                                <constraint firstItem="o9G-nL-h8J" firstAttribute="leading" secondItem="Rg4-wW-NSz" secondAttribute="leading" id="mkS-xK-vkJ"/>
+                                                                <constraint firstAttribute="trailing" secondItem="o9G-nL-h8J" secondAttribute="trailing" id="tNk-qA-Ouc"/>
                                                             </constraints>
                                                             <connections>
                                                                 <outlet property="textField" destination="o9G-nL-h8J" id="T2j-zI-6he"/>
@@ -671,11 +671,11 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView autoresizesSubviews="NO" id="FsD-ZY-T5b">
-                                                            <rect key="frame" x="199" y="1" width="74" height="38"/>
+                                                            <rect key="frame" x="183" y="1" width="76" height="38"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="AaA-Ba-UKe">
-                                                                    <rect key="frame" x="1" y="11" width="73" height="16"/>
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="AaA-Ba-UKe">
+                                                                    <rect key="frame" x="1" y="11" width="74" height="16"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="00:00:00:00" id="NyR-TC-MBh">
                                                                         <font key="font" size="13" name="HelveticaNeue-Bold"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -708,7 +708,7 @@
                                                     <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView translatesAutoresizingMaskIntoConstraints="NO" id="dmp-Ec-niB">
-                                                            <rect key="frame" x="1" y="1" width="10" height="38"/>
+                                                            <rect key="frame" x="0.0" y="0.0" width="10" height="38"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="lzf-ub-vJg">
                                                                     <rect key="frame" x="3" y="11" width="4" height="16"/>
@@ -739,7 +739,7 @@
                                     </subviews>
                                     <nil key="backgroundColor"/>
                                 </clipView>
-                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="u5J-vU-46w">
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="u5J-vU-46w">
                                     <rect key="frame" x="1" y="174" width="272" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -748,7 +748,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" id="aVs-1A-u0Q">
-                                    <rect key="frame" x="0.0" y="0.0" width="277" height="25"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="272" height="25"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                                 <connections>
@@ -866,7 +866,8 @@
                                 <buttonCell key="cell" type="push" title="Start" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Z21-jw-aXO">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
-                                    <string key="keyEquivalent">s</string>
+                                    <string key="keyEquivalent">r</string>
+                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </buttonCell>
                                 <color key="contentTintColor" name="systemGreenColor" catalog="System" colorSpace="catalog"/>
                                 <connections>
