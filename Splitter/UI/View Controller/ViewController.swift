@@ -10,7 +10,6 @@ import Cocoa
 import Preferences
 import HotKey
 import Carbon
-import SplitsIOExchangeFramework
 
 class ViewController: NSViewController {
 	
@@ -58,8 +57,8 @@ class ViewController: NSViewController {
 		return nil
 	}
 	
-	var startPauseItem: NSMenuItem? {
-		if let stopStart = view.window?.menu?.item(withIdentifier: menuIdentifiers.timerMenu.startPause) {
+	var startSplitItem: NSMenuItem? {
+		if let stopStart = view.window?.menu?.item(withIdentifier: menuIdentifiers.timerMenu.StartSplit) {
 			return stopStart
 		}
 		return nil
@@ -98,7 +97,7 @@ class ViewController: NSViewController {
 				timerStopItem?.isEnabled = false
 				timerStopItem?.title = "Stop Timer"
 				
-				startPauseItem?.title = "Start Timer"
+				startSplitItem?.title = "Start Timer"
 				
 				addDeleteEnabled(true)
 				nextBackEnabled(false)
@@ -106,7 +105,7 @@ class ViewController: NSViewController {
 				timerStopItem?.title = "Stop Timer"
 				timerStopItem?.isEnabled = true
 				
-				startPauseItem?.title = "Pause Timer"
+				startSplitItem?.title = "Split"
 				
 				addDeleteEnabled(false)
 				nextBackEnabled(true)
@@ -114,7 +113,7 @@ class ViewController: NSViewController {
 				timerStopItem?.isEnabled = true
 				timerStopItem?.title = "Stop Timer"
 				
-				startPauseItem?.title = "Resume Timer"
+				startSplitItem?.title = "Resume Timer"
 				addDeleteEnabled(true)
 				nextBackEnabled(false)
 			}
@@ -162,8 +161,10 @@ class ViewController: NSViewController {
 
 	//MARK: - External File Split Data
 	//Stuff that holds data from files
-		var splitsIOData: SplitsIOExchangeFormat!
-		var runInfoData: runInfo?
+	var splitsIOData: SplitsIOExchangeFormat!
+	var runInfoData: runInfo?
+	
+	var appearance: splitterAppearance?
 		
 		var shouldLoadSplits = false//: Bool {
 	//		if loadedSplits.isEmpty && runInfoData == nil {
@@ -266,7 +267,11 @@ class ViewController: NSViewController {
 		
 		timerStopItem?.isEnabled = false
 	
-		setUpDefaults()
+		if appearance != nil {
+			setSplitterAppearance(appearance: appearance!)
+		} else {
+			setUpDefaults()
+		}
 		
 		if currentSplits.count == 0 {
 			addBlankSplit()
@@ -288,7 +293,7 @@ class ViewController: NSViewController {
 		showHideUI()
 		
 		windowFloat = Settings.floatWindow
-		floatingWindow()
+		setFloatingWindow()
 		
 		showBestSplits = Settings.showBestSplits
 		showHideBestSplits()
@@ -355,5 +360,4 @@ extension ViewController: NSWindowDelegate {
 		let showHideBestSplitsItem = NSApp.mainMenu?.item(withIdentifier: menuIdentifiers.appearanceMenu.showBestSplits)
 		showHideBestSplitsItem?.title = showHideBestSplitsItemText
 	}
-	
 }
