@@ -51,7 +51,6 @@ extension ViewController {
 		startSplitTimer()
 		
 	}
-	//TODO: Update labels on menu bar items
 	@IBAction func pauseMenuItem(_ sender: Any?) {
 		pauseResumeTimer()
 	}
@@ -60,17 +59,16 @@ extension ViewController {
 		stopTimer()
 	}
 
-	
-	@IBAction func nextSplitMenuItem(_ sender: Any?) {
-		
-//
-		
-		goToNextSplit()
-	}
-
-
 	@IBAction func prevSplitMenuItem(_ sender: Any?) {
 		goToPrevSplit()
+	}
+	
+	@IBAction func resetRunMenuItem(_ sender: Any) {
+		resetRun()
+	}
+	
+	@IBAction func resetCurrentSplitMenuItem(_ sender: Any) {
+		resetCurrentSplit()
 	}
 	
 	//MARK: Info menu
@@ -92,10 +90,6 @@ extension ViewController {
 			askToClearTimer()
 	//		return false
 		}
-	
-	@IBAction func resetCurrentSplitMenuItem(_ sender: Any) {
-		resetCurrentSplit()
-	}
 	
 	
 	//MARK: Appearance Menu
