@@ -110,33 +110,6 @@ final class HotkeysViewController: NSViewController, PreferencePane {
 	}
 	
 	//MARK: - Setting Hotkeys
-		
-
-		
-	func getNewGlobalKeybind(_ event: NSEvent) -> GlobalKeybindPreferences? {
-		
-		//return keybind.getKeybindFromEvent
-		return nil
-	}
-	
-	
-	func updateKeybindButton(_ globalKeybindPreference : GlobalKeybindPreferences) {
-		
-		//TODO: Update title
-	}
-	
-	//Needs to be here in case this is already activated
-
-	override func keyDown(with event: NSEvent) {
-		super.keyDown(with: event)
-		
-			if listening{
-				
-				let newKeybind = getNewGlobalKeybind(event)
-				updateKeybindButton(newKeybind!)
-			}
-		
-	}
 	
 }
 
