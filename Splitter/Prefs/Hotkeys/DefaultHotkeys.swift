@@ -51,6 +51,8 @@ struct SplitterKeybind {
 extension AppDelegate {
 	
 	func loadDefaultSplitterKeybinds() {
+		MASShortcutMonitor.shared()?.unregisterAllShortcuts()
+		
 		appKeybinds = [
 			SplitterKeybind(settings: .bringToFront, title: .BringToFront, menuItem: nil),
 			SplitterKeybind(settings: .startSplitTimer, title: .StartSplitTimer, menuItem: menuIdentifiers.timerMenu.StartSplit),
@@ -71,8 +73,9 @@ extension AppDelegate {
 				//Need to edit the array directly, so can't use k
 				appKeybinds[i]!.keybind = sView.shortcutValue
 				let a = keybindAction(keybind: k.title)
+				if appKeybinds[i]?.keybind != nil {
 				MASShortcutMonitor.shared()?.register(appKeybinds[i]!.keybind, withAction: a)
-//				}
+				}
 			}
 			i = i + 1
 			
