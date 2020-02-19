@@ -44,10 +44,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			Settings.hideTitleBar = false
 			Settings.floatWindow = false
 			Settings.showBestSplits = false
+			Settings.enableGlobalHotkeys = true
+			
 			Settings.notFirstUse = true
-			Settings.enableGlobalHotkeys = false
 		}
-		
 		
 		
 		
@@ -57,7 +57,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		
 		loadDefaultSplitterKeybinds()
 //		updateMenuBar()
-//		self.globalShortcuts = Settings.enableGlobalHotkeys
+		self.globalShortcuts = Settings.enableGlobalHotkeys
 		
 		// Insert code here to initialize your application
 		
@@ -115,7 +115,26 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 	
 
-	var globalShortcuts: Bool!// {
+	var globalShortcuts: Bool! {
+		didSet {
+			if !globalShortcuts {
+				MASShortcutMonitor.shared()?.unregisterAllShortcuts()
+			} else {
+				for i in appKeybinds {
+					if let k = i {
+						if let kb = k.keybind {
+//							updateSplitterKeybind(keybind: k.title, shortcut: kb)
+							MASShortcutMonitor.shared()?.register(kb, withAction: keybindAction(keybind: k.title))
+						}
+					}
+				}
+			}
+		}
+	}
+	
+	
+	
+	// {
 //		didSet {
 //			if !globalShortcuts {
 //				MASShortcutMonitor.shared()?.unregisterAllShortcuts()
