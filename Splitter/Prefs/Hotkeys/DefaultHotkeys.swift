@@ -37,13 +37,21 @@ struct SplitterKeybind {
 	var keybind: MASShortcut?
 	var settings: KeybindSettingsKey
 	var title: KeybindTitle
-	var menuItem: NSUserInterfaceItemIdentifier?
+	var menuItemID: NSUserInterfaceItemIdentifier?
+	var menuItem: NSMenuItem? {
+		if let id = self.menuItemID {
+			return NSApp.mainMenu?.item(withIdentifier: id)
+		}
+		return nil
+	}
 	
-	init(settings: KeybindSettingsKey, title: KeybindTitle, menuItem: NSUserInterfaceItemIdentifier?) {
+	
+	
+	init(settings: KeybindSettingsKey, title: KeybindTitle, menuItemID: NSUserInterfaceItemIdentifier?) {
 //		self.init(settings: settings, title: title)
 		self.settings = settings
 		self.title = title
-//		self.menuItem = menuItem
+		self.menuItemID = menuItemID
 	}
 	
 }
@@ -54,13 +62,13 @@ extension AppDelegate {
 		MASShortcutMonitor.shared()?.unregisterAllShortcuts()
 		
 		appKeybinds = [
-			SplitterKeybind(settings: .bringToFront, title: .BringToFront, menuItem: nil),
-			SplitterKeybind(settings: .startSplitTimer, title: .StartSplitTimer, menuItem: menuIdentifiers.timerMenu.StartSplit),
-			SplitterKeybind(settings: .pauseTimer, title: .PauseTimer, menuItem: menuIdentifiers.timerMenu.pause),
-			SplitterKeybind(settings: .prevSplit, title: .PrevSplit, menuItem: menuIdentifiers.timerMenu.back),
-			SplitterKeybind(settings: .stopTimer, title: .StopTimer, menuItem: menuIdentifiers.timerMenu.stop),
-			SplitterKeybind(settings: .clearTimer, title: .ClearTimer, menuItem: menuIdentifiers.timerMenu.resetRun),
-			SplitterKeybind(settings: .resetCurrentSplit, title: .ResetCurrentSplit, menuItem: menuIdentifiers.timerMenu.reset)
+			SplitterKeybind(settings: .bringToFront, title: .BringToFront, menuItemID: nil),
+			SplitterKeybind(settings: .startSplitTimer, title: .StartSplitTimer, menuItemID: menuIdentifiers.timerMenu.StartSplit),
+			SplitterKeybind(settings: .pauseTimer, title: .PauseTimer, menuItemID: menuIdentifiers.timerMenu.pause),
+			SplitterKeybind(settings: .prevSplit, title: .PrevSplit, menuItemID: menuIdentifiers.timerMenu.back),
+			SplitterKeybind(settings: .stopTimer, title: .StopTimer, menuItemID: menuIdentifiers.timerMenu.stop),
+			SplitterKeybind(settings: .clearTimer, title: .ClearTimer, menuItemID: menuIdentifiers.timerMenu.resetRun),
+			SplitterKeybind(settings: .resetCurrentSplit, title: .ResetCurrentSplit, menuItemID: menuIdentifiers.timerMenu.reset)
 		]
 		
 		
@@ -79,6 +87,20 @@ extension AppDelegate {
 			}
 			i = i + 1
 			
+		}
+		updateKeyEquivs()
+	}
+	
+	func updateKeyEquivs() {
+		for i in appKeybinds {
+			if i?.menuItemID != nil {
+				let mi = NSApp.mainMenu?.item(withIdentifier: i!.menuItemID!)
+				
+				mi!.keyEquivalent = i?.keybind?.keyCodeString ?? ""
+				if let mods = i?.keybind?.modifierFlags {
+					mi!.keyEquivalentModifierMask = mods
+				}
+			}
 		}
 	}
 	
@@ -101,7 +123,7 @@ extension AppDelegate {
 		i = i + 1
 		}
 		
-		
+		updateKeyEquivs()
 		
 	}
 	
