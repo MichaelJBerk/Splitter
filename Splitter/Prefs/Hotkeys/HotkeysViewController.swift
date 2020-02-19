@@ -28,48 +28,19 @@ final class HotkeysViewController: NSViewController, PreferencePane {
 		}
 		return nil
 	}
-	var listening = false {
-		didSet {
-			if listening {
-				DispatchQueue.main.async {[weak self] in
-//					self?.cellButton.highlight(true)
-					
-				}
-			} else {
-				DispatchQueue.main.async {[weak self] in
-//					self?.cellButton.highlight(false)
-				}
-			}
-		}
-	}
 	
-//	var keybinds: [MASShortcut?] = []
 	
 	
 	override var nibName: NSNib.Name? { "HotkeysViewController" }
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-//		cellButton = hotkeysTableView.cellButton
-		
-		
-//		cellButton.action = #selector(clickCellButton(_:))
-//		NSApplication.shared.delegate.hotkey
-		let app = NSApplication.shared.delegate as! AppDelegate
-		
-		
-//		view.window?.windowController
+
 		
 		preferredContentSize = NSSize(width: view.frame.width, height: view.frame.height)
 		hotkeysTableView.delegate = self
 		hotkeysTableView.dataSource = self
 		hotkeysTableView.reloadData()
-		
-		
-		
-//            updateKeybindButton(globalKeybinds)
-//            updateClearButton(globalKeybinds)
-//	}
 		
 		hotkeysTableView.reloadData()
 		globalHotkeysCheck.state.fromBool(bool: Settings.enableGlobalHotkeys)
@@ -83,10 +54,6 @@ final class HotkeysViewController: NSViewController, PreferencePane {
 	}
 	
 	override func viewWillAppear() {
-		let app = NSApplication.shared.delegate as! AppDelegate
-		
-//		keybinds = app.keybinds
-//		print("appear ", app.keybinds[0].globalKeybind?.description)
 	}
 	
 	@IBAction func globalHotkeysToggle(_ sender: Any) {
@@ -94,11 +61,7 @@ final class HotkeysViewController: NSViewController, PreferencePane {
 		if let app = NSApp.delegate as? AppDelegate {
 			app.globalShortcuts = globalHotkeysCheck.state.toBool()
 		}
-//		if let app = NSApp.delegate as? AppDelegate {
-//			for k in app.keybinds {
-//				print(k.hotkey?.isPaused)
-//			}
-//		}
+
 	}
 	
 	@IBAction func clearHotkeyButtons(_ sender: Any) {
@@ -122,7 +85,6 @@ extension HotkeysViewController: NSTableViewDataSource {
 
 extension HotkeysViewController: NSTableViewDelegate {
 	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-		var cellText = ""
 		var cellIdentifier = ""
 		let app = NSApp.delegate as! AppDelegate
 		if tableColumn == tableView.tableColumns[0] {
@@ -139,7 +101,6 @@ extension HotkeysViewController: NSTableViewDelegate {
 			}
 			
 		} else {
-//			cellText = defaultHotkeys[row]
 			cellIdentifier = "Hotkeys"
 			
 			
@@ -147,8 +108,8 @@ extension HotkeysViewController: NSTableViewDelegate {
 				
 				
 				let short = cell.cellShortcutView
-				let val = MASShortcutValidator()
-				val.allowAnyShortcutWithOptionModifier = true
+				let val = SplitterShortcutValdator()
+//				val.allowAnyShortcutWithOptionModifier = true
 				short?.shortcutValidator = val
 				short?.associatedUserDefaultsKey = app.appKeybinds[row]?.settings.rawValue
 				
@@ -159,34 +120,17 @@ extension HotkeysViewController: NSTableViewDelegate {
 
 						app.updateSplitterKeybind(keybind: app.appKeybinds[row]!.title, shortcut: short!.shortcutValue)
 					}
-					
-					
-//					MASShortcutMonitor.shared()?.register(v, withAction: )
-					
-					
-					
-					
-//					MASShortcutBinder.shared()?.bindShortcut(withDefaultsKey: SettingsKeys.keybindKeys.bringToFront, toAction: callback)
-//					MASShortcutMonitor.shared().register(short?.shortcutValue, withAction: callback)
-					
+						if short?.shortcutValue == nil {
+							print("empty")
+							let sc = app.appKeybinds[row]!
+							MASShortcutBinder.shared()?.breakBinding(withDefaultsKey: sc.settings.rawValue)
+							MASShortcutMonitor.shared()?.unregisterShortcut(sc.keybind)
+//							print(MASShortcutBinder.shared()?.shortcutMonitor?.isShortcutRegistered(sc.keybind))
+							app.appKeybinds[row]!.keybind = nil
+							app.updateKeyEquivs()
+							
+					}
 				}
-				
-//				cell.cellShortcutView.shortcutValueChange = { (sender) in
-//					var callback: () -> Void
-//					callback = app.frontHandler
-//
-//					cell.cellShortcutView.associatedUserDefaultsKey = SettingsKeys.keybindKeys.bringToFront
-//					MASShortcutBinder.shared()?.bindShortcut(withDefaultsKey: SettingsKeys.keybindKeys.bringToFront, toAction: callback)
-//					let sk: SplitterKeybind = cell.cellShortcutView!.shortcutValue as! SplitterKeybind
-//					callback = {
-//						cell.clickthing(cell.cellShortcutView)
-//					}
-//					callback = {
-//						cell.hotkeyHandler(cell.cellShortcutView.shortcutValue)
-//					}
-					
-//					MASShortcutMonitor.shared()?.register(cell.cellShortcutView.shortcutValue, withAction: callback)
-//				}
 				return cell
 			}
 		}
@@ -199,53 +143,29 @@ extension HotkeysViewController: NSTableViewDelegate {
 	
 }
 
-extension PreferencesWindowController {
-	
-	//works when this one is triggered
-	override public func keyDown(with event: NSEvent) {
-		super.keyDown(with: event)
-		
-		let app = NSApplication.shared.delegate as! AppDelegate
-		if let h = app.hotkeyController  {
-			if h.listening {
-// 				h.updateGlobalShortcut(event)
-			}
-		}
-	}
-	
-		
-}
-
-
-//
 class buttonCell: NSTableCellView {
-
-//	@IBOutlet weak var cellButton: NSButton!
-	
-//	func clickthing(_ sender: MASShortcutView?) -> ((MASShortcutView?) -> Void)? {
-//
-//		var callback = {
-//			print("hey")
-//		}
-//		print("laaaaa")
-//		return nil
-		
-//	}
-//	func hotkeyHandler(_ sender: MASShortcut?) {
-//		let hey = MASShortcutMonitor.shared().map( {(thing) in
-//
-//			print(thing)
-//			}
-//		)
-//		let hey2 = MASHotKey.registeredHotKey(with: sender!)
-//		hey2?.action
-//
-//
-//	}
-//
 	
 	@IBOutlet weak var cellShortcutView: MASShortcutView!
 
 }
 
 
+class SplitterShortcutValdator: MASShortcutValidator {
+	override init() {
+		super.init()
+		self.allowAnyShortcutWithOptionModifier = true
+	}
+	
+//	override func isShortcutAlreadyTaken(bySystem shortcut: MASShortcut!, explanation: AutoreleasingUnsafeMutablePointer<NSString?>!) -> Bool {
+//		var hey = super.isShortcutAlreadyTaken(bySystem: shortcut, explanation: explanation)
+//		print("ShortcutKC: ", shortcut.keyCodeString, "isAlreadyTakenBySystem: ", hey)
+//		return hey
+//	}
+//	override func isShortcut(_ shortcut: MASShortcut!, alreadyTakenIn menu: NSMenu!, explanation: AutoreleasingUnsafeMutablePointer<NSString?>!) -> Bool {
+//		var hey = super.isShortcut(shortcut, alreadyTakenIn: menu, explanation: explanation)
+//		print("ShortcutKC: ", shortcut.keyCodeString, "isAlreadyTakenInMenu: ", hey)
+//
+//		return hey
+//
+//	}
+}

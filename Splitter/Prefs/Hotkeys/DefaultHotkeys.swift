@@ -22,8 +22,6 @@ enum KeybindTitle: String {
 
 enum KeybindSettingsKey: String {
 	
-//	public static let bringToFront = "bringToFront"
-//	public static let startSplitTimer = "startSplitTimer"
 	case bringToFront = "bringToFront"
 	case startSplitTimer = "startSplitTimer"
 	case pauseTimer = "pauseTimer"
@@ -48,7 +46,6 @@ struct SplitterKeybind {
 	
 	
 	init(settings: KeybindSettingsKey, title: KeybindTitle, menuItemID: NSUserInterfaceItemIdentifier?) {
-//		self.init(settings: settings, title: title)
 		self.settings = settings
 		self.title = title
 		self.menuItemID = menuItemID
@@ -75,8 +72,7 @@ extension AppDelegate {
 		var i = 0
 		while i < appKeybinds.count {
 			if let k = appKeybinds[i] {
-//				if k.keybind != nil {
-				var sView = MASShortcutView()
+				let sView = MASShortcutView()
 				sView.associatedUserDefaultsKey = k.settings.rawValue
 				//Need to edit the array directly, so can't use k
 				appKeybinds[i]!.keybind = sView.shortcutValue
@@ -91,6 +87,7 @@ extension AppDelegate {
 		updateKeyEquivs()
 	}
 	
+	///Refreshes the "Key Equivalents" displayed in the Menu Bar to be the user's custom hotkeys
 	func updateKeyEquivs() {
 		for i in appKeybinds {
 			if i?.menuItemID != nil {
@@ -128,7 +125,7 @@ extension AppDelegate {
 	}
 	
 	
-	//Preforms the action for the given keybind
+	///Given a keybind title. this will return the action to be prefromed when the keybind is pressed.
 	func keybindAction(keybind: KeybindTitle) -> (() -> Void)? {
 		switch keybind {
 		case .BringToFront:
