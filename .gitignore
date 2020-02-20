@@ -40,7 +40,11 @@ playground.xcworkspace
 *.lss
 *.split
 robobot.json
+*.app
+*.dmg
 
+
+Pods/CocoaPodsKeys/
 
 # Swift Package Manager
 # Add this line if you want to avoid checking in source code from Swift Package Manager dependencies.
