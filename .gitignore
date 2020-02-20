@@ -38,8 +38,8 @@ timeline.xctimeline
 playground.xcworkspace
 *.lfs
 *.lss
-*.split
 robobot.json
+appdmg.json
 *.app
 *.dmg
 
