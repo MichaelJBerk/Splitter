@@ -20,7 +20,7 @@ struct runInfo: Codable {
 struct splitSegment: Codable {
 	var name: String
 	var currentTime: String
-	var bestTime: String
+	var personalBestTime: String
 }
 
 extension ViewController {
@@ -31,7 +31,7 @@ extension ViewController {
 			SubtitleLabel.stringValue = ri.category
 			currentSplits = []
 			for s in ri.segments {
-				let bestTimeSplit = TimeSplit(timeString: s.bestTime)
+				let bestTimeSplit = TimeSplit(timeString: s.personalBestTime)
 				let currentTimeSplit = TimeSplit(timeString: s.currentTime)
 				let newRow = splitTableRow(splitName: s.name, bestSplit: bestTimeSplit, currentSplit: currentTimeSplit)
 				currentSplits.append(newRow)
@@ -47,7 +47,7 @@ extension ViewController {
 		for s in currentSplits {
 			let newSeg = splitSegment(name: s.splitName,
 									  currentTime: s.currentSplit.timeString,
-									  bestTime: s.bestSplit.timeString)
+									  personalBestTime: s.bestSplit.timeString)
 			segments.append(newSeg)
 		}
 		let ri = runInfo(title: GameTitleLabel.stringValue,
