@@ -28,7 +28,6 @@
 		4A5947D823F36E3A00827306 /* SplitsIOExchangeFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5947D723F36E3A00827306 /* SplitsIOExchangeFormat.swift */; };
 		4A5C1D1523F4AFB80014E8D3 /* commonPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5C1D1423F4AFB80014E8D3 /* commonPaths.swift */; };
 		4A5F10AE23CFAA1F00DA043B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A5F10AD23CFAA1F00DA043B /* Assets.xcassets */; };
-		4A66572E23E3CD8D00D14A67 /* SplitterDocIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4A66572D23E3CD8D00D14A67 /* SplitterDocIcon.icns */; };
 		4A66572F23E3D34600D14A67 /* Pods_Splitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8449BCD82A49C16B0E9C6FE9 /* Pods_Splitter.framework */; };
 		4A66573023E3D34600D14A67 /* Pods_Splitter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8449BCD82A49C16B0E9C6FE9 /* Pods_Splitter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4A66A43023DE2682005952FA /* ImageButtonCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A66A42F23DE2682005952FA /* ImageButtonCellView.swift */; };
@@ -42,6 +41,7 @@
 		4A6A3BE623CD6463002C20AE /* BlankWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6A3BE523CD6463002C20AE /* BlankWindowController.swift */; };
 		4A6B4F7323F07C2B00CB781F /* liblivesplit_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A6B4F7223F07C1500CB781F /* liblivesplit_core.a */; };
 		4A6B4F7423F07C3900CB781F /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A73B75023F0722800010F30 /* libresolv.tbd */; };
+		4A6C312A23FF366C00BBE4BB /* SplitterDocIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C312923FF366C00BBE4BB /* SplitterDocIcon.icns */; };
 		4A774A5723EBCDFA002F1700 /* SplitterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A774A5623EBCDFA002F1700 /* SplitterTests.swift */; };
 		4A7C648823F05FCF008C15EF /* LiveSplitCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF9D76423ECD7520019BC9A /* LiveSplitCore.swift */; };
 		4A7DDCE223BBDD0900A36AD1 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 4A7DDCE123BBDD0900A36AD1 /* Credits.html */; };
@@ -116,7 +116,6 @@
 		4A5C1D1423F4AFB80014E8D3 /* commonPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = commonPaths.swift; sourceTree = "<group>"; };
 		4A5F10AD23CFAA1F00DA043B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4A617EBD23EBC65C0005D60E /* LiveSplit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveSplit.swift; sourceTree = "<group>"; };
-		4A66572D23E3CD8D00D14A67 /* SplitterDocIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = SplitterDocIcon.icns; sourceTree = "<group>"; };
 		4A66A42F23DE2682005952FA /* ImageButtonCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButtonCellView.swift; sourceTree = "<group>"; };
 		4A66A43123DE2C88005952FA /* SplitTableViewColumnIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitTableViewColumnIdentifiers.swift; sourceTree = "<group>"; };
 		4A66A43323DE391B005952FA /* ShowHideUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowHideUI.swift; sourceTree = "<group>"; };
@@ -125,6 +124,7 @@
 		4A6A3BE323CD621A002C20AE /* MainWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindow.swift; sourceTree = "<group>"; };
 		4A6A3BE523CD6463002C20AE /* BlankWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankWindowController.swift; sourceTree = "<group>"; };
 		4A6B4F7223F07C1500CB781F /* liblivesplit_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblivesplit_core.a; path = "livesplit-core/target/release/liblivesplit_core.a"; sourceTree = "<group>"; };
+		4A6C312923FF366C00BBE4BB /* SplitterDocIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = SplitterDocIcon.icns; sourceTree = "<group>"; };
 		4A73B75023F0722800010F30 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		4A774A5423EBCDFA002F1700 /* SplitterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SplitterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A774A5623EBCDFA002F1700 /* SplitterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterTests.swift; sourceTree = "<group>"; };
@@ -255,6 +255,7 @@
 				4AD780C323D5065B0068CDE3 /* Data */,
 				4AFCC52323C63F1E002216F1 /* Prefs */,
 				4A85471723C66D42001F968F /* GamepadIcon.icns */,
+				4A6C312923FF366C00BBE4BB /* SplitterDocIcon.icns */,
 				4A230E9223B00A1D00959C57 /* AppDelegate.swift */,
 				4AFCC52423C63F3E002216F1 /* UI */,
 				4A7DDCE123BBDD0900A36AD1 /* Credits.html */,
@@ -341,7 +342,6 @@
 		4AFCC52323C63F1E002216F1 /* Prefs */ = {
 			isa = PBXGroup;
 			children = (
-				4A66572D23E3CD8D00D14A67 /* SplitterDocIcon.icns */,
 				4AEA928123C4F140004F6CF9 /* DefaultPreferenceViewController.swift */,
 				4AEA928223C4F140004F6CF9 /* DefaultPreferenceViewController.xib */,
 				4A18663123C5376900FEEE54 /* SettingsKeys.swift */,
@@ -483,12 +483,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A4D392323C4FAE500BF3FCD /* HotkeysViewController.xib in Resources */,
+				4A6C312A23FF366C00BBE4BB /* SplitterDocIcon.icns in Resources */,
 				4AEA928423C4F140004F6CF9 /* DefaultPreferenceViewController.xib in Resources */,
 				4A7DDCE223BBDD0900A36AD1 /* Credits.html in Resources */,
 				4A87DEA523F251C700975EB8 /* livesplit.icns in Resources */,
 				4A4D391F23C4F29C00BF3FCD /* blankWindow.xib in Resources */,
 				4A5F10AE23CFAA1F00DA043B /* Assets.xcassets in Resources */,
-				4A66572E23E3CD8D00D14A67 /* SplitterDocIcon.icns in Resources */,
 				4A85471823C66D42001F968F /* GamepadIcon.icns in Resources */,
 				4A230E9C23B00A1E00959C57 /* Main.storyboard in Resources */,
 			);
