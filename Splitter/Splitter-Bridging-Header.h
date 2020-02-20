@@ -11,6 +11,5 @@
 #import "LiveSplit Core/livesplit_core.h"
 #import <Cocoa/Cocoa.h>
 #import <MASShortcut/Shortcut.h>
-#import <ShortcutRecorder/ShortcutRecorder.h>
 
 #endif /* Splitter_Bridging_Header_h */
