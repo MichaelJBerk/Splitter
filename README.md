@@ -12,29 +12,23 @@ If you'd like to see what features are in the works, you can look at the [Roadma
 
 [Join the Slack group](https://join.slack.com/t/splitter-app/shared_invite/enQtOTQ4OTg3OTg3NTQwLTNlMjAyZjZlNzgzNzhkNTMwOTA2MjZkODNlMzM3ZDYwZjY1YTc2ODljZWQzMzJjYjAzOWEwNzU0MWFmODQ3NjM)
 
-[Info about the `.Split`format](https://github.com/MichaelJBerk/SplitterFormats)
-
-## Formats & Files
-
-### Splits
+## Supported Formats
 - In addition to the Splitter-native `.split` format, the app can import the following:
 	- Splits.io Exchange Format (`.json`)
 	- LiveSplit (`.lss`)
-	
 
-The app can also export to `.json`, and exporting to `.lss` will come in a future build 
-Support for additional formats is currently underway 
+[Info about Splitter's native file format](https://github.com/MichaelJBerk/SplitterFormats)
 
-### Hotkeys
-- Hotkeys are stored in `~/Library/Application Support/Splitter/splitter.splitKeys`, with a `.json` file for each configured hotkey. 
-	- Note: If the filenames are changed, the app won’t recognize it.  
+The app can also export to `.json` (as the Splits.io format), and exporting to `.lss` will come in a future build.
+Support for additional formats (including Llanfair and TimeSplitTracker) is currently underway 
+
 
 ### Acknowledgements
 [LiveSplit Core](https://github.com/LiveSplit/livesplit-core)
 
 [Files by John Sundell](https://github.com/JohnSundell/Files)
 
-[Hotkey by Sam Soffes](https://github.com/soffes/HotKey)
+[MASShortcut by Vadim Shpakovski](https://github.com/shpakovski/MASShortcut)
 
 [Preferences by Sindre Sorhus](https://github.com/sindresorhus/Preferences) 
 
