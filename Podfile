@@ -9,6 +9,7 @@ target 'Splitter' do
   	pod 'Preferences'
   	pod 'AppCenter'
   	pod 'Sparkle'
+  	pod 'MASShortcut'
 
 plugin 'cocoapods-keys', {
   :project => "Splitter",

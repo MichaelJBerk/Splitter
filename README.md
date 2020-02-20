@@ -1,5 +1,7 @@
 # Splitter
 
+![Splitter](https://mberk.com/splitter.png)
+
 A native Speedrunning timer for macOS
 
 Splitter is officially in Beta, but you can test it out with the link below, and give feedback.
@@ -8,7 +10,9 @@ Splitter is officially in Beta, but you can test it out with the link below, and
 
 If you'd like to see what features are in the works, you can look at the [Roadmap](https://github.com/MichaelJBerk/Splitter/wiki/Roadmap)
 
-Info about the `.Split`format
+[You can also join the Slack group](https://join.slack.com/t/splitter-app/shared_invite/enQtOTQ4OTg3OTg3NTQwLTNlMjAyZjZlNzgzNzhkNTMwOTA2MjZkODNlMzM3ZDYwZjY1YTc2ODljZWQzMzJjYjAzOWEwNzU0MWFmODQ3NjM)
+
+[Info about the `.Split`format](https://github.com/MichaelJBerk/SplitterFormats)
 
 ## Formats & Files
 
