@@ -21,7 +21,6 @@
 		4A230E9C23B00A1E00959C57 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A230E9A23B00A1E00959C57 /* Main.storyboard */; };
 		4A327B0D23F491FB00A5CBFF /* splitterAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A327B0C23F491FB00A5CBFF /* splitterAppearance.swift */; };
 		4A327B0F23F493D300A5CBFF /* columnIDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A327B0E23F493D300A5CBFF /* columnIDs.swift */; };
-		4A390DD023CE889F0014D10D /* Keybind.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A390DCF23CE889F0014D10D /* Keybind.swift */; };
 		4A3BDFA123E4C3B6001EA7FF /* DefaultHotkeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3BDFA023E4C3B6001EA7FF /* DefaultHotkeys.swift */; };
 		4A4D391F23C4F29C00BF3FCD /* blankWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A4D391E23C4F29C00BF3FCD /* blankWindow.xib */; };
 		4A4D392223C4FAE500BF3FCD /* HotkeysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4D392023C4FAE500BF3FCD /* HotkeysViewController.swift */; };
@@ -37,7 +36,6 @@
 		4A66A43423DE391B005952FA /* ShowHideUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A66A43323DE391B005952FA /* ShowHideUI.swift */; };
 		4A6726E323F05B3C006F4BC4 /* module.map in Sources */ = {isa = PBXBuildFile; fileRef = 4AF9D75D23ECD5110019BC9A /* module.map */; };
 		4A6726EA23F05D17006F4BC4 /* LiveSplit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A617EBD23EBC65C0005D60E /* LiveSplit.swift */; };
-		4A6A3BB323CD0390002C20AE /* HotKey in Frameworks */ = {isa = PBXBuildFile; productRef = 4A6A3BB223CD0390002C20AE /* HotKey */; };
 		4A6A3BE023CD1C39002C20AE /* GlobalKeybindPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6A3BDF23CD1C39002C20AE /* GlobalKeybindPrefs.swift */; };
 		4A6A3BE223CD1C7A002C20AE /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6A3BE123CD1C7A002C20AE /* Storage.swift */; };
 		4A6A3BE423CD621A002C20AE /* MainWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6A3BE323CD621A002C20AE /* MainWindow.swift */; };
@@ -52,6 +50,7 @@
 		4A87265723BD5423003A14AF /* Prefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87265623BD5423003A14AF /* Prefs.swift */; };
 		4A87DEA523F251C700975EB8 /* livesplit.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4A87DEA423F251C700975EB8 /* livesplit.icns */; };
 		4A968C7C23F1F5FE001B74E8 /* lss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A968C7B23F1F5FE001B74E8 /* lss.swift */; };
+		4A99813023F9ECE50037BF98 /* KeybindHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A99812F23F9ECE50037BF98 /* KeybindHandlers.swift */; };
 		4AA3DAB423E23DA900ADFA4A /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA3DAB323E23DA900ADFA4A /* IconButton.swift */; };
 		4AC24DBA23EB4EC5003008BF /* Split Table Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC24DB923EB4EC5003008BF /* Split Table Row.swift */; };
 		4AC24DBC23EB4F17003008BF /* Split Table View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC24DBB23EB4F17003008BF /* Split Table View.swift */; };
@@ -109,7 +108,6 @@
 		4A230E9E23B00A1E00959C57 /* Splitter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Splitter.entitlements; sourceTree = "<group>"; };
 		4A327B0C23F491FB00A5CBFF /* splitterAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = splitterAppearance.swift; sourceTree = "<group>"; };
 		4A327B0E23F493D300A5CBFF /* columnIDs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = columnIDs.swift; sourceTree = "<group>"; };
-		4A390DCF23CE889F0014D10D /* Keybind.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Keybind.swift; sourceTree = "<group>"; };
 		4A3BDFA023E4C3B6001EA7FF /* DefaultHotkeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultHotkeys.swift; sourceTree = "<group>"; };
 		4A4D391E23C4F29C00BF3FCD /* blankWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = blankWindow.xib; sourceTree = "<group>"; };
 		4A4D392023C4FAE500BF3FCD /* HotkeysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotkeysViewController.swift; sourceTree = "<group>"; };
@@ -139,6 +137,7 @@
 		4A87265623BD5423003A14AF /* Prefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prefs.swift; sourceTree = "<group>"; };
 		4A87DEA423F251C700975EB8 /* livesplit.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = livesplit.icns; sourceTree = "<group>"; };
 		4A968C7B23F1F5FE001B74E8 /* lss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lss.swift; sourceTree = "<group>"; };
+		4A99812F23F9ECE50037BF98 /* KeybindHandlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeybindHandlers.swift; sourceTree = "<group>"; };
 		4AA3DAB323E23DA900ADFA4A /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 		4AB3B93D23D96C10009C6AA6 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		4AC24DB923EB4EC5003008BF /* Split Table Row.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Split Table Row.swift"; sourceTree = "<group>"; };
@@ -166,7 +165,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4AD7662E23DA5F9A0052409C /* Files in Frameworks */,
-				4A6A3BB323CD0390002C20AE /* HotKey in Frameworks */,
 				4A6B4F7323F07C2B00CB781F /* liblivesplit_core.a in Frameworks */,
 				4A66572F23E3D34600D14A67 /* Pods_Splitter.framework in Frameworks */,
 				4A6B4F7423F07C3900CB781F /* libresolv.tbd in Frameworks */,
@@ -274,10 +272,10 @@
 			children = (
 				4A4D392123C4FAE500BF3FCD /* HotkeysViewController.xib */,
 				4A4D392023C4FAE500BF3FCD /* HotkeysViewController.swift */,
-				4A390DCF23CE889F0014D10D /* Keybind.swift */,
 				4A6A3BDF23CD1C39002C20AE /* GlobalKeybindPrefs.swift */,
 				4A6A3BE123CD1C7A002C20AE /* Storage.swift */,
 				4A3BDFA023E4C3B6001EA7FF /* DefaultHotkeys.swift */,
+				4A99812F23F9ECE50037BF98 /* KeybindHandlers.swift */,
 			);
 			path = Hotkeys;
 			sourceTree = "<group>";
@@ -414,7 +412,6 @@
 			);
 			name = Splitter;
 			packageProductDependencies = (
-				4A6A3BB223CD0390002C20AE /* HotKey */,
 				4AD7662D23DA5F9A0052409C /* Files */,
 			);
 			productName = Splitter;
@@ -468,7 +465,6 @@
 			);
 			mainGroup = 4A230E8623B00A1D00959C57;
 			packageReferences = (
-				4A6A3BB123CD0390002C20AE /* XCRemoteSwiftPackageReference "HotKey" */,
 				4AD7662C23DA5F9A0052409C /* XCRemoteSwiftPackageReference "Files" */,
 			);
 			productRefGroup = 4A230E9023B00A1D00959C57 /* Products */;
@@ -593,7 +589,6 @@
 				4A5947D823F36E3A00827306 /* SplitsIOExchangeFormat.swift in Sources */,
 				4AC24DBA23EB4EC5003008BF /* Split Table Row.swift in Sources */,
 				4A87265523BD53F8003A14AF /* runInfo.swift in Sources */,
-				4A390DD023CE889F0014D10D /* Keybind.swift in Sources */,
 				4A327B0D23F491FB00A5CBFF /* splitterAppearance.swift in Sources */,
 				4A230E9523B00A1D00959C57 /* ViewController.swift in Sources */,
 				4A6A3BE623CD6463002C20AE /* BlankWindowController.swift in Sources */,
@@ -628,6 +623,7 @@
 				4A87265723BD5423003A14AF /* Prefs.swift in Sources */,
 				4A230E9723B00A1D00959C57 /* Document.swift in Sources */,
 				4A6A3BE223CD1C7A002C20AE /* Storage.swift in Sources */,
+				4A99813023F9ECE50037BF98 /* KeybindHandlers.swift in Sources */,
 				4AEA927E23C4EF32004F6CF9 /* MainWindowController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -936,14 +932,6 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		4A6A3BB123CD0390002C20AE /* XCRemoteSwiftPackageReference "HotKey" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/soffes/HotKey";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.3;
-			};
-		};
 		4AD7662C23DA5F9A0052409C /* XCRemoteSwiftPackageReference "Files" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/JohnSundell/Files";
@@ -955,11 +943,6 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		4A6A3BB223CD0390002C20AE /* HotKey */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4A6A3BB123CD0390002C20AE /* XCRemoteSwiftPackageReference "HotKey" */;
-			productName = HotKey;
-		};
 		4AD7662D23DA5F9A0052409C /* Files */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4AD7662C23DA5F9A0052409C /* XCRemoteSwiftPackageReference "Files" */;
