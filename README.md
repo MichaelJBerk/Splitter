@@ -17,7 +17,7 @@ If you'd like to see what features are in the works, you can look at the [Roadma
 	- Splits.io Exchange Format (`.json`)
 	- LiveSplit (`.lss`)
 
-[Info about Splitter's native file format](https://github.com/MichaelJBerk/SplitterFormats)
+[Info about Splitter's native file format](https://github.com/MichaelJBerk/Splitter/wiki/.Split-Format)
 
 The app can also export to `.json` (as the Splits.io format), and exporting to `.lss` will come in a future build.
 Support for additional formats (including Llanfair and TimeSplitTracker) is currently underway 
