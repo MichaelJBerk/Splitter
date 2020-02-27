@@ -65,7 +65,7 @@ class LiveSplit: NSObject, XMLParserDelegate {
 				if let bestTimeDouble = run.segment(i).personalBestSplitTime().realTime()?.totalSeconds() {
 					newTS = TimeSplit(seconds: bestTimeDouble)
 				}
-				let newRow = splitTableRow(splitName: segName, bestSplit: newTS, currentSplit: TimeSplit(mil: 0), originalBest: newTS, splitIcon: nil)
+				let newRow = splitTableRow(splitName: segName, bestSplit: newTS, currentSplit: TimeSplit(mil: 0), previousBest: newTS, splitIcon: nil)
 				tsArray.append(newRow)
 //				tsArray.append(newTS)
 				i = i + 1

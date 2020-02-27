@@ -63,7 +63,7 @@ extension ViewController {
 		currentSplitNumber = 0
 		if currentSplits.count == 0  {
 			
-			let newRow = splitTableRow(splitName: "Split", bestSplit: blankSplit.tsCopy(), currentSplit: blankSplit.tsCopy(), originalBest: blankSplit.tsCopy(), splitIcon: nil)
+			let newRow = splitTableRow(splitName: "Split", bestSplit: blankSplit.tsCopy(), currentSplit: blankSplit.tsCopy(), previousBest: blankSplit.tsCopy(), splitIcon: nil)
 		}
 
 		
@@ -75,7 +75,7 @@ extension ViewController {
 //			currentSplits = loadedSplits
 			currentSplits[0].currentSplit = self.currentSplit!
 //		}
-		originalSplits = currentSplits
+//		originalSplits = currentSplits
 	}
 	
 	///Clears out the current time field on all segments in the Table View
@@ -123,7 +123,7 @@ extension ViewController {
 		milHundrethTimer.invalidate()
 		refreshUITimer.invalidate()
 		UpdateTimer()
-		originalSplits = []
+//		originalSplits = []
 	}
 	//TODO: See if this is still needed
 	@objc func updateTime() {
