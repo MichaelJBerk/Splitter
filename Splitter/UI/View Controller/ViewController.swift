@@ -145,19 +145,6 @@ class ViewController: NSViewController {
 			}
 		}
 	}
-	
-	//Splits before the timer started, just in case.
-//	var originalSplits: [splitTableRow]? = [] {
-//		didSet {
-//			var i = 0
-//			if let og = originalSplits {
-//				while i < currentSplits.count && i < og.count {
-//					currentSplits[i].originalBest = og[i].bestSplit
-//					i = i + 1
-//				}
-//			}
-//		}
-//	}
 
 	//MARK: - External File Split Data
 	//Stuff that holds data from files
@@ -166,17 +153,7 @@ class ViewController: NSViewController {
 	
 	var appearance: splitterAppearance?
 		
-		var shouldLoadSplits = false//: Bool {
-	//		if loadedSplits.isEmpty && runInfoData == nil {
-	//			if currentSplits.isEmpty {
-	//				return false
-	//			} else {
-	//				return true
-	//			}
-	//		} else {
-	//			return true
-	//		}
-	//	}
+		var shouldLoadSplits = false
 	
 	//MARK: - Icon Data
 	
@@ -290,7 +267,7 @@ class ViewController: NSViewController {
 		
 		
 		UIHidden = Settings.hideUIButtons
-		showHideUI()
+		 showHideUI()
 		
 		windowFloat = Settings.floatWindow
 		setFloatingWindow()

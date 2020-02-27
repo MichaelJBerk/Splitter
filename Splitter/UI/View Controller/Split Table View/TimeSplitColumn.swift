@@ -9,5 +9,7 @@
 import Cocoa
 
 class TimeSplitColumn: NSTableColumn {
-	
+	required init(coder: NSCoder) {
+		super.init(coder: coder)
+	}
 }
