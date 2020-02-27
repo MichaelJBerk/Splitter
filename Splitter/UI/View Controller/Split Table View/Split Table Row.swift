@@ -14,15 +14,21 @@ struct splitTableRow {
 	var splitName: String
 	var bestSplit: TimeSplit
 	var currentSplit: TimeSplit
-	var originalBest: TimeSplit?
+	var previousSplit: TimeSplit?
+	var previousBest: TimeSplit?
 	var splitIcon: NSImage?
+	
+	//Difference between the (previous) best split and the current best
 	var splitDiff: String{
 		
 		var og: TimeSplit = bestSplit
-		if originalBest != nil {
-			og = originalBest!
+		
+		if previousBest != nil {
+			og = previousBest!
 		}
+		
 		let diff = og - currentSplit
+		
 		if currentSplit.longTimeString == "00:00:00.00" {
 			return "00:00.00"
 		} else if currentSplit > bestSplit {

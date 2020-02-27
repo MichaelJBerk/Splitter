@@ -62,7 +62,7 @@ extension ViewController {
 	func addBlankSplit() {
 		let blankSplitNumber = currentSplits.count + 1
 		let blankSplit = TimeSplit(mil: 0, sec: 0, min: 0, hour: 0)
-		var blankTableRow = splitTableRow(splitName: "\(blankSplitNumber)", bestSplit: blankSplit, currentSplit: blankSplit, originalBest: blankSplit, splitIcon: nil)
+		var blankTableRow = splitTableRow(splitName: "\(blankSplitNumber)", bestSplit: blankSplit, currentSplit: blankSplit, previousBest: blankSplit, splitIcon: nil)
 		currentSplits.append(blankTableRow)
 		splitsTableView.reloadData()
 		

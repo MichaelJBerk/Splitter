@@ -147,17 +147,17 @@ class ViewController: NSViewController {
 	}
 	
 	//Splits before the timer started, just in case.
-	var originalSplits: [splitTableRow]? = [] {
-		didSet {
-			var i = 0
-			if let og = originalSplits {
-				while i < currentSplits.count && i < og.count {
-					currentSplits[i].originalBest = og[i].bestSplit
-					i = i + 1
-				}
-			}
-		}
-	}
+//	var originalSplits: [splitTableRow]? = [] {
+//		didSet {
+//			var i = 0
+//			if let og = originalSplits {
+//				while i < currentSplits.count && i < og.count {
+//					currentSplits[i].originalBest = og[i].bestSplit
+//					i = i + 1
+//				}
+//			}
+//		}
+//	}
 
 	//MARK: - External File Split Data
 	//Stuff that holds data from files
