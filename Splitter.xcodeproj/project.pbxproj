@@ -310,6 +310,7 @@
 				4A327B0E23F493D300A5CBFF /* columnIDs.swift */,
 				4AC24DBB23EB4F17003008BF /* Split Table View.swift */,
 				4A9DB791240847E40000D1B4 /* TimeSplitColumn.swift */,
+				4A66A43123DE2C88005952FA /* SplitTableViewColumnIdentifiers.swift */,
 				4A45BCF624084B3800F1A223 /* TimeSplitCell.swift */,
 			);
 			path = "Split Table View";
@@ -364,7 +365,6 @@
 			children = (
 				4A1657AF23EA4EE20008CB5F /* View Controller */,
 				4ADFAE4823E4A0760049F57A /* QuickAlert.swift */,
-				4A66A43123DE2C88005952FA /* SplitTableViewColumnIdentifiers.swift */,
 				4A66A42F23DE2682005952FA /* ImageButtonCellView.swift */,
 				4A6A3BE323CD621A002C20AE /* MainWindow.swift */,
 				4A4D391E23C4F29C00BF3FCD /* blankWindow.xib */,

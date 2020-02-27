@@ -9,7 +9,7 @@
 import Foundation
 import Cocoa
 
-enum STVColumnID {
+public enum STVColumnID {
 	static let imageColumn = NSUserInterfaceItemIdentifier("ImageColumn")
 	static let splitTitleColumn = NSUserInterfaceItemIdentifier("SplitTitle")
 	static let differenceColumn = NSUserInterfaceItemIdentifier("Difference")
