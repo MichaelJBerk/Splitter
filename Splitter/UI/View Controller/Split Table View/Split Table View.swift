@@ -20,19 +20,19 @@ extension ViewController: NSTableViewDataSource {
 
 extension ViewController: NSTableViewDelegate {
 	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-		if tableColumn == tableView.tableColumns[0] {
+		if tableColumn!.identifier.rawValue == "ImageColumn" {
 			cellIdentifier = STVColumnID.imageColumn
 		}
-		if tableColumn == tableView.tableColumns[1] {
+		if tableColumn?.identifier.rawValue == "SplitTitle" {
 			cellIdentifier = STVColumnID.splitTitleColumn
 		}
-		if tableColumn == tableView.tableColumns[2] {
+		if tableColumn?.identifier.rawValue == "Difference" {
 			cellIdentifier = STVColumnID.differenceColumn
 		}
-		if tableColumn == tableView.tableColumns[3] {
+		if tableColumn?.identifier.rawValue == "CurrentSplit" {
 			cellIdentifier = STVColumnID.currentSplitColumn
 		}
-		if tableColumn == tableView.tableColumns[4] {
+		if tableColumn?.identifier.rawValue == "B" {
 			cellIdentifier = STVColumnID.bestSplitColumn
 		}
 		
@@ -51,11 +51,11 @@ extension ViewController: NSTableViewDelegate {
 			}
 			
 			if self.cellIdentifier!.rawValue == "SplitTitle" {
-				var lastSplit = currentSplits[row]
+				let lastSplit = currentSplits[row]
 				cell.textField?.stringValue = lastSplit.splitName
 			}
 			if self.cellIdentifier!.rawValue == "CurrentSplit" {
-				var lastSplit = currentSplits[row]
+				let lastSplit = currentSplits[row]
 				cell.textField?.stringValue = lastSplit.currentSplit.timeString
 			}
 			
@@ -92,41 +92,41 @@ extension ViewController: NSTextFieldDelegate {
 		splitsTableView.reloadData()
 	}
 	
-	func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
-		//TODO: Uncomment this and fix it to work with the current column layout
-		
-		let c = control as NSView
-
-		let c2 = splitsTableView.column(for: control)
-		let r = splitsTableView.row(for: control)
-
-		let cellrow = splitsTableView.rowView(atRow: r, makeIfNecessary: false)
-		let cell = cellrow?.view(atColumn: c2) as! NSTableCellView
-		var editedSplit = currentSplits[r]
-		if c2 == 1 {
-			print(cell.textField!.stringValue)
-			editedSplit.splitName = cell.textField!.stringValue
-		}
-		if c2 == 3 {
-				editedSplit.currentSplit = TimeSplit(timeString: cell.textField!.stringValue)
-		}
-		if c2 == 4 {
-			editedSplit.bestSplit = TimeSplit(timeString: cell.textField!.stringValue)
-		}
-		
-		let oldSplit = currentSplits[r]
-		currentSplits[r] = editedSplit
-		if c2 != 4 {
-			let lSplit = currentSplits[r].currentSplit.copy() as! TimeSplit
-			let rSplit = currentSplits[r].bestSplit.copy() as! TimeSplit
-			addBestSplit(lSplit: lSplit, rSplit: rSplit, splitRow: r)
-			if lSplit < rSplit {
-				currentSplits[r].previousBest = lSplit.tsCopy()
-			}
-		}
-		
-			return true
-	}
+//	func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
+//		
+//		let c = control as NSView
+//
+//		let c2 = splitsTableView.column(for: control)
+//		let r = splitsTableView.row(for: control)
+//
+//		let cellrow = splitsTableView.rowView(atRow: r, makeIfNecessary: false)
+//		let cell = cellrow?.view(atColumn: c2) as! NSTableCellView
+//		var editedSplit = currentSplits[r]
+//		//TODO: Change this so it can work regardless of the column order
+//		if c2 == 1 {
+//			print(cell.textField!.stringValue)
+//			editedSplit.splitName = cell.textField!.stringValue
+//		}
+//		if c2 == 3 {
+//				editedSplit.currentSplit = TimeSplit(timeString: cell.textField!.stringValue)
+//		}
+//		if c2 == 4 {
+//			editedSplit.bestSplit = TimeSplit(timeString: cell.textField!.stringValue)
+//		}
+//		
+//		let oldSplit = currentSplits[r]
+//		currentSplits[r] = editedSplit
+//		if c2 != 4 {
+//			let lSplit = currentSplits[r].currentSplit.copy() as! TimeSplit
+//			let rSplit = currentSplits[r].bestSplit.copy() as! TimeSplit
+//			addBestSplit(lSplit: lSplit, rSplit: rSplit, splitRow: r)
+//			if lSplit < rSplit {
+//				currentSplits[r].previousBest = lSplit.tsCopy()
+//			}
+//		}
+//		
+//			return true
+//	}
 
 	
 

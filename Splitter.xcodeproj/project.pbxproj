@@ -22,6 +22,7 @@
 		4A327B0D23F491FB00A5CBFF /* splitterAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A327B0C23F491FB00A5CBFF /* splitterAppearance.swift */; };
 		4A327B0F23F493D300A5CBFF /* columnIDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A327B0E23F493D300A5CBFF /* columnIDs.swift */; };
 		4A3BDFA123E4C3B6001EA7FF /* DefaultHotkeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3BDFA023E4C3B6001EA7FF /* DefaultHotkeys.swift */; };
+		4A45BCF724084B3800F1A223 /* TimeSplitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A45BCF624084B3800F1A223 /* TimeSplitCell.swift */; };
 		4A4D391F23C4F29C00BF3FCD /* blankWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A4D391E23C4F29C00BF3FCD /* blankWindow.xib */; };
 		4A4D392223C4FAE500BF3FCD /* HotkeysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4D392023C4FAE500BF3FCD /* HotkeysViewController.swift */; };
 		4A4D392323C4FAE500BF3FCD /* HotkeysViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A4D392123C4FAE500BF3FCD /* HotkeysViewController.xib */; };
@@ -110,6 +111,7 @@
 		4A327B0C23F491FB00A5CBFF /* splitterAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = splitterAppearance.swift; sourceTree = "<group>"; };
 		4A327B0E23F493D300A5CBFF /* columnIDs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = columnIDs.swift; sourceTree = "<group>"; };
 		4A3BDFA023E4C3B6001EA7FF /* DefaultHotkeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultHotkeys.swift; sourceTree = "<group>"; };
+		4A45BCF624084B3800F1A223 /* TimeSplitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSplitCell.swift; sourceTree = "<group>"; };
 		4A4D391E23C4F29C00BF3FCD /* blankWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = blankWindow.xib; sourceTree = "<group>"; };
 		4A4D392023C4FAE500BF3FCD /* HotkeysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotkeysViewController.swift; sourceTree = "<group>"; };
 		4A4D392123C4FAE500BF3FCD /* HotkeysViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HotkeysViewController.xib; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 				4A327B0E23F493D300A5CBFF /* columnIDs.swift */,
 				4AC24DBB23EB4F17003008BF /* Split Table View.swift */,
 				4A9DB791240847E40000D1B4 /* TimeSplitColumn.swift */,
+				4A45BCF624084B3800F1A223 /* TimeSplitCell.swift */,
 			);
 			path = "Split Table View";
 			sourceTree = "<group>";
@@ -624,6 +627,7 @@
 				4A0F715F23F4A0A500E5948E /* SplitterDoc.swift in Sources */,
 				4A66A43023DE2682005952FA /* ImageButtonCellView.swift in Sources */,
 				4A3BDFA123E4C3B6001EA7FF /* DefaultHotkeys.swift in Sources */,
+				4A45BCF724084B3800F1A223 /* TimeSplitCell.swift in Sources */,
 				4A87265723BD5423003A14AF /* Prefs.swift in Sources */,
 				4A230E9723B00A1D00959C57 /* Document.swift in Sources */,
 				4A6A3BE223CD1C7A002C20AE /* Storage.swift in Sources */,
