@@ -31,7 +31,7 @@ extension ViewController {
 				if id == buttonIdentifiers.TrashCanClearAllSplits {
 					askToClearTimer()
 				} else if id == buttonIdentifiers.TrashCanClearCurrentTime {
-					clearCurrentTime()
+					resetAllCurrentSplitsToZero()
 				}
 			}
 		}

@@ -148,6 +148,7 @@ class ViewController: NSViewController {
 
 	//MARK: - External File Split Data
 	//Stuff that holds data from files
+	var splitsIOSchemaVersion = "v1.0.1"
 	var splitsIOData: SplitsIOExchangeFormat!
 	var runInfoData: runInfo?
 	

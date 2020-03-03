@@ -32,7 +32,6 @@ class LiveSplit: NSObject, XMLParserDelegate {
 		dialog.allowsMultipleSelection = false;
 		dialog.allowedFileTypes        = ["lss"];
 
-//
 		if (dialog.runModal() == NSApplication.ModalResponse.OK) {
 			let result = dialog.url // Pathname of the file
 			path = result?.path
@@ -41,8 +40,6 @@ class LiveSplit: NSObject, XMLParserDelegate {
 		
 	}
 	func parseLivesplit() {
-//		path = "/Users/michaelberk/Documents/Super Mario Odyssey.lss"  //result!.path
-//		path = "/Users/michaelberk/Documents/KIU.lss"
 		
 
 		let lssFile = try? File(path: path)
@@ -59,15 +56,24 @@ class LiveSplit: NSObject, XMLParserDelegate {
 			var i = 0
 			var tsArray: [splitTableRow] = []
 			while i < segCount {
+				//TODO: Parse current and best split from LiveSplit
 				let segName = run.segment(i).name()
 				print(run.segment(i).personalBestSplitTime().realTime()?.totalSeconds())
 				var newTS = TimeSplit(mil: 0)
 				if let bestTimeDouble = run.segment(i).personalBestSplitTime().realTime()?.totalSeconds() {
 					newTS = TimeSplit(seconds: bestTimeDouble)
 				}
-				let newRow = splitTableRow(splitName: segName, bestSplit: newTS, currentSplit: TimeSplit(mil: 0), previousBest: newTS, splitIcon: nil)
+				let liveSplitIterator = run.segment(i).segmentHistory().iter().next()
+				var lastPrevTime: Double?
+				var lastBestSplit: Double?
+				while (liveSplitIterator != nil) {
+					if let ts = liveSplitIterator?.time().realTime()?.totalSeconds() {
+						lastPrevTime = ts
+					}
+				}
+				var liveSplitLastPrevSplit = TimeSplit(seconds: lastPrevTime ?? 0)
+				let newRow = splitTableRow(splitName: segName, bestSplit: newTS, currentSplit: TimeSplit(mil: 0), previousSplit: liveSplitLastPrevSplit, previousBest: newTS, splitIcon: nil)
 				tsArray.append(newRow)
-//				tsArray.append(newTS)
 				i = i + 1
 			}
 			gameName = run.gameName()
