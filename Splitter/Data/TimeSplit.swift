@@ -89,6 +89,11 @@ class TimeSplit: NSCopying, Comparable {
 					sec = 0
 					if min == 59 {
 						min = 0
+						if hour == 23 {
+							hour = 0
+						} else {
+							hour = hour + 1
+						}
 					} else {
 						min = min + 1
 					}
