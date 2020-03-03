@@ -20,21 +20,6 @@ extension ViewController: NSTableViewDataSource {
 
 extension ViewController: NSTableViewDelegate {
 	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-//		if tableColumn!.identifier.rawValue == "ImageColumn" {
-//			cellIdentifier = STVColumnID.imageColumn
-//		}
-//		if tableColumn?.identifier.rawValue == "SplitTitle" {
-//			cellIdentifier = STVColumnID.splitTitleColumn
-//		}
-//		if tableColumn?.identifier.rawValue == "Difference" {
-//			cellIdentifier = STVColumnID.differenceColumn
-//		}
-//		if tableColumn?.identifier.rawValue == "CurrentSplit" {
-//			cellIdentifier = STVColumnID.currentSplitColumn
-//		}
-//		if tableColumn?.identifier.rawValue == "B" {
-//			cellIdentifier = STVColumnID.bestSplitColumn
-//		}
 		cellIdentifier = tableColumn?.identifier
 		
 		if let cell = tableView.makeView(withIdentifier: cellIdentifier!, owner: nil) as? NSTableCellView {
@@ -50,18 +35,15 @@ extension ViewController: NSTableViewDelegate {
 				return imageCell
 			}
 			
-			if tableColumn?.identifier == STVColumnID.splitTitleColumn {
+			switch tableColumn?.identifier {
+			case STVColumnID.splitTitleColumn:
 				let lastSplit = currentSplits[row]
 				cell.textField?.stringValue = lastSplit.splitName
-			}
-			if tableColumn?.identifier == STVColumnID.currentSplitColumn {
+			case STVColumnID.currentSplitColumn:
 				let lastSplit = currentSplits[row]
 				cell.textField?.stringValue = lastSplit.currentSplit.timeString
-			}
-			
-			if tableColumn?.identifier == STVColumnID.differenceColumn{
+			case STVColumnID.differenceColumn:
 				let sDiff = currentSplits[row].splitDiff
-				
 				cell.textField?.stringValue = sDiff
 				if sDiff.hasPrefix("+"){
 					cell.textField?.textColor = .systemRed
@@ -70,15 +52,15 @@ extension ViewController: NSTableViewDelegate {
 				} else {
 					cell.textField?.textColor = .systemBlue
 				}
-			}
-			
-			if tableColumn?.identifier == STVColumnID.bestSplitColumn {
+			case STVColumnID.bestSplitColumn:
 				let best = currentSplits[row].bestSplit
 				cell.textField!.stringValue = best.timeString
+			case STVColumnID.previousSplitColumn:
+				let prev = currentSplits[row].previousSplit
+				cell.textField!.stringValue = prev.timeString
+			default:
+					break
 			}
-			
-			
-			
 			return cell
 		}
 		return nil

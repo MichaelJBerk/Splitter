@@ -62,7 +62,7 @@ extension ViewController {
 	func addBlankSplit() {
 		let blankSplitNumber = currentSplits.count + 1
 		let blankSplit = TimeSplit(mil: 0, sec: 0, min: 0, hour: 0)
-		var blankTableRow = splitTableRow(splitName: "\(blankSplitNumber)", bestSplit: blankSplit, currentSplit: blankSplit, previousBest: blankSplit, splitIcon: nil)
+		var blankTableRow = splitTableRow(splitName: "\(blankSplitNumber)", bestSplit: blankSplit, currentSplit: blankSplit, previousSplit: blankSplit, previousBest: blankSplit, splitIcon: nil)
 		currentSplits.append(blankTableRow)
 		splitsTableView.reloadData()
 		
@@ -86,13 +86,13 @@ extension ViewController {
 			
 			//TODO: Only add to "best Splits" if it's a "better" split. Requires methods for comparing TimeSplits
 
-			let newLastRow = splitTableRow(splitName: currentLastRow!.splitName, bestSplit: bestSplitCopy, currentSplit: currentSplitCopy)
+			let newLastRow = splitTableRow(splitName: currentLastRow!.splitName, bestSplit: bestSplitCopy, currentSplit: currentSplitCopy, previousSplit: currentLastRow!.previousSplit, previousBest: currentLastRow!.previousBest)
 			currentSplits.removeLast()
 			currentSplits.append(newLastRow)
 			newSplit = currentSplit!
 		}
 
-		currentSplits.append(splitTableRow(splitName: String(currentSplits.count + 1), bestSplit: newSplit.copy() as! TimeSplit, currentSplit: newSplit))
+		currentSplits.append(splitTableRow(splitName: String(currentSplits.count + 1), bestSplit: newSplit.copy() as! TimeSplit, currentSplit: newSplit, previousSplit: newSplit.tsCopy(), previousBest: newSplit.tsCopy()))
 		splitsTableView.reloadData()
 //		currentSplitNumber += 1
 	}
@@ -110,10 +110,9 @@ extension ViewController {
 		
 	}
 	
-	///Resets a run in progress to 00:00:00
+	///Resets a run in progress to 00:00:00.
 	func resetRun() {
 		stopTimer()
-		clearCurrentTime()
 		startTimer()
 	}
 	

@@ -15,4 +15,5 @@ public enum STVColumnID {
 	static let differenceColumn = NSUserInterfaceItemIdentifier("Difference")
 	static let currentSplitColumn = NSUserInterfaceItemIdentifier("CurrentSplit")
 	static let bestSplitColumn = NSUserInterfaceItemIdentifier("B")
+	static let previousSplitColumn = NSUserInterfaceItemIdentifier("PreviousSplit")
 }

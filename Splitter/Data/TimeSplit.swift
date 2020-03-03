@@ -48,9 +48,6 @@ class TimeSplit: NSCopying, Comparable {
 		if hourMilSec.count == 2 {
 			var newTimeString = "00:" + timeString;
 			hourMilSec = newTimeString.split(separator: ":", maxSplits: 3, omittingEmptySubsequences: false)
-			
-			
-//			hourMils
 		}
 		let secSplit = hourMilSec.last?.split(separator: ".")
 	
@@ -73,6 +70,11 @@ class TimeSplit: NSCopying, Comparable {
 			self.hour = 0
 		}
 		
+	}
+	
+	///Creates an "empty" TimeSplit, with the time set to 0
+	convenience init () {
+		self.init(mil: 0)
 	}
 	
 	func reset() {

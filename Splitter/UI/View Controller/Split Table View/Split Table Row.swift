@@ -14,17 +14,22 @@ struct splitTableRow {
 	var splitName: String
 	var bestSplit: TimeSplit
 	var currentSplit: TimeSplit
-	var previousSplit: TimeSplit?
-	var previousBest: TimeSplit?
+	var previousSplit: TimeSplit
+	var previousBest: TimeSplit
 	var splitIcon: NSImage?
+	var compareTo: SplitComparison = .previousSplit
 	
-	//Difference between the (previous) best split and the current best
+	///Difference between the (previous) best split and the current best
 	var splitDiff: String{
 		
 		var og: TimeSplit = bestSplit
 		
-		if previousBest != nil {
-			og = previousBest!
+		switch compareTo {
+		case .personalBest:
+			//TODO: Change to previous best
+			og = bestSplit
+		case .previousSplit:
+			og = previousSplit 
 		}
 		
 		let diff = og - currentSplit
@@ -41,6 +46,19 @@ struct splitTableRow {
 	}
 	
 	func copy(with zone: NSZone? = nil) -> Any {
-		return splitTableRow(splitName: splitName.copy() as! String, bestSplit: bestSplit.copy() as! TimeSplit, currentSplit: currentSplit.copy() as! TimeSplit)
+		return splitTableRow(splitName: splitName.copy() as! String, bestSplit: bestSplit.copy() as! TimeSplit, currentSplit: currentSplit.copy() as! TimeSplit, previousSplit: previousSplit.tsCopy(), previousBest: previousBest.tsCopy())
 	}
+}
+
+final class Box<T> {
+    let value: T
+
+    init(_ value: T) {
+        self.value = value
+    }
+}
+
+enum SplitComparison {
+	case previousSplit
+	case personalBest
 }
