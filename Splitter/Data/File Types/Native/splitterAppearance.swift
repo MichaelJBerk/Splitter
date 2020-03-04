@@ -25,7 +25,7 @@ struct splitterAppearance: Codable {
 		self.hideTitlebar = viewController.titleBarHidden
 		self.hideButtons = viewController.UIHidden
 		self.keepOnTop = viewController.windowFloat
-		self.showBestSplits = viewController.showBestSplits
+//		self.showBestSplits = viewController.showBestSplits
 		self.showColumns = [:]
 		self.columnSizes = [:]
 		for c in colIds {
@@ -60,7 +60,7 @@ extension ViewController {
 		titleBarHidden = appearance.hideTitlebar ?? Settings.hideTitleBar
 		UIHidden = appearance.hideButtons ?? Settings.hideUIButtons
 		windowFloat = appearance.keepOnTop ?? Settings.floatWindow
-		showBestSplits = appearance.showBestSplits ?? Settings.showBestSplits
+//		showBestSplits = appearance.showBestSplits ?? Settings.showBestSplits
 		
 		showHideTitleBar()
 		showHideUI()
