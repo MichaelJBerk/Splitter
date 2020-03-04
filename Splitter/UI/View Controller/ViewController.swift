@@ -49,6 +49,16 @@ class ViewController: NSViewController {
 	@IBOutlet weak var gameIconButton: IconButton!
 	@IBOutlet weak var pauseButton: NSButton!
 	
+	
+	@IBOutlet weak var advancedPopoverButton: NSButton!
+	@IBOutlet weak var columnOptionsPopoverButton: NSButton!
+	
+//MARK: - Setting Up Popovers
+	//TODO: See if I still need these
+	var columnOptionsPopover: SplitterPopover?
+	var advancedPopover: SplitterPopover?
+	
+	
 //MARK: - Setting up Menu Items
 	var timerStopItem: NSMenuItem? {
 		if let pauseItem = view.window?.menu?.item(withIdentifier: menuIdentifiers.timerMenu.stop) {
@@ -293,7 +303,38 @@ class ViewController: NSViewController {
 
 	}
 	
-
+	
+	
+	
+	@IBAction func displayAdvancedPopover(_ sender: Any) {
+		advancedPopover?.contentViewController?.view.window?.close()
+		let destination = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: ViewControllerID.advanced) as! AdvancedTabViewController
+		destination.delegate = self
+		let pop = SplitterPopover()
+		pop.delegate = self
+		pop.contentViewController = destination
+		pop.contentSize = NSSize(width: 450, height: 220)
+		pop.behavior = .semitransient
+		pop.show(relativeTo: .null, of: advancedPopoverButton, preferredEdge: .maxX)
+		advancedPopover = pop
+		destination.setupTabViews()
+	}
+	
+	@IBAction func displayColumnOptionsPopover(_ sender: Any) {
+		columnOptionsPopover?.contentViewController?.view.window?.close()
+		let destination = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: ViewControllerID.columnOptions) as! ColumnOptionsViewController
+		destination.delegate = self
+		let pop = SplitterPopover()
+		pop.delegate = self
+		pop.contentViewController = destination
+		pop.behavior = .semitransient
+		pop.show(relativeTo: .null, of: columnOptionsPopoverButton, preferredEdge: .maxX)
+		columnOptionsPopover = pop
+		destination.loadCheckBoxes()
+		
+		
+	}
+	
 	override var representedObject: Any? {
 		didSet {
 		// Update the view, if already loaded.
@@ -338,4 +379,32 @@ extension ViewController: NSWindowDelegate {
 		let showHideBestSplitsItem = NSApp.mainMenu?.item(withIdentifier: menuIdentifiers.appearanceMenu.showBestSplits)
 		showHideBestSplitsItem?.title = showHideBestSplitsItemText
 	}
+}
+
+extension ViewController: NSPopoverDelegate {
+	func popoverShouldDetach(_ popover: NSPopover) -> Bool {
+		return true
+	}
+	
+	
+	override func present(_ viewController: NSViewController, asPopoverRelativeTo positioningRect: NSRect, of positioningView: NSView, preferredEdge: NSRectEdge, behavior: NSPopover.Behavior) {
+		
+		super.present(viewController, asPopoverRelativeTo: positioningRect, of: positioningView, preferredEdge: preferredEdge, behavior: behavior)
+	}
+}
+
+class SplitterPopover: NSPopover {
+//	override var appearance: NSAppearance? {
+//		set {
+//			
+//		} get {
+//			print(NSAppearance.current.name)
+//			return contentViewController?.view.effectiveAppearance
+//		}
+//	}
+}
+
+extension NSNotification.Name {
+   public static let appAppearanceChanged =
+      NSNotification.Name("appAppearanceChanged")
 }
