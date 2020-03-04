@@ -577,7 +577,7 @@
                                             <tableColumns>
                                                 <tableColumn identifier="ImageColumn" width="32" minWidth="10" maxWidth="3.4028234663852886e+38" id="ljG-co-EDf">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
-                                                        <font key="font" metaFont="toolTip"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -612,7 +612,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="SplitTitle" width="80" minWidth="40" maxWidth="1000" id="rA7-ZF-Uc6">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Split">
-                                                        <font key="font" metaFont="toolTip"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -630,7 +630,7 @@
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Zgl-iF-pqa">
                                                                     <rect key="frame" x="0.0" y="3" width="95" height="14"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" alignment="left" title="Split Title" id="3Pe-jP-c4b">
-                                                                        <font key="font" metaFont="toolTip"/>
+                                                                        <font key="font" metaFont="menu" size="11"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
@@ -649,7 +649,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="CurrentSplit" width="90" minWidth="10" maxWidth="3.4028234663852886e+38" id="rN9-Ff-1yR" customClass="TimeSplitColumn" customModule="Splitter" customModuleProvider="target">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Current">
-                                                        <font key="font" metaFont="toolTip"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -689,7 +689,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="Difference" width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="xLb-1p-wmS" customClass="TimeSplitColumn" customModule="Splitter" customModuleProvider="target">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Diff">
-                                                        <font key="font" metaFont="toolTip"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -729,7 +729,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="B" width="173" minWidth="10" maxWidth="3.4028234663852886e+38" id="RXR-Oz-PMu" customClass="TimeSplitColumn" customModule="Splitter" customModuleProvider="target">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="PB">
-                                                        <font key="font" metaFont="toolTip"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -769,7 +769,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="PreviousSplit" width="85" minWidth="10" maxWidth="3.4028234663852886e+38" hidden="YES" id="Q3y-d2-rYY" customClass="TimeSplitColumn" customModule="Splitter" customModuleProvider="target">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Previous">
-                                                        <font key="font" metaFont="toolTip"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -1094,7 +1094,7 @@
         <!--Info-->
         <scene sceneID="oHx-Kg-fqF">
             <objects>
-                <viewController title="Info" id="9EP-rl-sc4" customClass="RunOptionsViewController" customModule="Splitter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Info" id="9EP-rl-sc4" customClass="InfoOptionsViewController" customModule="Splitter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" appearanceType="darkAqua" id="cPU-ko-LXl">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="294"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1263,7 +1263,7 @@
         <!--Run Options-->
         <scene sceneID="iIy-x1-EHt">
             <objects>
-                <viewController title="Run Options" id="aIO-Eg-hvI" sceneMemberID="viewController">
+                <viewController title="Run Options" id="aIO-Eg-hvI" customClass="RunOptionsViewController" customModule="Splitter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" appearanceType="darkAqua" id="VrN-Kl-BsC">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="298"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1277,51 +1277,98 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eQv-aA-TVK">
-                                <rect key="frame" x="131" y="254" width="143" height="25"/>
-                                <popUpButtonCell key="cell" type="push" title="Personal Best" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" autoenablesItems="NO" altersStateOfSelectedItem="NO" selectedItem="3jX-54-ZE9" id="xtb-He-QHy">
-                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                    <menu key="menu" autoenablesItems="NO" id="Yks-AJ-xS2">
-                                        <items>
-                                            <menuItem title="Personal Best" state="on" id="3jX-54-ZE9"/>
-                                            <menuItem title="Previous Attempt" id="PXQ-9Z-K1b"/>
-                                        </items>
-                                    </menu>
-                                </popUpButtonCell>
-                            </popUpButton>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gCf-4R-9aQ">
-                                <rect key="frame" x="18" y="262" width="109" height="16"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Compare time to:" id="Rac-Ff-dLM">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="w7L-YK-RyY">
-                                <rect key="frame" x="131" y="170" width="301" height="81"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="81" id="MjM-gA-KdR"/>
-                                    <constraint firstAttribute="width" constant="297" id="oXR-JX-QFK"/>
-                                </constraints>
-                                <textFieldCell key="cell" id="64q-iX-QRY">
-                                    <font key="font" metaFont="system"/>
-                                    <string key="title">This setting changes what the current time is compared to in the "Diff" column - either your personal best, or your last attempt at this run</string>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
+                            <gridView fixedFrame="YES" xPlacement="leading" yPlacement="bottom" rowAlignment="none" translatesAutoresizingMaskIntoConstraints="NO" id="1WJ-LN-qqE">
+                                <rect key="frame" x="20" y="143" width="425" height="135"/>
+                                <rows>
+                                    <gridRow id="Kxe-KU-ILE"/>
+                                    <gridRow id="Ls0-A2-qsU"/>
+                                    <gridRow id="Iod-SA-wsZ"/>
+                                </rows>
+                                <columns>
+                                    <gridColumn id="Vbu-Go-lnq"/>
+                                    <gridColumn id="SdJ-WM-ZCg"/>
+                                </columns>
+                                <gridCells>
+                                    <gridCell row="Kxe-KU-ILE" column="Vbu-Go-lnq" xPlacement="trailing" id="XJt-C5-VJr">
+                                        <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gCf-4R-9aQ">
+                                            <rect key="frame" x="15" y="114" width="109" height="16"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Compare Time to" id="Rac-Ff-dLM">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                    </gridCell>
+                                    <gridCell row="Kxe-KU-ILE" column="SdJ-WM-ZCg" id="Uw9-JA-0Wd">
+                                        <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eQv-aA-TVK">
+                                            <rect key="frame" x="126" y="111" width="143" height="25"/>
+                                            <popUpButtonCell key="cell" type="push" title="Previous Attempt" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" autoenablesItems="NO" selectedItem="PXQ-9Z-K1b" id="xtb-He-QHy">
+                                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                                <menu key="menu" autoenablesItems="NO" id="Yks-AJ-xS2">
+                                                    <items>
+                                                        <menuItem title="Previous Attempt" state="on" id="PXQ-9Z-K1b"/>
+                                                        <menuItem title="Personal Best" id="3jX-54-ZE9"/>
+                                                    </items>
+                                                </menu>
+                                            </popUpButtonCell>
+                                            <connections>
+                                                <action selector="changeCompareToPopUpButton:" target="aIO-Eg-hvI" id="CZD-rm-1DB"/>
+                                            </connections>
+                                        </popUpButton>
+                                    </gridCell>
+                                    <gridCell row="Ls0-A2-qsU" column="Vbu-Go-lnq" xPlacement="trailing" id="ezQ-jo-StM"/>
+                                    <gridCell row="Ls0-A2-qsU" column="SdJ-WM-ZCg" id="yyv-MF-ioh">
+                                        <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="w7L-YK-RyY">
+                                            <rect key="frame" x="126" y="27" width="301" height="81"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="81" id="MjM-gA-KdR"/>
+                                                <constraint firstAttribute="width" constant="297" id="oXR-JX-QFK"/>
+                                            </constraints>
+                                            <textFieldCell key="cell" id="64q-iX-QRY">
+                                                <font key="font" metaFont="system"/>
+                                                <string key="title">This setting changes what the current time is compared to in the "Diff" column - either your personal best, or your last attempt at this run</string>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                    </gridCell>
+                                    <gridCell row="Iod-SA-wsZ" column="Vbu-Go-lnq" xPlacement="trailing" id="rPL-mX-khL">
+                                        <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VSz-dS-40q">
+                                            <rect key="frame" x="-2" y="0.0" width="126" height="16"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Round Difference to" id="G4A-qg-BnD">
+                                                <font key="font" usesAppearanceFont="YES"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                    </gridCell>
+                                    <gridCell row="Iod-SA-wsZ" column="SdJ-WM-ZCg" id="t4A-KS-poq">
+                                        <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3c2-Oc-T6R">
+                                            <rect key="frame" x="126" y="-3" width="141" height="25"/>
+                                            <popUpButtonCell key="cell" type="push" title="Hundreths (1.00)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="e39-7p-dnU" id="Tat-0W-Mzd">
+                                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                                <menu key="menu" id="g2j-NM-WrP">
+                                                    <items>
+                                                        <menuItem title="Hundreths (1.00)" state="on" id="e39-7p-dnU"/>
+                                                        <menuItem title="Tenths (1.0)" id="nMZ-sT-CSk"/>
+                                                    </items>
+                                                </menu>
+                                            </popUpButtonCell>
+                                            <connections>
+                                                <action selector="changeRoundDiffPopupButton:" target="aIO-Eg-hvI" id="J6Y-nY-b5p"/>
+                                            </connections>
+                                        </popUpButton>
+                                    </gridCell>
+                                </gridCells>
+                            </gridView>
                         </subviews>
-                        <constraints>
-                            <constraint firstItem="w7L-YK-RyY" firstAttribute="leading" secondItem="eQv-aA-TVK" secondAttribute="leading" id="8bO-OJ-lBE"/>
-                            <constraint firstItem="gCf-4R-9aQ" firstAttribute="leading" secondItem="VrN-Kl-BsC" secondAttribute="leading" constant="20" id="Fke-54-D14"/>
-                            <constraint firstItem="eQv-aA-TVK" firstAttribute="leading" secondItem="gCf-4R-9aQ" secondAttribute="trailing" constant="8" id="OpM-of-yeQ"/>
-                            <constraint firstItem="eQv-aA-TVK" firstAttribute="top" secondItem="VrN-Kl-BsC" secondAttribute="top" constant="20" id="SFs-P2-SIg"/>
-                            <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="eQv-aA-TVK" secondAttribute="trailing" constant="179" id="ZnZ-LI-1UA"/>
-                            <constraint firstItem="gCf-4R-9aQ" firstAttribute="top" secondItem="VrN-Kl-BsC" secondAttribute="top" constant="20" id="bVq-7A-KEf"/>
-                            <constraint firstItem="w7L-YK-RyY" firstAttribute="top" secondItem="eQv-aA-TVK" secondAttribute="bottom" constant="6" id="mbU-65-gDR"/>
-                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="CompareToPopUpButton" destination="eQv-aA-TVK" id="rQP-ji-3P6"/>
+                        <outlet property="RoundDiffPopUpButton" destination="3c2-Oc-T6R" id="ERX-FW-wfN"/>
+                    </connections>
                 </viewController>
                 <customObject id="zdC-me-PFw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

@@ -154,6 +154,20 @@ class ViewController: NSViewController {
 			}
 		}
 	}
+	
+	var compareTo: SplitComparison {
+		get {
+			return currentSplits.first?.compareTo ?? SplitComparison.previousSplit
+		}
+		set {
+			var i = 0
+			while i < currentSplits.count {
+				currentSplits[i].compareTo = newValue
+				i = i + 1
+			}
+			splitsTableView.reloadData()
+		}
+	}
 
 	//MARK: - Other Split Metadata
 	//TODO: Make vars for Run Title and Category, and have the text fields update them

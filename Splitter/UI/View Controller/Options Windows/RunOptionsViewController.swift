@@ -8,27 +8,35 @@
 
 import Cocoa
 
-
-
-class RunOptionsViewController: NSViewController, NSPopoverDelegate, advancedTabDelegate {
-
+class RunOptionsViewController: NSViewController, advancedTabDelegate {
 	var delegate: ViewController?
-	@IBOutlet weak var runTitleField: NSTextField!
-	override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-	
-	
-	func popoverShouldDetach(_ popover: NSPopover) -> Bool {
-		let realAppearance = view.effectiveAppearance.name
-		popover.appearance = NSAppearance(named: realAppearance)
-		return true
-	}
 	
 	func setupDelegate() {
-		runTitleField.stringValue = delegate!.GameTitleLabel.stringValue
+		
+	}
+	@IBOutlet weak var CompareToPopUpButton: NSPopUpButton!
+	
+	@IBOutlet weak var RoundDiffPopUpButton: NSPopUpButton!
+	override func viewDidLoad() {
+        super.viewDidLoad()
+		print(CompareToPopUpButton.itemTitles)
+		switch delegate?.compareTo {
+		case .personalBest:
+			CompareToPopUpButton.selectItem(at: 1)
+		default:
+			CompareToPopUpButton.selectItem(at: 0)
+		}
+        // Do view setup here.
+    }
+	@IBAction func changeCompareToPopUpButton(_ sender: Any) {
+		if CompareToPopUpButton.selectedItem?.title == "Personal Best" {
+			delegate?.compareTo = .personalBest
+		} else {
+			delegate?.compareTo = .previousSplit
+		}
+	}
+	@IBAction func changeRoundDiffPopupButton(_ sender: Any) {
+		
 	}
 	
-	
-    
 }

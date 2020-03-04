@@ -96,6 +96,7 @@ extension ViewController: NSTextFieldDelegate {
 			editedSplit.currentSplit = TimeSplit(timeString: cell.textField!.stringValue)
 		case STVColumnID.bestSplitColumn:
 			editedSplit.bestSplit = TimeSplit(timeString: cell.textField!.stringValue)
+			editedSplit.previousBest = TimeSplit(timeString: cell.textField!.stringValue)
 		default:
 			break
 		}
