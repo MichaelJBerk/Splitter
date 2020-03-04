@@ -18,6 +18,7 @@ struct splitterAppearance: Codable {
 	var columnSizes: [String: CGFloat]? = [:]
 	var windowWidth: CGFloat?
 	var windowHeight: CGFloat?
+	var roundTo: Int?
 	
 	
 	
@@ -39,6 +40,7 @@ struct splitterAppearance: Codable {
 		}
 		self.windowWidth = viewController.view.window?.frame.width
 		self.windowHeight = viewController.view.window?.frame.height
+		self.roundTo = viewController.roundTo.rawValue
 	}
 	
 //	func decodeSplitterAppearance(viewController: ViewController) {
@@ -99,5 +101,7 @@ extension ViewController {
 			let windowFrame = NSRect(x: view.window!.frame.origin.x, y: view.window!.frame.origin.y, width: appearance.windowWidth!, height: appearance.windowHeight!)
 			view.window?.setFrame(windowFrame, display: true)
 		}
+		
+		roundTo = SplitRounding(rawValue: appearance.roundTo ?? 0) ?? SplitRounding.tenths
 	}
 }

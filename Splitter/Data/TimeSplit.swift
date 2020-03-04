@@ -108,27 +108,16 @@ class TimeSplit: NSCopying, Comparable {
 			
 		}
 	}
-		
-
-	
-	/// Returns the `TimeSplit` as a `String`, in the format `hr:mn:sc:ms`,  regardless of how many hours have passed.
-	var longTimeString: String {
-		return String(format: "%02d:%02d:%02d.%02d", hour, min, sec, mil)
-	}
 	
 	/**
-	Returns the `TimeSplit` as a `String`, without the hour.
-	Example; Instead of `00:58:47.13`, it would be `58:47.13`.
-*/
+	Returns time of the`TimeSplit` as a `String`.
+	**/
 	var timeString: String {
-//		if hour == 0 {
-//			return String(format: "%02d:%02d.%02d", min, sec, mil)
-//		} else {
 			return String(format: "%.2d:%.2d:%.2d.%.02d", hour, min, sec, mil)
-//		}
 	}
 	
-	var veryShortTimeString: String {
+	///Returns the `TimeSplit` as a `String`, but only includes the first significant field
+	var shortTimeString: String {
 		if hour == 0 {
 			if min == 0 {
 				return String(format: "%.2d.%.2d", sec, mil)
@@ -136,6 +125,17 @@ class TimeSplit: NSCopying, Comparable {
 			return String(format: "%.2d:%.2d.%.2d", min, sec, mil)
 		}
 		return String(format: "%.2d:%.2d:%.2d.%.2d", hour, min, sec, mil)
+	}
+	
+	///Returns a `shortTimeString`, but is rounded to the tenths instead of hundredths
+	var shortTimeStringTenths: String {
+		if hour == 0 {
+			if min == 0 {
+				return String(format: "%.2d.%.d", sec, (mil/10))
+			}
+			return String(format: "%.2d:%.2d.%.1d", min, sec, (mil/10))
+		}
+		return String(format: "%.2d:%.2d:%.2d.%.1d", hour, min, sec, (mil/10))
 	}
 	
 	
@@ -157,7 +157,7 @@ class TimeSplit: NSCopying, Comparable {
 	//Plan - Go through each variable, and see if it's bigger. At the first variable that's bigger, stop.
 	
 	static func == (lhs: TimeSplit, rhs: TimeSplit) -> Bool {
-		if lhs.longTimeString == rhs.longTimeString {
+		if lhs.timeString == rhs.timeString {
 			return true
 		} else {
 			return false

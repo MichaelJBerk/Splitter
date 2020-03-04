@@ -18,6 +18,7 @@ struct splitTableRow {
 	var previousBest: TimeSplit
 	var splitIcon: NSImage?
 	var compareTo: SplitComparison = .previousSplit
+	var roundTo: SplitRounding = .tenths
 	//TODO: Update Diff when loaded from filez
 	///Difference between the (previous) best split and the current best
 	var splitDiff: String{
@@ -32,13 +33,21 @@ struct splitTableRow {
 		}
 		
 		let diff = og - currentSplit
+		let diffTimeString: String
 		
-		if currentSplit.longTimeString == "00:00:00.00" {
+		switch roundTo {
+		case .hundredths:
+			diffTimeString = diff.shortTimeString
+		default:
+			diffTimeString = diff.shortTimeStringTenths
+		}
+		
+		if currentSplit.timeString == "00:00:00.00" {
 			return "00:00.00"
 		} else if currentSplit > og {
-			return "+\(diff.veryShortTimeString)"
+			return "+\(diffTimeString)"
 		} else if currentSplit < og {
-			return "-\(diff.veryShortTimeString)"
+			return "-\(diffTimeString)"
 		} else {
 			return "00:00.00"
 		}
@@ -60,4 +69,9 @@ final class Box<T> {
 enum SplitComparison: Int {
 	case previousSplit
 	case personalBest
+}
+
+enum SplitRounding: Int {
+	case tenths
+	case hundredths
 }

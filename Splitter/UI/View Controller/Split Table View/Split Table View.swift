@@ -35,6 +35,8 @@ extension ViewController: NSTableViewDelegate {
 				return imageCell
 			}
 			
+			currentSplits[row].roundTo = self.roundTo
+			
 			switch tableColumn?.identifier {
 			case STVColumnID.splitTitleColumn:
 				let lastSplit = currentSplits[row]
@@ -84,7 +86,6 @@ extension ViewController: NSTextFieldDelegate {
 		let cell = cellrow?.view(atColumn: colIndex) as! NSTableCellView
 		var editedSplit = currentSplits[r]
 		
-		//TODO: Change this so it can work regardless of the column order
 		if colID == STVColumnID.splitTitleColumn {
 			print(cell.textField!.stringValue)
 			editedSplit.splitName = cell.textField!.stringValue
