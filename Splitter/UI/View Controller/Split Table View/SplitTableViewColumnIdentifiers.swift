@@ -17,3 +17,12 @@ public enum STVColumnID {
 	static let bestSplitColumn = NSUserInterfaceItemIdentifier("B")
 	static let previousSplitColumn = NSUserInterfaceItemIdentifier("PreviousSplit")
 }
+
+public var colIds: [String: NSUserInterfaceItemIdentifier] = [
+	"Icon": STVColumnID.imageColumn,
+	"Title": STVColumnID.splitTitleColumn,
+	"Difference": STVColumnID.differenceColumn,
+	"Current Split": STVColumnID.currentSplitColumn,
+	"Personal Best": STVColumnID.bestSplitColumn,
+	"Previous Split": STVColumnID.previousSplitColumn
+]

@@ -15,12 +15,13 @@
 		4A18662E23C51D2800FEEE54 /* UISettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A18662D23C51D2800FEEE54 /* UISettings.swift */; };
 		4A18663023C5257800FEEE54 /* MenuItemConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A18662F23C5257800FEEE54 /* MenuItemConstants.swift */; };
 		4A18663223C5376900FEEE54 /* SettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A18663123C5376900FEEE54 /* SettingsKeys.swift */; };
+		4A1C1465240ECD610056B104 /* ViewControllerID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1C1464240ECD610056B104 /* ViewControllerID.swift */; };
+		4A1C1469240ED30C0056B104 /* RunOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1C1467240ED30C0056B104 /* RunOptionsViewController.swift */; };
 		4A230E9323B00A1D00959C57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A230E9223B00A1D00959C57 /* AppDelegate.swift */; };
 		4A230E9523B00A1D00959C57 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A230E9423B00A1D00959C57 /* ViewController.swift */; };
 		4A230E9723B00A1D00959C57 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A230E9623B00A1D00959C57 /* Document.swift */; };
 		4A230E9C23B00A1E00959C57 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A230E9A23B00A1E00959C57 /* Main.storyboard */; };
 		4A327B0D23F491FB00A5CBFF /* splitterAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A327B0C23F491FB00A5CBFF /* splitterAppearance.swift */; };
-		4A327B0F23F493D300A5CBFF /* columnIDs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A327B0E23F493D300A5CBFF /* columnIDs.swift */; };
 		4A3BDFA123E4C3B6001EA7FF /* DefaultHotkeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3BDFA023E4C3B6001EA7FF /* DefaultHotkeys.swift */; };
 		4A45BCF724084B3800F1A223 /* TimeSplitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A45BCF624084B3800F1A223 /* TimeSplitCell.swift */; };
 		4A4D391F23C4F29C00BF3FCD /* blankWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A4D391E23C4F29C00BF3FCD /* blankWindow.xib */; };
@@ -59,6 +60,8 @@
 		4ACCEA7823B02F520068F89E /* TimeSplit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACCEA7723B02F520068F89E /* TimeSplit.swift */; };
 		4AD7662E23DA5F9A0052409C /* Files in Frameworks */ = {isa = PBXBuildFile; productRef = 4AD7662D23DA5F9A0052409C /* Files */; };
 		4AD7663223DB5C3A0052409C /* ImportExportSplitsIO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD7663123DB5C3A0052409C /* ImportExportSplitsIO.swift */; };
+		4AD77D16240ECA2800CD65AD /* ColumnOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD77D15240ECA2800CD65AD /* ColumnOptionsViewController.swift */; };
+		4ADE9226240F1FB900E0D99E /* AdvancedTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADE9225240F1FB900E0D99E /* AdvancedTabViewController.swift */; };
 		4ADFAE4923E4A0760049F57A /* QuickAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADFAE4823E4A0760049F57A /* QuickAlert.swift */; };
 		4AEA927E23C4EF32004F6CF9 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEA927D23C4EF32004F6CF9 /* MainWindowController.swift */; };
 		4AEA928323C4F140004F6CF9 /* DefaultPreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEA928123C4F140004F6CF9 /* DefaultPreferenceViewController.swift */; };
@@ -101,6 +104,8 @@
 		4A18662D23C51D2800FEEE54 /* UISettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISettings.swift; sourceTree = "<group>"; };
 		4A18662F23C5257800FEEE54 /* MenuItemConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemConstants.swift; sourceTree = "<group>"; };
 		4A18663123C5376900FEEE54 /* SettingsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsKeys.swift; sourceTree = "<group>"; };
+		4A1C1464240ECD610056B104 /* ViewControllerID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerID.swift; sourceTree = "<group>"; };
+		4A1C1467240ED30C0056B104 /* RunOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunOptionsViewController.swift; sourceTree = "<group>"; };
 		4A230E8F23B00A1D00959C57 /* Splitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Splitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A230E9223B00A1D00959C57 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4A230E9423B00A1D00959C57 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -109,7 +114,6 @@
 		4A230E9D23B00A1E00959C57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A230E9E23B00A1E00959C57 /* Splitter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Splitter.entitlements; sourceTree = "<group>"; };
 		4A327B0C23F491FB00A5CBFF /* splitterAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = splitterAppearance.swift; sourceTree = "<group>"; };
-		4A327B0E23F493D300A5CBFF /* columnIDs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = columnIDs.swift; sourceTree = "<group>"; };
 		4A3BDFA023E4C3B6001EA7FF /* DefaultHotkeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultHotkeys.swift; sourceTree = "<group>"; };
 		4A45BCF624084B3800F1A223 /* TimeSplitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSplitCell.swift; sourceTree = "<group>"; };
 		4A4D391E23C4F29C00BF3FCD /* blankWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = blankWindow.xib; sourceTree = "<group>"; };
@@ -149,6 +153,8 @@
 		4ACCEA7723B02F520068F89E /* TimeSplit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSplit.swift; sourceTree = "<group>"; };
 		4AD7663123DB5C3A0052409C /* ImportExportSplitsIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportExportSplitsIO.swift; sourceTree = "<group>"; };
 		4AD7665923DB5CFC0052409C /* SplitsIOExchangeFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SplitsIOExchangeFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		4AD77D15240ECA2800CD65AD /* ColumnOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnOptionsViewController.swift; sourceTree = "<group>"; };
+		4ADE9225240F1FB900E0D99E /* AdvancedTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedTabViewController.swift; sourceTree = "<group>"; };
 		4ADFAE4823E4A0760049F57A /* QuickAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickAlert.swift; sourceTree = "<group>"; };
 		4AEA927D23C4EF32004F6CF9 /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		4AEA928123C4F140004F6CF9 /* DefaultPreferenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPreferenceViewController.swift; sourceTree = "<group>"; };
@@ -220,8 +226,10 @@
 			isa = PBXGroup;
 			children = (
 				4A230E9423B00A1D00959C57 /* ViewController.swift */,
+				4A1C1464240ECD610056B104 /* ViewControllerID.swift */,
 				4AF953B623EB507800ED540C /* Splits.swift */,
 				4AF953B423EB503100ED540C /* Timer Functions.swift */,
+				4A1C1466240ED2F00056B104 /* Options Windows */,
 				4AC24DBD23EB4F73003008BF /* Split Table View */,
 				4A1657B423EA5C320008CB5F /* Icon Actions.swift */,
 				4A1657B223EA4F3C0008CB5F /* Button Actions.swift */,
@@ -229,6 +237,16 @@
 				4A1657B023EA4EF60008CB5F /* Menu Items.swift */,
 			);
 			path = "View Controller";
+			sourceTree = "<group>";
+		};
+		4A1C1466240ED2F00056B104 /* Options Windows */ = {
+			isa = PBXGroup;
+			children = (
+				4AD77D15240ECA2800CD65AD /* ColumnOptionsViewController.swift */,
+				4A1C1467240ED30C0056B104 /* RunOptionsViewController.swift */,
+				4ADE9225240F1FB900E0D99E /* AdvancedTabViewController.swift */,
+			);
+			path = "Options Windows";
 			sourceTree = "<group>";
 		};
 		4A230E8623B00A1D00959C57 = {
@@ -307,7 +325,6 @@
 			isa = PBXGroup;
 			children = (
 				4AC24DB923EB4EC5003008BF /* Split Table Row.swift */,
-				4A327B0E23F493D300A5CBFF /* columnIDs.swift */,
 				4AC24DBB23EB4F17003008BF /* Split Table View.swift */,
 				4A9DB791240847E40000D1B4 /* TimeSplitColumn.swift */,
 				4A66A43123DE2C88005952FA /* SplitTableViewColumnIdentifiers.swift */,
@@ -601,7 +618,6 @@
 				4A66A43223DE2C88005952FA /* SplitTableViewColumnIdentifiers.swift in Sources */,
 				4A230E9323B00A1D00959C57 /* AppDelegate.swift in Sources */,
 				4AC24DBC23EB4F17003008BF /* Split Table View.swift in Sources */,
-				4A327B0F23F493D300A5CBFF /* columnIDs.swift in Sources */,
 				4A6726E323F05B3C006F4BC4 /* module.map in Sources */,
 				4A18663223C5376900FEEE54 /* SettingsKeys.swift in Sources */,
 				4A1657B123EA4EF60008CB5F /* Menu Items.swift in Sources */,
@@ -612,18 +628,22 @@
 				4A0F716323F4A9E400E5948E /* SplitterDocBundle.swift in Sources */,
 				4A4D392223C4FAE500BF3FCD /* HotkeysViewController.swift in Sources */,
 				4AF953B723EB507800ED540C /* Splits.swift in Sources */,
+				4A1C1465240ECD610056B104 /* ViewControllerID.swift in Sources */,
 				4ACCEA7823B02F520068F89E /* TimeSplit.swift in Sources */,
 				4A5C1D1523F4AFB80014E8D3 /* commonPaths.swift in Sources */,
 				4AF953B523EB503100ED540C /* Timer Functions.swift in Sources */,
 				4A1657B523EA5C320008CB5F /* Icon Actions.swift in Sources */,
 				4A66A43423DE391B005952FA /* ShowHideUI.swift in Sources */,
+				4AD77D16240ECA2800CD65AD /* ColumnOptionsViewController.swift in Sources */,
 				4A6A3BE423CD621A002C20AE /* MainWindow.swift in Sources */,
 				4A1657B323EA4F3C0008CB5F /* Button Actions.swift in Sources */,
 				4A968C7C23F1F5FE001B74E8 /* lss.swift in Sources */,
 				4A6A3BE023CD1C39002C20AE /* GlobalKeybindPrefs.swift in Sources */,
 				4AD7663223DB5C3A0052409C /* ImportExportSplitsIO.swift in Sources */,
 				4AEA928323C4F140004F6CF9 /* DefaultPreferenceViewController.swift in Sources */,
+				4A1C1469240ED30C0056B104 /* RunOptionsViewController.swift in Sources */,
 				4A9DB792240847E40000D1B4 /* TimeSplitColumn.swift in Sources */,
+				4ADE9226240F1FB900E0D99E /* AdvancedTabViewController.swift in Sources */,
 				4A0F715F23F4A0A500E5948E /* SplitterDoc.swift in Sources */,
 				4A66A43023DE2682005952FA /* ImageButtonCellView.swift in Sources */,
 				4A3BDFA123E4C3B6001EA7FF /* DefaultHotkeys.swift in Sources */,

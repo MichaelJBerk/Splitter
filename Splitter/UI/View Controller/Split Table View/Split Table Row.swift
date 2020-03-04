@@ -18,7 +18,7 @@ struct splitTableRow {
 	var previousBest: TimeSplit
 	var splitIcon: NSImage?
 	var compareTo: SplitComparison = .previousSplit
-	
+	//TODO: Update Diff when loaded from filez
 	///Difference between the (previous) best split and the current best
 	var splitDiff: String{
 		
