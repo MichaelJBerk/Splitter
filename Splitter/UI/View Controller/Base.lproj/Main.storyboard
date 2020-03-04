@@ -1345,13 +1345,13 @@
                                     </gridCell>
                                     <gridCell row="Iod-SA-wsZ" column="SdJ-WM-ZCg" id="t4A-KS-poq">
                                         <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3c2-Oc-T6R">
-                                            <rect key="frame" x="126" y="-3" width="141" height="25"/>
-                                            <popUpButtonCell key="cell" type="push" title="Hundreths (1.00)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="e39-7p-dnU" id="Tat-0W-Mzd">
+                                            <rect key="frame" x="126" y="-3" width="149" height="25"/>
+                                            <popUpButtonCell key="cell" type="push" title="Hundredths (1.00)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="e39-7p-dnU" id="Tat-0W-Mzd">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                                 <menu key="menu" id="g2j-NM-WrP">
                                                     <items>
-                                                        <menuItem title="Hundreths (1.00)" state="on" id="e39-7p-dnU"/>
+                                                        <menuItem title="Hundredths (1.00)" state="on" id="e39-7p-dnU"/>
                                                         <menuItem title="Tenths (1.0)" id="nMZ-sT-CSk"/>
                                                     </items>
                                                 </menu>
