@@ -66,6 +66,7 @@
 		4AEA927E23C4EF32004F6CF9 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEA927D23C4EF32004F6CF9 /* MainWindowController.swift */; };
 		4AEA928323C4F140004F6CF9 /* DefaultPreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEA928123C4F140004F6CF9 /* DefaultPreferenceViewController.swift */; };
 		4AEA928423C4F140004F6CF9 /* DefaultPreferenceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AEA928223C4F140004F6CF9 /* DefaultPreferenceViewController.xib */; };
+		4AEC4C00240F564B00B01799 /* Time Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEC4BFF240F564B00B01799 /* Time Conversion.swift */; };
 		4AF953B523EB503100ED540C /* Timer Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF953B423EB503100ED540C /* Timer Functions.swift */; };
 		4AF953B723EB507800ED540C /* Splits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF953B623EB507800ED540C /* Splits.swift */; };
 /* End PBXBuildFile section */
@@ -159,6 +160,7 @@
 		4AEA927D23C4EF32004F6CF9 /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		4AEA928123C4F140004F6CF9 /* DefaultPreferenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPreferenceViewController.swift; sourceTree = "<group>"; };
 		4AEA928223C4F140004F6CF9 /* DefaultPreferenceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DefaultPreferenceViewController.xib; sourceTree = "<group>"; };
+		4AEC4BFF240F564B00B01799 /* Time Conversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Time Conversion.swift"; sourceTree = "<group>"; };
 		4AF953B423EB503100ED540C /* Timer Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timer Functions.swift"; sourceTree = "<group>"; };
 		4AF953B623EB507800ED540C /* Splits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Splits.swift; sourceTree = "<group>"; };
 		4AF9D75B23ECD5110019BC9A /* livesplit_core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = livesplit_core.h; sourceTree = "<group>"; };
@@ -337,6 +339,7 @@
 			isa = PBXGroup;
 			children = (
 				4A5C1D1423F4AFB80014E8D3 /* commonPaths.swift */,
+				4AEC4BFF240F564B00B01799 /* Time Conversion.swift */,
 				4ACCEA7723B02F520068F89E /* TimeSplit.swift */,
 				4A0F716523F4AA1500E5948E /* File Types */,
 			);
@@ -615,6 +618,7 @@
 				4A327B0D23F491FB00A5CBFF /* splitterAppearance.swift in Sources */,
 				4A230E9523B00A1D00959C57 /* ViewController.swift in Sources */,
 				4A6A3BE623CD6463002C20AE /* BlankWindowController.swift in Sources */,
+				4AEC4C00240F564B00B01799 /* Time Conversion.swift in Sources */,
 				4A66A43223DE2C88005952FA /* SplitTableViewColumnIdentifiers.swift in Sources */,
 				4A230E9323B00A1D00959C57 /* AppDelegate.swift in Sources */,
 				4AC24DBC23EB4F17003008BF /* Split Table View.swift in Sources */,
