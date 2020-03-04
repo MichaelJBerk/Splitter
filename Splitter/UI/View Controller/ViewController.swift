@@ -297,6 +297,15 @@ class ViewController: NSViewController {
 		showBestSplits = Settings.showBestSplits
 		showHideBestSplits()
 		
+		for c in splitsTableView.tableColumns {
+			if c.identifier == STVColumnID.previousSplitColumn {
+				c.isHidden = true
+			}
+			if c.identifier == STVColumnID.bestSplitColumn {
+				c.width = 86
+			}
+		}
+		
 		
 	}
 

@@ -561,7 +561,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="274" height="405"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView autohidesScrollers="YES" horizontalLineScroll="32" horizontalPageScroll="10" verticalLineScroll="32" verticalPageScroll="10" allowsMagnification="YES" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="allowed" id="GLv-Wp-JTM">
+                            <scrollView autohidesScrollers="YES" horizontalLineScroll="32" horizontalPageScroll="10" verticalLineScroll="32" verticalPageScroll="10" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="allowed" id="GLv-Wp-JTM">
                                 <rect key="frame" x="0.0" y="128" width="274" height="219"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="9dd-gf-lQy">
@@ -577,7 +577,7 @@
                                             <tableColumns>
                                                 <tableColumn identifier="ImageColumn" width="32" minWidth="10" maxWidth="3.4028234663852886e+38" id="ljG-co-EDf">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="toolTip"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -586,7 +586,7 @@
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
-                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                    <tableColumnResizingMask key="resizingMask" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="DDG-t1-8d6" customClass="ImageButtonCellView" customModule="Splitter" customModuleProvider="target">
                                                             <rect key="frame" x="1" y="1" width="32" height="17"/>
@@ -612,7 +612,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="SplitTitle" width="80" minWidth="40" maxWidth="1000" id="rA7-ZF-Uc6">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Split">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="toolTip"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -621,7 +621,7 @@
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
-                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                    <tableColumnResizingMask key="resizingMask" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="MX7-uO-mSv">
                                                             <rect key="frame" x="36" y="1" width="80" height="19"/>
@@ -630,7 +630,7 @@
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Zgl-iF-pqa">
                                                                     <rect key="frame" x="0.0" y="3" width="95" height="14"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" alignment="left" title="Split Title" id="3Pe-jP-c4b">
-                                                                        <font key="font" metaFont="message" size="11"/>
+                                                                        <font key="font" metaFont="toolTip"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
@@ -649,7 +649,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="CurrentSplit" width="90" minWidth="10" maxWidth="3.4028234663852886e+38" id="rN9-Ff-1yR" customClass="TimeSplitColumn" customModule="Splitter" customModuleProvider="target">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Current">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="toolTip"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -658,7 +658,7 @@
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
-                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                    <tableColumnResizingMask key="resizingMask" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="7FB-sm-vIX" customClass="TimeSplitCell" customModule="Splitter" customModuleProvider="target">
                                                             <rect key="frame" x="119" y="1" width="90" height="17"/>
@@ -689,7 +689,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="Difference" width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="xLb-1p-wmS" customClass="TimeSplitColumn" customModule="Splitter" customModuleProvider="target">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Diff">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="toolTip"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -698,7 +698,7 @@
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
-                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                    <tableColumnResizingMask key="resizingMask" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="8TX-qB-Vav" customClass="TimeSplitCell" customModule="Splitter" customModuleProvider="target">
                                                             <rect key="frame" x="212" y="1" width="64" height="17"/>
@@ -727,9 +727,9 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="B" width="85" minWidth="10" maxWidth="3.4028234663852886e+38" id="RXR-Oz-PMu" customClass="TimeSplitColumn" customModule="Splitter" customModuleProvider="target">
+                                                <tableColumn identifier="B" width="173" minWidth="10" maxWidth="3.4028234663852886e+38" id="RXR-Oz-PMu" customClass="TimeSplitColumn" customModule="Splitter" customModuleProvider="target">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="PB">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="toolTip"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -738,14 +738,14 @@
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
-                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                    <tableColumnResizingMask key="resizingMask" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="KQB-tH-eJU" customClass="TimeSplitCell" customModule="Splitter" customModuleProvider="target">
-                                                            <rect key="frame" x="279" y="1" width="85" height="17"/>
+                                                            <rect key="frame" x="279" y="1" width="173" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="EDP-CX-XUd">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="85" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="173" height="17"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="17" id="j7i-2I-Mle"/>
                                                                     </constraints>
@@ -767,9 +767,9 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="PreviousSplit" width="85" minWidth="10" maxWidth="3.4028234663852886e+38" id="Q3y-d2-rYY" customClass="TimeSplitColumn" customModule="Splitter" customModuleProvider="target">
+                                                <tableColumn identifier="PreviousSplit" width="85" minWidth="10" maxWidth="3.4028234663852886e+38" hidden="YES" id="Q3y-d2-rYY" customClass="TimeSplitColumn" customModule="Splitter" customModuleProvider="target">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Previous">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="toolTip"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -778,14 +778,14 @@
                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                                     </textFieldCell>
-                                                    <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
+                                                    <tableColumnResizingMask key="resizingMask" userResizable="YES"/>
                                                     <prototypeCellViews>
-                                                        <tableCellView id="UsZ-ab-Q8h" customClass="TimeSplitCell" customModule="Splitter" customModuleProvider="target">
-                                                            <rect key="frame" x="367" y="1" width="85" height="17"/>
+                                                        <tableCellView misplaced="YES" id="UsZ-ab-Q8h" customClass="TimeSplitCell" customModule="Splitter" customModuleProvider="target">
+                                                            <rect key="frame" x="1" y="1" width="0.0" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="kIh-q7-hw5">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="85" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="4" height="17"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="17" id="qTR-88-1g0"/>
                                                                     </constraints>
