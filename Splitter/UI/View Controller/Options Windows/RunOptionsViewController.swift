@@ -14,29 +14,60 @@ class RunOptionsViewController: NSViewController, advancedTabDelegate {
 	func setupDelegate() {
 		
 	}
-	@IBOutlet weak var CompareToPopUpButton: NSPopUpButton!
+	@IBOutlet weak var compareToPopUpButton: NSPopUpButton!
 	
-	@IBOutlet weak var RoundDiffPopUpButton: NSPopUpButton!
+	@IBOutlet weak var roundDiffPopUpButton: NSPopUpButton!
 	override func viewDidLoad() {
         super.viewDidLoad()
-		print(CompareToPopUpButton.itemTitles)
-		switch delegate?.compareTo {
-		case .personalBest:
-			CompareToPopUpButton.selectItem(at: 1)
-		default:
-			CompareToPopUpButton.selectItem(at: 0)
-		}
+		compareToPopUpButton.selectItem(at: delegateComparison)
+		roundDiffPopUpButton.selectItem(at: delegateRound)
+		
         // Do view setup here.
     }
+	
+	
+	private var delegateComparison: Int {
+		switch delegate?.compareTo {
+		case .personalBest:
+			return 1
+		default:
+			return 0
+		}
+	}
+	
+	private var delegateRound: Int {
+		switch delegate?.roundTo {
+		case .hundredths:
+			return 1
+		default:
+			return 0
+		}
+	}
+	
+	
 	@IBAction func changeCompareToPopUpButton(_ sender: Any) {
-		if CompareToPopUpButton.selectedItem?.title == "Personal Best" {
+		if compareToPopUpButton.selectedItem?.identifier == .personalBest {
 			delegate?.compareTo = .personalBest
 		} else {
 			delegate?.compareTo = .previousSplit
 		}
 	}
 	@IBAction func changeRoundDiffPopupButton(_ sender: Any) {
-		
+		if roundDiffPopUpButton.selectedItem?.identifier == .hundredths {
+			delegate?.roundTo = .hundredths
+		} else {
+			delegate?.roundTo = .tenths
+		}
+		delegate?.splitsTableView.reloadData()
 	}
 	
+}
+
+
+fileprivate extension NSUserInterfaceItemIdentifier {
+	static let tenths = NSUserInterfaceItemIdentifier("tenths")
+	static let hundredths = NSUserInterfaceItemIdentifier("hundredths")
+	
+	static let personalBest = NSUserInterfaceItemIdentifier("personalBest")
+	static let previousSplit = NSUserInterfaceItemIdentifier("previousSplit")
 }

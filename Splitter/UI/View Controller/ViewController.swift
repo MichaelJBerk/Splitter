@@ -168,6 +168,10 @@ class ViewController: NSViewController {
 			splitsTableView.reloadData()
 		}
 	}
+	
+	var roundTo: SplitRounding = .tenths
+	
+	
 
 	//MARK: - Other Split Metadata
 	//TODO: Make vars for Run Title and Category, and have the text fields update them
