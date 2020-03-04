@@ -54,7 +54,6 @@ class ViewController: NSViewController {
 	@IBOutlet weak var columnOptionsPopoverButton: NSButton!
 	
 //MARK: - Setting Up Popovers
-	//TODO: See if I still need these
 	var columnOptionsPopover: SplitterPopover?
 	var advancedPopover: SplitterPopover?
 	
@@ -299,12 +298,11 @@ class ViewController: NSViewController {
 	}
 	
 	override func viewWillDisappear() {
+		advancedPopover?.contentViewController?.view.window?.close()
+		columnOptionsPopover?.contentViewController?.view.window?.close()
 		super.viewWillDisappear()
 
 	}
-	
-	
-	
 	
 	@IBAction func displayAdvancedPopover(_ sender: Any) {
 		advancedPopover?.contentViewController?.view.window?.close()
@@ -394,17 +392,5 @@ extension ViewController: NSPopoverDelegate {
 }
 
 class SplitterPopover: NSPopover {
-//	override var appearance: NSAppearance? {
-//		set {
-//			
-//		} get {
-//			print(NSAppearance.current.name)
-//			return contentViewController?.view.effectiveAppearance
-//		}
-//	}
-}
 
-extension NSNotification.Name {
-   public static let appAppearanceChanged =
-      NSNotification.Name("appAppearanceChanged")
 }
