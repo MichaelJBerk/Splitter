@@ -59,7 +59,8 @@ extension ViewController {
 				let currentSplitIO = sT.endedAt?.realtimeMS
 				let bestTS = TimeSplit(mil: bestSplitIO!)
 				let currentTS = TimeSplit(mil: currentSplitIO!)
-				var newTableRow = splitTableRow(splitName: splitTitle, bestSplit: bestTS, currentSplit: currentTS)
+				//TODO: Update to new split behavior
+				var newTableRow = splitTableRow(splitName: splitTitle, bestSplit: bestTS, currentSplit: currentTS, previousSplit: currentTS, previousBest: bestTS)
 				
 				
 	//							loadedSplits.append(newTableRow)

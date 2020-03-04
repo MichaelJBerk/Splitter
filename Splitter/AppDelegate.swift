@@ -68,6 +68,9 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			MSCrashes.self
 		])
 		
+		
+		//Notification for Dark Mode
+		
 
 	}
 

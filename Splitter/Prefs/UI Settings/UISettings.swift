@@ -50,14 +50,16 @@ extension ViewController {
 	func showHideBestSplits() {
 		 let menuItem = NSApp.mainMenu?.item(withIdentifier: menuIdentifiers.appearanceMenu.showBestSplits)
 			
-			
-		if showBestSplits {
-			splitsTableView.tableColumns[4].isHidden = false
-			
-		} else if !splitsTableView.tableColumns[4].isHidden {
-			splitsTableView.tableColumns[4].isHidden = true
-			
-			
+		if let bestSplitsColumn = splitsTableView?.column(withIdentifier: .init("B")) {
+			if showBestSplits {
+				
+				splitsTableView.tableColumns[bestSplitsColumn].isHidden = false
+				
+			} else if !splitsTableView.tableColumns[bestSplitsColumn].isHidden {
+				splitsTableView.tableColumns[bestSplitsColumn].isHidden = true
+				
+				
+			}
 		}
 		menuItem?.title = showHideBestSplitsItemText
 	}
