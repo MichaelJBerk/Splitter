@@ -155,6 +155,18 @@ class ViewController: NSViewController {
 		}
 	}
 
+	//MARK: - Other Split Metadata
+	//TODO: Make vars for Run Title and Category, and have the text fields update them
+	//TODO: Update popover data from here
+	var attempts: Int = 0
+	var platform: String?
+	var gameVersion: String?
+	var gameRegion: String?
+	var startTime: Date?
+	var endTime: Date?
+	
+	
+
 	//MARK: - External File Split Data
 	//Stuff that holds data from files
 	var splitsIOSchemaVersion = "v1.0.1"
