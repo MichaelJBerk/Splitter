@@ -19,6 +19,7 @@ struct runInfo: Codable {
 	var platform: String?
 	var gameVersion: String?
 	var gameRegion: String?
+	var compareTo: Int?
 	
 	var startTime: String?
 	var endTime: String?
@@ -49,6 +50,7 @@ extension ViewController {
 			SubtitleLabel.stringValue = ri.category
 			currentSplits = []
 			for s in ri.segments {
+				let hey = SplitComparison(rawValue: ri.compareTo ?? 0)
 				let bestTimeSplit = TimeSplit(timeString: s.personalBestTime)
 				let currentTimeSplit = TimeSplit(timeString: s.currentTime)
 				let newRow = splitTableRow(splitName: s.name, bestSplit: bestTimeSplit, currentSplit: currentTimeSplit, previousSplit: TimeSplit(timeString: s.previousTime ?? "00") , previousBest: TimeSplit(timeString: s.previousPersonalBestTime ??
@@ -84,6 +86,7 @@ extension ViewController {
 						 platform: platform,
 						 gameVersion: gameVersion,
 						 gameRegion: gameRegion,
+						 compareTo: compareTo.hashValue,
 						 version: version,
 						 build: build)
 		return ri

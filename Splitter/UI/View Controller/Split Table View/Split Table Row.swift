@@ -26,8 +26,7 @@ struct splitTableRow {
 		
 		switch compareTo {
 		case .personalBest:
-			//TODO: Change to previous best
-			og = bestSplit
+			og = previousBest
 		case .previousSplit:
 			og = previousSplit 
 		}
@@ -36,9 +35,9 @@ struct splitTableRow {
 		
 		if currentSplit.longTimeString == "00:00:00.00" {
 			return "00:00.00"
-		} else if currentSplit > bestSplit {
+		} else if currentSplit > og {
 			return "+\(diff.veryShortTimeString)"
-		} else if currentSplit < bestSplit {
+		} else if currentSplit < og {
 			return "-\(diff.veryShortTimeString)"
 		} else {
 			return "00:00.00"
@@ -58,7 +57,7 @@ final class Box<T> {
     }
 }
 
-enum SplitComparison {
+enum SplitComparison: Int {
 	case previousSplit
 	case personalBest
 }
