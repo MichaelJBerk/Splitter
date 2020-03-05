@@ -13,7 +13,6 @@ extension ViewController {
 	// MARK: - Timer functions
 	///Starts the timer.
 	func startTimer() {
-		updateAllBestSplits()
 		timerStarted = true
 		timerState = .running
 		StartButton.title = "Pause"
@@ -62,7 +61,7 @@ extension ViewController {
 		currentSplits[0].currentSplit = self.currentSplit!
 	}
 	
-	///Sets the "previous split" for each segment in the run to the current value of that segment
+	///Sets the "previous split" column for each segment in the run to the current value of that segment
 	func updatePreviousSplits() {
 		var i = 0
 		while i < currentSplits.count {
@@ -96,7 +95,7 @@ extension ViewController {
 			clearTimer()
 		}
 	}
-	///Deletes all of the segments in the table view, leaving just one with a time of 00:00:00. Shouldn't be directly triggered. by the user; use `askToClearTimer()` for that instead.
+	///Deletes all of the segments in the table view, leaving just one with a time of 00:00:00. Shouldn't be directly triggered by the user; use `askToClearTimer()` for that instead.
 	func clearTimer() {
 		milHundrethTimer.invalidate()
 		refreshUITimer.invalidate()
@@ -115,9 +114,9 @@ extension ViewController {
 		milHundrethTimer.invalidate()
 		refreshUITimer.invalidate()
 		UpdateTimer()
-//		originalSplits = []
 	}
-	//TODO: See if this is still needed
+	
+	
 	@objc func updateTime() {
 
 		if !currentSplit!.paused {

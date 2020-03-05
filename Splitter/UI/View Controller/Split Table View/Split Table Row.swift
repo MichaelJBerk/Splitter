@@ -19,7 +19,7 @@ struct splitTableRow {
 	var splitIcon: NSImage?
 	var compareTo: SplitComparison = .previousSplit
 	var roundTo: SplitRounding = .tenths
-	//TODO: Update Diff when loaded from filez
+	//TODO: Update Diff when loaded from files
 	///Difference between the (previous) best split and the current best
 	var splitDiff: String{
 		
@@ -43,7 +43,7 @@ struct splitTableRow {
 		}
 		
 		if currentSplit.timeString == "00:00:00.00" {
-			return "00:00.00"
+			return ""
 		} else if currentSplit > og {
 			return "+\(diffTimeString)"
 		} else if currentSplit < og {
