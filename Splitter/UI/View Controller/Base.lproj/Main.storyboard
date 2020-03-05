@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -565,7 +566,7 @@
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="9dd-gf-lQy">
                                     <rect key="frame" x="1" y="0.0" width="281" height="218"/>
-                                    <autoresizingMask key="autoresizingMask"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" ambiguous="YES" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="30" headerView="aVs-1A-u0Q" viewBased="YES" id="Ww4-Jn-tNR">
                                             <rect key="frame" x="0.0" y="0.0" width="454" height="193"/>
@@ -576,7 +577,7 @@
                                             <tableColumns>
                                                 <tableColumn identifier="ImageColumn" width="32" minWidth="10" maxWidth="3.4028234663852886e+38" id="ljG-co-EDf">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="message" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -611,7 +612,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="SplitTitle" width="80" minWidth="40" maxWidth="1000" id="rA7-ZF-Uc6">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Split">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="message" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -629,7 +630,7 @@
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Zgl-iF-pqa">
                                                                     <rect key="frame" x="0.0" y="3" width="95" height="14"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" alignment="left" title="Split Title" id="3Pe-jP-c4b">
-                                                                        <font key="font" metaFont="label" size="11"/>
+                                                                        <font key="font" metaFont="message" size="11"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
@@ -648,7 +649,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="CurrentSplit" width="90" minWidth="10" maxWidth="3.4028234663852886e+38" id="rN9-Ff-1yR" customClass="TimeSplitColumn" customModule="Splitter" customModuleProvider="target">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Time">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="message" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -688,7 +689,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="Difference" editable="NO" width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="xLb-1p-wmS" customClass="TimeSplitColumn" customModule="Splitter" customModuleProvider="target">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Diff">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="message" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -728,7 +729,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="B" width="173" minWidth="10" maxWidth="3.4028234663852886e+38" id="RXR-Oz-PMu" customClass="TimeSplitColumn" customModule="Splitter" customModuleProvider="target">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="PB">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="message" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -768,7 +769,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="PreviousSplit" width="85" minWidth="10" maxWidth="3.4028234663852886e+38" hidden="YES" id="Q3y-d2-rYY" customClass="TimeSplitColumn" customModule="Splitter" customModuleProvider="target">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Previous">
-                                                        <font key="font" metaFont="label" size="11"/>
+                                                        <font key="font" metaFont="message" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -780,7 +781,7 @@
                                                     <tableColumnResizingMask key="resizingMask" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView misplaced="YES" id="UsZ-ab-Q8h" customClass="TimeSplitCell" customModule="Splitter" customModuleProvider="target">
-                                                            <rect key="frame" x="1" y="1" width="-3" height="17"/>
+                                                            <rect key="frame" x="1" y="1" width="0.0" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="kIh-q7-hw5">
@@ -947,7 +948,7 @@
                             </button>
                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="749" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TSJ-mg-scq">
                                 <rect key="frame" x="64" y="377" width="162" height="19"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" focusRingType="none" placeholderString="Title" id="nfV-Gy-dQR">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" focusRingType="none" placeholderString="Run Title" id="nfV-Gy-dQR">
                                     <font key="font" metaFont="system" size="16"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
@@ -970,8 +971,8 @@
                             </button>
                             <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="748" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5cv-K8-dE8">
                                 <rect key="frame" x="64" y="358" width="162" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" focusRingType="none" placeholderString="Category/Subtitle" id="j9g-Du-1pV">
-                                    <font key="font" metaFont="label" size="14"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" focusRingType="none" placeholderString="Category" id="j9g-Du-1pV">
+                                    <font key="font" metaFont="menu" size="14"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
