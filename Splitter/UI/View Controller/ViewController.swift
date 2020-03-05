@@ -74,8 +74,8 @@ class ViewController: NSViewController {
 	}
 	
 //MARK: - Other UI Elements
-	@IBOutlet weak var runTitleField: NSTextField!
-	@IBOutlet weak var categoryField: NSTextField!
+	@IBOutlet weak var runTitleField: MetadataField!
+	@IBOutlet weak var categoryField: MetadataField!
 	@IBOutlet weak var TimerLabel: NSTextField!
 	@IBOutlet weak var currentTimeLabel: NSTextField!
 	
@@ -296,9 +296,6 @@ class ViewController: NSViewController {
 		
 		gameIconButton.iconButtonType = .gameIcon
 		view.window?.makeFirstResponder(splitsTableView)
-		
-		
-		
 	}
 	
 	func setUpDefaults() {
@@ -381,9 +378,7 @@ class ViewController: NSViewController {
 	override func keyDown(with event: NSEvent) {
 		super.keyDown(with: event)
 		
-	}
-
-	
+	}	
 }
 
 //TODO: See if this should be in a separate file, and if it should be with the VC or on its own or in Data

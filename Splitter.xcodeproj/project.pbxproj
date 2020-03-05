@@ -54,6 +54,7 @@
 		4A968C7C23F1F5FE001B74E8 /* lss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A968C7B23F1F5FE001B74E8 /* lss.swift */; };
 		4A99813023F9ECE50037BF98 /* KeybindHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A99812F23F9ECE50037BF98 /* KeybindHandlers.swift */; };
 		4A9DB792240847E40000D1B4 /* TimeSplitColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9DB791240847E40000D1B4 /* TimeSplitColumn.swift */; };
+		4A9FCC7C2411A0CE000937A2 /* TextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9FCC7B2411A0CE000937A2 /* TextFields.swift */; };
 		4AA3DAB423E23DA900ADFA4A /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA3DAB323E23DA900ADFA4A /* IconButton.swift */; };
 		4AC24DBA23EB4EC5003008BF /* Split Table Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC24DB923EB4EC5003008BF /* Split Table Row.swift */; };
 		4AC24DBC23EB4F17003008BF /* Split Table View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC24DBB23EB4F17003008BF /* Split Table View.swift */; };
@@ -148,6 +149,7 @@
 		4A968C7B23F1F5FE001B74E8 /* lss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lss.swift; sourceTree = "<group>"; };
 		4A99812F23F9ECE50037BF98 /* KeybindHandlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeybindHandlers.swift; sourceTree = "<group>"; };
 		4A9DB791240847E40000D1B4 /* TimeSplitColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSplitColumn.swift; sourceTree = "<group>"; };
+		4A9FCC7B2411A0CE000937A2 /* TextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFields.swift; sourceTree = "<group>"; };
 		4AA3DAB323E23DA900ADFA4A /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 		4AB3B93D23D96C10009C6AA6 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		4AC24DB923EB4EC5003008BF /* Split Table Row.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Split Table Row.swift"; sourceTree = "<group>"; };
@@ -330,6 +332,28 @@
 				4A1657B423EA5C320008CB5F /* Icon Actions.swift */,
 				4A1657B223EA4F3C0008CB5F /* Button Actions.swift */,
 				4A1657B023EA4EF60008CB5F /* Menu Items.swift */,
+				4A9FCC7B2411A0CE000937A2 /* TextFields.swift */,
+			);
+			path = Controls;
+			sourceTree = "<group>";
+		};
+		4A9FCC792411A093000937A2 /* Windows */ = {
+			isa = PBXGroup;
+			children = (
+				4ADFAE4823E4A0760049F57A /* QuickAlert.swift */,
+				4A6A3BE323CD621A002C20AE /* MainWindow.swift */,
+				4A4D391E23C4F29C00BF3FCD /* blankWindow.xib */,
+				4AEA927D23C4EF32004F6CF9 /* MainWindowController.swift */,
+				4A6A3BE523CD6463002C20AE /* BlankWindowController.swift */,
+			);
+			path = Windows;
+			sourceTree = "<group>";
+		};
+		4A9FCC7A2411A0A2000937A2 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				4A66A42F23DE2682005952FA /* ImageButtonCellView.swift */,
+				4AA3DAB323E23DA900ADFA4A /* IconButton.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -395,14 +419,9 @@
 			isa = PBXGroup;
 			children = (
 				4A1657AF23EA4EE20008CB5F /* View Controller */,
-				4ADFAE4823E4A0760049F57A /* QuickAlert.swift */,
-				4A66A42F23DE2682005952FA /* ImageButtonCellView.swift */,
-				4A6A3BE323CD621A002C20AE /* MainWindow.swift */,
-				4A4D391E23C4F29C00BF3FCD /* blankWindow.xib */,
-				4AEA927D23C4EF32004F6CF9 /* MainWindowController.swift */,
-				4A6A3BE523CD6463002C20AE /* BlankWindowController.swift */,
+				4A9FCC792411A093000937A2 /* Windows */,
+				4A9FCC7A2411A0A2000937A2 /* Controls */,
 				4A18662F23C5257800FEEE54 /* MenuItemConstants.swift */,
-				4AA3DAB323E23DA900ADFA4A /* IconButton.swift */,
 			);
 			path = UI;
 			sourceTree = "<group>";
@@ -626,6 +645,7 @@
 				4A5947D823F36E3A00827306 /* SplitsIOExchangeFormat.swift in Sources */,
 				4AC24DBA23EB4EC5003008BF /* Split Table Row.swift in Sources */,
 				4A87265523BD53F8003A14AF /* runInfo.swift in Sources */,
+				4A9FCC7C2411A0CE000937A2 /* TextFields.swift in Sources */,
 				4A327B0D23F491FB00A5CBFF /* splitterAppearance.swift in Sources */,
 				4A230E9523B00A1D00959C57 /* ViewController.swift in Sources */,
 				4A6A3BE623CD6463002C20AE /* BlankWindowController.swift in Sources */,
