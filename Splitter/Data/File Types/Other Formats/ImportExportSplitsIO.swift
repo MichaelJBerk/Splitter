@@ -77,7 +77,6 @@ extension ViewController {
 	}
 		///Handles exporting data to a splits.io .json file
 		@IBAction func exportToSplitsIO(_ sender: Any) {
-			updateAllBestSplits()
 			var newSegments: [SplitsIOSegment]? = []
 			
 			for s in currentSplits {

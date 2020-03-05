@@ -14,6 +14,7 @@ extension ViewController {
 	///Moves the timer to the next split, or finishes the run if the current split is the last.
 	func goToNextSplit() {
 		if timerStarted {
+			updateBestSplits(of: currentSplitNumber)
 			if currentSplits.count > currentSplitNumber + 1 {
 				let currentSplitCopy = self.currentSplit?.copy() as! TimeSplit
 				currentSplits[currentSplitNumber].currentSplit = currentSplitCopy
@@ -62,7 +63,7 @@ extension ViewController {
 	func addBlankSplit() {
 		let blankSplitNumber = currentSplits.count + 1
 		let blankSplit = TimeSplit(mil: 0, sec: 0, min: 0, hour: 0)
-		var blankTableRow = splitTableRow(splitName: "\(blankSplitNumber)", bestSplit: blankSplit, currentSplit: blankSplit, previousSplit: blankSplit, previousBest: blankSplit, splitIcon: nil)
+		let blankTableRow = splitTableRow(splitName: "\(blankSplitNumber)", bestSplit: blankSplit, currentSplit: blankSplit, previousSplit: blankSplit, previousBest: blankSplit, splitIcon: nil)
 		currentSplits.append(blankTableRow)
 		splitsTableView.reloadData()
 		
@@ -82,7 +83,7 @@ extension ViewController {
 			
 			let currentLastRow = currentSplits.last
 			let rowNum = currentSplits.count
-			var bestSplitCopy = getBestSplit(splitNumber: rowNum).copy() as! TimeSplit
+			let bestSplitCopy = getBestSplit(splitNumber: rowNum).copy() as! TimeSplit
 			
 			//TODO: Only add to "best Splits" if it's a "better" split. Requires methods for comparing TimeSplits
 
@@ -94,7 +95,6 @@ extension ViewController {
 
 		currentSplits.append(splitTableRow(splitName: String(currentSplits.count + 1), bestSplit: newSplit.copy() as! TimeSplit, currentSplit: newSplit, previousSplit: newSplit.tsCopy(), previousBest: newSplit.tsCopy()))
 		splitsTableView.reloadData()
-//		currentSplitNumber += 1
 	}
 	
 	///Resets the current split to the time of the previous split, or resets the run if the current split is the last
@@ -121,10 +121,13 @@ extension ViewController {
 	func addBestSplit(lSplit: TimeSplit, rSplit: TimeSplit, splitRow: Int) {
 		if lSplit < rSplit {
 			currentSplits[splitRow].bestSplit = lSplit
+		} else if rSplit.timeString == TimeSplit().timeString {
+			currentSplits[splitRow].bestSplit = lSplit
 		}
 		
 	}
 	///`row` - Row in `CurrentSplits` to update
+	///Updates the best splits for a given row in the table
 	func updateBestSplits(of row: Int) {
 		let lSplit = currentSplits[row].currentSplit.tsCopy()
 		let rSplit = currentSplits[row].bestSplit.tsCopy()

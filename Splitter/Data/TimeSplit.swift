@@ -129,13 +129,15 @@ class TimeSplit: NSCopying, Comparable {
 	
 	///Returns a `shortTimeString`, but is rounded to the tenths instead of hundredths
 	var shortTimeStringTenths: String {
+		let milRounded = Int((Double(mil)/10.00).rounded())
 		if hour == 0 {
 			if min == 0 {
-				return String(format: "%.2d.%.d", sec, (mil/10))
+				
+				return String(format: "%.2d.%.1d", sec, milRounded)
 			}
-			return String(format: "%.2d:%.2d.%.1d", min, sec, (mil/10))
+			return String(format: "%.2d:%.2d.%.1d", min, sec, milRounded)
 		}
-		return String(format: "%.2d:%.2d:%.2d.%.1d", hour, min, sec, (mil/10))
+		return String(format: "%.2d:%.2d:%.2d.%.1d", hour, min, sec, milRounded)
 	}
 	
 	

@@ -63,7 +63,6 @@ extension ViewController {
 	}
 	
 	func saveToRunInfo() -> runInfo {
-		updateAllBestSplits()
 		
 		let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
 		let build = Bundle.main.infoDictionary?["CFBundleVersion"] as! String

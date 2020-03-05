@@ -56,6 +56,9 @@ extension ViewController: NSTableViewDelegate {
 				}
 			case STVColumnID.bestSplitColumn:
 				let best = currentSplits[row].bestSplit
+				if best.timeString == TimeSplit().timeString {
+					cell.textField!.stringValue = "00:00:00.00"
+				}
 				cell.textField!.stringValue = best.timeString
 			case STVColumnID.previousSplitColumn:
 				let prev = currentSplits[row].previousSplit
