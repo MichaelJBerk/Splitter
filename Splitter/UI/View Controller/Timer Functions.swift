@@ -101,8 +101,8 @@ extension ViewController {
 		refreshUITimer.invalidate()
 		currentSplit = TimeSplit(mil: 0,sec: 0,min: 0,hour: 0)
 		currentSplits = []
-		GameTitleLabel.stringValue = "Game Title"
-		SubtitleLabel.stringValue = "Subtitle"
+		runTitleField.stringValue = "Game Title"
+		categoryField.stringValue = "Subtitle"
 		loadedFilePath = ""
 
 

@@ -26,7 +26,7 @@ class InfoOptionsViewController: NSViewController, NSPopoverDelegate, advancedTa
 	}
 	
 	func setupDelegate() {
-		runTitleField.stringValue = delegate!.GameTitleLabel.stringValue
+		runTitleField.stringValue = delegate!.runTitleField.stringValue
 	}
 	
 	

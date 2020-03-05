@@ -33,12 +33,12 @@ extension ViewController {
 		
 		if let gn = ls.gameName {
 			if gn.count > 0 {
-				GameTitleLabel.stringValue = gn
+				runTitleField.stringValue = gn
 			}
 		}
 		if let sb = ls.subtitle {
 			if sb.count > 0 {
-				SubtitleLabel.stringValue = sb
+				categoryField.stringValue = sb
 			}
 		}
 		self.gameIcon = ls.img
@@ -77,12 +77,12 @@ extension ViewController {
 	//TODO: See if I should remove the two menu bar items below, as they're not really necessary
 	///Action for Menu Bar that allows the user to edit the subtitle
 	@IBAction func editTitle(_ sender: Any) {
-		GameTitleLabel.becomeFirstResponder()
+		runTitleField.becomeFirstResponder()
 	}
 	
 	///Action for Menu Bar that allows the user to edit the subtitle
 	@IBAction func editSubtitle(_ sender: Any) {
-		SubtitleLabel.becomeFirstResponder()
+		categoryField.becomeFirstResponder()
 	}
 	
 	///Action for Menu Bar that clears the current splits

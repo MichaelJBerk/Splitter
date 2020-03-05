@@ -46,8 +46,8 @@ extension ViewController {
 	
 	func loadFromRunInfo(icons: [NSImage?]) {
 		if let ri = runInfoData {
-			GameTitleLabel.stringValue = ri.title
-			SubtitleLabel.stringValue = ri.category
+			runTitleField.stringValue = ri.title
+			categoryField.stringValue = ri.category
 			currentSplits = []
 			for s in ri.segments {
 				let hey = SplitComparison(rawValue: ri.compareTo ?? 0)
@@ -78,8 +78,8 @@ extension ViewController {
 		}
 		
 //		var startFormat = DateFormatter().
-		let ri = runInfo(title: GameTitleLabel.stringValue,
-						 category: SubtitleLabel.stringValue,
+		let ri = runInfo(title: runTitleField.stringValue,
+						 category: categoryField.stringValue,
 						 segments: segments,
 						 attempts: attempts,
 						 platform: platform,
