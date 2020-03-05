@@ -235,10 +235,8 @@
 				4AF953B423EB503100ED540C /* Timer Functions.swift */,
 				4A1C1466240ED2F00056B104 /* Options Windows */,
 				4AC24DBD23EB4F73003008BF /* Split Table View */,
-				4A1657B423EA5C320008CB5F /* Icon Actions.swift */,
-				4A1657B223EA4F3C0008CB5F /* Button Actions.swift */,
+				4A9FCC782411A069000937A2 /* Controls */,
 				4A230E9A23B00A1E00959C57 /* Main.storyboard */,
-				4A1657B023EA4EF60008CB5F /* Menu Items.swift */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -324,6 +322,16 @@
 				4A774A5823EBCDFA002F1700 /* Info.plist */,
 			);
 			path = SplitterTests;
+			sourceTree = "<group>";
+		};
+		4A9FCC782411A069000937A2 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				4A1657B423EA5C320008CB5F /* Icon Actions.swift */,
+				4A1657B223EA4F3C0008CB5F /* Button Actions.swift */,
+				4A1657B023EA4EF60008CB5F /* Menu Items.swift */,
+			);
+			path = Controls;
 			sourceTree = "<group>";
 		};
 		4AC24DBD23EB4F73003008BF /* Split Table View */ = {
