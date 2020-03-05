@@ -22,7 +22,7 @@ public var colIds: [String: NSUserInterfaceItemIdentifier] = [
 	"Icon": STVColumnID.imageColumn,
 	"Title": STVColumnID.splitTitleColumn,
 	"Difference": STVColumnID.differenceColumn,
-	"Current Split": STVColumnID.currentSplitColumn,
+	"Time": STVColumnID.currentSplitColumn,
 	"Personal Best": STVColumnID.bestSplitColumn,
 	"Previous Split": STVColumnID.previousSplitColumn
 ]

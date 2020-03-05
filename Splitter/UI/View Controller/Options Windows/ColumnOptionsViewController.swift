@@ -15,18 +15,6 @@ class ColumnOptionsViewController: NSViewController, NSPopoverDelegate {
 	
 	
 	@IBOutlet weak var CheckboxGridView: NSGridView!
-//	var tableView: NSTableView? = nil
-	
-//	override required init?(coder: NSCoder) {
-//		super.init()
-//
-//	}
-	
-//	override func viewDidAppear() {
-////		for column in delegate!.splitsTableView.tableColumns {
-////			print(column.title)
-////		}
-//	}
 	
 	func popoverShouldDetach(_ popover: NSPopover) -> Bool {
 		return true
