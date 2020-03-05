@@ -13,7 +13,8 @@ import Cocoa
 class InfoOptionsViewController: NSViewController, NSPopoverDelegate, advancedTabDelegate {
 
 	var delegate: ViewController?
-	@IBOutlet weak var runTitleField: NSTextField!
+	@IBOutlet weak var runTitleField: MetadataField!
+	@IBOutlet weak var categoryField: MetadataField!
 	override func viewDidLoad() {
         super.viewDidLoad()
     }

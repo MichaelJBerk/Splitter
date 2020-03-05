@@ -946,7 +946,7 @@
                                     <action selector="timerButtonClick:" target="5gI-5U-AMq" id="5Bg-tR-Jey"/>
                                 </connections>
                             </button>
-                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="749" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TSJ-mg-scq">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="749" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TSJ-mg-scq" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
                                 <rect key="frame" x="64" y="377" width="162" height="19"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" focusRingType="none" placeholderString="Run Title" id="nfV-Gy-dQR">
                                     <font key="font" metaFont="system" size="16"/>
@@ -969,7 +969,7 @@
                                     <outlet property="menu" destination="wTE-Xp-5dN" id="LXF-p4-OIe"/>
                                 </connections>
                             </button>
-                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="748" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5cv-K8-dE8">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="748" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5cv-K8-dE8" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
                                 <rect key="frame" x="64" y="358" width="162" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" focusRingType="none" placeholderString="Category" id="j9g-Du-1pV">
                                     <font key="font" metaFont="menu" size="14"/>
@@ -1133,7 +1133,7 @@
                                         </textField>
                                     </gridCell>
                                     <gridCell row="L6o-JX-ii0" column="vxy-hV-tJz" id="5p2-am-4Fp">
-                                        <textField key="contentView" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="UXc-S9-jFn">
+                                        <textField key="contentView" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="UXc-S9-jFn" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
                                             <rect key="frame" x="112" y="135" width="100" height="21"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="GMu-GZ-I0O">
                                                 <font key="font" metaFont="system"/>
@@ -1153,7 +1153,7 @@
                                         </textField>
                                     </gridCell>
                                     <gridCell row="m0S-8J-6Ce" column="vxy-hV-tJz" id="8ay-bC-oS1">
-                                        <textField key="contentView" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="XqK-XY-ils">
+                                        <textField key="contentView" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="XqK-XY-ils" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
                                             <rect key="frame" x="112" y="108" width="100" height="21"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="8xO-mB-dqj">
                                                 <font key="font" metaFont="system"/>
@@ -1253,6 +1253,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="categoryField" destination="XqK-XY-ils" id="UnF-fK-evR"/>
                         <outlet property="runTitleField" destination="UXc-S9-jFn" id="8iM-pA-fTU"/>
                     </connections>
                 </viewController>
