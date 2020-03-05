@@ -85,7 +85,7 @@ extension ViewController {
 						 platform: platform,
 						 gameVersion: gameVersion,
 						 gameRegion: gameRegion,
-						 compareTo: compareTo.hashValue,
+						 compareTo: compareTo.rawValue,
 						 version: version,
 						 build: build)
 		return ri
