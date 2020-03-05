@@ -74,8 +74,8 @@ class ViewController: NSViewController {
 	}
 	
 //MARK: - Other UI Elements
-	@IBOutlet weak var GameTitleLabel: NSTextField!
-	@IBOutlet weak var SubtitleLabel: NSTextField!
+	@IBOutlet weak var runTitleField: NSTextField!
+	@IBOutlet weak var categoryField: NSTextField!
 	@IBOutlet weak var TimerLabel: NSTextField!
 	@IBOutlet weak var currentTimeLabel: NSTextField!
 	
