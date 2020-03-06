@@ -48,6 +48,16 @@ extension ViewController {
 		if let ri = runInfoData {
 			runTitleField.stringValue = ri.title
 			categoryField.stringValue = ri.category
+			platform = ri.platform
+			gameVersion = ri.version
+			attempts = ri.attempts ?? 0
+			gameRegion = ri.gameRegion
+			if let st = ri.startTime {
+				self.startTime = dateForRFC3339DateTimeString(rfc3339DateTimeString: st)
+			}
+			if let et = ri.endTime {
+				self.endTime = dateForRFC3339DateTimeString(rfc3339DateTimeString: et)
+			}
 			currentSplits = []
 			for s in ri.segments {
 				let hey = SplitComparison(rawValue: ri.compareTo ?? 0)
@@ -78,6 +88,22 @@ extension ViewController {
 		}
 		
 //		var startFormat = DateFormatter().
+		let startDate: String?
+		if startTime != nil {
+		
+			startDate = rfc3339DateTimeStringForDate(date: startTime!)
+		
+		} else {
+			startDate = nil
+		}
+		let endDate: String?
+		if endTime != nil {
+			
+			endDate = rfc3339DateTimeStringForDate(date: endTime!)
+			
+		} else {
+			endDate = nil
+		}
 		let ri = runInfo(title: runTitleField.stringValue,
 						 category: categoryField.stringValue,
 						 segments: segments,
@@ -86,6 +112,8 @@ extension ViewController {
 						 gameVersion: gameVersion,
 						 gameRegion: gameRegion,
 						 compareTo: compareTo.rawValue,
+						 startTime: startDate,
+						 endTime: endDate,
 						 version: version,
 						 build: build)
 		return ri

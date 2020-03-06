@@ -15,10 +15,21 @@ class InfoOptionsViewController: NSViewController, NSPopoverDelegate, advancedTa
 	var delegate: ViewController?
 	@IBOutlet weak var runTitleField: MetadataField!
 	@IBOutlet weak var categoryField: MetadataField!
+	@IBOutlet weak var attemptField: MetadataField!
+	@IBOutlet weak var platformField: MetadataField!
+	@IBOutlet weak var versionField: MetadataField!
+	@IBOutlet weak var regionField: MetadataField!
+	
+	@IBOutlet weak var startTimeLabel: NSTextField!
+	@IBOutlet weak var endTimeLabel: NSTextField!
+	
+	@IBOutlet weak var iconWell: MetadataImage!
+	
 	override func viewDidLoad() {
         super.viewDidLoad()
     }
 	
+	@IBOutlet weak var startEndDateFormatter: DateFormatter!
 	
 	func popoverShouldDetach(_ popover: NSPopover) -> Bool {
 		let realAppearance = view.effectiveAppearance.name
@@ -27,8 +38,12 @@ class InfoOptionsViewController: NSViewController, NSPopoverDelegate, advancedTa
 	}
 	
 	func setupDelegate() {
-		runTitleField.stringValue = delegate!.runTitleField.stringValue
+		getDataFromMain()
+		
+//		StartDateFormatter.date(from: startTimeLabel.stringValue)
+		
 	}
+	
 	
 	
     

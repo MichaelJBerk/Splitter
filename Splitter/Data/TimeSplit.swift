@@ -34,7 +34,6 @@ class TimeSplit: NSCopying, Comparable {
 		//Get the total hours
 		//TODO: round down
 		self.hour = mil/3600000
-		print(mil/3600000)
 		//Take the remainder, and get the minutes from that, and so on
 		self.min = (mil % 3600000) / 60000
 		self.sec = (((mil % 3600000) % 60000) / 100)/10
