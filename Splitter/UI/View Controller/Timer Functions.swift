@@ -20,12 +20,13 @@ extension ViewController {
 		splitsTableView.scrollRowToVisible(currentSplitNumber)
 	}
 	
-	///Stops the timer
+	///Stops/"Finshes" the timer
 	func stopTimer() {
 		timerStarted = false
 		timerState = .stopped
 		StartButton.title = "Start"
 		resetTimer()
+		endTime = Date()
 	}
 	
 	///Pauses or resumes the current timer, depending on its current state.
@@ -48,24 +49,33 @@ extension ViewController {
 	
 	///Sets up the timer, when it is currently stopped.
 	func setupTimer() {
-		
+		var i = 0
+		backupSplits = []
+		while i < currentSplits.count {
+			backupSplits.append(currentSplits[i].copy() as! splitTableRow)
+			i = i + 1
+		}
+		updatePreviousSplit(of: 0)
 		let blankSplit = TimeSplit(mil: 0,sec: 0,min: 0,hour: 0)
 		
 		
 		milHundrethTimer = Cocoa.Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateMilHundreth), userInfo: nil, repeats: true)
 		refreshUITimer = Cocoa.Timer.scheduledTimer(timeInterval: 0.03, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
-		updatePreviousSplits()
 		currentSplit = blankSplit.tsCopy()
 		
 		currentSplitNumber = 0
 		currentSplits[0].currentSplit = self.currentSplit!
+		
+		self.startTime = Date()
 	}
 	
 	///Sets the "previous split" column for each segment in the run to the current value of that segment
 	func updatePreviousSplits() {
 		var i = 0
 		while i < currentSplits.count {
-			currentSplits[i].previousSplit = currentSplits[i].currentSplit.tsCopy()
+			if currentSplits[i].currentSplit.timeString != TimeSplit().timeString {
+				currentSplits[i].previousSplit = currentSplits[i].currentSplit.tsCopy()
+			}
 			i = i + 1
 		}
 	}

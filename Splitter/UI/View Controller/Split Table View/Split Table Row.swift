@@ -17,6 +17,7 @@ struct splitTableRow {
 	var previousSplit: TimeSplit
 	var previousBest: TimeSplit
 	var splitIcon: NSImage?
+	var previousPrevious: TimeSplit?
 	var compareTo: SplitComparison = .previousSplit
 	var roundTo: SplitRounding = .tenths
 	//TODO: Update Diff when loaded from files
@@ -54,7 +55,7 @@ struct splitTableRow {
 	}
 	
 	func copy(with zone: NSZone? = nil) -> Any {
-		return splitTableRow(splitName: splitName.copy() as! String, bestSplit: bestSplit.copy() as! TimeSplit, currentSplit: currentSplit.copy() as! TimeSplit, previousSplit: previousSplit.tsCopy(), previousBest: previousBest.tsCopy())
+		return splitTableRow(splitName: splitName.copy() as! String, bestSplit: bestSplit.copy() as! TimeSplit, currentSplit: currentSplit.copy() as! TimeSplit, previousSplit: previousSplit.tsCopy(), previousBest: previousBest.tsCopy(), splitIcon: splitIcon)
 	}
 }
 

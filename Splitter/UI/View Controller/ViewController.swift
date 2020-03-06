@@ -143,6 +143,7 @@ class ViewController: NSViewController {
 	
 	var currentSplit: TimeSplit? = nil
 	var currentSplits: [splitTableRow] = []
+	var backupSplits: [splitTableRow] = []
 	var loadedFilePath: String = ""
 	var currentSplitNumber = 0 {
 		didSet {
@@ -347,7 +348,7 @@ class ViewController: NSViewController {
 		let pop = SplitterPopover()
 		pop.delegate = self
 		pop.contentViewController = destination
-		pop.contentSize = NSSize(width: 450, height: 220)
+		pop.contentSize = NSSize(width: 450, height: 270)
 		pop.behavior = .semitransient
 		pop.show(relativeTo: .null, of: advancedPopoverButton, preferredEdge: .maxX)
 		advancedPopover = pop

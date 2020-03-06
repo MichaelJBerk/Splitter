@@ -90,7 +90,6 @@ extension ViewController: NSTextFieldDelegate {
 		var editedSplit = currentSplits[r]
 		
 		if colID == STVColumnID.splitTitleColumn {
-			print(cell.textField!.stringValue)
 			editedSplit.splitName = cell.textField!.stringValue
 		}
 		switch colID {
