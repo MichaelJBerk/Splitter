@@ -16,13 +16,11 @@ extension ViewController {
 		toggleTimer()
 	}
 	
-	
-	
 	@IBAction func stopButtonClick(_ sender: Any) {
-		stopTimer()
+		finishRun()
 	}
 	
-	@IBAction func trashCanClick(_ sender: Any) {
+	@IBAction func trashStCanClick(_ sender: Any) {
 		askToClearTimer()
 	}
 	@IBAction func trashCanPopupClick(_ sender: Any) {

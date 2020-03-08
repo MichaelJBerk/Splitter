@@ -39,6 +39,9 @@ class MetadataField: NSTextField  {
 			switch controller {
 			case .mainViewController:
 				let c = findVC() as! ViewController
+				if let attemptsInt = Int(c.attemptField.stringValue) {
+					c.attempts = attemptsInt
+				}
 				if let tabVC = c.advancedPopover?.contentViewController as? AdvancedTabViewController {
 					if let infoVC = tabVC.tabView.selectedTabViewItem?.viewController as? InfoOptionsViewController {
 						infoVC.getDataFromMain()
@@ -101,7 +104,10 @@ extension InfoOptionsViewController {
 	func sendDataToMain() {
 		delegate?.runTitleField.stringValue = runTitleField.stringValue
 		delegate?.categoryField.stringValue = categoryField.stringValue
-//		delegate?.attempts
+		if let attemptsInt = Int(attemptField.stringValue) {
+			delegate?.attempts = attemptsInt
+		}
+		
 		delegate?.platform = platformField.stringValue
 		delegate?.gameVersion = versionField.stringValue
 		delegate?.gameRegion = regionField.stringValue
