@@ -1263,8 +1263,8 @@
                                     </gridCell>
                                     <gridCell row="NF6-Fy-klV" column="vxy-hV-tJz" id="au1-Sq-P9B">
                                         <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8i4-zA-aVA">
-                                            <rect key="frame" x="110" y="22" width="37" height="16"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="puV-5q-Mgh">
+                                            <rect key="frame" x="110" y="22" width="104" height="16"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" id="puV-5q-Mgh">
                                                 <dateFormatter key="formatter" dateStyle="short" timeStyle="medium" id="CwY-1r-5Ro"/>
                                                 <font key="font" usesAppearanceFont="YES"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1284,8 +1284,8 @@
                                     </gridCell>
                                     <gridCell row="Ncu-aw-taH" column="vxy-hV-tJz" id="VIe-Aw-mEr">
                                         <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MRY-3e-3Z2">
-                                            <rect key="frame" x="110" y="0.0" width="37" height="16"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="Pcy-0H-qvZ">
+                                            <rect key="frame" x="110" y="0.0" width="104" height="16"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" id="Pcy-0H-qvZ">
                                                 <font key="font" usesAppearanceFont="YES"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
