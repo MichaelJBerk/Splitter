@@ -20,6 +20,13 @@ class LiveSplit: NSObject, XMLParserDelegate {
 	var loadedSplits: [splitTableRow] = []
 	var gameName: String?
 	var subtitle: String?
+	var attempts: Int?
+	var platform: String?
+	var region: String?
+	var gameVersion: String?
+	
+	var startDate: String?
+	var endDate: String?
 	
 	func displayImportDialog() {
 		
@@ -41,7 +48,6 @@ class LiveSplit: NSObject, XMLParserDelegate {
 	}
 	func parseLivesplit() {
 		
-
 		let lssFile = try? File(path: path)
 		var lssData = try? lssFile?.read()
 		data = lssData!
@@ -52,36 +58,13 @@ class LiveSplit: NSObject, XMLParserDelegate {
 		
 		if cRun.parsedSuccessfully() {
 			let run = cRun.unwrap()
-			let segCount = run.len()
-			var i = 0
-			var tsArray: [splitTableRow] = []
-			while i < segCount {
-				//TODO: Parse current and best split from LiveSplit
-				let segName = run.segment(i).name()
-				print(run.segment(i).personalBestSplitTime().realTime()?.totalSeconds())
-				var newTS = TimeSplit(mil: 0)
-				if let bestTimeDouble = run.segment(i).personalBestSplitTime().realTime()?.totalSeconds() {
-					newTS = TimeSplit(seconds: bestTimeDouble)
-				}
-				let liveSplitIterator = run.segment(i).segmentHistory().iter().next()
-				var lastPrevTime: Double?
-				var lastBestSplit: Double?
-				while (liveSplitIterator != nil) {
-					if let ts = liveSplitIterator?.time().realTime()?.totalSeconds() {
-						lastPrevTime = ts
-					}
-				}
-				var liveSplitLastPrevSplit = TimeSplit(seconds: lastPrevTime ?? 0)
-				let newRow = splitTableRow(splitName: segName, bestSplit: newTS, currentSplit: TimeSplit(mil: 0), previousSplit: liveSplitLastPrevSplit, previousBest: newTS, splitIcon: nil)
-				tsArray.append(newRow)
-				i = i + 1
-			}
+			parseBestSplits(run: run)
+			
 			gameName = run.gameName()
 			subtitle = run.categoryName()
-			if tsArray.count > 0 {
-				self.loadedSplits = tsArray
-			}
-			
+			attempts = Int(run.attemptCount())
+			platform = run.metadata().platformName()
+			region = run.metadata().regionName()
 			
 			
 			
@@ -91,9 +74,32 @@ class LiveSplit: NSObject, XMLParserDelegate {
 		par.delegate = self
 		par.parse()
 		
+	}
 	
+	
+	func parseBestSplits(run: LiveSplitCore.Run) {
 		
-		
+		let segCount = run.len()
+		var i = 0
+		var tsArray: [splitTableRow] = []
+		while i < segCount {
+			//TODO: Parse current and best split from LiveSplit
+			let segName = run.segment(i).name()
+			
+			var newTS = TimeSplit(mil: 0)
+			if let bestTimeDouble = run.segment(i).personalBestSplitTime().realTime()?.totalSeconds() {
+				newTS = TimeSplit(seconds: bestTimeDouble)
+			}
+			
+			let liveSplitIterator = run.segment(i).segmentHistory().iter().next()
+			
+			let newRow = splitTableRow(splitName: segName, bestSplit: newTS, currentSplit: TimeSplit(), previousSplit: TimeSplit(), previousBest: newTS, splitIcon: nil)
+			tsArray.append(newRow)
+			i = i + 1
+		}
+		if tsArray.count > 0 {
+			self.loadedSplits = tsArray
+		}
 	}
 	
 	public var img: NSImage? //{
@@ -110,16 +116,16 @@ class LiveSplit: NSObject, XMLParserDelegate {
 			segment = segment + 1
 		}
 	}
-	
+
 	func parser(_ parser: XMLParser, foundCDATA CDATABlock: Data) {
 		self.cdata = CDATABlock
 		print(CDATABlock)
-		
+
 //		print(element)
 		let hand = FileHandle(forReadingAtPath: path)
 		let handle64 = Int64(hand!.fileDescriptor)
 		let cRun = LiveSplitCore.Run.parseFileHandle(handle64, path, true)
-		
+
 		if cRun.parsedSuccessfully() {
 			let run = cRun.unwrap()
 			if element == "GameIcon" {
@@ -134,22 +140,22 @@ class LiveSplit: NSObject, XMLParserDelegate {
 				let seg = run.segment(self.segment)
 				let imgPtr = seg.iconPtr()!
 				let imglen = seg.iconLen()
-				
+
 
 				let imgD = Data(bytes: imgPtr, count: imglen)
 				let i = NSImage(data: imgD)
 				iconArray.append(i)
-				
 
-				
+
+
 			}
 		}
-		
-		print(parser.lineNumber)
-		
-		
-		
-		
+
+//		print(parser.lineNumber)
+
+
+
+
 	}
 	
 	var cdata: Data?
