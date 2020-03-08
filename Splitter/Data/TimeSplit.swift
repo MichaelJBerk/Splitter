@@ -34,7 +34,6 @@ class TimeSplit: NSCopying, Comparable {
 		//Get the total hours
 		//TODO: round down
 		self.hour = mil/3600000
-		print(mil/3600000)
 		//Take the remainder, and get the minutes from that, and so on
 		self.min = (mil % 3600000) / 60000
 		self.sec = (((mil % 3600000) % 60000) / 100)/10
@@ -48,9 +47,6 @@ class TimeSplit: NSCopying, Comparable {
 		if hourMilSec.count == 2 {
 			var newTimeString = "00:" + timeString;
 			hourMilSec = newTimeString.split(separator: ":", maxSplits: 3, omittingEmptySubsequences: false)
-			
-			
-//			hourMils
 		}
 		let secSplit = hourMilSec.last?.split(separator: ".")
 	
@@ -75,6 +71,11 @@ class TimeSplit: NSCopying, Comparable {
 		
 	}
 	
+	///Creates an "empty" TimeSplit, with the time set to 0
+	convenience init () {
+		self.init(mil: 0)
+	}
+	
 	func reset() {
 		self.mil = 0
 		self.sec = 0
@@ -89,6 +90,11 @@ class TimeSplit: NSCopying, Comparable {
 					sec = 0
 					if min == 59 {
 						min = 0
+						if hour == 23 {
+							hour = 0
+						} else {
+							hour = hour + 1
+						}
 					} else {
 						min = min + 1
 					}
@@ -101,27 +107,16 @@ class TimeSplit: NSCopying, Comparable {
 			
 		}
 	}
-		
-
-	
-	/// Returns the `TimeSplit` as a `String`, in the format `hr:mn:sc:ms`,  regardless of how many hours have passed.
-	var longTimeString: String {
-		return String(format: "%02d:%02d:%02d.%02d", hour, min, sec, mil)
-	}
 	
 	/**
-	Returns the `TimeSplit` as a `String`, without the hour.
-	Example; Instead of `00:58:47.13`, it would be `58:47.13`.
-*/
+	Returns time of the`TimeSplit` as a `String`.
+	**/
 	var timeString: String {
-//		if hour == 0 {
-//			return String(format: "%02d:%02d.%02d", min, sec, mil)
-//		} else {
 			return String(format: "%.2d:%.2d:%.2d.%.02d", hour, min, sec, mil)
-//		}
 	}
 	
-	var veryShortTimeString: String {
+	///Returns the `TimeSplit` as a `String`, but only includes the first significant field
+	var shortTimeString: String {
 		if hour == 0 {
 			if min == 0 {
 				return String(format: "%.2d.%.2d", sec, mil)
@@ -129,6 +124,19 @@ class TimeSplit: NSCopying, Comparable {
 			return String(format: "%.2d:%.2d.%.2d", min, sec, mil)
 		}
 		return String(format: "%.2d:%.2d:%.2d.%.2d", hour, min, sec, mil)
+	}
+	
+	///Returns a `shortTimeString`, but is rounded to the tenths instead of hundredths
+	var shortTimeStringTenths: String {
+		let milRounded = Int((Double(mil)/10.00).rounded())
+		if hour == 0 {
+			if min == 0 {
+				
+				return String(format: "%.2d.%.1d", sec, milRounded)
+			}
+			return String(format: "%.2d:%.2d.%.1d", min, sec, milRounded)
+		}
+		return String(format: "%.2d:%.2d:%.2d.%.1d", hour, min, sec, milRounded)
 	}
 	
 	
@@ -150,7 +158,7 @@ class TimeSplit: NSCopying, Comparable {
 	//Plan - Go through each variable, and see if it's bigger. At the first variable that's bigger, stop.
 	
 	static func == (lhs: TimeSplit, rhs: TimeSplit) -> Bool {
-		if lhs.longTimeString == rhs.longTimeString {
+		if lhs.timeString == rhs.timeString {
 			return true
 		} else {
 			return false

@@ -9,34 +9,18 @@
 import Foundation
 import Cocoa
 
+
+//MARK - Number of Rows
 extension ViewController: NSTableViewDataSource {
 	func numberOfRows(in tableView: NSTableView) -> Int {
 		return currentSplits.count
 	}
 }
 
+
 extension ViewController: NSTableViewDelegate {
 	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-		if tableColumn == tableView.tableColumns[0] {
-//			cellIdentifier = NSUserInterfaceItemIdentifier(rawValue: "ImageColumn")
-			cellIdentifier = STVColumnID.imageColumn
-		}
-		if tableColumn == tableView.tableColumns[1] {
-			cellIdentifier = STVColumnID.splitTitleColumn
-		}
-//		if tableColumn == tableView.tableColumns[1] {
-//			cellIdentifier = "BestSplit"
-//		}
-		if tableColumn == tableView.tableColumns[2] {
-			cellIdentifier = STVColumnID.differenceColumn
-		}
-		if tableColumn == tableView.tableColumns[3] {
-			cellIdentifier = STVColumnID.currentSplitColumn
-		}
-		if tableColumn == tableView.tableColumns[4] {
-			cellIdentifier = STVColumnID.bestSplitColumn
-		}
-		
+		cellIdentifier = tableColumn?.identifier
 		
 		if let cell = tableView.makeView(withIdentifier: cellIdentifier!, owner: nil) as? NSTableCellView {
 			cell.textField?.delegate = self
@@ -51,29 +35,17 @@ extension ViewController: NSTableViewDelegate {
 				return imageCell
 			}
 			
-			if self.cellIdentifier!.rawValue == "SplitTitle" {
-				var lastSplit = currentSplits[row]
+			currentSplits[row].roundTo = self.roundTo
+			
+			switch tableColumn?.identifier {
+			case STVColumnID.splitTitleColumn:
+				let lastSplit = currentSplits[row]
 				cell.textField?.stringValue = lastSplit.splitName
-			}
-//			if cellIdentifier == "BestSplit" {
-
-//				var lastSplit = allSplits[row]
-//				var best: TimeSplit
-//
-//
-//				cell.textField?.stringValue = getBestSplit(splitNumber: row).timeString
-//			}
-			if self.cellIdentifier!.rawValue == "CurrentSplit" {
-				var lastSplit = currentSplits[row]
+			case STVColumnID.currentSplitColumn:
+				let lastSplit = currentSplits[row]
 				cell.textField?.stringValue = lastSplit.currentSplit.timeString
-			}
-//			if self.cellIdentifier == "Difference" {
-//				var nilSplit = "+-00:00:00.00"
-//				cell.textField?.stringValue = nilSplit
-//			}
-			if cell.identifier?.rawValue == "Difference" {
+			case STVColumnID.differenceColumn:
 				let sDiff = currentSplits[row].splitDiff
-				
 				cell.textField?.stringValue = sDiff
 				if sDiff.hasPrefix("+"){
 					cell.textField?.textColor = .systemRed
@@ -82,15 +54,18 @@ extension ViewController: NSTableViewDelegate {
 				} else {
 					cell.textField?.textColor = .systemBlue
 				}
-			}
-			
-			if cell.identifier!.rawValue == "B" || self.cellIdentifier!.rawValue == "B"{
+			case STVColumnID.bestSplitColumn:
 				let best = currentSplits[row].bestSplit
+				if best.timeString == TimeSplit().timeString {
+					cell.textField!.stringValue = "00:00:00.00"
+				}
 				cell.textField!.stringValue = best.timeString
+			case STVColumnID.previousSplitColumn:
+				let prev = currentSplits[row].previousSplit
+				cell.textField!.stringValue = prev.timeString
+			default:
+					break
 			}
-			
-			
-			
 			return cell
 		}
 		return nil
@@ -100,68 +75,43 @@ extension ViewController: NSTableViewDelegate {
 
 extension ViewController: NSTextFieldDelegate {
 	func controlTextDidEndEditing(_ obj: Notification) {
-//		let view = obj.object as! NSTextField
-//		let c = view.superview as? NSTableCellView
-//		let c2 = splitsTableView.editedColumn
-//		let currentColumn = column(for: view)
-//		let view = obj.object as! NSTextField
 		
 		splitsTableView.reloadData()
 	}
 	
 	func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
-		//TODO: Uncomment this and fix it to work with the current column layout
-		
-		let c = control as NSView
-//
-		let c2 = splitsTableView.column(for: control)
+
+		let colIndex = splitsTableView.column(for: control)
+		let colID = splitsTableView.tableColumns[colIndex].identifier
 		let r = splitsTableView.row(for: control)
-//
+
 		let cellrow = splitsTableView.rowView(atRow: r, makeIfNecessary: false)
-		let cell = cellrow?.view(atColumn: c2) as! NSTableCellView
+		let cell = cellrow?.view(atColumn: colIndex) as! NSTableCellView
 		var editedSplit = currentSplits[r]
-//		if c2 > 0 {
-//				let newSplit = TimeSplit(timeString: cell.textField?.stringValue ?? "00:00:00.00")
-//				cell.textField?.stringValue = newSplit.timeString
-//			}
-		if c2 == 1 {
-			print(cell.textField!.stringValue)
+		
+		if colID == STVColumnID.splitTitleColumn {
 			editedSplit.splitName = cell.textField!.stringValue
 		}
-//		if c2 == 1 {
-//			editedSplit.bestSplit = TimeSplit(timeString: cell.textField!.stringValue)
-//		}
-		if c2 == 3 {
-			//if r != currentSplits.count - 1 {
-				editedSplit.currentSplit = TimeSplit(timeString: cell.textField!.stringValue)
-			//}
-		}
-		if c2 == 4 {
+		switch colID {
+		case STVColumnID.splitTitleColumn:
+			editedSplit.splitName = cell.textField!.stringValue
+		case STVColumnID.currentSplitColumn:
+			editedSplit.currentSplit = TimeSplit(timeString: cell.textField!.stringValue)
+		case STVColumnID.bestSplitColumn:
 			editedSplit.bestSplit = TimeSplit(timeString: cell.textField!.stringValue)
+			editedSplit.previousBest = TimeSplit(timeString: cell.textField!.stringValue)
+		default:
+			break
 		}
-//
-//
-//
-//
-		
-		let oldSplit = currentSplits[r]
 		currentSplits[r] = editedSplit
-//		currentSplits.remove(at: r)
-//		currentSplits.insert(editedSplit, at: r)
-		
-//		splitsTableView.reloadData()
-		if c2 != 4 {
+		if colID != STVColumnID.bestSplitColumn {
 			let lSplit = currentSplits[r].currentSplit.copy() as! TimeSplit
 			let rSplit = currentSplits[r].bestSplit.copy() as! TimeSplit
 			addBestSplit(lSplit: lSplit, rSplit: rSplit, splitRow: r)
 			if lSplit < rSplit {
-				currentSplits[r].originalBest = lSplit.tsCopy()
+				currentSplits[r].previousBest = lSplit.tsCopy()
 			}
 		}
-		originalSplits = currentSplits
-		print(currentSplits[r].bestSplit.veryShortTimeString)
-		print(currentSplits[r].originalBest?.veryShortTimeString)
-		
 		
 			return true
 	}

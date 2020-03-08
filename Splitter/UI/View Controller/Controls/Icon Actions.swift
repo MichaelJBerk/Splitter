@@ -14,19 +14,20 @@ extension ViewController {
 		
 		@IBAction func pictureButtonPressed(_ sender: Any) {
 			let dialog = pictureFileDialog()
-
-			if (dialog.runModal() == NSApplication.ModalResponse.OK) {
-				let result = dialog.url // Pathname of the file
-			   
-				if (result != nil) {
-					let imageFile = try? Data(contentsOf: result!)
+			
+			dialog.beginSheetModal(for: view.window!) { (response) in
+				if response == .OK {
+					let result = dialog.url // Pathname of the file
 					
-					let myImage = NSImage(data: imageFile!)
-					
-					gameIcon = myImage
-					gameIconButton.image = gameIcon
-					
-
+					if (result != nil) {
+						 let imageFile = try? Data(contentsOf: result!)
+						 
+						 let myImage = NSImage(data: imageFile!)
+						 
+						self.gameIcon = myImage
+						self.gameIconButton.image = self.gameIcon
+						
+					}
 				}
 			}
 		}

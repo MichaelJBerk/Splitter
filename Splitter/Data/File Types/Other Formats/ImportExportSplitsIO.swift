@@ -44,8 +44,8 @@ extension ViewController {
 			let newJSONDecoder = JSONDecoder()
 			let splitsIO = try? newJSONDecoder.decode(SplitsIOExchangeFormat.self, from: jsonData)
 			//SplitsIOExchangeFormat(jsonData, links: nil, timer: nil)
-			GameTitleLabel.stringValue = splitsIO!.game!.longname!
-			SubtitleLabel.stringValue = splitsIO!.category!.longname!
+			runTitleField.stringValue = splitsIO!.game!.longname!
+			categoryField.stringValue = splitsIO!.category!.longname!
 			currentSplits = []
 	//						loadedSplits = []
 			let exportJSON = view.window?.menu?.item(withTag: 1)
@@ -59,7 +59,8 @@ extension ViewController {
 				let currentSplitIO = sT.endedAt?.realtimeMS
 				let bestTS = TimeSplit(mil: bestSplitIO!)
 				let currentTS = TimeSplit(mil: currentSplitIO!)
-				var newTableRow = splitTableRow(splitName: splitTitle, bestSplit: bestTS, currentSplit: currentTS)
+				//TODO: Update to new split behavior
+				var newTableRow = splitTableRow(splitName: splitTitle, bestSplit: bestTS, currentSplit: currentTS, previousSplit: currentTS, previousBest: bestTS)
 				
 				
 	//							loadedSplits.append(newTableRow)
@@ -76,7 +77,6 @@ extension ViewController {
 	}
 		///Handles exporting data to a splits.io .json file
 		@IBAction func exportToSplitsIO(_ sender: Any) {
-			updateAllBestSplits()
 			var newSegments: [SplitsIOSegment]? = []
 			
 			for s in currentSplits {
@@ -102,8 +102,8 @@ extension ViewController {
 				let timer = SplitsIOTimer(shortname: "exchange", longname: "Splits.io Echange Format", website: "https://github.com/glacials/splits-io/tree/master/public/schema", version: "")
 				let histories: [JSONAny]? = []
 				let attempts = SplitsIOAttempts(total: 0, histories: histories)
-				let game = SplitsIOCategory(longname: GameTitleLabel.stringValue, shortname: GameTitleLabel.stringValue, links: nil)
-				let category = SplitsIOCategory(longname: SubtitleLabel.stringValue, shortname: SubtitleLabel.stringValue, links: nil)
+				let game = SplitsIOCategory(longname: runTitleField.stringValue, shortname: runTitleField.stringValue, links: nil)
+				let category = SplitsIOCategory(longname: categoryField.stringValue, shortname: categoryField.stringValue, links: nil)
 				
 				newSplitsIOData = SplitsIOExchangeFormat(schemaVersion: "v1.0.1", links: links, timer: timer, attempts: attempts, game: game, category: category, runners: nil, segments: newSegments)
 			}

@@ -13,8 +13,6 @@ extension ViewController {
 	// MARK: - Timer functions
 	///Starts the timer.
 	func startTimer() {
-		updateAllBestSplits()
-		clearCurrentTime()
 		timerStarted = true
 		timerState = .running
 		StartButton.title = "Pause"
@@ -22,12 +20,13 @@ extension ViewController {
 		splitsTableView.scrollRowToVisible(currentSplitNumber)
 	}
 	
-	///Stops the timer
+	///Stops/"Finshes" the timer
 	func stopTimer() {
 		timerStarted = false
 		timerState = .stopped
 		StartButton.title = "Start"
 		resetTimer()
+		endTime = Date()
 	}
 	
 	///Pauses or resumes the current timer, depending on its current state.
@@ -50,36 +49,39 @@ extension ViewController {
 	
 	///Sets up the timer, when it is currently stopped.
 	func setupTimer() {
+		var i = 0
+		backupSplits = []
+		while i < currentSplits.count {
+			backupSplits.append(currentSplits[i].copy() as! splitTableRow)
+			i = i + 1
+		}
+		updatePreviousSplit(of: 0)
+		let blankSplit = TimeSplit(mil: 0,sec: 0,min: 0,hour: 0)
 		
-		var blankSplit = TimeSplit(mil: 0,sec: 0,min: 0,hour: 0)
-		currentSplit = blankSplit.tsCopy()
 		
 		milHundrethTimer = Cocoa.Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateMilHundreth), userInfo: nil, repeats: true)
 		refreshUITimer = Cocoa.Timer.scheduledTimer(timeInterval: 0.03, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
-		
-		//TODO: Load the user's best split - If loaded, then display best, not the current split
-		let bestSplit: TimeSplit = TimeSplit(mil: 0, sec: 0, min: 0, hour: 0)
+		currentSplit = blankSplit.tsCopy()
 		
 		currentSplitNumber = 0
-		if currentSplits.count == 0  {
-			
-			let newRow = splitTableRow(splitName: "Split", bestSplit: blankSplit.tsCopy(), currentSplit: blankSplit.tsCopy(), originalBest: blankSplit.tsCopy(), splitIcon: nil)
+		currentSplits[0].currentSplit = self.currentSplit!
+		
+		self.startTime = Date()
+	}
+	
+	///Sets the "previous split" column for each segment in the run to the current value of that segment
+	func updatePreviousSplits() {
+		var i = 0
+		while i < currentSplits.count {
+			if currentSplits[i].currentSplit.timeString != TimeSplit().timeString {
+				currentSplits[i].previousSplit = currentSplits[i].currentSplit.tsCopy()
+			}
+			i = i + 1
 		}
-
-		
-//		if !shouldLoadSplits{
-//			currentSplits = [splitTableRow(splitName: "1", bestSplit: bestSplit, currentSplit: (currentSplit)!)]
-//		} else {
-			
-		
-//			currentSplits = loadedSplits
-			currentSplits[0].currentSplit = self.currentSplit!
-//		}
-		originalSplits = currentSplits
 	}
 	
 	///Clears out the current time field on all segments in the Table View
-	func clearCurrentTime() {
+	func resetAllCurrentSplitsToZero() {
 		var i = 0
 		while i < currentSplits.count {
 			currentSplits[i].currentSplit = TimeSplit(timeString: "00:00:00.00")
@@ -103,16 +105,13 @@ extension ViewController {
 			clearTimer()
 		}
 	}
-	///Deletes all of the segments in the table view, leaving just one with a time of 00:00:00. Shouldn't be directly triggered. by the user; use `askToClearTimer()` for that instead.
+	///Deletes all of the segments in the table view, leaving just one with a time of 00:00:00. Shouldn't be directly triggered by the user; use `askToClearTimer()` for that instead.
 	func clearTimer() {
 		milHundrethTimer.invalidate()
 		refreshUITimer.invalidate()
 		currentSplit = TimeSplit(mil: 0,sec: 0,min: 0,hour: 0)
 		currentSplits = []
-		GameTitleLabel.stringValue = "Game Title"
-		SubtitleLabel.stringValue = "Subtitle"
 		loadedFilePath = ""
-		splitsIOData = nil
 
 
 		UpdateTimer()
@@ -123,9 +122,9 @@ extension ViewController {
 		milHundrethTimer.invalidate()
 		refreshUITimer.invalidate()
 		UpdateTimer()
-		originalSplits = []
 	}
-	//TODO: See if this is still needed
+	
+	
 	@objc func updateTime() {
 
 		if !currentSplit!.paused {
