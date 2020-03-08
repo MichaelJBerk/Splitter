@@ -78,8 +78,10 @@ class ViewController: NSViewController {
 	@IBOutlet weak var categoryField: MetadataField!
 	@IBOutlet weak var TimerLabel: NSTextField!
 	@IBOutlet weak var currentTimeLabel: NSTextField!
+	@IBOutlet weak var attemptField: MetadataField!
 	
 	@IBOutlet weak var splitsTableView: NSTableView!
+	
 	
 	var cellIdentifier: NSUserInterfaceItemIdentifier?
 	
@@ -151,7 +153,7 @@ class ViewController: NSViewController {
 			if currentSplitNumber == totalSplits && timerState != .stopped {
 				nextButton.title = "Finish"
 			} else {
-				nextButton.title = "Next"
+				nextButton.title = "Split"
 			}
 		}
 	}
@@ -177,7 +179,11 @@ class ViewController: NSViewController {
 	//MARK: - Other Split Metadata
 	//TODO: Make vars for Run Title and Category, and have the text fields update them
 	//TODO: Update popover data from here
-	var attempts: Int = 0
+	var attempts: Int = 0 {
+		didSet {
+			attemptField.stringValue = "\(attempts)"
+		}
+	}
 	var platform: String?
 	var gameVersion: String?
 	var gameRegion: String?
@@ -297,6 +303,9 @@ class ViewController: NSViewController {
 		
 		gameIconButton.iconButtonType = .gameIcon
 		view.window?.makeFirstResponder(splitsTableView)
+		
+		attemptField.stringValue = "\(attempts)"
+		attemptField.formatter = OnlyIntegerValueFormatter()
 	}
 	
 	func setUpDefaults() {

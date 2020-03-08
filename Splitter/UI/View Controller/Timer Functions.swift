@@ -18,6 +18,7 @@ extension ViewController {
 		StartButton.title = "Pause"
 		setupTimer()
 		splitsTableView.scrollRowToVisible(currentSplitNumber)
+		attempts = attempts + 1
 	}
 	
 	///Stops/"Finshes" the timer
@@ -179,5 +180,9 @@ extension ViewController {
 	
 	@objc func updateMilHundreth() {
 		currentSplit?.updateMil()
+	}
+	
+	func finishRun() {
+		stopTimer()
 	}
 }
