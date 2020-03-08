@@ -577,7 +577,7 @@
                                             <tableColumns>
                                                 <tableColumn identifier="ImageColumn" width="32" minWidth="10" maxWidth="3.4028234663852886e+38" id="ljG-co-EDf">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -612,7 +612,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="SplitTitle" width="80" minWidth="40" maxWidth="1000" id="rA7-ZF-Uc6">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Split">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -630,7 +630,7 @@
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Zgl-iF-pqa">
                                                                     <rect key="frame" x="0.0" y="3" width="95" height="14"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" alignment="left" title="Split Title" id="3Pe-jP-c4b">
-                                                                        <font key="font" metaFont="message" size="11"/>
+                                                                        <font key="font" metaFont="menu" size="11"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
@@ -649,7 +649,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="CurrentSplit" width="90" minWidth="10" maxWidth="3.4028234663852886e+38" id="rN9-Ff-1yR" customClass="TimeSplitColumn" customModule="Splitter" customModuleProvider="target">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Time">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -689,7 +689,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="Difference" editable="NO" width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="xLb-1p-wmS" customClass="TimeSplitColumn" customModule="Splitter" customModuleProvider="target">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Diff">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -729,7 +729,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="B" width="173" minWidth="10" maxWidth="3.4028234663852886e+38" id="RXR-Oz-PMu" customClass="TimeSplitColumn" customModule="Splitter" customModuleProvider="target">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="PB">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -769,7 +769,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="PreviousSplit" width="85" minWidth="10" maxWidth="3.4028234663852886e+38" hidden="YES" id="Q3y-d2-rYY" customClass="TimeSplitColumn" customModule="Splitter" customModuleProvider="target">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Previous">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="menu" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -855,7 +855,7 @@
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5Ka-8A-G0d">
                                 <rect key="frame" x="135" y="4" width="147" height="32"/>
-                                <buttonCell key="cell" type="push" title="Next" bezelStyle="rounded" alignment="center" scrollable="YES" lineBreakMode="clipping" truncatesLastVisibleLine="YES" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xSV-AL-F6u">
+                                <buttonCell key="cell" type="push" title="Split" bezelStyle="rounded" alignment="center" scrollable="YES" lineBreakMode="clipping" truncatesLastVisibleLine="YES" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xSV-AL-F6u">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -886,9 +886,6 @@
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tIC-9A-PB1">
                                 <rect key="frame" x="4" y="4" width="138" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="126" id="8bM-9X-8DW"/>
-                                </constraints>
                                 <buttonCell key="cell" type="push" title="Prev" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ux6-T5-kx5">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -1000,15 +997,36 @@
                                     <action selector="displayAdvancedPopover:" target="5gI-5U-AMq" id="LFd-oe-9Er"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rkm-yi-plE">
+                                <rect key="frame" x="221" y="84" width="53" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Attempt" id="6Q0-NB-XXc">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XzH-Pf-d2x" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
+                                <rect key="frame" x="221" y="64" width="53" height="20"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="49" id="imu-YA-cq7"/>
+                                </constraints>
+                                <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" editable="YES" alignment="right" placeholderString="0" id="4cM-0W-7b3">
+                                    <font key="font" metaFont="system" size="17"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
                             <constraint firstItem="LMA-oO-ztV" firstAttribute="centerY" secondItem="laY-Uh-RhP" secondAttribute="centerY" id="0OU-NI-Zlv"/>
                             <constraint firstItem="sEF-Zm-06R" firstAttribute="leading" secondItem="tIC-9A-PB1" secondAttribute="leading" id="1Ub-bb-zKK"/>
+                            <constraint firstAttribute="trailing" secondItem="Rkm-yi-plE" secondAttribute="trailing" constant="11" id="2GL-GD-5g3"/>
                             <constraint firstItem="Mj4-Ky-5e7" firstAttribute="top" secondItem="jC2-yS-poH" secondAttribute="top" id="3J3-kq-uF8"/>
                             <constraint firstItem="xLP-fd-tTq" firstAttribute="leading" secondItem="OXM-M7-swh" secondAttribute="trailing" constant="3" id="4k3-dK-Juh"/>
                             <constraint firstItem="OXM-M7-swh" firstAttribute="top" secondItem="xLP-fd-tTq" secondAttribute="top" id="6eU-Ac-i6A"/>
                             <constraint firstItem="GLv-Wp-JTM" firstAttribute="top" secondItem="laY-Uh-RhP" secondAttribute="bottom" constant="20" symbolic="YES" id="6o0-ZG-X0v"/>
                             <constraint firstItem="laY-Uh-RhP" firstAttribute="centerX" secondItem="xLP-fd-tTq" secondAttribute="centerX" id="ABg-9H-Snd"/>
+                            <constraint firstAttribute="trailing" secondItem="XzH-Pf-d2x" secondAttribute="trailing" constant="11" id="BDf-W8-Wbo"/>
                             <constraint firstItem="TSJ-mg-scq" firstAttribute="leading" secondItem="LMA-oO-ztV" secondAttribute="trailing" constant="7" id="C4k-5Z-zBc"/>
                             <constraint firstItem="laY-Uh-RhP" firstAttribute="leading" secondItem="5cv-K8-dE8" secondAttribute="trailing" constant="1" id="DQp-Cr-IfL"/>
                             <constraint firstItem="udb-sn-xNY" firstAttribute="leading" secondItem="sEF-Zm-06R" secondAttribute="leading" id="Fuc-KQ-ce2"/>
@@ -1019,15 +1037,18 @@
                             <constraint firstItem="tIC-9A-PB1" firstAttribute="baseline" secondItem="5Ka-8A-G0d" secondAttribute="baseline" id="PnI-ZF-WqV"/>
                             <constraint firstItem="LMA-oO-ztV" firstAttribute="top" secondItem="nLC-ev-0ZO" secondAttribute="top" constant="4" id="Qoc-pt-XBf"/>
                             <constraint firstItem="LMA-oO-ztV" firstAttribute="leading" secondItem="nLC-ev-0ZO" secondAttribute="leading" constant="11" id="THr-1P-Pis"/>
+                            <constraint firstItem="Rkm-yi-plE" firstAttribute="top" secondItem="xLP-fd-tTq" secondAttribute="bottom" constant="2" id="Tte-oy-VXr"/>
                             <constraint firstItem="Mj4-Ky-5e7" firstAttribute="leading" secondItem="d2l-Lb-Z8r" secondAttribute="leading" id="W20-HL-2Cd"/>
                             <constraint firstItem="OXM-M7-swh" firstAttribute="bottom" secondItem="xLP-fd-tTq" secondAttribute="bottom" id="WeS-Sw-u2N"/>
                             <constraint firstItem="jC2-yS-poH" firstAttribute="bottom" secondItem="OXM-M7-swh" secondAttribute="bottom" id="Y8w-cV-rrS"/>
                             <constraint firstAttribute="trailing" secondItem="5Ka-8A-G0d" secondAttribute="trailing" constant="7" id="ZT2-Kw-dbJ"/>
+                            <constraint firstItem="tIC-9A-PB1" firstAttribute="width" secondItem="5Ka-8A-G0d" secondAttribute="width" multiplier="0.933333" id="aOg-BX-ugy"/>
                             <constraint firstItem="d2l-Lb-Z8r" firstAttribute="top" secondItem="jC2-yS-poH" secondAttribute="bottom" constant="2" id="bjT-PD-Alh"/>
                             <constraint firstItem="sEF-Zm-06R" firstAttribute="bottom" secondItem="udb-sn-xNY" secondAttribute="bottom" id="eA0-Ag-ijo"/>
                             <constraint firstItem="Mj4-Ky-5e7" firstAttribute="leading" secondItem="nLC-ev-0ZO" secondAttribute="leading" constant="10" id="fWx-uJ-jgm"/>
                             <constraint firstAttribute="trailing" secondItem="laY-Uh-RhP" secondAttribute="trailing" constant="4" id="i75-OX-uP0"/>
                             <constraint firstItem="jC2-yS-poH" firstAttribute="leading" secondItem="Mj4-Ky-5e7" secondAttribute="trailing" constant="90" id="iep-EZ-YpZ"/>
+                            <constraint firstItem="XzH-Pf-d2x" firstAttribute="top" secondItem="Rkm-yi-plE" secondAttribute="bottom" id="igF-qZ-eaR"/>
                             <constraint firstItem="5Ka-8A-G0d" firstAttribute="leading" secondItem="tIC-9A-PB1" secondAttribute="trailing" constant="5" id="j2y-bb-I7F"/>
                             <constraint firstItem="5cv-K8-dE8" firstAttribute="top" secondItem="TSJ-mg-scq" secondAttribute="bottom" constant="2" id="miG-H4-2QN"/>
                             <constraint firstItem="udb-sn-xNY" firstAttribute="top" secondItem="d2l-Lb-Z8r" secondAttribute="bottom" constant="1" id="oa9-Kn-SUI"/>
@@ -1048,6 +1069,7 @@
                         <outlet property="StartButton" destination="gCo-Oe-sI7" id="jgA-IG-Lnb"/>
                         <outlet property="TimerLabel" destination="d2l-Lb-Z8r" id="5xN-95-XEJ"/>
                         <outlet property="advancedPopoverButton" destination="laY-Uh-RhP" id="36Z-y3-khC"/>
+                        <outlet property="attemptField" destination="XzH-Pf-d2x" id="QI9-9k-lRM"/>
                         <outlet property="categoryField" destination="5cv-K8-dE8" id="S7o-Cd-tug"/>
                         <outlet property="columnOptionsPopoverButton" destination="xLP-fd-tTq" id="XLN-jK-lh2"/>
                         <outlet property="currentTimeLabel" destination="Mj4-Ky-5e7" id="IfX-AV-VUa"/>
@@ -1182,6 +1204,9 @@
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                <allowedInputSourceLocales>
+                                                    <string>NSAllRomanInputSourcesLocaleIdentifier</string>
+                                                </allowedInputSourceLocales>
                                             </textFieldCell>
                                         </textField>
                                     </gridCell>
@@ -1263,8 +1288,8 @@
                                     </gridCell>
                                     <gridCell row="NF6-Fy-klV" column="vxy-hV-tJz" id="au1-Sq-P9B">
                                         <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8i4-zA-aVA">
-                                            <rect key="frame" x="110" y="22" width="37" height="16"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="puV-5q-Mgh">
+                                            <rect key="frame" x="110" y="22" width="104" height="16"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" id="puV-5q-Mgh">
                                                 <dateFormatter key="formatter" dateStyle="short" timeStyle="medium" id="CwY-1r-5Ro"/>
                                                 <font key="font" usesAppearanceFont="YES"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1284,8 +1309,8 @@
                                     </gridCell>
                                     <gridCell row="Ncu-aw-taH" column="vxy-hV-tJz" id="VIe-Aw-mEr">
                                         <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MRY-3e-3Z2">
-                                            <rect key="frame" x="110" y="0.0" width="37" height="16"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="Pcy-0H-qvZ">
+                                            <rect key="frame" x="110" y="0.0" width="104" height="16"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" id="Pcy-0H-qvZ">
                                                 <font key="font" usesAppearanceFont="YES"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1476,19 +1501,6 @@
                 <customObject id="Lr9-4a-hBn" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="433.5" y="1242"/>
-        </scene>
-        <!--View Controller-->
-        <scene sceneID="LUp-1o-btI">
-            <objects>
-                <viewController id="IqR-aR-yGg" sceneMemberID="viewController">
-                    <view key="view" id="Cq4-mW-zbS">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </view>
-                </viewController>
-                <customObject id="Afl-E7-Fpj" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="229" y="1647"/>
         </scene>
     </scenes>
     <resources>
