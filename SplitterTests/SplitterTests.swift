@@ -22,13 +22,13 @@ class SplitterTests: XCTestCase {
         // Put setup code here. This method is called before the invocation of each test method in the class.
 		self.viewController = ViewController()
     }
-	func testGlobalHotkeysSetup() {
-		let globalHotkeySetting = Settings.enableGlobalHotkeys
-		if let app = NSApp.delegate as? AppDelegate {
-			let hotkey1Paused =  app.keybinds[0].hotkey?.isPaused
-			XCTAssert((hotkey1Paused != globalHotkeySetting))
-		}
-	}
+//	func testGlobalHotkeysSetup() {
+//		let globalHotkeySetting = Settings.enableGlobalHotkeys
+//		if let app = NSApp.delegate as? AppDelegate {
+//			let hotkey1Paused =  app.keybinds[0].hotkey?.isPaused
+//			XCTAssert((hotkey1Paused != globalHotkeySetting))
+//		}
+//	}
 	
 	
 	func testOpenSplit() {
@@ -56,7 +56,8 @@ class SplitterTests: XCTestCase {
 	func testImportLiveSplit() {
 		let ls = LiveSplit()
 
-		ls.path = String(testPath + "/Super Mario Odyssey.lss")
+//		ls.path = String(testPath + "/Super Mario Odyssey.lss")
+		ls.path = String(testPath + "/test.lss")
 		ls.parseLivesplit()
 	}
 	

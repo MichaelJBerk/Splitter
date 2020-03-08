@@ -41,6 +41,17 @@ extension ViewController {
 				categoryField.stringValue = sb
 			}
 		}
+		
+		if let att = ls.attempts {
+			attempts = att
+		}
+		if let reg = ls.region {
+			gameRegion = ls.region
+		}
+		if let plat = ls.platform {
+			platform = ls.platform
+		}
+		
 		self.gameIcon = ls.img
 		splitsTableView.reloadData()
 	}
