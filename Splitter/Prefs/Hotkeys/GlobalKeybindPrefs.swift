@@ -62,7 +62,6 @@ class GlobalKeybindPreferences: Codable, CustomStringConvertible {
 		
 		
         if var characters = self.characters {
-			print(characters)
 			let intKC = Int(keyCode)
 			switch intKC {
 			case 36:

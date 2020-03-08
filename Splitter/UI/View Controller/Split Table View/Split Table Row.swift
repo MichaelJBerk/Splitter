@@ -14,27 +14,65 @@ struct splitTableRow {
 	var splitName: String
 	var bestSplit: TimeSplit
 	var currentSplit: TimeSplit
-	var originalBest: TimeSplit?
+	var previousSplit: TimeSplit
+	var previousBest: TimeSplit
 	var splitIcon: NSImage?
+	var previousPrevious: TimeSplit?
+	var compareTo: SplitComparison = .previousSplit
+	var roundTo: SplitRounding = .tenths
+	//TODO: Update Diff when loaded from files
+	///Difference between the (previous) best split and the current best
 	var splitDiff: String{
 		
 		var og: TimeSplit = bestSplit
-		if originalBest != nil {
-			og = originalBest!
+		
+		switch compareTo {
+		case .personalBest:
+			og = previousBest
+		case .previousSplit:
+			og = previousSplit 
 		}
+		
 		let diff = og - currentSplit
-		if currentSplit.longTimeString == "00:00:00.00" {
-			return "00:00.00"
-		} else if currentSplit > bestSplit {
-			return "+\(diff.veryShortTimeString)"
-		} else if currentSplit < bestSplit {
-			return "-\(diff.veryShortTimeString)"
+		let diffTimeString: String
+		
+		switch roundTo {
+		case .hundredths:
+			diffTimeString = diff.shortTimeString
+		default:
+			diffTimeString = diff.shortTimeStringTenths
+		}
+		
+		if currentSplit.timeString == "00:00:00.00" {
+			return ""
+		} else if currentSplit > og {
+			return "+\(diffTimeString)"
+		} else if currentSplit < og {
+			return "-\(diffTimeString)"
 		} else {
 			return "00:00.00"
 		}
 	}
 	
 	func copy(with zone: NSZone? = nil) -> Any {
-		return splitTableRow(splitName: splitName.copy() as! String, bestSplit: bestSplit.copy() as! TimeSplit, currentSplit: currentSplit.copy() as! TimeSplit)
+		return splitTableRow(splitName: splitName.copy() as! String, bestSplit: bestSplit.copy() as! TimeSplit, currentSplit: currentSplit.copy() as! TimeSplit, previousSplit: previousSplit.tsCopy(), previousBest: previousBest.tsCopy(), splitIcon: splitIcon)
 	}
+}
+
+final class Box<T> {
+    let value: T
+
+    init(_ value: T) {
+        self.value = value
+    }
+}
+
+enum SplitComparison: Int {
+	case previousSplit
+	case personalBest
+}
+
+enum SplitRounding: Int {
+	case tenths
+	case hundredths
 }

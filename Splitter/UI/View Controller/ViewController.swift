@@ -49,6 +49,15 @@ class ViewController: NSViewController {
 	@IBOutlet weak var gameIconButton: IconButton!
 	@IBOutlet weak var pauseButton: NSButton!
 	
+	
+	@IBOutlet weak var advancedPopoverButton: NSButton!
+	@IBOutlet weak var columnOptionsPopoverButton: NSButton!
+	
+//MARK: - Setting Up Popovers
+	var columnOptionsPopover: SplitterPopover?
+	var advancedPopover: SplitterPopover?
+	
+	
 //MARK: - Setting up Menu Items
 	var timerStopItem: NSMenuItem? {
 		if let pauseItem = view.window?.menu?.item(withIdentifier: menuIdentifiers.timerMenu.stop) {
@@ -65,8 +74,8 @@ class ViewController: NSViewController {
 	}
 	
 //MARK: - Other UI Elements
-	@IBOutlet weak var GameTitleLabel: NSTextField!
-	@IBOutlet weak var SubtitleLabel: NSTextField!
+	@IBOutlet weak var runTitleField: MetadataField!
+	@IBOutlet weak var categoryField: MetadataField!
 	@IBOutlet weak var TimerLabel: NSTextField!
 	@IBOutlet weak var currentTimeLabel: NSTextField!
 	
@@ -134,6 +143,7 @@ class ViewController: NSViewController {
 	
 	var currentSplit: TimeSplit? = nil
 	var currentSplits: [splitTableRow] = []
+	var backupSplits: [splitTableRow] = []
 	var loadedFilePath: String = ""
 	var currentSplitNumber = 0 {
 		didSet {
@@ -146,37 +156,45 @@ class ViewController: NSViewController {
 		}
 	}
 	
-	//Splits before the timer started, just in case.
-	var originalSplits: [splitTableRow]? = [] {
-		didSet {
+	var compareTo: SplitComparison {
+		get {
+			return currentSplits.first?.compareTo ?? SplitComparison.previousSplit
+		}
+		set {
 			var i = 0
-			if let og = originalSplits {
-				while i < currentSplits.count && i < og.count {
-					currentSplits[i].originalBest = og[i].bestSplit
-					i = i + 1
-				}
+			while i < currentSplits.count {
+				currentSplits[i].compareTo = newValue
+				i = i + 1
 			}
+			splitsTableView.reloadData()
 		}
 	}
+	
+	var roundTo: SplitRounding = .tenths
+	
+	
+
+	//MARK: - Other Split Metadata
+	//TODO: Make vars for Run Title and Category, and have the text fields update them
+	//TODO: Update popover data from here
+	var attempts: Int = 0
+	var platform: String?
+	var gameVersion: String?
+	var gameRegion: String?
+	var startTime: Date?
+	var endTime: Date?
+	
+	
 
 	//MARK: - External File Split Data
 	//Stuff that holds data from files
+	var splitsIOSchemaVersion = "v1.0.1"
 	var splitsIOData: SplitsIOExchangeFormat!
 	var runInfoData: runInfo?
 	
 	var appearance: splitterAppearance?
 		
-		var shouldLoadSplits = false//: Bool {
-	//		if loadedSplits.isEmpty && runInfoData == nil {
-	//			if currentSplits.isEmpty {
-	//				return false
-	//			} else {
-	//				return true
-	//			}
-	//		} else {
-	//			return true
-	//		}
-	//	}
+		var shouldLoadSplits = false
 	
 	//MARK: - Icon Data
 	
@@ -279,9 +297,6 @@ class ViewController: NSViewController {
 		
 		gameIconButton.iconButtonType = .gameIcon
 		view.window?.makeFirstResponder(splitsTableView)
-		
-		
-		
 	}
 	
 	func setUpDefaults() {
@@ -290,13 +305,22 @@ class ViewController: NSViewController {
 		
 		
 		UIHidden = Settings.hideUIButtons
-		showHideUI()
+		 showHideUI()
 		
 		windowFloat = Settings.floatWindow
 		setFloatingWindow()
 		
 		showBestSplits = Settings.showBestSplits
 		showHideBestSplits()
+		
+		for c in splitsTableView.tableColumns {
+			if c.identifier == STVColumnID.previousSplitColumn {
+				c.isHidden = true
+			}
+			if c.identifier == STVColumnID.bestSplitColumn {
+				c.width = 86
+			}
+		}
 		
 		
 	}
@@ -311,11 +335,41 @@ class ViewController: NSViewController {
 	}
 	
 	override func viewWillDisappear() {
+		advancedPopover?.contentViewController?.view.window?.close()
+		columnOptionsPopover?.contentViewController?.view.window?.close()
 		super.viewWillDisappear()
 
 	}
 	
-
+	@IBAction func displayAdvancedPopover(_ sender: Any) {
+		advancedPopover?.contentViewController?.view.window?.close()
+		let destination = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: ViewControllerID.advanced) as! AdvancedTabViewController
+		destination.delegate = self
+		let pop = SplitterPopover()
+		pop.delegate = self
+		pop.contentViewController = destination
+		pop.contentSize = NSSize(width: 450, height: 270)
+		pop.behavior = .semitransient
+		pop.show(relativeTo: .null, of: advancedPopoverButton, preferredEdge: .maxX)
+		advancedPopover = pop
+		destination.setupTabViews()
+	}
+	
+	@IBAction func displayColumnOptionsPopover(_ sender: Any) {
+		columnOptionsPopover?.contentViewController?.view.window?.close()
+		let destination = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: ViewControllerID.columnOptions) as! ColumnOptionsViewController
+		destination.delegate = self
+		let pop = SplitterPopover()
+		pop.delegate = self
+		pop.contentViewController = destination
+		pop.behavior = .semitransient
+		pop.show(relativeTo: .null, of: columnOptionsPopoverButton, preferredEdge: .maxX)
+		columnOptionsPopover = pop
+		destination.loadCheckBoxes()
+		
+		
+	}
+	
 	override var representedObject: Any? {
 		didSet {
 		// Update the view, if already loaded.
@@ -325,9 +379,7 @@ class ViewController: NSViewController {
 	override func keyDown(with event: NSEvent) {
 		super.keyDown(with: event)
 		
-	}
-
-	
+	}	
 }
 
 //TODO: See if this should be in a separate file, and if it should be with the VC or on its own or in Data
@@ -360,4 +412,20 @@ extension ViewController: NSWindowDelegate {
 		let showHideBestSplitsItem = NSApp.mainMenu?.item(withIdentifier: menuIdentifiers.appearanceMenu.showBestSplits)
 		showHideBestSplitsItem?.title = showHideBestSplitsItemText
 	}
+}
+
+extension ViewController: NSPopoverDelegate {
+	func popoverShouldDetach(_ popover: NSPopover) -> Bool {
+		return true
+	}
+	
+	
+	override func present(_ viewController: NSViewController, asPopoverRelativeTo positioningRect: NSRect, of positioningView: NSView, preferredEdge: NSRectEdge, behavior: NSPopover.Behavior) {
+		
+		super.present(viewController, asPopoverRelativeTo: positioningRect, of: positioningView, preferredEdge: preferredEdge, behavior: behavior)
+	}
+}
+
+class SplitterPopover: NSPopover {
+
 }
