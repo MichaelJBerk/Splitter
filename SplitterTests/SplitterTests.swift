@@ -8,6 +8,7 @@
 
 import XCTest
 @testable import Splitter
+import Files
 
 class SplitterTests: XCTestCase {
 	
@@ -22,13 +23,13 @@ class SplitterTests: XCTestCase {
         // Put setup code here. This method is called before the invocation of each test method in the class.
 		self.viewController = ViewController()
     }
-	func testGlobalHotkeysSetup() {
-		let globalHotkeySetting = Settings.enableGlobalHotkeys
-		if let app = NSApp.delegate as? AppDelegate {
-			let hotkey1Paused =  app.keybinds[0].hotkey?.isPaused
-			XCTAssert((hotkey1Paused != globalHotkeySetting))
-		}
-	}
+//	func testGlobalHotkeysSetup() {
+//		let globalHotkeySetting = Settings.enableGlobalHotkeys
+//		if let app = NSApp.delegate as? AppDelegate {
+//			let hotkey1Paused =  app.keybinds[0].hotkey?.isPaused
+//			XCTAssert((hotkey1Paused != globalHotkeySetting))
+//		}
+//	}
 	
 	
 	func testOpenSplit() {
@@ -40,11 +41,15 @@ class SplitterTests: XCTestCase {
 	}
 	
 	func testOpenSplitFromExternalVolume() {
-		let path = "/Volumes/Blue Shell/Odyssey.split"
-		let url = URL(fileURLWithPath: path)
-		let doc = try? Document(contentsOf: url, ofType: "Split File")
-		let dc = NSDocumentController.shared
-		dc.addDocument(doc!)
+		if let blueS = try? Folder(path: "/Volumes/Blue Shell") {
+		
+			let path = "/Volumes/Blue Shell/Odyssey.split"
+			let url = URL(fileURLWithPath: path)
+			let doc = try? Document(contentsOf: url, ofType: "Split File")
+			let dc = NSDocumentController.shared
+			dc.addDocument(doc!)
+		}
+//		dc.addDocument(doc!)
 		
 	}
 	
