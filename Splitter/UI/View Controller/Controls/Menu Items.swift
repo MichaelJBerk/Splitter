@@ -17,8 +17,13 @@ extension ViewController {
 	
 	func loadLS(ls: LiveSplit) {
 		ls.parseLivesplit()
-		if ls.loadedSplits.count > 0 {
-			self.currentSplits = ls.loadedSplits
+		if ls.splits.count > 0 {
+			var i = 0
+			
+			while i < ls.splits.count {
+				currentSplits.append(ls.splits[i].copy() as! splitTableRow)
+				i = i + 1
+			}
 			
 		}
 		var i = 0
@@ -31,16 +36,29 @@ extension ViewController {
 			}
 		}
 		
-		if let gn = ls.gameName {
+		if let gn = ls.runTitle {
 			if gn.count > 0 {
 				runTitleField.stringValue = gn
 			}
 		}
-		if let sb = ls.subtitle {
+		if let sb = ls.category {
 			if sb.count > 0 {
 				categoryField.stringValue = sb
 			}
 		}
+		
+		if let att = ls.attempts {
+			attempts = att
+		}
+		if let reg = ls.region {
+			gameRegion = ls.region
+		}
+		if let plat = ls.platform {
+			platform = ls.platform
+		}
+		
+		
+		self.lsPointer = ls.lsPointer
 		self.gameIcon = ls.img
 		splitsTableView.reloadData()
 	}
