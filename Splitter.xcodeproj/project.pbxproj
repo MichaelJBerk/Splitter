@@ -41,7 +41,6 @@
 		4A6A3BE223CD1C7A002C20AE /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6A3BE123CD1C7A002C20AE /* Storage.swift */; };
 		4A6A3BE423CD621A002C20AE /* MainWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6A3BE323CD621A002C20AE /* MainWindow.swift */; };
 		4A6A3BE623CD6463002C20AE /* BlankWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6A3BE523CD6463002C20AE /* BlankWindowController.swift */; };
-		4A6B4F7323F07C2B00CB781F /* liblivesplit_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A6B4F7223F07C1500CB781F /* liblivesplit_core.a */; };
 		4A6B4F7423F07C3900CB781F /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A73B75023F0722800010F30 /* libresolv.tbd */; };
 		4A6C312A23FF366C00BBE4BB /* SplitterDocIcon.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4A6C312923FF366C00BBE4BB /* SplitterDocIcon.icns */; };
 		4A774A5723EBCDFA002F1700 /* SplitterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A774A5623EBCDFA002F1700 /* SplitterTests.swift */; };
@@ -55,6 +54,8 @@
 		4A99813023F9ECE50037BF98 /* KeybindHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A99812F23F9ECE50037BF98 /* KeybindHandlers.swift */; };
 		4A9DB792240847E40000D1B4 /* TimeSplitColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9DB791240847E40000D1B4 /* TimeSplitColumn.swift */; };
 		4A9FCC7C2411A0CE000937A2 /* TextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9FCC7B2411A0CE000937A2 /* TextFields.swift */; };
+		4AA357AF2416C27800219E65 /* liblivesplit_core.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA357AE2416C27800219E65 /* liblivesplit_core.dylib */; };
+		4AA357B02416C28200219E65 /* liblivesplit_core.dylib in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA357AE2416C27800219E65 /* liblivesplit_core.dylib */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		4AA3DAB423E23DA900ADFA4A /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA3DAB323E23DA900ADFA4A /* IconButton.swift */; };
 		4AC24DBA23EB4EC5003008BF /* Split Table Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC24DB923EB4EC5003008BF /* Split Table Row.swift */; };
 		4AC24DBC23EB4F17003008BF /* Split Table View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC24DBB23EB4F17003008BF /* Split Table View.swift */; };
@@ -90,6 +91,7 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
+				4AA357B02416C28200219E65 /* liblivesplit_core.dylib in Embed Frameworks */,
 				4A66573023E3D34600D14A67 /* Pods_Splitter.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -133,7 +135,6 @@
 		4A6A3BE123CD1C7A002C20AE /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		4A6A3BE323CD621A002C20AE /* MainWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindow.swift; sourceTree = "<group>"; };
 		4A6A3BE523CD6463002C20AE /* BlankWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankWindowController.swift; sourceTree = "<group>"; };
-		4A6B4F7223F07C1500CB781F /* liblivesplit_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblivesplit_core.a; path = "livesplit-core/target/release/liblivesplit_core.a"; sourceTree = "<group>"; };
 		4A6C312923FF366C00BBE4BB /* SplitterDocIcon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = SplitterDocIcon.icns; sourceTree = "<group>"; };
 		4A73B75023F0722800010F30 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
 		4A774A5423EBCDFA002F1700 /* SplitterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SplitterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -150,13 +151,13 @@
 		4A99812F23F9ECE50037BF98 /* KeybindHandlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeybindHandlers.swift; sourceTree = "<group>"; };
 		4A9DB791240847E40000D1B4 /* TimeSplitColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSplitColumn.swift; sourceTree = "<group>"; };
 		4A9FCC7B2411A0CE000937A2 /* TextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFields.swift; sourceTree = "<group>"; };
+		4AA357AE2416C27800219E65 /* liblivesplit_core.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = liblivesplit_core.dylib; path = "../../livesplit-core-master/target/release/liblivesplit_core.dylib"; sourceTree = "<group>"; };
 		4AA3DAB323E23DA900ADFA4A /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 		4AB3B93D23D96C10009C6AA6 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		4AC24DB923EB4EC5003008BF /* Split Table Row.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Split Table Row.swift"; sourceTree = "<group>"; };
 		4AC24DBB23EB4F17003008BF /* Split Table View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Split Table View.swift"; sourceTree = "<group>"; };
 		4ACCEA7723B02F520068F89E /* TimeSplit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSplit.swift; sourceTree = "<group>"; };
 		4AD7663123DB5C3A0052409C /* ImportExportSplitsIO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportExportSplitsIO.swift; sourceTree = "<group>"; };
-		4AD7665923DB5CFC0052409C /* SplitsIOExchangeFramework.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SplitsIOExchangeFramework.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4AD77D15240ECA2800CD65AD /* ColumnOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnOptionsViewController.swift; sourceTree = "<group>"; };
 		4ADE9225240F1FB900E0D99E /* AdvancedTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedTabViewController.swift; sourceTree = "<group>"; };
 		4ADFAE4823E4A0760049F57A /* QuickAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickAlert.swift; sourceTree = "<group>"; };
@@ -181,8 +182,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				4AD7662E23DA5F9A0052409C /* Files in Frameworks */,
-				4A6B4F7323F07C2B00CB781F /* liblivesplit_core.a in Frameworks */,
 				4A66572F23E3D34600D14A67 /* Pods_Splitter.framework in Frameworks */,
+				4AA357AF2416C27800219E65 /* liblivesplit_core.dylib in Frameworks */,
 				4A6B4F7423F07C3900CB781F /* libresolv.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -200,9 +201,8 @@
 		0721BB701FB4FFBBA3F65AE9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				4A6B4F7223F07C1500CB781F /* liblivesplit_core.a */,
+				4AA357AE2416C27800219E65 /* liblivesplit_core.dylib */,
 				4A73B75023F0722800010F30 /* libresolv.tbd */,
-				4AD7665923DB5CFC0052409C /* SplitsIOExchangeFramework.framework */,
 				8449BCD82A49C16B0E9C6FE9 /* Pods_Splitter.framework */,
 				4AB3B93D23D96C10009C6AA6 /* Quartz.framework */,
 			);
