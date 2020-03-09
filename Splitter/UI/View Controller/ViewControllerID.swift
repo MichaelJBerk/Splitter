@@ -8,7 +8,8 @@
 
 import Foundation
 
-enum ViewControllerID {
+public enum ViewControllerID {
 	static let columnOptions = "ColumnOptions"
 	static let advanced = "Advanced"
+	static let mainVC = NSUserInterfaceItemIdentifier("MainViewController")
 }

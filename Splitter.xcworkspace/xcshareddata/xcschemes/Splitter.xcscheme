@@ -67,6 +67,29 @@
                BlueprintName = "SplitterTests"
                ReferencedContainer = "container:Splitter.xcodeproj">
             </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "SplitterTests/testImportLiveSplit()">
+               </Test>
+            </SkippedTests>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "4AA357A12416AE7E00219E65"
+               BuildableName = "SplitterUITests.xctest"
+               BlueprintName = "SplitterUITests"
+               ReferencedContainer = "container:Splitter.xcodeproj">
+            </BuildableReference>
+            <SkippedTests>
+               <Test
+                  Identifier = "SplitterUITests/testLaunchPerformance()">
+               </Test>
+               <Test
+                  Identifier = "SplitterUITests/testStartRun()">
+               </Test>
+            </SkippedTests>
          </TestableReference>
       </Testables>
    </TestAction>

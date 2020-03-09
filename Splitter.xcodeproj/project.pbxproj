@@ -55,6 +55,7 @@
 		4A99813023F9ECE50037BF98 /* KeybindHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A99812F23F9ECE50037BF98 /* KeybindHandlers.swift */; };
 		4A9DB792240847E40000D1B4 /* TimeSplitColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9DB791240847E40000D1B4 /* TimeSplitColumn.swift */; };
 		4A9FCC7C2411A0CE000937A2 /* TextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9FCC7B2411A0CE000937A2 /* TextFields.swift */; };
+		4AA357A52416AE7E00219E65 /* SplitterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA357A42416AE7E00219E65 /* SplitterUITests.swift */; };
 		4AA3DAB423E23DA900ADFA4A /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA3DAB323E23DA900ADFA4A /* IconButton.swift */; };
 		4AC24DBA23EB4EC5003008BF /* Split Table Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC24DB923EB4EC5003008BF /* Split Table Row.swift */; };
 		4AC24DBC23EB4F17003008BF /* Split Table View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC24DBB23EB4F17003008BF /* Split Table View.swift */; };
@@ -75,6 +76,13 @@
 
 /* Begin PBXContainerItemProxy section */
 		4A774A5923EBCDFA002F1700 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4A230E8723B00A1D00959C57 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4A230E8E23B00A1D00959C57;
+			remoteInfo = Splitter;
+		};
+		4AA357A72416AE7E00219E65 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4A230E8723B00A1D00959C57 /* Project object */;
 			proxyType = 1;
@@ -150,6 +158,9 @@
 		4A99812F23F9ECE50037BF98 /* KeybindHandlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeybindHandlers.swift; sourceTree = "<group>"; };
 		4A9DB791240847E40000D1B4 /* TimeSplitColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSplitColumn.swift; sourceTree = "<group>"; };
 		4A9FCC7B2411A0CE000937A2 /* TextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFields.swift; sourceTree = "<group>"; };
+		4AA357A22416AE7E00219E65 /* SplitterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SplitterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4AA357A42416AE7E00219E65 /* SplitterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterUITests.swift; sourceTree = "<group>"; };
+		4AA357A62416AE7E00219E65 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4AA3DAB323E23DA900ADFA4A /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 		4AB3B93D23D96C10009C6AA6 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		4AC24DB923EB4EC5003008BF /* Split Table Row.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Split Table Row.swift"; sourceTree = "<group>"; };
@@ -188,6 +199,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		4A774A5123EBCDFA002F1700 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4AA3579F2416AE7E00219E65 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -259,6 +277,7 @@
 			children = (
 				4A230E9123B00A1D00959C57 /* Splitter */,
 				4A774A5523EBCDFA002F1700 /* SplitterTests */,
+				4AA357A32416AE7E00219E65 /* SplitterUITests */,
 				4A230E9023B00A1D00959C57 /* Products */,
 				D37BEB9F742A1CC70715DDD3 /* Pods */,
 				0721BB701FB4FFBBA3F65AE9 /* Frameworks */,
@@ -270,6 +289,7 @@
 			children = (
 				4A230E8F23B00A1D00959C57 /* Splitter.app */,
 				4A774A5423EBCDFA002F1700 /* SplitterTests.xctest */,
+				4AA357A22416AE7E00219E65 /* SplitterUITests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -356,6 +376,15 @@
 				4AA3DAB323E23DA900ADFA4A /* IconButton.swift */,
 			);
 			path = Controls;
+			sourceTree = "<group>";
+		};
+		4AA357A32416AE7E00219E65 /* SplitterUITests */ = {
+			isa = PBXGroup;
+			children = (
+				4AA357A42416AE7E00219E65 /* SplitterUITests.swift */,
+				4AA357A62416AE7E00219E65 /* Info.plist */,
+			);
+			path = SplitterUITests;
 			sourceTree = "<group>";
 		};
 		4AC24DBD23EB4F73003008BF /* Split Table View */ = {
@@ -492,6 +521,24 @@
 			productReference = 4A774A5423EBCDFA002F1700 /* SplitterTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
+		4AA357A12416AE7E00219E65 /* SplitterUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4AA357AB2416AE7E00219E65 /* Build configuration list for PBXNativeTarget "SplitterUITests" */;
+			buildPhases = (
+				4AA3579E2416AE7E00219E65 /* Sources */,
+				4AA3579F2416AE7E00219E65 /* Frameworks */,
+				4AA357A02416AE7E00219E65 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4AA357A82416AE7E00219E65 /* PBXTargetDependency */,
+			);
+			name = SplitterUITests;
+			productName = SplitterUITests;
+			productReference = 4AA357A22416AE7E00219E65 /* SplitterUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -506,6 +553,10 @@
 						CreatedOnToolsVersion = 11.3;
 					};
 					4A774A5323EBCDFA002F1700 = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = 4A230E8E23B00A1D00959C57;
+					};
+					4AA357A12416AE7E00219E65 = {
 						CreatedOnToolsVersion = 11.3.1;
 						TestTargetID = 4A230E8E23B00A1D00959C57;
 					};
@@ -529,6 +580,7 @@
 			targets = (
 				4A230E8E23B00A1D00959C57 /* Splitter */,
 				4A774A5323EBCDFA002F1700 /* SplitterTests */,
+				4AA357A12416AE7E00219E65 /* SplitterUITests */,
 			);
 		};
 /* End PBXProject section */
@@ -551,6 +603,13 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		4A774A5223EBCDFA002F1700 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4AA357A02416AE7E00219E65 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -700,6 +759,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		4AA3579E2416AE7E00219E65 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4AA357A52416AE7E00219E65 /* SplitterUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -707,6 +774,11 @@
 			isa = PBXTargetDependency;
 			target = 4A230E8E23B00A1D00959C57 /* Splitter */;
 			targetProxy = 4A774A5923EBCDFA002F1700 /* PBXContainerItemProxy */;
+		};
+		4AA357A82416AE7E00219E65 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4A230E8E23B00A1D00959C57 /* Splitter */;
+			targetProxy = 4AA357A72416AE7E00219E65 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -963,6 +1035,44 @@
 			};
 			name = Release;
 		};
+		4AA357A92416AE7E00219E65 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 39SZK2C73D;
+				INFOPLIST_FILE = SplitterUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mibe.SplitterUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = Splitter;
+			};
+			name = Debug;
+		};
+		4AA357AA2416AE7E00219E65 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 39SZK2C73D;
+				INFOPLIST_FILE = SplitterUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+					"@loader_path/../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.mibe.SplitterUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = Splitter;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -989,6 +1099,15 @@
 			buildConfigurations = (
 				4A774A5C23EBCDFA002F1700 /* Debug */,
 				4A774A5D23EBCDFA002F1700 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4AA357AB2416AE7E00219E65 /* Build configuration list for PBXNativeTarget "SplitterUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4AA357A92416AE7E00219E65 /* Debug */,
+				4AA357AA2416AE7E00219E65 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
