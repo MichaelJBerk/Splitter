@@ -67,7 +67,6 @@ class LiveSplit: NSObject, XMLParserDelegate {
 			region = run.metadata().regionName()
 			
 			
-			
 		}
 		
 		let par = XMLParser(data: lssData!)
@@ -83,17 +82,35 @@ class LiveSplit: NSObject, XMLParserDelegate {
 		var i = 0
 		var tsArray: [splitTableRow] = []
 		while i < segCount {
-			//TODO: Parse current and best split from LiveSplit
+			
 			let segName = run.segment(i).name()
 			
 			var newTS = TimeSplit(mil: 0)
-			if let bestTimeDouble = run.segment(i).personalBestSplitTime().realTime()?.totalSeconds() {
-				newTS = TimeSplit(seconds: bestTimeDouble)
+			let hey = run.segment(i).bestSegmentTime()
+			if let cTimeDouble = run.segment(i).personalBestSplitTime().realTime()?.totalSeconds() {
+				newTS = TimeSplit(seconds: cTimeDouble)
 			}
 			
-			let liveSplitIterator = run.segment(i).segmentHistory().iter().next()
+			let bestTS = run.segment(i).bestSegmentTime().realTime()?.totalSeconds()
 			
-			let newRow = splitTableRow(splitName: segName, bestSplit: newTS, currentSplit: TimeSplit(), previousSplit: TimeSplit(), previousBest: newTS, splitIcon: nil)
+			
+			//Parse LiveSplit history
+			let iter = run.segment(i).segmentHistory().iter()
+			var last: Double? = nil
+			var secondToLast: Double? = nil
+			while (iter.next() != nil) {
+				secondToLast = iter.next()?.time().realTime()?.totalSeconds()
+				last = iter.next()?.time().realTime()?.totalSeconds()
+			}
+			
+			
+			var newBest = TimeSplit(seconds: bestTS ?? 0)
+			if i > 0 {
+				newBest = newBest + tsArray[i - 1].bestSplit
+			}
+			
+//			let newRow = splitTableRow(splitName: segName, bestSplit: TimeSplit(), currentSplit: TimeSplit(), previousSplit: TimeSplit(), previousBest: TimeSplit())
+			let newRow = splitTableRow(splitName: segName, bestSplit: newTS, currentSplit: TimeSplit(), previousSplit: TimeSplit(), previousBest: newBest, splitIcon: nil)
 			tsArray.append(newRow)
 			i = i + 1
 		}
@@ -101,6 +118,8 @@ class LiveSplit: NSObject, XMLParserDelegate {
 			self.loadedSplits = tsArray
 		}
 	}
+	
+
 	
 	public var img: NSImage? //{
 
