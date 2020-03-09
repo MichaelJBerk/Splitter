@@ -48,6 +48,8 @@ class lss: SplitterDoc {
 			ls.region = vc.gameRegion
 			ls.splits = vc.currentSplits
 			ls.lsPointer = vc.lsPointer
+			ls.icons = vc.iconArray
+			ls.gameIcon = vc.gameIcon
 			let fileString = ls.liveSplitString()
 			if let lsData = fileString.data(using: .utf8) {
 				return lsData

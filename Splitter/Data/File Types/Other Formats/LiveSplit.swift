@@ -18,6 +18,8 @@ class LiveSplit: NSObject, XMLParserDelegate {
 	var path: String!
 	var data: Data!
 	var splits: [splitTableRow] = []
+	var icons: [NSImage?] = []
+	var gameIcon: NSImage?
 	var runTitle: String?
 	var category: String?
 	var attempts: Int?
@@ -151,10 +153,31 @@ class LiveSplit: NSObject, XMLParserDelegate {
 		lss?.setRegionName(region ?? "")
 		lss?.parseAndSetAttemptCount("\(attempts)")
 		
+		
+		if var giData = gameIcon?.tiffRepresentation {
+			let giLen = giData.count
+			let giPtr = giData.withUnsafeMutableBytes( { bytes in
+				var UMBP = bytes.baseAddress
+				lss?.setGameIcon(UMBP, giLen)
+			})
+		}
+		
 		i = 0
 		while i < splits.count {
 			lss?.selectOnly(i)
-			lss?.activeParseAndSetBestSegmentTime(splits[i].bestSplit.timeString)
+			let icon = icons[i]
+			
+			if var id = icon?.tiffRepresentation {
+				let iconlen = id.count
+				let iPtr = id.withUnsafeMutableBytes( { bytes in
+					var UMBP = bytes.baseAddress
+					lss?.activeSetIcon(UMBP, iconlen)
+				})
+			}
+			
+//			lss?.activeSetIcon(<#T##data: UnsafeMutableRawPointer?##UnsafeMutableRawPointer?#>, <#T##length: size_t##size_t#>)
+			let ts = splits[i].bestSplit.shortTimeString
+			lss?.activeParseAndSetSplitTime(ts)//splits[i].bestSplit.shortTimeString)
 			i = i + 1
 		}
 //		hey.
