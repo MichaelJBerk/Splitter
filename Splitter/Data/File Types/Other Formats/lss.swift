@@ -38,6 +38,25 @@ class lss: SplitterDoc {
 
     override func data(ofType typeName: String) throws -> Data {
 		let splitDoc = Document()
+		let ls = LiveSplit()
+		if let vc = viewController {
+			ls.runTitle = vc.runTitle
+			ls.category = vc.category
+			ls.attempts = vc.attempts
+			ls.platform = vc.platform
+			ls.gameVersion = vc.gameVersion
+			ls.region = vc.gameRegion
+			ls.splits = vc.currentSplits
+			ls.lsPointer = vc.lsPointer
+			ls.icons = vc.iconArray
+			ls.gameIcon = vc.gameIcon
+			let fileString = ls.liveSplitString()
+			if let lsData = fileString.data(using: .utf8) {
+				return lsData
+			}
+		}
+		
+		
 		
         throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
     }

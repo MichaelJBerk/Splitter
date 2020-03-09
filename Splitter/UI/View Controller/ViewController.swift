@@ -184,6 +184,22 @@ class ViewController: NSViewController {
 			attemptField.stringValue = "\(attempts)"
 		}
 	}
+	var runTitle: String {
+		get {
+			return runTitleField.stringValue
+		}
+		set {
+			runTitleField.stringValue = newValue
+		}
+	}
+	var category: String {
+		get {
+			return categoryField.stringValue
+		}
+		set {
+			categoryField.stringValue = newValue
+		}
+	}
 	var platform: String?
 	var gameVersion: String?
 	var gameRegion: String?
@@ -197,6 +213,8 @@ class ViewController: NSViewController {
 	var splitsIOSchemaVersion = "v1.0.1"
 	var splitsIOData: SplitsIOExchangeFormat!
 	var runInfoData: runInfo?
+	
+	var lsPointer: UnsafeMutableRawPointer?
 	
 	var appearance: splitterAppearance?
 		
