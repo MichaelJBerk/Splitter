@@ -17,9 +17,9 @@ class LiveSplit: NSObject, XMLParserDelegate {
 	
 	var path: String!
 	var data: Data!
-	var loadedSplits: [splitTableRow] = []
-	var gameName: String?
-	var subtitle: String?
+	var splits: [splitTableRow] = []
+	var runTitle: String?
+	var category: String?
 	var attempts: Int?
 	var platform: String?
 	var region: String?
@@ -27,6 +27,8 @@ class LiveSplit: NSObject, XMLParserDelegate {
 	
 	var startDate: String?
 	var endDate: String?
+	
+	var lsPointer: UnsafeMutableRawPointer?
 	
 	func displayImportDialog() {
 		
@@ -60,18 +62,19 @@ class LiveSplit: NSObject, XMLParserDelegate {
 			let run = cRun.unwrap()
 			parseBestSplits(run: run)
 			
-			gameName = run.gameName()
-			subtitle = run.categoryName()
+			runTitle = run.gameName()
+			category = run.categoryName()
 			attempts = Int(run.attemptCount())
 			platform = run.metadata().platformName()
 			region = run.metadata().regionName()
 			
-			
+			lsPointer = run.ptr
 		}
 		
 		let par = XMLParser(data: lssData!)
 		par.delegate = self
 		par.parse()
+		
 		
 	}
 	
@@ -115,8 +118,72 @@ class LiveSplit: NSObject, XMLParserDelegate {
 			i = i + 1
 		}
 		if tsArray.count > 0 {
-			self.loadedSplits = tsArray
+			self.splits = tsArray
 		}
+	}
+	
+	func liveSplitString() -> String {
+//		var run = LiveSplitCore.Run(ptr: lsPointer)
+		var run = LiveSplitCore.Run()
+		
+		
+		var segDel = "If you name a segment this it will be deleted"
+//		var t = LiveSplitCore.Timer(c)
+//		print(c.ptr)
+//		run.ptr = lsPointer
+		var blankSeg = LiveSplitCore.Segment(segDel)
+		
+//		run.pushSegment(blankSeg)
+		var i = 0
+		while i < splits.count {
+			
+			var seg = LiveSplitCore.Segment(splits[i].splitName)
+			run.pushSegment(seg)
+//			lss?.insertSegmentBelow()
+			i = i + 1
+		}
+		
+		
+		var lss = LiveSplitCore.RunEditor(run)
+		lss?.setGameName(runTitle ?? "")
+		lss?.setCategoryName(category ?? "")
+		lss?.setPlatformName(platform ?? "")
+		lss?.setRegionName(region ?? "")
+		lss?.parseAndSetAttemptCount("\(attempts)")
+		
+		i = 0
+		while i < splits.count {
+			lss?.selectOnly(i)
+			lss?.activeParseAndSetBestSegmentTime(splits[i].bestSplit.timeString)
+			i = i + 1
+		}
+//		hey.
+		
+		
+		
+		
+//		var hey = LiveSplitCoreNative.new
+		
+		
+//		let thing = LiveSplitCore.Run.Sav
+		
+//		print(lss?.ptr)
+//		print(c.ptr)
+//		print(p)
+//		lss?.close()
+		
+		
+//		var newPtr = withUnsafeMutablePointer(to: &c) {$0}
+//		var p2 = UnsafeMutableRawPointer(newPtr)
+		
+//		unsafeDowncast(c as AnyObject, to: UnsafeMutableRawPointer)
+//		var ptr2 = newPtr as! UnsafeMutableRawPointer
+		
+//		run.ptr = self.lsPointer
+		run.ptr = lss?.ptr
+		return run.saveAsLss()
+		
+		
 	}
 	
 
