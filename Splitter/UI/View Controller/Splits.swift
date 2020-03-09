@@ -16,7 +16,7 @@ extension ViewController {
 		if timerStarted {
 		
 			
-			
+			updateBestSplits(of: currentSplitNumber)
 			if currentSplits.count > currentSplitNumber + 1 {
 				
 				
@@ -30,6 +30,7 @@ extension ViewController {
 				//If it's at the last split, then stop the timer.
 				stopTimer()
 			}
+			
 			
 		}
 	}
