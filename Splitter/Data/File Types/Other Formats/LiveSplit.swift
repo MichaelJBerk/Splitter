@@ -108,6 +108,15 @@ class LiveSplit: NSObject, XMLParserDelegate {
 				last = iter.next()?.time().realTime()?.totalSeconds()
 			}
 			
+			let imgStr = run.segment(i).icon()
+			var img:NSImage? = nil
+			if let imgURL = URL(string: imgStr){
+				if let imgdata = try? Data(contentsOf: imgURL) {
+					img = NSImage(data: imgdata)
+				}
+			}
+			iconArray.append(img)
+			
 			
 			var newBest = TimeSplit(seconds: bestTS ?? 0)
 			if i > 0 {
@@ -129,6 +138,7 @@ class LiveSplit: NSObject, XMLParserDelegate {
 		var run = LiveSplitCore.Run()
 		
 		
+		
 		var segDel = "If you name a segment this it will be deleted"
 //		var t = LiveSplitCore.Timer(c)
 //		print(c.ptr)
@@ -137,18 +147,20 @@ class LiveSplit: NSObject, XMLParserDelegate {
 		
 //		run.pushSegment(blankSeg)
 		var i = 0
-		while i < splits.count {
-			
-			var seg = LiveSplitCore.Segment(splits[i].splitName)
-			run.pushSegment(seg)
-//			lss?.insertSegmentBelow()
-			i = i + 1
-		}
+//		while i < splits.count {
+//
+//			var seg = LiveSplitCore.Segment(splits[i].splitName)
+//			run.pushSegment(seg)
+////			lss?.insertSegmentBelow()
+//			i = i + 1
+//		}
+		run.pushSegment(blankSeg)
 		
 		
 		var lss = LiveSplitCore.RunEditor(run)
+		
 		lss?.setGameName(runTitle ?? "")
-		lss?.setCategoryName(category ?? "")
+		lss?.setCategoryName(category ?? " ")
 		lss?.setPlatformName(platform ?? "")
 		lss?.setRegionName(region ?? "")
 		lss?.parseAndSetAttemptCount("\(attempts)")
@@ -161,10 +173,9 @@ class LiveSplit: NSObject, XMLParserDelegate {
 				lss?.setGameIcon(UMBP, giLen)
 			})
 		}
-		
 		i = 0
 		while i < splits.count {
-			lss?.selectOnly(i)
+			lss?.insertSegmentBelow()
 			let icon = icons[i]
 			
 			if var id = icon?.tiffRepresentation {
@@ -175,11 +186,16 @@ class LiveSplit: NSObject, XMLParserDelegate {
 				})
 			}
 			
-//			lss?.activeSetIcon(<#T##data: UnsafeMutableRawPointer?##UnsafeMutableRawPointer?#>, <#T##length: size_t##size_t#>)
+			lss?.activeSetName(splits[i].splitName)
 			let ts = splits[i].bestSplit.shortTimeString
 			lss?.activeParseAndSetSplitTime(ts)//splits[i].bestSplit.shortTimeString)
 			i = i + 1
 		}
+		lss?.selectOnly(0)
+		lss?.removeSegments()
+		
+		
+		
 //		hey.
 		
 		
@@ -228,6 +244,7 @@ class LiveSplit: NSObject, XMLParserDelegate {
 
 	func parser(_ parser: XMLParser, foundCDATA CDATABlock: Data) {
 		self.cdata = CDATABlock
+		var imgAttempt = NSImage(data: CDATABlock)
 		print(CDATABlock)
 
 //		print(element)
@@ -238,22 +255,39 @@ class LiveSplit: NSObject, XMLParserDelegate {
 		if cRun.parsedSuccessfully() {
 			let run = cRun.unwrap()
 			if element == "GameIcon" {
-				let imgPtr = run.gameIconPtr()!
-				let imgLen = run.gameIconLen()
-				let imgD = Data(bytes: imgPtr, count: imgLen)
-				let i = NSImage(data: imgD)
-
-				self.img = i
+				var imgStr = run.gameIcon()
+				let imgdata = try? Data(contentsOf: URL(string: imgStr)!)
+				if let i = NSImage(data: imgdata!) {
+					self.img = i
+				}
+				
+//				let imgptr = withUnsafeBytes(of: &imgStr) { bytes in
+////					bytes.baseAddress
+//
+//
+//					var imgData = Data(bytes: bytes.baseAddress!, count: bytes.count)
+//					let i = NSImage(contentsOf: imgData as URL)
+//
+////				let i = imgPtr.toImage()
+//
+////				var hey = try? Folder(path: "~").createFileIfNeeded(at: "thing.png")
+////				try? hey?.write(imgPtr)
+////				let imgLen = run.gameicon
+////				let imgD = Data(bytes: imgPtr, count: imgLen)
+////				let i = NSImage(data: imgD)
+//
+//				self.img = i
+//				}
 			}
 			if element == "Icon" {
 				let seg = run.segment(self.segment)
-				let imgPtr = seg.iconPtr()!
-				let imglen = seg.iconLen()
+				
+//				let imglen = seg.iconLen()
 
 
-				let imgD = Data(bytes: imgPtr, count: imglen)
-				let i = NSImage(data: imgD)
-				iconArray.append(i)
+//				let imgD = Data(bytes: imgPtr, count: imglen)
+//				let i = NSImage(data: imgD)
+//				iconArray.append(i)
 
 
 
@@ -285,3 +319,14 @@ extension String {
     }
 }
 
+
+//yourString.toImage() // it will convert String  to UIImage
+
+extension String {
+    func toImage() -> NSImage? {
+        if let data = Data(base64Encoded: self, options: .ignoreUnknownCharacters){
+            return NSImage(data: data)
+        }
+        return nil
+    }
+}
