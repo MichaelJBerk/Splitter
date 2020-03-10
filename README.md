@@ -13,14 +13,15 @@ If you'd like to see what features are in the works, you can look at the [Roadma
 [Join the Slack group](https://join.slack.com/t/splitter-app/shared_invite/enQtOTQ4OTg3OTg3NTQwLTNlMjAyZjZlNzgzNzhkNTMwOTA2MjZkODNlMzM3ZDYwZjY1YTc2ODljZWQzMzJjYjAzOWEwNzU0MWFmODQ3NjM)
 
 ## Supported Formats
-- In addition to the Splitter-native `.split` format, the app can import the following:
-	- Splits.io Exchange Format (`.json`)
-	- LiveSplit (`.lss`)
 
 [Info about Splitter's native file format](https://github.com/MichaelJBerk/Splitter/wiki/.Split-Format)
 
-The app can also export to `.json` (as the Splits.io format), and exporting to `.lss` will come in a future build.
-Support for additional formats (including Llanfair and TimeSplitTracker) is currently underway 
+- In addition to the Splitter-native `.split` format, the app can edit and save the following:
+	- LiveSplit (`.lss`)
+
+The app can also import/export to `.json` (as the Splits.io Exchange Format). The ability to edit `.json` directly (w/o needing to import/export) will come in a future build.
+
+Support for additional formats (including Llanfair and TimeSplitTracker) is currently planned, as well. 
 
 
 ### Acknowledgements
