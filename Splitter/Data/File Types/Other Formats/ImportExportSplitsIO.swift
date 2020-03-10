@@ -112,19 +112,14 @@ extension ViewController {
 			
 			let dialog = NSSavePanel()
 			dialog.title = "Save to Splits.io"
-//			dialog.message = "Save please"
 			dialog.allowedFileTypes = ["json"]
 			dialog.allowsOtherFileTypes = false
 		
 			if let w = view.window {
-//				if dialog.runModal() == .OK {
-//					print("OK")
-//				}
 				dialog.beginSheetModal(for: w) { (response) in
 					if response == .OK {
 						let path = dialog.url?.lastPathComponent
 						
-//						let path = result?.path
 						let folderPath = dialog.directoryURL?.path
 						var newFile = try? Folder(path: folderPath!).createFileIfNeeded(withName: path!)
 						try? newFile?.write(encodedSplitsIO!)

@@ -57,12 +57,12 @@ extension ViewController {
 			i = i + 1
 		}
 		updatePreviousSplit(of: 0)
-		let blankSplit = TimeSplit(mil: 0,sec: 0,min: 0,hour: 0)
+		
 		
 		
 		milHundrethTimer = Cocoa.Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateMilHundreth), userInfo: nil, repeats: true)
 		refreshUITimer = Cocoa.Timer.scheduledTimer(timeInterval: 0.03, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
-		currentSplit = blankSplit.tsCopy()
+		currentSplit = TimeSplit()
 		
 		currentSplitNumber = 0
 		currentSplits[0].currentSplit = self.currentSplit!

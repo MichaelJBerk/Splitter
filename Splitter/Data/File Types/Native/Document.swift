@@ -56,88 +56,14 @@ class Document: SplitterDocBundle {
 		
 	}
 	
-	func encodeSplitterAppearance() -> Data? {
-		if let vc = viewController {
-			let app = splitterAppearance(viewController:vc)
-			let newJE = JSONEncoder()
-			if let sApp = try? newJE.encode(app) {
-				return sApp
-			}
-			
-		}
-		return nil
-	}
-	
 	override func save(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, delegate: Any?, didSave didSaveSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
-		if let vc = viewController {
-			let newRunInfo = vc.saveToRunInfo()
-			let newJE = JSONEncoder()
-			let cleanParentURL = url.deletingLastPathComponent().path//.absoluteString.replacingOccurrences(of: "file://", with: "")
-
-			let newFileName = url.lastPathComponent
-			
-			let parentFolder = try? Folder(path: cleanParentURL)
-
-			let currentBundleFolder = try? parentFolder?.createSubfolderIfNeeded(withName: newFileName)
-
-
-			if let dataToSave = try? newJE.encode(newRunInfo) {
-				let runInfoFile = try? currentBundleFolder?.createFileIfNeeded(withName: "runInfo.json")
-				try? runInfoFile?.write(dataToSave)
-			}
-			
-			if let splitterAppData = encodeSplitterAppearance() {
-				let splitterAppFile = try? currentBundleFolder?.createFileIfNeeded(withName: "appearance.json")
-				try? splitterAppFile?.write(splitterAppData)
-			}
-			
-			
-			if vc.gameIcon != nil {
-				if let tiff = vc.gameIcon?.tiffRepresentation {
-					let gameIconFile = try? currentBundleFolder?.createFileIfNeeded(withName: "gameIcon.png")
-					try? gameIconFile?.write(tiff)
-				}
-			} else {
-				if currentBundleFolder?.containsFile(named: "gameIcon.png") != nil {
-					try? currentBundleFolder?.file(named: "gameIcon.png").delete()
-				}
-			}
-			let iconArray = vc.iconArray
-			Swift.print("is IA empty? ", iconArray.isEmpty)
-			if !iconArray.isEmpty {
-				let runIconsFolder = try? currentBundleFolder?.createSubfolderIfNeeded(withName: "segIcons")
-				var i = 0
-				while i < iconArray.count {
-					let icon = iconArray[i]
-					if icon != nil {
-						let newIconFile = try? runIconsFolder?.createFileIfNeeded(withName: "\(i).png")
-						try? newIconFile?.write((icon?.tiffRepresentation!)!)
-					} else {
-						if let iconFile = try? runIconsFolder?.file(named: "\(i).png") {
-							try? iconFile.delete()
-						}
-					}
-					i = i + 1
-				}
-				if runIconsFolder?.files.count() == 0 {
-					try? runIconsFolder?.delete()
-				}
-				
-			} else {
-				if let runIconsFolder = try? currentBundleFolder?.subfolder(named: "runicons") {
-					try? runIconsFolder.delete()
-				}
-			}
-				
-				
-			
-			fileWrapperURL = url.absoluteString
-			
-			self.wrapper = folderToFileWrapper(folder: currentBundleFolder!)
+		if typeName == "Split File" {
+			saveSplitFile(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: 	contextInfo)
+		} else {
+			saveLiveSplitFile(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: 	contextInfo)
 		}
 		
 		
-		super.save(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: contextInfo)
 	}
 	
 	

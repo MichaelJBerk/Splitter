@@ -44,6 +44,179 @@ class SplitterDoc: NSDocument {
 		return nil
 	}
 	
+	override func writableTypes(for saveOperation: NSDocument.SaveOperationType) -> [String] {
+//		var types = super.writableTypes(for: saveOperation)
+//		switch saveOperation {
+//		case .saveAsOperation, .saveToOperation, .saveOperation:
+//			types.append("Split File")
+//		default:
+//			break
+//		}
+		return ["Split File", "LiveSplit File"]
+	}
+	
+	var bundleFolder: Folder? {
+		if let path = fileURL?.path {
+			return try? Folder(path: path)
+		}
+		return nil
+	}
+	
+	var fileWrapperURL: String?
+	var wrapper:FileWrapper?
+
+	
+	///Converts a Folder, with all its subfolders, to a FIleWrapper
+	func folderToFileWrapper(folder: Folder) -> FileWrapper {
+		var fwDictionary: [String: FileWrapper] = [:]
+		
+		
+		
+		for file in folder.files {
+			fwDictionary[file.name] = try? FileWrapper(regularFileWithContents: file.read())
+		}
+		for subfolder in folder.subfolders {
+			fwDictionary[subfolder.name] = folderToFileWrapper(folder: subfolder)
+		}
+		
+		let wrap = FileWrapper(directoryWithFileWrappers: fwDictionary)
+		return wrap
+	}
+	
+	
+    /*
+    override var windowNibName: String? {
+        // Override returning the nib file name of the document
+        // If you need to use a subclass of NSWindowController or if your document supports multiple NSWindowControllers, you should remove this method and override -makeWindowControllers instead.
+        return "SplitterDocBundle"
+    }
+    */
+	
+	
+	
+	override func fileWrapper(ofType typeName: String) throws -> FileWrapper {
+		if let wrap = self.wrapper {
+			return wrap
+		}
+		
+		throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
+	}
+	
+	func encodeSplitterAppearance() -> Data? {
+		if let vc = viewController {
+			let app = splitterAppearance(viewController:vc)
+			let newJE = JSONEncoder()
+			if let sApp = try? newJE.encode(app) {
+				return sApp
+			}
+			
+		}
+		return nil
+	}
+	
+	
+	func saveSplitFile(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, delegate: Any?, didSave didSaveSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
+		if let vc = viewController {
+			let newRunInfo = vc.saveToRunInfo()
+			let newJE = JSONEncoder()
+			let cleanParentURL = url.deletingLastPathComponent().path//.absoluteString.replacingOccurrences(of: "file://", with: "")
+
+			let newFileName = url.lastPathComponent
+			
+			let parentFolder = try? Folder(path: cleanParentURL)
+
+			let currentBundleFolder = try? parentFolder?.createSubfolderIfNeeded(withName: newFileName)
+
+
+			if let dataToSave = try? newJE.encode(newRunInfo) {
+				let runInfoFile = try? currentBundleFolder?.createFileIfNeeded(withName: "runInfo.json")
+				try? runInfoFile?.write(dataToSave)
+			}
+			
+			if let splitterAppData = encodeSplitterAppearance() {
+				let splitterAppFile = try? currentBundleFolder?.createFileIfNeeded(withName: "appearance.json")
+				try? splitterAppFile?.write(splitterAppData)
+			}
+			
+			
+			if vc.gameIcon != nil {
+				if let tiff = vc.gameIcon?.tiffRepresentation {
+					let gameIconFile = try? currentBundleFolder?.createFileIfNeeded(withName: "gameIcon.png")
+					try? gameIconFile?.write(tiff)
+				}
+			} else {
+				if currentBundleFolder?.containsFile(named: "gameIcon.png") != nil {
+					try? currentBundleFolder?.file(named: "gameIcon.png").delete()
+				}
+			}
+			let iconArray = vc.iconArray
+			Swift.print("is IA empty? ", iconArray.isEmpty)
+			if !iconArray.isEmpty {
+				let runIconsFolder = try? currentBundleFolder?.createSubfolderIfNeeded(withName: "segIcons")
+				var i = 0
+				while i < iconArray.count {
+					let icon = iconArray[i]
+					if icon != nil {
+						let newIconFile = try? runIconsFolder?.createFileIfNeeded(withName: "\(i).png")
+						try? newIconFile?.write((icon?.tiffRepresentation!)!)
+					} else {
+						if let iconFile = try? runIconsFolder?.file(named: "\(i).png") {
+							try? iconFile.delete()
+						}
+					}
+					i = i + 1
+				}
+				if runIconsFolder?.files.count() == 0 {
+					try? runIconsFolder?.delete()
+				}
+				
+			} else {
+				if let runIconsFolder = try? currentBundleFolder?.subfolder(named: "runicons") {
+					try? runIconsFolder.delete()
+				}
+			}
+				
+				
+			
+			fileWrapperURL = url.absoluteString
+			
+			self.wrapper = folderToFileWrapper(folder: currentBundleFolder!)
+		} else {
+			
+		}
+		super.save(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: contextInfo)
+	}
+	
+	func saveLiveSplitFile(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, delegate: Any?, didSave didSaveSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
+		let ls = LiveSplit()
+		if let vc = viewController {
+			ls.runTitle = vc.runTitle
+			ls.category = vc.category
+			ls.attempts = vc.attempts
+			ls.platform = vc.platform
+			ls.gameVersion = vc.gameVersion
+			ls.region = vc.gameRegion
+			ls.splits = vc.currentSplits
+			ls.lsPointer = vc.lsPointer
+			ls.icons = vc.iconArray
+			ls.gameIcon = vc.gameIcon
+			let fileString = ls.liveSplitString()
+			if let lsData = fileString.data(using: .utf8) {
+				print("\(url.path)")
+				
+				var lssFolder = try? Folder(path: url.deletingLastPathComponent().path)
+				var lssFile = try? lssFolder?.createFileIfNeeded(at: url.lastPathComponent)
+				try? lssFile?.write(lsData)
+				
+			}
+		}
+		
+	}
+	
+//	override func data(ofType typeName: String) throws -> Data {
+//
+//	}
+	
     /*
     override var windowNibName: String? {
         // Override returning the nib file name of the document
