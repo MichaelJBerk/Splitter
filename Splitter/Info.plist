@@ -81,7 +81,7 @@
 				<string>com.apple.package</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>Splits File</string>
+			<string>Split File</string>
 			<key>UTTypeIconFile</key>
 			<string>SplitterDocIcon</string>
 			<key>UTTypeIdentifier</key>
@@ -113,6 +113,10 @@
 				</array>
 			</dict>
 		</dict>
+	</array>
+	<key>UTImportedTypeDeclarations</key>
+	<array>
+		<dict/>
 	</array>
 </dict>
 </plist>
