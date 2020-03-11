@@ -18,11 +18,9 @@ If you'd like to see what features are in the works, you can look at the [Roadma
 
 - In addition to the Splitter-native `.split` format, the app can edit and save the following:
 	- LiveSplit (`.lss`)
-
-The app can also import/export to `.json` (as the Splits.io Exchange Format). The ability to edit `.json` directly (w/o needing to import/export) will come in a future build.
-
-Support for additional formats (including Llanfair and TimeSplitTracker) is currently planned, as well. 
-
+	- Splits.io (`.json`)
+	- (planned) Llanfair [gered's fork] (`.lfs`)
+	- (planned) Time Split Tracker (`.timesplittracker`)
 
 ### Acknowledgements
 [LiveSplit Core](https://github.com/LiveSplit/livesplit-core)
