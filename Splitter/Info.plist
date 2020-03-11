@@ -38,6 +38,22 @@
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).lss</string>
 		</dict>
+		<dict>
+			<key>CFBundleTypeExtensions</key>
+			<array>
+				<string>json</string>
+			</array>
+			<key>CFBundleTypeIconFile</key>
+			<string>Splitter Doc SplitsIO</string>
+			<key>CFBundleTypeName</key>
+			<string>Splits.io File</string>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>LSTypeIsPackage</key>
+			<integer>0</integer>
+			<key>NSDocumentClass</key>
+			<string>$(PRODUCT_MODULE_NAME).SplitsIODoc</string>
+		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
@@ -100,7 +116,7 @@
 				<string>public.xml</string>
 			</array>
 			<key>UTTypeDescription</key>
-			<string>LiveSplit file</string>
+			<string>LiveSplit File</string>
 			<key>UTTypeIconFile</key>
 			<string>livesplit</string>
 			<key>UTTypeIdentifier</key>
@@ -113,10 +129,25 @@
 				</array>
 			</dict>
 		</dict>
-	</array>
-	<key>UTImportedTypeDeclarations</key>
-	<array>
-		<dict/>
+		<dict>
+			<key>UTTypeConformsTo</key>
+			<array>
+				<string>public.json</string>
+			</array>
+			<key>UTTypeDescription</key>
+			<string>Splits.io File</string>
+			<key>UTTypeIconFile</key>
+			<string>Splitter Doc SplitsIO</string>
+			<key>UTTypeIdentifier</key>
+			<string>mibe.splitsIO</string>
+			<key>UTTypeTagSpecification</key>
+			<dict>
+				<key>public.filename-extension</key>
+				<array>
+					<string>json</string>
+				</array>
+			</dict>
+		</dict>
 	</array>
 </dict>
 </plist>

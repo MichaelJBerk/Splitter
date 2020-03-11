@@ -7,10 +7,19 @@
 //
 
 import Cocoa
-import Files 
+import Files
+
+enum DocFileType: String {
+	//public static let
+	case splitFile = "Split File"
+	case liveSplit = "LiveSplit File"
+	case splitsioFile = "Splits.io File"
+}
+
 
 ///A filetype supported by Splitter
 class SplitterDoc: NSDocument {
+	
 	
 	func print(_ i: Any?) {
 		Swift.print(i)
@@ -45,14 +54,7 @@ class SplitterDoc: NSDocument {
 	}
 	
 	override func writableTypes(for saveOperation: NSDocument.SaveOperationType) -> [String] {
-//		var types = super.writableTypes(for: saveOperation)
-//		switch saveOperation {
-//		case .saveAsOperation, .saveToOperation, .saveOperation:
-//			types.append("Split File")
-//		default:
-//			break
-//		}
-		return ["Split File", "LiveSplit File"]
+		return [DocFileType.splitFile.rawValue, DocFileType.liveSplit.rawValue, DocFileType.splitsioFile.rawValue]
 	}
 	
 	var bundleFolder: Folder? {
@@ -209,6 +211,40 @@ class SplitterDoc: NSDocument {
 				try? lssFile?.write(lsData)
 				
 			}
+		}
+	}
+		
+	func saveSplitsio(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, delegate: Any?, didSave didSaveSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
+		if let vc = viewController {
+			let timer = SplitsIOTimer(shortname: "Splitter", longname: "Splitter", website: "https://mberk.com/splitter", version: "v\(otherConstants.version) (\(otherConstants.build))")
+			let game = SplitsIOCategory(longname: vc.runTitle, shortname: nil, links: nil)
+			let cat = SplitsIOCategory(longname: vc.category, shortname: nil, links: nil)
+			var cs: [SplitsIOSegment] = []
+			for s in vc.currentSplits {
+				let best = s.bestSplit.TSToMil()
+				let dur = SplitsIOBestDuration(realtimeMS: best, gametimeMS: best)
+				let seg = SplitsIOSegment(name: s.splitName, endedAt: dur, bestDuration: dur, isSkipped: nil, histories: nil)
+				cs.append(seg)
+			}
+			let sIO = SplitsIOExchangeFormat(schemaVersion: "v1.0.1", links: nil, timer: timer, attempts: nil, game: game, category: cat, runners: nil, segments: cs)
+			if let sioData = try? sIO.jsonData() {
+				let sioFolder = try? Folder(path: url.deletingLastPathComponent().path)
+				let sioFile = try? sioFolder?.createFileIfNeeded(at: url.lastPathComponent)
+				try? sioFile?.write(sioData)
+			}
+		}
+	}
+		
+	func determineSave(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, delegate: Any?, didSave didSaveSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
+		switch typeName {
+		case DocFileType.splitFile.rawValue:
+			saveSplitFile(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: 	contextInfo)
+		case DocFileType.liveSplit.rawValue:
+			saveLiveSplitFile(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: 	contextInfo)
+		case DocFileType.splitsioFile.rawValue:
+			saveSplitsio(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: contextInfo)
+		default:
+			break
 		}
 		
 	}

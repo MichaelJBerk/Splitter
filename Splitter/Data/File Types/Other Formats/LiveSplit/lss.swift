@@ -39,20 +39,17 @@ class lss: SplitterDoc {
 	}
 	
 	override func save(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, delegate: Any?, didSave didSaveSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
-		if typeName == "Split File" {
-//			let newDoc = try? Document(type: "Split File")
-////			for w in self.windowControllers {
-////				w.document = newDoc
-////			}
-////			newDoc?.setWindow(self.windowControllers.first?.window)
-//			NSDocumentController.shared.newDocument(nil)
-//			newDoc?.save(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: contextInfo)
-//			saveSplitFile(url: url)
-			saveSplitFile(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: 	contextInfo)
-		} else {
-//			super.save(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: contextInfo)
-			saveLiveSplitFile(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: 	contextInfo)
-		}
+//		switch typeName {
+//		case DocFileType.splitFile.rawValue:
+//			saveSplitFile(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: 	contextInfo)
+//		case DocFileType.liveSplit.rawValue:
+//			saveLiveSplitFile(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: 	contextInfo)
+//		case DocFileType.splitsioFile.rawValue:
+//			break
+//		default:
+//			break
+//		}
+		determineSave(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: 	contextInfo)
 	}
 	
 	

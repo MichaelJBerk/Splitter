@@ -56,16 +56,6 @@ class Document: SplitterDocBundle {
 		
 	}
 	
-	override func save(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, delegate: Any?, didSave didSaveSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
-		if typeName == "Split File" {
-			saveSplitFile(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: 	contextInfo)
-		} else {
-			saveLiveSplitFile(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: 	contextInfo)
-		}
-		
-		
-	}
-	
 	
 	
 	
@@ -122,6 +112,10 @@ class Document: SplitterDocBundle {
 		wrapper =  fileWrapper
 		
 	}
+	
+	override func save(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, delegate: Any?, didSave didSaveSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
+		determineSave(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: contextInfo)
+	}
 
 	override func read(from data: Data, ofType typeName: String) throws {
 		// Insert code here to read your document from the given data of the specified type, throwing an error in case of failure.
@@ -131,10 +125,10 @@ class Document: SplitterDocBundle {
 	}
 
 	
-	override func close() {
-		
-		super.close()
-	}
+//	override func close() {
+//		
+//		super.close()
+//	}
 
 
 }

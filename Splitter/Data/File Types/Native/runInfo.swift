@@ -74,9 +74,6 @@ extension ViewController {
 	
 	func saveToRunInfo() -> runInfo {
 		
-		let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
-		let build = Bundle.main.infoDictionary?["CFBundleVersion"] as! String
-		
 		var segments: [splitSegment] = []
 		for s in currentSplits {
 			let newSeg = splitSegment(name: s.splitName,
@@ -114,8 +111,8 @@ extension ViewController {
 						 compareTo: compareTo.rawValue,
 						 startTime: startDate,
 						 endTime: endDate,
-						 version: version,
-						 build: build)
+						 version: otherConstants.version,
+						 build: otherConstants.build)
 		return ri
 	}
 	

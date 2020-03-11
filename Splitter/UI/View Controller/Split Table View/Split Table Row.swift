@@ -43,7 +43,7 @@ struct splitTableRow {
 			diffTimeString = diff.shortTimeStringTenths
 		}
 		
-		if currentSplit.timeString == "00:00:00.00" {
+		if og.timeString == "00:00:00.00" {
 			return ""
 		} else if currentSplit > og {
 			return "+\(diffTimeString)"

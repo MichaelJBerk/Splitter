@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4A0DC28624186C6200FC959A /* SplitsIODoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0DC28524186C6200FC959A /* SplitsIODoc.swift */; };
+		4A0DC28824186EBC00FC959A /* Splitter Doc SplitsIO.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4A0DC28724186EBC00FC959A /* Splitter Doc SplitsIO.icns */; };
 		4A0F715F23F4A0A500E5948E /* SplitterDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0F715E23F4A0A500E5948E /* SplitterDoc.swift */; };
 		4A0F716323F4A9E400E5948E /* SplitterDocBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0F716223F4A9E400E5948E /* SplitterDocBundle.swift */; };
 		4A1657B123EA4EF60008CB5F /* Menu Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1657B023EA4EF60008CB5F /* Menu Items.swift */; };
@@ -106,6 +108,8 @@
 
 /* Begin PBXFileReference section */
 		315BBBF6C7F74CF21973C8F3 /* Pods-Splitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitter.release.xcconfig"; path = "Target Support Files/Pods-Splitter/Pods-Splitter.release.xcconfig"; sourceTree = "<group>"; };
+		4A0DC28524186C6200FC959A /* SplitsIODoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitsIODoc.swift; sourceTree = "<group>"; };
+		4A0DC28724186EBC00FC959A /* Splitter Doc SplitsIO.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "Splitter Doc SplitsIO.icns"; sourceTree = "<group>"; };
 		4A0F715E23F4A0A500E5948E /* SplitterDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterDoc.swift; sourceTree = "<group>"; };
 		4A0F716223F4A9E400E5948E /* SplitterDocBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterDocBundle.swift; sourceTree = "<group>"; };
 		4A1657B023EA4EF60008CB5F /* Menu Items.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Menu Items.swift"; sourceTree = "<group>"; };
@@ -226,6 +230,7 @@
 			children = (
 				4AD7663123DB5C3A0052409C /* ImportExportSplitsIO.swift */,
 				4A5947D723F36E3A00827306 /* SplitsIOExchangeFormat.swift */,
+				4A0DC28524186C6200FC959A /* SplitsIODoc.swift */,
 			);
 			path = SplitsIO;
 			sourceTree = "<group>";
@@ -313,6 +318,7 @@
 				4AD780C323D5065B0068CDE3 /* Data */,
 				4AFCC52323C63F1E002216F1 /* Prefs */,
 				4A85471723C66D42001F968F /* GamepadIcon.icns */,
+				4A0DC28724186EBC00FC959A /* Splitter Doc SplitsIO.icns */,
 				4A6C312923FF366C00BBE4BB /* SplitterDocIcon.icns */,
 				4A230E9223B00A1D00959C57 /* AppDelegate.swift */,
 				4AFCC52423C63F3E002216F1 /* UI */,
@@ -603,6 +609,7 @@
 				4A87DEA523F251C700975EB8 /* livesplit.icns in Resources */,
 				4A4D391F23C4F29C00BF3FCD /* blankWindow.xib in Resources */,
 				4A5F10AE23CFAA1F00DA043B /* Assets.xcassets in Resources */,
+				4A0DC28824186EBC00FC959A /* Splitter Doc SplitsIO.icns in Resources */,
 				4A85471823C66D42001F968F /* GamepadIcon.icns in Resources */,
 				4A230E9C23B00A1E00959C57 /* Main.storyboard in Resources */,
 			);
@@ -728,6 +735,7 @@
 				4A18663023C5257800FEEE54 /* MenuItemConstants.swift in Sources */,
 				4A0F716323F4A9E400E5948E /* SplitterDocBundle.swift in Sources */,
 				4A4D392223C4FAE500BF3FCD /* HotkeysViewController.swift in Sources */,
+				4A0DC28624186C6200FC959A /* SplitsIODoc.swift in Sources */,
 				4AF953B723EB507800ED540C /* Splits.swift in Sources */,
 				4A1C1465240ECD610056B104 /* ViewControllerID.swift in Sources */,
 				4ACCEA7823B02F520068F89E /* TimeSplit.swift in Sources */,

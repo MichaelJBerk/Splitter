@@ -33,6 +33,35 @@ extension ViewController {
 				//Clicked "Cancel"
 		}
 	}
+	
+	func parseSplitsIOData(splitsIO: SplitsIOExchangeFormat) {
+		runTitleField.stringValue = (splitsIO.game?.longname)!
+		categoryField.stringValue = (splitsIO.category?.longname)!
+		currentSplits = []
+		//						loadedSplits = []
+		let exportJSON = view.window?.menu?.item(withTag: 1)
+		exportJSON?.isEnabled = true
+				//Loading of json into TimeSplits
+				
+				
+		for sT in splitsIO.segments! {
+			let splitTitle = sT.name!
+			let bestSplitIO = sT.bestDuration?.realtimeMS
+			let currentSplitIO = sT.endedAt?.realtimeMS
+			let bestTS = TimeSplit(mil: bestSplitIO!)
+			let currentTS = TimeSplit(mil: currentSplitIO!)
+			//TODO: Update to new split behavior
+			var newTableRow = splitTableRow(splitName: splitTitle, bestSplit: bestTS, currentSplit: currentTS, previousSplit: currentTS, previousBest: bestTS)
+			
+			
+//							loadedSplits.append(newTableRow)
+			currentSplits.append(newTableRow)
+			
+		}
+		shouldLoadSplits = true
+		self.splitsIOData = splitsIO
+		splitsTableView.reloadData()
+	}
 				
 				
 	func parseSplitsIO(_ path: String) {
@@ -42,34 +71,10 @@ extension ViewController {
 		do {
 			let jsonData = try Data(contentsOf: pathURL)
 			let newJSONDecoder = JSONDecoder()
-			let splitsIO = try? newJSONDecoder.decode(SplitsIOExchangeFormat.self, from: jsonData)
+			if let splitsIO = try? newJSONDecoder.decode(SplitsIOExchangeFormat.self, from: jsonData) {
 			//SplitsIOExchangeFormat(jsonData, links: nil, timer: nil)
-			runTitleField.stringValue = splitsIO!.game!.longname!
-			categoryField.stringValue = splitsIO!.category!.longname!
-			currentSplits = []
-	//						loadedSplits = []
-			let exportJSON = view.window?.menu?.item(withTag: 1)
-			exportJSON?.isEnabled = true
-			//Loading of json into TimeSplits
-			
-			
-			for sT in (splitsIO?.segments!)! {
-				let splitTitle = sT.name!
-				let bestSplitIO = sT.bestDuration?.realtimeMS
-				let currentSplitIO = sT.endedAt?.realtimeMS
-				let bestTS = TimeSplit(mil: bestSplitIO!)
-				let currentTS = TimeSplit(mil: currentSplitIO!)
-				//TODO: Update to new split behavior
-				var newTableRow = splitTableRow(splitName: splitTitle, bestSplit: bestTS, currentSplit: currentTS, previousSplit: currentTS, previousBest: bestTS)
-				
-				
-	//							loadedSplits.append(newTableRow)
-				currentSplits.append(newTableRow)
-				
+				parseSplitsIOData(splitsIO: splitsIO)
 			}
-			shouldLoadSplits = true
-			self.splitsIOData = splitsIO
-			splitsTableView.reloadData()
 
 		} catch {
 			

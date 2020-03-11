@@ -15,6 +15,12 @@ import AppCenterCrashes
 import Keys
 import Files
 
+class otherConstants {
+
+public static let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
+public static let build = Bundle.main.infoDictionary?["CFBundleVersion"] as! String
+}
+
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 	@IBOutlet private var window: NSWindow!
