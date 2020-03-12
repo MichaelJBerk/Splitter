@@ -112,9 +112,9 @@ class LiveSplit: NSObject {
 			}
 			
 			let imgStr = run.segment(i).icon()
-			if let img = parseImageFromLiveSplit(icon: imgStr) {
+			let img = parseImageFromLiveSplit(icon: imgStr)
 			iconArray.append(img)
-			}
+//			}
 			
 			
 			var newBest = TimeSplit(seconds: bestTS ?? 0)
