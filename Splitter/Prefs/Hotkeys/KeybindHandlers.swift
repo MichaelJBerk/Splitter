@@ -62,4 +62,9 @@ extension AppDelegate {
 			vc.displayInfoPopover(self)
 		}
 	}
+	func showColumnOptionsHandler() {
+		if let vc = viewController {
+			vc.displayColumnOptionsPopover(self)
+		}
+	}
 }

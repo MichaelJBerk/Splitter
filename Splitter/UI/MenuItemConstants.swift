@@ -50,6 +50,8 @@ enum menuIdentifiers {
 		
 		static let hideTitleBar = NSUserInterfaceItemIdentifier("HideStoplightsItem")
 		static let hideButtons = NSUserInterfaceItemIdentifier("HideButtonsItem")
+		
+		static let showColumnOptions = NSUserInterfaceItemIdentifier("showColumnOptions")
 	}
 	
 	//MARK: - Window Menu

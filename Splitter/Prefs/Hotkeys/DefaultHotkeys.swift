@@ -17,7 +17,8 @@ enum KeybindTitle: String {
 	case StopTimer = "Stop Timer"
 	case ClearTimer = "Reset Run"
 	case ResetCurrentSplit = "Reset Current Split"
-	case ShowInfoPanel = "Show Info"
+	case ShowInfoPanel = "Get Info..."
+	case ShowColumnOptions = "Show/Hide Columns..."
 	
 }
 
@@ -31,7 +32,8 @@ enum KeybindSettingsKey: String {
 	case stopTimer = "stopTimer"
 	case clearTimer = "clearTimer"
 	case resetCurrentSplit = "ResetCurrentSplit"
-	case showInfoPanel = "laaaa"
+	case showInfoPanel = "showInfoPanel"
+	case showColumnOptions = "showColumnOptions"
 }
 
 struct SplitterKeybind {
@@ -69,7 +71,8 @@ extension AppDelegate {
 			SplitterKeybind(settings: .stopTimer, title: .StopTimer, menuItemID: menuIdentifiers.runMenu.stop),
 			SplitterKeybind(settings: .clearTimer, title: .ClearTimer, menuItemID: menuIdentifiers.runMenu.resetRun),
 			SplitterKeybind(settings: .resetCurrentSplit, title: .ResetCurrentSplit, menuItemID: menuIdentifiers.runMenu.reset),
-			SplitterKeybind(settings: .showInfoPanel, title: .ShowInfoPanel, menuItemID: menuIdentifiers.runMenu.infoPanel)
+			SplitterKeybind(settings: .showInfoPanel, title: .ShowInfoPanel, menuItemID: menuIdentifiers.runMenu.infoPanel),
+			SplitterKeybind(settings: .showColumnOptions, title: .ShowColumnOptions, menuItemID: menuIdentifiers.appearanceMenu.showColumnOptions)
 		]
 		
 		
@@ -164,6 +167,10 @@ extension AppDelegate {
 		case .ShowInfoPanel:
 			return {
 				self.showInfoHandler()
+			}
+		case .ShowColumnOptions:
+		return {
+			self.showColumnOptionsHandler()
 			}
 		default:
 			break

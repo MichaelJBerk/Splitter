@@ -92,6 +92,9 @@ extension ViewController {
 	@IBAction func showInfoPanelMenuItem(_ sender: Any) {
 		displayInfoPopover(sender)
 	}
+	@IBAction func showColumnOptionsMenuItem(_ sender: Any) {
+		displayColumnOptionsPopover(sender)
+	}
 	
 	
 	//MARK: Appearance Menu

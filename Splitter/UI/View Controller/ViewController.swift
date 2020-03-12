@@ -371,7 +371,8 @@ class ViewController: NSViewController {
 		pop.contentViewController = destination
 		pop.contentSize = NSSize(width: 450, height: 270)
 		pop.behavior = .semitransient
-		pop.show(relativeTo: .null, of: infoPanelPopoverButton, preferredEdge: .maxX)
+		pop.show(relativeTo: infoPanelPopoverButton.frame, of: self.view, preferredEdge: .maxX)
+//		pop.show(relativeTo: .null, of: infoPanelPopoverButton, preferredEdge: .maxX)
 		infoPanelPopover = pop
 		destination.setupTabViews()
 	}
@@ -384,7 +385,8 @@ class ViewController: NSViewController {
 		pop.delegate = self
 		pop.contentViewController = destination
 		pop.behavior = .semitransient
-		pop.show(relativeTo: .null, of: columnOptionsPopoverButton, preferredEdge: .maxX)
+		pop.show(relativeTo: columnOptionsPopoverButton.frame, of: self.view, preferredEdge: .maxX)
+//		pop.show(relativeTo: .null, of: columnOptionsPopoverButton, preferredEdge: .maxX)
 		columnOptionsPopover = pop
 		destination.loadCheckBoxes()
 		
