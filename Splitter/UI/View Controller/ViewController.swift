@@ -287,9 +287,6 @@ class ViewController: NSViewController {
 		splitsTableView.backgroundColor = NSColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1.0)
 		splitsTableView.delegate = self
 		splitsTableView.dataSource = self
-
-		let exportJSON = view.window?.menu?.item(withTag: 1)
-		exportJSON?.isEnabled = false
 		
 		view.window?.isMovableByWindowBackground = true
 		
