@@ -42,7 +42,7 @@ class MetadataField: NSTextField  {
 				if let attemptsInt = Int(c.attemptField.stringValue) {
 					c.attempts = attemptsInt
 				}
-				if let tabVC = c.advancedPopover?.contentViewController as? AdvancedTabViewController {
+				if let tabVC = c.infoPanelPopover?.contentViewController as? AdvancedTabViewController {
 					if let infoVC = tabVC.tabView.selectedTabViewItem?.viewController as? InfoOptionsViewController {
 						infoVC.getDataFromMain()
 					}

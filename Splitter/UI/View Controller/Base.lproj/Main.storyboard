@@ -115,33 +115,6 @@
                                                 <action selector="revertDocumentToSaved:" target="Ady-hI-5gd" id="iJ3-Pv-kwq"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="aJh-i4-bef"/>
-                                        <menuItem title="Import From..." id="eT6-tW-bKx">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <menu key="submenu" title="Import From..." id="na4-d6-r6Z">
-                                                <items>
-                                                    <menuItem title="Splits.io (.json)" identifier="importSplitsIO" id="dDa-Hh-bVW">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="importSplitsio:" target="Ady-hI-5gd" id="zWo-my-DwR"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                </items>
-                                            </menu>
-                                        </menuItem>
-                                        <menuItem title="Export To..." id="xok-f7-rWN">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <menu key="submenu" title="Export To..." id="cPF-Be-5uo">
-                                                <items>
-                                                    <menuItem title="Splits.io (.json)" tag="1" enabled="NO" identifier="exportSplitsIO" id="RBR-E4-kKL">
-                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                        <connections>
-                                                            <action selector="exportToSplitsIO:" target="Ady-hI-5gd" id="6q3-A7-6dm"/>
-                                                        </connections>
-                                                    </menuItem>
-                                                </items>
-                                            </menu>
-                                        </menuItem>
                                     </items>
                                 </menu>
                             </menuItem>
@@ -364,9 +337,9 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Timer" allowsKeyEquivalentWhenHidden="YES" id="9qz-yz-8ec">
+                            <menuItem title="Run" allowsKeyEquivalentWhenHidden="YES" id="9qz-yz-8ec">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Timer" autoenablesItems="NO" id="ddD-s5-Ef1">
+                                <menu key="submenu" title="Run" autoenablesItems="NO" id="ddD-s5-Ef1">
                                     <items>
                                         <menuItem title="Start Timer" identifier="timerStartStop" id="3tG-fh-bQJ">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -405,33 +378,11 @@
                                                 <action selector="resetCurrentSplitMenuItem:" target="Ady-hI-5gd" id="oAq-oR-kl8"/>
                                             </connections>
                                         </menuItem>
-                                    </items>
-                                </menu>
-                            </menuItem>
-                            <menuItem title="Info" allowsKeyEquivalentWhenHidden="YES" id="RSf-OF-4zP">
-                                <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Info" autoenablesItems="NO" id="J8X-3q-70E">
-                                    <items>
-                                        <menuItem title="Edit Title" identifier="editTitleMenuItem" id="eiL-FP-8np">
+                                        <menuItem isSeparatorItem="YES" id="6w8-fo-YRD"/>
+                                        <menuItem title="Get Info..." identifier="InfoMenuItem" id="5s9-6C-CWW">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="editTitle:" target="Ady-hI-5gd" id="WiH-9P-FQR"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Edit Subtitle" identifier="editSubtitleMenuItem" id="VtG-yg-WKa">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="editSubtitle:" target="Ady-hI-5gd" id="S5a-YV-av0"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Edit Game Icon..." identifier="editGameIconMenuItem" id="h7j-03-5aq">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="hpw-Xi-QH2"/>
-                                        <menuItem title="Clear Splits" identifier="ClearMenuItem" id="jX2-QH-XGx">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="clearMenuItem:" target="Ady-hI-5gd" id="Wvh-2z-JPQ"/>
+                                                <action selector="showInfoPanelMenuItem:" target="Ady-hI-5gd" id="7GL-xb-iAU"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -441,12 +392,6 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Appearance" id="dmV-eJ-aDK">
                                     <items>
-                                        <menuItem title="Show Best Splits Column" identifier="ShowBestSplits" id="riy-my-uIQ">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="showHideBestSplitsMenuItem:" target="Ady-hI-5gd" id="lfH-Ux-4uO"/>
-                                            </connections>
-                                        </menuItem>
                                         <menuItem title="Hide Timer/Splits Buttons" tag="2" identifier="HideButtonsItem" id="Elf-wD-0ZD">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
@@ -577,7 +522,7 @@
                                             <tableColumns>
                                                 <tableColumn identifier="ImageColumn" width="32" minWidth="10" maxWidth="3.4028234663852886e+38" id="ljG-co-EDf">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -612,7 +557,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="SplitTitle" width="80" minWidth="40" maxWidth="1000" id="rA7-ZF-Uc6">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Split">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -630,7 +575,7 @@
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Zgl-iF-pqa">
                                                                     <rect key="frame" x="0.0" y="3" width="95" height="14"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" alignment="left" title="Split Title" id="3Pe-jP-c4b">
-                                                                        <font key="font" metaFont="message" size="11"/>
+                                                                        <font key="font" metaFont="label" size="11"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
@@ -649,7 +594,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="CurrentSplit" width="90" minWidth="10" maxWidth="3.4028234663852886e+38" id="rN9-Ff-1yR" customClass="TimeSplitColumn" customModule="Splitter" customModuleProvider="target">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Time">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -689,7 +634,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="Difference" editable="NO" width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="xLb-1p-wmS" customClass="TimeSplitColumn" customModule="Splitter" customModuleProvider="target">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Diff">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -729,7 +674,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="B" width="173" minWidth="10" maxWidth="3.4028234663852886e+38" id="RXR-Oz-PMu" customClass="TimeSplitColumn" customModule="Splitter" customModuleProvider="target">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="PB">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -769,7 +714,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="PreviousSplit" width="85" minWidth="10" maxWidth="3.4028234663852886e+38" hidden="YES" id="Q3y-d2-rYY" customClass="TimeSplitColumn" customModule="Splitter" customModuleProvider="target">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Previous">
-                                                        <font key="font" metaFont="message" size="11"/>
+                                                        <font key="font" metaFont="label" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -994,7 +939,7 @@
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
                                 <connections>
-                                    <action selector="displayAdvancedPopover:" target="5gI-5U-AMq" id="LFd-oe-9Er"/>
+                                    <action selector="displayInfoPopover:" target="5gI-5U-AMq" id="LFd-oe-9Er"/>
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rkm-yi-plE">
@@ -1068,12 +1013,12 @@
                     <connections>
                         <outlet property="StartButton" destination="gCo-Oe-sI7" id="jgA-IG-Lnb"/>
                         <outlet property="TimerLabel" destination="d2l-Lb-Z8r" id="5xN-95-XEJ"/>
-                        <outlet property="advancedPopoverButton" destination="laY-Uh-RhP" id="36Z-y3-khC"/>
                         <outlet property="attemptField" destination="XzH-Pf-d2x" id="QI9-9k-lRM"/>
                         <outlet property="categoryField" destination="5cv-K8-dE8" id="S7o-Cd-tug"/>
                         <outlet property="columnOptionsPopoverButton" destination="xLP-fd-tTq" id="XLN-jK-lh2"/>
                         <outlet property="currentTimeLabel" destination="Mj4-Ky-5e7" id="IfX-AV-VUa"/>
                         <outlet property="gameIconButton" destination="LMA-oO-ztV" id="4mI-qg-3kH"/>
+                        <outlet property="infoPanelPopoverButton" destination="laY-Uh-RhP" id="36Z-y3-khC"/>
                         <outlet property="minusButton" destination="jC2-yS-poH" id="MlL-63-BKb"/>
                         <outlet property="nextButton" destination="5Ka-8A-G0d" id="Ajm-qR-y9L"/>
                         <outlet property="plusButton" destination="OXM-M7-swh" id="sb0-rS-PWM"/>

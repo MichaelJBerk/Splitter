@@ -13,6 +13,10 @@ struct splitterAppearance: Codable {
 	var hideTitlebar: Bool?
 	var hideButtons: Bool?
 	var keepOnTop: Bool?
+	/**
+	- Remark:
+	This has been depricated, and only exists for backwards compatibility
+	*/
 	var showBestSplits: Bool?
 	var showColumns: [String: Bool]?  = [:]
 	var columnSizes: [String: CGFloat]? = [:]
@@ -26,7 +30,6 @@ struct splitterAppearance: Codable {
 		self.hideTitlebar = viewController.titleBarHidden
 		self.hideButtons = viewController.UIHidden
 		self.keepOnTop = viewController.windowFloat
-//		self.showBestSplits = viewController.showBestSplits
 		self.showColumns = [:]
 		self.columnSizes = [:]
 		for c in colIds {
@@ -42,14 +45,7 @@ struct splitterAppearance: Codable {
 		self.windowHeight = viewController.view.window?.frame.height
 		self.roundTo = viewController.roundTo.rawValue
 	}
-	
-//	func decodeSplitterAppearance(viewController: ViewController) {
-//		viewController.titleBarHidden = self.hideTitlebar ?? Settings.hideTitleBar
-//		viewController.UIHidden = self.hideButtons ?? Settings.hideUIButtons
-//		viewController.windowFloat = self.keepOnTop ?? Settings.floatWindow
-//		viewController.showBestSplits = self.showBestSplits ?? Settings.showBestSplits
-//
-//	}
+
 }
 
 enum SplitterAppearanceError: Error {
@@ -62,12 +58,10 @@ extension ViewController {
 		titleBarHidden = appearance.hideTitlebar ?? Settings.hideTitleBar
 		UIHidden = appearance.hideButtons ?? Settings.hideUIButtons
 		windowFloat = appearance.keepOnTop ?? Settings.floatWindow
-//		showBestSplits = appearance.showBestSplits ?? Settings.showBestSplits
 		
 		showHideTitleBar()
 		showHideUI()
 		setFloatingWindow()
-		showHideBestSplits()
 		
 		if let sc = appearance.showColumns {
 			for c in sc {

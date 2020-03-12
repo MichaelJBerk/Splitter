@@ -14,7 +14,7 @@ extension ViewController {
 		
 	
 	//MARK - File Menu
-	
+	//TODO: Move liveSplit loading to another file
 	func loadLS(ls: LiveSplit) {
 		ls.parseLivesplit()
 		if ls.splits.count > 0 {
@@ -63,7 +63,7 @@ extension ViewController {
 		splitsTableView.reloadData()
 	}
 	
-	//MARK: Timer Menu
+	//MARK: Run Menu
 	///Action for Menu Bar that starts/pauses the timer
 	@IBAction func startSplitMenuItem(_ sender: Any?) {
 		startSplitTimer()
@@ -89,37 +89,12 @@ extension ViewController {
 		resetCurrentSplit()
 	}
 	
-	//MARK: Info menu
-	
-	
-	//TODO: See if I should remove the two menu bar items below, as they're not really necessary
-	///Action for Menu Bar that allows the user to edit the subtitle
-	@IBAction func editTitle(_ sender: Any) {
-		runTitleField.becomeFirstResponder()
+	@IBAction func showInfoPanelMenuItem(_ sender: Any) {
+		displayInfoPopover(sender)
 	}
-	
-	///Action for Menu Bar that allows the user to edit the subtitle
-	@IBAction func editSubtitle(_ sender: Any) {
-		categoryField.becomeFirstResponder()
-	}
-	
-	///Action for Menu Bar that clears the current splits
-		@IBAction func clearMenuItem(_ sender: Any) {
-			askToClearTimer()
-	//		return false
-		}
 	
 	
 	//MARK: Appearance Menu
-	
-	
-	///Action for Menu Bar that allows the user to hide or show the "best splits" column
-	@IBAction func showHideBestSplitsMenuItem(_ sender: Any) {
-		//TODO: See if there's a way I can get it to scroll to the colun when shown
-		//TODO: refactor this so that it's separate from the menu item action
-		showBestSplits.toggle()
-		showHideBestSplits()
-	}
 	
 	
 	///Action for Menu Bar that allows the user to hide or show the buttons in the UI

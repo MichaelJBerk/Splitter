@@ -47,27 +47,26 @@ class ViewController: NSViewController {
 	@IBOutlet weak var plusButton: NSButton!
 	@IBOutlet weak var minusButton: NSButton!
 	@IBOutlet weak var gameIconButton: IconButton!
-	@IBOutlet weak var pauseButton: NSButton!
 	
 	
-	@IBOutlet weak var advancedPopoverButton: NSButton!
+	@IBOutlet weak var infoPanelPopoverButton: NSButton!
 	@IBOutlet weak var columnOptionsPopoverButton: NSButton!
 	
 //MARK: - Setting Up Popovers
 	var columnOptionsPopover: SplitterPopover?
-	var advancedPopover: SplitterPopover?
+	var infoPanelPopover: SplitterPopover?
 	
 	
 //MARK: - Setting up Menu Items
 	var timerStopItem: NSMenuItem? {
-		if let pauseItem = view.window?.menu?.item(withIdentifier: menuIdentifiers.timerMenu.stop) {
+		if let pauseItem = view.window?.menu?.item(withIdentifier: menuIdentifiers.runMenu.stop) {
 			return pauseItem
 		}
 		return nil
 	}
 	
 	var startSplitItem: NSMenuItem? {
-		if let stopStart = view.window?.menu?.item(withIdentifier: menuIdentifiers.timerMenu.StartSplit) {
+		if let stopStart = view.window?.menu?.item(withIdentifier: menuIdentifiers.runMenu.StartSplit) {
 			return stopStart
 		}
 		return nil
@@ -177,8 +176,6 @@ class ViewController: NSViewController {
 	
 
 	//MARK: - Other Split Metadata
-	//TODO: Make vars for Run Title and Category, and have the text fields update them
-	//TODO: Update popover data from here
 	var attempts: Int = 0 {
 		didSet {
 			attemptField.stringValue = "\(attempts)"
@@ -337,9 +334,6 @@ class ViewController: NSViewController {
 		windowFloat = Settings.floatWindow
 		setFloatingWindow()
 		
-		showBestSplits = Settings.showBestSplits
-		showHideBestSplits()
-		
 		for c in splitsTableView.tableColumns {
 			if c.identifier == STVColumnID.previousSplitColumn {
 				c.isHidden = true
@@ -362,14 +356,14 @@ class ViewController: NSViewController {
 	}
 	
 	override func viewWillDisappear() {
-		advancedPopover?.contentViewController?.view.window?.close()
+		infoPanelPopover?.contentViewController?.view.window?.close()
 		columnOptionsPopover?.contentViewController?.view.window?.close()
 		super.viewWillDisappear()
 
 	}
 	
-	@IBAction func displayAdvancedPopover(_ sender: Any) {
-		advancedPopover?.contentViewController?.view.window?.close()
+	@IBAction func displayInfoPopover(_ sender: Any) {
+		infoPanelPopover?.contentViewController?.view.window?.close()
 		let destination = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: ViewControllerID.advanced) as! AdvancedTabViewController
 		destination.delegate = self
 		let pop = SplitterPopover()
@@ -377,8 +371,8 @@ class ViewController: NSViewController {
 		pop.contentViewController = destination
 		pop.contentSize = NSSize(width: 450, height: 270)
 		pop.behavior = .semitransient
-		pop.show(relativeTo: .null, of: advancedPopoverButton, preferredEdge: .maxX)
-		advancedPopover = pop
+		pop.show(relativeTo: .null, of: infoPanelPopoverButton, preferredEdge: .maxX)
+		infoPanelPopover = pop
 		destination.setupTabViews()
 	}
 	
@@ -436,8 +430,6 @@ extension ViewController: NSWindowDelegate {
 		let showHideTitleBarItem = NSApp.mainMenu?.item(withIdentifier: menuIdentifiers.appearanceMenu.hideTitleBar)
 		showHideTitleBarItem?.title = showHideTitleBarItemText
 		
-		let showHideBestSplitsItem = NSApp.mainMenu?.item(withIdentifier: menuIdentifiers.appearanceMenu.showBestSplits)
-		showHideBestSplitsItem?.title = showHideBestSplitsItemText
 	}
 }
 

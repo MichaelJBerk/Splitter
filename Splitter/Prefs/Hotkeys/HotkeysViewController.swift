@@ -152,4 +152,9 @@ class SplitterShortcutValdator: MASShortcutValidator {
 		super.init()
 		self.allowAnyShortcutWithOptionModifier = true
 	}
+	
+	override func isShortcutValid(_ shortcut: MASShortcut!) -> Bool {
+		return true
+	}
+	
 }
