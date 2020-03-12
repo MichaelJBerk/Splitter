@@ -59,7 +59,7 @@ extension ViewController {
 		
 		
 		self.lsPointer = ls.lsPointer
-		self.gameIcon = ls.img
+		self.gameIcon = ls.gameIcon
 		splitsTableView.reloadData()
 	}
 	
