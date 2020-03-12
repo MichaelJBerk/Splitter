@@ -13,7 +13,7 @@ protocol advancedTabDelegate {
 	func setupDelegate()
 }
 
-class AdvancedTabViewController: NSTabViewController {
+class InfoPopoverTabViewController: NSTabViewController {
 	var delegate: ViewController?
 
     override func viewDidLoad() {

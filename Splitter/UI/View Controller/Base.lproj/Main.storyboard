@@ -1052,10 +1052,10 @@
             </objects>
             <point key="canvasLocation" x="133.5" y="1029.5"/>
         </scene>
-        <!--Advanced Tab View Controller-->
+        <!--Info Popover Tab View Controller-->
         <scene sceneID="ahx-t2-V9E">
             <objects>
-                <tabViewController storyboardIdentifier="Advanced" showSeguePresentationStyle="single" selectedTabViewItemIndex="0" canPropagateSelectedChildViewControllerTitle="NO" id="hM2-dD-q3M" customClass="AdvancedTabViewController" customModule="Splitter" customModuleProvider="target" sceneMemberID="viewController">
+                <tabViewController storyboardIdentifier="Advanced" showSeguePresentationStyle="single" selectedTabViewItemIndex="0" canPropagateSelectedChildViewControllerTitle="NO" id="hM2-dD-q3M" customClass="InfoPopoverTabViewController" customModule="Splitter" customModuleProvider="target" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem identifier="" id="TDh-en-GtD"/>
                         <tabViewItem identifier="" id="GAc-8n-xfq"/>

@@ -364,7 +364,7 @@ class ViewController: NSViewController {
 	
 	@IBAction func displayInfoPopover(_ sender: Any) {
 		infoPanelPopover?.contentViewController?.view.window?.close()
-		let destination = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: ViewControllerID.advanced) as! AdvancedTabViewController
+		let destination = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: ViewControllerID.advanced) as! InfoPopoverTabViewController
 		destination.delegate = self
 		let pop = SplitterPopover()
 		pop.delegate = self
