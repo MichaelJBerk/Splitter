@@ -147,6 +147,23 @@ extension ViewController {
 		addBestSplit(lSplit: lSplit, rSplit: rSplit, splitRow: row)
 	}
 	
+	//TODO: See if it makes more sense to implement this in the split table row itself
+	///Updates the "previous best " for the segment to the "best" of that segment
+	func updatePreviousBestSplit(of row: Int) {
+		currentSplits[row].previousBest = currentSplits[row].bestSplit.tsCopy()
+	}
+	
+	///Updates the "previous best"  for each segment in the run to the "best" of that segment
+	func updateAllPreviousBestSplits() {
+		var i = 0
+		while i < currentSplits.count {
+			updatePreviousBestSplit(of: i)
+			i = i + 1
+		}
+	}
+	
+	
+	
 	func updateAllBestSplits() {
 		var i = 0
 		while i < currentSplits.count {
@@ -156,8 +173,22 @@ extension ViewController {
 	}
 	
 	//MARK: - Previous Splits
+	
+	//TODO: See if it makes more sense to implement this in the split table row itself
+	
+	///Updates the "previous split" for the segment to the "current split" of that segment
 	func updatePreviousSplit(of row: Int) {
 		currentSplits[row].previousSplit = currentSplits[row].currentSplit.tsCopy()
+	}
+	///Updates the "previous split"  for each segment in the run to the "current split" of that segment
+	func updatePreviousSplits() {
+		var i = 0
+		while i < currentSplits.count {
+			if currentSplits[i].currentSplit.timeString != TimeSplit().timeString {
+				currentSplits[i].previousSplit = currentSplits[i].currentSplit.tsCopy()
+			}
+			i = i + 1
+		}
 	}
 
 	

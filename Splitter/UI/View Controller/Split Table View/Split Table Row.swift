@@ -49,6 +49,8 @@ struct splitTableRow {
 			return "+\(diffTimeString)"
 		} else if currentSplit < og {
 			return "-\(diffTimeString)"
+		} else if currentSplit == og {
+			return ""
 		} else {
 			return "00:00.00"
 		}

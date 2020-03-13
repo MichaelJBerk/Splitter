@@ -273,9 +273,25 @@ class ViewController: NSViewController {
 	
 	var hotkeysController: HotkeysViewController?
 	
+	@objc func breakFunc() {
+		for s in currentSplits {
+			print(s.splitName, ": ", s.splitDiff, " ", s.previousBest.timeString)
+		}
+	}
+	
+	var breakID = NSUserInterfaceItemIdentifier("break")
+	
 	//MARK: - Main Functions
 	override func viewWillAppear() {
 		super.viewWillAppear()
+		#if DEBUG
+		let breakMI = NSMenuItem(title: "Break", action: #selector(breakFunc), keyEquivalent: "b")
+		breakMI.keyEquivalentModifierMask = .command
+		breakMI.identifier = breakID
+		print(NSApp.mainMenu?.item(at: 0)?.submenu?.item(at: 0)?.title)
+		NSApp.mainMenu?.item(at: 0)?.submenu?.addItem(breakMI)
+//		NSApp.mainMenu!.addItem(breakMI)
+		#endif
 		
 		view.window?.delegate = self
 		//This line of code looks redundant, but it's here in order to make the timerState's property observer fire
