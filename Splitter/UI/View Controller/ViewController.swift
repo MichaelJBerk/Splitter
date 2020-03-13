@@ -366,7 +366,7 @@ class ViewController: NSViewController {
 		let pop = SplitterPopover()
 		pop.delegate = self
 		pop.contentViewController = destination
-		pop.contentSize = NSSize(width: 450, height: 270)
+		pop.contentSize = NSSize(width: 450, height: 325)
 		pop.behavior = .semitransient
 		pop.show(relativeTo: infoPanelPopoverButton.frame, of: self.view, preferredEdge: .maxX)
 //		pop.show(relativeTo: .null, of: infoPanelPopoverButton, preferredEdge: .maxX)

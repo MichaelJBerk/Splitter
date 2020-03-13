@@ -1064,6 +1064,7 @@
                 <tabViewController storyboardIdentifier="Advanced" showSeguePresentationStyle="single" selectedTabViewItemIndex="0" canPropagateSelectedChildViewControllerTitle="NO" id="hM2-dD-q3M" customClass="InfoPopoverTabViewController" customModule="Splitter" customModuleProvider="target" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem identifier="" id="TDh-en-GtD"/>
+                        <tabViewItem id="Lt3-gV-8CP"/>
                         <tabViewItem identifier="" id="GAc-8n-xfq"/>
                     </tabViewItems>
                     <tabView key="tabView" appearanceType="darkAqua" type="noTabsNoBorder" id="sly-YZ-5yQ">
@@ -1077,6 +1078,7 @@
                     <connections>
                         <outlet property="tabView" destination="sly-YZ-5yQ" id="2kQ-UO-4ke"/>
                         <segue destination="9EP-rl-sc4" kind="relationship" relationship="tabItems" id="lXp-0c-RB5"/>
+                        <segue destination="RvU-oT-sfo" kind="relationship" relationship="tabItems" id="BM0-v5-KVQ"/>
                         <segue destination="aIO-Eg-hvI" kind="relationship" relationship="tabItems" id="bqd-3x-sU1"/>
                     </connections>
                 </tabViewController>
@@ -1472,6 +1474,115 @@
                 <customObject id="Lr9-4a-hBn" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="433.5" y="1242"/>
+        </scene>
+        <!--Appearance-->
+        <scene sceneID="hAL-Mc-wCT">
+            <objects>
+                <customObject id="3dh-TH-cbg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+                <viewController title="Appearance" id="RvU-oT-sfo" customClass="AppearanceViewController" customModule="Splitter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="qfc-N7-4eh">
+                        <rect key="frame" x="0.0" y="0.0" width="488" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <gridView fixedFrame="YES" xPlacement="leading" yPlacement="bottom" rowAlignment="none" translatesAutoresizingMaskIntoConstraints="NO" id="yti-1B-Vv4">
+                                <rect key="frame" x="20" y="107" width="390" height="173"/>
+                                <rows>
+                                    <gridRow yPlacement="center" height="35" id="AMM-IJ-WjW"/>
+                                    <gridRow yPlacement="center" height="35" id="ZxY-tT-aa5"/>
+                                    <gridRow yPlacement="center" height="35" id="DHP-S5-sT1"/>
+                                    <gridRow height="50" id="wtk-Pw-7K7"/>
+                                </rows>
+                                <columns>
+                                    <gridColumn width="28" id="fm8-dP-Eb8"/>
+                                    <gridColumn width="313" id="gqm-xY-pbD"/>
+                                    <gridColumn width="37" id="sZ3-UK-dPQ"/>
+                                </columns>
+                                <gridCells>
+                                    <gridCell row="AMM-IJ-WjW" column="fm8-dP-Eb8" id="Hy4-K6-h0E"/>
+                                    <gridCell row="AMM-IJ-WjW" column="gqm-xY-pbD" id="NBK-Nr-InD">
+                                        <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KdL-ri-VdY">
+                                            <rect key="frame" x="32" y="147" width="105" height="18"/>
+                                            <buttonCell key="cell" type="check" title="Hide Title Bar" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="H6d-Wj-qAk">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                        </button>
+                                    </gridCell>
+                                    <gridCell row="AMM-IJ-WjW" column="sZ3-UK-dPQ" id="B07-c0-HC1">
+                                        <button key="contentView" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qCT-Wf-FTs" customClass="helpButton" customModule="Splitter" customModuleProvider="target">
+                                            <rect key="frame" x="351" y="141" width="25" height="25"/>
+                                            <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5fB-Fb-LPg">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                        </button>
+                                    </gridCell>
+                                    <gridCell row="ZxY-tT-aa5" column="fm8-dP-Eb8" id="dDp-yi-J1j"/>
+                                    <gridCell row="ZxY-tT-aa5" column="gqm-xY-pbD" yPlacement="center" id="ONu-xj-1HC">
+                                        <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="H55-YO-vGp">
+                                            <rect key="frame" x="32" y="106" width="101" height="18"/>
+                                            <buttonCell key="cell" type="check" title="Hide Buttons" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="GtI-P7-9yv">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                        </button>
+                                    </gridCell>
+                                    <gridCell row="ZxY-tT-aa5" column="sZ3-UK-dPQ" id="VlI-I0-IB3">
+                                        <button key="contentView" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LZG-o3-NMC" customClass="helpButton" customModule="Splitter" customModuleProvider="target">
+                                            <rect key="frame" x="351" y="100" width="25" height="25"/>
+                                            <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ifk-J0-glH">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                        </button>
+                                    </gridCell>
+                                    <gridCell row="DHP-S5-sT1" column="fm8-dP-Eb8" id="GAr-RS-MD5"/>
+                                    <gridCell row="DHP-S5-sT1" column="gqm-xY-pbD" id="bbC-yj-jJl">
+                                        <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NX0-Jl-BA1">
+                                            <rect key="frame" x="32" y="65" width="150" height="18"/>
+                                            <buttonCell key="cell" type="check" title="Keep Window on Top" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="4Ih-uS-kPH">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                        </button>
+                                    </gridCell>
+                                    <gridCell row="DHP-S5-sT1" column="sZ3-UK-dPQ" id="eRF-xd-Dvn">
+                                        <button key="contentView" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="w7E-mT-aCX" customClass="helpButton" customModule="Splitter" customModuleProvider="target">
+                                            <rect key="frame" x="351" y="59" width="25" height="25"/>
+                                            <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xIr-wb-AEK">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                        </button>
+                                    </gridCell>
+                                    <gridCell row="wtk-Pw-7K7" column="fm8-dP-Eb8" id="oXL-87-nVW"/>
+                                    <gridCell row="wtk-Pw-7K7" column="gqm-xY-pbD" id="A0U-RR-2Te">
+                                        <textField key="contentView" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="1X5-Na-Ivc">
+                                            <rect key="frame" x="32" y="0.0" width="317" height="32"/>
+                                            <textFieldCell key="cell" selectable="YES" title="Note: These settings will be saved to this file, and will take effect whever the file is opened. " id="kq5-cD-qUw">
+                                                <font key="font" usesAppearanceFont="YES"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                    </gridCell>
+                                    <gridCell row="wtk-Pw-7K7" column="sZ3-UK-dPQ" id="eEH-CU-MsS"/>
+                                </gridCells>
+                            </gridView>
+                        </subviews>
+                    </view>
+                    <connections>
+                        <outlet property="buttonHelp" destination="LZG-o3-NMC" id="fBL-uP-hNm"/>
+                        <outlet property="gridView" destination="yti-1B-Vv4" id="lrc-cx-Tdc"/>
+                        <outlet property="hideButtonsCheck" destination="H55-YO-vGp" id="L0e-Ut-tmN"/>
+                        <outlet property="hideTitleBarCheck" destination="KdL-ri-VdY" id="23i-J6-H3k"/>
+                        <outlet property="keepOnTopCheck" destination="NX0-Jl-BA1" id="uyt-SX-5qf"/>
+                        <outlet property="titleHelp" destination="qCT-Wf-FTs" id="7eU-H7-lyS"/>
+                        <outlet property="topHelp" destination="w7E-mT-aCX" id="Sc7-xJ-Mic"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1357" y="476"/>
         </scene>
     </scenes>
     <resources>
