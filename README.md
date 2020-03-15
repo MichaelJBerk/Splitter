@@ -10,7 +10,7 @@ Splitter is officially in Beta, but you can test it out with the link below, and
 
 If you'd like to see what features are in the works, you can look at the [Roadmap](https://github.com/MichaelJBerk/Splitter/wiki/Roadmap)
 
-[Join the Slack group](https://join.slack.com/t/splitter-app/shared_invite/enQtOTQ4OTg3OTg3NTQwLTNlMjAyZjZlNzgzNzhkNTMwOTA2MjZkODNlMzM3ZDYwZjY1YTc2ODljZWQzMzJjYjAzOWEwNzU0MWFmODQ3NjM)
+You can also discuss Splitter on the official [Discord Server](https://discord.gg/S6zCHYq)
 
 ## Supported Formats
 
