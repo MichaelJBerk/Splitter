@@ -19,7 +19,6 @@ You can also discuss Splitter on the official [Discord Server](https://discord.g
 - In addition to the Splitter-native `.split` format, the app can edit and save the following:
 	- LiveSplit (`.lss`)
 	- Splits.io (`.json`)
-	- (planned) Llanfair [gered's fork] (`.lfs`)
 	- (planned) Time Split Tracker (`.timesplittracker`)
 
 ### Acknowledgements
