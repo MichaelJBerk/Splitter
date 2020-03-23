@@ -32,12 +32,9 @@ class AppearanceViewController: NSViewController, advancedTabDelegate {
 Note: These settings will be saved to this file, and will take effect whever the file is opened.
 """
 	
+	///Sets the help buttons next to each option, as well as their popovers
 	func setHelpButtons() {
-//		var viewArray: [NSView] = []
-		
 		titleHelp.appVC = self
-//		titleHelp.target = self
-//		titleHelp.action = #selector(titleHelp.displayHelpPopover)
 		titleHelp.helpString = """
 Hide the Title Bar for a more compact appearance.
 You can still close the window either with ⌘W or from the "Window" menu.
@@ -45,7 +42,6 @@ You can still close the window either with ⌘W or from the "Window" menu.
 		
 		buttonHelp.appVC = self
 		buttonHelp.target = self
-//		buttonHelp.action = #selector(buttonHelp.displayHelpPopover)
 		buttonHelp.helpString = """
 		Hide the buttons on the window.
 		You can still control the timer using the Menu Bar, Hotkeys, or the Right-Click menu.
@@ -53,14 +49,10 @@ You can still close the window either with ⌘W or from the "Window" menu.
 		
 		topHelp.appVC = self
 		topHelp.target = self
-//		topHelp.action = #selector(topHelp.displayHelpPopover)
 		topHelp.helpString = """
 		Enabling this will make the window "float" above any other windows you have open.
 		"""
-		
-	
 	}
-	
 	
 	
 	
@@ -88,6 +80,7 @@ You can still close the window either with ⌘W or from the "Window" menu.
 			return keepOnTopCheck.state.toBool()
 		}
 	}
+	///Sends settings back to the original view controller
 	@objc func sendSettings(_ sender: Any) {
 		if let d = delegate {
 			d.titleBarHidden = hideTitleBar
@@ -99,26 +92,14 @@ You can still close the window either with ⌘W or from the "Window" menu.
 		}
 	}
 	
+	///This doesn't do anything; it's just needed to conform to the protocol
 	func setupDelegate() {
-//		if let d = delegate {
-//			if hideTitleBar != nil {
-//
-//			}
-//			if hideTitleBarCheck.state != nil {hideTitleBar = d.titleBarHidden}
-//			hideButtons = d.UIHidden
-//			keepOnTop = d.windowFloat
-//		}
+
 	}
 	
 	override func viewDidAppear() {
 		if let d = delegate {
-			
 
-			
-			
-			
-			
-			
 			hideTitleBar = d.titleBarHidden
 			hideButtons = d.UIHidden
 			keepOnTop = d.windowFloat
@@ -133,8 +114,6 @@ You can still close the window either with ⌘W or from the "Window" menu.
 		}
 		
 		setHelpButtons()
-//		hideTitleBarHelp.target = self
-//		hideTitleBarHelp.action = #selector(displayHelpPopover)
 	}
     
 }
@@ -143,15 +122,6 @@ class helpButton: NSButton {
 	
 	var appVC: AppearanceViewController?
 	var helpString: String?
-//
-//	override var target: AnyObject? {
-//		set {
-//			appVC = newValue as? AppearanceViewController
-//		}
-//		get {
-//			return appVC
-//		}
-//	}
 	
 	override func draw(_ dirtyRect: NSRect) {
 		super.draw(dirtyRect)
@@ -170,31 +140,18 @@ class helpButton: NSButton {
 	}
 	
 	@objc func displayHelpPopover() {
-//		let displayText = """
-//Hide the Title Bar for a more compact appearance.
-//You can still close the window either with ⌘W or from the "Window" menu.
-		var pop = NSPopover()
-		var labelView = appearanceHelpLabel(string: helpString ?? "")
+		let pop = NSPopover()
+		let labelView = appearanceHelpLabel(string: helpString ?? "")
 		labelView.isEditable = false
-//		labelView.maximumNumberOfLines = 4
 		labelView.isSelectable = false
 		labelView.cell?.wraps = true
-//		labelView.frame.size.width = 300
-//		labelView.frame.size.height = 100
-//		var height = labelView.cell?.cellSize.height
-//		labelView.sizeThatFits(NSSize(width: 300, height: 600))
-//		labelView.frame.size.height = height!
 		
-//		@available(OSX 10.15, *)
 		let contentVC = NSViewController()
 		contentVC.view = labelView
 		
-		
-		
-		
 		pop.contentViewController = contentVC
 		pop.behavior = .transient
-//		pop.contentSize = labelView.frame.size
+		
 		pop.show(relativeTo: appVC?.view.frame ?? CGRect.zero, of: self, preferredEdge: .maxY)
 		
 	}

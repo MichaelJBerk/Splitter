@@ -38,17 +38,13 @@ extension ViewController {
 	func goToPrevSplit() {
 		if timerStarted {
 			if currentSplitNumber > 0 {
+				currentSplits[currentSplitNumber - 1].currentSplit = currentSplit!
 				currentSplits.replaceSubrange(currentSplitNumber...currentSplitNumber, with: [backupSplits[currentSplitNumber]])
 				currentSplitNumber = currentSplitNumber - 1
-//				currentSplits[currentSplitNumber].currentSplit = currentSplits[currentSplitNumber].previousSplit
-//				if let pp = currentSplits[currentSplitNumber].previousPrevious {
-//					currentSplits[currentSplitNumber].previousSplit = pp.tsCopy()
-//				}
-//				currentSplits[currentSplitNumber].bestSplit = currentSplits[currentSplitNumber].bestSplit.copy() as! TimeSplit
-//				currentSplitNumber -= 1
-//				currentSplits[currentSplitNumber].currentSplit = self.currentSplit!
-//				currentSplits[currentSplitNumber].previousPrevious = currentSplits[currentSplitNumber].previousSplit.tsCopy()
-//				print(currentSplits[currentSplitNumber].previousPrevious?.timeString)
+				
+				self.currentSplit = currentSplits[currentSplitNumber].currentSplit
+				splitsTableView.reloadData()
+
 			} else if currentSplitNumber == 0 {
 				self.currentSplit = TimeSplit(mil: 0, sec: 0, min: 0, hour: 0)
 				currentSplits[0].currentSplit = self.currentSplit!

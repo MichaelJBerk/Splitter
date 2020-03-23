@@ -170,7 +170,9 @@ extension ViewController {
 		currentSplit?.updateMil()
 	}
 	
+	///Called when the user has finished the run.
 	func finishRun() {
+		///It may not look like there's a point  to this right now, but I may add other functionality when a run is finished, and it would go here in that casse
 		stopTimer()
 	}
 }

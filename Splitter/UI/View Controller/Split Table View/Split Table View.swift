@@ -17,8 +17,26 @@ extension ViewController: NSTableViewDataSource {
 	}
 }
 
+class myRowView: NSTableRowView {
+	override func draw(_ dirtyRect: NSRect) {
+		super.draw(dirtyRect)
+
+		if isSelected == true {
+			NSColor(named: "CurrentSplitColor")!.set()
+			dirtyRect.fill()
+		   }
+	   }
+}
+
 
 extension ViewController: NSTableViewDelegate {
+	
+	func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
+		
+		let cRow = myRowView()
+		
+		return cRow
+	}
 	
 	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 		cellIdentifier = tableColumn?.identifier
@@ -27,7 +45,7 @@ extension ViewController: NSTableViewDelegate {
 			cell.textField?.delegate = self
 			
 			if timerState != .stopped {
-				tableView.rowView(atRow: currentSplitNumber, makeIfNecessary: false)?.backgroundColor = .gridColor
+				tableView.rowView(atRow: currentSplitNumber, makeIfNecessary: false)?.backgroundColor = NSColor(named: "CurrentSplitColor")!
 			}
 			
 			if let imageCell = cell as? ImageButtonCellView {

@@ -9,6 +9,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="HotkeysViewController" customModule="Splitter" customModuleProvider="target">
             <connections>
                 <outlet property="globalHotkeysCheck" destination="TtO-09-W0I" id="hwo-ZD-kbe"/>
+                <outlet property="globalKeybindsHelpButton" destination="4hv-UL-zsB" id="h69-qB-cR9"/>
                 <outlet property="hotkeysTableView" destination="fvt-DB-ls9" id="eNY-WC-TwY"/>
                 <outlet property="outOfTableButton" destination="HcX-VW-Eii" id="srv-SD-dyY"/>
                 <outlet property="view" destination="E4D-c8-VXr" id="i4K-wF-R7I"/>
@@ -27,8 +28,8 @@
                         <rect key="frame" x="1" y="1" width="335" height="380"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView verticalHuggingPriority="750" ambiguous="YES" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="24" rowSizeStyle="medium" viewBased="YES" id="fvt-DB-ls9">
-                                <rect key="frame" x="0.0" y="0.0" width="336" height="380"/>
+                            <tableView verticalHuggingPriority="750" ambiguous="YES" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="none" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" rowHeight="24" rowSizeStyle="medium" viewBased="YES" id="fvt-DB-ls9">
+                                <rect key="frame" x="0.0" y="0.0" width="335" height="380"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <size key="intercellSpacing" width="3" height="2"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -41,7 +42,7 @@
                                             <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                         </tableHeaderCell>
                                         <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="pvc-YV-bS4">
-                                            <font key="font" metaFont="system"/>
+                                            <font key="font" metaFont="label" size="13"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
@@ -55,7 +56,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="178" height="17"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="9T1-HI-6Nh">
-                                                            <font key="font" metaFont="system"/>
+                                                            <font key="font" metaFont="label" size="13"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
@@ -67,25 +68,25 @@
                                             </tableCellView>
                                         </prototypeCellViews>
                                     </tableColumn>
-                                    <tableColumn width="189" minWidth="40" maxWidth="1000" id="xDt-t4-nD5">
+                                    <tableColumn width="188" minWidth="40" maxWidth="1000" id="xDt-t4-nD5">
                                         <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border">
                                             <font key="font" metaFont="controlContent" size="11"/>
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                         </tableHeaderCell>
                                         <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="Rtj-18-iyX">
-                                            <font key="font" metaFont="system"/>
+                                            <font key="font" metaFont="label" size="13"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView identifier="Hotkeys" id="J4U-Ai-1uk" customClass="buttonCell" customModule="Splitter" customModuleProvider="target">
-                                                <rect key="frame" x="145" y="1" width="189" height="25"/>
+                                                <rect key="frame" x="145" y="1" width="188" height="25"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <customView id="glw-je-JTb" customClass="MASShortcutView">
-                                                        <rect key="frame" x="21" y="2" width="146" height="20"/>
+                                                        <rect key="frame" x="21" y="2" width="145" height="20"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                     </customView>
                                                 </subviews>
@@ -99,7 +100,7 @@
                             </tableView>
                         </subviews>
                     </clipView>
-                    <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="FhD-rq-eTV">
+                    <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="FhD-rq-eTV">
                         <rect key="frame" x="1" y="365" width="335" height="16"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </scroller>
@@ -113,7 +114,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="push" title="Reset All" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="PY9-Ay-LDE">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="label" size="13"/>
                         <connections>
                             <action selector="clearHotkeyButtons:" target="-2" id="4me-cW-3I0"/>
                         </connections>
@@ -123,14 +124,30 @@
                     <rect key="frame" x="98" y="385" width="158" height="18"/>
                     <buttonCell key="cell" type="check" title="Enable Global Hotkeys" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ghN-QQ-s1Q">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="system"/>
+                        <font key="font" metaFont="label" size="13"/>
                     </buttonCell>
                     <connections>
                         <action selector="globalHotkeysToggle:" target="-2" id="w38-eK-NNN"/>
                     </connections>
                 </button>
+                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="4hv-UL-zsB">
+                    <rect key="frame" x="307" y="379" width="25" height="25"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="21" id="288-Ao-ySh"/>
+                        <constraint firstAttribute="height" constant="21" id="hTZ-bn-TpB"/>
+                    </constraints>
+                    <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="90H-8g-FDW">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="label" size="13"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="globalHelpClicked:" target="-2" id="e3t-Cm-0GV"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
+                <constraint firstItem="4hv-UL-zsB" firstAttribute="top" secondItem="E4D-c8-VXr" secondAttribute="top" constant="2" id="0V2-Z4-M3a"/>
+                <constraint firstAttribute="trailing" secondItem="4hv-UL-zsB" secondAttribute="trailing" constant="7" id="Ubm-e1-RMD"/>
                 <constraint firstItem="TtO-09-W0I" firstAttribute="top" secondItem="E4D-c8-VXr" secondAttribute="top" constant="5" id="bx9-8i-hyY"/>
                 <constraint firstItem="TtO-09-W0I" firstAttribute="leading" secondItem="E4D-c8-VXr" secondAttribute="leading" constant="100" id="ya7-2E-prM"/>
             </constraints>

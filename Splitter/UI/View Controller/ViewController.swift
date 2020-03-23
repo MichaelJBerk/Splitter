@@ -93,12 +93,14 @@ class ViewController: NSViewController {
 	var refreshUITimer = Cocoa.Timer()
 	var milHundrethTimer = Cocoa.Timer()
 	
+	///States that the timer can be in
 	enum TimerState {
 		case stopped
 		case running
 		case paused
 	}
 	
+	///The timer's state - either stopped, running, or paused
 	var timerState: TimerState = .stopped {
 		didSet {
 			stopButton.isHidden = shouldStopButtonBeHidden
@@ -110,7 +112,7 @@ class ViewController: NSViewController {
 				startSplitItem?.title = "Start Timer"
 				
 				addDeleteEnabled(true)
-				nextBackEnabled(false)
+				splitBackEnabled(false)
 			} else if timerState == .running {
 				timerStopItem?.title = "Stop Timer"
 				timerStopItem?.isEnabled = true
@@ -118,24 +120,25 @@ class ViewController: NSViewController {
 				startSplitItem?.title = "Split"
 				
 				addDeleteEnabled(false)
-				nextBackEnabled(true)
+				splitBackEnabled(true)
 			} else if timerState == .paused {
 				timerStopItem?.isEnabled = true
 				timerStopItem?.title = "Stop Timer"
 				
 				startSplitItem?.title = "Resume Timer"
 				addDeleteEnabled(true)
-				nextBackEnabled(false)
+				splitBackEnabled(false)
 			}
 		}
 	}
 	
+	///Sets whethert the + and - buttons beneath the Table View are enabled or not
 	func addDeleteEnabled(_ enabled: Bool) {
 		plusButton.isEnabled = enabled
 		minusButton.isEnabled = enabled
 	}
-	
-	func nextBackEnabled(_ enabled: Bool) {
+	///Sets whethert the "split" and "back" buttons are enabled or not
+	func splitBackEnabled(_ enabled: Bool) {
 		nextButton.isEnabled = enabled
 		prevButton.isEnabled = enabled
 	}
@@ -365,6 +368,7 @@ class ViewController: NSViewController {
 		super.viewDidLoad()
 		self.view.wantsLayer = true
 		
+		
 			
 	}
 	
@@ -375,6 +379,7 @@ class ViewController: NSViewController {
 
 	}
 	
+	///Displays the "get info" popover
 	@IBAction func displayInfoPopover(_ sender: Any) {
 		infoPanelPopover?.contentViewController?.view.window?.close()
 		let destination = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: ViewControllerID.advanced) as! InfoPopoverTabViewController
@@ -390,6 +395,7 @@ class ViewController: NSViewController {
 		destination.setupTabViews()
 	}
 	
+	///Displays the "column options" popover
 	@IBAction func displayColumnOptionsPopover(_ sender: Any) {
 		columnOptionsPopover?.contentViewController?.view.window?.close()
 		let destination = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: ViewControllerID.columnOptions) as! ColumnOptionsViewController
@@ -412,6 +418,7 @@ class ViewController: NSViewController {
 		}
 	}
 	
+	//TODO: See if necessary
 	override func keyDown(with event: NSEvent) {
 		super.keyDown(with: event)
 		
@@ -419,6 +426,7 @@ class ViewController: NSViewController {
 }
 
 //TODO: See if this should be in a separate file, and if it should be with the VC or on its own or in Data
+//IDK why I added this, but it looks important
 extension DateComponents {
 	
 	func millisecond() -> Double? {
@@ -435,7 +443,8 @@ extension DateComponents {
 	}
 }
 
-
+// MARK: - Handling windows
+//This code helps Splitter keep track of the different windows the app may have open
 extension ViewController: NSWindowDelegate {
 
 	func windowDidBecomeKey(_ notification: Notification) {
@@ -460,6 +469,7 @@ extension ViewController: NSPopoverDelegate {
 	}
 }
 
+//TODO: see if this is needed
 class SplitterPopover: NSPopover {
 
 }

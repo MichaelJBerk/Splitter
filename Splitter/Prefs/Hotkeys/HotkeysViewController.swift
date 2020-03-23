@@ -21,6 +21,7 @@ final class HotkeysViewController: NSViewController, PreferencePane {
 	@IBOutlet weak var globalHotkeysCheck: NSButton!
 	@IBOutlet weak var outOfTableButton: NSButton!
 	
+	@IBOutlet weak var globalKeybindsHelpButton: NSButton!
 	
 	var viewController: ViewController? {
 		if let vc =  NSApp.windows.first?.contentViewController as? ViewController {
@@ -60,6 +61,19 @@ final class HotkeysViewController: NSViewController, PreferencePane {
 			app.globalShortcuts = globalHotkeysCheck.state.toBool()
 		}
 
+	}
+	@IBAction func globalHelpClicked(_ sender: Any) {
+		let helpText = """
+When enabled, hotkeys will activate even when Splitter
+is not the currently active app
+"""
+		let pop = NSPopover()
+		let tf = NSTextField(labelWithString: helpText)
+		let vc = NSViewController()
+		vc.view = tf
+		pop.contentViewController = vc
+		pop.behavior = .transient
+		pop.show(relativeTo: globalKeybindsHelpButton.frame, of: self.view, preferredEdge: .minY)
 	}
 	
 	@IBAction func clearHotkeyButtons(_ sender: Any) {
