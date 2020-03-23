@@ -33,7 +33,7 @@ enum menuIdentifiers {
 	
 	
 	//MARK: - Timer Menu
-	enum timerMenu{
+	enum runMenu{
 		static let StartSplit = NSUserInterfaceItemIdentifier("timerStartStop")
 		static let stop = NSUserInterfaceItemIdentifier("stopTimer")
 		static let pause = NSUserInterfaceItemIdentifier("pauseTimer")
@@ -42,14 +42,7 @@ enum menuIdentifiers {
 		static let resetRun = NSUserInterfaceItemIdentifier("ResetRun")
 		static let reset = NSUserInterfaceItemIdentifier("ResetCurrentSplitMenuItem")
 		
-	}
-	
-	//MARK: - Info Menu
-	enum infoMenu {
-		static let editTitle = NSUserInterfaceItemIdentifier("editTitleMenuItem")
-		static let editSubtitle = NSUserInterfaceItemIdentifier("editSubtitleMenuItem")
-		static let editGameIcon = NSUserInterfaceItemIdentifier("editGameIconMenuItem")
-		static let clearSplits = NSUserInterfaceItemIdentifier("ClearMenuItem")
+		static let infoPanel = NSUserInterfaceItemIdentifier("InfoMenuItem")
 	}
 	
 	//MARK: -  Appearance Menu
@@ -57,7 +50,8 @@ enum menuIdentifiers {
 		
 		static let hideTitleBar = NSUserInterfaceItemIdentifier("HideStoplightsItem")
 		static let hideButtons = NSUserInterfaceItemIdentifier("HideButtonsItem")
-		static let showBestSplits = NSUserInterfaceItemIdentifier("ShowBestSplits")
+		
+		static let showColumnOptions = NSUserInterfaceItemIdentifier("showColumnOptions")
 	}
 	
 	//MARK: - Window Menu

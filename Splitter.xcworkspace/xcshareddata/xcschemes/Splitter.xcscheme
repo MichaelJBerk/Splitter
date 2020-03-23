@@ -77,8 +77,8 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4AA357A12416AE7E00219E65"
-               BuildableName = "SplitterUITests"
+               BlueprintIdentifier = "4A2A4AF924290DD30006293B"
+               BuildableName = "SplitterUITests.xctest"
                BlueprintName = "SplitterUITests"
                ReferencedContainer = "container:Splitter.xcodeproj">
             </BuildableReference>

@@ -57,14 +57,14 @@ extension AppDelegate {
 		}
 	}
 	
-//	func resetTimerHandler() {
-//		if let vc = viewController as? ViewController {
-////			vc.
-//		}
-//	}
-//	func StartPauseHandler() {
-//		if let vc = viewController {
-//			vc.timerButtonClick(self)
-//		}
-//	}
+	func showInfoHandler() {
+		if let vc = viewController {
+			vc.displayInfoPopover(self)
+		}
+	}
+	func showColumnOptionsHandler() {
+		if let vc = viewController {
+			vc.displayColumnOptionsPopover(self)
+		}
+	}
 }

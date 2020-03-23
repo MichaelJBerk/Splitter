@@ -47,27 +47,26 @@ class ViewController: NSViewController {
 	@IBOutlet weak var plusButton: NSButton!
 	@IBOutlet weak var minusButton: NSButton!
 	@IBOutlet weak var gameIconButton: IconButton!
-	@IBOutlet weak var pauseButton: NSButton!
 	
 	
-	@IBOutlet weak var advancedPopoverButton: NSButton!
+	@IBOutlet weak var infoPanelPopoverButton: NSButton!
 	@IBOutlet weak var columnOptionsPopoverButton: NSButton!
 	
 //MARK: - Setting Up Popovers
 	var columnOptionsPopover: SplitterPopover?
-	var advancedPopover: SplitterPopover?
+	var infoPanelPopover: SplitterPopover?
 	
 	
 //MARK: - Setting up Menu Items
 	var timerStopItem: NSMenuItem? {
-		if let pauseItem = view.window?.menu?.item(withIdentifier: menuIdentifiers.timerMenu.stop) {
+		if let pauseItem = view.window?.menu?.item(withIdentifier: menuIdentifiers.runMenu.stop) {
 			return pauseItem
 		}
 		return nil
 	}
 	
 	var startSplitItem: NSMenuItem? {
-		if let stopStart = view.window?.menu?.item(withIdentifier: menuIdentifiers.timerMenu.StartSplit) {
+		if let stopStart = view.window?.menu?.item(withIdentifier: menuIdentifiers.runMenu.StartSplit) {
 			return stopStart
 		}
 		return nil
@@ -94,12 +93,14 @@ class ViewController: NSViewController {
 	var refreshUITimer = Cocoa.Timer()
 	var milHundrethTimer = Cocoa.Timer()
 	
+	///States that the timer can be in
 	enum TimerState {
 		case stopped
 		case running
 		case paused
 	}
 	
+	///The timer's state - either stopped, running, or paused
 	var timerState: TimerState = .stopped {
 		didSet {
 			stopButton.isHidden = shouldStopButtonBeHidden
@@ -111,7 +112,7 @@ class ViewController: NSViewController {
 				startSplitItem?.title = "Start Timer"
 				
 				addDeleteEnabled(true)
-				nextBackEnabled(false)
+				splitBackEnabled(false)
 			} else if timerState == .running {
 				timerStopItem?.title = "Stop Timer"
 				timerStopItem?.isEnabled = true
@@ -119,24 +120,25 @@ class ViewController: NSViewController {
 				startSplitItem?.title = "Split"
 				
 				addDeleteEnabled(false)
-				nextBackEnabled(true)
+				splitBackEnabled(true)
 			} else if timerState == .paused {
 				timerStopItem?.isEnabled = true
 				timerStopItem?.title = "Stop Timer"
 				
 				startSplitItem?.title = "Resume Timer"
 				addDeleteEnabled(true)
-				nextBackEnabled(false)
+				splitBackEnabled(false)
 			}
 		}
 	}
 	
+	///Sets whethert the + and - buttons beneath the Table View are enabled or not
 	func addDeleteEnabled(_ enabled: Bool) {
 		plusButton.isEnabled = enabled
 		minusButton.isEnabled = enabled
 	}
-	
-	func nextBackEnabled(_ enabled: Bool) {
+	///Sets whethert the "split" and "back" buttons are enabled or not
+	func splitBackEnabled(_ enabled: Bool) {
 		nextButton.isEnabled = enabled
 		prevButton.isEnabled = enabled
 	}
@@ -177,8 +179,6 @@ class ViewController: NSViewController {
 	
 
 	//MARK: - Other Split Metadata
-	//TODO: Make vars for Run Title and Category, and have the text fields update them
-	//TODO: Update popover data from here
 	var attempts: Int = 0 {
 		didSet {
 			attemptField.stringValue = "\(attempts)"
@@ -276,9 +276,25 @@ class ViewController: NSViewController {
 	
 	var hotkeysController: HotkeysViewController?
 	
+	@objc func breakFunc() {
+		for s in currentSplits {
+			print(s.splitName, ": ", s.splitDiff, " ", s.previousBest.timeString)
+		}
+	}
+	
+	var breakID = NSUserInterfaceItemIdentifier("break")
+	
 	//MARK: - Main Functions
 	override func viewWillAppear() {
 		super.viewWillAppear()
+		#if DEBUG
+		let breakMI = NSMenuItem(title: "Break", action: #selector(breakFunc), keyEquivalent: "b")
+		breakMI.keyEquivalentModifierMask = .command
+		breakMI.identifier = breakID
+		print(NSApp.mainMenu?.item(at: 0)?.submenu?.item(at: 0)?.title)
+		NSApp.mainMenu?.item(at: 0)?.submenu?.addItem(breakMI)
+//		NSApp.mainMenu!.addItem(breakMI)
+		#endif
 		
 		view.window?.delegate = self
 		//This line of code looks redundant, but it's here in order to make the timerState's property observer fire
@@ -290,9 +306,6 @@ class ViewController: NSViewController {
 		splitsTableView.backgroundColor = NSColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1.0)
 		splitsTableView.delegate = self
 		splitsTableView.dataSource = self
-
-		let exportJSON = view.window?.menu?.item(withTag: 1)
-		exportJSON?.isEnabled = false
 		
 		view.window?.isMovableByWindowBackground = true
 		
@@ -337,9 +350,6 @@ class ViewController: NSViewController {
 		windowFloat = Settings.floatWindow
 		setFloatingWindow()
 		
-		showBestSplits = Settings.showBestSplits
-		showHideBestSplits()
-		
 		for c in splitsTableView.tableColumns {
 			if c.identifier == STVColumnID.previousSplitColumn {
 				c.isHidden = true
@@ -358,30 +368,34 @@ class ViewController: NSViewController {
 		super.viewDidLoad()
 		self.view.wantsLayer = true
 		
+		
 			
 	}
 	
 	override func viewWillDisappear() {
-		advancedPopover?.contentViewController?.view.window?.close()
+		infoPanelPopover?.contentViewController?.view.window?.close()
 		columnOptionsPopover?.contentViewController?.view.window?.close()
 		super.viewWillDisappear()
 
 	}
 	
-	@IBAction func displayAdvancedPopover(_ sender: Any) {
-		advancedPopover?.contentViewController?.view.window?.close()
-		let destination = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: ViewControllerID.advanced) as! AdvancedTabViewController
+	///Displays the "get info" popover
+	@IBAction func displayInfoPopover(_ sender: Any) {
+		infoPanelPopover?.contentViewController?.view.window?.close()
+		let destination = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: ViewControllerID.advanced) as! InfoPopoverTabViewController
 		destination.delegate = self
 		let pop = SplitterPopover()
 		pop.delegate = self
 		pop.contentViewController = destination
-		pop.contentSize = NSSize(width: 450, height: 270)
+		pop.contentSize = NSSize(width: 450, height: 325)
 		pop.behavior = .semitransient
-		pop.show(relativeTo: .null, of: advancedPopoverButton, preferredEdge: .maxX)
-		advancedPopover = pop
+		pop.show(relativeTo: infoPanelPopoverButton.frame, of: self.view, preferredEdge: .maxX)
+//		pop.show(relativeTo: .null, of: infoPanelPopoverButton, preferredEdge: .maxX)
+		infoPanelPopover = pop
 		destination.setupTabViews()
 	}
 	
+	///Displays the "column options" popover
 	@IBAction func displayColumnOptionsPopover(_ sender: Any) {
 		columnOptionsPopover?.contentViewController?.view.window?.close()
 		let destination = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: ViewControllerID.columnOptions) as! ColumnOptionsViewController
@@ -390,7 +404,8 @@ class ViewController: NSViewController {
 		pop.delegate = self
 		pop.contentViewController = destination
 		pop.behavior = .semitransient
-		pop.show(relativeTo: .null, of: columnOptionsPopoverButton, preferredEdge: .maxX)
+		pop.show(relativeTo: columnOptionsPopoverButton.frame, of: self.view, preferredEdge: .maxX)
+//		pop.show(relativeTo: .null, of: columnOptionsPopoverButton, preferredEdge: .maxX)
 		columnOptionsPopover = pop
 		destination.loadCheckBoxes()
 		
@@ -403,6 +418,7 @@ class ViewController: NSViewController {
 		}
 	}
 	
+	//TODO: See if necessary
 	override func keyDown(with event: NSEvent) {
 		super.keyDown(with: event)
 		
@@ -410,6 +426,7 @@ class ViewController: NSViewController {
 }
 
 //TODO: See if this should be in a separate file, and if it should be with the VC or on its own or in Data
+//IDK why I added this, but it looks important
 extension DateComponents {
 	
 	func millisecond() -> Double? {
@@ -426,7 +443,8 @@ extension DateComponents {
 	}
 }
 
-
+// MARK: - Handling windows
+//This code helps Splitter keep track of the different windows the app may have open
 extension ViewController: NSWindowDelegate {
 
 	func windowDidBecomeKey(_ notification: Notification) {
@@ -436,8 +454,6 @@ extension ViewController: NSWindowDelegate {
 		let showHideTitleBarItem = NSApp.mainMenu?.item(withIdentifier: menuIdentifiers.appearanceMenu.hideTitleBar)
 		showHideTitleBarItem?.title = showHideTitleBarItemText
 		
-		let showHideBestSplitsItem = NSApp.mainMenu?.item(withIdentifier: menuIdentifiers.appearanceMenu.showBestSplits)
-		showHideBestSplitsItem?.title = showHideBestSplitsItemText
 	}
 }
 
@@ -453,6 +469,7 @@ extension ViewController: NSPopoverDelegate {
 	}
 }
 
+//TODO: see if this is needed
 class SplitterPopover: NSPopover {
 
 }

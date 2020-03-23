@@ -22,6 +22,8 @@ extension ViewController {
 				minusButton.isHidden = true
 				nextButton.isHidden = true
 				prevButton.isHidden = true
+				infoPanelPopoverButton.isHidden = true
+				columnOptionsPopoverButton.isHidden = true
 				
 	//			UIHidden = true
 			} else {
@@ -36,6 +38,8 @@ extension ViewController {
 				} else {
 					trashCanPopupButton.isHidden = false
 				}
+				infoPanelPopoverButton.isHidden = false
+				columnOptionsPopoverButton.isHidden = false
 				
 				
 				plusButton.isHidden = false

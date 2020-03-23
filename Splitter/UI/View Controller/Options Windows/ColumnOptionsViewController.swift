@@ -20,6 +20,7 @@ class ColumnOptionsViewController: NSViewController, NSPopoverDelegate {
 		return true
 	}
 	
+	///Loads the view with checkboxes for each column, in the order the user has left them
 	func loadCheckBoxes() {
 		if delegate != nil {
 			CheckboxGridView.removeRow(at: 0)
@@ -36,6 +37,7 @@ class ColumnOptionsViewController: NSViewController, NSPopoverDelegate {
 		}
 	}
 	
+	///Called when a user clicks on the checkbox to show/hide a row
 	@objc func checkboxAction(sender: NSButton) {
 		let checkID = colIds[sender.title]!
 		if delegate != nil {

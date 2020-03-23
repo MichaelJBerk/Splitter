@@ -57,8 +57,7 @@ extension ViewController {
 			i = i + 1
 		}
 		updatePreviousSplit(of: 0)
-		
-		
+		updateAllPreviousBestSplits()
 		
 		milHundrethTimer = Cocoa.Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateMilHundreth), userInfo: nil, repeats: true)
 		refreshUITimer = Cocoa.Timer.scheduledTimer(timeInterval: 0.03, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
@@ -68,17 +67,6 @@ extension ViewController {
 		currentSplits[0].currentSplit = self.currentSplit!
 		
 		self.startTime = Date()
-	}
-	
-	///Sets the "previous split" column for each segment in the run to the current value of that segment
-	func updatePreviousSplits() {
-		var i = 0
-		while i < currentSplits.count {
-			if currentSplits[i].currentSplit.timeString != TimeSplit().timeString {
-				currentSplits[i].previousSplit = currentSplits[i].currentSplit.tsCopy()
-			}
-			i = i + 1
-		}
 	}
 	
 	///Clears out the current time field on all segments in the Table View
@@ -182,7 +170,9 @@ extension ViewController {
 		currentSplit?.updateMil()
 	}
 	
+	///Called when the user has finished the run.
 	func finishRun() {
+		///It may not look like there's a point  to this right now, but I may add other functionality when a run is finished, and it would go here in that casse
 		stopTimer()
 	}
 }

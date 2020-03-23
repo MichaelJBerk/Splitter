@@ -38,17 +38,13 @@ extension ViewController {
 	func goToPrevSplit() {
 		if timerStarted {
 			if currentSplitNumber > 0 {
+				currentSplits[currentSplitNumber - 1].currentSplit = currentSplit!
 				currentSplits.replaceSubrange(currentSplitNumber...currentSplitNumber, with: [backupSplits[currentSplitNumber]])
 				currentSplitNumber = currentSplitNumber - 1
-//				currentSplits[currentSplitNumber].currentSplit = currentSplits[currentSplitNumber].previousSplit
-//				if let pp = currentSplits[currentSplitNumber].previousPrevious {
-//					currentSplits[currentSplitNumber].previousSplit = pp.tsCopy()
-//				}
-//				currentSplits[currentSplitNumber].bestSplit = currentSplits[currentSplitNumber].bestSplit.copy() as! TimeSplit
-//				currentSplitNumber -= 1
-//				currentSplits[currentSplitNumber].currentSplit = self.currentSplit!
-//				currentSplits[currentSplitNumber].previousPrevious = currentSplits[currentSplitNumber].previousSplit.tsCopy()
-//				print(currentSplits[currentSplitNumber].previousPrevious?.timeString)
+				
+				self.currentSplit = currentSplits[currentSplitNumber].currentSplit
+				splitsTableView.reloadData()
+
 			} else if currentSplitNumber == 0 {
 				self.currentSplit = TimeSplit(mil: 0, sec: 0, min: 0, hour: 0)
 				currentSplits[0].currentSplit = self.currentSplit!
@@ -147,6 +143,23 @@ extension ViewController {
 		addBestSplit(lSplit: lSplit, rSplit: rSplit, splitRow: row)
 	}
 	
+	//TODO: See if it makes more sense to implement this in the split table row itself
+	///Updates the "previous best " for the segment to the "best" of that segment
+	func updatePreviousBestSplit(of row: Int) {
+		currentSplits[row].previousBest = currentSplits[row].bestSplit.tsCopy()
+	}
+	
+	///Updates the "previous best"  for each segment in the run to the "best" of that segment
+	func updateAllPreviousBestSplits() {
+		var i = 0
+		while i < currentSplits.count {
+			updatePreviousBestSplit(of: i)
+			i = i + 1
+		}
+	}
+	
+	
+	
 	func updateAllBestSplits() {
 		var i = 0
 		while i < currentSplits.count {
@@ -156,8 +169,22 @@ extension ViewController {
 	}
 	
 	//MARK: - Previous Splits
+	
+	//TODO: See if it makes more sense to implement this in the split table row itself
+	
+	///Updates the "previous split" for the segment to the "current split" of that segment
 	func updatePreviousSplit(of row: Int) {
 		currentSplits[row].previousSplit = currentSplits[row].currentSplit.tsCopy()
+	}
+	///Updates the "previous split"  for each segment in the run to the "current split" of that segment
+	func updatePreviousSplits() {
+		var i = 0
+		while i < currentSplits.count {
+			if currentSplits[i].currentSplit.timeString != TimeSplit().timeString {
+				currentSplits[i].previousSplit = currentSplits[i].currentSplit.tsCopy()
+			}
+			i = i + 1
+		}
 	}
 
 	

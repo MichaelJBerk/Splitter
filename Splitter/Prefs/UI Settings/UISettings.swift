@@ -46,33 +46,7 @@ extension ViewController {
 		showHideTitleBarItem?.title = showHideTitleBarItemText
 	}
 	
-	///Shows or hides the Best Splits column, depending on the current setting
-	func showHideBestSplits() {
-		 let menuItem = NSApp.mainMenu?.item(withIdentifier: menuIdentifiers.appearanceMenu.showBestSplits)
-			
-		if let bestSplitsColumn = splitsTableView?.column(withIdentifier: .init("B")) {
-			if showBestSplits {
-				
-				splitsTableView.tableColumns[bestSplitsColumn].isHidden = false
-				
-			} else if !splitsTableView.tableColumns[bestSplitsColumn].isHidden {
-				splitsTableView.tableColumns[bestSplitsColumn].isHidden = true
-				
-				
-			}
-		}
-		menuItem?.title = showHideBestSplitsItemText
-	}
 	
-	var showHideBestSplitsItemText: String {
-		get {
-			if showBestSplits {
-				return "Hide Best Splits Column"
-			} else {
-				return "Show Best Splits Column"
-			}
-		}
-	}
 	@IBAction func showHideTitleBarMenuItem(_ sender: Any? ) {
 		titleBarHidden.toggle()
 		showHideTitleBar()

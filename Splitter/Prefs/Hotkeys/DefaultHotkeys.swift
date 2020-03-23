@@ -17,9 +17,12 @@ enum KeybindTitle: String {
 	case StopTimer = "Stop Timer"
 	case ClearTimer = "Reset Run"
 	case ResetCurrentSplit = "Reset Current Split"
+	case ShowInfoPanel = "Get Info..."
+	case ShowColumnOptions = "Show/Hide Columns..."
 	
 }
 
+///Keys used to store keybinds in UserDefaults
 enum KeybindSettingsKey: String {
 	
 	case bringToFront = "bringToFront"
@@ -28,7 +31,9 @@ enum KeybindSettingsKey: String {
 	case prevSplit = "prevSplit"
 	case stopTimer = "stopTimer"
 	case clearTimer = "clearTimer"
-	case resetCurrentSplit = "Reset Current Split"
+	case resetCurrentSplit = "ResetCurrentSplit"
+	case showInfoPanel = "showInfoPanel"
+	case showColumnOptions = "showColumnOptions"
 }
 
 struct SplitterKeybind {
@@ -60,12 +65,14 @@ extension AppDelegate {
 		
 		appKeybinds = [
 			SplitterKeybind(settings: .bringToFront, title: .BringToFront, menuItemID: nil),
-			SplitterKeybind(settings: .startSplitTimer, title: .StartSplitTimer, menuItemID: menuIdentifiers.timerMenu.StartSplit),
-			SplitterKeybind(settings: .pauseTimer, title: .PauseTimer, menuItemID: menuIdentifiers.timerMenu.pause),
-			SplitterKeybind(settings: .prevSplit, title: .PrevSplit, menuItemID: menuIdentifiers.timerMenu.back),
-			SplitterKeybind(settings: .stopTimer, title: .StopTimer, menuItemID: menuIdentifiers.timerMenu.stop),
-			SplitterKeybind(settings: .clearTimer, title: .ClearTimer, menuItemID: menuIdentifiers.timerMenu.resetRun),
-			SplitterKeybind(settings: .resetCurrentSplit, title: .ResetCurrentSplit, menuItemID: menuIdentifiers.timerMenu.reset)
+			SplitterKeybind(settings: .startSplitTimer, title: .StartSplitTimer, menuItemID: menuIdentifiers.runMenu.StartSplit),
+			SplitterKeybind(settings: .pauseTimer, title: .PauseTimer, menuItemID: menuIdentifiers.runMenu.pause),
+			SplitterKeybind(settings: .prevSplit, title: .PrevSplit, menuItemID: menuIdentifiers.runMenu.back),
+			SplitterKeybind(settings: .stopTimer, title: .StopTimer, menuItemID: menuIdentifiers.runMenu.stop),
+			SplitterKeybind(settings: .clearTimer, title: .ClearTimer, menuItemID: menuIdentifiers.runMenu.resetRun),
+			SplitterKeybind(settings: .resetCurrentSplit, title: .ResetCurrentSplit, menuItemID: menuIdentifiers.runMenu.reset),
+			SplitterKeybind(settings: .showInfoPanel, title: .ShowInfoPanel, menuItemID: menuIdentifiers.runMenu.infoPanel),
+			SplitterKeybind(settings: .showColumnOptions, title: .ShowColumnOptions, menuItemID: menuIdentifiers.appearanceMenu.showColumnOptions)
 		]
 		
 		
@@ -92,8 +99,8 @@ extension AppDelegate {
 		for i in appKeybinds {
 			if i?.menuItemID != nil {
 				let mi = NSApp.mainMenu?.item(withIdentifier: i!.menuItemID!)
-				
-				mi!.keyEquivalent = i?.keybind?.keyCodeString ?? ""
+				print(i?.keybind?.keyCodeStringForKeyEquivalent)
+				mi!.keyEquivalent = i?.keybind?.keyCodeStringForKeyEquivalent ?? ""
 				if let mods = i?.keybind?.modifierFlags {
 					mi!.keyEquivalentModifierMask = mods
 				}
@@ -102,6 +109,7 @@ extension AppDelegate {
 	}
 	
 	func updateSplitterKeybind(keybind: KeybindTitle, shortcut: MASShortcut) {
+//		var hey = UserDefaults.standard.object(forKey: "bringToFront") as? 
 		var i = 0
 		while i < appKeybinds.count {
 			if appKeybinds[i]?.title == keybind {
@@ -155,6 +163,14 @@ extension AppDelegate {
 		case .ResetCurrentSplit:
 			return {
 				self.resetCurrentSplitHandler()
+			}
+		case .ShowInfoPanel:
+			return {
+				self.showInfoHandler()
+			}
+		case .ShowColumnOptions:
+		return {
+			self.showColumnOptionsHandler()
 			}
 		default:
 			break
