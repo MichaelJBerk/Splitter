@@ -545,7 +545,7 @@
                                             <tableColumns>
                                                 <tableColumn identifier="ImageColumn" width="32" minWidth="10" maxWidth="3.4028234663852886e+38" id="ljG-co-EDf">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
-                                                        <font key="font" metaFont="menu" size="11"/>
+                                                        <font key="font" metaFont="message" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -580,7 +580,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="SplitTitle" width="80" minWidth="40" maxWidth="1000" id="rA7-ZF-Uc6">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Split">
-                                                        <font key="font" metaFont="menu" size="11"/>
+                                                        <font key="font" metaFont="message" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -598,7 +598,7 @@
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Zgl-iF-pqa">
                                                                     <rect key="frame" x="0.0" y="3" width="95" height="14"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" alignment="left" title="Split Title" id="3Pe-jP-c4b">
-                                                                        <font key="font" metaFont="menu" size="11"/>
+                                                                        <font key="font" metaFont="message" size="11"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
@@ -617,7 +617,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="CurrentSplit" width="90" minWidth="10" maxWidth="3.4028234663852886e+38" id="rN9-Ff-1yR" customClass="TimeSplitColumn" customModule="Splitter" customModuleProvider="target">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Time">
-                                                        <font key="font" metaFont="menu" size="11"/>
+                                                        <font key="font" metaFont="message" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -657,7 +657,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="Difference" editable="NO" width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="xLb-1p-wmS" customClass="TimeSplitColumn" customModule="Splitter" customModuleProvider="target">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Diff">
-                                                        <font key="font" metaFont="menu" size="11"/>
+                                                        <font key="font" metaFont="message" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -697,7 +697,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="B" width="173" minWidth="10" maxWidth="3.4028234663852886e+38" id="RXR-Oz-PMu" customClass="TimeSplitColumn" customModule="Splitter" customModuleProvider="target">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="PB">
-                                                        <font key="font" metaFont="menu" size="11"/>
+                                                        <font key="font" metaFont="message" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -737,7 +737,7 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="PreviousSplit" width="85" minWidth="10" maxWidth="3.4028234663852886e+38" hidden="YES" id="Q3y-d2-rYY" customClass="TimeSplitColumn" customModule="Splitter" customModuleProvider="target">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Previous">
-                                                        <font key="font" metaFont="menu" size="11"/>
+                                                        <font key="font" metaFont="message" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -808,7 +808,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jC2-yS-poH">
+                            <button toolTip="Remove Split" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jC2-yS-poH">
                                 <rect key="frame" x="193" y="101" width="25" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="249-xc-MAe"/>
@@ -817,6 +817,7 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <accessibility description="Remove Split" identifier="RemoveSplit"/>
                                 <connections>
                                     <action selector="RemoveButtonClick:" target="5gI-5U-AMq" id="Rqp-0v-Ncb"/>
                                 </connections>
@@ -831,7 +832,7 @@
                                     <action selector="nextButtonClick:" target="5gI-5U-AMq" id="fjE-Ya-6Ng"/>
                                 </connections>
                             </button>
-                            <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OXM-M7-swh">
+                            <button toolTip="Add Split" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OXM-M7-swh">
                                 <rect key="frame" x="220" y="101" width="25" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="3qQ-Zf-ylZ"/>
@@ -840,6 +841,7 @@
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
+                                <accessibility description="Add Split" identifier="AddSplit"/>
                                 <connections>
                                     <action selector="addButtonClick:" target="5gI-5U-AMq" id="t7j-Yl-6Hn"/>
                                 </connections>
@@ -898,7 +900,7 @@
                                     <action selector="trashCanPopupClick:" target="5gI-5U-AMq" id="iRE-n2-4Vm"/>
                                 </connections>
                             </popUpButton>
-                            <button horizontalHuggingPriority="249" verticalHuggingPriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="gCo-Oe-sI7">
+                            <button toolTip="Start Timer" horizontalHuggingPriority="249" verticalHuggingPriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="gCo-Oe-sI7">
                                 <rect key="frame" x="46" y="28" width="237" height="32"/>
                                 <buttonCell key="cell" type="push" title="Start" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Z21-jw-aXO">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -907,6 +909,7 @@
                                     <modifierMask key="keyEquivalentModifierMask" command="YES"/>
                                 </buttonCell>
                                 <color key="contentTintColor" name="systemGreenColor" catalog="System" colorSpace="catalog"/>
+                                <accessibility description="Start Time" identifier="StartTimer"/>
                                 <connections>
                                     <action selector="timerButtonClick:" target="5gI-5U-AMq" id="5Bg-tR-Jey"/>
                                 </connections>
