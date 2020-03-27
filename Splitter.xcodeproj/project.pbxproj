@@ -174,6 +174,11 @@
 		4AC24DB923EB4EC5003008BF /* Split Table Row.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Split Table Row.swift"; sourceTree = "<group>"; };
 		4AC24DBB23EB4F17003008BF /* Split Table View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Split Table View.swift"; sourceTree = "<group>"; };
 		4ACCEA7723B02F520068F89E /* TimeSplit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSplit.swift; sourceTree = "<group>"; };
+		4AD2D415242C267B00CE8017 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = en.lproj/page1.html; sourceTree = "<group>"; };
+		4AD2D417242C267B00CE8017 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/helpindex.help; sourceTree = "<group>"; };
+		4AD2D419242C267B00CE8017 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.html; name = en; path = en.lproj/index.html; sourceTree = "<group>"; };
+		4AD2D41B242C267B00CE8017 /* en */ = {isa = PBXFileReference; lastKnownFileType = file; name = en; path = en.lproj/help.helpindex; sourceTree = "<group>"; };
+		4AD2D41C242C267B00CE8017 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4AD77D15240ECA2800CD65AD /* ColumnOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnOptionsViewController.swift; sourceTree = "<group>"; };
 		4ADE9225240F1FB900E0D99E /* InfoPopoverTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPopoverTabViewController.swift; sourceTree = "<group>"; };
 		4ADFAE4823E4A0760049F57A /* QuickAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickAlert.swift; sourceTree = "<group>"; };
@@ -301,6 +306,7 @@
 		4A230E8623B00A1D00959C57 = {
 			isa = PBXGroup;
 			children = (
+				4AD2D411242C267B00CE8017 /* Splitter.help */,
 				4A230E9123B00A1D00959C57 /* Splitter */,
 				4A774A5523EBCDFA002F1700 /* SplitterTests */,
 				4A2A4AFB24290DD30006293B /* SplitterUITests */,
@@ -425,6 +431,34 @@
 				4A45BCF624084B3800F1A223 /* TimeSplitCell.swift */,
 			);
 			path = "Split Table View";
+			sourceTree = "<group>";
+		};
+		4AD2D411242C267B00CE8017 /* Splitter.help */ = {
+			isa = PBXGroup;
+			children = (
+				4AD2D412242C267B00CE8017 /* Contents */,
+			);
+			path = Splitter.help;
+			sourceTree = "<group>";
+		};
+		4AD2D412242C267B00CE8017 /* Contents */ = {
+			isa = PBXGroup;
+			children = (
+				4AD2D413242C267B00CE8017 /* Resources */,
+				4AD2D41C242C267B00CE8017 /* Info.plist */,
+			);
+			path = Contents;
+			sourceTree = "<group>";
+		};
+		4AD2D413242C267B00CE8017 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				4AD2D414242C267B00CE8017 /* page1.html */,
+				4AD2D416242C267B00CE8017 /* helpindex.help */,
+				4AD2D418242C267B00CE8017 /* index.html */,
+				4AD2D41A242C267B00CE8017 /* help.helpindex */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 		4AD780C323D5065B0068CDE3 /* Data */ = {
@@ -821,6 +855,38 @@
 				4A230E9B23B00A1E00959C57 /* Base */,
 			);
 			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		4AD2D414242C267B00CE8017 /* page1.html */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4AD2D415242C267B00CE8017 /* en */,
+			);
+			name = page1.html;
+			sourceTree = "<group>";
+		};
+		4AD2D416242C267B00CE8017 /* helpindex.help */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4AD2D417242C267B00CE8017 /* en */,
+			);
+			name = helpindex.help;
+			sourceTree = "<group>";
+		};
+		4AD2D418242C267B00CE8017 /* index.html */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4AD2D419242C267B00CE8017 /* en */,
+			);
+			name = index.html;
+			sourceTree = "<group>";
+		};
+		4AD2D41A242C267B00CE8017 /* help.helpindex */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4AD2D41B242C267B00CE8017 /* en */,
+			);
+			name = help.helpindex;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */

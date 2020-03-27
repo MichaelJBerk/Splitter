@@ -102,6 +102,10 @@ class TimeSplit: NSCopying, Comparable {
 	@objc func updateMil() {
 		if !paused {
 			privateMil = privateMil + 1
+		
+//			timer.
+			
+//			let lsc = LiveSplitCore()
 			
 //			if mil == 99 {
 //				mil = 0

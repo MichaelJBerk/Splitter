@@ -89,9 +89,10 @@ class ViewController: NSViewController {
 	var timerPaused = false
 	
 	
-	var timer = Cocoa.Timer()
-	var refreshUITimer = Cocoa.Timer()
-	var milHundrethTimer = Cocoa.Timer()
+	var timer = Timer()
+	var lscTimer: LiveSplitCore.Timer?
+	var refreshUITimer = Timer()
+	var milHundrethTimer = Timer()
 	
 	///States that the timer can be in
 	enum TimerState {

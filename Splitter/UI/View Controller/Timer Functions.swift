@@ -60,13 +60,33 @@ extension ViewController {
 		updateAllPreviousBestSplits()
 		
 		milHundrethTimer = Cocoa.Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateMilHundreth), userInfo: nil, repeats: true)
+		RunLoop.current.add(milHundrethTimer, forMode: .common)
 		refreshUITimer = Cocoa.Timer.scheduledTimer(timeInterval: 0.03, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
+		RunLoop.current.add(refreshUITimer, forMode: .common)
+		
+		
+		//lsc: milHundrethTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateMilHundreth), userInfo: nil, repeats: true)
+		
+		
+		
+//		refreshUITimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
 		currentSplit = TimeSplit()
 		
 		currentSplitNumber = 0
 		currentSplits[0].currentSplit = self.currentSplit!
 		
 		self.startTime = Date()
+		
+		let lsc = LiveSplitCore.self
+		let run = LiveSplitCore.Run()
+		let seg = LiveSplitCore.Segment("Segment")
+		run.pushSegment(seg)
+		//lsc:
+//		lscTimer = lsc.Timer(run)
+//		lscTimer?.start()
+
+		
+		
 	}
 	
 	///Clears out the current time field on all segments in the Table View
@@ -167,7 +187,30 @@ extension ViewController {
 		
 	
 	@objc func updateMilHundreth() {
-		currentSplit?.updateMil()
+		
+//		let cTimeString = timer?.currentTime()
+//		currentSplit?.updateMil()
+		
+//		TimerLabel.stringValue = currentSplit?.timeString
+//		if let currentTime = currentSplit?.timeString {
+//			TimerLabel.stringValue = currentTime
+//		}
+		
+//
+//		//lsc:
+//		if let currentTimer = lscTimer?.currentTime().realTime()?.totalSeconds() {
+//			let timeInt = Int(currentTimer * 100)
+//
+//			TimerLabel.stringValue = timeInt.toFormatedTimeString()
+//		}
+//		DispatchQueue.global(qos: .background).async {
+			self.currentSplit?.updateMil()
+//		}
+		
+		
+		
+	
+//		splitsTableView.reloadData()
 	}
 	
 	///Called when the user has finished the run.

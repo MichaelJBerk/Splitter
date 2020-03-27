@@ -51,6 +51,7 @@ class SplitterTests: XCTestCase {
 		}
 //		dc.addDocument(doc!)
 		
+		
 	}
 	
 	func testImportSplitsIO() {
