@@ -9,48 +9,50 @@
 import Foundation
 import Cocoa
 
+///An object that holds a value of time for a segment.
 class TimeSplit: NSCopying, Comparable {
 	
-//	var milHundreth = 0
-//	var mil = 0
-//	var sec = 0
-//	var min = 0
-//	var hour = 0
 	var paused = false
-	var privateMil = 0
+	//Total MS elapsed from start of TimeSplit
+	var totalMil = 0
 	
 	init( mil:Int, sec:Int, min:Int, hour:Int) {
-//		self.mil = mil
-//		self.sec = sec
-//		self.min = min
-//		self.hour = hour
-		privateMil = 0
-		privateMil = privateMil + mil
-		privateMil = privateMil + (sec * 1000)
-		privateMil = privateMil + (min * 60000)
-		privateMil = privateMil + (hour * 3600000)
+
+		totalMil = 0
+		totalMil = totalMil + mil
+		totalMil = totalMil + (sec * 100)
+		totalMil = totalMil + (min * 60000)
+		totalMil = totalMil + (hour * 3600000)
+	}
+	
+	var mil: Int {
+		return totalMil % 100
+	}
+	var sec: Int {
 		
-//		self.milHundreth = 0
+		return Int(totalMil / 100) % 60
+
+	}
+	var min: Int {
+		return Int(totalMil/60000) % 60
+
+	}
+	var hour: Int {
+
+		return totalMil / 3600000
 	}
 	
 	
 	/// Initalizes the TimeSplit
-	/// - Parameter mil: Time of the `TimeSplit`, in milliseconds. This is useful for importing from some formats, such as Splits.io
+	/// - Parameter mil: Time of the `TimeSplit`, in milliseconds.
 	init (mil: Int) {
-		self.privateMil = mil
-		//Get the total hours
-		//TODO: round down
-//		self.hour = mil/3600000
-		//Take the remainder, and get the minutes from that, and so on
-//		self.min = (mil % 3600000) / 60000
-//		self.sec = (((mil % 3600000) % 60000) / 100)/10
-//		self.mil = (((mil % 3600000) % 60000) % 1000)/10
-		
+		self.totalMil = mil
 	}
 	
-	
+	///Initalizes the time split from using string in the format "00:00:00.00" with hours, minutes, seconds, and milliseconds.
 	init(timeString: String) {
 		var hourMilSec = timeString.split(separator: ":", maxSplits: 3, omittingEmptySubsequences: false)
+		
 		if hourMilSec.count == 2 {
 			var newTimeString = "00:" + timeString;
 			hourMilSec = newTimeString.split(separator: ":", maxSplits: 3, omittingEmptySubsequences: false)
@@ -70,19 +72,15 @@ class TimeSplit: NSCopying, Comparable {
 			let min = Int(String(finalSplit[1])) ?? 0
 			let hour = Int(String(finalSplit[0])) ?? 0
 			
-			privateMil = 0
-			privateMil = privateMil + mil
-			privateMil = privateMil + (sec * 1000)
-			privateMil = privateMil + (min * 60000)
-			privateMil = privateMil + (hour * 3600000)
+			totalMil = 0
+			totalMil = totalMil + mil
+			totalMil = totalMil + (sec * 100)
+			totalMil = totalMil + (min * 60000)
+			totalMil = totalMil + (hour * 3600000)
 			
 			
 		} else {
-//			self.mil = 0
-//			self.sec = 0
-//			self.min = 0
-//			self.hour = 0
-			self.privateMil = 0
+			self.totalMil = 0
 		}
 		
 	}
@@ -97,36 +95,11 @@ class TimeSplit: NSCopying, Comparable {
 //		self.sec = 0
 //		self.min = 0
 //		self.hour = 0
-		self.privateMil = 0
+		self.totalMil = 0
 	}
 	@objc func updateMil() {
 		if !paused {
-			privateMil = privateMil + 1
-		
-//			timer.
-			
-//			let lsc = LiveSplitCore()
-			
-//			if mil == 99 {
-//				mil = 0
-//				if sec == 59 {
-//					sec = 0
-//					if min == 59 {
-//						min = 0
-//						if hour == 23 {
-//							hour = 0
-//						} else {
-//							hour = hour + 1
-//						}
-//					} else {
-//						min = min + 1
-//					}
-//				} else {
-//					sec = sec + 1
-//				}
-//			} else {
-//				mil = mil + 1
-//			}
+			totalMil = totalMil + 1
 			
 		}
 	}
@@ -135,45 +108,53 @@ class TimeSplit: NSCopying, Comparable {
 	Returns time of the`TimeSplit` as a `String`.
 	**/
 	var timeString: String {
-		return privateMil.toFormatedTimeString()
-//			return String(format: "%.2d:%.2d:%.2d.%.02d", hour, min, sec, mil)
+		
+		return String(format: "%.2d:%.2d:%.2d.%.02d", hour, min, sec, mil)
 	}
 	
 	///Returns the `TimeSplit` as a `String`, but only includes the first significant field
 	var shortTimeString: String {
-//		if hour == 0 {
-//			if min == 0 {
-//				return String(format: "%.2d.%.2d", sec, mil)
-//			}
-//			return String(format: "%.2d:%.2d.%.2d", min, sec, mil)
-//		}
-//		return String(format: "%.2d:%.2d:%.2d.%.2d", hour, min, sec, mil)
-		return privateMil.toShortFormattedTimeString()
+//		return timeString
+//		return String("\(hour):\(min):\(sec).\(mil)")
+//		return String("\(hour):\(min):\(sec).\(mil)")
+//		return String(format: "%.2d:%.2d:%.2d.%.02d", hour, min, sec, mil)
+		if hour == 0 {
+			if min == 0 {
+				return String(format: "%.2d.%.2d", sec, mil)
+			}
+			return String(format: "%.2d:%.2d.%.2d", min, sec, mil)
+		}
+		return String(format: "%.2d:%.2d:%.2d.%.2d", hour, min, sec, mil)
+//		return privateMil.toShortFormattedTimeString()
 	}
 	
 	///Returns a `shortTimeString`, but is rounded to the tenths instead of hundredths
 	var shortTimeStringTenths: String {
-//		let milRounded = Int((Double(mil)/10.00).rounded())
-//		if hour == 0 {
-//			if min == 0 {
+//		return timeString
+//		return String("\(hour):\(min):\(sec).\(mil)")
+		//return String("\(hour):\(min):\(sec).\(mil)")
+//		return String(format: "%.2d:%.2d:%.2d.%.02d", hour, min, sec, mil)
+		let milRounded = Int((Double(mil)/10.00).rounded())
+		if hour == 0 {
+			if min == 0 {
 //
-//				return String(format: "%.2d.%.1d", sec, milRounded)
-//			}
-//			return String(format: "%.2d:%.2d.%.1d", min, sec, milRounded)
-//		}
-//		return String(format: "%.2d:%.2d:%.2d.%.1d", hour, min, sec, milRounded)
-		return privateMil.toShortFormattedTimeStringTenths()
+				return String(format: "%.2d.%.1d", sec, milRounded)
+			}
+			return String(format: "%.2d:%.2d.%.1d", min, sec, milRounded)
+		}
+		return String(format: "%.2d:%.2d:%.2d.%.1d", hour, min, sec, milRounded)
+//		return privateMil.toShortFormattedTimeStringTenths()
 	}
 	
 	
 	func frozenTimeSplit() -> TimeSplit {
 //		let newTimeSplit = TimeSplit(mil: self.mil, sec: self.sec, min: self.min, hour: self.hour)
-		let newTimeSplit = TimeSplit(mil: self.privateMil)
+		let newTimeSplit = TimeSplit(mil: self.totalMil)
 		return newTimeSplit
 	}
 	
 	func copy(with zone: NSZone? = nil) -> Any {
-		return TimeSplit(mil: privateMil)
+		return TimeSplit(mil: totalMil)
 	}
 	
 	func tsCopy() -> TimeSplit {
@@ -211,7 +192,7 @@ class TimeSplit: NSCopying, Comparable {
 //				}
 //			}
 //		}
-		if lhs.privateMil > rhs.privateMil {
+		if lhs.totalMil > rhs.totalMil {
 			return true
 		} else {
 			return false
@@ -250,7 +231,7 @@ class TimeSplit: NSCopying, Comparable {
 	//MARK - Arithmetic Stuff
 	
 	static func + (lhs: TimeSplit, rhs: TimeSplit) -> TimeSplit {
-		let tsMil = lhs.privateMil + rhs.privateMil
+		let tsMil = lhs.totalMil + rhs.totalMil
 		var newTimeSplit = TimeSplit(mil:tsMil)
 //		newTimeSplit.hour = lhs.hour + rhs.hour
 //		newTimeSplit.min = lhs.min + rhs.min
@@ -262,7 +243,7 @@ class TimeSplit: NSCopying, Comparable {
 		return newTimeSplit
 	}
 	static func - (lhs: TimeSplit, rhs: TimeSplit) -> TimeSplit {
-		let tsMil = lhs.privateMil - rhs.privateMil
+		let tsMil = lhs.totalMil - rhs.totalMil
 		var newTimeSplit = TimeSplit(mil:tsMil)
 //		if lhs.hour > rhs.hour {
 //			newTimeSplit.hour = lhs.hour - rhs.hour
@@ -295,7 +276,7 @@ class TimeSplit: NSCopying, Comparable {
 //		let hourToMil = self.hour * 3600000
 //		let newMil = self.mil + secToMil + minToMil + hourToMil
 		
-		return privateMil
+		return totalMil
 		
 	}
 	
@@ -303,55 +284,5 @@ class TimeSplit: NSCopying, Comparable {
 //		init(mi)
 		let mil = Int(seconds * 1000)
 		self.init(mil: mil)
-	}
-}
-
-extension Int {
-	func toFormatedTimeString() -> String{
-		let milSec = self % 100
-		let sec = (self / 100) % 60
-		let min = (self / 6000) % 60
-		let hour = (self / 3600000) % 60
-		
-		let formatString = String(format: "%02d:%02d:%02d.%02d", abs(hour), abs(min), abs(sec), abs(milSec))
-	  
-	   return formatString
-   }
-	func toShortFormattedTimeString() -> String {
-		let milSec = self % 100
-		let sec = (self / 100) % 60
-		let min = (self / 6000) % 60
-		let hour = (self / 3600000) % 60
-		
-		var formatString = String(format: "%02d:%02d:%02d.%02d",abs(hour), abs(min), abs(sec), abs(milSec))
-		if hour == 0 {
-			if min == 0 {
-				formatString = String(format: "%02d.%02d", abs(sec), abs(milSec))
-			} else {
-				formatString = String(format: "%02:%02d.%02d", abs(min), abs(sec), abs(milSec))
-			}
-		}
-		
-		
-		
-		return formatString
-	}
-	func toShortFormattedTimeStringTenths() -> String {
-		
-		let milSec = self % 100
-		let milRounded = Int((Double(milSec)/10.00).rounded())
-		let sec = (self / 100) % 60
-		let min = (self / 6000) % 60
-		let hour = (self / 3600000) % 60
-		
-		var formatString = String(format: "%02d:%02d:%02d.%01d",abs(hour), abs(min), abs(sec), abs(milRounded))
-		if hour == 0 {
-			if min == 0 {
-				formatString = String(format: "%02d.%01d", abs(sec), abs(milRounded))
-			} else {
-				formatString = String(format: "%02d:%02d.%01d", abs(min), abs(sec), abs(milRounded))
-			}
-		}
-		return formatString
 	}
 }

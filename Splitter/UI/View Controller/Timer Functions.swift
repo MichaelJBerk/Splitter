@@ -61,7 +61,7 @@ extension ViewController {
 		
 		milHundrethTimer = Cocoa.Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateMilHundreth), userInfo: nil, repeats: true)
 		RunLoop.current.add(milHundrethTimer, forMode: .common)
-		refreshUITimer = Cocoa.Timer.scheduledTimer(timeInterval: 0.03, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
+		refreshUITimer = Cocoa.Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
 		RunLoop.current.add(refreshUITimer, forMode: .common)
 		
 		
@@ -144,7 +144,7 @@ extension ViewController {
 	///Updates the current time on the timer
 	func UpdateTimer() {
 		if let currentTime = currentSplit?.timeString {
-			TimerLabel.stringValue = currentTime
+			TimerLabel.stringValue = String(currentSplit!.privateMil)//currentTime
 		}
 		splitsTableView.reloadData()
 		
