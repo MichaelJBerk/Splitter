@@ -39,7 +39,6 @@
 		4A66A43023DE2682005952FA /* ImageButtonCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A66A42F23DE2682005952FA /* ImageButtonCellView.swift */; };
 		4A66A43223DE2C88005952FA /* SplitTableViewColumnIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A66A43123DE2C88005952FA /* SplitTableViewColumnIdentifiers.swift */; };
 		4A66A43423DE391B005952FA /* ShowHideUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A66A43323DE391B005952FA /* ShowHideUI.swift */; };
-		4A6726E323F05B3C006F4BC4 /* module.map in Sources */ = {isa = PBXBuildFile; fileRef = 4AF9D75D23ECD5110019BC9A /* module.map */; };
 		4A6726EA23F05D17006F4BC4 /* LiveSplit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A617EBD23EBC65C0005D60E /* LiveSplit.swift */; };
 		4A6A3BE023CD1C39002C20AE /* GlobalKeybindPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6A3BDF23CD1C39002C20AE /* GlobalKeybindPrefs.swift */; };
 		4A6A3BE223CD1C7A002C20AE /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6A3BE123CD1C7A002C20AE /* Storage.swift */; };
@@ -779,7 +778,6 @@
 				4A230E9323B00A1D00959C57 /* AppDelegate.swift in Sources */,
 				4AFEFFB0241AB9E400B00E45 /* TableViewAppearance.swift in Sources */,
 				4AC24DBC23EB4F17003008BF /* Split Table View.swift in Sources */,
-				4A6726E323F05B3C006F4BC4 /* module.map in Sources */,
 				4A18663223C5376900FEEE54 /* SettingsKeys.swift in Sources */,
 				4A1657B123EA4EF60008CB5F /* Menu Items.swift in Sources */,
 				4ADFAE4923E4A0760049F57A /* QuickAlert.swift in Sources */,
@@ -1014,7 +1012,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 32;
+				CURRENT_PROJECT_VERSION = 50;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 39SZK2C73D;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1058,7 +1056,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 32;
+				CURRENT_PROJECT_VERSION = 50;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 39SZK2C73D;
 				ENABLE_HARDENED_RUNTIME = YES;

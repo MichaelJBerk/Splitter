@@ -50,24 +50,73 @@ class MetadataField: NSTextField  {
 			default:
 				 let c = findVC() as! InfoOptionsViewController
 					c.sendDataToMain()
-	//		default:
-	//			break
 			}
 		}
-
 }
 
 class MetadataImage: NSImageView {
 	var controller: metaController?
 	
 	override var image: NSImage? {
+		willSet {
+			
+//			else if let i = findVC() as? InfoOptionsViewController {
+////				i.delegate?.gameIconButton.image = self.image
+//				i.sendDataToMain()
+//			}
+		}
 		didSet {
-			if self.image == nil {
-				self.image = #imageLiteral(resourceName: "Game Controller")
+			var newValue = self.image
+			if newValue == nil {
+				newValue = #imageLiteral(resourceName: "Game Controller")
+				self.image = newValue
 			}
-			if let i = findVC() as? InfoOptionsViewController {
-				i.delegate?.gameIconButton.image = self.image
-				i.delegate?.gameIcon = self.image
+//			if newValue != nil {
+			if let i = findVC() as? ViewController {
+				if i.gameIcon != newValue {
+					if newValue == #imageLiteral(resourceName: "Game Controller") {
+//						i.gameIcon = nil
+					} else {
+//					let ic = i.gameIcon
+//						if i.gameIconButton.image != nil {
+//							i.gameIcon = newValue
+						if let tabVC = i.infoPanelPopover?.contentViewController as? InfoPopoverTabViewController {
+								if let infoVC = tabVC.tabView.selectedTabViewItem?.viewController as? InfoOptionsViewController {
+//									infoVC.iconWell.image = newValue
+									infoVC.getDataFromMain()
+								}
+							}
+//						}
+					}
+				}
+			}
+//		}
+		if let i = findVC() as? InfoOptionsViewController {
+//				i.delegate?.gameIconButton.image = self.image
+//				i.delegate?.gameIcon = self.image
+				i.sendDataToMain()
+				
+			} else if let i = findVC() as? ViewController {
+				
+			}
+//			loadData()
+			
+		}
+	}
+	
+	func loadData() {
+		switch controller {
+		case .mainViewController:
+			if let c = findVC() as? ViewController {
+				if let tabVC = c.infoPanelPopover?.contentViewController as? InfoPopoverTabViewController {
+					if let infoVC = tabVC.tabView.selectedTabViewItem?.viewController as? InfoOptionsViewController {
+						infoVC.getDataFromMain()
+					}
+				}
+			}
+		default:
+			if let c = findVC() as? InfoOptionsViewController {
+				c.sendDataToMain()
 			}
 		}
 	}
@@ -112,7 +161,7 @@ extension InfoOptionsViewController {
 		delegate?.gameVersion = versionField.stringValue
 		delegate?.gameRegion = regionField.stringValue
 		
-		delegate?.gameIcon = iconWell.image
+//		delegate?.gameIcon = iconWell.image
 		delegate?.gameIconButton.image = iconWell.image
 		
 	}
@@ -122,4 +171,10 @@ extension InfoOptionsViewController {
 enum metaController {
 	case mainViewController
 	case infoViewController
+}
+
+extension ViewController: NSTextViewDelegate {
+	func textView(_ view: NSTextView, menu: NSMenu, for event: NSEvent, at charIndex: Int) -> NSMenu? {
+		return nil
+	}
 }

@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import Preferences
 
 class AppearanceViewController: NSViewController, advancedTabDelegate {
 	var delegate: ViewController?
@@ -21,6 +22,8 @@ class AppearanceViewController: NSViewController, advancedTabDelegate {
 	@IBOutlet weak var buttonHelp: helpButton!
 	@IBOutlet weak var topHelp: helpButton!
 	
+	
+	@IBOutlet weak var noteLabel: NSTextField!
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -94,7 +97,7 @@ You can still close the window either with ⌘W or from the "Window" menu.
 	
 	///This doesn't do anything; it's just needed to conform to the protocol
 	func setupDelegate() {
-
+		
 	}
 	
 	override func viewDidAppear() {
@@ -111,6 +114,12 @@ You can still close the window either with ⌘W or from the "Window" menu.
 			hideTitleBarCheck.action = #selector(sendSettings(_:))
 			hideButtonsCheck.action = #selector(sendSettings(_:))
 			keepOnTopCheck.action = #selector(sendSettings(_:))
+			
+			if let doc = delegate?.view.window?.windowController?.document as? NSDocument {
+				if doc.fileType != "Split File" {
+					noteLabel.stringValue = "Note: These settings will not be saved to this file unless it is saved in the .split format"
+				}
+			}
 		}
 		
 		setHelpButtons()

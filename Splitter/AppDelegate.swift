@@ -8,7 +8,6 @@
 
 import Cocoa
 import Preferences
-import Carbon
 import AppCenter
 import AppCenterAnalytics
 import AppCenterCrashes
@@ -102,7 +101,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 				if let mainWindow = window as? MainWindow {
 					if let vc = mainWindow.contentViewController as? ViewController {
 						if NSApp.isActive {
-							if vc.view.window?.isMainWindow == true  || vc.view.window?.isKeyWindow == true{
+							if vc.view.window?.isMainWindow == true  || vc.view.window?.isKeyWindow == true {
 								viewC = vc
 							}
 						} else {

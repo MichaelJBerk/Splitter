@@ -8,7 +8,6 @@
 
 import Cocoa
 import Preferences
-import Carbon
 import Files
 
 

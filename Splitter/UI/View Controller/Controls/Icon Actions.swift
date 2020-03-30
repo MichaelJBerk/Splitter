@@ -66,18 +66,18 @@ extension ViewController {
 			removeGameIcon(sender: sender)
 		}
 		
-		@IBAction func removeRunIconMenuItem(sender: Any?) {
+		@objc func removeRunIconMenuItem(sender: Any?) {
 			removeRunIcon(sender: sender)
 		}
 		
 		func removeGameIcon(sender: Any?) {
-			if let menuItem = sender as? NSMenuItem {
-				if (menuItem.representedObject as? IconButton) != nil {
-					gameIcon = nil
-					gameIconFileName = nil
+//			if let menuItem = sender as? NSMenuItem {
+//				if (menuItem.representedObject as? IconButton) != nil {
+//					gameIcon = nil
+//					gameIconFileName = nil
 					gameIconButton.image = #imageLiteral(resourceName: "Game Controller")
-				}
-			}
+//				}
+//			}
 		}
 		
 		func removeRunIcon(sender: Any?) {

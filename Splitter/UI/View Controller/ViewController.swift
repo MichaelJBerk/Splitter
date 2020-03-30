@@ -9,8 +9,6 @@
 import Cocoa
 import Preferences
 
-import Carbon
-
 class ViewController: NSViewController {
 	
 //MARK: - Setting Up Buttons
@@ -46,7 +44,7 @@ class ViewController: NSViewController {
 	@IBOutlet weak var prevButton: NSButton!
 	@IBOutlet weak var plusButton: NSButton!
 	@IBOutlet weak var minusButton: NSButton!
-	@IBOutlet weak var gameIconButton: IconButton!
+	@IBOutlet weak var gameIconButton: MetadataImage!
 	
 	
 	@IBOutlet weak var infoPanelPopoverButton: NSButton!
@@ -255,14 +253,21 @@ class ViewController: NSViewController {
 			splitsTableView.reloadData()
 		}
 	}
-	var gameIcon: NSImage? = nil {
-		didSet {
-			if gameIcon != nil {
-				gameIconButton.image = gameIcon
+	var gameIcon: NSImage? {
+		get {
+			if gameIconButton.image == #imageLiteral(resourceName: "Game Controller") {
+				return nil
 			} else {
+				return gameIconButton.image
+			}
+		} set {
+			if newValue == nil {
 				gameIconButton.image = #imageLiteral(resourceName: "Game Controller")
+			} else {
+				gameIconButton.image = newValue
 			}
 		}
+		
 	}
 	//TODO: This isn't really necessary, so remove it
 	var gameIconFileName: String? = "gameicon.png"
@@ -278,9 +283,11 @@ class ViewController: NSViewController {
 	var hotkeysController: HotkeysViewController?
 	
 	@objc func breakFunc() {
-		for s in currentSplits {
-			print(s.splitName, ": ", s.splitDiff, " ", s.previousBest.timeString)
-		}
+//		for s in currentSplits {
+//			print(current)
+//			print(s.splitName, ": ", s.splitDiff, " ", s.previousBest.timeString)
+//		}
+		print(currentSplit?.totalMil)
 	}
 	
 	var breakID = NSUserInterfaceItemIdentifier("break")
@@ -316,6 +323,7 @@ class ViewController: NSViewController {
 		
 		view.window?.standardWindowButton(.zoomButton)?.isHidden = true
 		view.window?.standardWindowButton(.miniaturizeButton)?.isHidden = true
+//		gameIconButton.controller = .mainViewController
 		
 		if let gi = gameIcon {
 			gameIconButton.image = gi
@@ -333,11 +341,62 @@ class ViewController: NSViewController {
 			addBlankSplit()
 		}
 		
-		gameIconButton.iconButtonType = .gameIcon
+		
+		
+		setRightClickMenus()
+		
+		
+//		gameIconButton.iconButtonType = .gameIcon
 		view.window?.makeFirstResponder(splitsTableView)
 		
 		attemptField.stringValue = "\(attempts)"
 		attemptField.formatter = OnlyIntegerValueFormatter()
+	}
+	
+	
+	
+	func setRightClickMenus() {
+		let standardMenu = view.menu
+		
+		let gimenu = standardMenu
+		
+		let resetIconMenuItem = NSMenuItem(title: "Reset Game Icon", action: #selector(removeGameIconMenuItem(sender:)), keyEquivalent: "")
+		let setIconMenuItem = NSMenuItem(title: "Set Game Icon", action: #selector(pictureButtonPressed(_:)), keyEquivalent: "")
+		gimenu?.addItem(NSMenuItem.separator())
+		gimenu?.addItem(setIconMenuItem)
+		gimenu?.addItem(resetIconMenuItem)
+		gameIconButton.menu = gimenu
+		
+		let fe = self.view.window?.fieldEditor(true, for: runTitleField)
+		let textMenu = fe?.menu
+		textMenu?.addItem(.separator())
+		let optionsMenu = NSMenu(title: "Splitter...")
+		for i in standardMenu!.items {
+			
+			var icopy = NSMenuItem(title: i.title, action: i.action, keyEquivalent: i.keyEquivalent)
+			if i.title == "" {
+				icopy = NSMenuItem.separator()
+			}
+//			if i.title != ""{
+//				icopy = nsme
+				optionsMenu.addItem(icopy)
+//			}
+			
+			
+		}
+		let subMenuItem = NSMenuItem(title: "Splitter...", action: nil, keyEquivalent: "")
+		
+		if textMenu?.item(withTitle: "Splitter...") == nil {
+			textMenu?.addItem(subMenuItem)
+		}
+		
+		textMenu?.setSubmenu(optionsMenu, for: subMenuItem)
+		fe?.menu = textMenu
+		runTitleField.cell?.controlView?.menu = textMenu
+		categoryField.menu = textMenu
+		attemptField.menu = textMenu
+		
+		
 	}
 	
 	func setUpDefaults() {
@@ -368,8 +427,6 @@ class ViewController: NSViewController {
 		
 		super.viewDidLoad()
 		self.view.wantsLayer = true
-		
-		
 			
 	}
 	

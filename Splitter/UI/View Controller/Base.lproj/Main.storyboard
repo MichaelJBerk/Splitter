@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16096" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16096"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -446,7 +446,7 @@
                                     <items>
                                         <menuItem title="Splitter Help" keyEquivalent="?" id="FKE-Sm-Kum">
                                             <connections>
-                                                <action selector="showHelp:" target="Ady-hI-5gd" id="y7X-2Q-9no"/>
+                                                <action selector="helpMenu:" target="Ady-hI-5gd" id="CmE-pH-FA3"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -512,6 +512,13 @@
                                 <action selector="showColumnOptionsMenuItem:" target="2Tp-Fl-jBw" id="ykm-uD-h6o"/>
                             </connections>
                         </menuItem>
+                        <menuItem isSeparatorItem="YES" id="k9c-W2-Zgm"/>
+                        <menuItem title="Set Hotkeys..." id="afO-gY-0pK">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="hotkeysMenuItem:" target="2Tp-Fl-jBw" id="ePf-tW-0Fu"/>
+                            </connections>
+                        </menuItem>
                         <menuItem isSeparatorItem="YES" id="134-OM-UPm"/>
                         <menuItem title="Close Window" id="2OW-1Y-47V">
                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -544,7 +551,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" ambiguous="YES" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="30" headerView="aVs-1A-u0Q" viewBased="YES" id="Ww4-Jn-tNR">
-                                            <rect key="frame" x="0.0" y="0.0" width="454" height="193"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="281" height="193"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -552,7 +559,6 @@
                                             <tableColumns>
                                                 <tableColumn identifier="ImageColumn" width="32" minWidth="10" maxWidth="3.4028234663852886e+38" id="ljG-co-EDf">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
-                                                        <font key="font" metaFont="message" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -587,7 +593,6 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="SplitTitle" width="80" minWidth="40" maxWidth="1000" id="rA7-ZF-Uc6">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Split">
-                                                        <font key="font" metaFont="message" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                                     </tableHeaderCell>
@@ -605,7 +610,7 @@
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Zgl-iF-pqa">
                                                                     <rect key="frame" x="0.0" y="3" width="95" height="14"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" alignment="left" title="Split Title" id="3Pe-jP-c4b">
-                                                                        <font key="font" metaFont="message" size="11"/>
+                                                                        <font key="font" metaFont="menu" size="11"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
@@ -624,7 +629,6 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="CurrentSplit" width="90" minWidth="10" maxWidth="3.4028234663852886e+38" id="rN9-Ff-1yR" customClass="TimeSplitColumn" customModule="Splitter" customModuleProvider="target">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Time">
-                                                        <font key="font" metaFont="message" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -664,7 +668,6 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="Difference" editable="NO" width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="xLb-1p-wmS" customClass="TimeSplitColumn" customModule="Splitter" customModuleProvider="target">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Diff">
-                                                        <font key="font" metaFont="message" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -702,9 +705,8 @@
                                                         </tableCellView>
                                                     </prototypeCellViews>
                                                 </tableColumn>
-                                                <tableColumn identifier="B" width="173" minWidth="10" maxWidth="3.4028234663852886e+38" id="RXR-Oz-PMu" customClass="TimeSplitColumn" customModule="Splitter" customModuleProvider="target">
+                                                <tableColumn identifier="B" width="173" minWidth="10" maxWidth="3.4028234663852886e+38" hidden="YES" id="RXR-Oz-PMu" customClass="TimeSplitColumn" customModule="Splitter" customModuleProvider="target">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="PB">
-                                                        <font key="font" metaFont="message" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -716,7 +718,7 @@
                                                     <tableColumnResizingMask key="resizingMask" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="KQB-tH-eJU" customClass="TimeSplitCell" customModule="Splitter" customModuleProvider="target">
-                                                            <rect key="frame" x="279" y="1" width="173" height="17"/>
+                                                            <rect key="frame" x="1" y="1" width="173" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="EDP-CX-XUd">
@@ -744,7 +746,6 @@
                                                 </tableColumn>
                                                 <tableColumn identifier="PreviousSplit" width="85" minWidth="10" maxWidth="3.4028234663852886e+38" hidden="YES" id="Q3y-d2-rYY" customClass="TimeSplitColumn" customModule="Splitter" customModuleProvider="target">
                                                     <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Previous">
-                                                        <font key="font" metaFont="message" size="11"/>
                                                         <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                     </tableHeaderCell>
@@ -791,7 +792,7 @@
                                     </subviews>
                                     <nil key="backgroundColor"/>
                                 </clipView>
-                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="u5J-vU-46w">
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="u5J-vU-46w">
                                     <rect key="frame" x="1" y="202" width="281" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -800,7 +801,7 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" id="aVs-1A-u0Q">
-                                    <rect key="frame" x="0.0" y="0.0" width="454" height="25"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="281" height="25"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                                 <connections>
@@ -921,30 +922,15 @@
                                     <action selector="timerButtonClick:" target="5gI-5U-AMq" id="5Bg-tR-Jey"/>
                                 </connections>
                             </button>
-                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="749" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TSJ-mg-scq" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
+                            <textField toolTip="Game/Run Title" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="749" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TSJ-mg-scq" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
                                 <rect key="frame" x="64" y="377" width="162" height="19"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" focusRingType="none" placeholderString="Run Title" id="nfV-Gy-dQR">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" focusRingType="none" placeholderString="Game" id="nfV-Gy-dQR">
                                     <font key="font" metaFont="system" size="16"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button identifier="GameIconButton" toolTip="Game Icon. Click to change" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="LMA-oO-ztV" customClass="IconButton" customModule="Splitter" customModuleProvider="target">
-                                <rect key="frame" x="11" y="355" width="48" height="48"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="48" id="ghU-0R-j4H"/>
-                                </constraints>
-                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Game Controller" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="vor-TO-Uyw">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <color key="contentTintColor" name="systemPinkColor" catalog="System" colorSpace="catalog"/>
-                                <connections>
-                                    <action selector="pictureButtonPressed:" target="5gI-5U-AMq" id="rJd-9E-P56"/>
-                                    <outlet property="menu" destination="wTE-Xp-5dN" id="LXF-p4-OIe"/>
-                                </connections>
-                            </button>
-                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="748" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5cv-K8-dE8" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
+                            <textField toolTip="Speedrun Category" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="748" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5cv-K8-dE8" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
                                 <rect key="frame" x="64" y="358" width="162" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" focusRingType="none" placeholderString="Category" id="j9g-Du-1pV">
                                     <font key="font" metaFont="menu" size="14"/>
@@ -994,27 +980,36 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="6rq-lR-6Um" customClass="MetadataImage" customModule="Splitter" customModuleProvider="target">
+                                <rect key="frame" x="11" y="354" width="42" height="42"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="48" id="4Zd-R8-M3U"/>
+                                </constraints>
+                                <imageCell key="cell" selectable="YES" editable="YES" alignment="left" imageScaling="proportionallyDown" image="Game Controller" id="xLg-Tz-pdd"/>
+                                <connections>
+                                    <outlet property="menu" destination="wTE-Xp-5dN" id="sUd-F8-aZB"/>
+                                </connections>
+                            </imageView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="LMA-oO-ztV" firstAttribute="centerY" secondItem="laY-Uh-RhP" secondAttribute="centerY" id="0OU-NI-Zlv"/>
                             <constraint firstItem="sEF-Zm-06R" firstAttribute="leading" secondItem="tIC-9A-PB1" secondAttribute="leading" id="1Ub-bb-zKK"/>
+                            <constraint firstItem="6rq-lR-6Um" firstAttribute="centerY" secondItem="laY-Uh-RhP" secondAttribute="centerY" id="2AO-4o-NO0"/>
                             <constraint firstAttribute="trailing" secondItem="Rkm-yi-plE" secondAttribute="trailing" constant="11" id="2GL-GD-5g3"/>
                             <constraint firstItem="Mj4-Ky-5e7" firstAttribute="top" secondItem="jC2-yS-poH" secondAttribute="top" id="3J3-kq-uF8"/>
                             <constraint firstItem="xLP-fd-tTq" firstAttribute="leading" secondItem="OXM-M7-swh" secondAttribute="trailing" constant="3" id="4k3-dK-Juh"/>
                             <constraint firstItem="OXM-M7-swh" firstAttribute="top" secondItem="xLP-fd-tTq" secondAttribute="top" id="6eU-Ac-i6A"/>
                             <constraint firstItem="GLv-Wp-JTM" firstAttribute="top" secondItem="laY-Uh-RhP" secondAttribute="bottom" constant="20" symbolic="YES" id="6o0-ZG-X0v"/>
+                            <constraint firstItem="TSJ-mg-scq" firstAttribute="leading" secondItem="6rq-lR-6Um" secondAttribute="trailing" constant="7" id="9fa-Vx-rW4"/>
                             <constraint firstItem="laY-Uh-RhP" firstAttribute="centerX" secondItem="xLP-fd-tTq" secondAttribute="centerX" id="ABg-9H-Snd"/>
                             <constraint firstAttribute="trailing" secondItem="XzH-Pf-d2x" secondAttribute="trailing" constant="11" id="BDf-W8-Wbo"/>
-                            <constraint firstItem="TSJ-mg-scq" firstAttribute="leading" secondItem="LMA-oO-ztV" secondAttribute="trailing" constant="7" id="C4k-5Z-zBc"/>
                             <constraint firstItem="laY-Uh-RhP" firstAttribute="leading" secondItem="5cv-K8-dE8" secondAttribute="trailing" constant="1" id="DQp-Cr-IfL"/>
                             <constraint firstItem="udb-sn-xNY" firstAttribute="leading" secondItem="sEF-Zm-06R" secondAttribute="leading" id="Fuc-KQ-ce2"/>
                             <constraint firstItem="d2l-Lb-Z8r" firstAttribute="top" secondItem="Mj4-Ky-5e7" secondAttribute="bottom" constant="4" id="G93-Vs-Iwg"/>
                             <constraint firstItem="GLv-Wp-JTM" firstAttribute="top" secondItem="5cv-K8-dE8" secondAttribute="bottom" constant="9" id="HG8-yy-5Bm"/>
                             <constraint firstItem="OXM-M7-swh" firstAttribute="leading" secondItem="jC2-yS-poH" secondAttribute="trailing" constant="2" id="JZT-mM-sHK"/>
                             <constraint firstAttribute="trailing" secondItem="gCo-Oe-sI7" secondAttribute="trailing" constant="6" id="Ntt-gS-p3J"/>
+                            <constraint firstItem="6rq-lR-6Um" firstAttribute="leading" secondItem="nLC-ev-0ZO" secondAttribute="leading" constant="11" id="Nug-Nh-wTK"/>
                             <constraint firstItem="tIC-9A-PB1" firstAttribute="baseline" secondItem="5Ka-8A-G0d" secondAttribute="baseline" id="PnI-ZF-WqV"/>
-                            <constraint firstItem="LMA-oO-ztV" firstAttribute="top" secondItem="nLC-ev-0ZO" secondAttribute="top" constant="4" id="Qoc-pt-XBf"/>
-                            <constraint firstItem="LMA-oO-ztV" firstAttribute="leading" secondItem="nLC-ev-0ZO" secondAttribute="leading" constant="11" id="THr-1P-Pis"/>
                             <constraint firstItem="Rkm-yi-plE" firstAttribute="top" secondItem="xLP-fd-tTq" secondAttribute="bottom" constant="2" id="Tte-oy-VXr"/>
                             <constraint firstItem="Mj4-Ky-5e7" firstAttribute="leading" secondItem="d2l-Lb-Z8r" secondAttribute="leading" id="W20-HL-2Cd"/>
                             <constraint firstItem="OXM-M7-swh" firstAttribute="bottom" secondItem="xLP-fd-tTq" secondAttribute="bottom" id="WeS-Sw-u2N"/>
@@ -1029,15 +1024,16 @@
                             <constraint firstItem="XzH-Pf-d2x" firstAttribute="top" secondItem="Rkm-yi-plE" secondAttribute="bottom" id="igF-qZ-eaR"/>
                             <constraint firstItem="5Ka-8A-G0d" firstAttribute="leading" secondItem="tIC-9A-PB1" secondAttribute="trailing" constant="5" id="j2y-bb-I7F"/>
                             <constraint firstItem="5cv-K8-dE8" firstAttribute="top" secondItem="TSJ-mg-scq" secondAttribute="bottom" constant="2" id="miG-H4-2QN"/>
+                            <constraint firstItem="6rq-lR-6Um" firstAttribute="top" secondItem="nLC-ev-0ZO" secondAttribute="top" constant="4" id="oNh-XP-8ZV"/>
                             <constraint firstItem="udb-sn-xNY" firstAttribute="top" secondItem="d2l-Lb-Z8r" secondAttribute="bottom" constant="1" id="oa9-Kn-SUI"/>
                             <constraint firstItem="Mj4-Ky-5e7" firstAttribute="top" secondItem="GLv-Wp-JTM" secondAttribute="bottom" constant="8" symbolic="YES" id="pAJ-5K-V4k"/>
                             <constraint firstAttribute="bottom" secondItem="tIC-9A-PB1" secondAttribute="bottom" constant="11" id="r9x-rw-FhE"/>
-                            <constraint firstItem="GLv-Wp-JTM" firstAttribute="top" secondItem="LMA-oO-ztV" secondAttribute="bottom" constant="6" id="rGe-e4-r8w"/>
                             <constraint firstItem="TSJ-mg-scq" firstAttribute="leading" secondItem="5cv-K8-dE8" secondAttribute="leading" id="rcq-CS-vG6"/>
                             <constraint firstItem="gCo-Oe-sI7" firstAttribute="leading" secondItem="udb-sn-xNY" secondAttribute="trailing" constant="4" id="tE8-ZP-BsT"/>
                             <constraint firstItem="d2l-Lb-Z8r" firstAttribute="leading" secondItem="udb-sn-xNY" secondAttribute="leading" id="tLr-RL-hQ4"/>
                             <constraint firstItem="jC2-yS-poH" firstAttribute="top" secondItem="OXM-M7-swh" secondAttribute="top" id="tbd-3v-gJd"/>
                             <constraint firstItem="sEF-Zm-06R" firstAttribute="baseline" secondItem="gCo-Oe-sI7" secondAttribute="baseline" id="vJf-p9-RsS"/>
+                            <constraint firstItem="GLv-Wp-JTM" firstAttribute="top" secondItem="6rq-lR-6Um" secondAttribute="bottom" constant="7" id="xD4-Ts-8Xh"/>
                             <constraint firstItem="gCo-Oe-sI7" firstAttribute="leading" secondItem="sEF-Zm-06R" secondAttribute="trailing" constant="12" symbolic="YES" id="yHM-AR-xOg"/>
                             <constraint firstItem="laY-Uh-RhP" firstAttribute="leading" secondItem="TSJ-mg-scq" secondAttribute="trailing" constant="8" id="zUY-HW-ehM"/>
                             <constraint firstItem="tIC-9A-PB1" firstAttribute="top" secondItem="sEF-Zm-06R" secondAttribute="bottom" constant="3" id="zvN-T7-8UR"/>
@@ -1053,7 +1049,7 @@
                         <outlet property="categoryField" destination="5cv-K8-dE8" id="S7o-Cd-tug"/>
                         <outlet property="columnOptionsPopoverButton" destination="xLP-fd-tTq" id="XLN-jK-lh2"/>
                         <outlet property="currentTimeLabel" destination="Mj4-Ky-5e7" id="IfX-AV-VUa"/>
-                        <outlet property="gameIconButton" destination="LMA-oO-ztV" id="4mI-qg-3kH"/>
+                        <outlet property="gameIconButton" destination="6rq-lR-6Um" id="AWF-ua-Hx9"/>
                         <outlet property="infoPanelPopoverButton" destination="laY-Uh-RhP" id="36Z-y3-khC"/>
                         <outlet property="minusButton" destination="jC2-yS-poH" id="MlL-63-BKb"/>
                         <outlet property="nextButton" destination="5Ka-8A-G0d" id="Ajm-qR-y9L"/>
@@ -1106,6 +1102,9 @@
                         <subviews>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="77n-qC-3Oq" customClass="MetadataImage" customModule="Splitter" customModuleProvider="target">
                                 <rect key="frame" x="17" y="129" width="104" height="104"/>
+                                <string key="toolTip">Icon for the game. Double-Click to browse for an icon, or just drag-and-drop. 
+
+To remove, click and press backspace. </string>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="98" id="OEI-tC-6jB"/>
                                     <constraint firstAttribute="width" constant="98" id="sEt-4c-5W6"/>
@@ -1132,8 +1131,8 @@
                                 <gridCells>
                                     <gridCell row="L6o-JX-ii0" column="hFw-jj-DMe" id="fji-mX-gQX">
                                         <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VKN-jr-XfS">
-                                            <rect key="frame" x="50" y="189" width="58" height="16"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Run Title" id="cLY-Ee-Nk3">
+                                            <rect key="frame" x="68" y="189" width="40" height="16"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Game" id="cLY-Ee-Nk3">
                                                 <font key="font" usesAppearanceFont="YES"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1141,7 +1140,7 @@
                                         </textField>
                                     </gridCell>
                                     <gridCell row="L6o-JX-ii0" column="vxy-hV-tJz" id="5p2-am-4Fp">
-                                        <textField key="contentView" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="UXc-S9-jFn" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
+                                        <textField key="contentView" toolTip="Game Title (i.e. Super Mario Odyssey)" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="UXc-S9-jFn" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
                                             <rect key="frame" x="112" y="186" width="100" height="21"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="GMu-GZ-I0O">
                                                 <font key="font" metaFont="system"/>
@@ -1161,9 +1160,9 @@
                                         </textField>
                                     </gridCell>
                                     <gridCell row="m0S-8J-6Ce" column="vxy-hV-tJz" id="8ay-bC-oS1">
-                                        <textField key="contentView" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="XqK-XY-ils" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
+                                        <textField key="contentView" toolTip="Speedrun  Category (i.e. Any %)" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="XqK-XY-ils" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
                                             <rect key="frame" x="112" y="159" width="100" height="21"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="8xO-mB-dqj">
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" toolTip="Speedrun Category (i.e. Any %)" drawsBackground="YES" id="8xO-mB-dqj">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1181,7 +1180,7 @@
                                         </textField>
                                     </gridCell>
                                     <gridCell row="UbN-2k-LQs" column="vxy-hV-tJz" id="LWx-U4-bP7">
-                                        <textField key="contentView" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="xtG-uJ-IZa" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
+                                        <textField key="contentView" toolTip="Number of times this run has been attempted " verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="xtG-uJ-IZa" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
                                             <rect key="frame" x="112" y="132" width="100" height="21"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="zfc-Nr-qcx">
                                                 <font key="font" metaFont="system"/>
@@ -1204,7 +1203,7 @@
                                         </textField>
                                     </gridCell>
                                     <gridCell row="hsq-T1-mTZ" column="vxy-hV-tJz" id="e3T-nQ-owx">
-                                        <textField key="contentView" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="26X-Fy-Txf" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
+                                        <textField key="contentView" toolTip="Platform the game is being played on (i.e. &quot;Nintendo Switch&quot;)" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="26X-Fy-Txf" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
                                             <rect key="frame" x="112" y="105" width="100" height="21"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="Pk3-fq-DK4">
                                                 <font key="font" metaFont="system"/>
@@ -1224,7 +1223,7 @@
                                         </textField>
                                     </gridCell>
                                     <gridCell row="xhD-Rb-aXY" column="vxy-hV-tJz" id="Rlq-mV-KZd">
-                                        <textField key="contentView" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="WAV-8P-f9h" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
+                                        <textField key="contentView" toolTip="Version of the game being played (i.e. 1.3.0)" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="WAV-8P-f9h" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
                                             <rect key="frame" x="112" y="78" width="100" height="21"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="N7c-x2-gbT">
                                                 <font key="font" metaFont="system"/>
@@ -1244,7 +1243,7 @@
                                         </textField>
                                     </gridCell>
                                     <gridCell row="6g6-5p-fsl" column="vxy-hV-tJz" id="nuX-2A-7Ur">
-                                        <textField key="contentView" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="18O-lk-nAH" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
+                                        <textField key="contentView" toolTip="Region of the version of the game being played (i.e. &quot;USA&quot;)" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="18O-lk-nAH" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
                                             <rect key="frame" x="112" y="51" width="100" height="21"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="oAh-Hl-ZOu">
                                                 <font key="font" metaFont="system"/>
@@ -1394,7 +1393,7 @@
                                             </constraints>
                                             <textFieldCell key="cell" id="64q-iX-QRY">
                                                 <font key="font" metaFont="system"/>
-                                                <string key="title">This setting changes what the current time is compared to in the "Diff" column - either your personal best, or your last attempt at this run</string>
+                                                <string key="title">This setting changes what the current time is compared to in the "Diff" column - either your last attempt at this run or your personal best. </string>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
@@ -1587,6 +1586,7 @@
                         <outlet property="hideButtonsCheck" destination="H55-YO-vGp" id="L0e-Ut-tmN"/>
                         <outlet property="hideTitleBarCheck" destination="KdL-ri-VdY" id="23i-J6-H3k"/>
                         <outlet property="keepOnTopCheck" destination="NX0-Jl-BA1" id="uyt-SX-5qf"/>
+                        <outlet property="noteLabel" destination="1X5-Na-Ivc" id="A0P-0Z-8mW"/>
                         <outlet property="titleHelp" destination="qCT-Wf-FTs" id="7eU-H7-lyS"/>
                         <outlet property="topHelp" destination="w7E-mT-aCX" id="Sc7-xJ-Mic"/>
                     </connections>

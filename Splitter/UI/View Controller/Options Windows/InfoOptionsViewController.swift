@@ -41,13 +41,47 @@ class InfoOptionsViewController: NSViewController, NSPopoverDelegate, advancedTa
 		getDataFromMain()
 		attemptField.formatter = OnlyIntegerValueFormatter()
 		
+		
 //		StartDateFormatter.date(from: startTimeLabel.stringValue)
 		
 	}
 	
 	
 	
+	
     
+}
+
+extension MetadataImage {
+	override func mouseDown(with event: NSEvent) {
+		if event.clickCount > 1 {
+			let dialog = pictureFileDialog()
+			
+			let response = dialog.runModal()
+				if response == .OK {
+					let result = dialog.url
+					
+					if (result != nil) {
+						 let imageFile = try? Data(contentsOf: result!)
+						 
+						 let myImage = NSImage(data: imageFile!)
+						 
+						self.image = myImage
+				}
+			}
+		}
+	}
+	func pictureFileDialog() -> NSOpenPanel{
+		let dialog = NSOpenPanel();
+		dialog.title                   = "Choose an image file"
+		dialog.showsResizeIndicator    = true
+		dialog.showsHiddenFiles        = false
+		dialog.canChooseDirectories    = false
+		dialog.canCreateDirectories    = false
+		dialog.allowsMultipleSelection = false
+		dialog.allowedFileTypes        = ["png"]
+		return dialog
+	}
 }
 
 class OnlyIntegerValueFormatter: NumberFormatter {

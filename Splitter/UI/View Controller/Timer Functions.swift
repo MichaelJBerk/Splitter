@@ -144,7 +144,7 @@ extension ViewController {
 	///Updates the current time on the timer
 	func UpdateTimer() {
 		if let currentTime = currentSplit?.timeString {
-			TimerLabel.stringValue = String(currentSplit!.privateMil)//currentTime
+			TimerLabel.stringValue = String(currentSplit!.timeString)//currentTime
 		}
 		splitsTableView.reloadData()
 		

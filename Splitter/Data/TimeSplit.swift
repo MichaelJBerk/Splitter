@@ -34,12 +34,12 @@ class TimeSplit: NSCopying, Comparable {
 
 	}
 	var min: Int {
-		return Int(totalMil/60000) % 60
+		return Int(totalMil/6000) % 60
 
 	}
 	var hour: Int {
 
-		return totalMil / 3600000
+		return totalMil / 360000
 	}
 	
 	
@@ -75,8 +75,8 @@ class TimeSplit: NSCopying, Comparable {
 			totalMil = 0
 			totalMil = totalMil + mil
 			totalMil = totalMil + (sec * 100)
-			totalMil = totalMil + (min * 60000)
-			totalMil = totalMil + (hour * 3600000)
+			totalMil = totalMil + (min * 6000)
+			totalMil = totalMil + (hour * 360000)
 			
 			
 		} else {
@@ -109,7 +109,7 @@ class TimeSplit: NSCopying, Comparable {
 	**/
 	var timeString: String {
 		
-		return String(format: "%.2d:%.2d:%.2d.%.02d", hour, min, sec, mil)
+		return String(format: "%.2d:%.2d:%.2d.%.02d", abs(hour), abs(min), abs(sec), abs(mil))
 	}
 	
 	///Returns the `TimeSplit` as a `String`, but only includes the first significant field
@@ -120,11 +120,11 @@ class TimeSplit: NSCopying, Comparable {
 //		return String(format: "%.2d:%.2d:%.2d.%.02d", hour, min, sec, mil)
 		if hour == 0 {
 			if min == 0 {
-				return String(format: "%.2d.%.2d", sec, mil)
+				return String(format: "%.2d.%.2d", abs(sec), abs(mil))
 			}
-			return String(format: "%.2d:%.2d.%.2d", min, sec, mil)
+			return String(format: "%.2d:%.2d.%.2d", abs(min), abs(sec), abs(mil))
 		}
-		return String(format: "%.2d:%.2d:%.2d.%.2d", hour, min, sec, mil)
+		return String(format: "%.2d:%.2d:%.2d.%.2d", abs(hour), abs(min), abs(sec), abs(mil))
 //		return privateMil.toShortFormattedTimeString()
 	}
 	
@@ -138,11 +138,11 @@ class TimeSplit: NSCopying, Comparable {
 		if hour == 0 {
 			if min == 0 {
 //
-				return String(format: "%.2d.%.1d", sec, milRounded)
+				return String(format: "%.2d.%.1d", abs(sec), abs(milRounded))
 			}
-			return String(format: "%.2d:%.2d.%.1d", min, sec, milRounded)
+			return String(format: "%.2d:%.2d.%.1d", abs(min), abs(sec), abs(milRounded))
 		}
-		return String(format: "%.2d:%.2d:%.2d.%.1d", hour, min, sec, milRounded)
+		return String(format: "%.2d:%.2d:%.2d.%.1d", abs(hour), abs(min), abs(sec), abs(milRounded))
 //		return privateMil.toShortFormattedTimeStringTenths()
 	}
 	

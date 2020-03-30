@@ -8,10 +8,20 @@
 
 import Foundation
 import Cocoa
+import Preferences
 
 extension ViewController {
 	//MARK: - Actions for the Menu Bar
-		
+	@IBAction func helpMenu(_ sender: Any?) {
+		let url = URL(string: "https://mberk.com/splitter")!
+		NSWorkspace.shared.open(url)
+	}
+	
+	@IBAction func hotkeysMenuItem(_ sender: Any?) {
+		if let app = NSApp.delegate as? AppDelegate {
+			app.preferencesWindowController.show(preferencePane: PreferencePane.Identifier.hotkeys)
+		}
+	}
 	
 	//MARK - File Menu
 	//TODO: Move liveSplit loading to another file
