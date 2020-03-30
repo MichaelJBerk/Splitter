@@ -55,20 +55,7 @@ class InfoOptionsViewController: NSViewController, NSPopoverDelegate, advancedTa
 extension MetadataImage {
 	override func mouseDown(with event: NSEvent) {
 		if event.clickCount > 1 {
-			let dialog = pictureFileDialog()
-			
-			let response = dialog.runModal()
-				if response == .OK {
-					let result = dialog.url
-					
-					if (result != nil) {
-						 let imageFile = try? Data(contentsOf: result!)
-						 
-						 let myImage = NSImage(data: imageFile!)
-						 
-						self.image = myImage
-				}
-			}
+			self.setImage()
 		}
 	}
 	func pictureFileDialog() -> NSOpenPanel{
@@ -81,6 +68,23 @@ extension MetadataImage {
 		dialog.allowsMultipleSelection = false
 		dialog.allowedFileTypes        = ["png"]
 		return dialog
+	}
+	
+	func setImage() {
+		let dialog = pictureFileDialog()
+		
+		let response = dialog.runModal()
+			if response == .OK {
+				let result = dialog.url
+				
+				if (result != nil) {
+					 let imageFile = try? Data(contentsOf: result!)
+					 
+					 let myImage = NSImage(data: imageFile!)
+					 
+					self.image = myImage
+			}
+		}
 	}
 }
 
