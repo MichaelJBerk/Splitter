@@ -7,6 +7,7 @@
 
 import Foundation
 import Cocoa
+import SwiftyJSON
 
 
 //You may wonder why I don't just save Split Table rows directly to the file (since they're structs already anyway). I'm not doing that because I don't want to save the images to runInfo.json
@@ -27,9 +28,9 @@ struct runInfo: Codable {
 	var version: String?
 	var build: String?
 	
-	//TODO: Record Date/time of run
-	
 }
+
+
 
 struct splitSegment: Codable {
 	var name: String
@@ -41,8 +42,38 @@ struct splitSegment: Codable {
 	
 
 }
+class splitToJSON {
+	//Can't have this as an initalizer of the runInfo struct becuase then i'd have to re-implement the default initalizer
+	func runInfoFromJSON(json: JSON) -> runInfo {
+			let segs = json.dictionary!["segments"]?.array!
+			var splitsegs: [splitSegment] = []
+			for i in segs! {
+				let n = i.dictionary!["name"]?.stringValue
+				
+				let seg = splitSegment(name: i.dictionary!["name"]!.stringValue, currentTime: i.dictionary!["currentTime"]!.stringValue, personalBestTime: i.dictionary!["personalBestTime"]!.stringValue, previousTime: i.dictionary!["previousTime"]!.stringValue, previousPersonalBestTime: i.dictionary!["previousPersonalBestTime"]!.stringValue)
+				splitsegs.append(seg)
+			}
+			var ri = runInfo(title: json.dictionary!["title"]!.string!,
+							 category: json.dictionary!["category"]!.stringValue,
+							 segments: splitsegs,
+							 attempts: json.dictionary?["attempts"]?.intValue,
+							 platform: json.dictionary?["platform"]?.stringValue,
+							 gameVersion: json.dictionary?["gameVersion"]?.string,
+							 gameRegion: json.dictionary?["gameRegion"]?.string,
+							 compareTo: json.dictionary?["compareTo"]?.intValue,
+							 startTime: json.dictionary?["startTime"]?.stringValue,
+							 endTime: json.dictionary?["endTime"]?.stringValue,
+							 version: json.dictionary?["version"]?.stringValue,
+							 build: json.dictionary?["build"]?.stringValue)
+			return ri
+			
+		}
+}
+
+
 
 extension ViewController {
+	
 	
 	func loadFromRunInfo(icons: [NSImage?]) {
 		if let ri = runInfoData {

@@ -36,10 +36,11 @@ class SplitterUITests: XCTestCase {
 	func testAddSplitStartTimer() {
 		let app = XCUIApplication()
 		app.launch()
+		app.activate()
 		
 		let untitledWindow = XCUIApplication().windows["Untitled"]
-		untitledWindow/*@START_MENU_TOKEN@*/.buttons["AddSplit"]/*[[".buttons[\"Add Split\"]",".buttons[\"AddSplit\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.click()
-		untitledWindow/*@START_MENU_TOKEN@*/.buttons["StartTimer"]/*[[".buttons[\"Start\"]",".buttons[\"Start Time\"]",".buttons[\"StartTimer\"]"],[[[-1,2],[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.click()
+		untitledWindow/*@START_MENU_TOKEN@*/.buttons["Add Split"]/*[[".buttons[\"Add Split\"]",".buttons[\"AddSplit\"]"],[[[-1,1],[-1,0]]],[1]]@END_MENU_TOKEN@*/.click()
+		untitledWindow/*@START_MENU_TOKEN@*/.buttons["Start"]/*[[".buttons[\"Start\"]",".buttons[\"Start Time\"]",".buttons[\"StartTimer\"]"],[[[-1,2],[-1,1],[-1,0]]],[2]]@END_MENU_TOKEN@*/.click()
 		
 	}
 

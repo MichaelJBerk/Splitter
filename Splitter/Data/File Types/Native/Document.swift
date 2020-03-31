@@ -11,6 +11,7 @@
 import Cocoa
 import AppKit
 import Files
+import SwiftyJSON
 
 class Document: SplitterDocBundle {
 
@@ -20,6 +21,7 @@ class Document: SplitterDocBundle {
 	
 	var runInfoData: runInfo?
 	var appearance: splitterAppearance?
+	var data: Data?
 	
 	var gameIcon: NSImage?
 	var iconArray: [NSImage?] = []
@@ -52,8 +54,6 @@ class Document: SplitterDocBundle {
 			}
 			
 		}
-		
-		
 	}
 	
 	
@@ -74,13 +74,17 @@ class Document: SplitterDocBundle {
 		
 		if runInfoFile != nil {
 			
-			let newRunInfo = try? newJD.decode(runInfo.self, from: runInfoFile!.read())
-			self.runInfoData = newRunInfo
+			if let data = try? runInfoFile?.read(), let json = try? JSON(data: data) {
+				self.runInfoData = splitToJSON().runInfoFromJSON(json: json)
+			}
+			
 		}
 		
 		if appearanceFile != nil {
-			let newAppearance = try? newJD.decode(splitterAppearance.self, from: appearanceFile!.read())
-			self.appearance = newAppearance
+			if let data = try? appearanceFile?.read(), let json = try? JSON(data: data) {
+				let newAppearance = splitterAppearance(json: json)
+				self.appearance = newAppearance
+			}
 			
 		}
 		
@@ -123,12 +127,6 @@ class Document: SplitterDocBundle {
 		// If you do, you should also override isEntireFileLoaded to return false if the contents are lazily loaded.
 		throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
 	}
-
-	
-//	override func close() {
-//		
-//		super.close()
-//	}
 
 
 }

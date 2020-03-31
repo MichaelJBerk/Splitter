@@ -8,17 +8,13 @@
 
 import Foundation
 import Cocoa
+import SwiftyJSON
 
 struct splitterAppearance: Codable {
 	var hideTitlebar: Bool?
 	var hideButtons: Bool?
 	var keepOnTop: Bool?
-	/**
-	- Remark:
-	This has been depricated, and only exists for backwards compatibility
-	*/
-	var showBestSplits: Bool?
-	var showColumns: [String: Bool]?  = [:]
+	var hideColumns: [String: Bool]?  = [:]
 	var columnSizes: [String: CGFloat]? = [:]
 	var windowWidth: CGFloat?
 	var windowHeight: CGFloat?
@@ -30,13 +26,13 @@ struct splitterAppearance: Codable {
 		self.hideTitlebar = viewController.titleBarHidden
 		self.hideButtons = viewController.UIHidden
 		self.keepOnTop = viewController.windowFloat
-		self.showColumns = [:]
+		self.hideColumns = [:]
 		self.columnSizes = [:]
 		for c in colIds {
 			let colIndex = viewController.splitsTableView.column(withIdentifier: c.value)
 			let col = viewController.splitsTableView.tableColumns[colIndex]
 			let hidden = col.isHidden
-			self.showColumns?[c.key] = hidden
+			self.hideColumns?[c.key] = hidden
 			
 			var size = col.width
 			self.columnSizes?[c.key] = size
@@ -45,6 +41,48 @@ struct splitterAppearance: Codable {
 		self.windowHeight = viewController.view.window?.frame.height
 		self.roundTo = viewController.roundTo.rawValue
 	}
+	
+	
+	init(json: JSON) {
+		self.hideTitlebar = json.dictionary?["hideTitlebar"]?.bool
+		self.hideButtons = json.dictionary?["hideButtons"]?.bool
+		self.keepOnTop = json.dictionary?["keepOnTop"]?.bool
+		//showColumns is only for backwards compatibility with betas.
+		//TODO: Remove in final version
+		if let colDict = json.dictionary?["showColumns"]?.dictionary ?? json.dictionary?["hideColumns"]?.dictionary {
+			if json.dictionary?["hideColumns"]?.dictionary == nil {
+				let alert = NSAlert()
+				alert.messageText = "This file will not be compatible the with the final release of splitter Splitter 1.0"
+				alert.informativeText = "Save the file using this version to make it compatible with Splitter 1.0, once it's released"
+				alert.alertStyle = .warning
+				alert.runModal()
+			}
+			for c in colDict {
+				self.hideColumns?[c.key] = c.value.boolValue
+				
+			}
+		}
+		
+		if let sizeDict = json.dictionary?["columnSizes"]?.dictionary {
+			for s in sizeDict {
+				self.columnSizes?[s.key] = CGFloat(s.value.floatValue)
+			
+			}
+		}
+		
+		//Need to do optional chaining so that CGFloat(x) doesn't complain about an optional value
+		if let ww = json.dictionary?["windowWidth"]?.float {
+			self.windowWidth = CGFloat(ww)
+		}
+		if let wh = json.dictionary?["windowHeight"]?.float {
+			self.windowHeight = CGFloat(wh)
+		}
+		self.roundTo = json.dictionary?["roundTo"]?.int
+		
+		
+	}
+	
+	
 
 }
 
@@ -63,7 +101,7 @@ extension ViewController {
 		showHideUI()
 		setFloatingWindow()
 		
-		if let sc = appearance.showColumns {
+		if let sc = appearance.hideColumns {
 			for c in sc {
 				if let id = colIds[c.key] {
 					let cIndex = splitsTableView.column(withIdentifier: id)

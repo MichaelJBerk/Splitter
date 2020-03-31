@@ -283,11 +283,7 @@ class ViewController: NSViewController {
 	var hotkeysController: HotkeysViewController?
 	
 	@objc func breakFunc() {
-//		for s in currentSplits {
-//			print(current)
-//			print(s.splitName, ": ", s.splitDiff, " ", s.previousBest.timeString)
-//		}
-		print(currentSplit?.totalMil)
+		
 	}
 	
 	var breakID = NSUserInterfaceItemIdentifier("break")
