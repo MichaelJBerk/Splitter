@@ -17,16 +17,14 @@
 			<string>Split File</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 			<key>LSTypeIsPackage</key>
 			<integer>1</integer>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
-			<key>LSHandlerRank</key>
-			<string>Owner</string>
 		</dict>
 		<dict>
-			<key>LSHandlerRank</key>
-			<string>Default</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>lss</string>
@@ -37,6 +35,8 @@
 			<string>LiveSplit File</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Default</string>
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
@@ -53,12 +53,12 @@
 			<string>Splits.io File</string>
 			<key>CFBundleTypeRole</key>
 			<string>Editor</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
 			<key>LSTypeIsPackage</key>
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).SplitsIODoc</string>
-			<key>LSHandlerRank</key>
-			<string>Alternate</string>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
@@ -76,7 +76,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
-	<string>54</string>
+	<string>55</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.utilities</string>
 	<key>LSMinimumSystemVersion</key>
