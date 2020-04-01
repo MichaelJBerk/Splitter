@@ -269,8 +269,6 @@ class ViewController: NSViewController {
 		}
 		
 	}
-	//TODO: This isn't really necessary, so remove it
-	var gameIconFileName: String? = "gameicon.png"
 	
 	
 	//MARK: - Settings
@@ -423,6 +421,7 @@ class ViewController: NSViewController {
 		
 		super.viewDidLoad()
 		self.view.wantsLayer = true
+		splitsTableView.reloadData()
 			
 	}
 	

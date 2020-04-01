@@ -135,5 +135,6 @@ extension ViewController {
 		}
 		
 		roundTo = SplitRounding(rawValue: appearance.roundTo ?? 0) ?? SplitRounding.tenths
+		splitsTableView.reloadData()
 	}
 }

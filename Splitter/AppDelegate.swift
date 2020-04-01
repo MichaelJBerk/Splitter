@@ -41,9 +41,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	
 	
 	func applicationDidFinishLaunching(_ notification: Notification) {
-//		MASShortcutBinder.shared()?.bindingOptions = [MASShortcutBinding:MASDictionaryTransformerName]
-		
-		
 		if !Settings.notFirstUse {
 			Settings.hideUIButtons = false
 			Settings.hideTitleBar = false
@@ -53,30 +50,14 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			
 			Settings.notFirstUse = true
 		}
-		
-		
-		
-//		keybinds.append(Keybind(title: .NextSplit, keyDownHandler: self.viewController!.goToNextSplit))
-		
-		
-		
 		loadDefaultSplitterKeybinds()
-//		updateMenuBar()
 		self.globalShortcuts = Settings.enableGlobalHotkeys
 		
-		// Insert code here to initialize your application
-		
-		//TODO: Secret for Appcenter
 		let keys = SplitterKeys()
 		MSAppCenter.start("\(keys.appCenter)", withServices:[
 			MSAnalytics.self,
 			MSCrashes.self
 		])
-		
-		
-		//Notification for Dark Mode
-		
-
 	}
 
 	func applicationWillTerminate(_ aNotification: Notification) {

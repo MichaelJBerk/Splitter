@@ -51,11 +51,6 @@ extension ViewController {
 			addSplit()
 		}
 	}
-	
-	@IBAction func splitBreak(_ sender: Any?) {
-		
-	}
-
 	@IBAction func RemoveButtonClick(_ sender: Any) {
 		if timerState == .stopped {
 			removeSplits()

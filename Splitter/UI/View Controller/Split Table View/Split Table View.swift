@@ -37,6 +37,14 @@ extension ViewController: NSTableViewDelegate {
 		
 		return cRow
 	}
+
+	func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
+		if timerState == .running {
+			return false
+		} else {
+			return true
+		}
+	}
 	
 	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 		cellIdentifier = tableColumn?.identifier
@@ -70,6 +78,7 @@ extension ViewController: NSTableViewDelegate {
 			case STVColumnID.differenceColumn:
 				let sDiff = currentSplits[row].splitDiff
 				cell.textField?.stringValue = sDiff
+				print(cell.textField?.stringValue)
 				if sDiff.hasPrefix("+"){
 					cell.textField?.textColor = .systemRed
 				} else if sDiff.hasPrefix("-"){

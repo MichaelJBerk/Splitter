@@ -20,7 +20,6 @@ struct splitTableRow {
 	var previousPrevious: TimeSplit?
 	var compareTo: SplitComparison = .previousSplit
 	var roundTo: SplitRounding = .tenths
-	//TODO: Update Diff when loaded from files
 	///Difference between the (previous) best split and the current best
 	var splitDiff: String{
 		

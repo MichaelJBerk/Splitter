@@ -93,8 +93,6 @@ extension ViewController {
 			let currentLastRow = currentSplits.last
 			let rowNum = currentSplits.count
 			let bestSplitCopy = getBestSplit(splitNumber: rowNum).copy() as! TimeSplit
-			
-			//TODO: Only add to "best Splits" if it's a "better" split. Requires methods for comparing TimeSplits
 
 			let newLastRow = splitTableRow(splitName: currentLastRow!.splitName, bestSplit: bestSplitCopy, currentSplit: currentSplitCopy, previousSplit: currentLastRow!.previousSplit, previousBest: currentLastRow!.previousBest)
 			currentSplits.removeLast()
@@ -110,7 +108,7 @@ extension ViewController {
 	func resetCurrentSplit() {
 		if currentSplitNumber > 0 {
 			let lastSplit = currentSplits[currentSplitNumber - 1]
-			currentSplits[currentSplitNumber] = lastSplit
+			currentSplits[currentSplitNumber].currentSplit = lastSplit.currentSplit
 			currentSplits[currentSplitNumber - 1].currentSplit = lastSplit.currentSplit.tsCopy()
 			currentSplit = currentSplits[currentSplitNumber].currentSplit
 		} else {

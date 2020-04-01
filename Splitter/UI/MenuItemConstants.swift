@@ -11,8 +11,6 @@ import Cocoa
 
 enum menuIdentifiers {
 	
-	//TODO: make them into the actual identifier format instead of strings
-	
 	enum iconButton {
 		static let removeGameIcon = NSUserInterfaceItemIdentifier("removeGameIcon")
 		static let removeRunIcon = NSUserInterfaceItemIdentifier("removeRunIcon")
