@@ -9,6 +9,7 @@
 import XCTest
 @testable import Splitter
 import Files
+import SwiftyJSON
 
 class SplitterTests: XCTestCase {
 	
@@ -55,7 +56,12 @@ class SplitterTests: XCTestCase {
 	}
 	
 	func testImportSplitsIO() {
-		let path = String("/robobot.json")
+		let path = String(testPath + "/Odyssey.json")
+		if let jsonFile = try? File(path: path), let data = try? jsonFile.read() {
+			let sDoc = SplitsIODoc()
+			try? sDoc.read(from: data, ofType: "Splits.io File")
+			sDoc.makeWindowControllers()
+		}
 	}
 	
 

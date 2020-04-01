@@ -10,7 +10,7 @@ import Foundation
 import Cocoa
 
 ///An object that holds a value of time for a segment.
-class TimeSplit: NSCopying, Comparable {
+class TimeSplit: NSObject, NSCopying, Comparable {
 	
 	var paused = false
 	//Total MS elapsed from start of TimeSplit
@@ -86,7 +86,7 @@ class TimeSplit: NSCopying, Comparable {
 	}
 	
 	///Creates an "empty" TimeSplit, with the time set to 0
-	convenience init () {
+	convenience override init () {
 		self.init(mil: 0)
 	}
 	
@@ -100,8 +100,16 @@ class TimeSplit: NSCopying, Comparable {
 	@objc func updateMil() {
 		if !paused {
 			totalMil = totalMil + 1
+			let hey = ""
 			
 		}
+	}
+	
+	override var debugDescription: String {
+		return self.timeString
+	}
+	override var description: String {
+		return self.timeString
 	}
 	
 	/**

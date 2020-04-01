@@ -21,8 +21,12 @@
 			<integer>1</integer>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).Document</string>
+			<key>LSHandlerRank</key>
+			<string>Owner</string>
 		</dict>
 		<dict>
+			<key>LSHandlerRank</key>
+			<string>Default</string>
 			<key>CFBundleTypeExtensions</key>
 			<array>
 				<string>lss</string>
@@ -53,14 +57,12 @@
 			<integer>0</integer>
 			<key>NSDocumentClass</key>
 			<string>$(PRODUCT_MODULE_NAME).SplitsIODoc</string>
+			<key>LSHandlerRank</key>
+			<string>Alternate</string>
 		</dict>
 	</array>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
-	<key>CFBundleHelpBookFolder</key>
-	<string>Splitter.help</string>
-	<key>CFBundleHelpBookName</key>
-	<string>Splitter Help</string>
 	<key>CFBundleIconFile</key>
 	<string></string>
 	<key>CFBundleIdentifier</key>
@@ -74,7 +76,7 @@
 	<key>CFBundleShortVersionString</key>
 	<string>$(MARKETING_VERSION)</string>
 	<key>CFBundleVersion</key>
-	<string>53</string>
+	<string>54</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.utilities</string>
 	<key>LSMinimumSystemVersion</key>
