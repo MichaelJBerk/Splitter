@@ -11,6 +11,8 @@ import Cocoa
 
 enum SettingsKeys {
 	public static let hideTitleBar = "hideTitleBar"
+	public static let lastOpenedVersion = "lastOpenedVersion"
+	public static let lastOpenedBuild = "lastOpenedBuild"
 	public static let hideTimerButtons = "hideTimerButtons"
 	public static let floatWindow = "floatWindow"
 	public static let notFirstUse = "notFirstUse"
@@ -26,6 +28,24 @@ public struct Settings {
 		}
 		set {
 			UserDefaults.standard.set(newValue, forKey: SettingsKeys.hideTitleBar)
+		}
+	}
+	///The version of Splitter most recently opened by the user
+	public static var lastOpenedVersion: String {
+		get {
+			UserDefaults.standard.string(forKey: SettingsKeys.lastOpenedVersion) ?? ""
+		}
+		set {
+			UserDefaults.standard.set(otherConstants.version, forKey: SettingsKeys.lastOpenedVersion)
+		}
+	}
+	///The build of Splitter most recently opened by the user
+	public static var lastOpenedBuild: String {
+		get {
+			UserDefaults.standard.string(forKey: SettingsKeys.lastOpenedBuild) ?? ""
+		}
+		set {
+			UserDefaults.standard.set(otherConstants.build, forKey: SettingsKeys.lastOpenedBuild)
 		}
 	}
 	///Whether or not the window will stay above all other windows by default on new windows

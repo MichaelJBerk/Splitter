@@ -98,7 +98,16 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			Settings.notFirstUse = true
 			
 			keybindAlert()
+		} else {
+			//TODO: Remove in next
+			if Settings.lastOpenedBuild != otherConstants.build {
+				keybindAlert()
+			}
 		}
+		
+		
+		Settings.lastOpenedVersion = otherConstants.version
+		Settings.lastOpenedBuild = otherConstants.build
 		loadDefaultSplitterKeybinds()
 		MAStoStandardHotkeys()
 		self.globalShortcuts = Settings.enableGlobalHotkeys
