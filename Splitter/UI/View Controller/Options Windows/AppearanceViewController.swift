@@ -139,13 +139,7 @@ class helpButton: NSButton {
 		self.title = ""
 		self.target = self
 		self.action = #selector(displayHelpPopover)
-//		self.target = appVC
 		
-	}
-	
-	@objc func heyFunc(_ sender: Any) {
-		
-	
 	}
 	
 	@objc func displayHelpPopover() {

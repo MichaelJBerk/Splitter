@@ -66,13 +66,7 @@ extension ViewController {
 	@IBAction func toggleShowHideUIMenuItem(_ sender: Any) {
 		if let menuItem = sender as? NSMenuItem {
 			UIHidden.toggle()
-//			if UIHidden {
-//				menuItem.title = "Hide Buttons/UI"
-//				showHideUI()
-//			} else {
-//				menuItem.title = "Show Buttons/UI"
-				showHideUI()
-//			}
+			showHideUI()
 			
 		}
 	}

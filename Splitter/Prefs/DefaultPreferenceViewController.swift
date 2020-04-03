@@ -21,7 +21,6 @@ final class DefaultPreferenceViewController: NSViewController, PreferencePane {
 	@IBOutlet weak var titleBarCheck: NSButton!
 	@IBOutlet weak var timerButtonCheck: NSButton!
 	@IBOutlet weak var floatWindowCheck: NSButton!
-//	@IBOutlet weak var bestSplitsCheck: NSButton!
 	
 	
 	override func viewDidLoad() {
@@ -43,7 +42,6 @@ final class DefaultPreferenceViewController: NSViewController, PreferencePane {
 		titleBarCheck.state.fromBool(bool: Settings.hideTitleBar)
 		timerButtonCheck.state.fromBool(bool: Settings.hideUIButtons)
 		floatWindowCheck.state.fromBool(bool: Settings.floatWindow)
-//		bestSplitsCheck.state.fromBool(bool: Settings.showBestSplits)
 		
 		
 		preferredContentSize = NSSize(width: self.view.frame.size.width, height: self.view.frame.size.height)
@@ -68,10 +66,6 @@ final class DefaultPreferenceViewController: NSViewController, PreferencePane {
 	@IBAction func floatToggle(_ sender: Any) {
 		Settings.floatWindow = floatWindowCheck.state.toBool()
 		
-	}
-
-	@IBAction func bestSplitsToggled(_ sender: Any) {
-//		Settings.showBestSplits = bestSplitsCheck.state.toBool()
 	}
 	
 	
@@ -113,9 +107,6 @@ extension DefaultPreferenceViewController: NSTableViewDataSource {
 	func numberOfRows(in tableView: NSTableView) -> Int {
 		return 1
 	}
-//	func tableView(_ tableView: NSTableView, objectValueFor tableColumn: NSTableColumn?, row: Int) -> Any? {
-//		return nil
-//	}
 	
 	
 }

@@ -191,13 +191,6 @@ extension ViewController {
 	/// Returns the user's best split for a given `splitNumber`. If there isn't a best split for that time, it's equal to the current split
 	/// - Parameter splitNumber: The row that the split appears in the Table View
 	func getBestSplit(splitNumber: Int) -> TimeSplit{
-		
-//		var bestSplit: TimeSplit
-//		if bestSplits.count - 2 < splitNumber {
-//			bestSplit = currentSplit!
-//		} else {
-//			bestSplit = bestSplits[splitNumber]
-//		}
 		if !currentSplits.isEmpty && splitNumber < currentSplits.count {
 			return currentSplits[splitNumber].bestSplit
 		} else {

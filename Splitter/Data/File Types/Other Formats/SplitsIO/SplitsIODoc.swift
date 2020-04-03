@@ -11,14 +11,6 @@ import Cocoa
 class SplitsIODoc: SplitterDoc {
 	
 	var splitsio: SplitsIOExchangeFormat?
-
-    /*
-    override var windowNibName: String? {
-        // Override returning the nib file name of the document
-        // If you need to use a subclass of NSWindowController or if your document supports multiple NSWindowControllers, you should remove this method and override -makeWindowControllers instead.
-        return "SplitsIODoc"
-    }
-    */
 	
 	override func makeWindowControllers() {
 		// Returns the Storyboard that contains your Document window.
@@ -48,6 +40,9 @@ class SplitsIODoc: SplitterDoc {
 			}
 		}
 		
+	}
+	override func save(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, delegate: Any?, didSave didSaveSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
+		determineSave(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: contextInfo)
 	}
 	
 

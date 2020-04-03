@@ -1,0 +1,24 @@
+{
+  "configurations" : [
+    {
+      "id" : "05FF8F1E-0754-43CC-8054-40256B1FA6DB",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Splitter.xcodeproj",
+        "identifier" : "4A774A5323EBCDFA002F1700",
+        "name" : "SplitterTests"
+      }
+    }
+  ],
+  "version" : 1
+}

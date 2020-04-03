@@ -59,11 +59,6 @@ class MetadataImage: NSImageView {
 	
 	override var image: NSImage? {
 		willSet {
-			
-//			else if let i = findVC() as? InfoOptionsViewController {
-////				i.delegate?.gameIconButton.image = self.image
-//				i.sendDataToMain()
-//			}
 		}
 		didSet {
 			var newValue = self.image
@@ -71,35 +66,24 @@ class MetadataImage: NSImageView {
 				newValue = #imageLiteral(resourceName: "Game Controller")
 				self.image = newValue
 			}
-//			if newValue != nil {
 			if let i = findVC() as? ViewController {
 				if i.gameIcon != newValue {
 					if newValue == #imageLiteral(resourceName: "Game Controller") {
-//						i.gameIcon = nil
 					} else {
-//					let ic = i.gameIcon
-//						if i.gameIconButton.image != nil {
-//							i.gameIcon = newValue
 						if let tabVC = i.infoPanelPopover?.contentViewController as? InfoPopoverTabViewController {
 								if let infoVC = tabVC.tabView.selectedTabViewItem?.viewController as? InfoOptionsViewController {
-//									infoVC.iconWell.image = newValue
 									infoVC.getDataFromMain()
 								}
 							}
-//						}
 					}
 				}
 			}
-//		}
 		if let i = findVC() as? InfoOptionsViewController {
-//				i.delegate?.gameIconButton.image = self.image
-//				i.delegate?.gameIcon = self.image
 				i.sendDataToMain()
 				
 			} else if let i = findVC() as? ViewController {
 				
 			}
-//			loadData()
 			
 		}
 	}
@@ -160,8 +144,6 @@ extension InfoOptionsViewController {
 		delegate?.platform = platformField.stringValue
 		delegate?.gameVersion = versionField.stringValue
 		delegate?.gameRegion = regionField.stringValue
-		
-//		delegate?.gameIcon = iconWell.image
 		delegate?.gameIconButton.image = iconWell.image
 		
 	}

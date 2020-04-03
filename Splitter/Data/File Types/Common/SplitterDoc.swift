@@ -17,14 +17,22 @@ enum DocFileType: String {
 }
 
 
+
 ///A filetype supported by Splitter
+/**
+- Note:
+This class contains the logic for saving each supoorted file type, since otherwise, it wouldn't be eaisliy possible to save each file from the same Save panel.
+*/
 class SplitterDoc: NSDocument {
 	
-	
+	///Writes the textual representations of the given items into the standard output.
+	///
+	///This is only here because swift's default `print` command is overriden by `NSDocument`'s `print` command.
 	func print(_ i: Any?) {
 		Swift.print(i)
 	}
 	
+	///A`File` that represents the document
 	var file: File? {
 		if let path = fileURL?.path {
 			return try? File(path: path)
@@ -32,7 +40,7 @@ class SplitterDoc: NSDocument {
 		return nil
 	}
 
-
+	/// Returns the file's URL in a form that can be loaded properly
 	var cleanFileURL: String? {
 		if let fURL = self.fileURL {
 			return fURL.path.replacingOccurrences(of: "file://", with: "")
@@ -46,17 +54,18 @@ class SplitterDoc: NSDocument {
 		return false
 	}
 	
+	///ViewController of the file
 	var viewController: ViewController? {
 		if let vc =  windowControllers.first?.contentViewController as? ViewController {
 			return vc
 		}
 		return nil
 	}
-	
+	///Returns the types that Splitter supports
 	override func writableTypes(for saveOperation: NSDocument.SaveOperationType) -> [String] {
 		return [DocFileType.splitFile.rawValue, DocFileType.liveSplit.rawValue, DocFileType.splitsioFile.rawValue]
 	}
-	
+	///Folder of the File Bundle. Used for `.split` files
 	var bundleFolder: Folder? {
 		if let path = fileURL?.path {
 			return try? Folder(path: path)
@@ -86,16 +95,6 @@ class SplitterDoc: NSDocument {
 	}
 	
 	
-    /*
-    override var windowNibName: String? {
-        // Override returning the nib file name of the document
-        // If you need to use a subclass of NSWindowController or if your document supports multiple NSWindowControllers, you should remove this method and override -makeWindowControllers instead.
-        return "SplitterDocBundle"
-    }
-    */
-	
-	
-	
 	override func fileWrapper(ofType typeName: String) throws -> FileWrapper {
 		if let wrap = self.wrapper {
 			return wrap
@@ -104,6 +103,7 @@ class SplitterDoc: NSDocument {
 		throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
 	}
 	
+	///Converts the window's setting to the data to be written to an `appearance.json` file
 	func encodeSplitterAppearance() -> Data? {
 		if let vc = viewController {
 			let app = splitterAppearance(viewController:vc)
@@ -111,17 +111,19 @@ class SplitterDoc: NSDocument {
 			if let sApp = try? newJE.encode(app) {
 				return sApp
 			}
-			
 		}
 		return nil
 	}
 	
-	
+	//MARK: - Saving Files
+
+//	
+	///Saves a `.split` file
 	func saveSplitFile(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, delegate: Any?, didSave didSaveSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
 		if let vc = viewController {
 			let newRunInfo = vc.saveToRunInfo()
 			let newJE = JSONEncoder()
-			let cleanParentURL = url.deletingLastPathComponent().path//.absoluteString.replacingOccurrences(of: "file://", with: "")
+			let cleanParentURL = url.deletingLastPathComponent().path
 
 			let newFileName = url.lastPathComponent
 			
@@ -177,18 +179,14 @@ class SplitterDoc: NSDocument {
 					try? runIconsFolder.delete()
 				}
 			}
-				
-				
-			
 			fileWrapperURL = url.absoluteString
-			
 			self.wrapper = folderToFileWrapper(folder: currentBundleFolder!)
 		} else {
-			
 		}
 		super.save(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: contextInfo)
 	}
 	
+	///Saves a `.lss` file
 	func saveLiveSplitFile(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, delegate: Any?, didSave didSaveSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
 		let ls = LiveSplit()
 		if let vc = viewController {
@@ -204,16 +202,14 @@ class SplitterDoc: NSDocument {
 			ls.gameIcon = vc.gameIcon
 			let fileString = ls.liveSplitString()
 			if let lsData = fileString.data(using: .utf8) {
-				print("\(url.path)")
-				
-				var lssFolder = try? Folder(path: url.deletingLastPathComponent().path)
-				var lssFile = try? lssFolder?.createFileIfNeeded(at: url.lastPathComponent)
-				try? lssFile?.write(lsData)
+				fileWrapperURL = url.absoluteString
+				wrapper = FileWrapper(regularFileWithContents: lsData)
 				
 			}
 		}
+		super.save(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: contextInfo)
 	}
-		
+	///Saves a file in the  Splits.io Exchange Format (`.json`)
 	func saveSplitsio(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, delegate: Any?, didSave didSaveSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
 		if let vc = viewController {
 			let timer = SplitsIOTimer(shortname: "Splitter", longname: "Splitter", website: "https://mberk.com/splitter", version: "v\(otherConstants.version) (\(otherConstants.build))")
@@ -228,13 +224,14 @@ class SplitterDoc: NSDocument {
 			}
 			let sIO = SplitsIOExchangeFormat(schemaVersion: "v1.0.1", links: nil, timer: timer, attempts: nil, game: game, category: cat, runners: nil, segments: cs)
 			if let sioData = try? sIO.jsonData() {
-				let sioFolder = try? Folder(path: url.deletingLastPathComponent().path)
-				let sioFile = try? sioFolder?.createFileIfNeeded(at: url.lastPathComponent)
-				try? sioFile?.write(sioData)
+				fileWrapperURL = url.absoluteString
+				wrapper = FileWrapper(regularFileWithContents: sioData)
 			}
 		}
+		super.save(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: contextInfo)
 	}
-		
+	
+	///Determines which format to save to
 	func determineSave(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, delegate: Any?, didSave didSaveSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
 		switch typeName {
 		case DocFileType.splitFile.rawValue:
@@ -248,36 +245,4 @@ class SplitterDoc: NSDocument {
 		}
 		
 	}
-	
-//	override func data(ofType typeName: String) throws -> Data {
-//
-//	}
-	
-    /*
-    override var windowNibName: String? {
-        // Override returning the nib file name of the document
-        // If you need to use a subclass of NSWindowController or if your document supports multiple NSWindowControllers, you should remove this method and override -makeWindowControllers instead.
-        return "SplitterDoc"
-    }
-    */
-	
-	
-
-//    override func windowControllerDidLoadNib(_ aController: NSWindowController) {
-//        super.windowControllerDidLoadNib(aController)
-//        // Add any code here that needs to be executed once the windowController has loaded the document's window.
-//    }
-
-//    override func data(ofType typeName: String) throws -> Data {
-//        // Insert code here to write your document to data of the specified type, throwing an error in case of failure.
-//        // Alternatively, you could remove this method and override fileWrapper(ofType:), write(to:ofType:), or write(to:ofType:for:originalContentsURL:) instead.
-//        throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
-//    }
-//    
-//    override func read(from data: Data, ofType typeName: String) throws {
-//        // Insert code here to read your document from the given data of the specified type, throwing an error in case of failure.
-//        // Alternatively, you could remove this method and override read(from:ofType:) instead.  If you do, you should also override isEntireFileLoaded to return false if the contents are lazily loaded.
-//        throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
-//    }
-
 }

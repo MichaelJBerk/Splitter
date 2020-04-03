@@ -63,13 +63,6 @@ extension ViewController {
 		RunLoop.current.add(milHundrethTimer, forMode: .common)
 		refreshUITimer = Cocoa.Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
 		RunLoop.current.add(refreshUITimer, forMode: .common)
-		
-		
-		//lsc: milHundrethTimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateMilHundreth), userInfo: nil, repeats: true)
-		
-		
-		
-//		refreshUITimer = Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
 		currentSplit = TimeSplit()
 		
 		currentSplitNumber = 0
@@ -81,9 +74,6 @@ extension ViewController {
 		let run = LiveSplitCore.Run()
 		let seg = LiveSplitCore.Segment("Segment")
 		run.pushSegment(seg)
-		//lsc:
-//		lscTimer = lsc.Timer(run)
-//		lscTimer?.start()
 
 		
 		
@@ -187,30 +177,7 @@ extension ViewController {
 		
 	
 	@objc func updateMilHundreth() {
-		
-//		let cTimeString = timer?.currentTime()
-//		currentSplit?.updateMil()
-		
-//		TimerLabel.stringValue = currentSplit?.timeString
-//		if let currentTime = currentSplit?.timeString {
-//			TimerLabel.stringValue = currentTime
-//		}
-		
-//
-//		//lsc:
-//		if let currentTimer = lscTimer?.currentTime().realTime()?.totalSeconds() {
-//			let timeInt = Int(currentTimer * 100)
-//
-//			TimerLabel.stringValue = timeInt.toFormatedTimeString()
-//		}
-//		DispatchQueue.global(qos: .background).async {
 			self.currentSplit?.updateMil()
-//		}
-		
-		
-		
-	
-//		splitsTableView.reloadData()
 	}
 	
 	///Called when the user has finished the run.

@@ -78,7 +78,6 @@ extension ViewController: NSTableViewDelegate {
 			case STVColumnID.differenceColumn:
 				let sDiff = currentSplits[row].splitDiff
 				cell.textField?.stringValue = sDiff
-				print(cell.textField?.stringValue)
 				if sDiff.hasPrefix("+"){
 					cell.textField?.textColor = .systemRed
 				} else if sDiff.hasPrefix("-"){

@@ -28,11 +28,8 @@ extension ViewController {
 			view.window?.standardWindowButton(.closeButton)?.isHidden = true
 			view.window?.standardWindowButton(.documentIconButton)?.isHidden = true
 			view.window?.titleVisibility = .hidden
-			
-//
 		} else {
 			view.window?.standardWindowButton(.closeButton)?.isHidden = false
-//
 			view.window?.standardWindowButton(.documentIconButton)?.isHidden = false
 			view.window?.titleVisibility = .visible
 

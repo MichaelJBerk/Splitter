@@ -122,7 +122,7 @@ class Document: SplitterDocBundle {
 	}
 
 	override func read(from data: Data, ofType typeName: String) throws {
-		// Insert code here to read your document from the given data of the specified type, throwing an error in case of failure.
+		// Insert code here to read your document from the given data ofr the specified type, throwing an error in case of failure.
 		// Alx5ternatively, you could remove this method and override read(from:ofType:) instead.
 		// If you do, you should also override isEntireFileLoaded to return false if the contents are lazily loaded.
 		throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)

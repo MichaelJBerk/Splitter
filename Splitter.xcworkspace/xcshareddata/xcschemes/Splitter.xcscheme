@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
    LastUpgradeVersion = "1130"
-   version = "1.3">
+   version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
       buildImplicitDependencies = "YES">
@@ -27,37 +27,16 @@
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
+      <TestPlans>
+         <TestPlanReference
+            reference = "container:SplitterTests/TestPlan.xctestplan"
+            default = "YES">
+         </TestPlanReference>
+         <TestPlanReference
+            reference = "container:SplitterUITests/UITestPlan.xctestplan">
+         </TestPlanReference>
+      </TestPlans>
       <Testables>
-         <TestableReference
-            skipped = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4A13F0E023DA577D00B7B3F5"
-               BuildableName = "RunInfoFrameworkTests.xctest"
-               BlueprintName = "RunInfoFrameworkTests"
-               ReferencedContainer = "container:Splitter.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4A13F10323DA57A300B7B3F5"
-               BuildableName = "RunInfoFWTests.xctest"
-               BlueprintName = "RunInfoFWTests"
-               ReferencedContainer = "container:Splitter.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
-         <TestableReference
-            skipped = "YES">
-            <BuildableReference
-               BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4A617EA923EBC5A70005D60E"
-               BuildableName = "LiveSplitterTests.xctest"
-               BlueprintName = "LiveSplitterTests"
-               ReferencedContainer = "container:Splitter.xcodeproj">
-            </BuildableReference>
-         </TestableReference>
          <TestableReference
             skipped = "NO">
             <BuildableReference

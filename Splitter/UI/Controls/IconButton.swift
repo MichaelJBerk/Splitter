@@ -13,7 +13,6 @@ class IconButton: NSButton {
 	var iconButtonType: IconButtonType = .splitIcon {
 		didSet {
 			if iconButtonType == .gameIcon {
-//				menu?.item(withIdentifier: buttonIdentifiers.GameIconButton)?.isEnabled = true
 			}
 		}
 	}
@@ -27,7 +26,6 @@ class IconButton: NSButton {
 		if let contextMenu = self.menu {
 			for i in contextMenu.items {
 				i.representedObject = self
-//				i.isEnabled = false
 			}
 		}
 		self.iconButtonType = .splitIcon

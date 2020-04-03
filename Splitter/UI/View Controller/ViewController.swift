@@ -293,9 +293,7 @@ class ViewController: NSViewController {
 		let breakMI = NSMenuItem(title: "Break", action: #selector(breakFunc), keyEquivalent: "b")
 		breakMI.keyEquivalentModifierMask = .command
 		breakMI.identifier = breakID
-		print(NSApp.mainMenu?.item(at: 0)?.submenu?.item(at: 0)?.title)
 		NSApp.mainMenu?.item(at: 0)?.submenu?.addItem(breakMI)
-//		NSApp.mainMenu!.addItem(breakMI)
 		#endif
 		
 		view.window?.delegate = self
@@ -317,7 +315,6 @@ class ViewController: NSViewController {
 		
 		view.window?.standardWindowButton(.zoomButton)?.isHidden = true
 		view.window?.standardWindowButton(.miniaturizeButton)?.isHidden = true
-//		gameIconButton.controller = .mainViewController
 		
 		if let gi = gameIcon {
 			gameIconButton.image = gi
@@ -339,8 +336,6 @@ class ViewController: NSViewController {
 		
 		setRightClickMenus()
 		
-		
-//		gameIconButton.iconButtonType = .gameIcon
 		view.window?.makeFirstResponder(splitsTableView)
 		
 		attemptField.stringValue = "\(attempts)"
@@ -367,14 +362,11 @@ class ViewController: NSViewController {
 		let optionsMenu = NSMenu(title: "Splitter...")
 		for i in standardMenu!.items {
 			
-			var icopy = NSMenuItem(title: i.title, action: i.action, keyEquivalent: i.keyEquivalent)
-			if i.title == "" {
-				icopy = NSMenuItem.separator()
-			}
-//			if i.title != ""{
-//				icopy = nsme
-				optionsMenu.addItem(icopy)
-//			}
+		var icopy = NSMenuItem(title: i.title, action: i.action, keyEquivalent: i.keyEquivalent)
+		if i.title == "" {
+			icopy = NSMenuItem.separator()
+		}
+		optionsMenu.addItem(icopy)
 			
 			
 		}
@@ -443,7 +435,6 @@ class ViewController: NSViewController {
 		pop.contentSize = NSSize(width: 450, height: 325)
 		pop.behavior = .semitransient
 		pop.show(relativeTo: infoPanelPopoverButton.frame, of: self.view, preferredEdge: .maxX)
-//		pop.show(relativeTo: .null, of: infoPanelPopoverButton, preferredEdge: .maxX)
 		infoPanelPopover = pop
 		destination.setupTabViews()
 	}
@@ -458,7 +449,6 @@ class ViewController: NSViewController {
 		pop.contentViewController = destination
 		pop.behavior = .semitransient
 		pop.show(relativeTo: columnOptionsPopoverButton.frame, of: self.view, preferredEdge: .maxX)
-//		pop.show(relativeTo: .null, of: columnOptionsPopoverButton, preferredEdge: .maxX)
 		columnOptionsPopover = pop
 		destination.loadCheckBoxes()
 		

@@ -9,14 +9,9 @@
 import Cocoa
 
 class TableViewAppearance: NSTableView, NibLoadable {
-//	static var nibName: String? = "TableViewAppearance"
-	
-	
-//	override var nibName: NSNib.Name! { "TableViewAppearance"}
 
 	override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)
-//			self.register(NSNib(nibNamed: "TableViewAppearance", bundle: nil), forIdentifier: NSUserInterfaceItemIdentifier("TVappearance"))
 
         // Drawing code here.
     }

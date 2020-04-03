@@ -111,6 +111,7 @@
 
 /* Begin PBXFileReference section */
 		315BBBF6C7F74CF21973C8F3 /* Pods-Splitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitter.release.xcconfig"; path = "Target Support Files/Pods-Splitter/Pods-Splitter.release.xcconfig"; sourceTree = "<group>"; };
+		4A0460EB24363C6200273657 /* TestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestPlan.xctestplan; sourceTree = "<group>"; };
 		4A0DC28524186C6200FC959A /* SplitsIODoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitsIODoc.swift; sourceTree = "<group>"; };
 		4A0DC28724186EBC00FC959A /* Splitter Doc SplitsIO.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = "Splitter Doc SplitsIO.icns"; sourceTree = "<group>"; };
 		4A0F715E23F4A0A500E5948E /* SplitterDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterDoc.swift; sourceTree = "<group>"; };
@@ -133,7 +134,7 @@
 		4A2A4AFA24290DD30006293B /* SplitterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SplitterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A2A4AFC24290DD30006293B /* SplitterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterUITests.swift; sourceTree = "<group>"; };
 		4A2A4AFE24290DD30006293B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4A2A4B0424290E540006293B /* TestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestPlan.xctestplan; sourceTree = "<group>"; };
+		4A2A4B0424290E540006293B /* UITestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = UITestPlan.xctestplan; sourceTree = "<group>"; };
 		4A327B0C23F491FB00A5CBFF /* splitterAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = splitterAppearance.swift; sourceTree = "<group>"; };
 		4A3BDFA023E4C3B6001EA7FF /* DefaultHotkeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultHotkeys.swift; sourceTree = "<group>"; };
 		4A4070E0241AE2E0000927A5 /* AppearanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceViewController.swift; sourceTree = "<group>"; };
@@ -347,7 +348,7 @@
 			isa = PBXGroup;
 			children = (
 				4A2A4AFC24290DD30006293B /* SplitterUITests.swift */,
-				4A2A4B0424290E540006293B /* TestPlan.xctestplan */,
+				4A2A4B0424290E540006293B /* UITestPlan.xctestplan */,
 				4A2A4AFE24290DD30006293B /* Info.plist */,
 			);
 			path = SplitterUITests;
@@ -378,6 +379,7 @@
 		4A774A5523EBCDFA002F1700 /* SplitterTests */ = {
 			isa = PBXGroup;
 			children = (
+				4A0460EB24363C6200273657 /* TestPlan.xctestplan */,
 				4A774A5623EBCDFA002F1700 /* SplitterTests.swift */,
 				4A774A5823EBCDFA002F1700 /* Info.plist */,
 			);

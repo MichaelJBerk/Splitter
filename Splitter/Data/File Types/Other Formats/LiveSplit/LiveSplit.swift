@@ -52,10 +52,10 @@ class LiveSplit: NSObject {
 		
 		
 	}
+	///Parses a `.lss` file
 	func parseLivesplit() {
-		
 		let lssFile = try? File(path: path)
-		var lssData = try? lssFile?.read()
+		let lssData = try? lssFile?.read()
 		data = lssData!
 		
 		let hand = FileHandle(forReadingAtPath: path)
@@ -84,8 +84,7 @@ class LiveSplit: NSObject {
 	}
 	
 	
-	func parseBestSplits(run: LiveSplitCore.Run) {
-		
+	private func parseBestSplits(run: LiveSplitCore.Run) {
 		let segCount = run.len()
 		var i = 0
 		var tsArray: [splitTableRow] = []
@@ -94,7 +93,6 @@ class LiveSplit: NSObject {
 			let segName = run.segment(i).name()
 			
 			var newTS = TimeSplit(mil: 0)
-			let hey = run.segment(i).bestSegmentTime()
 			if let cTimeDouble = run.segment(i).personalBestSplitTime().realTime()?.totalSeconds() {
 				newTS = TimeSplit(seconds: cTimeDouble)
 			}
@@ -114,15 +112,12 @@ class LiveSplit: NSObject {
 			let imgStr = run.segment(i).icon()
 			let img = parseImageFromLiveSplit(icon: imgStr)
 			iconArray.append(img)
-//			}
-			
 			
 			var newBest = TimeSplit(seconds: bestTS ?? 0)
 			if i > 0 {
 				newBest = newBest + tsArray[i - 1].bestSplit
 			}
 			
-//			let newRow = splitTableRow(splitName: segName, bestSplit: TimeSplit(), currentSplit: TimeSplit(), previousSplit: TimeSplit(), previousBest: TimeSplit())
 			let newRow = splitTableRow(splitName: segName, bestSplit: newTS, currentSplit: TimeSplit(), previousSplit: TimeSplit(), previousBest: newBest, splitIcon: nil)
 			tsArray.append(newRow)
 			i = i + 1
@@ -141,24 +136,24 @@ class LiveSplit: NSObject {
 		}
 		return img
 	}
-	
+	///Creates a string that to be saved to a `.lss` file
 	func liveSplitString() -> String {
-		var run = LiveSplitCore.Run()
+		let run = LiveSplitCore.Run()
 		let segDel = "If you name a segment this it will be deleted"
-		var blankSeg = LiveSplitCore.Segment(segDel)
+		let blankSeg = LiveSplitCore.Segment(segDel)
 		var i = 0
 		run.pushSegment(blankSeg)
-		var lss = LiveSplitCore.RunEditor(run)
+		let lss = LiveSplitCore.RunEditor(run)
 		lss?.setGameName(runTitle ?? "")
 		lss?.setCategoryName(category ?? " ")
 		lss?.setPlatformName(platform ?? "")
 		lss?.setRegionName(region ?? "")
-		lss?.parseAndSetAttemptCount("\(attempts)")
+		let _ = lss?.parseAndSetAttemptCount("\(attempts ?? 0)")
 		
 		if var giData = gameIcon?.tiffRepresentation {
 			let giLen = giData.count
 			let giPtr = giData.withUnsafeMutableBytes( { bytes in
-				var UMBP = bytes.baseAddress
+				let UMBP = bytes.baseAddress
 				lss?.setGameIcon(UMBP, giLen)
 			})
 		}
@@ -170,7 +165,7 @@ class LiveSplit: NSObject {
 			if var id = icon?.tiffRepresentation {
 				let iconlen = id.count
 				let iPtr = id.withUnsafeMutableBytes( { bytes in
-					var UMBP = bytes.baseAddress
+					let UMBP = bytes.baseAddress
 					lss?.activeSetIcon(UMBP, iconlen)
 				})
 			}
@@ -183,7 +178,10 @@ class LiveSplit: NSObject {
 		lss?.selectOnly(0)
 		lss?.removeSegments()
 		run.ptr = lss?.ptr
-		return run.saveAsLss()
+		///For whatever reason, the expected way to save attempts to lss doesn't work, so I have to brute force it here.
+		var returnString = run.saveAsLss()
+		returnString = returnString.replacingOccurrences(of: "<AttemptCount>0</AttemptCount>", with: "<AttemptCount>\(attempts ?? 0)</AttemptCount>")
+		return returnString
 	}
 	
 	var cdata: Data?
@@ -227,10 +225,10 @@ extension ViewController {
 			attempts = att
 		}
 		if let reg = ls.region {
-			gameRegion = ls.region
+			gameRegion = reg
 		}
 		if let plat = ls.platform {
-			platform = ls.platform
+			platform = plat
 		}
 		
 		
