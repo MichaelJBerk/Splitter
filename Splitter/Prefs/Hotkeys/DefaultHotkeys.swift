@@ -85,7 +85,7 @@ extension AppDelegate {
 				appKeybinds[i]!.keybind = sView.shortcutValue
 				let a = keybindAction(keybind: k.title)
 				if appKeybinds[i]?.keybind != nil {
-				MASShortcutMonitor.shared()?.register(appKeybinds[i]!.keybind, withAction: a)
+//				MASShortcutMonitor.shared()?.regisater(appKeybinds[i]!.keybind, withAction: a)
 				}
 			}
 			i = i + 1
@@ -120,9 +120,9 @@ extension AppDelegate {
 				
 				appKeybinds[i]?.keybind = shortcut
 				let cKeybind = appKeybinds[i]
-				let a = keybindAction(keybind: keybind)
-				MASShortcutMonitor.shared()?.register(shortcut, withAction: a)
-				MASShortcutBinder.shared()?.bindShortcut(withDefaultsKey: cKeybind?.settings.rawValue, toAction: a)
+//				let a = keybindAction(keybind: keybind)
+//				MASShortcutMonitor.shared()?.register(shortcut, withAction: a)
+//				MASShortcutBinder.shared()?.bindShortcut(withDefaultsKey: cKeybind?.settings.rawValue, toAction: a)
 				break
 			}
 		i = i + 1

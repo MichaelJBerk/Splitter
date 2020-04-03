@@ -490,7 +490,7 @@ extension DateComponents {
 //This code helps Splitter keep track of the different windows the app may have open
 extension ViewController: NSWindowDelegate {
 
-	func windowDidBecomeKey(_ notification: Notification) {
+	func DidBecomeKey(_ notification: Notification) {
 		let showHideUIItem = NSApp.mainMenu?.item(withIdentifier: menuIdentifiers.appearanceMenu.hideButtons)
 		showHideUIItem?.title = showHideButtonsText
 		
