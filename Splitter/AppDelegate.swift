@@ -67,22 +67,43 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 //			keybindAlert()
 		}
 	}
-	//Takes the hotkeys set as SplitterKeybinds and registers them for global input monitoring.
+	
+	func setKeyMonitor(event: NSEvent) {
+		
+		for k in self.appKeybinds {
+			let code = k?.keybind?.keyCode
+			let mods = k?.keybind?.modifierFlags
+			let eventMods = event.modifierFlags.intersection(.deviceIndependentFlagsMask)
+			
+			
+			
+			if Int(event.keyCode) == code && eventMods == mods {
+				let ka = self.keybindAction(keybind: k!.title)
+				ka!()
+			}
+		}
+	}
+	///Takes the hotkeys set as SplitterKeybinds and registers them for global input monitoring.
 	func MAStoStandardHotkeys() {
 		
 		NSEvent.addGlobalMonitorForEvents(matching: [.keyDown], handler: { event in
 			if Settings.enableGlobalHotkeys {
-				for k in self.appKeybinds {
-					let code = k?.keybind?.keyCode
-					let mods = k?.keybind?.modifierFlags
-					let eventMods = event.modifierFlags.intersection(.deviceIndependentFlagsMask)
-					
-					if Int(event.keyCode) == code && eventMods == mods {
-						let ka = self.keybindAction(keybind: k!.title)
-						ka!()
-					}
+				self.setKeyMonitor(event: event)
+			}
+		})
+		//Set overrides for keys that KeyEquivalents has a problem with, like the spacebar
+		NSEvent.addLocalMonitorForEvents(matching: [.keyDown], handler: { event in
+
+			if event.keyCode == 49 {
+				let filterK = self.appKeybinds.filter( { keybind in
+					keybind?.keybind?.keyCode == Int(event.keyCode)
+				})
+				for k in filterK {
+					let action = self.keybindAction(keybind: k!.title)
+					action!()
 				}
 			}
+			return event
 		})
 	}
 	
@@ -99,9 +120,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			
 			keybindAlert()
 		} else {
-			//TODO: Remove in next
 			if Settings.lastOpenedBuild != otherConstants.build {
-				keybindAlert()
 			}
 		}
 		

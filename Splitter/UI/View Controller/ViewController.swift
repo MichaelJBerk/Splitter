@@ -77,7 +77,7 @@ class ViewController: NSViewController {
 	@IBOutlet weak var currentTimeLabel: NSTextField!
 	@IBOutlet weak var attemptField: MetadataField!
 	
-	@IBOutlet weak var splitsTableView: NSTableView!
+	@IBOutlet weak var splitsTableView: SplitterTableView!
 	
 	
 	var cellIdentifier: NSUserInterfaceItemIdentifier?
