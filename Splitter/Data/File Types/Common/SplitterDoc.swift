@@ -223,9 +223,13 @@ class SplitterDoc: NSDocument {
 				cs.append(seg)
 			}
 			let sIO = SplitsIOExchangeFormat(schemaVersion: "v1.0.1", links: nil, timer: timer, attempts: nil, game: game, category: cat, runners: nil, segments: cs)
-			if let sioData = try? sIO.jsonData() {
+			if var sioString = try? sIO.jsonString() {
 				fileWrapperURL = url.absoluteString
-				wrapper = FileWrapper(regularFileWithContents: sioData)
+				sioString = sioString.replacingOccurrences(of: "schemaVersion", with: "_schemaVersion")
+				if let sioData = sioString.data(using: .utf8) {
+					wrapper = FileWrapper(regularFileWithContents: sioData)
+				}
+				
 			}
 		}
 		super.save(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: contextInfo)
