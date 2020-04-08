@@ -38,6 +38,7 @@ extension ViewController {
 			StartButton.title = "Pause"
 			currentSplit?.paused = false
 			timerState = .running
+			lscTimer?.resume()
 		default:
 			StartButton.title = "Resume"
 			currentSplit?.paused = true
@@ -59,9 +60,9 @@ extension ViewController {
 		updatePreviousSplit(of: 0)
 		updateAllPreviousBestSplits()
 		
-		milHundrethTimer = Cocoa.Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateMilHundreth), userInfo: nil, repeats: true)
-		RunLoop.current.add(milHundrethTimer, forMode: .common)
-		refreshUITimer = Cocoa.Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateTime), userInfo: nil, repeats: true)
+//		milHundrethTimer = Cocoa.Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateMilHundreth), userInfo: nil, repeats: true)
+//		RunLoop.current.add(milHundrethTimer, forMode: .common)
+		refreshUITimer = Cocoa.Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(UpdateTimer), userInfo: nil, repeats: true)
 		RunLoop.current.add(refreshUITimer, forMode: .common)
 		currentSplit = TimeSplit()
 		
@@ -70,13 +71,29 @@ extension ViewController {
 		
 		self.startTime = Date()
 		
-		let lsc = LiveSplitCore.self
 		let run = LiveSplitCore.Run()
+		
 		let seg = LiveSplitCore.Segment("Segment")
 		run.pushSegment(seg)
-
 		
+		lscTimer = LiveSplitCore.Timer(run)
+		lscTimer?.start()
+	}
+	
+	@objc func timerInfLoop() {
+//		while timerState == .running {
+		currentSplit?.updateSec(sec: lscTimer?.currentTime().realTime()?.totalSeconds() ?? 0)
+//		currentSplit = TimeSplit(seconds: lscTimer!.currentTime().realTime()?.totalSeconds() ?? 0)
+//			let timer = sharedLSCTimer?.read().timer()
+//			TimerLabel.stringValue = String(timer?.currentTime().realTime()?.totalSeconds() ?? 0)
+//			TimerLabel.stringValue = String(sharedLSCTimer?.read().timer().currentTime().realTime()?.totalSeconds() ?? 0)
+			TimerLabel.stringValue = String(lscTimer?.currentTime().realTime()?.totalSeconds() ?? 0)
+//		}
+//		TimerLabel.stringValue = lscTimer?.currentTime().realTime()
+//		let tsptr = lscTimer?.currentTime().realTime()?.ptr
+//		let hey = LiveSplitCore.Time.for
 		
+		splitsTableView.reloadData()
 	}
 	
 	///Clears out the current time field on all segments in the Table View
@@ -132,9 +149,16 @@ extension ViewController {
 	}
 	
 	///Updates the current time on the timer
-	func UpdateTimer() {
+	@objc func UpdateTimer() {
+		if currentSplit!.paused {
+			lscTimer?.pause()
+		} else {
+			
+			currentSplit?.updateSec(sec: lscTimer?.currentTime().realTime()?.totalSeconds() ?? 0)
+		}
+		
 		if let currentTime = currentSplit?.timeString {
-			TimerLabel.stringValue = String(currentSplit!.timeString)//currentTime
+			TimerLabel.stringValue = currentSplit!.timeString
 		}
 		splitsTableView.reloadData()
 		

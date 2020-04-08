@@ -89,6 +89,7 @@ class ViewController: NSViewController {
 	
 	var timer = Timer()
 	var lscTimer: LiveSplitCore.Timer?
+	var sharedLSCTimer: LiveSplitCore.SharedTimer?
 	var refreshUITimer = Timer()
 	var milHundrethTimer = Timer()
 	
@@ -281,7 +282,7 @@ class ViewController: NSViewController {
 	var hotkeysController: HotkeysViewController?
 	
 	@objc func breakFunc() {
-		
+		print(currentSplit?.mil)
 	}
 	
 	var breakID = NSUserInterfaceItemIdentifier("break")

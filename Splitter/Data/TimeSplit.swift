@@ -15,7 +15,13 @@ class TimeSplit: NSObject, NSCopying, Comparable {
 	///Whether or not the `TimeSplit` is paused
 	var paused = false
 	///Total MS elapsed from start of TimeSplit
-	var totalMil = 0
+	var totalMil: Int {
+		get {
+			Int(totalSec * 1000)
+		}
+	}
+	
+	var totalSec: Double = 0
 	
 	//MARK: - Initializers
 	
@@ -25,99 +31,111 @@ class TimeSplit: NSObject, NSCopying, Comparable {
 	///   - sec: seconds of the `TimeSplit`
 	///   - min: minutes of the `TimeSplit`
 	///   - hour: hours of the `TimeSplit`
-	init( mil:Int, sec:Int, min:Int, hour:Int) {
-		totalMil = 0
-		totalMil = totalMil + mil
-		totalMil = totalMil + (sec * 100)
-		totalMil = totalMil + (min * 60000)
-		totalMil = totalMil + (hour * 3600000)
+	convenience init( mil:Int, sec:Int, min:Int, hour:Int) {
+
+		let str = "\(hour):\(min):\(sec).\(mil)"
+		self.init(timeString: str)
 	}
 	
 	
 	/// Initalizes the TimeSplit
 	/// - Parameter mil: Time of the `TimeSplit`, in milliseconds.
 	init (mil: Int) {
-		self.totalMil = mil
+		self.totalSec = Double(mil / 1000)
 	}
 	
 	/// Initalizes the time split from using string in the format "00:00:00.00" with hours, minutes, seconds, and milliseconds.
 	/// - Parameter timeString: String of a time value in the format "00:00:00.00" for hours, minutes, seconds, and milliseconds
 	init(timeString: String) {
-		var hourMilSec = timeString.split(separator: ":", maxSplits: 3, omittingEmptySubsequences: false)
-		
-		if hourMilSec.count == 2 {
-			let newTimeString = "00:" + timeString;
-			hourMilSec = newTimeString.split(separator: ":", maxSplits: 3, omittingEmptySubsequences: false)
-		}
-		let secSplit = hourMilSec.last?.split(separator: ".")
-	
-		hourMilSec.removeLast()
-		hourMilSec.append(contentsOf: secSplit!)
-		
-		if hourMilSec.count == 3 {
-			hourMilSec.append("00")
-		}
-		let finalSplit = hourMilSec
-		if hourMilSec.count >= 3 {
-			let mil = Int(String(finalSplit[3])) ?? 0
-			let sec = Int(String(finalSplit[2])) ?? 0
-			let min = Int(String(finalSplit[1])) ?? 0
-			let hour = Int(String(finalSplit[0])) ?? 0
-			
-			totalMil = 0
-			totalMil = totalMil + mil
-			totalMil = totalMil + (sec * 100)
-			totalMil = totalMil + (min * 6000)
-			totalMil = totalMil + (hour * 360000)
-			
-			
-		} else {
-			self.totalMil = 0
-		}
+//		var hourMilSec = timeString.split(separator: ":", maxSplits: 3, omittingEmptySubsequences: false)
+//
+//		if hourMilSec.count == 2 {
+//			let newTimeString = "00:" + timeString;
+//			hourMilSec = newTimeString.split(separator: ":", maxSplits: 3, omittingEmptySubsequences: false)
+//		}
+//		let secSplit = hourMilSec.last?.split(separator: ".")
+//
+//		hourMilSec.removeLast()
+//		hourMilSec.append(contentsOf: secSplit!)
+//
+//		if hourMilSec.count == 3 {
+//			hourMilSec.append("00")
+//		}
+//		let finalSplit = hourMilSec
+//		if hourMilSec.count >= 3 {
+//			let mil = Int(String(finalSplit[3])) ?? 0
+//			let sec = Int(String(finalSplit[2])) ?? 0
+//			let min = Int(String(finalSplit[1])) ?? 0
+//			let hour = Int(String(finalSplit[0])) ?? 0
+//
+//			totalSec = 0
+//			totalSec = totalSec + Double(mil)
+//			totalSec = totalSec + (Double(sec) * 100)
+//			totalSec = totalSec + (Double(min) * 6000)
+//			totalSec = totalSec + (Double(hour) * 360000)
+//
+//
+//		} else {
+//			self.totalSec = 0
+//		}
+		let time = LiveSplitCore.TimeSpan.parse(timeString)
+		self.totalSec = time!.totalSeconds()
 		
 	}
 	
 	///Creates an "empty" TimeSplit, with the time set to 0
 	convenience override init () {
-		self.init(mil: 0)
+		self.init(seconds: 0)
 	}
 	
 	/// Creates a TimeSplit set to the number of seconds given
 	/// - Parameter seconds: initial duration of the `TimeSplit`
-	convenience init (seconds: Double) {
-		let mil = Int(seconds * 1000)
-		self.init(mil: mil)
+	init (seconds: Double) {
+//		let mil = Int(seconds * 1000)
+//		self.init(mil: mil)
+		totalSec = seconds
 	}
 	
 	//MARK: - Time Values
 	/// Returns the current millisecond of the `TimeSplit`
+	
 	var mil: Int {
-		return totalMil % 100
+		let dec = totalSec.truncatingRemainder(dividingBy: 1)
+		let dtoi = Int((dec * 100).rounded())
+		
+		return dtoi//Int(String(decSplit)) ?? 0
+		
 	}
 	/// Returns the current second of the `TimeSplit`
 	var sec: Int {
-		return Int(totalMil / 100) % 60
+		//This needs to be the remainder of `totalSec/60`, since otherwise the seconds would go past 60
+		return Int(totalSec) % 60
 	}
 	
 	/// Returns the current minute of the `TimeSplit`
 	var min: Int {
-		return Int(totalMil/6000) % 60
-
+//		return Int(totalSec. / 60)
+		return (Int(totalSec) / 60) % 60//.remainder(dividingBy: 60))
 	}
 	///Returns the current hour of the `TimeSplit`
 	var hour: Int {
-		return totalMil / 360000
+		return (Int(totalSec) / 60) / 60
 	}
 	
 	func reset() {
-		self.totalMil = 0
+		self.totalSec = 0
 	}
 	
 	///The function that updates the TimeSplit every millisecond
 	@objc func updateMil() {
 		if !paused {
-			totalMil = totalMil + 1
+//			totalMil = totalMil + 1
 		}
+	}
+	
+	@objc func updateSec(sec: Double) {
+//		self.totalMil = Int(sec * 1000)
+		totalSec = sec
 	}
 	//MARK: - Strings
 	
@@ -138,6 +156,7 @@ class TimeSplit: NSObject, NSCopying, Comparable {
 	
 	///Returns the `TimeSplit` as a `String`, but only includes the first significant field
 	var shortTimeString: String {
+		let m = self.mil
 		if hour == 0 {
 			if min == 0 {
 				return String(format: "%.2d.%.2d", abs(sec), abs(mil))
@@ -149,6 +168,8 @@ class TimeSplit: NSObject, NSCopying, Comparable {
 	
 	///Returns a `shortTimeString`, but is rounded to the tenths instead of hundredths
 	var shortTimeStringTenths: String {
+		
+		let m = self.mil
 		let milRounded = Int((Double(mil)/10.00).rounded())
 		if hour == 0 {
 			if min == 0 {
@@ -166,12 +187,12 @@ class TimeSplit: NSObject, NSCopying, Comparable {
 	}
 	
 	func frozenTimeSplit() -> TimeSplit {
-		let newTimeSplit = TimeSplit(mil: self.totalMil)
+		let newTimeSplit = TimeSplit(seconds: self.totalSec)
 		return newTimeSplit
 	}
 	
 	func copy(with zone: NSZone? = nil) -> Any {
-		return TimeSplit(mil: totalMil)
+		return TimeSplit(seconds: totalSec)
 	}
 	
 	func tsCopy() -> TimeSplit {
@@ -189,7 +210,7 @@ class TimeSplit: NSObject, NSCopying, Comparable {
 	}
 	
 	static func > (lhs: TimeSplit, rhs: TimeSplit) -> Bool {
-		if lhs.totalMil > rhs.totalMil {
+		if lhs.totalSec > rhs.totalSec {
 			return true
 		} else {
 			return false
@@ -210,13 +231,13 @@ class TimeSplit: NSObject, NSCopying, Comparable {
 	
 	//MARK: - Add/Subtract Splits
 	static func + (lhs: TimeSplit, rhs: TimeSplit) -> TimeSplit {
-		let tsMil = lhs.totalMil + rhs.totalMil
-		let newTimeSplit = TimeSplit(mil:tsMil)
+		let tsSec = lhs.totalSec + rhs.totalSec
+		let newTimeSplit = TimeSplit(seconds: tsSec)
 		return newTimeSplit
 	}
 	static func - (lhs: TimeSplit, rhs: TimeSplit) -> TimeSplit {
-		let tsMil = lhs.totalMil - rhs.totalMil
-		let newTimeSplit = TimeSplit(mil:tsMil)
+		let tsSec = lhs.totalSec - rhs.totalSec
+		let newTimeSplit = TimeSplit(seconds: tsSec)
 		return newTimeSplit
 	}
 	
