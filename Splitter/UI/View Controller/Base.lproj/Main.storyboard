@@ -1140,7 +1140,7 @@ To remove, click and press backspace. </string>
                                         </textField>
                                     </gridCell>
                                     <gridCell row="L6o-JX-ii0" column="vxy-hV-tJz" id="5p2-am-4Fp">
-                                        <textField key="contentView" toolTip="Game Title (i.e. Super Mario Odyssey)" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="UXc-S9-jFn" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
+                                        <textField key="contentView" toolTip="Game Title" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="UXc-S9-jFn" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
                                             <rect key="frame" x="112" y="186" width="100" height="21"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="GMu-GZ-I0O">
                                                 <font key="font" metaFont="system"/>
@@ -1160,7 +1160,7 @@ To remove, click and press backspace. </string>
                                         </textField>
                                     </gridCell>
                                     <gridCell row="m0S-8J-6Ce" column="vxy-hV-tJz" id="8ay-bC-oS1">
-                                        <textField key="contentView" toolTip="Speedrun  Category (i.e. Any %)" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="XqK-XY-ils" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
+                                        <textField key="contentView" toolTip="Speedrun Category (i.e. Any %)" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="XqK-XY-ils" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
                                             <rect key="frame" x="112" y="159" width="100" height="21"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" toolTip="Speedrun Category (i.e. Any %)" drawsBackground="YES" id="8xO-mB-dqj">
                                                 <font key="font" metaFont="system"/>
@@ -1203,7 +1203,7 @@ To remove, click and press backspace. </string>
                                         </textField>
                                     </gridCell>
                                     <gridCell row="hsq-T1-mTZ" column="vxy-hV-tJz" id="e3T-nQ-owx">
-                                        <textField key="contentView" toolTip="Platform the game is being played on (i.e. &quot;Nintendo Switch&quot;)" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="26X-Fy-Txf" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
+                                        <textField key="contentView" toolTip="Platform the game is being played on" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="26X-Fy-Txf" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
                                             <rect key="frame" x="112" y="105" width="100" height="21"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="Pk3-fq-DK4">
                                                 <font key="font" metaFont="system"/>
@@ -1243,7 +1243,7 @@ To remove, click and press backspace. </string>
                                         </textField>
                                     </gridCell>
                                     <gridCell row="6g6-5p-fsl" column="vxy-hV-tJz" id="nuX-2A-7Ur">
-                                        <textField key="contentView" toolTip="Region of the version of the game being played (i.e. &quot;USA&quot;)" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="18O-lk-nAH" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
+                                        <textField key="contentView" toolTip="Regional version of the game being played (i.e. &quot;USA&quot;)" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="18O-lk-nAH" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
                                             <rect key="frame" x="112" y="51" width="100" height="21"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="oAh-Hl-ZOu">
                                                 <font key="font" metaFont="system"/>
