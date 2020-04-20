@@ -8,9 +8,10 @@ A native Speedrunning timer for macOS
 
 Splitter is available on the Mac App Store, but you can also download the official beta build below
 
+[Download Latest Stable Release](https://apps.apple.com/us/app/splitter-speedrun-timer/id1502505482?ls=1)
+
 [Download Latest Beta Build](https://install.appcenter.ms/users/mjosephberk/apps/splittertest/distribution_groups/public%20beta)
 
-[Download Latest Stable Release](https://apps.apple.com/us/app/splitter-speedrun-timer/id1502505482?ls=1)
 
 If you'd like to see what features are in the works, you can look at the [Roadmap](https://github.com/MichaelJBerk/Splitter/wiki/Roadmap)
 
