@@ -87,7 +87,11 @@ extension ViewController {
 		splitsTableView.reloadData()
 	}
 	
-	///Clears out the current time field on all segments in the Table View
+	/** Clears out the current time field on all segments in the Table View
+	- Warning:
+		- If split is added/removed since last attempt, then previous stays the same value
+		- If previous/best time is updated since last attempt, previous/best time isn't updated.
+*/
 	func resetAllCurrentSplitsToZero() {
 		var i = 0
 		while i < currentSplits.count {
