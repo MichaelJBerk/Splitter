@@ -120,7 +120,7 @@ extension ViewController {
 	///Resets a run in progress to 00:00:00.
 	func resetRun() {
 		stopTimer()
-		startTimer()
+		resetAllCurrentSplitsToZero()
 	}
 	
 	//MARK: - Best Split

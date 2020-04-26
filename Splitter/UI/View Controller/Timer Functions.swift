@@ -91,10 +91,16 @@ extension ViewController {
 	func resetAllCurrentSplitsToZero() {
 		var i = 0
 		while i < currentSplits.count {
-			currentSplits[i].currentSplit = TimeSplit(timeString: "00:00:00.00")
-			splitsTableView.reloadData()
+			currentSplits[i].currentSplit = TimeSplit()
+			if currentSplits[i].currentSplit <= currentSplits[i].bestSplit {
+				currentSplits[i].bestSplit = currentSplits[i].previousBest
+			}
+			if backupSplits.count == currentSplits.count {
+				currentSplits[i].previousSplit = backupSplits[i].previousSplit
+			}
 			i = i + 1
 		}
+		splitsTableView.reloadData()
 	}
 	
 	

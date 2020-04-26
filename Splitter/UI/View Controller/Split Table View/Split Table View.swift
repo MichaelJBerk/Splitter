@@ -110,6 +110,7 @@ extension ViewController: NSTextFieldDelegate {
 		splitsTableView.reloadData()
 	}
 	
+	///Function called after editing the text field in a row
 	func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
 
 		let colIndex = splitsTableView.column(for: control)
