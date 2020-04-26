@@ -893,11 +893,13 @@
                                     <font key="font" metaFont="system"/>
                                     <menu key="menu" showsStateColumn="NO" autoenablesItems="NO" id="EQW-m1-UW4">
                                         <items>
-                                            <menuItem image="trash" hidden="YES" id="E4A-EA-ALB"/>
+                                            <menuItem image="trash" hidden="YES" id="E4A-EA-ALB">
+                                                <modifierMask key="keyEquivalentModifierMask"/>
+                                            </menuItem>
                                             <menuItem title="Clear Current Time" keyEquivalent="t" identifier="ClearCurrentTimeMenuItem" id="cio-kK-rtU">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
-                                            <menuItem title="Clear Everything" keyEquivalent="e" identifier="ClearAllSplitsMenuItem" id="Lir-eD-mYQ">
+                                            <menuItem title="Delete All Segments" keyEquivalent="e" identifier="ClearAllSplitsMenuItem" id="Lir-eD-mYQ">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
                                         </items>
@@ -1596,7 +1598,7 @@ To remove, click and press backspace. </string>
         </scene>
     </scenes>
     <resources>
-        <image name="Game Controller" width="256" height="256"/>
+        <image name="Game Controller" width="256" height="255.5"/>
         <image name="NSActionTemplate" width="14" height="14"/>
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSQuickLookTemplate" width="19" height="12"/>

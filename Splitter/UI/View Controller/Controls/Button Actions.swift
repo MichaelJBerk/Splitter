@@ -19,7 +19,7 @@ extension ViewController {
 	@IBAction func stopButtonClick(_ sender: Any) {
 		finishRun()
 	}
-	
+	//TODO: See if name should be changed
 	@IBAction func trashStCanClick(_ sender: Any) {
 		askToClearTimer()
 	}

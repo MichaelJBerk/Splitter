@@ -81,17 +81,8 @@ extension ViewController {
 	}
 	
 	@objc func timerInfLoop() {
-//		while timerState == .running {
 		currentSplit?.updateSec(sec: lscTimer?.currentTime().realTime()?.totalSeconds() ?? 0)
-//		currentSplit = TimeSplit(seconds: lscTimer!.currentTime().realTime()?.totalSeconds() ?? 0)
-//			let timer = sharedLSCTimer?.read().timer()
-//			TimerLabel.stringValue = String(timer?.currentTime().realTime()?.totalSeconds() ?? 0)
-//			TimerLabel.stringValue = String(sharedLSCTimer?.read().timer().currentTime().realTime()?.totalSeconds() ?? 0)
 			TimerLabel.stringValue = String(lscTimer?.currentTime().realTime()?.totalSeconds() ?? 0)
-//		}
-//		TimerLabel.stringValue = lscTimer?.currentTime().realTime()
-//		let tsptr = lscTimer?.currentTime().realTime()?.ptr
-//		let hey = LiveSplitCore.Time.for
 		
 		splitsTableView.reloadData()
 	}
@@ -110,10 +101,10 @@ extension ViewController {
 	///Prompts the user if they're *sure* they want to remove all the currently loaded segements, then calls `clearTimer()` to do so, should they choose "Yes"
 	func askToClearTimer() {
 		let alert = NSAlert()
-		alert.messageText = "Are you sure you want to reset?"
-		alert.informativeText = "By clicking \"Yes\", you will remove all of the currently loaded segments."
+		alert.messageText = "Are you sure you want to delete all segments?"
+		alert.informativeText = "If you continue, you all of the segments in the file will be deleted. Other data like the run title, icon, etc. will be retained."
 		alert.alertStyle = .warning
-		alert.addButton(withTitle: "No")
+		alert.addButton(withTitle: "Cancel")
 		alert.addButton(withTitle: "Delete Segments")
 		alert.buttons[0].highlight(true)
 		let res = alert.runModal()
