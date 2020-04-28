@@ -971,7 +971,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="XzH-Pf-d2x" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XzH-Pf-d2x" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
                                 <rect key="frame" x="221" y="64" width="53" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="49" id="imu-YA-cq7"/>
@@ -1182,7 +1182,7 @@ To remove, click and press backspace. </string>
                                         </textField>
                                     </gridCell>
                                     <gridCell row="UbN-2k-LQs" column="vxy-hV-tJz" id="LWx-U4-bP7">
-                                        <textField key="contentView" toolTip="Number of times this run has been attempted " verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="xtG-uJ-IZa" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
+                                        <textField key="contentView" toolTip="Number of times this run has been attempted " verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xtG-uJ-IZa" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
                                             <rect key="frame" x="112" y="132" width="100" height="21"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="zfc-Nr-qcx">
                                                 <font key="font" metaFont="system"/>
