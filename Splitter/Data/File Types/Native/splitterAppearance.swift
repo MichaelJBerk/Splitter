@@ -10,6 +10,44 @@ import Foundation
 import Cocoa
 import SwiftyJSON
 
+struct CodableColor: Codable {
+	 var red : CGFloat = 0.0, green: CGFloat = 0.0, blue: CGFloat = 0.0, alpha: CGFloat = 0.0
+
+	 var nsColor : NSColor {
+		return NSColor(red: red, green: green, blue: blue, alpha: alpha)
+	 }
+	init (red: CGFloat, green: CGFloat, blue: CGFloat, alpha: CGFloat) {
+		self.red = red
+		self.green = green
+		self.blue = blue
+		self.alpha = alpha
+	}
+	init (red: Float, green: Float, blue: Float, alpha: Float) {
+		self.red = CGFloat(red)
+		self.green = CGFloat(green)
+		self.blue = CGFloat(blue)
+		self.alpha = CGFloat(alpha)
+	}
+
+	 init(nsColor : NSColor) {
+		let ciColor = CIColor(color: nsColor)!
+		red = ciColor.red
+		green = ciColor.green
+		blue = ciColor.blue
+		alpha = ciColor.alpha
+//		nsColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
+		 
+	 }
+	
+	init(json: JSON) {
+		let red = json.dictionary?["red"]?.floatValue
+		let green = json.dictionary?["green"]?.floatValue
+		let blue = json.dictionary?["blue"]?.floatValue
+		let alpha = json.dictionary?["alpha"]?.floatValue
+		self.init(red: red!, green: green!, blue: blue!, alpha: alpha!)
+	}
+}
+
 struct splitterAppearance: Codable {
 	var hideTitlebar: Bool?
 	var hideButtons: Bool?
@@ -20,6 +58,10 @@ struct splitterAppearance: Codable {
 	var windowHeight: CGFloat?
 	var roundTo: Int?
 	
+	var bgColor: CodableColor?
+	var tableColor: CodableColor?
+	var textColor: CodableColor?
+	var selectColor: CodableColor?
 	
 	
 	init(viewController: ViewController) {
@@ -40,6 +82,10 @@ struct splitterAppearance: Codable {
 		self.windowWidth = viewController.view.window?.frame.width
 		self.windowHeight = viewController.view.window?.frame.height
 		self.roundTo = viewController.roundTo.rawValue
+		self.bgColor = CodableColor(nsColor: viewController.bgColor)
+		self.tableColor = CodableColor(nsColor: viewController.tableBGColor)
+		self.textColor = CodableColor(nsColor: viewController.textColor)
+		self.selectColor = CodableColor(nsColor: viewController.selectedColor)
 	}
 	
 	
@@ -69,6 +115,19 @@ struct splitterAppearance: Codable {
 			
 			}
 		}
+		if let bgColorDict = json.dictionary?["bgColor"] {
+			self.bgColor = CodableColor(json: bgColorDict)
+		}
+		if let tableColorDict = json.dictionary?["tableColor"] {
+			self.tableColor = CodableColor(json: tableColorDict)
+		}
+		if let textColorDict = json.dictionary?["textColor"] {
+			self.textColor = CodableColor(json: textColorDict)
+		}
+		if let selectColorDict = json.dictionary?["selectColor"] {
+			self.selectColor = CodableColor(json: selectColorDict)
+		}
+		
 		
 		//Need to do optional chaining so that CGFloat(x) doesn't complain about an optional value
 		if let ww = json.dictionary?["windowWidth"]?.float {
@@ -133,8 +192,30 @@ extension ViewController {
 			let windowFrame = NSRect(x: view.window!.frame.origin.x, y: view.window!.frame.origin.y, width: appearance.windowWidth!, height: appearance.windowHeight!)
 			view.window?.setFrame(windowFrame, display: true)
 		}
+		if let bgc = appearance.bgColor?.nsColor {
+			bgColor = bgc
+		}
+		if let tableC = appearance.tableColor?.nsColor {
+			tableBGColor = tableC
+			(NSApp.delegate as! AppDelegate).headColor = tableBGColor
+		}
+		if let textC = appearance.textColor?.nsColor {
+//			tableBGColor = tableC
+			if textC == NSColor.textColor {
+				textColor = .textColor
+			} else {
+				textColor = textC
+			}
+		}
+		
+		if let selectC = appearance.selectColor?.nsColor {
+			selectedColor = selectC
+		}
+		
 		
 		roundTo = SplitRounding(rawValue: appearance.roundTo ?? 0) ?? SplitRounding.tenths
 		splitsTableView.reloadData()
+		setColorForControls()
+		
 	}
 }

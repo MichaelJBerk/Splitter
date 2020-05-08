@@ -18,6 +18,9 @@ class InfoPopoverTabViewController: NSTabViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+		if let d = delegate {
+		}
+		
         // Do view setup here.
     }
 	

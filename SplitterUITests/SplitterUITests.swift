@@ -71,6 +71,19 @@ class SplitterUITests: XCTestCase {
 		
 	
 	}
+	
+	func testChangeTextColor() {
+		
+		let app = XCUIApplication()
+		let untitledWindow = app.windows["Untitled"]
+		untitledWindow.buttons["action"].click()
+		
+		let popoversQuery = untitledWindow.popovers
+		popoversQuery/*@START_MENU_TOKEN@*/.radioButtons["Appearance"]/*[[".radioGroups.radioButtons[\"Appearance\"]",".radioButtons[\"Appearance\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.click()
+		popoversQuery.groups.containing(.button, identifier:"Reset").children(matching: .colorWell).element(boundBy: 2).click()
+		app.windows["Colors"]/*@START_MENU_TOKEN@*/.radioButtons["Moss"]/*[[".splitGroups",".radioGroups[\"Pencils\"].radioButtons[\"Moss\"]",".radioButtons[\"Moss\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.click()
+		
+	}
 
     func testLaunchPerformance() {
         if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {

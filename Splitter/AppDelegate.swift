@@ -14,6 +14,10 @@ import AppCenterCrashes
 import Keys
 import Files
 
+extension NSApplication {
+	static let appDelegate = NSApp.delegate as! AppDelegate
+}
+
 class otherConstants {
 
 public static let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as! String
@@ -27,6 +31,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	public var hotkeyController: HotkeysViewController?
 	
 	var appKeybinds: [SplitterKeybind?] = []
+	var headColor: NSColor = .controlColor
 	
 	func loadHotkeys() {
 

@@ -9,6 +9,95 @@
 import Cocoa
 import Preferences
 
+extension NSButton {
+	var baseTitle: String {
+		set {
+			let attributes = self.attributedTitle
+			
+			var att: [NSAttributedString.Key: Any] = [:]
+			for i in attributes.attributes(at: 0, effectiveRange: nil) {
+				att[i.key] = i.value
+			}
+			self.attributedTitle = NSAttributedString(string: newValue, attributes: att)
+		} get {
+			return self.title
+		}
+		
+		
+	}
+	
+	//I'm overriding the property observer so that the appearance will be dark when enabled, thus making it transparent
+	open override var isEnabled: Bool {
+		didSet {
+			if !oldValue && self.isEnabled {
+				appearance = NSAppearance(named: .darkAqua)
+			}
+		}
+	}
+	
+
+}
+
+class bCell: NSButtonCell {
+	override func drawTitle(_ title: NSAttributedString, withFrame frame: NSRect, in controlView: NSView) -> NSRect {
+
+    if !self.isEnabled {
+        return super.drawTitle(self.attributedTitle, withFrame: frame, in: controlView)
+    }
+
+    return super.drawTitle(title, withFrame: frame, in: controlView)
+    }
+}
+
+
+extension NSImage {
+    func image(with tintColor: NSColor) -> NSImage {
+		if self.isTemplate == false {
+			return self
+		}
+		
+		let image = self.copy() as! NSImage
+		image.lockFocus()
+		
+		tintColor.set()
+		
+		let imageRect = NSRect(origin: .zero, size: image.size)
+		imageRect.fill(using: .sourceIn)
+		
+		image.unlockFocus()
+		image.isTemplate = false
+		
+		return image
+	}
+}
+
+
+extension NSColor {
+	static let splitterDefaultColor = NSColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)
+	static let splitterTableViewColor = NSColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1.0)
+	static let splitterRowSelected = NSColor(named: "CurrentSplitColor")!
+
+    // Check if the color is light or dark, as defined by the injected lightness threshold.
+    // Some people report that 0.7 is best. I suggest to find out for yourself.
+    // A nil value is returned if the lightness couldn't be determined.
+    func isLight(threshold: Float = 0.5) -> Bool? {
+        let originalCGColor = self.cgColor
+
+        // Now we need to convert it to the RGB colorspace. UIColor.white / UIColor.black are greyscale and not RGB.
+        // If you don't do this then you will crash when accessing components index 2 below when evaluating greyscale colors.
+        let RGBCGColor = originalCGColor.converted(to: CGColorSpaceCreateDeviceRGB(), intent: .defaultIntent, options: nil)
+        guard let components = RGBCGColor?.components else {
+            return nil
+        }
+        guard components.count >= 3 else {
+            return nil
+        }
+
+        let brightness = Float(((components[0] * 299) + (components[1] * 587) + (components[2] * 114)) / 1000)
+        return (brightness > threshold)
+    }
+}
+
 class ViewController: NSViewController {
 	
 //MARK: - Setting Up Buttons
@@ -37,7 +126,6 @@ class ViewController: NSViewController {
 				return false
 		}
 	}
-
 	
 	@IBOutlet weak var StartButton: NSButton!
 	@IBOutlet weak var nextButton: NSButton!
@@ -69,6 +157,70 @@ class ViewController: NSViewController {
 		}
 		return nil
 	}
+	
+//MARK: - Colors
+	var bgColor: NSColor = .splitterDefaultColor {
+		didSet {
+			view.window?.backgroundColor = self.bgColor
+			if self.bgColor.isLight()! {
+				view.window?.appearance = NSAppearance(named: .aqua)
+			} else {
+				view.window?.appearance = NSAppearance(named: .darkAqua)
+			}
+		}
+	}
+	var tableBGColor: NSColor = .splitterTableViewColor {
+		didSet {
+			splitsTableView.backgroundColor = self.tableBGColor
+		}
+	}
+	var selectedColor: NSColor = .splitterRowSelected
+	var textColor: NSColor = .white
+	
+	func setColorForControls() {
+		recColorForControls(view: self.view)
+		splitsTableView.setHeaderColor(textColor: textColor, bgColor: tableBGColor)
+		splitsTableView.setCornerColor(cornerColor: tableBGColor)
+		
+		splitsTableView.reloadData()
+	}
+	
+	func recColorForControls(view: NSView) {
+		for v in view.subviews {
+			if let c = v as? NSButton {
+				c.contentTintColor = textColor
+				c.image?.isTemplate = true
+				if c.isEnabled {
+					c.appearance = NSAppearance(named: .darkAqua)
+				}
+				if let i = c.image {
+					i.isTemplate = true
+					let newImage = i.image(with: textColor)
+					
+					c.image = newImage
+				}
+				
+				c.image?.backgroundColor = textColor
+				c.attributedTitle = NSAttributedString(string: c.title, attributes: [.foregroundColor: textColor])
+			}
+			
+			if let p = v as? NSPopUpButton {
+				p.image?.isTemplate = true
+				if let i = p.menu!.items[0].image {
+					i.isTemplate = true
+					let newImage = i.image(with: textColor)
+					p.menu!.items[0].image = newImage
+				}
+				
+				
+			}
+			if let l = v as? NSTextField {
+				l.textColor = textColor
+			}
+		}
+		
+	}
+	
 	
 //MARK: - Other UI Elements
 	@IBOutlet weak var runTitleField: MetadataField!
@@ -153,9 +305,9 @@ class ViewController: NSViewController {
 		didSet {
 			let totalSplits = currentSplits.count - 1
 			if currentSplitNumber == totalSplits && timerState != .stopped {
-				nextButton.title = "Finish"
+				nextButton.baseTitle = "Finish"
 			} else {
-				nextButton.title = "Split"
+				nextButton.baseTitle = "Split"
 			}
 		}
 	}
@@ -283,6 +435,8 @@ class ViewController: NSViewController {
 	
 	@objc func breakFunc() {
 		print(currentSplit?.mil)
+		
+		
 	}
 	
 	var breakID = NSUserInterfaceItemIdentifier("break")
@@ -303,8 +457,8 @@ class ViewController: NSViewController {
 		timerState = ts
 		
 		view.window?.isOpaque = false
-		view.window?.backgroundColor = NSColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)
-		splitsTableView.backgroundColor = NSColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1.0)
+		view.window?.backgroundColor = .splitterDefaultColor
+		splitsTableView.backgroundColor = .splitterTableViewColor
 		splitsTableView.delegate = self
 		splitsTableView.dataSource = self
 		
@@ -415,6 +569,7 @@ class ViewController: NSViewController {
 		super.viewDidLoad()
 		self.view.wantsLayer = true
 		splitsTableView.reloadData()
+		
 			
 	}
 	
@@ -433,8 +588,9 @@ class ViewController: NSViewController {
 		let pop = SplitterPopover()
 		pop.delegate = self
 		pop.contentViewController = destination
-		pop.contentSize = NSSize(width: 450, height: 325)
+		pop.contentSize = NSSize(width: 488, height: 325)
 		pop.behavior = .semitransient
+		pop.appearance = NSAppearance(named: .vibrantDark)
 		pop.show(relativeTo: infoPanelPopoverButton.frame, of: self.view, preferredEdge: .maxX)
 		infoPanelPopover = pop
 		destination.setupTabViews()
@@ -448,6 +604,7 @@ class ViewController: NSViewController {
 		let pop = SplitterPopover()
 		pop.delegate = self
 		pop.contentViewController = destination
+		pop.appearance = NSAppearance(named: .vibrantDark)
 		pop.behavior = .semitransient
 		pop.show(relativeTo: columnOptionsPopoverButton.frame, of: self.view, preferredEdge: .maxX)
 		columnOptionsPopover = pop

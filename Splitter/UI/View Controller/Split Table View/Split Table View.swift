@@ -18,11 +18,15 @@ extension ViewController: NSTableViewDataSource {
 }
 
 class myRowView: NSTableRowView {
+	var selectedColor: NSColor = .splitterRowSelected
+	
 	override func draw(_ dirtyRect: NSRect) {
 		super.draw(dirtyRect)
+		
+		
 
 		if isSelected == true {
-			NSColor(named: "CurrentSplitColor")!.set()
+			selectedColor.set()
 			dirtyRect.fill()
 		   }
 	   }
@@ -34,10 +38,11 @@ extension ViewController: NSTableViewDelegate {
 	func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
 		
 		let cRow = myRowView()
+		cRow.selectedColor = self.selectedColor
 		
 		return cRow
 	}
-
+	
 	func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
 		if timerState == .running {
 			return false
@@ -53,7 +58,7 @@ extension ViewController: NSTableViewDelegate {
 			cell.textField?.delegate = self
 			
 			if timerState != .stopped {
-				tableView.rowView(atRow: currentSplitNumber, makeIfNecessary: false)?.backgroundColor = NSColor(named: "CurrentSplitColor")!
+				tableView.rowView(atRow: currentSplitNumber, makeIfNecessary: false)?.backgroundColor = self.selectedColor
 			}
 			
 			if let imageCell = cell as? ImageButtonCellView {
@@ -61,7 +66,9 @@ extension ViewController: NSTableViewDelegate {
 				if let currentImage = currentSplits[row].splitIcon {
 					imageCell.imageButton.image = currentImage
 				} else {
-					imageCell.imageButton.image = #imageLiteral(resourceName: "Game Controller")
+					let i = NSImage(named: "Game Controller")!
+					i.isTemplate = true
+					imageCell.imageButton.image = i.image(with: textColor)
 				}
 				return imageCell
 			}
@@ -96,6 +103,9 @@ extension ViewController: NSTableViewDelegate {
 				cell.textField!.stringValue = prev.timeString
 			default:
 					break
+			}
+			if let tf = cell.textField {
+				cell.textField?.attributedStringValue = NSAttributedString(string: tf.stringValue, attributes: [.foregroundColor : textColor])
 			}
 			return cell
 		}

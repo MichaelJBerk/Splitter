@@ -45,6 +45,7 @@ class Document: SplitterDocBundle {
 		
 		self.addWindowController(windowController)
 		let vc = windowController.contentViewController as! ViewController
+		vc.setColorForControls()
 		if let ri = self.runInfoData {
 			vc.runInfoData = ri
 			vc.loadFromRunInfo(icons: iconArray)
