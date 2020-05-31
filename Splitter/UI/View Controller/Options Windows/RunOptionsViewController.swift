@@ -24,12 +24,6 @@ class RunOptionsViewController: NSViewController, advancedTabDelegate {
 		
         // Do view setup here.
     }
-	override func viewWillAppear() {
-		super.viewWillAppear()
-		if let d = delegate {
-			d.infoPanelPopover?.contentSize.height = 325
-		}
-	}
 	
 	
 	private var delegateComparison: Int {

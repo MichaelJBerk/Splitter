@@ -86,11 +86,11 @@ extension ViewController: NSTableViewDelegate {
 				let sDiff = currentSplits[row].splitDiff
 				cell.textField?.stringValue = sDiff
 				if sDiff.hasPrefix("+"){
-					cell.textField?.textColor = .systemRed
+					cell.textField?.textColor = diffsLongerColor
 				} else if sDiff.hasPrefix("-"){
-					cell.textField?.textColor = .systemGreen
+					cell.textField?.textColor = diffsShorterColor
 				} else {
-					cell.textField?.textColor = .systemBlue
+					cell.textField?.textColor = diffsNeutralColor
 				}
 			case STVColumnID.bestSplitColumn:
 				let best = currentSplits[row].bestSplit
@@ -105,7 +105,9 @@ extension ViewController: NSTableViewDelegate {
 					break
 			}
 			if let tf = cell.textField {
-				cell.textField?.attributedStringValue = NSAttributedString(string: tf.stringValue, attributes: [.foregroundColor : textColor])
+				if tableColumn!.identifier != STVColumnID.differenceColumn {
+					cell.textField?.attributedStringValue = NSAttributedString(string: tf.stringValue, attributes: [.foregroundColor : textColor])
+				}
 			}
 			return cell
 		}
@@ -142,6 +144,8 @@ extension ViewController: NSTextFieldDelegate {
 		case STVColumnID.bestSplitColumn:
 			editedSplit.bestSplit = TimeSplit(timeString: cell.textField!.stringValue)
 			editedSplit.previousBest = TimeSplit(timeString: cell.textField!.stringValue)
+		case STVColumnID.previousSplitColumn:
+			editedSplit.previousSplit = TimeSplit(timeString: cell.textField!.stringValue)
 		default:
 			break
 		}

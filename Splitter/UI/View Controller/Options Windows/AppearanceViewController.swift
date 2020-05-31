@@ -22,19 +22,9 @@ class AppearanceViewController: NSViewController, advancedTabDelegate {
 	@IBOutlet weak var buttonHelp: helpButton!
 	@IBOutlet weak var topHelp: helpButton!
 	
-	@IBOutlet weak var bgColorWell: NSColorWell!
-	@IBOutlet weak var tableViewBGColorWell: NSColorWell!
-	@IBOutlet weak var textColorWell: NSColorWell!
-	@IBOutlet weak var selectedColorWell: NSColorWell!
 	@IBOutlet weak var noteLabel: NSTextField!
 	
 	
-	override func viewWillAppear() {
-		super.viewWillAppear()
-		if let d = delegate {
-			d.infoPanelPopover?.contentSize.height = 460
-		}
-	}
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -45,29 +35,6 @@ class AppearanceViewController: NSViewController, advancedTabDelegate {
 	@IBAction func settingsSender(_ sender: Any) {
 		sendSettings(sender)
 	}
-	
-	
-	@IBAction func resetBGColorButton(_ sender: Any) {
-		bgColorWell.color = .splitterDefaultColor
-		sendSettings(sender)
-	}
-	@IBAction func resetTableViewBGColorButton(_ sender: Any) {
-		tableViewBGColorWell.color = .splitterTableViewColor
-		sendSettings(sender)
-	}
-	
-	@IBAction func resetTextColorButton(_ sender: Any) {
-		textColorWell.color = .textColor
-		sendSettings(sender)
-		
-	}
-	
-	@IBAction func resetSelectedColorButton(_ sender: Any) {
-		selectedColorWell.color = .splitterRowSelected
-		sendSettings(sender)
-		
-	}
-	
 	
 
 	
@@ -131,10 +98,6 @@ You can still close the window either with ⌘W or from the "Window" menu.
 			d.showHideTitleBar()
 			d.showHideUI()
 			d.setFloatingWindow()
-			d.bgColor = bgColorWell.color
-			d.tableBGColor = tableViewBGColorWell.color
-			d.textColor = textColorWell.color
-			d.selectedColor = selectedColorWell.color
 			
 			d.setColorForControls()
 		}
@@ -159,14 +122,6 @@ You can still close the window either with ⌘W or from the "Window" menu.
 			hideTitleBarCheck.action = #selector(sendSettings(_:))
 			hideButtonsCheck.action = #selector(sendSettings(_:))
 			keepOnTopCheck.action = #selector(sendSettings(_:))
-			
-			bgColorWell.color = d.view.window!.backgroundColor
-			
-			bgColorWell.action = #selector(sendSettings(_:))
-			
-			tableViewBGColorWell.color = d.splitsTableView.backgroundColor
-			textColorWell.color = d.textColor
-			selectedColorWell.color = d.selectedColor
 			
 			
 			

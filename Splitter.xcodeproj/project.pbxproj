@@ -35,6 +35,8 @@
 		4A5947D823F36E3A00827306 /* SplitsIOExchangeFormat.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5947D723F36E3A00827306 /* SplitsIOExchangeFormat.swift */; };
 		4A5C1D1523F4AFB80014E8D3 /* commonPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5C1D1423F4AFB80014E8D3 /* commonPaths.swift */; };
 		4A5F10AE23CFAA1F00DA043B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A5F10AD23CFAA1F00DA043B /* Assets.xcassets */; };
+		4A61438424801A28007C38E0 /* ColorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A61438324801A28007C38E0 /* ColorsView.swift */; };
+		4A61438624801A37007C38E0 /* ColorsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A61438524801A37007C38E0 /* ColorsView.xib */; };
 		4A66572F23E3D34600D14A67 /* Pods_Splitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8449BCD82A49C16B0E9C6FE9 /* Pods_Splitter.framework */; };
 		4A66573023E3D34600D14A67 /* Pods_Splitter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 8449BCD82A49C16B0E9C6FE9 /* Pods_Splitter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4A66A43023DE2682005952FA /* ImageButtonCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A66A42F23DE2682005952FA /* ImageButtonCellView.swift */; };
@@ -146,6 +148,8 @@
 		4A5947D723F36E3A00827306 /* SplitsIOExchangeFormat.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitsIOExchangeFormat.swift; sourceTree = "<group>"; };
 		4A5C1D1423F4AFB80014E8D3 /* commonPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = commonPaths.swift; sourceTree = "<group>"; };
 		4A5F10AD23CFAA1F00DA043B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4A61438324801A28007C38E0 /* ColorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsView.swift; sourceTree = "<group>"; };
+		4A61438524801A37007C38E0 /* ColorsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorsView.xib; sourceTree = "<group>"; };
 		4A617EBD23EBC65C0005D60E /* LiveSplit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveSplit.swift; sourceTree = "<group>"; };
 		4A66A42F23DE2682005952FA /* ImageButtonCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButtonCellView.swift; sourceTree = "<group>"; };
 		4A66A43123DE2C88005952FA /* SplitTableViewColumnIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitTableViewColumnIdentifiers.swift; sourceTree = "<group>"; };
@@ -293,6 +297,8 @@
 			children = (
 				4AD77D15240ECA2800CD65AD /* ColumnOptionsViewController.swift */,
 				4A4070E0241AE2E0000927A5 /* AppearanceViewController.swift */,
+				4A61438324801A28007C38E0 /* ColorsView.swift */,
+				4A61438524801A37007C38E0 /* ColorsView.xib */,
 				4A1C1467240ED30C0056B104 /* InfoOptionsViewController.swift */,
 				4AEC4C01240F5BA300B01799 /* RunOptionsViewController.swift */,
 				4ADE9225240F1FB900E0D99E /* InfoPopoverTabViewController.swift */,
@@ -633,6 +639,7 @@
 				4A1DEFD0243D51EC00171A34 /* Splitter Doc SplitsIO.icns in Resources */,
 				4A230E9C23B00A1E00959C57 /* Main.storyboard in Resources */,
 				4A1DEFCF243D51EC00171A34 /* SplitterDocIcon.icns in Resources */,
+				4A61438624801A37007C38E0 /* ColorsView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -757,6 +764,7 @@
 				4A18663023C5257800FEEE54 /* MenuItemConstants.swift in Sources */,
 				4A0F716323F4A9E400E5948E /* SplitterDocBundle.swift in Sources */,
 				4A4D392223C4FAE500BF3FCD /* HotkeysViewController.swift in Sources */,
+				4A61438424801A28007C38E0 /* ColorsView.swift in Sources */,
 				4A0DC28624186C6200FC959A /* SplitsIODoc.swift in Sources */,
 				4AF953B723EB507800ED540C /* Splits.swift in Sources */,
 				4A1C1465240ECD610056B104 /* ViewControllerID.swift in Sources */,

@@ -29,13 +29,6 @@ class InfoOptionsViewController: NSViewController, NSPopoverDelegate, advancedTa
         super.viewDidLoad()
     }
 	
-	override func viewWillAppear() {
-		super.viewWillAppear()
-		if let d = delegate {
-			d.infoPanelPopover?.contentSize.height = 325
-		}
-	}
-	
 	@IBOutlet weak var startEndDateFormatter: DateFormatter!
 	
 	func popoverShouldDetach(_ popover: NSPopover) -> Bool {

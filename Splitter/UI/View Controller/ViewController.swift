@@ -177,6 +177,10 @@ class ViewController: NSViewController {
 	var selectedColor: NSColor = .splitterRowSelected
 	var textColor: NSColor = .white
 	
+	var diffsLongerColor: NSColor = .red
+	var diffsShorterColor: NSColor = .green
+	var diffsNeutralColor: NSColor = .blue
+	
 	func setColorForControls() {
 		recColorForControls(view: self.view)
 		splitsTableView.setHeaderColor(textColor: textColor, bgColor: tableBGColor)
