@@ -61,6 +61,7 @@
 		4A9FCC7C2411A0CE000937A2 /* TextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9FCC7B2411A0CE000937A2 /* TextFields.swift */; };
 		4AA357B52416F79900219E65 /* liblivesplit_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA357B42416F79900219E65 /* liblivesplit_core.a */; };
 		4AA3DAB423E23DA900ADFA4A /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA3DAB323E23DA900ADFA4A /* IconButton.swift */; };
+		4AAD470A248432540094A31F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAD4709248432540094A31F /* Colors.swift */; };
 		4AB5627924338FB000D7F8D1 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 4AB5627824338FB000D7F8D1 /* SwiftyJSON */; };
 		4AC24DBA23EB4EC5003008BF /* Split Table Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC24DB923EB4EC5003008BF /* Split Table Row.swift */; };
 		4AC24DBC23EB4F17003008BF /* Split Table View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC24DBB23EB4F17003008BF /* Split Table View.swift */; };
@@ -163,8 +164,6 @@
 		4A774A5623EBCDFA002F1700 /* SplitterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterTests.swift; sourceTree = "<group>"; };
 		4A774A5823EBCDFA002F1700 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A7DDCE123BBDD0900A36AD1 /* Credits.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
-		4A81449C23BAAFA2000FAC3C /* Super Mario 3D Land Any%.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Super Mario 3D Land Any%.json"; sourceTree = "<group>"; };
-		4A81449D23BAAFA2000FAC3C /* Super Mario Odyssey Any%.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Super Mario Odyssey Any%.json"; sourceTree = "<group>"; };
 		4A87265423BD53F8003A14AF /* runInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = runInfo.swift; sourceTree = "<group>"; };
 		4A87265623BD5423003A14AF /* Prefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prefs.swift; sourceTree = "<group>"; };
 		4A87DEA423F251C700975EB8 /* livesplit.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = livesplit.icns; sourceTree = "<group>"; };
@@ -175,6 +174,7 @@
 		4A9FCC7B2411A0CE000937A2 /* TextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFields.swift; sourceTree = "<group>"; };
 		4AA357B42416F79900219E65 /* liblivesplit_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblivesplit_core.a; path = "livesplit-core/target/release/liblivesplit_core.a"; sourceTree = "<group>"; };
 		4AA3DAB323E23DA900ADFA4A /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
+		4AAD4709248432540094A31F /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		4AB3B93D23D96C10009C6AA6 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		4AC24DB923EB4EC5003008BF /* Split Table Row.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Split Table Row.swift"; sourceTree = "<group>"; };
 		4AC24DBB23EB4F17003008BF /* Split Table View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Split Table View.swift"; sourceTree = "<group>"; };
@@ -284,10 +284,11 @@
 				4A1C1464240ECD610056B104 /* ViewControllerID.swift */,
 				4AF953B623EB507800ED540C /* Splits.swift */,
 				4AF953B423EB503100ED540C /* Timer Functions.swift */,
+				4A230E9A23B00A1E00959C57 /* Main.storyboard */,
+				4AAD4709248432540094A31F /* Colors.swift */,
 				4A1C1466240ED2F00056B104 /* Options Windows */,
 				4AC24DBD23EB4F73003008BF /* Split Table View */,
 				4A9FCC782411A069000937A2 /* Controls */,
-				4A230E9A23B00A1E00959C57 /* Main.storyboard */,
 			);
 			path = "View Controller";
 			sourceTree = "<group>";
@@ -297,8 +298,7 @@
 			children = (
 				4AD77D15240ECA2800CD65AD /* ColumnOptionsViewController.swift */,
 				4A4070E0241AE2E0000927A5 /* AppearanceViewController.swift */,
-				4A61438324801A28007C38E0 /* ColorsView.swift */,
-				4A61438524801A37007C38E0 /* ColorsView.xib */,
+				4AAD4708248432390094A31F /* ColorsView */,
 				4A1C1467240ED30C0056B104 /* InfoOptionsViewController.swift */,
 				4AEC4C01240F5BA300B01799 /* RunOptionsViewController.swift */,
 				4ADE9225240F1FB900E0D99E /* InfoPopoverTabViewController.swift */,
@@ -341,8 +341,6 @@
 				4AFCC52423C63F3E002216F1 /* UI */,
 				4A7DDCE123BBDD0900A36AD1 /* Credits.html */,
 				4A5F10AD23CFAA1F00DA043B /* Assets.xcassets */,
-				4A81449C23BAAFA2000FAC3C /* Super Mario 3D Land Any%.json */,
-				4A81449D23BAAFA2000FAC3C /* Super Mario Odyssey Any%.json */,
 				4A230E9D23B00A1E00959C57 /* Info.plist */,
 				4A230E9E23B00A1E00959C57 /* Splitter.entitlements */,
 			);
@@ -421,6 +419,15 @@
 				4AA3DAB323E23DA900ADFA4A /* IconButton.swift */,
 			);
 			path = Controls;
+			sourceTree = "<group>";
+		};
+		4AAD4708248432390094A31F /* ColorsView */ = {
+			isa = PBXGroup;
+			children = (
+				4A61438324801A28007C38E0 /* ColorsView.swift */,
+				4A61438524801A37007C38E0 /* ColorsView.xib */,
+			);
+			path = ColorsView;
 			sourceTree = "<group>";
 		};
 		4AC24DBD23EB4F73003008BF /* Split Table View */ = {
@@ -755,6 +762,7 @@
 				4A66A43223DE2C88005952FA /* SplitTableViewColumnIdentifiers.swift in Sources */,
 				4A230E9323B00A1D00959C57 /* AppDelegate.swift in Sources */,
 				4AFEFFB0241AB9E400B00E45 /* TableViewAppearance.swift in Sources */,
+				4AAD470A248432540094A31F /* Colors.swift in Sources */,
 				4AC24DBC23EB4F17003008BF /* Split Table View.swift in Sources */,
 				4A18663223C5376900FEEE54 /* SettingsKeys.swift in Sources */,
 				4A1657B123EA4EF60008CB5F /* Menu Items.swift in Sources */,

@@ -610,7 +610,7 @@
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Zgl-iF-pqa">
                                                                     <rect key="frame" x="0.0" y="3" width="95" height="14"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" alignment="left" title="Split Title" id="3Pe-jP-c4b">
-                                                                        <font key="font" metaFont="controlContent" size="11"/>
+                                                                        <font key="font" metaFont="message" size="11"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
@@ -1498,18 +1498,18 @@ To remove, click and press backspace. </string>
                 <customObject id="3dh-TH-cbg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <viewController title="Appearance" id="RvU-oT-sfo" customClass="AppearanceViewController" customModule="Splitter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="qfc-N7-4eh">
-                        <rect key="frame" x="0.0" y="0.0" width="488" height="222"/>
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="222"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box fixedFrame="YES" title="Window" translatesAutoresizingMaskIntoConstraints="NO" id="a8f-fc-z2B">
-                                <rect key="frame" x="17" y="65" width="454" height="137"/>
+                                <rect key="frame" x="17" y="65" width="416" height="137"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="fGq-yW-bDj">
-                                    <rect key="frame" x="3" y="3" width="448" height="119"/>
+                                    <rect key="frame" x="3" y="3" width="410" height="119"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <gridView xPlacement="leading" yPlacement="bottom" rowAlignment="none" translatesAutoresizingMaskIntoConstraints="NO" id="yti-1B-Vv4">
-                                            <rect key="frame" x="0.0" y="2" width="443" height="117"/>
+                                            <rect key="frame" x="0.0" y="2" width="410" height="117"/>
                                             <rows>
                                                 <gridRow yPlacement="center" height="35" id="AMM-IJ-WjW"/>
                                                 <gridRow yPlacement="center" height="35" id="ZxY-tT-aa5"/>
@@ -1517,7 +1517,7 @@ To remove, click and press backspace. </string>
                                             </rows>
                                             <columns>
                                                 <gridColumn width="28" id="fm8-dP-Eb8"/>
-                                                <gridColumn width="366" id="gqm-xY-pbD"/>
+                                                <gridColumn width="333" id="gqm-xY-pbD"/>
                                                 <gridColumn width="37" id="sZ3-UK-dPQ"/>
                                             </columns>
                                             <gridCells>
@@ -1533,7 +1533,7 @@ To remove, click and press backspace. </string>
                                                 </gridCell>
                                                 <gridCell row="AMM-IJ-WjW" column="sZ3-UK-dPQ" id="B07-c0-HC1">
                                                     <button key="contentView" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qCT-Wf-FTs" customClass="helpButton" customModule="Splitter" customModuleProvider="target">
-                                                        <rect key="frame" x="404" y="85" width="25" height="25"/>
+                                                        <rect key="frame" x="371" y="85" width="25" height="25"/>
                                                         <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5fB-Fb-LPg">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="system"/>
@@ -1552,7 +1552,7 @@ To remove, click and press backspace. </string>
                                                 </gridCell>
                                                 <gridCell row="ZxY-tT-aa5" column="sZ3-UK-dPQ" id="VlI-I0-IB3">
                                                     <button key="contentView" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LZG-o3-NMC" customClass="helpButton" customModule="Splitter" customModuleProvider="target">
-                                                        <rect key="frame" x="404" y="44" width="25" height="25"/>
+                                                        <rect key="frame" x="371" y="44" width="25" height="25"/>
                                                         <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ifk-J0-glH">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="system"/>
@@ -1571,7 +1571,7 @@ To remove, click and press backspace. </string>
                                                 </gridCell>
                                                 <gridCell row="DHP-S5-sT1" column="sZ3-UK-dPQ" id="eRF-xd-Dvn">
                                                     <button key="contentView" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="w7E-mT-aCX" customClass="helpButton" customModule="Splitter" customModuleProvider="target">
-                                                        <rect key="frame" x="404" y="3" width="25" height="25"/>
+                                                        <rect key="frame" x="371" y="3" width="25" height="25"/>
                                                         <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xIr-wb-AEK">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="system"/>
@@ -1588,7 +1588,7 @@ To remove, click and press backspace. </string>
                                 </view>
                             </box>
                             <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="1X5-Na-Ivc">
-                                <rect key="frame" x="59" y="20" width="370" height="32"/>
+                                <rect key="frame" x="40" y="20" width="370" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="366" id="eXq-6I-d3i"/>
                                 </constraints>
@@ -1600,8 +1600,7 @@ To remove, click and press backspace. </string>
                             </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="1X5-Na-Ivc" firstAttribute="leading" secondItem="qfc-N7-4eh" secondAttribute="leading" constant="61" id="nPp-9W-G8W"/>
-                            <constraint firstAttribute="trailing" secondItem="1X5-Na-Ivc" secondAttribute="trailing" constant="61" id="xto-vL-q4I"/>
+                            <constraint firstItem="1X5-Na-Ivc" firstAttribute="centerX" secondItem="qfc-N7-4eh" secondAttribute="centerX" id="IyY-5e-oam"/>
                             <constraint firstAttribute="bottom" secondItem="1X5-Na-Ivc" secondAttribute="bottom" constant="20" id="znh-7h-s45"/>
                         </constraints>
                     </view>
@@ -1616,7 +1615,6 @@ To remove, click and press backspace. </string>
                         <outlet property="topHelp" destination="w7E-mT-aCX" id="Sc7-xJ-Mic"/>
                     </connections>
                 </viewController>
-                <userDefaultsController representsSharedInstance="YES" id="iKw-3E-1MB"/>
             </objects>
             <point key="canvasLocation" x="1357" y="437"/>
         </scene>

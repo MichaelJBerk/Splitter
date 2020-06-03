@@ -62,6 +62,8 @@ struct splitterAppearance: Codable {
 	var tableColor: CodableColor?
 	var textColor: CodableColor?
 	var selectColor: CodableColor?
+	var diffsLongerColor: CodableColor?
+	var diffsShorterColor: CodableColor?
 	
 	
 	init(viewController: ViewController) {
@@ -86,6 +88,8 @@ struct splitterAppearance: Codable {
 		self.tableColor = CodableColor(nsColor: viewController.tableBGColor)
 		self.textColor = CodableColor(nsColor: viewController.textColor)
 		self.selectColor = CodableColor(nsColor: viewController.selectedColor)
+		self.diffsLongerColor = CodableColor(nsColor: viewController.diffsLongerColor)
+		self.diffsShorterColor = CodableColor(nsColor: viewController.diffsShorterColor)
 	}
 	
 	
@@ -126,6 +130,12 @@ struct splitterAppearance: Codable {
 		}
 		if let selectColorDict = json.dictionary?["selectColor"] {
 			self.selectColor = CodableColor(json: selectColorDict)
+		}
+		if let diffsLongerColorDict = json.dictionary?["diffsLongerColor"] {
+			self.diffsLongerColor = CodableColor(json: diffsLongerColorDict)
+		}
+		if let diffsShorterColorDict = json.dictionary?["diffsShorterColor"] {
+			self.diffsShorterColor = CodableColor(json: diffsShorterColorDict)
 		}
 		
 		
@@ -210,6 +220,12 @@ extension ViewController {
 		
 		if let selectC = appearance.selectColor?.nsColor {
 			selectedColor = selectC
+		}
+		if let longC = appearance.diffsLongerColor?.nsColor {
+			diffsLongerColor = longC
+		}
+		if let shortC = appearance.diffsShorterColor?.nsColor {
+			diffsShorterColor = shortC
 		}
 		
 		

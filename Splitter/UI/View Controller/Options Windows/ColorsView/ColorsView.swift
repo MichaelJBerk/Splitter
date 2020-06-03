@@ -38,8 +38,9 @@ class ColorsView: NSView, LoadableNib, advancedTabDelegate {
 	@IBOutlet weak var selectedColorWell: NSColorWell!
 	@IBOutlet weak var longerDiffColorWell: NSColorWell!
 	@IBOutlet weak var shorterDiffColorWell: NSColorWell!
+	@IBOutlet weak var noteLabel: NSTextField!
 	
-	var height: CGFloat = 325
+	var height: CGFloat = 370
 	
 	func setupDelegate() {
 	}
@@ -101,6 +102,13 @@ class ColorsView: NSView, LoadableNib, advancedTabDelegate {
 			longerDiffColorWell.color = d.diffsLongerColor
 			shorterDiffColorWell.color = d.diffsShorterColor
 			
+			if let doc = delegate?.view.window?.windowController?.document as? NSDocument {
+				if doc.fileType != "Split File" {
+					noteLabel.stringValue = notSplitNoteText
+				} else {
+					noteLabel.stringValue = splitNoteText
+				}
+			}
 			
 		}
 	}

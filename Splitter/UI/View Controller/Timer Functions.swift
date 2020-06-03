@@ -90,7 +90,6 @@ extension ViewController {
 	//TODO: Fix the issues mentioned below
 	//TODO: Don't clear out previous; only set all to zero
 	//TODO: Idea - never save 00:00:00 as "best"
-	//TODO: Make previous time editable
 	/** Clears out the current time field on all segments in the Table View
 	- Warning:
 		- If split is added/removed since last attempt, then previous stays the same value
@@ -101,9 +100,10 @@ extension ViewController {
 				- Update backup splits when adding/removing row
 		- If previous/best time is updated since last attempt, previous/best time isn't updated.
 	- GOING FORWARD:
-		- I want bring current splits to zero, but **don't** set  PB/prev to their previous values (if the latest time was the new PB):
+		- I want bring current splits to zero, but **don't** set PB/prev to their previous values (if the latest time was the new PB):
 			- People just want it to display time as zero, and not do anything else
-		- Fix when adding splitss
+			- Should I reset PB if the new value (being set to zero) is the PB?
+		- Fix when adding splits
 			- Add new blank row to backup splits
 */
 	func resetAllCurrentSplitsToZero() {

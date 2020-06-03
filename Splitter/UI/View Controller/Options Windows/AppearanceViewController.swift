@@ -128,7 +128,9 @@ You can still close the window either with ⌘W or from the "Window" menu.
 			
 			if let doc = delegate?.view.window?.windowController?.document as? NSDocument {
 				if doc.fileType != "Split File" {
-					noteLabel.stringValue = "Note: These settings will not be saved to this file unless it is saved in the .split format"
+					noteLabel.stringValue = notSplitNoteText
+				} else {
+					noteLabel.stringValue = splitNoteText
 				}
 			}
 		}
