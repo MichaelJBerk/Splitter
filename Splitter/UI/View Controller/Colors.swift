@@ -26,7 +26,7 @@ extension NSButton {
 		
 	}
 	
-	//I'm overriding the property observer so that the appearance will be dark when enabled, thus making it transparent
+	//I'm overriding the property observer so that the NSButton's appearance will be dark when the button is enabled, thus making it transparent
 	open override var isEnabled: Bool {
 		didSet {
 			if !oldValue && self.isEnabled {
