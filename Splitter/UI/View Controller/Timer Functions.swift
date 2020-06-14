@@ -87,39 +87,14 @@ extension ViewController {
 		splitsTableView.reloadData()
 	}
 	
-	//TODO: Fix the issues mentioned below
-	//TODO: Don't clear out previous; only set all to zero
-	//TODO: Idea - never save 00:00:00 as "best"
-	/** Clears out the current time field on all segments in the Table View
-	- Warning:
-		- If split is added/removed since last attempt, then previous stays the same value
-			- This is because the backup array isn't the same length
-			- Possible solution: Give each split an ID, and use that to update
-				- Will help if I implement reordering splits in the future
-			- Other solution:
-				- Update backup splits when adding/removing row
-		- If previous/best time is updated since last attempt, previous/best time isn't updated.
-	- GOING FORWARD:
-		- I want bring current splits to zero, but **don't** set PB/prev to their previous values (if the latest time was the new PB):
-			- People just want it to display time as zero, and not do anything else
-			- Should I reset PB if the new value (being set to zero) is the PB?
-		- Fix when adding splits
-			- Add new blank row to backup splits
-*/
+	///Clears out the current time field on all segments in the Table View
 	func resetAllCurrentSplitsToZero() {
 		var i = 0
 		while i < currentSplits.count {
-			currentSplits[i].currentSplit = TimeSplit()
-			if currentSplits[i].currentSplit <= currentSplits[i].bestSplit {
-				currentSplits[i].bestSplit = currentSplits[i].previousBest
-			}
-			if backupSplits.count == currentSplits.count {
-				currentSplits[i].previousSplit = backupSplits[i].previousSplit
-			}
+			currentSplits[i].currentSplit = TimeSplit(timeString: "00:00:00.00")
+			splitsTableView.reloadData()
 			i = i + 1
 		}
-		currentSplit = TimeSplit()
-		splitsTableView.reloadData()
 	}
 	
 	

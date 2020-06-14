@@ -79,18 +79,12 @@ class SplitterTableView: NSTableView {
 	///   - textColor: Color for the header's text
 	///   - bgColor: Background color for the header
 	func setHeaderColor(textColor: NSColor, bgColor: NSColor) {
-//		let appDel = NSApp.delegate as! AppDelegate
-//		appDel.headColor = bgColor
 		for c in self.tableColumns {
 			if !c.isHidden {
-//				print(c.title)
 				let headerStr = c.headerCell.stringValue
-				let head = SplitterTableHeaderCell(color: parentViewController.tableBGColor, textCell: headerStr)
-//				head.parentTableView = self
-				
+				let head = SplitterTableHeaderCell(textCell: headerStr)
 				head.drawsBackground = true
 				head.textColor = textColor
-				head.headColor = parentViewController.tableBGColor//.copy() as! NSColor
 				head.backgroundColor = parentViewController.tableBGColor
 				head.attributedStringValue = NSAttributedString(string: headerStr, attributes: [.foregroundColor: textColor])
 				head.isBordered = true
@@ -118,7 +112,7 @@ class SplitterTableHeader : NSTableHeaderView
 
 		
     }
-//
+
 	override func draw(_ dirtyRect: NSRect) {
 
 		NSColor.blue.set()
@@ -134,8 +128,6 @@ class SplitterTableHeader : NSTableHeaderView
 ///Automatically draws the background with the current `headColor` of the `AppDelegate`
 class SplitterTableHeaderCell: NSTableHeaderCell {
 	
-	var headColor: NSColor!
-	var parentTableView: SplitterTableView!
 	required init(coder: NSCoder) {
 		super.init(coder: coder)
 	}
@@ -143,19 +135,10 @@ class SplitterTableHeaderCell: NSTableHeaderCell {
     override init(textCell: String) {
         super.init(textCell: textCell)
     }
-	init (color: NSColor, textCell: String) {
-		super.init(textCell: textCell)
-		self.headColor = color
-	}
 	
 	override func draw(withFrame cellFrame: NSRect, in controlView: NSView)
 	   {
-		//I have to store this in the AppDelagate, becuase if I just had a class variable for it, the app would crash for some bizarre reason
-//		let hc = NSApplication.appDelegate.headColor
-//		let hc = parentTableView.parentViewController.tableBGColor
 		self.drawsBackground = true
-//		hc.set()
-//		headColor?.set()
 		self.backgroundColor?.set()
 		cellFrame.fill()
 
@@ -164,9 +147,6 @@ class SplitterTableHeaderCell: NSTableHeaderCell {
 	   }
 	
 	override func highlight(_ flag: Bool, withFrame cellFrame: NSRect, in controlView: NSView) {
-//		(NSApp.delegate as! AppDelegate).headColor.set()
-//		parentTableView.parentViewController.tableBGColor.set()
-//		headColor?.set()
 		self.backgroundColor?.set()
 		cellFrame.fill()
 		
