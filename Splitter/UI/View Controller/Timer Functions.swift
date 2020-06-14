@@ -120,9 +120,7 @@ extension ViewController {
 		currentSplit = TimeSplit(mil: 0,sec: 0,min: 0,hour: 0)
 		currentSplits = []
 		loadedFilePath = ""
-
-
-		UpdateTimer()
+		addSplit()
 	}
 	
 	///Resets the timer to 00:00:00.
