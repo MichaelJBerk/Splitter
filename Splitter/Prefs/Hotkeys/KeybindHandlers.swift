@@ -23,7 +23,7 @@ extension AppDelegate {
 		
 	}
 	
-
+//TODO: Document why this exists
 	func startSplitHandler() {
 		if let vc = viewController {
 			vc.startSplitTimer()

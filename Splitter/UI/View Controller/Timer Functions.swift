@@ -49,8 +49,10 @@ extension ViewController {
 	}
 	
 	
-	///Sets up the timer, when it is currently stopped.
-	func setupTimer() {
+	/// Sets up various properties of the timer, as well as dealing with LiveSplitCore to start timing.
+	///
+	/// This function does the grunt work of refreshing the UI timer, setting up LiveSplitCore to to time the run, etc. If all you need to do is start the timer, call `startTimer()` instead.
+	private func setupTimer() {
 		var i = 0
 		backupSplits = []
 		while i < currentSplits.count {
@@ -60,8 +62,6 @@ extension ViewController {
 		updatePreviousSplit(of: 0)
 		updateAllPreviousBestSplits()
 		
-//		milHundrethTimer = Cocoa.Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(updateMilHundreth), userInfo: nil, repeats: true)
-//		RunLoop.current.add(milHundrethTimer, forMode: .common)
 		refreshUITimer = Cocoa.Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(UpdateTimer), userInfo: nil, repeats: true)
 		RunLoop.current.add(refreshUITimer, forMode: .common)
 		currentSplit = TimeSplit()
@@ -75,7 +75,8 @@ extension ViewController {
 		
 		let seg = LiveSplitCore.Segment("Segment")
 		run.pushSegment(seg)
-		
+		//Using reloadData to update the highlighted row in the tableview
+		splitsTableView.reloadData()
 		lscTimer = LiveSplitCore.Timer(run)
 		lscTimer?.start()
 	}
