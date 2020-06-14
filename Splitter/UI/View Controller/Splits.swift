@@ -33,8 +33,9 @@ extension ViewController {
 			
 			
 		}
+		//Need to reload the entire table view so that the hightlighted row in the table view will update
+		//Since this only happens when advancing to the next split, it shouldn't affect scrolling performance
 		splitsTableView.reloadData()
-//		splitsTableView.reloadData(forRowIndexes: IndexSet(arrayLiteral: currentSplitNumber - 1), columnIndexes: IndexSet(columnArray()))
 		
 	}
 	///Moves the timer to the previous split, or restarts the run if the current split is the first
