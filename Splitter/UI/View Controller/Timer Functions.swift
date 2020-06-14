@@ -163,7 +163,15 @@ extension ViewController {
 			UpdateTimer()
 		}
 	}
-	
+	func columnArray() -> [Int] {
+		var cols: [Int] = []
+		var i = 0
+		while i < splitsTableView.tableColumns.count {
+			cols.append(i)
+			i = i + 1
+		}
+		return cols
+	}
 	///Updates the current time on the timer
 	@objc func UpdateTimer() {
 		if currentSplit!.paused {
@@ -176,7 +184,8 @@ extension ViewController {
 		if let currentTime = currentSplit?.timeString {
 			TimerLabel.stringValue = currentSplit!.timeString
 		}
-		splitsTableView.reloadData()
+		
+		splitsTableView.reloadData(forRowIndexes: IndexSet(arrayLiteral: currentSplitNumber), columnIndexes: IndexSet(columnArray()))
 		
 	}
 	/**

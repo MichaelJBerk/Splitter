@@ -33,6 +33,9 @@ extension ViewController {
 			
 			
 		}
+		splitsTableView.reloadData()
+//		splitsTableView.reloadData(forRowIndexes: IndexSet(arrayLiteral: currentSplitNumber - 1), columnIndexes: IndexSet(columnArray()))
+		
 	}
 	///Moves the timer to the previous split, or restarts the run if the current split is the first
 	func goToPrevSplit() {

@@ -94,6 +94,7 @@ class ViewController: NSViewController {
 	
 	func setColorForControls() {
 		recColorForControls(view: self.view)
+		splitsTableView.parentViewController = self
 		splitsTableView.setHeaderColor(textColor: textColor, bgColor: tableBGColor)
 		splitsTableView.setCornerColor(cornerColor: tableBGColor)
 		
@@ -356,9 +357,21 @@ class ViewController: NSViewController {
 	
 	var breakID = NSUserInterfaceItemIdentifier("break")
 	
+	override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
+		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+		
+	}
+	
+	required init?(coder: NSCoder) {
+		super.init(coder: coder)
+		
+	}
+	
+	
 	//MARK: - Main Functions
 	override func viewWillAppear() {
 		super.viewWillAppear()
+		tableBGColor = .controlColor
 		#if DEBUG
 		let breakMI = NSMenuItem(title: "Break", action: #selector(breakFunc), keyEquivalent: "b")
 		breakMI.keyEquivalentModifierMask = .command
