@@ -207,10 +207,8 @@ extension ViewController {
 		}
 		if let tableC = appearance.tableColor?.nsColor {
 			tableBGColor = tableC
-			(NSApp.delegate as! AppDelegate).headColor = tableBGColor
 		}
 		if let textC = appearance.textColor?.nsColor {
-//			tableBGColor = tableC
 			if textC == NSColor.textColor {
 				textColor = .textColor
 			} else {

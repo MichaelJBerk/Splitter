@@ -31,14 +31,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	public var hotkeyController: HotkeysViewController?
 	
 	var appKeybinds: [SplitterKeybind?] = []
-	var headColor: NSColor = .controlColor
-	
-	func loadHotkeys() {
-
-		
-		
-
-	}
 	
 	
 	func keybindAlert() {

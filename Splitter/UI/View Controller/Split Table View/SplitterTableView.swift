@@ -18,6 +18,10 @@ class SplitterScroller: NSScroller {
 }
 
 class SplitterScrollView: NSScrollView {
+	///Background color when scrolling past the items in the table view
+	///
+	///This is set after setting the scroll view's corner color. We can't just use the `backgroundColor` property, because then the correct color won't display
+	var tableBGColor: NSColor?
 
 	override func draw(_ dirtyRect: NSRect) {
 		super.draw(dirtyRect)
@@ -30,8 +34,8 @@ class SplitterScrollView: NSScrollView {
             let square = NSRect(origin: CGPoint(x: hFrame.maxX, y: vFrame.maxY), size: CGSize(width: vFrame.width, height: hFrame.height))
 
             let path = NSBezierPath(rect: square)
-			let fillColor = NSApplication.appDelegate.headColor
-            fillColor.set()
+			let fillColor = tableBGColor
+            fillColor?.set()
             path.fill()
         }
     }
@@ -63,13 +67,12 @@ class SplitterTableView: NSTableView {
 		enclosingScrollView?.horizontalScroller?.wantsLayer = true
 		enclosingScrollView?.horizontalScroller?.layer?.isOpaque = true
 		
-		
 		enclosingScrollView?.verticalScroller?.layer?.backgroundColor = cornerColor.cgColor
 		enclosingScrollView?.horizontalScroller?.layer?.backgroundColor = cornerColor.cgColor
 		
 		self.cornerView = cornerV
 		
-		
+		(enclosingScrollView as? SplitterScrollView)?.tableBGColor = cornerColor
 	}
 	
 	/// Sets the background color of the table header to the specified color
@@ -125,7 +128,7 @@ class SplitterTableHeader : NSTableHeaderView
 
 ///The header cell for the Splitter Table View.
 ///
-///Automatically draws the background with the current `headColor` of the `AppDelegate`
+///Automatically draws the background with the current `backgroundColor` of the `SplitterTableHeaderCell`
 class SplitterTableHeaderCell: NSTableHeaderCell {
 	
 	required init(coder: NSCoder) {
