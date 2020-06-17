@@ -54,6 +54,7 @@
 		4A87265523BD53F8003A14AF /* runInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87265423BD53F8003A14AF /* runInfo.swift */; };
 		4A87265723BD5423003A14AF /* Prefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87265623BD5423003A14AF /* Prefs.swift */; };
 		4A87DEA523F251C700975EB8 /* livesplit.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4A87DEA423F251C700975EB8 /* livesplit.icns */; };
+		4A894B1C249ABA71004FEEB3 /* LoadableNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A894B1B249ABA71004FEEB3 /* LoadableNib.swift */; };
 		4A968C7C23F1F5FE001B74E8 /* lss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A968C7B23F1F5FE001B74E8 /* lss.swift */; };
 		4A99813023F9ECE50037BF98 /* KeybindHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A99812F23F9ECE50037BF98 /* KeybindHandlers.swift */; };
 		4A9D8BF6243A38C40048EA15 /* SplitterTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9D8BF5243A38C40048EA15 /* SplitterTableView.swift */; };
@@ -167,6 +168,7 @@
 		4A87265423BD53F8003A14AF /* runInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = runInfo.swift; sourceTree = "<group>"; };
 		4A87265623BD5423003A14AF /* Prefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Prefs.swift; sourceTree = "<group>"; };
 		4A87DEA423F251C700975EB8 /* livesplit.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = livesplit.icns; sourceTree = "<group>"; };
+		4A894B1B249ABA71004FEEB3 /* LoadableNib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableNib.swift; sourceTree = "<group>"; };
 		4A968C7B23F1F5FE001B74E8 /* lss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lss.swift; sourceTree = "<group>"; };
 		4A99812F23F9ECE50037BF98 /* KeybindHandlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeybindHandlers.swift; sourceTree = "<group>"; };
 		4A9D8BF5243A38C40048EA15 /* SplitterTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterTableView.swift; sourceTree = "<group>"; };
@@ -494,6 +496,7 @@
 			isa = PBXGroup;
 			children = (
 				4A18662F23C5257800FEEE54 /* MenuItemConstants.swift */,
+				4A894B1B249ABA71004FEEB3 /* LoadableNib.swift */,
 				4A1657AF23EA4EE20008CB5F /* View Controller */,
 				4A9FCC792411A093000937A2 /* Windows */,
 				4A9FCC7A2411A0A2000937A2 /* Controls */,
@@ -792,6 +795,7 @@
 				4ADE9226240F1FB900E0D99E /* InfoPopoverTabViewController.swift in Sources */,
 				4A0F715F23F4A0A500E5948E /* SplitterDoc.swift in Sources */,
 				4A66A43023DE2682005952FA /* ImageButtonCellView.swift in Sources */,
+				4A894B1C249ABA71004FEEB3 /* LoadableNib.swift in Sources */,
 				4A3BDFA123E4C3B6001EA7FF /* DefaultHotkeys.swift in Sources */,
 				4A45BCF724084B3800F1A223 /* TimeSplitCell.swift in Sources */,
 				4A87265723BD5423003A14AF /* Prefs.swift in Sources */,
