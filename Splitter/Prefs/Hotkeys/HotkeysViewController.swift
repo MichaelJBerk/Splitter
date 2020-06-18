@@ -11,7 +11,7 @@ import Preferences
 import Files
 
 final class HotkeysViewController: NSViewController, PreferencePane {
-	let preferencePaneIdentifier = PreferencePane.Identifier.hotkeys
+	let preferencePaneIdentifier = Preferences.PaneIdentifier.hotkeys
 	let preferencePaneTitle = "Hotkeys"
 	let toolbarItemIcon = #imageLiteral(resourceName: "Hotkeys")
 	@IBOutlet weak var hotkeysTableView: NSTableView!

@@ -10,7 +10,7 @@ import Cocoa
 import Preferences
 
 final class DefaultPreferenceViewController: NSViewController, PreferencePane {
-	let preferencePaneIdentifier = PreferencePane.Identifier.general
+	let preferencePaneIdentifier = Preferences.PaneIdentifier.general
 	let preferencePaneTitle = "Defaults"
 	let toolbarItemIcon = NSImage(named: NSImage.preferencesGeneralName)!
 

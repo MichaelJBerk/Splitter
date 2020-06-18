@@ -9,9 +9,9 @@
 import Cocoa
 import Preferences
 
-extension PreferencePane.Identifier {
-	static let general = Identifier("general")
-	static let advanced = Identifier("advanced")
-	static let hotkeys = Identifier("hotkeys")
+extension Preferences.PaneIdentifier {
+	static let general = Self("general")
+	static let advanced = Self("advanced")
+	static let hotkeys = Self("hotkeys")
 	
 }

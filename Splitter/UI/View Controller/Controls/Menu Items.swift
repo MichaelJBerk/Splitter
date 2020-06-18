@@ -19,7 +19,7 @@ extension ViewController {
 	
 	@IBAction func hotkeysMenuItem(_ sender: Any?) {
 		if let app = NSApp.delegate as? AppDelegate {
-			app.preferencesWindowController.show(preferencePane: PreferencePane.Identifier.hotkeys)
+			app.preferencesWindowController.show(preferencePane: Preferences.PaneIdentifier.hotkeys)
 		}
 	}
 	

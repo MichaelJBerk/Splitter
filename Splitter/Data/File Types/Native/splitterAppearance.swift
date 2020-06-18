@@ -97,21 +97,13 @@ struct splitterAppearance: Codable {
 		self.hideTitlebar = json.dictionary?["hideTitlebar"]?.bool
 		self.hideButtons = json.dictionary?["hideButtons"]?.bool
 		self.keepOnTop = json.dictionary?["keepOnTop"]?.bool
-		//showColumns is only for backwards compatibility with betas.
-		//TODO: Remove in final version
-		if let colDict = json.dictionary?["showColumns"]?.dictionary ?? json.dictionary?["hideColumns"]?.dictionary {
-			if json.dictionary?["hideColumns"]?.dictionary == nil {
-				let alert = NSAlert()
-				alert.messageText = "This file will not be compatible the with the final release of splitter Splitter 1.0"
-				alert.informativeText = "Save the file using this version to make it compatible with Splitter 1.0, once it's released"
-				alert.alertStyle = .warning
-				alert.runModal()
-			}
-			for c in colDict {
-				self.hideColumns?[c.key] = c.value.boolValue
-				
-			}
-		}
+
+//			for c in colDict {
+//				self.hideColumns?[c.key] = c.value.boolValue
+//
+//			}
+//		}
+
 		
 		if let sizeDict = json.dictionary?["columnSizes"]?.dictionary {
 			for s in sizeDict {
