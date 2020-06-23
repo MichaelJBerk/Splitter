@@ -40,9 +40,10 @@ Note that some features (such as appearance and color settings) are only saved t
 If you want to build Splitter yourself:
 - Clone this repo
 - run `pod install` in the project's root directory
+	- If prompted for keys, just type in whatever you like and press enter. It won't make a difference to you
 - Open Splitter.xcworkspace in Xcode
 
-Note that you'll need to have Cocoapods installed to build the project
+Note that you'll need to have Cocoapods and Cocoapods-keys installed to build the project
 
 ### Acknowledgements
 [LiveSplit Core](https://github.com/LiveSplit/livesplit-core)
