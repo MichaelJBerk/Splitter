@@ -121,7 +121,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 			}
 		}
 		
-		
+        if #available(OSX 10.16, *) {
+            preferencesWindowController.window?.toolbarStyle = .preference
+        } else {
+            // Fallback on earlier versions
+        }
 		Settings.lastOpenedVersion = otherConstants.version
 		Settings.lastOpenedBuild = otherConstants.build
 		loadDefaultSplitterKeybinds()

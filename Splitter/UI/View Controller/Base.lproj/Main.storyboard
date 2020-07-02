@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17132" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17132"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -543,15 +543,15 @@
                         <rect key="frame" x="0.0" y="0.0" width="283" height="405"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <scrollView appearanceType="darkAqua" ambiguous="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="32" horizontalPageScroll="10" verticalLineScroll="32" verticalPageScroll="10" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="allowed" scrollerKnobStyle="dark" id="GLv-Wp-JTM" customClass="SplitterScrollView" customModule="Splitter" customModuleProvider="target">
+                            <scrollView appearanceType="darkAqua" borderType="none" autohidesScrollers="YES" horizontalLineScroll="32" horizontalPageScroll="10" verticalLineScroll="32" verticalPageScroll="10" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="allowed" scrollerKnobStyle="dark" id="GLv-Wp-JTM" customClass="SplitterScrollView" customModule="Splitter" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="128" width="283" height="219"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <clipView key="contentView" ambiguous="YES" drawsBackground="NO" copiesOnScroll="NO" id="9dd-gf-lQy">
+                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="9dd-gf-lQy">
                                     <rect key="frame" x="0.0" y="0.0" width="283" height="219"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" ambiguous="YES" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="30" headerView="aVs-1A-u0Q" viewBased="YES" id="Ww4-Jn-tNR" customClass="SplitterTableView" customModule="Splitter" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="283" height="194"/>
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" tableStyle="fullWidth" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="30" headerView="aVs-1A-u0Q" viewBased="YES" id="Ww4-Jn-tNR" customClass="SplitterTableView" customModule="Splitter" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="307" height="194"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -570,11 +570,11 @@
                                                     <tableColumnResizingMask key="resizingMask" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="DDG-t1-8d6" customClass="ImageButtonCellView" customModule="Splitter" customModuleProvider="target">
-                                                            <rect key="frame" x="1" y="1" width="32" height="17"/>
+                                                            <rect key="frame" x="11" y="1" width="37" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <button toolTip="Segment Icon. Click to change." id="VZF-y0-fze" customClass="IconButton" customModule="Splitter" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="-12" width="30" height="30"/>
+                                                                    <rect key="frame" x="0.0" y="-12" width="34" height="30"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Game Controller" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="R44-Yj-mVf">
                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -604,7 +604,7 @@
                                                     <tableColumnResizingMask key="resizingMask" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="MX7-uO-mSv">
-                                                            <rect key="frame" x="36" y="1" width="80" height="19"/>
+                                                            <rect key="frame" x="51" y="1" width="80" height="19"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Zgl-iF-pqa">
@@ -640,7 +640,7 @@
                                                     <tableColumnResizingMask key="resizingMask" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="7FB-sm-vIX" customClass="TimeSplitCell" customModule="Splitter" customModuleProvider="target">
-                                                            <rect key="frame" x="119" y="1" width="90" height="17"/>
+                                                            <rect key="frame" x="134" y="1" width="90" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="9wd-Sb-6rV">
@@ -679,11 +679,11 @@
                                                     <tableColumnResizingMask key="resizingMask" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="8TX-qB-Vav" customClass="TimeSplitCell" customModule="Splitter" customModuleProvider="target">
-                                                            <rect key="frame" x="212" y="1" width="64" height="17"/>
+                                                            <rect key="frame" x="227" y="1" width="68" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="a8y-qx-fyd">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="64" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="68" height="17"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="17" id="8ED-2z-UK2"/>
                                                                     </constraints>
@@ -792,36 +792,37 @@
                                     </subviews>
                                     <nil key="backgroundColor"/>
                                 </clipView>
-                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="u5J-vU-46w" customClass="SplitterScroller" customModule="Splitter" customModuleProvider="target">
-                                    <rect key="frame" x="-100" y="-100" width="281" height="16"/>
+                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="u5J-vU-46w" customClass="SplitterScroller" customModule="Splitter" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="203" width="283" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="tC9-GG-98i" customClass="SplitterScroller" customModule="Splitter" customModuleProvider="target">
                                     <rect key="frame" x="-100" y="-100" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <tableHeaderView key="headerView" id="aVs-1A-u0Q" customClass="SplitterTableHeader" customModule="Splitter" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="283" height="25"/>
+                                <tableHeaderView key="headerView" wantsLayer="YES" id="aVs-1A-u0Q" customClass="SplitterTableHeader" customModule="Splitter" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="307" height="25"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                                 <connections>
                                     <outlet property="menu" destination="tBl-Z3-cF6" id="pSR-cg-UL1"/>
                                 </connections>
                             </scrollView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mj4-Ky-5e7">
-                                <rect key="frame" x="8" y="104" width="97" height="16"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mj4-Ky-5e7">
+                                <rect key="frame" x="8" y="103" width="94" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Current Time:" id="JfQ-8T-Ydb">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button toolTip="Remove Split" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jC2-yS-poH">
-                                <rect key="frame" x="193" y="101" width="25" height="20"/>
+                            <button toolTip="Remove Split" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jC2-yS-poH">
+                                <rect key="frame" x="190" y="100" width="25" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="249-xc-MAe"/>
+                                    <constraint firstAttribute="height" constant="19" id="YMC-GK-qFs"/>
                                 </constraints>
-                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0Mt-iS-tkw">
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="minus" catalog="system" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0Mt-iS-tkw">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -831,7 +832,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5Ka-8A-G0d">
-                                <rect key="frame" x="135" y="4" width="147" height="32"/>
+                                <rect key="frame" x="134" y="4" width="149" height="32"/>
                                 <buttonCell key="cell" type="push" title="Split" bezelStyle="rounded" alignment="center" scrollable="YES" lineBreakMode="clipping" truncatesLastVisibleLine="YES" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xSV-AL-F6u">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -840,12 +841,13 @@
                                     <action selector="nextButtonClick:" target="5gI-5U-AMq" id="fjE-Ya-6Ng"/>
                                 </connections>
                             </button>
-                            <button toolTip="Add Split" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OXM-M7-swh">
-                                <rect key="frame" x="220" y="101" width="25" height="20"/>
+                            <button toolTip="Add Split" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OXM-M7-swh">
+                                <rect key="frame" x="217" y="100" width="25" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="3qQ-Zf-ylZ"/>
+                                    <constraint firstAttribute="height" constant="19" id="4Ow-Ss-X4g"/>
                                 </constraints>
-                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5oS-Ne-nTD">
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="plus" catalog="system" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5oS-Ne-nTD">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -855,7 +857,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="d2l-Lb-Z8r">
-                                <rect key="frame" x="8" y="58" width="195" height="42"/>
+                                <rect key="frame" x="8" y="57" width="195" height="42"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="00:00:00.00" placeholderString="00:00:00.00" id="JHU-AI-bFi">
                                     <font key="font" size="36" name="HelveticaNeue"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -863,7 +865,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tIC-9A-PB1">
-                                <rect key="frame" x="4" y="4" width="138" height="32"/>
+                                <rect key="frame" x="3" y="4" width="140" height="32"/>
                                 <buttonCell key="cell" type="push" title="Prev" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ux6-T5-kx5">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -873,7 +875,7 @@
                                 </connections>
                             </button>
                             <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sEF-Zm-06R">
-                                <rect key="frame" x="4" y="28" width="42" height="32"/>
+                                <rect key="frame" x="3" y="27" width="44" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="30" id="4d7-yu-9vX"/>
                                 </constraints>
@@ -887,13 +889,13 @@
                                 </connections>
                             </button>
                             <popUpButton verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="udb-sn-xNY">
-                                <rect key="frame" x="10" y="34" width="38" height="23"/>
+                                <rect key="frame" x="10" y="33" width="38" height="23"/>
                                 <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" autoenablesItems="NO" selectedItem="E4A-EA-ALB" id="gAh-qk-bIO">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="menu"/>
                                     <menu key="menu" showsStateColumn="NO" autoenablesItems="NO" id="EQW-m1-UW4">
                                         <items>
-                                            <menuItem image="trash" hidden="YES" id="E4A-EA-ALB">
+                                            <menuItem image="trash" catalog="system" hidden="YES" id="E4A-EA-ALB">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
                                             <menuItem title="Clear Current Time" keyEquivalent="t" identifier="ClearCurrentTimeMenuItem" id="cio-kK-rtU">
@@ -911,7 +913,7 @@
                                 </connections>
                             </popUpButton>
                             <button toolTip="Start Timer" horizontalHuggingPriority="249" verticalHuggingPriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="gCo-Oe-sI7">
-                                <rect key="frame" x="46" y="28" width="237" height="32"/>
+                                <rect key="frame" x="45" y="27" width="239" height="32"/>
                                 <buttonCell key="cell" type="push" title="Start" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Z21-jw-aXO">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -940,12 +942,13 @@
                                     <color key="backgroundColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xLP-fd-tTq">
-                                <rect key="frame" x="248" y="101" width="24" height="20"/>
+                            <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xLP-fd-tTq">
+                                <rect key="frame" x="245" y="100" width="24" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="24" id="BXL-vn-aDi"/>
+                                    <constraint firstAttribute="height" constant="19" id="Umy-qe-zA2"/>
                                 </constraints>
-                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSQuickLookTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="krQ-zt-0w0">
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="eye" catalog="system" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="krQ-zt-0w0">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -955,7 +958,7 @@
                             </button>
                             <button toolTip="Get Info" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="laY-Uh-RhP">
                                 <rect key="frame" x="226" y="360" width="50" height="31"/>
-                                <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSActionTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GL6-Z9-DG9">
+                                <buttonCell key="cell" type="push" bezelStyle="rounded" image="gearshape.fill" catalog="system" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GL6-Z9-DG9">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -964,7 +967,7 @@
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rkm-yi-plE">
-                                <rect key="frame" x="221" y="84" width="53" height="16"/>
+                                <rect key="frame" x="221" y="83" width="53" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Attempt" id="6Q0-NB-XXc">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -972,7 +975,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XzH-Pf-d2x" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
-                                <rect key="frame" x="221" y="64" width="53" height="20"/>
+                                <rect key="frame" x="221" y="63" width="53" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="49" id="imu-YA-cq7"/>
                                 </constraints>
@@ -1002,7 +1005,7 @@
                             <constraint firstItem="OXM-M7-swh" firstAttribute="top" secondItem="xLP-fd-tTq" secondAttribute="top" id="6eU-Ac-i6A"/>
                             <constraint firstItem="GLv-Wp-JTM" firstAttribute="top" secondItem="laY-Uh-RhP" secondAttribute="bottom" constant="20" symbolic="YES" id="6o0-ZG-X0v"/>
                             <constraint firstItem="TSJ-mg-scq" firstAttribute="leading" secondItem="6rq-lR-6Um" secondAttribute="trailing" constant="7" id="9fa-Vx-rW4"/>
-                            <constraint firstItem="laY-Uh-RhP" firstAttribute="centerX" secondItem="xLP-fd-tTq" secondAttribute="centerX" id="ABg-9H-Snd"/>
+                            <constraint firstItem="laY-Uh-RhP" firstAttribute="centerX" secondItem="xLP-fd-tTq" secondAttribute="centerX" constant="-6" id="ABg-9H-Snd"/>
                             <constraint firstAttribute="trailing" secondItem="XzH-Pf-d2x" secondAttribute="trailing" constant="11" id="BDf-W8-Wbo"/>
                             <constraint firstItem="laY-Uh-RhP" firstAttribute="leading" secondItem="5cv-K8-dE8" secondAttribute="trailing" constant="1" id="DQp-Cr-IfL"/>
                             <constraint firstItem="udb-sn-xNY" firstAttribute="leading" secondItem="sEF-Zm-06R" secondAttribute="leading" id="Fuc-KQ-ce2"/>
@@ -1371,10 +1374,10 @@ To remove, click and press backspace. </string>
                                     </gridCell>
                                     <gridCell row="Kxe-KU-ILE" column="SdJ-WM-ZCg" id="Uw9-JA-0Wd">
                                         <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eQv-aA-TVK">
-                                            <rect key="frame" x="126" y="111" width="143" height="25"/>
+                                            <rect key="frame" x="126" y="111" width="144" height="25"/>
                                             <popUpButtonCell key="cell" type="push" title="Previous Attempt" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" autoenablesItems="NO" selectedItem="PXQ-9Z-K1b" id="xtb-He-QHy">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
+                                                <font key="font" metaFont="menu"/>
                                                 <menu key="menu" autoenablesItems="NO" id="Yks-AJ-xS2">
                                                     <items>
                                                         <menuItem title="Previous Attempt" state="on" identifier="previousSplit" id="PXQ-9Z-K1b"/>
@@ -1418,7 +1421,7 @@ To remove, click and press backspace. </string>
                                             <rect key="frame" x="126" y="-3" width="149" height="25"/>
                                             <popUpButtonCell key="cell" type="push" title="Tenths (1.0)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="nMZ-sT-CSk" id="Tat-0W-Mzd">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
+                                                <font key="font" metaFont="menu"/>
                                                 <menu key="menu" id="g2j-NM-WrP">
                                                     <items>
                                                         <menuItem title="Tenths (1.0)" state="on" identifier="tenths" id="nMZ-sT-CSk"/>
@@ -1453,7 +1456,7 @@ To remove, click and press backspace. </string>
             <objects>
                 <viewController storyboardIdentifier="ColumnOptions" showSeguePresentationStyle="single" id="ZWR-WZ-mWq" customClass="ColumnOptionsViewController" customModule="Splitter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" appearanceType="darkAqua" id="ewb-kD-HLV">
-                        <rect key="frame" x="0.0" y="0.0" width="141" height="220"/>
+                        <rect key="frame" x="0.0" y="0.0" width="216" height="220"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TnF-wj-aMg">
@@ -1465,12 +1468,12 @@ To remove, click and press backspace. </string>
                                 </textFieldCell>
                             </textField>
                             <gridView xPlacement="leading" yPlacement="bottom" rowAlignment="none" translatesAutoresizingMaskIntoConstraints="NO" id="ndx-ES-ayK">
-                                <rect key="frame" x="20" y="146" width="100" height="30"/>
+                                <rect key="frame" x="20" y="146" width="172" height="30"/>
                                 <rows>
                                     <gridRow id="dRs-Kg-2V1"/>
                                 </rows>
                                 <columns>
-                                    <gridColumn id="v2W-mq-u6q"/>
+                                    <gridColumn width="172" id="v2W-mq-u6q"/>
                                 </columns>
                                 <gridCells>
                                     <gridCell row="dRs-Kg-2V1" column="v2W-mq-u6q" id="u7G-Yf-833"/>
@@ -1490,7 +1493,7 @@ To remove, click and press backspace. </string>
                 </viewController>
                 <customObject id="Lr9-4a-hBn" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="433.5" y="1242"/>
+            <point key="canvasLocation" x="471" y="1242"/>
         </scene>
         <!--Appearance-->
         <scene sceneID="hAL-Mc-wCT">
@@ -1524,7 +1527,7 @@ To remove, click and press backspace. </string>
                                                 <gridCell row="AMM-IJ-WjW" column="fm8-dP-Eb8" id="Hy4-K6-h0E"/>
                                                 <gridCell row="AMM-IJ-WjW" column="gqm-xY-pbD" id="NBK-Nr-InD">
                                                     <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KdL-ri-VdY">
-                                                        <rect key="frame" x="32" y="91" width="105" height="18"/>
+                                                        <rect key="frame" x="32" y="91" width="108" height="18"/>
                                                         <buttonCell key="cell" type="check" title="Hide Title Bar" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="H6d-Wj-qAk">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                             <font key="font" metaFont="system"/>
@@ -1533,7 +1536,7 @@ To remove, click and press backspace. </string>
                                                 </gridCell>
                                                 <gridCell row="AMM-IJ-WjW" column="sZ3-UK-dPQ" id="B07-c0-HC1">
                                                     <button key="contentView" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qCT-Wf-FTs" customClass="helpButton" customModule="Splitter" customModuleProvider="target">
-                                                        <rect key="frame" x="371" y="85" width="25" height="25"/>
+                                                        <rect key="frame" x="370.5" y="86" width="25" height="25"/>
                                                         <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5fB-Fb-LPg">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="system"/>
@@ -1543,7 +1546,7 @@ To remove, click and press backspace. </string>
                                                 <gridCell row="ZxY-tT-aa5" column="fm8-dP-Eb8" id="dDp-yi-J1j"/>
                                                 <gridCell row="ZxY-tT-aa5" column="gqm-xY-pbD" yPlacement="center" id="ONu-xj-1HC">
                                                     <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="H55-YO-vGp">
-                                                        <rect key="frame" x="32" y="50" width="101" height="18"/>
+                                                        <rect key="frame" x="32" y="50" width="105" height="18"/>
                                                         <buttonCell key="cell" type="check" title="Hide Buttons" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="GtI-P7-9yv">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                             <font key="font" metaFont="system"/>
@@ -1552,7 +1555,7 @@ To remove, click and press backspace. </string>
                                                 </gridCell>
                                                 <gridCell row="ZxY-tT-aa5" column="sZ3-UK-dPQ" id="VlI-I0-IB3">
                                                     <button key="contentView" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LZG-o3-NMC" customClass="helpButton" customModule="Splitter" customModuleProvider="target">
-                                                        <rect key="frame" x="371" y="44" width="25" height="25"/>
+                                                        <rect key="frame" x="370.5" y="45" width="25" height="25"/>
                                                         <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ifk-J0-glH">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="system"/>
@@ -1562,7 +1565,7 @@ To remove, click and press backspace. </string>
                                                 <gridCell row="DHP-S5-sT1" column="fm8-dP-Eb8" id="GAr-RS-MD5"/>
                                                 <gridCell row="DHP-S5-sT1" column="gqm-xY-pbD" id="bbC-yj-jJl">
                                                     <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NX0-Jl-BA1">
-                                                        <rect key="frame" x="32" y="9" width="150" height="18"/>
+                                                        <rect key="frame" x="32" y="9" width="154" height="18"/>
                                                         <buttonCell key="cell" type="check" title="Keep Window on Top" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="4Ih-uS-kPH">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                             <font key="font" metaFont="system"/>
@@ -1571,7 +1574,7 @@ To remove, click and press backspace. </string>
                                                 </gridCell>
                                                 <gridCell row="DHP-S5-sT1" column="sZ3-UK-dPQ" id="eRF-xd-Dvn">
                                                     <button key="contentView" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="w7E-mT-aCX" customClass="helpButton" customModule="Splitter" customModuleProvider="target">
-                                                        <rect key="frame" x="371" y="3" width="25" height="25"/>
+                                                        <rect key="frame" x="370.5" y="4" width="25" height="25"/>
                                                         <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xIr-wb-AEK">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="system"/>
@@ -1634,11 +1637,11 @@ To remove, click and press backspace. </string>
     </scenes>
     <resources>
         <image name="Game Controller" width="256" height="255.5"/>
-        <image name="NSActionTemplate" width="14" height="14"/>
-        <image name="NSAddTemplate" width="11" height="11"/>
-        <image name="NSQuickLookTemplate" width="19" height="12"/>
-        <image name="NSRemoveTemplate" width="11" height="11"/>
+        <image name="eye" catalog="system" width="20" height="11"/>
+        <image name="gearshape.fill" catalog="system" width="16" height="14"/>
+        <image name="minus" catalog="system" width="15" height="2"/>
+        <image name="plus" catalog="system" width="15" height="11"/>
         <image name="stop" width="12" height="12"/>
-        <image name="trash" width="12" height="12"/>
+        <image name="trash" catalog="system" width="15" height="15"/>
     </resources>
 </document>
