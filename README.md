@@ -6,9 +6,9 @@ A native Speedrunning timer for macOS
 
 **[FAQ](https://github.com/MichaelJBerk/Splitter/wiki/FAQ)**
 
-**[Tips (as in "cool things Splitter can do")](https://github.com/MichaelJBerk/Splitter/wiki/FAQ)**
+**[Tips ("cool things Splitter can do")](https://github.com/MichaelJBerk/Splitter/wiki/Tips)**
 
-**[Tips (as in "donate")](https://mberk.com/donate/)**
+**[Tips ("donate")](https://mberk.com/donate/)**
 
 ## Download
 
