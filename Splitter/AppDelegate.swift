@@ -13,6 +13,7 @@ import AppCenterAnalytics
 import AppCenterCrashes
 import Keys
 import Files
+import SwiftUI
 
 extension NSApplication {
 	static let appDelegate = NSApp.delegate as! AppDelegate
@@ -166,7 +167,26 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 		  return true // Return true if the SDK should await user confirmation, otherwise return false.
 		})
 		
-//		MSCrashes.generateTestCrash()
+//		openWelcomeWindow()
+	}
+	//Need to store this as a var on the class or the app will crash when closing the welcome window
+	var welcomeWindow: NSWindow!
+	
+	
+	func openWelcomeWindow() {
+		let welcomeView = WelcomeView()
+		welcomeWindow = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 800, height: 460), styleMask: [.fullSizeContentView, .titled, .closable], backing: .buffered, defer: false)
+		welcomeWindow.titleVisibility = .hidden
+		welcomeWindow.titlebarAppearsTransparent = true
+		welcomeWindow.isMovableByWindowBackground = true
+		welcomeWindow.standardWindowButton(.closeButton)?.isHidden = true
+		welcomeWindow.standardWindowButton(.miniaturizeButton)?.isHidden = true
+		welcomeWindow.standardWindowButton(.zoomButton)?.isHidden = true
+		welcomeWindow.setFrameAutosaveName("Welcome")
+		welcomeWindow.contentView = NSHostingView(rootView: welcomeView)
+		welcomeWindow.center()
+		welcomeWindow.makeKeyAndOrderFront(nil)
+		welcomeWindow.isReleasedWhenClosed = false
 	}
 
 	func crashes(_ crashes: MSCrashes!, shouldProcessErrorReport errorReport: MSErrorReport!) -> Bool {

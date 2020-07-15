@@ -95,6 +95,10 @@ extension ViewController {
 				}
 			}
 		}
+	
+	@IBAction func welcomeWindowMenuItem(_ sender: Any) {
+		(NSApp.delegate as? AppDelegate)?.openWelcomeWindow()
+	}
 		
 		///Action for Menu Bar that closes the current window. This can be useful if the title bar has been hidden by the user
 		@IBAction func closeMenuItem(_ sender: Any) {
