@@ -15,6 +15,19 @@ enum DocFileType: String {
 	case splitFile = "Split File"
 	case liveSplit = "LiveSplit File"
 	case splitsioFile = "Splits.io File"
+	
+	static func fileExtension(fileExtension: String) -> DocFileType {
+		switch fileExtension {
+		case "split":
+			return .splitFile
+		case "lss":
+			return .liveSplit
+		case "json":
+			return .splitsioFile
+		default:
+			return .splitFile
+		}
+	}
 }
 
 

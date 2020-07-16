@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1130"
+   LastUpgradeVersion = "1200"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -16,7 +16,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4A774A5323EBCDFA002F1700"
+               BlueprintIdentifier = "4A71054824BE267300FA9127"
                BuildableName = "SplitterTests.xctest"
                BlueprintName = "SplitterTests"
                ReferencedContainer = "container:Splitter.xcodeproj">
@@ -34,15 +34,6 @@
       debugDocumentVersioning = "YES"
       debugServiceExtension = "internal"
       allowLocationSimulation = "YES">
-      <MacroExpansion>
-         <BuildableReference
-            BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4A230E8E23B00A1D00959C57"
-            BuildableName = "Splitter.app"
-            BlueprintName = "Splitter"
-            ReferencedContainer = "container:Splitter.xcodeproj">
-         </BuildableReference>
-      </MacroExpansion>
    </LaunchAction>
    <ProfileAction
       buildConfiguration = "Release"

@@ -57,6 +57,7 @@ enum menuIdentifiers {
 		
 		static let windowFloat = NSUserInterfaceItemIdentifier("WindowFloat")
 		static let closeCurrentWindow = NSUserInterfaceItemIdentifier("CloseCurrentWindowMenuItem")
+		static let welcomeWindowItem = NSUserInterfaceItemIdentifier("welcomeWindowMenuItem")
 	}
 	
 }
