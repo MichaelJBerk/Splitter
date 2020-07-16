@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import SplitsIOKit
 
 class SplitsIODoc: SplitterDoc {
 	

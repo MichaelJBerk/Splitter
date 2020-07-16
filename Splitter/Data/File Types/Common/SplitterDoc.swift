@@ -8,6 +8,7 @@
 
 import Cocoa
 import Files
+import SplitsIOKit
 
 enum DocFileType: String {
 	//public static let
@@ -213,8 +214,8 @@ class SplitterDoc: NSDocument {
 	func saveSplitsio(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, delegate: Any?, didSave didSaveSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
 		if let vc = viewController {
 			let timer = SplitsIOTimer(shortname: "Splitter", longname: "Splitter", website: "https://mberk.com/splitter", version: "v\(otherConstants.version) (\(otherConstants.build))")
-			let game = SplitsIOCategory(longname: vc.runTitle, shortname: nil, links: nil)
-			let cat = SplitsIOCategory(longname: vc.category, shortname: nil, links: nil)
+			let game = SplitsIORunCategory(longname: vc.runTitle, shortname: nil, links: nil)
+			let cat = SplitsIORunCategory(longname: vc.category, shortname: nil, links: nil)
 			var cs: [SplitsIOSegment] = []
 			for s in vc.currentSplits {
 				let best = s.bestSplit.TSToMil()

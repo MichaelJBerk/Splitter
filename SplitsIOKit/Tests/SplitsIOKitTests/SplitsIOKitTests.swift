@@ -2,14 +2,22 @@ import XCTest
 @testable import SplitsIOKit
 
 final class SplitsIOKitTests: XCTestCase {
-    func testExample() {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct
-        // results.
-        XCTAssertEqual(SplitsIOKit().text, "Hello, World!")
-    }
-
-    static var allTests = [
-        ("testExample", testExample),
-    ]
+	
+	func testSearch() {
+		let expectation = XCTestExpectation(description: "Complete Search")
+		SplitsIOKit().searchSplitsIO(for: "Psychonauts", completion: { games in
+			XCTAssertFalse(games == nil)
+			expectation.fulfill()
+		})
+		wait(for: [expectation], timeout: 10.0)
+	}
+	
+	func testGetRun() {
+		let expectation = XCTestExpectation(description: "Find run")
+		SplitsIOKit().getRun(runID: "5yj6", completion: { run in
+			expectation.fulfill()
+		})
+		wait(for: [expectation], timeout: 10.0)
+	}
+	
 }

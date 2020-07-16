@@ -5,6 +5,7 @@ import PackageDescription
 
 let package = Package(
     name: "SplitsIOKit",
+	platforms: [.macOS(SupportedPlatform.MacOSVersion.v10_12)],
     products: [
         // Products define the executables and libraries a package produces, and make them visible to other packages.
         .library(
@@ -12,7 +13,9 @@ let package = Package(
             targets: ["SplitsIOKit"]),
     ],
     dependencies: [
-		.package(url: "https://github.com/SwiftyJSON/SwiftyJSON.git", .exact("5.0.0")),
+		.package(url: "https://github.com/SwiftyJSON/SwiftyJSON.git", .upToNextMajor(from: "5.0.0")),
+		.package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.2.0")),
+		.package(name: "Fuzzy", url: "https://github.com/khoi/fuzzy-swift", .upToNextMajor(from: "0.1.0"))
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
     ],
@@ -21,7 +24,7 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "SplitsIOKit",
-            dependencies: ["SwiftyJSON"]),
+            dependencies: ["SwiftyJSON", "Fuzzy", "Alamofire"]),
         .testTarget(
             name: "SplitsIOKitTests",
             dependencies: ["SplitsIOKit"]),
