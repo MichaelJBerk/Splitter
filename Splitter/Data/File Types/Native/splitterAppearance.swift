@@ -85,6 +85,9 @@ struct splitterAppearance: Codable {
 		self.windowHeight = viewController.view.window?.frame.height
 		self.roundTo = viewController.roundTo.rawValue
 		self.bgColor = CodableColor(nsColor: viewController.bgColor)
+		if viewController.tableBGColor == NSColor.splitterTableViewColor {
+			
+		}
 		self.tableColor = CodableColor(nsColor: viewController.tableBGColor)
 		self.textColor = CodableColor(nsColor: viewController.textColor)
 		self.selectColor = CodableColor(nsColor: viewController.selectedColor)
