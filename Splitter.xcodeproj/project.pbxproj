@@ -254,6 +254,7 @@
 		4A0DC2842418217200FC959A /* LiveSplit */ = {
 			isa = PBXGroup;
 			children = (
+				4A87DEA423F251C700975EB8 /* livesplit.icns */,
 				4A617EBD23EBC65C0005D60E /* LiveSplit.swift */,
 				4A968C7B23F1F5FE001B74E8 /* lss.swift */,
 			);
@@ -484,7 +485,6 @@
 				4AFEFFB1241AB9EC00B00E45 /* TableViewAppearance.xib */,
 				4AEA928223C4F140004F6CF9 /* DefaultPreferenceViewController.xib */,
 				4A18663123C5376900FEEE54 /* SettingsKeys.swift */,
-				4A87DEA423F251C700975EB8 /* livesplit.icns */,
 				4A87265623BD5423003A14AF /* Prefs.swift */,
 				4A66A43523DE3921005952FA /* UI Settings */,
 				4A5F10AC23CF754E00DA043B /* Hotkeys */,

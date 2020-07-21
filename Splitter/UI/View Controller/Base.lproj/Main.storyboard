@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17132" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17132"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -359,13 +359,13 @@
                                                 <action selector="stopMenuItem:" target="Ady-hI-5gd" id="Tje-Uj-H0p"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="n5c-GI-xuS"/>
                                         <menuItem title="Previous Split" identifier="timerBack" id="JbY-xM-DFE">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="prevSplitMenuItem:" target="Ady-hI-5gd" id="vLH-ED-sfH"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="n5c-GI-xuS"/>
                                         <menuItem title="Reset Run" identifier="ResetRun" id="M2Y-AP-1Gh">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
@@ -890,7 +890,7 @@
                                 <rect key="frame" x="10" y="34" width="38" height="23"/>
                                 <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" autoenablesItems="NO" selectedItem="E4A-EA-ALB" id="gAh-qk-bIO">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="menu"/>
+                                    <font key="font" metaFont="system"/>
                                     <menu key="menu" showsStateColumn="NO" autoenablesItems="NO" id="EQW-m1-UW4">
                                         <items>
                                             <menuItem image="trash" hidden="YES" id="E4A-EA-ALB">
@@ -1374,7 +1374,7 @@ To remove, click and press backspace. </string>
                                             <rect key="frame" x="126" y="111" width="143" height="25"/>
                                             <popUpButtonCell key="cell" type="push" title="Previous Attempt" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" autoenablesItems="NO" selectedItem="PXQ-9Z-K1b" id="xtb-He-QHy">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="menu"/>
+                                                <font key="font" metaFont="system"/>
                                                 <menu key="menu" autoenablesItems="NO" id="Yks-AJ-xS2">
                                                     <items>
                                                         <menuItem title="Previous Attempt" state="on" identifier="previousSplit" id="PXQ-9Z-K1b"/>
@@ -1418,7 +1418,7 @@ To remove, click and press backspace. </string>
                                             <rect key="frame" x="126" y="-3" width="149" height="25"/>
                                             <popUpButtonCell key="cell" type="push" title="Tenths (1.0)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="nMZ-sT-CSk" id="Tat-0W-Mzd">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="menu"/>
+                                                <font key="font" metaFont="system"/>
                                                 <menu key="menu" id="g2j-NM-WrP">
                                                     <items>
                                                         <menuItem title="Tenths (1.0)" state="on" identifier="tenths" id="nMZ-sT-CSk"/>

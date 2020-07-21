@@ -148,10 +148,9 @@ extension ViewController {
 	}
 	///Updates the current time on the timer
 	@objc func UpdateTimer() {
-		if currentSplit!.paused {
+		if currentSplit?.paused ?? false {
 			lscTimer?.pause()
 		} else {
-			
 			currentSplit?.updateSec(sec: lscTimer?.currentTime().realTime()?.totalSeconds() ?? 0)
 		}
 		
@@ -191,8 +190,6 @@ extension ViewController {
 	func startSplitTimer() {
 		if timerState == .stopped {
 			startTimer()
-		} else if timerState == .paused {
-			pauseResumeTimer()
 		} else if timerState == .running {
 			goToNextSplit()
 		}
