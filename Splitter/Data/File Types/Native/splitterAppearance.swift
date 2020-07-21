@@ -97,12 +97,11 @@ struct splitterAppearance: Codable {
 		self.hideTitlebar = json.dictionary?["hideTitlebar"]?.bool
 		self.hideButtons = json.dictionary?["hideButtons"]?.bool
 		self.keepOnTop = json.dictionary?["keepOnTop"]?.bool
-
-//			for c in colDict {
-//				self.hideColumns?[c.key] = c.value.boolValue
-//
-//			}
-//		}
+		if let cols = json.dictionary?["hideColumns"]?.dictionary {
+			for c in cols {
+				self.hideColumns?[c.key] = c.value.bool
+			}
+		}
 
 		
 		if let sizeDict = json.dictionary?["columnSizes"]?.dictionary {
