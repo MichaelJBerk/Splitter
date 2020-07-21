@@ -57,8 +57,10 @@ extension ViewController: NSTableViewDelegate {
 		if let cell = tableView.makeView(withIdentifier: cellIdentifier!, owner: nil) as? NSTableCellView {
 			cell.textField?.delegate = self
 			
-			if timerState != .stopped {
-				tableView.rowView(atRow: currentSplitNumber, makeIfNecessary: false)?.backgroundColor = self.selectedColor
+			
+			//Highlight the current row if the user is in the middle of a run
+			if timerState != .stopped && row == currentSplitNumber {
+				tableView.selectRowIndexes(IndexSet(arrayLiteral: currentSplitNumber), byExtendingSelection: false)
 			}
 			
 			if let imageCell = cell as? ImageButtonCellView {
