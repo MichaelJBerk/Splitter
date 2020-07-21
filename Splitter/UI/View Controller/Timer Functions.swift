@@ -81,13 +81,6 @@ extension ViewController {
 		lscTimer?.start()
 	}
 	
-	@objc func timerInfLoop() {
-		currentSplit?.updateSec(sec: lscTimer?.currentTime().realTime()?.totalSeconds() ?? 0)
-			TimerLabel.stringValue = String(lscTimer?.currentTime().realTime()?.totalSeconds() ?? 0)
-		
-		splitsTableView.reloadData()
-	}
-	
 	///Clears out the current time field on all segments in the Table View
 	func resetAllCurrentSplitsToZero() {
 		var i = 0

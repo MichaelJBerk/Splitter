@@ -195,7 +195,6 @@ class ViewController: NSViewController {
 				addDeleteEnabled(true)
 				splitBackEnabled(false)
 				self.splitsTableView.reloadData(forRowIndexes: IndexSet(arrayLiteral: 0), columnIndexes: IndexSet(arrayLiteral: 0,1,2,3,4,5))
-//				self.splitsTableView.reloadData(forRowIndexes: IndexSet([currentSplitNumber]), columnIndexes: .init(arrayLiteral: 0,1))
 			} else if timerState == .running {
 				timerStopItem?.title = "Stop Timer"
 				timerStopItem?.isEnabled = true
