@@ -28,7 +28,6 @@ class SplitsIODoc: SplitterDoc {
 			vc.category = si.category?.longname ?? ""
 			vc.attempts = si.attempts?.total ?? 0
 			if let segs = si.segments {
-//				vc.currentSplits = []
 				var i = 0
 				for s in segs {
 					i = i + 1

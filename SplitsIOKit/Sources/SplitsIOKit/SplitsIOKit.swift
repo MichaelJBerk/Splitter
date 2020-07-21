@@ -2,21 +2,30 @@ import Alamofire
 import SwiftyJSON
 import Fuzzy
 import Foundation
+import Files
 
 
-struct SplitsIOKit {
-	
-	
-	public func searchSplitsIO(for game: String, completion: @escaping ([SplitsIOGame]?) -> ()) {
-		AF.request("https://splits.io/api/v4/games", method: .get, parameters: ["search":"\(game)"], encoding: URLEncoding.default).responseDecodable(of: SplitsIOGameSearch.self) { response in
-			
-			let v = response.value
-			completion(v?.games)
-
-		}
+public class SplitsIOKit {
+	var searchRequest: DataRequest?
+	public init() {
 		
 	}
 	
+	enum SplitsIOError: Error {
+		case cantGetRunID
+	}
+	
+	public func searchSplitsIO(for game: String, completion: @escaping ([SplitsIOGame]?) -> ()) {
+		searchRequest?.cancel()
+		searchRequest = AF.request("https://splits.io/api/v4/games", method: .get, parameters: ["search":"\(game)"], encoding: URLEncoding.default).responseDecodable(of: SplitsIOGameSearch.self) { response in
+			
+			let v = response.value
+			completion(v?.games)
+		}
+		
+		
+	}
+
 	
 	/// Get a run from Splits.io
 	/// - Parameters:
@@ -25,15 +34,49 @@ struct SplitsIOKit {
 	///   - completion: Completion handler for the run
 	/// - Returns: Run in splits.ioExchange format
 	public func getRun(runID: String, asTemplate: Bool = false, completion: @escaping (SplitsIOExchangeFormat?) -> ()) {
-		AF.request("https://httpbin.org/get").responseString { response in
+		AF.request("https://splits.io/api/v4/runs/\(runID)", headers: .init(["Accept":"application/splitsio"])).responseString { response in
 
 			if let data = response.data {
+				let str = String(data: data, encoding: .utf8)
 				let run = try? JSONDecoder().decode(SplitsIOExchangeFormat.self, from: data)
 				print(run!.game?.longname)
 				completion(run)
 			}
+		}
+	}
+	
+	
+	/// - Parameters:
+	///   - completion: returns path to temp `.lss` file
+	public func getRunFromCat(categoryID: String, completion: @escaping(String?)-> ()) {
+		AF.request("https://splits.io/api/v4/categories/\(categoryID)/runs").responseString { response in
+			if let data = response.data {
+				let json = JSON(data)
+				guard let id = json["runs"][0].dictionary?["id"]?.string else {completion(nil)
+					return
+				}
+				self.getRunAsLivesplit(runID: id, completion: { run in
+					completion(run)
+					
+				})
+			}
+		}
+	}
+	
+	///Downloads a LiveSplit file and saves it to the caches directory
+	public func getRunAsLivesplit(runID: String, asTemplate: Bool = false, completion: @escaping (_ path: String?) -> ()) {
+		AF.request("https://splits.io/api/v4/runs/\(runID)", headers: .init(["Accept":"application/livesplit"])).responseData { response in
 
+			if let data = response.data {
+				if let tempURL = try? FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: false) {
+					let fileName = "\(ProcessInfo().globallyUniqueString).lss"
+					
+					let cachesFolder = try! Folder(path: tempURL.path).createSubfolderIfNeeded(withName: "\(Bundle.main.bundleIdentifier ?? "com.mibe.splitsiokit")")
+					let tempFile = try! cachesFolder.createFileIfNeeded(withName: fileName, contents: data)
+					completion(tempFile.path)
+				}
 
+			}
 		}
 	}
 	
@@ -64,9 +107,14 @@ struct SplitsIOGameSearch: Codable {
 }
 
 // MARK: - Game
-public struct SplitsIOGame: Codable {
-	let categories: [SplitsIOCat]
-	let createdAt, id, name, shortname: String
+public struct SplitsIOGame: Codable, Hashable {
+	
+	public static func == (lhs: SplitsIOGame, rhs: SplitsIOGame) -> Bool {
+		return lhs.id == rhs.id
+	}
+	
+	public let categories: [SplitsIOCat]
+	public let createdAt, id, name, shortname: String
 	let srdcID, updatedAt: String
 
 	enum CodingKeys: String, CodingKey {
@@ -79,8 +127,8 @@ public struct SplitsIOGame: Codable {
 }
 
 // MARK: - Category
-public struct SplitsIOCat: Codable {
-	let createdAt, id, name: String
+public struct SplitsIOCat: Codable, Hashable {
+	public let createdAt, id, name: String
 	let srdcID: String?
 	let updatedAt: String
 
@@ -90,7 +138,11 @@ public struct SplitsIOCat: Codable {
 		case srdcID = "srdc_id"
 		case updatedAt = "updated_at"
 	}
-	func getRuns() -> String {
-		return ""
+	///Completion - the path to the temporary lss file
+	public func getRun( completion: @escaping(String?) -> ()) {
+		
+		return SplitsIOKit().getRunFromCat(categoryID: self.id, completion: { run in
+			completion(run)
+		})
 	}
 }

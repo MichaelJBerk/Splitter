@@ -171,7 +171,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 	}
 	//Need to store this as a var on the class or the app will crash when closing the welcome window
 	var welcomeWindow: NSWindow!
-	
+	var searchWindow: NSWindow!
 	
 	func openWelcomeWindow() {
 		let welcomeView = WelcomeView()
@@ -179,7 +179,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 		welcomeWindow.titleVisibility = .hidden
 		welcomeWindow.titlebarAppearsTransparent = true
 		welcomeWindow.isMovableByWindowBackground = true
-		welcomeWindow.standardWindowButton(.closeButton)?.isHidden = true
+//		welcomeWindow.standardWindowButton(.closeButton)?.isHidden = true
 		welcomeWindow.standardWindowButton(.miniaturizeButton)?.isHidden = true
 		welcomeWindow.standardWindowButton(.zoomButton)?.isHidden = true
 		welcomeWindow.setFrameAutosaveName("Welcome")
@@ -189,6 +189,29 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 		welcomeWindow.isReleasedWhenClosed = false
 	}
 
+	func createSearchWindow() {
+//		let s = NSStoryboard(name: "Search", bundle: nil).instantiateInitialController() as! SearchWindowController
+//		
+//		s.window?.makeKeyAndOrderFront(nil)
+//		s.window?.center()
+//		s.window?.isReleasedWhenClosed = false
+////
+		let searchView = SplitsIOSearchView()
+		searchWindow = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 800, height: 460), styleMask: [.titled, .closable, .resizable], backing: .buffered, defer: false)
+		searchWindow.titleVisibility = .hidden
+		searchWindow.titlebarAppearsTransparent = true
+		searchWindow.isMovableByWindowBackground = true
+		searchWindow.standardWindowButton(.miniaturizeButton)?.isHidden = true
+		searchWindow.standardWindowButton(.zoomButton)?.isHidden = true
+//
+
+		searchWindow.setFrameAutosaveName("Welcome")
+		searchWindow.contentView = NSHostingView(rootView: searchView.environmentObject(SearchViewModel()))
+		searchWindow.center()
+		searchWindow.makeKeyAndOrderFront(nil)
+		searchWindow.isReleasedWhenClosed = false
+		self.window = searchWindow
+	}
 	func crashes(_ crashes: MSCrashes!, shouldProcessErrorReport errorReport: MSErrorReport!) -> Bool {
 	  return true; // return true if the crash report should be processed, otherwise false.
 	}

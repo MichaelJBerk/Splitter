@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import Files
 
 class lss: SplitterDoc {
 
@@ -24,6 +25,18 @@ class lss: SplitterDoc {
 		
         // Add any code here that needs to be executed once the windowController has loaded the document's window.
     }
+	
+	var tempURL: URL?
+	private var urlToLoad: URL? {
+		if let url = tempURL {
+			return url
+		}
+		else if let url = fileURL {
+			return url
+		}
+			return nil
+	}
+	
 	override func makeWindowControllers() {
 		Swift.print(writableTypes(for: .saveOperation))
 		let storyboard = NSStoryboard(name: NSStoryboard.Name("Main"), bundle: nil)
@@ -31,7 +44,7 @@ class lss: SplitterDoc {
 		self.addWindowController(windowController)
 		let vc = windowController.contentViewController as! ViewController
 		
-		if let url = self.fileURL {
+		if let url = urlToLoad {
 			let ls = LiveSplit()
 			ls.path = url.path
 			vc.loadLS(ls: ls)
@@ -52,6 +65,14 @@ class lss: SplitterDoc {
 		determineSave(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: 	contextInfo)
 	}
 	
+	override func close() {
+		super.close()
+		if let tempURL = tempURL {
+			let tempFile = try? File(path: tempURL.path)
+			try? tempFile?.delete()
+		}
+		
+	}
 	
 	
 	

@@ -43,7 +43,7 @@ class SplitterDoc: NSDocument {
 	///
 	///This is only here because swift's default `print` command is overriden by `NSDocument`'s `print` command.
 	func print(_ i: Any?) {
-		Swift.print(i)
+		Swift.print(i as Any)
 	}
 	
 	///A`File` that represents the document

@@ -9,6 +9,7 @@
 import SwiftUI
 import Cocoa
 import Files
+import Introspect
 
 struct WelcomeView: View {
 	@State var selectKeeper: URL? = nil
@@ -41,16 +42,10 @@ struct RecentsView: View {
 	@Binding var selectKeeper: URL?
 	var body: some View {
 		List(fileURLs, id: \.self, selection: $selectKeeper) { url in
-			FileRow(url: url, selectedURL: $selectKeeper)
-				
-
-				
-				
+			FileRow(url: url, selectedURL: self.$selectKeeper)
 				
 		}
 		.listRowBackground(Color.red)
-		
-		
 		.listStyle(SidebarListStyle())
 		
 		
@@ -102,9 +97,9 @@ struct FileRow: View {
 		}
 		
 		.simultaneousGesture(TapGesture().onEnded({
-			if selectedURL == url {
+			if self.selectedURL == self.url {
 				
-			NSDocumentController.shared.openDocument(withContentsOf: url, display: true, completionHandler: {_,_,_ in
+				NSDocumentController.shared.openDocument(withContentsOf: self.url, display: true, completionHandler: {_,_,_ in
 				(NSApp.delegate as? AppDelegate)?.welcomeWindow.close()
 			})
 			}
@@ -176,8 +171,6 @@ struct OpenFileButton: View {
 		HStack {
 			Text("􀈕").font(.system(size: 25))
 				.foregroundColor(.blue)
-//				.frame(maxWidth:40)
-//				.padding(.leading, 10)
 			VStack(alignment: .myAlignment) {
 				Text("Open an existing run").font(.headline)
 				Text("Open an existing .Split, LiveSplit, or Splits.io file on your Mac").font(.subheadline)
@@ -191,19 +184,17 @@ struct OpenFileButton: View {
 }
 struct DownloadFileButton: View {
 	var body: some View {
-		Button(action: {}, label: {
+		Button(action: {
+			(NSApp.delegate as? AppDelegate)?.createSearchWindow()
+		}, label: {
 		HStack {
 			Text("􀈅").font(.system(size: 30))
 				.foregroundColor(.blue)
-//				.frame(maxWidth:40)
-//				.padding(.leading, 10)
 			VStack(alignment: .myAlignment) {
 				Text("Download a run from Splits.io").font(.headline)
-				Text("Download a run from the one and only Splits.io ").font(.subheadline)
+				Text("Use the splits from an existing run on Splits.io ").font(.subheadline)
 			}
 			.alignmentGuide(.myAlignment) { d in d[HorizontalAlignment.center]}
-//				10
-//			}
 		}
 		}).buttonStyle(WelcomeButtonStyle())
 	}
@@ -222,23 +213,14 @@ extension HorizontalAlignment {
 struct SplitterInfoView: View {
 	@State var selectKeeper: Int? = nil
 	@State var buttonHover: Bool = false
+	@State var showWelcomeScreenOnLaunch: Bool = true
 	var body: some View {
 		VStack {
-			HStack() {
-				Button(buttonHover ? "􀁡" :"􀁠") {
-					NSApplication.shared.keyWindow?.close()
-				}
-				.buttonStyle(BorderlessButtonStyle())
-				.padding([.leading], /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
-				.onHover { hovering in
-					buttonHover = hovering
-				}
-				Spacer()
-				
-			}
+			
 			Spacer()
-				.frame(height: 50.0)
 			Image(nsImage: NSApplication.shared.applicationIconImage)
+				.resizable()
+				.aspectRatio(contentMode: .fit)
 				
 			Text("Welcome to Splitter").font(.largeTitle)
 				
@@ -247,18 +229,21 @@ struct SplitterInfoView: View {
 				Spacer()
 					.frame(height: 15)
 				CreateNewFileButton()
-					OpenFileButton()
-					DownloadFileButton()
-					.onTapGesture {
-						let frame = NSApplication.shared.keyWindow?.frame
-						print("width: \(frame?.width)")
-						print("height: \(frame?.height)")
+				OpenFileButton()
+				DownloadFileButton()
+				HStack {
+					Button("Configure Hotkeys"){
+						(NSApp.delegate as? AppDelegate)?.preferencesWindowController.show(preferencePane: .hotkeys)
 					}
+					Toggle("Show this screen on startup", isOn: $showWelcomeScreenOnLaunch)
+						.toggleStyle(CheckboxToggleStyle())
+				}
+				Spacer()
+					.frame(height: 10)
 			}
 			
-			Spacer()
-			
 		}
+		
 		
 	}
 }
