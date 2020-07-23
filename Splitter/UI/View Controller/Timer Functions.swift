@@ -85,7 +85,7 @@ extension ViewController {
 	func resetAllCurrentSplitsToZero() {
 		var i = 0
 		while i < currentSplits.count {
-			currentSplits[i].currentSplit = TimeSplit(timeString: "00:00:00.00")
+			currentSplits[i].currentSplit = TimeSplit()
 			splitsTableView.reloadData()
 			i = i + 1
 		}
@@ -186,11 +186,6 @@ extension ViewController {
 		} else if timerState == .running {
 			goToNextSplit()
 		}
-	}
-		
-	
-	@objc func updateMilHundreth() {
-			self.currentSplit?.updateMil()
 	}
 	
 	///Called when the user has finished the run.

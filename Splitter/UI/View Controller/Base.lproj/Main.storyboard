@@ -643,8 +643,8 @@
                                                             <rect key="frame" x="119" y="1" width="90" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="9wd-Sb-6rV">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="90" height="17"/>
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9wd-Sb-6rV">
+                                                                    <rect key="frame" x="0.0" y="-1" width="90" height="17"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="17" id="VYB-xY-UHq"/>
                                                                     </constraints>
@@ -935,7 +935,7 @@
                             <textField toolTip="Speedrun Category" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="748" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5cv-K8-dE8" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
                                 <rect key="frame" x="64" y="358" width="162" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" focusRingType="none" placeholderString="Category" id="j9g-Du-1pV">
-                                    <font key="font" metaFont="menuBar"/>
+                                    <font key="font" metaFont="menu" size="14"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>

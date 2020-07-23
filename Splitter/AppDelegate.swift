@@ -170,6 +170,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 	}
 
 	func crashes(_ crashes: MSCrashes!, shouldProcessErrorReport errorReport: MSErrorReport!) -> Bool {
+		
 	  return true; // return true if the crash report should be processed, otherwise false.
 	}
 	func applicationWillTerminate(_ aNotification: Notification) {
