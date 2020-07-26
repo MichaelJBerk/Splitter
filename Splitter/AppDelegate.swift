@@ -220,13 +220,25 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 		// Insert code here to tear down your application
 	}
 
+	#if DEBUG
+	lazy var preferencesWindowController = PreferencesWindowController(
+		preferencePanes: [
+			DefaultPreferenceViewController(),
+			HotkeysViewController(),
+			DebugPrefsViewController()
+			]
+		
+	)
+	#else
 	lazy var preferencesWindowController = PreferencesWindowController(
 		preferencePanes: [
 			DefaultPreferenceViewController(),
 			HotkeysViewController()
-//			AdvancedPreferenceViewController()
-		]
+			]
+		
 	)
+	#endif
+	
 	
 	var viewController: ViewController? {
 //		if let vc =  NSApp.windows.first?.contentViewController as? ViewController {

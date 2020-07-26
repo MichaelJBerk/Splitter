@@ -31,7 +31,6 @@
 		4A4D391F23C4F29C00BF3FCD /* blankWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A4D391E23C4F29C00BF3FCD /* blankWindow.xib */; };
 		4A4D392223C4FAE500BF3FCD /* HotkeysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4D392023C4FAE500BF3FCD /* HotkeysViewController.swift */; };
 		4A4D392323C4FAE500BF3FCD /* HotkeysViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A4D392123C4FAE500BF3FCD /* HotkeysViewController.xib */; };
-		4A55B34524C0DB6800BF66AA /* SearchWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A55B34324C0DB6800BF66AA /* SearchWindowController.swift */; };
 		4A55B34724C0DD0A00BF66AA /* Search.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A55B34624C0DD0A00BF66AA /* Search.storyboard */; };
 		4A5C1D1523F4AFB80014E8D3 /* commonPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5C1D1423F4AFB80014E8D3 /* commonPaths.swift */; };
 		4A5F10AE23CFAA1F00DA043B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A5F10AD23CFAA1F00DA043B /* Assets.xcassets */; };
@@ -74,8 +73,6 @@
 		4ADB15F424BE247B006C5C55 /* Pods_Splitter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87E736D304B5FCD4C27DCCBA /* Pods_Splitter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4ADE9226240F1FB900E0D99E /* InfoPopoverTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADE9225240F1FB900E0D99E /* InfoPopoverTabViewController.swift */; };
 		4ADFAE4923E4A0760049F57A /* QuickAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADFAE4823E4A0760049F57A /* QuickAlert.swift */; };
-		4AE74A9A24C1F59E006E8484 /* SearchPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE74A9924C1F59E006E8484 /* SearchPageViewController.swift */; };
-		4AE74A9E24C1F9F8006E8484 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE74A9D24C1F9F8006E8484 /* SearchViewController.swift */; };
 		4AE82A1624BFD4400044B6D3 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE82A1524BFD4400044B6D3 /* WelcomeView.swift */; };
 		4AE82A1824BFD4E60044B6D3 /* SplitsIOSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE82A1724BFD4E60044B6D3 /* SplitsIOSearchView.swift */; };
 		4AE82A1C24BFD6060044B6D3 /* VisualEffectViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE82A1B24BFD6060044B6D3 /* VisualEffectViewRepresentable.swift */; };
@@ -88,8 +85,8 @@
 		4AF953B523EB503100ED540C /* Timer Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF953B423EB503100ED540C /* Timer Functions.swift */; };
 		4AF953B723EB507800ED540C /* Splits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF953B623EB507800ED540C /* Splits.swift */; };
 		4AF9E8A824CE2FE200DFD5BE /* SplitsIOKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4AF9E8A724CE2FE200DFD5BE /* SplitsIOKit */; };
-		4AFEFFB0241AB9E400B00E45 /* TableViewAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFEFFAF241AB9E400B00E45 /* TableViewAppearance.swift */; };
-		4AFEFFB2241AB9EC00B00E45 /* TableViewAppearance.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AFEFFB1241AB9EC00B00E45 /* TableViewAppearance.xib */; };
+		4AF9E8AB24CE31CA00DFD5BE /* DebugPrefsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF9E8A924CE31CA00DFD5BE /* DebugPrefsViewController.swift */; };
+		4AF9E8AC24CE31CA00DFD5BE /* DebugPrefsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AF9E8AA24CE31CA00DFD5BE /* DebugPrefsViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -147,7 +144,6 @@
 		4A4D391E23C4F29C00BF3FCD /* blankWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = blankWindow.xib; sourceTree = "<group>"; };
 		4A4D392023C4FAE500BF3FCD /* HotkeysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotkeysViewController.swift; sourceTree = "<group>"; };
 		4A4D392123C4FAE500BF3FCD /* HotkeysViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HotkeysViewController.xib; sourceTree = "<group>"; };
-		4A55B34324C0DB6800BF66AA /* SearchWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchWindowController.swift; sourceTree = "<group>"; };
 		4A55B34624C0DD0A00BF66AA /* Search.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Search.storyboard; sourceTree = "<group>"; };
 		4A5C1D1423F4AFB80014E8D3 /* commonPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = commonPaths.swift; sourceTree = "<group>"; };
 		4A5F10AD23CFAA1F00DA043B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -187,8 +183,6 @@
 		4AD77D15240ECA2800CD65AD /* ColumnOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnOptionsViewController.swift; sourceTree = "<group>"; };
 		4ADE9225240F1FB900E0D99E /* InfoPopoverTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPopoverTabViewController.swift; sourceTree = "<group>"; };
 		4ADFAE4823E4A0760049F57A /* QuickAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickAlert.swift; sourceTree = "<group>"; };
-		4AE74A9924C1F59E006E8484 /* SearchPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchPageViewController.swift; sourceTree = "<group>"; };
-		4AE74A9D24C1F9F8006E8484 /* SearchViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchViewController.swift; sourceTree = "<group>"; };
 		4AE82A1524BFD4400044B6D3 /* WelcomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		4AE82A1724BFD4E60044B6D3 /* SplitsIOSearchView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitsIOSearchView.swift; sourceTree = "<group>"; };
 		4AE82A1B24BFD6060044B6D3 /* VisualEffectViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectViewRepresentable.swift; sourceTree = "<group>"; };
@@ -203,8 +197,8 @@
 		4AF9D75D23ECD5110019BC9A /* module.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.map; sourceTree = "<group>"; };
 		4AF9D76223ECD59A0019BC9A /* Splitter-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Splitter-Bridging-Header.h"; sourceTree = "<group>"; };
 		4AF9D76423ECD7520019BC9A /* LiveSplitCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveSplitCore.swift; sourceTree = "<group>"; };
-		4AFEFFAF241AB9E400B00E45 /* TableViewAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewAppearance.swift; sourceTree = "<group>"; };
-		4AFEFFB1241AB9EC00B00E45 /* TableViewAppearance.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewAppearance.xib; sourceTree = "<group>"; };
+		4AF9E8A924CE31CA00DFD5BE /* DebugPrefsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugPrefsViewController.swift; sourceTree = "<group>"; };
+		4AF9E8AA24CE31CA00DFD5BE /* DebugPrefsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DebugPrefsViewController.xib; sourceTree = "<group>"; };
 		87E736D304B5FCD4C27DCCBA /* Pods_Splitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Splitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB112D1E7E3623EA74C79CD1 /* Pods-Splitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitter.release.xcconfig"; path = "Target Support Files/Pods-Splitter/Pods-Splitter.release.xcconfig"; sourceTree = "<group>"; };
 		E8BF7290ADCAA74F9A15CCBE /* Pods-Splitter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitter.debug.xcconfig"; path = "Target Support Files/Pods-Splitter/Pods-Splitter.debug.xcconfig"; sourceTree = "<group>"; };
@@ -484,8 +478,8 @@
 			isa = PBXGroup;
 			children = (
 				4AEA928123C4F140004F6CF9 /* DefaultPreferenceViewController.swift */,
-				4AFEFFAF241AB9E400B00E45 /* TableViewAppearance.swift */,
-				4AFEFFB1241AB9EC00B00E45 /* TableViewAppearance.xib */,
+				4AF9E8A924CE31CA00DFD5BE /* DebugPrefsViewController.swift */,
+				4AF9E8AA24CE31CA00DFD5BE /* DebugPrefsViewController.xib */,
 				4AEA928223C4F140004F6CF9 /* DefaultPreferenceViewController.xib */,
 				4A18663123C5376900FEEE54 /* SettingsKeys.swift */,
 				4A87265623BD5423003A14AF /* Prefs.swift */,
@@ -503,9 +497,6 @@
 				4A894B1B249ABA71004FEEB3 /* LoadableNib.swift */,
 				4AE82A1B24BFD6060044B6D3 /* VisualEffectViewRepresentable.swift */,
 				4AE82A1724BFD4E60044B6D3 /* SplitsIOSearchView.swift */,
-				4A55B34324C0DB6800BF66AA /* SearchWindowController.swift */,
-				4AE74A9924C1F59E006E8484 /* SearchPageViewController.swift */,
-				4AE74A9D24C1F9F8006E8484 /* SearchViewController.swift */,
 				4A55B34624C0DD0A00BF66AA /* Search.storyboard */,
 				4A1657AF23EA4EE20008CB5F /* View Controller */,
 				4A9FCC792411A093000937A2 /* Windows */,
@@ -632,10 +623,10 @@
 				4A4D392323C4FAE500BF3FCD /* HotkeysViewController.xib in Resources */,
 				4AEA928423C4F140004F6CF9 /* DefaultPreferenceViewController.xib in Resources */,
 				4A7DDCE223BBDD0900A36AD1 /* Credits.html in Resources */,
+				4AF9E8AC24CE31CA00DFD5BE /* DebugPrefsViewController.xib in Resources */,
 				4A87DEA523F251C700975EB8 /* livesplit.icns in Resources */,
 				4A4D391F23C4F29C00BF3FCD /* blankWindow.xib in Resources */,
 				4A5F10AE23CFAA1F00DA043B /* Assets.xcassets in Resources */,
-				4AFEFFB2241AB9EC00B00E45 /* TableViewAppearance.xib in Resources */,
 				4A1DEFD0243D51EC00171A34 /* Splitter Doc SplitsIO.icns in Resources */,
 				4A230E9C23B00A1E00959C57 /* Main.storyboard in Resources */,
 				4A1DEFCF243D51EC00171A34 /* SplitterDocIcon.icns in Resources */,
@@ -748,7 +739,6 @@
 				4AEC4C02240F5BA300B01799 /* RunOptionsViewController.swift in Sources */,
 				4A66A43223DE2C88005952FA /* SplitTableViewColumnIdentifiers.swift in Sources */,
 				4A230E9323B00A1D00959C57 /* AppDelegate.swift in Sources */,
-				4AFEFFB0241AB9E400B00E45 /* TableViewAppearance.swift in Sources */,
 				4AAD470A248432540094A31F /* Colors.swift in Sources */,
 				4A9621F624C62401003CF23C /* ActivityIndicatorRepresentable.swift in Sources */,
 				4AC24DBC23EB4F17003008BF /* Split Table View.swift in Sources */,
@@ -765,9 +755,7 @@
 				4A0DC28624186C6200FC959A /* SplitsIODoc.swift in Sources */,
 				4AF953B723EB507800ED540C /* Splits.swift in Sources */,
 				4AE82A1824BFD4E60044B6D3 /* SplitsIOSearchView.swift in Sources */,
-				4A55B34524C0DB6800BF66AA /* SearchWindowController.swift in Sources */,
 				4A1C1465240ECD610056B104 /* ViewControllerID.swift in Sources */,
-				4AE74A9E24C1F9F8006E8484 /* SearchViewController.swift in Sources */,
 				4ACCEA7823B02F520068F89E /* TimeSplit.swift in Sources */,
 				4A5C1D1523F4AFB80014E8D3 /* commonPaths.swift in Sources */,
 				4AF953B523EB503100ED540C /* Timer Functions.swift in Sources */,
@@ -776,6 +764,7 @@
 				4AD77D16240ECA2800CD65AD /* ColumnOptionsViewController.swift in Sources */,
 				4A6A3BE423CD621A002C20AE /* MainWindow.swift in Sources */,
 				4A1657B323EA4F3C0008CB5F /* Button Actions.swift in Sources */,
+				4AF9E8AB24CE31CA00DFD5BE /* DebugPrefsViewController.swift in Sources */,
 				4A968C7C23F1F5FE001B74E8 /* lss.swift in Sources */,
 				4A6A3BE023CD1C39002C20AE /* GlobalKeybindPrefs.swift in Sources */,
 				4AEA928323C4F140004F6CF9 /* DefaultPreferenceViewController.swift in Sources */,
@@ -783,7 +772,6 @@
 				4A9DB792240847E40000D1B4 /* TimeSplitColumn.swift in Sources */,
 				4ADE9226240F1FB900E0D99E /* InfoPopoverTabViewController.swift in Sources */,
 				4A0F715F23F4A0A500E5948E /* SplitterDoc.swift in Sources */,
-				4AE74A9A24C1F59E006E8484 /* SearchPageViewController.swift in Sources */,
 				4A66A43023DE2682005952FA /* ImageButtonCellView.swift in Sources */,
 				4A894B1C249ABA71004FEEB3 /* LoadableNib.swift in Sources */,
 				4A3BDFA123E4C3B6001EA7FF /* DefaultHotkeys.swift in Sources */,
