@@ -37,7 +37,6 @@
 		4A5F10AE23CFAA1F00DA043B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A5F10AD23CFAA1F00DA043B /* Assets.xcassets */; };
 		4A61438424801A28007C38E0 /* ColorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A61438324801A28007C38E0 /* ColorsView.swift */; };
 		4A61438624801A37007C38E0 /* ColorsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A61438524801A37007C38E0 /* ColorsView.xib */; };
-		4A66573023E3D34600D14A67 /* (null) in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4A66A43023DE2682005952FA /* ImageButtonCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A66A42F23DE2682005952FA /* ImageButtonCellView.swift */; };
 		4A66A43223DE2C88005952FA /* SplitTableViewColumnIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A66A43123DE2C88005952FA /* SplitTableViewColumnIdentifiers.swift */; };
 		4A66A43423DE391B005952FA /* ShowHideUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A66A43323DE391B005952FA /* ShowHideUI.swift */; };
@@ -77,7 +76,6 @@
 		4ADFAE4923E4A0760049F57A /* QuickAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADFAE4823E4A0760049F57A /* QuickAlert.swift */; };
 		4AE74A9A24C1F59E006E8484 /* SearchPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE74A9924C1F59E006E8484 /* SearchPageViewController.swift */; };
 		4AE74A9E24C1F9F8006E8484 /* SearchViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE74A9D24C1F9F8006E8484 /* SearchViewController.swift */; };
-		4AE82A1424BFD42C0044B6D3 /* SplitsIOKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4AC401F024BD67AC005180F1 /* SplitsIOKit */; };
 		4AE82A1624BFD4400044B6D3 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE82A1524BFD4400044B6D3 /* WelcomeView.swift */; };
 		4AE82A1824BFD4E60044B6D3 /* SplitsIOSearchView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE82A1724BFD4E60044B6D3 /* SplitsIOSearchView.swift */; };
 		4AE82A1C24BFD6060044B6D3 /* VisualEffectViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE82A1B24BFD6060044B6D3 /* VisualEffectViewRepresentable.swift */; };
@@ -89,6 +87,7 @@
 		4AF8EE1A24BFEA8D008E8B9E /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 4AF8EE1924BFEA8D008E8B9E /* Introspect */; };
 		4AF953B523EB503100ED540C /* Timer Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF953B423EB503100ED540C /* Timer Functions.swift */; };
 		4AF953B723EB507800ED540C /* Splits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF953B623EB507800ED540C /* Splits.swift */; };
+		4AF9E8A824CE2FE200DFD5BE /* SplitsIOKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4AF9E8A724CE2FE200DFD5BE /* SplitsIOKit */; };
 		4AFEFFB0241AB9E400B00E45 /* TableViewAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFEFFAF241AB9E400B00E45 /* TableViewAppearance.swift */; };
 		4AFEFFB2241AB9EC00B00E45 /* TableViewAppearance.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AFEFFB1241AB9EC00B00E45 /* TableViewAppearance.xib */; };
 /* End PBXBuildFile section */
@@ -110,7 +109,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4A66573023E3D34600D14A67 /* (null) in Embed Frameworks */,
 				4ADB15F424BE247B006C5C55 /* Pods_Splitter.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -185,7 +183,6 @@
 		4AB3B93D23D96C10009C6AA6 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		4AC24DB923EB4EC5003008BF /* Split Table Row.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Split Table Row.swift"; sourceTree = "<group>"; };
 		4AC24DBB23EB4F17003008BF /* Split Table View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Split Table View.swift"; sourceTree = "<group>"; };
-		4AC401EF24BD6637005180F1 /* SplitsIOKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SplitsIOKit; sourceTree = "<group>"; };
 		4ACCEA7723B02F520068F89E /* TimeSplit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSplit.swift; sourceTree = "<group>"; };
 		4AD77D15240ECA2800CD65AD /* ColumnOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnOptionsViewController.swift; sourceTree = "<group>"; };
 		4ADE9225240F1FB900E0D99E /* InfoPopoverTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPopoverTabViewController.swift; sourceTree = "<group>"; };
@@ -221,9 +218,9 @@
 				4AD7662E23DA5F9A0052409C /* Files in Frameworks */,
 				4AA357B52416F79900219E65 /* liblivesplit_core.a in Frameworks */,
 				4ADB15F324BE247B006C5C55 /* Pods_Splitter.framework in Frameworks */,
+				4AF9E8A824CE2FE200DFD5BE /* SplitsIOKit in Frameworks */,
 				4AB5627924338FB000D7F8D1 /* SwiftyJSON in Frameworks */,
 				4AF8EE1A24BFEA8D008E8B9E /* Introspect in Frameworks */,
-				4AE82A1424BFD42C0044B6D3 /* SplitsIOKit in Frameworks */,
 				4A6B4F7423F07C3900CB781F /* libresolv.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,7 +317,6 @@
 		4A230E8623B00A1D00959C57 = {
 			isa = PBXGroup;
 			children = (
-				4AC401EF24BD6637005180F1 /* SplitsIOKit */,
 				4A230E9123B00A1D00959C57 /* Splitter */,
 				4A2A4AFB24290DD30006293B /* SplitterUITests */,
 				4A71054A24BE267300FA9127 /* SplitterTests */,
@@ -560,8 +556,8 @@
 			packageProductDependencies = (
 				4AD7662D23DA5F9A0052409C /* Files */,
 				4AB5627824338FB000D7F8D1 /* SwiftyJSON */,
-				4AC401F024BD67AC005180F1 /* SplitsIOKit */,
 				4AF8EE1924BFEA8D008E8B9E /* Introspect */,
+				4AF9E8A724CE2FE200DFD5BE /* SplitsIOKit */,
 			);
 			productName = Splitter;
 			productReference = 4A230E8F23B00A1D00959C57 /* Splitter.app */;
@@ -730,28 +726,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Splitter/Pods-Splitter-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		CCF7C8E5694B0D0DE40F11BD /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Splitter-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -1166,10 +1140,6 @@
 			package = 4AB5627724338FB000D7F8D1 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
 		};
-		4AC401F024BD67AC005180F1 /* SplitsIOKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = SplitsIOKit;
-		};
 		4AD7662D23DA5F9A0052409C /* Files */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4AD7662C23DA5F9A0052409C /* XCRemoteSwiftPackageReference "Files" */;
@@ -1179,6 +1149,10 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4AF8EE1824BFEA8D008E8B9E /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
 			productName = Introspect;
+		};
+		4AF9E8A724CE2FE200DFD5BE /* SplitsIOKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SplitsIOKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
