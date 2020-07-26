@@ -48,12 +48,11 @@ struct SplitsIOSearchView: View {
     }
 	var currentView: some View {
 		VStack {
-			switch model.currentViewMode {
-			case .searchForGame:
+			if model.currentViewMode == .searchForGame {
 				searchView()
-			case .chooseCategory:
+			} else if model.currentViewMode == .chooseCategory {
 				ChooseRunView()
-			case .finish:
+			} else {
 				FinishView()
 			}
 		}
@@ -114,7 +113,7 @@ struct searchView: View {
 				Spacer()
 				
 				Button(action:{
-					model.currentViewMode = .chooseCategory
+					self.model.currentViewMode = .chooseCategory
 					
 				}, label: {
 					Text("Next")
@@ -140,12 +139,12 @@ struct FinishView: View {
 			.background(Color(.controlBackgroundColor))
 			HStack {
 				Spacer()
-				Button(action: {model.isLoading.toggle()}) {
+				Button(action: {self.model.isLoading.toggle()}) {
 					Text("Toggle Loading")
 				}
 				Button(action: {
 					(NSApp.delegate as? AppDelegate)?.searchWindow.close()
-					model.vcToLoad?.view.window?.makeKeyAndOrderFront(nil)
+					self.model.vcToLoad?.view.window?.makeKeyAndOrderFront(nil)
 				}, label: {
 					Text("Finish")
 				}).disabled(model.isLoading)
@@ -197,7 +196,7 @@ struct ChooseRunView: View {
 						Text("Previous")
 					})
 					Button(action: {
-						model.isLoading = true
+						self.model.isLoading = true
 						self.model.currentViewMode = .finish
 						DispatchQueue.global(qos: .background).async {
 							self.model.selectedRun?.getRun(completion: { run in
@@ -207,8 +206,8 @@ struct ChooseRunView: View {
 								NSDocumentController.shared.addDocument(d)
 								d.makeWindowControllers()
 								if let vc =  d.windowControllers.first?.window?.contentViewController as? ViewController {
-									model.vcToLoad = vc
-									model.isLoading = false
+									self.model.vcToLoad = vc
+									self.model.isLoading = false
 							}
 						})
 						}
