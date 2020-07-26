@@ -43,7 +43,7 @@ class lss: SplitterDoc {
 		let windowController = storyboard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("Document Window Controller")) as! NSWindowController
 		self.addWindowController(windowController)
 		let vc = windowController.contentViewController as! ViewController
-		
+		vc.setColorForControls()
 		if let url = urlToLoad {
 			let ls = LiveSplit()
 			ls.path = url.path

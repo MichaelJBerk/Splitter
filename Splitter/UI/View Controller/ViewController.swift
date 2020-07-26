@@ -71,6 +71,12 @@ class ViewController: NSViewController {
 		}
 		return nil
 	}
+	var pauseMenuItem: NSMenuItem? {
+		if let pauseItem = view.window?.menu?.item(withIdentifier: menuIdentifiers.runMenu.pause) {
+			return pauseItem
+		}
+		return nil
+	}
 	
 //MARK: - Colors
 	var bgColor: NSColor = .splitterDefaultColor {
@@ -176,33 +182,50 @@ class ViewController: NSViewController {
 		didSet {
 			stopButton.isHidden = shouldStopButtonBeHidden
 			trashCanPopupButton.isHidden = shouldTrashCanBeHidden
+			let prevSplitItem = view.window?.menu?.item(withIdentifier: menuIdentifiers.runMenu.back)
 			if timerState == .stopped {
 				timerStopItem?.isEnabled = false
 				timerStopItem?.title = "Stop Timer"
 				
 				startSplitItem?.title = "Start Timer"
+				startSplitItem?.isEnabled = true
+				prevSplitItem?.isEnabled = false
+				
+				pauseMenuItem?.isEnabled = false
 				
 				addDeleteEnabled(true)
 				splitBackEnabled(false)
+				self.splitsTableView.reloadData(forRowIndexes: IndexSet(arrayLiteral: 0), columnIndexes: IndexSet(arrayLiteral: 0,1,2,3,4,5))
 			} else if timerState == .running {
 				timerStopItem?.title = "Stop Timer"
 				timerStopItem?.isEnabled = true
 				
 				startSplitItem?.title = "Split"
+				startSplitItem?.isEnabled = true
+				prevSplitItem?.isEnabled = true
+				
+				pauseMenuItem?.isEnabled = true
+				pauseMenuItem?.title = "Pause Timer"
 				
 				addDeleteEnabled(false)
 				splitBackEnabled(true)
 			} else if timerState == .paused {
 				timerStopItem?.isEnabled = true
 				timerStopItem?.title = "Stop Timer"
+				prevSplitItem?.isEnabled = false
 				
-				startSplitItem?.title = "Resume Timer"
+				pauseMenuItem?.isEnabled = true
+				pauseMenuItem?.title = "Resume Timer"
+				
+				startSplitItem?.isEnabled = false
+				
 				addDeleteEnabled(true)
 				splitBackEnabled(false)
 			}
 		}
 	}
 	
+	//TODO: see if I should just have a var "addDeleteEnabled" and set both equal to it instead of having a function for it
 	///Sets whethert the + and - buttons beneath the Table View are enabled or not
 	func addDeleteEnabled(_ enabled: Bool) {
 		plusButton.isEnabled = enabled
@@ -377,7 +400,7 @@ class ViewController: NSViewController {
 	//MARK: - Main Functions
 	override func viewWillAppear() {
 		super.viewWillAppear()
-		tableBGColor = .controlColor
+		tableBGColor = .splitterTableViewColor
 		#if DEBUG
 		let breakMI = NSMenuItem(title: "Break", action: #selector(breakFunc), keyEquivalent: "b")
 		breakMI.keyEquivalentModifierMask = .command

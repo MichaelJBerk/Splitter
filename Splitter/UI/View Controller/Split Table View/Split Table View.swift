@@ -57,8 +57,10 @@ extension ViewController: NSTableViewDelegate {
 		if let cell = tableView.makeView(withIdentifier: cellIdentifier!, owner: nil) as? NSTableCellView {
 			cell.textField?.delegate = self
 			
-			if timerState != .stopped {
-				tableView.rowView(atRow: currentSplitNumber, makeIfNecessary: false)?.backgroundColor = self.selectedColor
+			
+			//Highlight the current row if the user is in the middle of a run
+			if timerState != .stopped && row == currentSplitNumber {
+				tableView.selectRowIndexes(IndexSet(arrayLiteral: currentSplitNumber), byExtendingSelection: false)
 			}
 			
 			if let imageCell = cell as? ImageButtonCellView {
@@ -124,30 +126,36 @@ extension ViewController: NSTextFieldDelegate {
 	
 	///Function called after editing the text field in a row
 	func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
-
+		//Get the column, row, and cell from the control
 		let colIndex = splitsTableView.column(for: control)
 		let colID = splitsTableView.tableColumns[colIndex].identifier
 		let r = splitsTableView.row(for: control)
-
 		let cellrow = splitsTableView.rowView(atRow: r, makeIfNecessary: false)
 		let cell = cellrow?.view(atColumn: colIndex) as! NSTableCellView
+		
+		
 		var editedSplit = currentSplits[r]
 		
+		
+		guard let cellText = cell.textField?.stringValue else {return false}
 		if colID == STVColumnID.splitTitleColumn {
-			editedSplit.splitName = cell.textField!.stringValue
-		}
-		switch colID {
-		case STVColumnID.splitTitleColumn:
-			editedSplit.splitName = cell.textField!.stringValue
-		case STVColumnID.currentSplitColumn:
-			editedSplit.currentSplit = TimeSplit(timeString: cell.textField!.stringValue)
-		case STVColumnID.bestSplitColumn:
-			editedSplit.bestSplit = TimeSplit(timeString: cell.textField!.stringValue)
-			editedSplit.previousBest = TimeSplit(timeString: cell.textField!.stringValue)
-		case STVColumnID.previousSplitColumn:
-			editedSplit.previousSplit = TimeSplit(timeString: cell.textField!.stringValue)
-		default:
-			break
+			editedSplit.splitName = cellText
+		} else {
+			if let newSplit = TimeSplit(timeString: cellText){
+			
+				
+				switch colID {
+				case STVColumnID.currentSplitColumn:
+					editedSplit.currentSplit = newSplit
+				case STVColumnID.bestSplitColumn:
+					editedSplit.bestSplit = newSplit
+					editedSplit.previousBest = newSplit
+				case STVColumnID.previousSplitColumn:
+					editedSplit.previousSplit = newSplit
+				default:
+					break
+				}
+			}
 		}
 		currentSplits[r] = editedSplit
 		if colID != STVColumnID.bestSplitColumn {

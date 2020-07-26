@@ -194,7 +194,9 @@ class SplitterDoc: NSDocument {
 				}
 			}
 			fileWrapperURL = url.absoluteString
-			self.wrapper = folderToFileWrapper(folder: currentBundleFolder!)
+			if let currentBundleFolder = currentBundleFolder {
+				self.wrapper = folderToFileWrapper(folder: currentBundleFolder)
+			}
 		} else {
 		}
 		super.save(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: contextInfo)

@@ -359,13 +359,13 @@
                                                 <action selector="stopMenuItem:" target="Ady-hI-5gd" id="Tje-Uj-H0p"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="n5c-GI-xuS"/>
                                         <menuItem title="Previous Split" identifier="timerBack" id="JbY-xM-DFE">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="prevSplitMenuItem:" target="Ady-hI-5gd" id="vLH-ED-sfH"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="n5c-GI-xuS"/>
                                         <menuItem title="Reset Run" identifier="ResetRun" id="M2Y-AP-1Gh">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
@@ -649,8 +649,8 @@
                                                             <rect key="frame" x="119" y="1" width="90" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="9wd-Sb-6rV">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="90" height="17"/>
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9wd-Sb-6rV">
+                                                                    <rect key="frame" x="0.0" y="-1" width="90" height="17"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="17" id="VYB-xY-UHq"/>
                                                                     </constraints>
