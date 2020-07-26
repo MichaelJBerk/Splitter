@@ -81,18 +81,11 @@ extension ViewController {
 		lscTimer?.start()
 	}
 	
-	@objc func timerInfLoop() {
-		currentSplit?.updateSec(sec: lscTimer?.currentTime().realTime()?.totalSeconds() ?? 0)
-			TimerLabel.stringValue = String(lscTimer?.currentTime().realTime()?.totalSeconds() ?? 0)
-		
-		splitsTableView.reloadData()
-	}
-	
 	///Clears out the current time field on all segments in the Table View
 	func resetAllCurrentSplitsToZero() {
 		var i = 0
 		while i < currentSplits.count {
-			currentSplits[i].currentSplit = TimeSplit(timeString: "00:00:00.00")
+			currentSplits[i].currentSplit = TimeSplit()
 			splitsTableView.reloadData()
 			i = i + 1
 		}
@@ -148,10 +141,9 @@ extension ViewController {
 	}
 	///Updates the current time on the timer
 	@objc func UpdateTimer() {
-		if currentSplit!.paused {
+		if currentSplit?.paused ?? false {
 			lscTimer?.pause()
 		} else {
-			
 			currentSplit?.updateSec(sec: lscTimer?.currentTime().realTime()?.totalSeconds() ?? 0)
 		}
 		
@@ -191,16 +183,9 @@ extension ViewController {
 	func startSplitTimer() {
 		if timerState == .stopped {
 			startTimer()
-		} else if timerState == .paused {
-			pauseResumeTimer()
 		} else if timerState == .running {
 			goToNextSplit()
 		}
-	}
-		
-	
-	@objc func updateMilHundreth() {
-			self.currentSplit?.updateMil()
 	}
 	
 	///Called when the user has finished the run.

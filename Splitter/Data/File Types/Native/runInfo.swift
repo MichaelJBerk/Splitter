@@ -92,10 +92,12 @@ extension ViewController {
 			currentSplits = []
 			for s in ri.segments {
 				let compare = SplitComparison(rawValue: ri.compareTo ?? 0)!
-				let bestTimeSplit = TimeSplit(timeString: s.personalBestTime)
-				let currentTimeSplit = TimeSplit(timeString: s.currentTime)
-				let newRow = splitTableRow(splitName: s.name, bestSplit: bestTimeSplit, currentSplit: currentTimeSplit, previousSplit: TimeSplit(timeString: s.previousTime ?? "00") , previousBest: TimeSplit(timeString: s.previousPersonalBestTime ??
-					"00"),compareTo: compare )
+				let bestTimeSplit = TimeSplit(timeString: s.personalBestTime) ?? TimeSplit()
+				let currentTimeSplit = TimeSplit(timeString: s.currentTime) ?? TimeSplit()
+				let previousTimeSplit = TimeSplit(timeString: s.previousTime) ?? TimeSplit()
+				let previousBestTimeSplit = TimeSplit(timeString: s.previousPersonalBestTime) ?? TimeSplit()
+				
+				let newRow = splitTableRow(splitName: s.name, bestSplit: bestTimeSplit, currentSplit: currentTimeSplit, previousSplit: previousTimeSplit, previousBest: previousBestTimeSplit,compareTo: compare )
 				currentSplits.append(newRow)
 				splitsTableView.reloadData()
 			}

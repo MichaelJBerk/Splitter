@@ -34,7 +34,9 @@ class TimeSplit: NSObject, NSCopying, Comparable {
 	convenience init( mil:Int, sec:Int, min:Int, hour:Int) {
 
 		let str = "\(hour):\(min):\(sec).\(mil)"
-		self.init(timeString: str)
+		//This will never be invalid, since we're constructing the string in the line above so it's
+		//safe to force-unwrap it
+		self.init(timeString: str)!
 	}
 	
 	
@@ -44,42 +46,22 @@ class TimeSplit: NSObject, NSCopying, Comparable {
 		self.totalSec = Double(mil / 1000)
 	}
 	
-	/// Initalizes the time split from using string in the format "00:00:00.00" with hours, minutes, seconds, and milliseconds.
-	/// - Parameter timeString: String of a time value in the format "00:00:00.00" for hours, minutes, seconds, and milliseconds
-	init(timeString: String) {
-//		var hourMilSec = timeString.split(separator: ":", maxSplits: 3, omittingEmptySubsequences: false)
-//
-//		if hourMilSec.count == 2 {
-//			let newTimeString = "00:" + timeString;
-//			hourMilSec = newTimeString.split(separator: ":", maxSplits: 3, omittingEmptySubsequences: false)
-//		}
-//		let secSplit = hourMilSec.last?.split(separator: ".")
-//
-//		hourMilSec.removeLast()
-//		hourMilSec.append(contentsOf: secSplit!)
-//
-//		if hourMilSec.count == 3 {
-//			hourMilSec.append("00")
-//		}
-//		let finalSplit = hourMilSec
-//		if hourMilSec.count >= 3 {
-//			let mil = Int(String(finalSplit[3])) ?? 0
-//			let sec = Int(String(finalSplit[2])) ?? 0
-//			let min = Int(String(finalSplit[1])) ?? 0
-//			let hour = Int(String(finalSplit[0])) ?? 0
-//
-//			totalSec = 0
-//			totalSec = totalSec + Double(mil)
-//			totalSec = totalSec + (Double(sec) * 100)
-//			totalSec = totalSec + (Double(min) * 6000)
-//			totalSec = totalSec + (Double(hour) * 360000)
-//
-//
-//		} else {
-//			self.totalSec = 0
-//		}
-		let time = LiveSplitCore.TimeSpan.parse(timeString)
-		self.totalSec = time!.totalSeconds()
+	/**
+	Initalizes an optional time split from using string in the format "00:00:00.00" with hours, minutes, seconds, and milliseconds.
+	- Parameter timeString: String of a time value in the format "00:00:00.00" for hours, minutes, seconds, and milliseconds.
+	If invalid, the initalizer will return `nil`.
+	
+	- Important: Since the initalizer is optional, you'll need to plan accordingly for cases where it may return nil. If you're just trying to load a split with a specific time, (i.e. 02:08:50.02), use `init( mil:Int, sec:Int, min:Int, hour:Int) ` instead.
+	
+	It's best to use this when parsing a string into a time split (such as text from a text field). Since it will return `nil` if the text is invalid, you can, for example, cancel the edit if the string is not a valid time, or handle it some other way.
+*/
+	init?(timeString: String?) {
+		if let timeString = timeString,
+			let time = LiveSplitCore.TimeSpan.parse(timeString) {
+			self.totalSec = time.totalSeconds()
+		} else {
+			return nil
+		}
 		
 	}
 	
@@ -91,8 +73,6 @@ class TimeSplit: NSObject, NSCopying, Comparable {
 	/// Creates a TimeSplit set to the number of seconds given
 	/// - Parameter seconds: initial duration of the `TimeSplit`
 	init (seconds: Double) {
-//		let mil = Int(seconds * 1000)
-//		self.init(mil: mil)
 		totalSec = seconds
 	}
 	
@@ -103,7 +83,7 @@ class TimeSplit: NSObject, NSCopying, Comparable {
 		let dec = totalSec.truncatingRemainder(dividingBy: 1)
 		let dtoi = Int((dec * 100).rounded())
 		
-		return dtoi//Int(String(decSplit)) ?? 0
+		return dtoi
 		
 	}
 	/// Returns the current second of the `TimeSplit`
@@ -114,8 +94,7 @@ class TimeSplit: NSObject, NSCopying, Comparable {
 	
 	/// Returns the current minute of the `TimeSplit`
 	var min: Int {
-//		return Int(totalSec. / 60)
-		return (Int(totalSec) / 60) % 60//.remainder(dividingBy: 60))
+		return (Int(totalSec) / 60) % 60
 	}
 	///Returns the current hour of the `TimeSplit`
 	var hour: Int {
@@ -126,15 +105,8 @@ class TimeSplit: NSObject, NSCopying, Comparable {
 		self.totalSec = 0
 	}
 	
-	///The function that updates the TimeSplit every millisecond
-	@objc func updateMil() {
-		if !paused {
-//			totalMil = totalMil + 1
-		}
-	}
-	
+	///Update the total seconds of the `TimeSplit`
 	@objc func updateSec(sec: Double) {
-//		self.totalMil = Int(sec * 1000)
 		totalSec = sec
 	}
 	//MARK: - Strings

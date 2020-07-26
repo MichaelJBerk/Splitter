@@ -22,6 +22,7 @@ class SplitsIODoc: SplitterDoc {
 		
 		self.addWindowController(windowController)
 		let vc = windowController.contentViewController as! ViewController
+		vc.setColorForControls()
 		if let si = splitsio {
 			vc.runTitle = si.game?.longname ?? ""
 			vc.category = si.category?.longname ?? ""

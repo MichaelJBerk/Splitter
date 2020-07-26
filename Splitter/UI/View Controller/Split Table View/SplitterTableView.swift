@@ -101,6 +101,14 @@ class SplitterTableView: NSTableView {
 		superview?.keyDown(with: event)
 	}
 	
+	///An `IndexSet` with the index for every column in the table
+	var allColumnIndexes: IndexSet {
+		var cols: [Int] = []
+		for i in 0...tableColumns.count {
+			cols.append(i)
+		}
+		return IndexSet(cols)
+	}
 	
 }
 

@@ -254,6 +254,7 @@
 		4A0DC2842418217200FC959A /* LiveSplit */ = {
 			isa = PBXGroup;
 			children = (
+				4A87DEA423F251C700975EB8 /* livesplit.icns */,
 				4A617EBD23EBC65C0005D60E /* LiveSplit.swift */,
 				4A968C7B23F1F5FE001B74E8 /* lss.swift */,
 			);
@@ -484,7 +485,6 @@
 				4AFEFFB1241AB9EC00B00E45 /* TableViewAppearance.xib */,
 				4AEA928223C4F140004F6CF9 /* DefaultPreferenceViewController.xib */,
 				4A18663123C5376900FEEE54 /* SettingsKeys.swift */,
-				4A87DEA423F251C700975EB8 /* livesplit.icns */,
 				4A87265623BD5423003A14AF /* Prefs.swift */,
 				4A66A43523DE3921005952FA /* UI Settings */,
 				4A5F10AC23CF754E00DA043B /* Hotkeys */,
@@ -530,7 +530,7 @@
 			buildConfigurationList = 4A230EA123B00A1E00959C57 /* Build configuration list for PBXNativeTarget "Splitter" */;
 			buildPhases = (
 				3F9BCE07BBC9A99456CFB0F5 /* [CP] Check Pods Manifest.lock */,
-				4A66573423E3E0CE00D14A67 /* ShellScript */,
+				4A66573423E3E0CE00D14A67 /* Run Script */,
 				4A230E8B23B00A1D00959C57 /* Sources */,
 				4A230E8C23B00A1D00959C57 /* Frameworks */,
 				4A230E8D23B00A1D00959C57 /* Resources */,
@@ -692,7 +692,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4A66573423E3E0CE00D14A67 /* ShellScript */ = {
+		4A66573423E3E0CE00D14A67 /* Run Script */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -701,6 +701,7 @@
 			);
 			inputPaths = (
 			);
+			name = "Run Script";
 			outputFileListPaths = (
 			);
 			outputPaths = (
@@ -972,7 +973,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 106;
+				CURRENT_PROJECT_VERSION = 123;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 39SZK2C73D;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -996,7 +997,7 @@
 					"$(PROJECT_DIR)/livesplit-core/target/release",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.1;
 				MODULEMAP_FILE = "\"$(PROJECT_DIR)/Splitter/LiveSplit Core/module.map\"";
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mibe.Splitter;
@@ -1016,7 +1017,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 106;
+				CURRENT_PROJECT_VERSION = 123;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 39SZK2C73D;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1040,7 +1041,7 @@
 					"$(PROJECT_DIR)/livesplit-core/target/release",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 2.0;
+				MARKETING_VERSION = 2.1;
 				MODULEMAP_FILE = "\"$(PROJECT_DIR)/Splitter/LiveSplit Core/module.map\"";
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mibe.Splitter;
