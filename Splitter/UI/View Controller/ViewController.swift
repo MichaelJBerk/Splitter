@@ -184,40 +184,41 @@ class ViewController: NSViewController {
 			trashCanPopupButton.isHidden = shouldTrashCanBeHidden
 			let prevSplitItem = view.window?.menu?.item(withIdentifier: menuIdentifiers.runMenu.back)
 			if timerState == .stopped {
-				timerStopItem?.isEnabled = false
+				setMenuItemEnabled(item: timerStopItem, enabled: false)
 				timerStopItem?.title = "Stop Timer"
 				
 				startSplitItem?.title = "Start Timer"
-				startSplitItem?.isEnabled = true
-				prevSplitItem?.isEnabled = false
 				
-				pauseMenuItem?.isEnabled = false
+				setMenuItemEnabled(item: startSplitItem, enabled: true)
+				setMenuItemEnabled(item: prevSplitItem, enabled: false)
+				
+				setMenuItemEnabled(item: pauseMenuItem, enabled: false)
 				
 				addDeleteEnabled(true)
 				splitBackEnabled(false)
 				self.splitsTableView.reloadData(forRowIndexes: IndexSet(arrayLiteral: 0), columnIndexes: IndexSet(arrayLiteral: 0,1,2,3,4,5))
 			} else if timerState == .running {
 				timerStopItem?.title = "Stop Timer"
-				timerStopItem?.isEnabled = true
+				setMenuItemEnabled(item: timerStopItem, enabled: true)
 				
 				startSplitItem?.title = "Split"
-				startSplitItem?.isEnabled = true
-				prevSplitItem?.isEnabled = true
+				setMenuItemEnabled(item: startSplitItem, enabled: true)
+				setMenuItemEnabled(item: prevSplitItem, enabled: true)
 				
-				pauseMenuItem?.isEnabled = true
+				setMenuItemEnabled(item: pauseMenuItem, enabled: true)
 				pauseMenuItem?.title = "Pause Timer"
 				
 				addDeleteEnabled(false)
 				splitBackEnabled(true)
 			} else if timerState == .paused {
-				timerStopItem?.isEnabled = true
+				setMenuItemEnabled(item: timerStopItem, enabled: true)
 				timerStopItem?.title = "Stop Timer"
-				prevSplitItem?.isEnabled = false
+				setMenuItemEnabled(item: prevSplitItem, enabled: false)
 				
-				pauseMenuItem?.isEnabled = true
+				setMenuItemEnabled(item: pauseMenuItem, enabled: true)
 				pauseMenuItem?.title = "Resume Timer"
 				
-				startSplitItem?.isEnabled = false
+				setMenuItemEnabled(item: startSplitItem, enabled: false)
 				
 				addDeleteEnabled(true)
 				splitBackEnabled(false)
@@ -367,6 +368,7 @@ class ViewController: NSViewController {
 	
 	
 	//MARK: - Settings
+	var enabledMenuItems:[NSUserInterfaceItemIdentifier: Bool] = [:]
 	
 	var windowFloat = false
 	var UIHidden = false
@@ -432,7 +434,7 @@ class ViewController: NSViewController {
 			gameIconButton.image = gi
 		}
 		
-		timerStopItem?.isEnabled = false
+		setMenuItemEnabled(item: timerStopItem, enabled: false)
 	
 		if appearance != nil {
 			setSplitterAppearance(appearance: appearance!)
@@ -452,6 +454,11 @@ class ViewController: NSViewController {
 		
 		attemptField.stringValue = "\(attempts)"
 		attemptField.formatter = OnlyIntegerValueFormatter()
+	}
+	func setMenuItemEnabled(item: NSMenuItem?, enabled: Bool) {
+		if let id = item?.identifier {
+			enabledMenuItems[id] = enabled
+		}
 	}
 	
 	

@@ -105,6 +105,20 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 		})
 	}
 	
+	///Invoked immediately before opening an untitled file.
+	///
+	///This is used to make the welcome window appear on startup, or when there's no open file.
+	func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
+        DispatchQueue.main.async {
+            guard sender.keyWindow == nil else { return }
+			self.openWelcomeWindow()
+        }
+        return false
+    }
+
+//	func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
+//		return true
+//	}
 	
 	func applicationDidFinishLaunching(_ notification: Notification) {
 		if !Settings.notFirstUse {
@@ -121,7 +135,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 			if Settings.lastOpenedBuild != otherConstants.build {
 			}
 		}
-		
+//		openWelcomeWindow()
+//		self.window = welcomeWindow
 		
 		Settings.lastOpenedVersion = otherConstants.version
 		Settings.lastOpenedBuild = otherConstants.build
@@ -129,7 +144,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 		MAStoStandardHotkeys()
 		self.globalShortcuts = Settings.enableGlobalHotkeys
 		
-		
+		//MSAppCenter stuff
 		MSCrashes.setDelegate(self)
 		let keys = SplitterKeys()
 		MSAppCenter.start("\(keys.appCenter)", withServices:[
@@ -179,14 +194,21 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 		welcomeWindow.titleVisibility = .hidden
 		welcomeWindow.titlebarAppearsTransparent = true
 		welcomeWindow.isMovableByWindowBackground = true
+		
 //		welcomeWindow.standardWindowButton(.closeButton)?.isHidden = true
 		welcomeWindow.standardWindowButton(.miniaturizeButton)?.isHidden = true
 		welcomeWindow.standardWindowButton(.zoomButton)?.isHidden = true
 		welcomeWindow.setFrameAutosaveName("Welcome")
 		welcomeWindow.contentView = NSHostingView(rootView: welcomeView)
-		welcomeWindow.center()
-		welcomeWindow.makeKeyAndOrderFront(nil)
-		welcomeWindow.isReleasedWhenClosed = false
+//		welcomeWindow.center()
+//		welcomeWindow.makeKeyAndOrderFront(nil)
+//		welcomeWindow.isReleasedWhenClosed = false
+		let wc = WelcomeWindowController(window: welcomeWindow)
+		wc.showWindow(nil)
+		
+	}
+	@IBAction func welcomeWindowMenuItem(_ sender: Any) {
+		self.openWelcomeWindow()
 	}
 
 	func createSearchWindow() {
@@ -241,9 +263,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 	
 	
 	var viewController: ViewController? {
-//		if let vc =  NSApp.windows.first?.contentViewController as? ViewController {
-//			return vc
-//		}
 		get {
 			var viewC: ViewController? = nil
 			for window in NSApp.orderedWindows {
@@ -266,7 +285,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 	}
 
 	@IBAction func preferencesMenuItemActionHandler(_ sender: NSMenuItem) {
-//		preferencesWindowController.window = self.window
 		
 		preferencesWindowController.show()
 	}
@@ -280,32 +298,19 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 				for i in appKeybinds {
 					if let k = i {
 						if let kb = k.keybind {
-//							MASShortcutMonitor.shared()?.register(kb, withAction: keybindAction(keybind: k.title))
 						}
 					}
 				}
 			}
 		}
 	}
-	
-	
-	
-	// {
-//		didSet {
-//			if !globalShortcuts {
-//				MASShortcutMonitor.shared()?.unregisterAllShortcuts()
-//			}
-//			else {
-//				for i in appKeybinds {
-//					if let k = i {
-//						if let kb = k.keybind {
-//							updateSplitterKeybind(keybind: k.title, shortcut: kb)
-//						}
-////					let a = keybindAction(keybind: k.title)
-////					MASShortcutMonitor.shared()?.register(k.keybind, withAction: a)
-//					}
-//				}
-//			}
-//		}
-//	}
+}
+
+extension AppDelegate: NSMenuItemValidation {
+	func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+		if let id = menuItem.identifier, id == menuIdentifiers.windowMenu.welcomeWindowItem {
+			return !self.welcomeWindow.isVisible
+		}
+		return true
+	}
 }
