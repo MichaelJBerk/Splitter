@@ -109,16 +109,16 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 	///
 	///This is used to make the welcome window appear on startup, or when there's no open file.
 	func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
-        DispatchQueue.main.async {
-            guard sender.keyWindow == nil else { return }
-			self.openWelcomeWindow()
-        }
-        return false
-    }
-
-//	func applicationShouldHandleReopen(_ sender: NSApplication, hasVisibleWindows flag: Bool) -> Bool {
-//		return true
-//	}
+		if Settings.showWelcomeWindow {
+			DispatchQueue.main.async {
+				guard sender.keyWindow == nil else { return }
+				self.openWelcomeWindow()
+			}
+			return false
+		} else {
+			return true
+		}
+	}
 	
 	func applicationDidFinishLaunching(_ notification: Notification) {
 		if !Settings.notFirstUse {
@@ -135,8 +135,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 			if Settings.lastOpenedBuild != otherConstants.build {
 			}
 		}
-//		openWelcomeWindow()
-//		self.window = welcomeWindow
 		
 		Settings.lastOpenedVersion = otherConstants.version
 		Settings.lastOpenedBuild = otherConstants.build
@@ -309,7 +307,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 extension AppDelegate: NSMenuItemValidation {
 	func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
 		if let id = menuItem.identifier, id == menuIdentifiers.windowMenu.welcomeWindowItem {
-			return !self.welcomeWindow.isVisible
+			if self.welcomeWindow != nil {return !self.welcomeWindow.isVisible}
 		}
 		return true
 	}

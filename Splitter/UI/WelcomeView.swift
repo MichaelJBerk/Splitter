@@ -213,9 +213,16 @@ extension HorizontalAlignment {
 struct SplitterInfoView: View {
 	@State var selectKeeper: Int? = nil
 	@State var buttonHover: Bool = false
-	@State var showWelcomeScreenOnLaunch: Bool = true
+	@State var showWelcomeScreenOnLaunch: Bool = Settings.showWelcomeWindow {
+		didSet {
+			Settings.showWelcomeWindow = self.showWelcomeScreenOnLaunch
+		}
+	}
+	
 	var body: some View {
-		VStack {
+		let showOnLaunch = Binding<Bool>(
+			get: {self.showWelcomeScreenOnLaunch}, set: {self.showWelcomeScreenOnLaunch = $0})
+		return VStack {
 			
 			Spacer()
 			Image(nsImage: NSApplication.shared.applicationIconImage)
@@ -235,7 +242,7 @@ struct SplitterInfoView: View {
 					Button("Configure Hotkeys"){
 						(NSApp.delegate as? AppDelegate)?.preferencesWindowController.show(preferencePane: .hotkeys)
 					}
-					Toggle("Show this screen on startup", isOn: $showWelcomeScreenOnLaunch)
+					Toggle("Show this screen on startup", isOn: showOnLaunch)
 						.toggleStyle(CheckboxToggleStyle())
 				}
 				Spacer()
