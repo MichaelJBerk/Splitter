@@ -7,9 +7,10 @@ import Files
 
 public class SplitsIOKit {
 	var searchRequest: DataRequest?
-	public init() {
-		
+	public init(url: URL = URL(string:"https://splits.io")!) {
+		splitsIOURL = url
 	}
+	var splitsIOURL: URL
 	
 	enum SplitsIOError: Error {
 		case cantGetRunID
@@ -17,9 +18,13 @@ public class SplitsIOKit {
 	
 	public func searchSplitsIO(for game: String, completion: @escaping ([SplitsIOGame]?) -> ()) {
 		searchRequest?.cancel()
-		searchRequest = AF.request("https://splits.io/api/v4/games", method: .get, parameters: ["search":"\(game)"], encoding: URLEncoding.default).responseDecodable(of: SplitsIOGameSearch.self) { response in
+		if game.count == 0 {return}
+		let gamesURL = splitsIOURL.appendingPathComponent("/api/v4/games")
+		searchRequest = AF.request(gamesURL, method: .get, parameters: ["search":"\(game)"], encoding: URLEncoding.default).responseDecodable(of: SplitsIOGameSearch.self) { response in
 			
 			let v = response.value
+			
+			
 			completion(v?.games)
 		}
 		
@@ -34,7 +39,8 @@ public class SplitsIOKit {
 	///   - completion: Completion handler for the run
 	/// - Returns: Run in splits.ioExchange format
 	public func getRun(runID: String, asTemplate: Bool = false, completion: @escaping (SplitsIOExchangeFormat?) -> ()) {
-		AF.request("https://splits.io/api/v4/runs/\(runID)", headers: .init(["Accept":"application/splitsio"])).responseString { response in
+		let runsURL = splitsIOURL.appendingPathComponent("/api/v4/runs/\(runID)")
+		AF.request(runsURL, headers: .init(["Accept":"application/splitsio"])).responseString { response in
 
 			if let data = response.data {
 				let str = String(data: data, encoding: .utf8)
@@ -49,7 +55,8 @@ public class SplitsIOKit {
 	/// - Parameters:
 	///   - completion: returns path to temp `.lss` file
 	public func getRunFromCat(categoryID: String, completion: @escaping(String?)-> ()) {
-		AF.request("https://splits.io/api/v4/categories/\(categoryID)/runs").responseString { response in
+		let catURL = splitsIOURL.appendingPathComponent("/api/v4/categories/\(categoryID)/runs")
+		AF.request(catURL).responseString { response in
 			if let data = response.data {
 				let json = JSON(data)
 				guard let id = json["runs"][0].dictionary?["id"]?.string else {completion(nil)
@@ -65,7 +72,8 @@ public class SplitsIOKit {
 	
 	///Downloads a LiveSplit file and saves it to the caches directory
 	public func getRunAsLivesplit(runID: String, asTemplate: Bool = false, completion: @escaping (_ path: String?) -> ()) {
-		AF.request("https://splits.io/api/v4/runs/\(runID)", headers: .init(["Accept":"application/livesplit"])).responseData { response in
+		let runsURL = splitsIOURL.appendingPathComponent("/api/v4/runs/\(runID)")
+		AF.request(runsURL, headers: .init(["Accept":"application/livesplit"])).responseData { response in
 
 			if let data = response.data {
 				if let tempURL = try? FileManager.default.url(for: .cachesDirectory, in: .userDomainMask, appropriateFor: nil, create: false) {
@@ -80,8 +88,26 @@ public class SplitsIOKit {
 		}
 	}
 	
+	public func getCategories (for gameShortname: String, completion: @escaping([SplitsIOCat]) -> ()) {
+		let catsURL = splitsIOURL.appendingPathComponent("/api/v4/games/\(gameShortname)/categories")
+		AF.request(catsURL, parameters: .init(["filter":"nonempty"])).responseJSON { response in
+			if let data = response.data {
+				let json = JSON(data)
+				let catJSON = json["categories"]
+				if let cats = try? JSONDecoder().decode([SplitsIOCat].self, from: catJSON.rawData()) {
+//					if let cat = try? JSONDecoder().decode(SplitsIOCat.self, from: catJSON.rawData()) {
+					completion(cats)
+					
+				}
+				
+				
+			}
+		}
+	}
+	
 	public func getCategory(for gameShortname: String, categoryName: String, completion: @escaping(SplitsIOCat) -> ()) {
-		AF.request("https://splits.io/api/v4/games/\(gameShortname)/categories").responseJSON { response in
+		let catsURL = splitsIOURL.appendingPathComponent("/api/v4/games/\(gameShortname)/categories")
+		AF.request(catsURL, headers: .init(["filter":"nonempty"])).responseJSON { response in
 			if let data = response.data {
 				let json = JSON(data)
 				if let catJSON = json["categories"].array?.first(where: {$0.dictionary?["name"]?.string == categoryName}) {
@@ -107,7 +133,7 @@ struct SplitsIOGameSearch: Codable {
 }
 
 // MARK: - Game
-public struct SplitsIOGame: Codable, Hashable {
+public struct SplitsIOGame: Codable, Hashable, Identifiable {
 	
 	public static func == (lhs: SplitsIOGame, rhs: SplitsIOGame) -> Bool {
 		return lhs.id == rhs.id
@@ -115,7 +141,7 @@ public struct SplitsIOGame: Codable, Hashable {
 	
 	public let categories: [SplitsIOCat]
 	public let createdAt, id, name, shortname: String
-	let srdcID, updatedAt: String
+	public let srdcID, updatedAt: String
 
 	enum CodingKeys: String, CodingKey {
 		case categories

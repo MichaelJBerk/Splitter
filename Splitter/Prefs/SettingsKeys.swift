@@ -18,6 +18,7 @@ enum SettingsKeys {
 	public static let notFirstUse = "notFirstUse"
 	public static let showBestSplits = "showBestSplits"
 	public static let globalHotkeys = "enableGlobalHotkeys"
+	public static let splitsIOURL = "splitsIOURL"
 }
 
 public struct Settings {
@@ -96,6 +97,16 @@ public struct Settings {
 			}
 		}
 		
+	}
+	public static var splitsIOURL: URL {
+		get {
+			UserDefaults.standard.url(forKey: SettingsKeys.splitsIOURL) ?? URL(string: "https://splits.io")!
+		}
+		set {
+			
+			UserDefaults.standard.set(newValue, forKey: SettingsKeys.splitsIOURL)
+			
+		}
 	}
 }
 

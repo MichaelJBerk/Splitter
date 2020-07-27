@@ -29,11 +29,11 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:SplitterTests/TestPlan.xctestplan"
-            default = "YES">
+            reference = "container:SplitterTests/TestPlan.xctestplan">
          </TestPlanReference>
          <TestPlanReference
-            reference = "container:SplitterUITests/UITestPlan.xctestplan">
+            reference = "container:SplitterUITests/UITestPlan.xctestplan"
+            default = "YES">
          </TestPlanReference>
       </TestPlans>
       <Testables>
@@ -56,7 +56,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4A2A4AF924290DD30006293B"
+               BlueprintIdentifier = "4AF9E8BE24CE448B00DFD5BE"
                BuildableName = "SplitterUITests.xctest"
                BlueprintName = "SplitterUITests"
                ReferencedContainer = "container:Splitter.xcodeproj">

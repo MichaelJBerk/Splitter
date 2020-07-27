@@ -38,6 +38,14 @@ final class SplitsIOKitTests: XCTestCase {
 		})
 		wait(for: [expectation], timeout: 10.0)
 	}
+	func testGetCategories() {
+		let expectation = XCTestExpectation(description: "Get categories")
+		SplitsIOKit().getCategories(for: "yi", completion: { cats in
+			expectation.fulfill()
+			
+		})
+		wait(for: [expectation], timeout: 10.0)
+	}
 	
 	
 }

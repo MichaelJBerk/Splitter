@@ -51,7 +51,7 @@ struct SplitsIOSearchView: View {
 			if model.currentViewMode == .searchForGame {
 				searchView()
 			} else if model.currentViewMode == .chooseCategory {
-				ChooseRunView()
+				ChooseCatView()
 			} else {
 				FinishView()
 			}
@@ -66,7 +66,7 @@ struct SplitsIOSearchView: View {
 class SearchViewModel: ObservableObject {
 	var sIOKit: SplitsIOKit
 	init() {
-		sIOKit = SplitsIOKit()
+		sIOKit = SplitsIOKit(url: Settings.splitsIOURL)
 		cancel = AnyCancellable($searchText.removeDuplicates()
 									.debounce(for: 0.5,scheduler: DispatchQueue.main)
 									.sink(receiveValue: { _ in
@@ -76,14 +76,18 @@ class SearchViewModel: ObservableObject {
 	var cancel: AnyCancellable?
 	@Published var searchText: String = ""
 	
+	@Published var categories: [SplitsIOCat] = []
+	
 	func editChanged() {
 		sIOKit.searchSplitsIO(for: searchText, completion: { games in
 			if let games = games {
-				self.options = games
+				//strange SwiftUI crash if I don't sort it
+				self.options = games.sorted(by: {$0.name > $1.name})
+				
 			}
 		})
 	}
-	@Published var options: [SplitsIOGame] = []
+	@Published var options = [SplitsIOGame]()
 	@Published var selectedGame: SplitsIOGame? = nil
 	@Published var selectedRun: SplitsIOCat? = nil
 	@Published var currentViewMode: SearchWindowView = .searchForGame
@@ -102,8 +106,9 @@ struct searchView: View {
 		VStack {
 			TextField("Search for a game", text: $model.searchText)
 				.textFieldStyle(RoundedBorderTextFieldStyle())
-			
-			List(model.options, id: \.self, selection: $model.selectedGame) { game in
+			List(model.options.sorted(by: {(game1, game2) in
+				game1.categories.count > game2.categories.count
+		}), id:\.self, selection: $model.selectedGame) { game in
 					Text(game.name)
 			}
 			.border(Color(.darkGray), width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
@@ -117,7 +122,7 @@ struct searchView: View {
 					
 				}, label: {
 					Text("Next")
-				})//.disabled(model.selectedGame == nil)
+				})
 			}
 		}
 	}
@@ -168,7 +173,7 @@ struct FinishView: View {
 }
 
 
-struct ChooseRunView: View {
+struct ChooseCatView: View {
 	var runs: [String] = ["Any%", "100%"]
 	@EnvironmentObject var model: SearchViewModel
 	var body: some View {
@@ -176,13 +181,13 @@ struct ChooseRunView: View {
 			VStack {
 			
 				HStack {
-					Text("Choose a run")
+					Text("Choose a Category")
 					Spacer()
 				}
 				.padding(.top, 10)
 				.padding(.leading, /*@START_MENU_TOKEN@*/10/*@END_MENU_TOKEN@*/)
 				
-				List(model.selectedGame?.categories ?? [], id:\.self, selection: $model.selectedRun) { (cat: SplitsIOCat) in
+				List(model.categories, id:\.self, selection: $model.selectedRun) { (cat: SplitsIOCat) in
 					Text(cat.name)
 				}
 				.border(Color(.darkGray), width: /*@START_MENU_TOKEN@*/1/*@END_MENU_TOKEN@*/)
@@ -213,6 +218,12 @@ struct ChooseRunView: View {
 						}
 					}, label: {Text("Next")})
 			}
+			}.onAppear {
+				if let shortName = self.model.selectedGame?.shortname {
+					self.model.sIOKit.getCategories(for: shortName, completion: { cats in
+						self.model.categories = cats
+					})
+				}
 		}
 		
 	}
