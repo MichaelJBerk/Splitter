@@ -8,7 +8,6 @@
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="HotkeysViewController" customModule="Splitter" customModuleProvider="target">
             <connections>
-                <outlet property="accessCheckButton" destination="8tY-e6-E0J" id="y3C-vj-feW"/>
                 <outlet property="globalHotkeysCheck" destination="TtO-09-W0I" id="hwo-ZD-kbe"/>
                 <outlet property="globalKeybindsHelpButton" destination="4hv-UL-zsB" id="h69-qB-cR9"/>
                 <outlet property="hotkeysTableView" destination="fvt-DB-ls9" id="eNY-WC-TwY"/>
@@ -42,7 +41,7 @@
                                             <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                         </tableHeaderCell>
                                         <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="pvc-YV-bS4">
-                                            <font key="font" metaFont="label" size="13"/>
+                                            <font key="font" metaFont="system"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
@@ -56,7 +55,7 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="178" height="17"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="9T1-HI-6Nh">
-                                                            <font key="font" metaFont="label" size="13"/>
+                                                            <font key="font" metaFont="system"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                         </textFieldCell>
@@ -74,7 +73,7 @@
                                             <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                         </tableHeaderCell>
                                         <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" id="Rtj-18-iyX">
-                                            <font key="font" metaFont="label" size="13"/>
+                                            <font key="font" metaFont="system"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </textFieldCell>
@@ -113,7 +112,7 @@
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <buttonCell key="cell" type="push" title="Reset All" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="PY9-Ay-LDE">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="label" size="13"/>
+                        <font key="font" metaFont="system"/>
                         <connections>
                             <action selector="clearHotkeyButtons:" target="-2" id="4me-cW-3I0"/>
                         </connections>
@@ -123,7 +122,7 @@
                     <rect key="frame" x="98" y="385" width="158" height="18"/>
                     <buttonCell key="cell" type="check" title="Enable Global Hotkeys" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="ghN-QQ-s1Q">
                         <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                        <font key="font" metaFont="label" size="13"/>
+                        <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
                         <action selector="globalHotkeysToggle:" target="-2" id="w38-eK-NNN"/>
@@ -137,21 +136,10 @@
                     </constraints>
                     <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="90H-8g-FDW">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="label" size="13"/>
+                        <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
                         <action selector="globalHelpClicked:" target="-2" id="e3t-Cm-0GV"/>
-                    </connections>
-                </button>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8tY-e6-E0J">
-                    <rect key="frame" x="263" y="376" width="48" height="32"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="push" title="􀝣" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="30o-zR-ZF6">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="label" size="13"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="accessButtonAction:" target="-2" id="grA-Mu-IIV"/>
                     </connections>
                 </button>
             </subviews>
