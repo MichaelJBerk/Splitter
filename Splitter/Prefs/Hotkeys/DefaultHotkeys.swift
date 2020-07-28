@@ -120,7 +120,7 @@ extension AppDelegate {
 				let cKeybind = appKeybinds[i]
 				break
 			}
-		i = i + 1
+			i = i + 1
 		}
 		
 		updateKeyEquivs()
