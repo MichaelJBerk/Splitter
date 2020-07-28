@@ -53,8 +53,8 @@ class ViewController: NSViewController {
 	@IBOutlet weak var columnOptionsPopoverButton: NSButton!
 	
 //MARK: - Setting Up Popovers
-	var columnOptionsPopover: SplitterPopover?
-	var infoPanelPopover: SplitterPopover?
+	var columnOptionsPopover: NSPopover?
+	var infoPanelPopover: NSPopover?
 	
 	
 //MARK: - Setting up Menu Items
@@ -454,6 +454,11 @@ class ViewController: NSViewController {
 		
 		attemptField.stringValue = "\(attempts)"
 		attemptField.formatter = OnlyIntegerValueFormatter()
+		
+		gameToViewEdgeConstraint = NSLayoutConstraint(item: runTitleField.superview, attribute: .trailing, relatedBy: .equal, toItem: runTitleField, attribute: .trailing, multiplier: 1, constant: 8)
+		gameToViewEdgeConstraint?.isActive = false
+		categoryToViewEdgeConstraint = NSLayoutConstraint(item: categoryField.superview, attribute: .trailing, relatedBy: .equal, toItem: categoryField, attribute: .trailing, multiplier: 1, constant: 8)
+		categoryToViewEdgeConstraint?.isActive = false
 	}
 	func setMenuItemEnabled(item: NSMenuItem?, enabled: Bool) {
 		if let id = item?.identifier {
@@ -461,6 +466,8 @@ class ViewController: NSViewController {
 		}
 	}
 	
+	var gameToViewEdgeConstraint: NSLayoutConstraint?
+	var categoryToViewEdgeConstraint: NSLayoutConstraint?
 	
 	
 	func setRightClickMenus() {
@@ -549,7 +556,7 @@ class ViewController: NSViewController {
 		infoPanelPopover?.contentViewController?.view.window?.close()
 		let destination = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: ViewControllerID.advanced) as! InfoPopoverTabViewController
 		destination.delegate = self
-		let pop = SplitterPopover()
+		let pop = NSPopover()
 		pop.delegate = self
 		pop.contentViewController = destination
 		pop.contentSize = NSSize(width: 450, height: 325)
@@ -565,7 +572,7 @@ class ViewController: NSViewController {
 		columnOptionsPopover?.contentViewController?.view.window?.close()
 		let destination = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: ViewControllerID.columnOptions) as! ColumnOptionsViewController
 		destination.delegate = self
-		let pop = SplitterPopover()
+		let pop = NSPopover()
 		pop.delegate = self
 		pop.contentViewController = destination
 		pop.appearance = NSAppearance(named: .vibrantDark)
@@ -632,9 +639,4 @@ extension ViewController: NSPopoverDelegate {
 		
 		super.present(viewController, asPopoverRelativeTo: positioningRect, of: positioningView, preferredEdge: preferredEdge, behavior: behavior)
 	}
-}
-
-//TODO: see if this is needed
-class SplitterPopover: NSPopover {
-
 }

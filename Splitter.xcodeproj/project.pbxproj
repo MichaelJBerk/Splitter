@@ -38,7 +38,6 @@
 		4A61438624801A37007C38E0 /* ColorsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A61438524801A37007C38E0 /* ColorsView.xib */; };
 		4A66A43023DE2682005952FA /* ImageButtonCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A66A42F23DE2682005952FA /* ImageButtonCellView.swift */; };
 		4A66A43223DE2C88005952FA /* SplitTableViewColumnIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A66A43123DE2C88005952FA /* SplitTableViewColumnIdentifiers.swift */; };
-		4A66A43423DE391B005952FA /* ShowHideUI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A66A43323DE391B005952FA /* ShowHideUI.swift */; };
 		4A6726EA23F05D17006F4BC4 /* LiveSplit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A617EBD23EBC65C0005D60E /* LiveSplit.swift */; };
 		4A6A3BE023CD1C39002C20AE /* GlobalKeybindPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6A3BDF23CD1C39002C20AE /* GlobalKeybindPrefs.swift */; };
 		4A6A3BE223CD1C7A002C20AE /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6A3BE123CD1C7A002C20AE /* Storage.swift */; };
@@ -157,7 +156,6 @@
 		4A617EBD23EBC65C0005D60E /* LiveSplit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveSplit.swift; sourceTree = "<group>"; };
 		4A66A42F23DE2682005952FA /* ImageButtonCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButtonCellView.swift; sourceTree = "<group>"; };
 		4A66A43123DE2C88005952FA /* SplitTableViewColumnIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitTableViewColumnIdentifiers.swift; sourceTree = "<group>"; };
-		4A66A43323DE391B005952FA /* ShowHideUI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowHideUI.swift; sourceTree = "<group>"; };
 		4A6A3BDF23CD1C39002C20AE /* GlobalKeybindPrefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalKeybindPrefs.swift; sourceTree = "<group>"; };
 		4A6A3BE123CD1C7A002C20AE /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		4A6A3BE323CD621A002C20AE /* MainWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindow.swift; sourceTree = "<group>"; };
@@ -298,6 +296,7 @@
 				4A9621F524C62401003CF23C /* ActivityIndicatorRepresentable.swift */,
 				4A230E9423B00A1D00959C57 /* ViewController.swift */,
 				4A1C1464240ECD610056B104 /* ViewControllerID.swift */,
+				4A18662D23C51D2800FEEE54 /* UISettings.swift */,
 				4AF953B623EB507800ED540C /* Splits.swift */,
 				4AF953B423EB503100ED540C /* Timer Functions.swift */,
 				4A230E9A23B00A1E00959C57 /* Main.storyboard */,
@@ -497,7 +496,6 @@
 				4AEA928223C4F140004F6CF9 /* DefaultPreferenceViewController.xib */,
 				4A18663123C5376900FEEE54 /* SettingsKeys.swift */,
 				4A87265623BD5423003A14AF /* Prefs.swift */,
-				4A66A43523DE3921005952FA /* UI Settings */,
 				4A5F10AC23CF754E00DA043B /* Hotkeys */,
 			);
 			path = Prefs;
@@ -791,6 +789,7 @@
 				4A1657B123EA4EF60008CB5F /* Menu Items.swift in Sources */,
 				4ADFAE4923E4A0760049F57A /* QuickAlert.swift in Sources */,
 				4A18662E23C51D2800FEEE54 /* UISettings.swift in Sources */,
+				4AE2F1FE24D06F6D0077889F /* NSViewExtensions.swift in Sources */,
 				4AA3DAB423E23DA900ADFA4A /* IconButton.swift in Sources */,
 				4A18663023C5257800FEEE54 /* MenuItemConstants.swift in Sources */,
 				4A0F716323F4A9E400E5948E /* SplitterDocBundle.swift in Sources */,
@@ -804,7 +803,6 @@
 				4A5C1D1523F4AFB80014E8D3 /* commonPaths.swift in Sources */,
 				4AF953B523EB503100ED540C /* Timer Functions.swift in Sources */,
 				4A1657B523EA5C320008CB5F /* Icon Actions.swift in Sources */,
-				4A66A43423DE391B005952FA /* ShowHideUI.swift in Sources */,
 				4AD77D16240ECA2800CD65AD /* ColumnOptionsViewController.swift in Sources */,
 				4A6A3BE423CD621A002C20AE /* MainWindow.swift in Sources */,
 				4A1657B323EA4F3C0008CB5F /* Button Actions.swift in Sources */,
@@ -1000,7 +998,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 123;
+				CURRENT_PROJECT_VERSION = 125;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 39SZK2C73D;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1045,7 +1043,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 123;
+				CURRENT_PROJECT_VERSION = 125;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 39SZK2C73D;
 				ENABLE_HARDENED_RUNTIME = YES;
