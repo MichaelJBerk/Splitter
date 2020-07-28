@@ -51,42 +51,38 @@ extension ViewController {
 	
 	///Shows or hides the UI, depending on the current setting
 	func showHideUI() {
-			if UIHidden {
-				StartButton.isHidden = true
-				trashCanPopupButton.isHidden = true
+		if UIHidden {
+			StartButton.isHidden = true
+			trashCanPopupButton.isHidden = true
+			stopButton.isHidden = true
+			
+			plusButton.isHidden = true
+			minusButton.isHidden = true
+			nextButton.isHidden = true
+			prevButton.isHidden = true
+			infoPanelPopoverButton.isHidden = true
+			columnOptionsPopoverButton.isHidden = true
+		} else {
+			StartButton.isHidden = false
+			if shouldStopButtonBeHidden == true {
 				stopButton.isHidden = true
-				
-				plusButton.isHidden = true
-				minusButton.isHidden = true
-				nextButton.isHidden = true
-				prevButton.isHidden = true
-				infoPanelPopoverButton.isHidden = true
-				columnOptionsPopoverButton.isHidden = true
-				
-	//			UIHidden = true
 			} else {
-				StartButton.isHidden = false
-				if shouldStopButtonBeHidden == true {
-					stopButton.isHidden = true
-				} else {
-					stopButton.isHidden = false
-				}
-				if shouldTrashCanBeHidden == true {
-					trashCanPopupButton.isHidden = true
-				} else {
-					trashCanPopupButton.isHidden = false
-				}
-				infoPanelPopoverButton.isHidden = false
-				columnOptionsPopoverButton.isHidden = false
-				
-				
-				plusButton.isHidden = false
-				minusButton.isHidden = false
-				nextButton.isHidden = false
-				prevButton.isHidden = false
-				
-	//			UIHidden = false
+				stopButton.isHidden = false
 			}
+			if shouldTrashCanBeHidden == true {
+				trashCanPopupButton.isHidden = true
+			} else {
+				trashCanPopupButton.isHidden = false
+			}
+			infoPanelPopoverButton.isHidden = false
+			columnOptionsPopoverButton.isHidden = false
+			
+			
+			plusButton.isHidden = false
+			minusButton.isHidden = false
+			nextButton.isHidden = false
+			prevButton.isHidden = false
+		}
 		let mi = NSApp.mainMenu?.item(withIdentifier: menuIdentifiers.appearanceMenu.hideButtons)
 		mi?.title = showHideButtonsText
 		}
