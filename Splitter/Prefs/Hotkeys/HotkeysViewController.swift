@@ -27,7 +27,6 @@ final class HotkeysViewController: NSViewController, PreferencePane {
 		}
 		return nil
 	}
-	@IBOutlet weak var accessCheckButton: NSButton!
 	
 	override var nibName: NSNib.Name? { "HotkeysViewController" }
 
@@ -96,11 +95,6 @@ When enabled, hotkeys will activate even when Splitter is not the currently acti
 		
 		hotkeysTableView.reloadData()
 	}
-	
-	@IBAction func accessButtonAction(_ sender: Any) {
-		AppDelegate.shared?.keybindAlert()
-	}
-	
 }
 
 extension HotkeysViewController: NSTableViewDataSource {
