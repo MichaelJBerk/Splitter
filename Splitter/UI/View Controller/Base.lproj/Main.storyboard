@@ -610,7 +610,7 @@
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Zgl-iF-pqa">
                                                                     <rect key="frame" x="0.0" y="3" width="95" height="14"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" alignment="left" title="Split Title" id="3Pe-jP-c4b">
-                                                                        <font key="font" metaFont="message" size="11"/>
+                                                                        <font key="font" metaFont="controlContent" size="11"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
@@ -722,7 +722,7 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="EDP-CX-XUd">
-                                                                    <rect key="frame" x="1" y="0.0" width="4" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="4" height="17"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="17" id="j7i-2I-Mle"/>
                                                                     </constraints>
@@ -761,7 +761,7 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="kIh-q7-hw5">
-                                                                    <rect key="frame" x="1" y="0.0" width="4" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="4" height="17"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="17" id="qTR-88-1g0"/>
                                                                     </constraints>
@@ -896,10 +896,10 @@
                                             <menuItem image="trash" hidden="YES" id="E4A-EA-ALB">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
-                                            <menuItem title="Clear Current Time" keyEquivalent="t" identifier="ClearCurrentTimeMenuItem" id="cio-kK-rtU">
+                                            <menuItem title="Clear Current Time" identifier="ClearCurrentTimeMenuItem" id="cio-kK-rtU">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
-                                            <menuItem title="Delete All Segments" keyEquivalent="e" identifier="ClearAllSplitsMenuItem" id="Lir-eD-mYQ">
+                                            <menuItem title="Delete All Segments" identifier="ClearAllSplitsMenuItem" id="Lir-eD-mYQ">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
                                         </items>
