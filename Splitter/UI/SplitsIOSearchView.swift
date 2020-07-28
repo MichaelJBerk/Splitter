@@ -204,7 +204,8 @@ struct ChooseCatView: View {
 						self.model.isLoading = true
 						self.model.currentViewMode = .finish
 						DispatchQueue.global(qos: .background).async {
-							self.model.selectedRun?.getRun(completion: { run in
+							guard let catID = self.model.selectedRun?.id else {return}
+							self.model.sIOKit.getRunFromCat(categoryID: catID) { run in
 								let d = lss()
 								let url = URL(string: run!)!
 								d.tempURL = url
@@ -213,8 +214,8 @@ struct ChooseCatView: View {
 								if let vc =  d.windowControllers.first?.window?.contentViewController as? ViewController {
 									self.model.vcToLoad = vc
 									self.model.isLoading = false
+								}
 							}
-						})
 						}
 					}, label: {Text("Next")})
 			}
