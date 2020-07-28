@@ -1,15 +1,15 @@
 PODS:
-  - AppCenter (3.3.1):
-    - AppCenter/Analytics (= 3.3.1)
-    - AppCenter/Crashes (= 3.3.1)
-  - AppCenter/Analytics (3.3.1):
+  - AppCenter (3.3.2):
+    - AppCenter/Analytics (= 3.3.2)
+    - AppCenter/Crashes (= 3.3.2)
+  - AppCenter/Analytics (3.3.2):
     - AppCenter/Core
-  - AppCenter/Core (3.3.1)
-  - AppCenter/Crashes (3.3.1):
+  - AppCenter/Core (3.3.2)
+  - AppCenter/Crashes (3.3.2):
     - AppCenter/Core
   - Keys (1.0.1)
   - MASShortcut (2.4.0)
-  - Preferences (2.0.0)
+  - Preferences (2.0.1)
   - Sparkle (1.23.0)
 
 DEPENDENCIES:
@@ -31,10 +31,10 @@ EXTERNAL SOURCES:
     :path: Pods/CocoaPodsKeys
 
 SPEC CHECKSUMS:
-  AppCenter: 76ecf7e959a68e36b0fd314e8dc5897660214423
+  AppCenter: aba7de06e4c2184f90dc84f7866bd07f82427d69
   Keys: a576f4c9c1c641ca913a959a9c62ed3f215a8de9
   MASShortcut: d9e4909e878661cc42877cc9d6efbe638273ab57
-  Preferences: 37738e374222e4f3c820b81cbc29094afada71d9
+  Preferences: 1ce41315ecadd28a9a4dd92ccd5dea7ca3437f92
   Sparkle: 55b1a87ba69d56913375a281546b7c82dec95bb0
 
 PODFILE CHECKSUM: bdd78af32da154a68e62c62f5bbec0348b29e8c2
