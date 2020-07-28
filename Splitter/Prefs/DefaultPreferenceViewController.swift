@@ -39,9 +39,9 @@ final class DefaultPreferenceViewController: NSViewController, PreferencePane {
 			print("UI Should be visisble")
 		}
 		
-		titleBarCheck.state.fromBool(bool: Settings.hideTitleBar)
-		timerButtonCheck.state.fromBool(bool: Settings.hideUIButtons)
-		floatWindowCheck.state.fromBool(bool: Settings.floatWindow)
+		titleBarCheck.state = .init(bool: Settings.hideTitleBar)
+		timerButtonCheck.state = .init(bool: Settings.hideUIButtons)
+		floatWindowCheck.state = .init(bool: Settings.floatWindow)
 		
 		
 		preferredContentSize = NSSize(width: self.view.frame.size.width, height: self.view.frame.size.height)
@@ -81,11 +81,11 @@ extension NSControl.StateValue {
 		}
 		return false
 	}
-
-	mutating func fromBool(bool: Bool)  {
+	
+	init (bool: Bool) {
 		if bool {
 			self = .on
-		} else if !bool {
+		} else {
 			self = .off
 		}
 	}

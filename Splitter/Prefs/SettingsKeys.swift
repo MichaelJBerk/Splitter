@@ -91,11 +91,7 @@ public struct Settings {
 		}
 		set {
 			UserDefaults.standard.set(newValue, forKey: SettingsKeys.globalHotkeys)
-			if let app = NSApp.delegate as? AppDelegate {
-				app.setPaused(paused: !newValue)
-			}
 		}
-		
 	}
 }
 
