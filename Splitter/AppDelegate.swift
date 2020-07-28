@@ -56,12 +56,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 	func setPaused(paused: Bool) {
 		
 	}
-	func checkIfInputMonitoringIsEnabled() {
+	static func accessibilityEnabled()  {
 		let options: NSDictionary = [kAXTrustedCheckOptionPrompt.takeUnretainedValue() as String : true]
 		let accessEnabled = AXIsProcessTrustedWithOptions(options)
 
 		if !accessEnabled {
-//			keybindAlert()
+			
 		}
 	}
 	
