@@ -51,7 +51,6 @@ extension ViewController {
 	
 	///Shows or hides the UI, depending on the current setting
 	func showHideUI() {
-		let gameTitleConstraint = self.view.constraintWithIdentifier("gameToInfoButton")
 		
 		if UIHidden {
 			StartButton.isHidden = true
@@ -65,7 +64,6 @@ extension ViewController {
 			infoPanelPopoverButton.isHidden = true
 			columnOptionsPopoverButton.isHidden = true
 			
-//			gameTitleConstraint?.isActive = false
 			gameToViewEdgeConstraint?.isActive = true
 			categoryToViewEdgeConstraint?.isActive = true
 		} else {
@@ -88,23 +86,20 @@ extension ViewController {
 			nextButton.isHidden = false
 			prevButton.isHidden = false
 			
-//			gameTitleConstraint?.isActive = true
 			gameToViewEdgeConstraint?.isActive = false
 			categoryToViewEdgeConstraint?.isActive = false
 		}
 		let mi = NSApp.mainMenu?.item(withIdentifier: menuIdentifiers.appearanceMenu.hideButtons)
 		mi?.title = showHideButtonsText
-		}
+	}
 	
 	var showHideButtonsText: String {
 		get {
 			if UIHidden {
-				return "Show Timer/Splits Buttons"
+				return "Show Buttons"
 			} else {
-				return "Hide Timer/Splits Buttons"
+				return "Hide Buttons"
 			}
 		}
 	}
 }
-
-//static let ShowHideUIID = "HideButtonsItem"
