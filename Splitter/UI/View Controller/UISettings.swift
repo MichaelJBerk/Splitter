@@ -51,6 +51,8 @@ extension ViewController {
 	
 	///Shows or hides the UI, depending on the current setting
 	func showHideUI() {
+		let gameTitleConstraint = self.view.constraintWithIdentifier("gameToInfoButton")
+		
 		if UIHidden {
 			StartButton.isHidden = true
 			trashCanPopupButton.isHidden = true
@@ -62,6 +64,10 @@ extension ViewController {
 			prevButton.isHidden = true
 			infoPanelPopoverButton.isHidden = true
 			columnOptionsPopoverButton.isHidden = true
+			
+//			gameTitleConstraint?.isActive = false
+			gameToViewEdgeConstraint?.isActive = true
+			categoryToViewEdgeConstraint?.isActive = true
 		} else {
 			StartButton.isHidden = false
 			if shouldStopButtonBeHidden == true {
@@ -77,11 +83,14 @@ extension ViewController {
 			infoPanelPopoverButton.isHidden = false
 			columnOptionsPopoverButton.isHidden = false
 			
-			
 			plusButton.isHidden = false
 			minusButton.isHidden = false
 			nextButton.isHidden = false
 			prevButton.isHidden = false
+			
+//			gameTitleConstraint?.isActive = true
+			gameToViewEdgeConstraint?.isActive = false
+			categoryToViewEdgeConstraint?.isActive = false
 		}
 		let mi = NSApp.mainMenu?.item(withIdentifier: menuIdentifiers.appearanceMenu.hideButtons)
 		mi?.title = showHideButtonsText

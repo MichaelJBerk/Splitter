@@ -451,8 +451,14 @@ class ViewController: NSViewController {
 		
 		attemptField.stringValue = "\(attempts)"
 		attemptField.formatter = OnlyIntegerValueFormatter()
+		
+		gameToViewEdgeConstraint = NSLayoutConstraint(item: runTitleField.superview, attribute: .trailing, relatedBy: .equal, toItem: runTitleField, attribute: .trailing, multiplier: 1, constant: 8)
+		gameToViewEdgeConstraint?.isActive = false
+		categoryToViewEdgeConstraint = NSLayoutConstraint(item: categoryField.superview, attribute: .trailing, relatedBy: .equal, toItem: categoryField, attribute: .trailing, multiplier: 1, constant: 8)
+		categoryToViewEdgeConstraint?.isActive = false
 	}
-	
+	var gameToViewEdgeConstraint: NSLayoutConstraint?
+	var categoryToViewEdgeConstraint: NSLayoutConstraint?
 	
 	
 	func setRightClickMenus() {
