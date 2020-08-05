@@ -15,7 +15,7 @@ final class HotkeysViewController: NSViewController, PreferencePane {
 	let preferencePaneTitle = "Hotkeys"
     var toolbarItemIcon: NSImage {
         if #available(macOS 10.16, *) {
-            return NSImage(systemSymbolName: "command", accessibilityDescription: "Hotkeys")!
+            return NSImage(systemSymbolName: "text.and.command.macwindow", accessibilityDescription: "Hotkeys")!
         } else {
             return #imageLiteral(resourceName: "Hotkeys")
         }
