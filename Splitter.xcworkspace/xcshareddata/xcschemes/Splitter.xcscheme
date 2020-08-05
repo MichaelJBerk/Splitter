@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "1130"
+   LastUpgradeVersion = "1200"
    version = "1.7">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -29,11 +29,11 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:SplitterTests/TestPlan.xctestplan"
-            default = "YES">
+            reference = "container:SplitterTests/TestPlan.xctestplan">
          </TestPlanReference>
          <TestPlanReference
-            reference = "container:SplitterUITests/UITestPlan.xctestplan">
+            reference = "container:SplitterUITests/UITestPlan.xctestplan"
+            default = "YES">
          </TestPlanReference>
       </TestPlans>
       <Testables>
@@ -41,7 +41,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4A774A5323EBCDFA002F1700"
+               BlueprintIdentifier = "4A71054824BE267300FA9127"
                BuildableName = "SplitterTests.xctest"
                BlueprintName = "SplitterTests"
                ReferencedContainer = "container:Splitter.xcodeproj">
@@ -56,7 +56,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4A2A4AF924290DD30006293B"
+               BlueprintIdentifier = "4AF9E8BE24CE448B00DFD5BE"
                BuildableName = "SplitterUITests.xctest"
                BlueprintName = "SplitterUITests"
                ReferencedContainer = "container:Splitter.xcodeproj">
@@ -76,7 +76,6 @@
       buildConfiguration = "Debug"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
-      enableAddressSanitizer = "YES"
       launchStyle = "0"
       useCustomWorkingDirectory = "NO"
       ignoresPersistentStateOnLaunch = "NO"

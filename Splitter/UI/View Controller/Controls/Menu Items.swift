@@ -70,34 +70,43 @@ extension ViewController {
 			
 		}
 	}
-	
 		
-		
-		
-		
-		
-		//MARK: Window Menu
-		@IBAction func toggleKeepOnTop(_ sender: Any? ) {
-			windowFloat.toggle()
-			setFloatingWindow()
-			
-		}
-		///Sets the window to stay on top, depending on the current setting
-		func setFloatingWindow() {
-			let id = menuIdentifiers.windowMenu.windowFloat
-			if let menuItem = NSApp.mainMenu?.item(withIdentifier: id) {
-				if windowFloat {
-					view.window?.level = .floating
-					menuItem.state = .on
-				} else {
-					view.window?.level = .normal
-					menuItem.state = .off
-				}
+	//MARK: Window Menu
+	@IBAction func toggleKeepOnTop(_ sender: Any? ) {
+		windowFloat.toggle()
+		setFloatingWindow()
+	}
+	///Sets the window to stay on top, depending on the current setting
+	func setFloatingWindow() {
+		let id = menuIdentifiers.windowMenu.windowFloat
+		if let menuItem = NSApp.mainMenu?.item(withIdentifier: id) {
+			if windowFloat {
+				view.window?.level = .floating
+				menuItem.state = .on
+			} else {
+				view.window?.level = .normal
+				menuItem.state = .off
 			}
 		}
+	}
 		
-		///Action for Menu Bar that closes the current window. This can be useful if the title bar has been hidden by the user
-		@IBAction func closeMenuItem(_ sender: Any) {
-			view.window?.close()
+	///Action for Menu Bar that closes the current window. This can be useful if the title bar has been hidden by the user
+	@IBAction func closeMenuItem(_ sender: Any) {
+		view.window?.close()
+	}
+}
+
+extension ViewController: NSMenuItemValidation {
+	func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+		
+		if let id = menuItem.identifier, let enabled = enabledMenuItems[id] {
+			return enabled
 		}
+		return true
+		
+		
+		
+	}
+	
+	
 }

@@ -8,12 +8,26 @@
 
 import Cocoa
 import Files
+import SplitsIOKit
 
 enum DocFileType: String {
 	//public static let
 	case splitFile = "Split File"
 	case liveSplit = "LiveSplit File"
 	case splitsioFile = "Splits.io File"
+	
+	static func fileExtension(fileExtension: String) -> DocFileType {
+		switch fileExtension {
+		case "split":
+			return .splitFile
+		case "lss":
+			return .liveSplit
+		case "json":
+			return .splitsioFile
+		default:
+			return .splitFile
+		}
+	}
 }
 
 
@@ -29,7 +43,7 @@ class SplitterDoc: NSDocument {
 	///
 	///This is only here because swift's default `print` command is overriden by `NSDocument`'s `print` command.
 	func print(_ i: Any?) {
-		Swift.print(i)
+		Swift.print(i as Any)
 	}
 	
 	///A`File` that represents the document
@@ -180,7 +194,9 @@ class SplitterDoc: NSDocument {
 				}
 			}
 			fileWrapperURL = url.absoluteString
-			self.wrapper = folderToFileWrapper(folder: currentBundleFolder!)
+			if let currentBundleFolder = currentBundleFolder {
+				self.wrapper = folderToFileWrapper(folder: currentBundleFolder)
+			}
 		} else {
 		}
 		super.save(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: contextInfo)
@@ -213,8 +229,8 @@ class SplitterDoc: NSDocument {
 	func saveSplitsio(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, delegate: Any?, didSave didSaveSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
 		if let vc = viewController {
 			let timer = SplitsIOTimer(shortname: "Splitter", longname: "Splitter", website: "https://mberk.com/splitter", version: "v\(otherConstants.version) (\(otherConstants.build))")
-			let game = SplitsIOCategory(longname: vc.runTitle, shortname: nil, links: nil)
-			let cat = SplitsIOCategory(longname: vc.category, shortname: nil, links: nil)
+			let game = SplitsIORunCategory(longname: vc.runTitle, shortname: nil, links: nil)
+			let cat = SplitsIORunCategory(longname: vc.category, shortname: nil, links: nil)
 			var cs: [SplitsIOSegment] = []
 			for s in vc.currentSplits {
 				let best = s.bestSplit.TSToMil()

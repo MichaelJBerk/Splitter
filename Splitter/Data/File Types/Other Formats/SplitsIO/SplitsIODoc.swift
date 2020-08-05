@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import SplitsIOKit
 
 class SplitsIODoc: SplitterDoc {
 	
@@ -22,12 +23,12 @@ class SplitsIODoc: SplitterDoc {
 		
 		self.addWindowController(windowController)
 		let vc = windowController.contentViewController as! ViewController
+		vc.setColorForControls()
 		if let si = splitsio {
 			vc.runTitle = si.game?.longname ?? ""
 			vc.category = si.category?.longname ?? ""
 			vc.attempts = si.attempts?.total ?? 0
 			if let segs = si.segments {
-//				vc.currentSplits = []
 				var i = 0
 				for s in segs {
 					i = i + 1

@@ -67,7 +67,7 @@ You can still close the window either with ⌘W or from the "Window" menu.
 	
 	var hideTitleBar: Bool {
 		set {
-			hideTitleBarCheck.state.fromBool(bool: newValue)
+			hideTitleBarCheck.state = .init(bool: newValue)
 		}
 		get {
 			return hideTitleBarCheck.state.toBool() ?? false
@@ -75,7 +75,7 @@ You can still close the window either with ⌘W or from the "Window" menu.
 	}
 	var hideButtons: Bool {
 		set {
-			hideButtonsCheck.state.fromBool(bool: newValue)
+			hideButtonsCheck.state = .init(bool: newValue)
 		}
 		get {
 			return hideButtonsCheck.state.toBool()
@@ -83,7 +83,7 @@ You can still close the window either with ⌘W or from the "Window" menu.
 	}
 	var keepOnTop: Bool {
 		set {
-			keepOnTopCheck.state.fromBool(bool: newValue)
+			keepOnTopCheck.state = .init(bool: newValue)
 		}
 		get {
 			return keepOnTopCheck.state.toBool()

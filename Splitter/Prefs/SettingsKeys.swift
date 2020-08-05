@@ -18,6 +18,8 @@ enum SettingsKeys {
 	public static let notFirstUse = "notFirstUse"
 	public static let showBestSplits = "showBestSplits"
 	public static let globalHotkeys = "enableGlobalHotkeys"
+	public static let showWelcomeWindow = "showWelcomeWindow"
+	public static let splitsIOURL = "splitsIOURL"
 }
 
 public struct Settings {
@@ -91,11 +93,27 @@ public struct Settings {
 		}
 		set {
 			UserDefaults.standard.set(newValue, forKey: SettingsKeys.globalHotkeys)
-			if let app = NSApp.delegate as? AppDelegate {
-				app.setPaused(paused: !newValue)
-			}
+		}
+	}
+	public static var showWelcomeWindow: Bool {
+		set {
+			UserDefaults.standard.set(newValue, forKey: SettingsKeys.showWelcomeWindow)
+		}
+		get {
+			guard let value = UserDefaults.standard.object(forKey: SettingsKeys.showWelcomeWindow) else {return true}
+			return UserDefaults.standard.bool(forKey: SettingsKeys.showWelcomeWindow)
 		}
 		
+	}
+	public static var splitsIOURL: URL {
+		get {
+			UserDefaults.standard.url(forKey: SettingsKeys.splitsIOURL) ?? URL(string: "https://splits.io")!
+		}
+		set {
+			
+			UserDefaults.standard.set(newValue, forKey: SettingsKeys.splitsIOURL)
+			
+		}
 	}
 }
 

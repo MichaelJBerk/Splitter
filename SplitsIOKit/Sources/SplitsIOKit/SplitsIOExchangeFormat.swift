@@ -25,7 +25,7 @@ public class SplitsIOExchangeFormat: Codable {
     public let links: SplitsIOExchangeFormatLinks?
     public let timer: SplitsIOTimer?
     public let attempts: SplitsIOAttempts?
-    public let game, category: SplitsIOCategory?
+    public let game, category: SplitsIORunCategory?
     public let runners: [JSONAny]?
     public let segments: [SplitsIOSegment]?
 
@@ -34,7 +34,7 @@ public class SplitsIOExchangeFormat: Codable {
         case links, timer, attempts, game, category, runners, segments
     }
 
-   public init(schemaVersion: String?, links: SplitsIOExchangeFormatLinks?, timer: SplitsIOTimer?, attempts: SplitsIOAttempts?, game: SplitsIOCategory?, category: SplitsIOCategory?, runners: [JSONAny]?, segments: [SplitsIOSegment]?) {
+   public init(schemaVersion: String?, links: SplitsIOExchangeFormatLinks?, timer: SplitsIOTimer?, attempts: SplitsIOAttempts?, game: SplitsIORunCategory?, category: SplitsIORunCategory?, runners: [JSONAny]?, segments: [SplitsIOSegment]?) {
         self.schemaVersion = schemaVersion
         self.links = links
         self.timer = timer
@@ -70,8 +70,8 @@ extension SplitsIOExchangeFormat {
         links: SplitsIOExchangeFormatLinks?? = nil,
         timer: SplitsIOTimer?? = nil,
         attempts: SplitsIOAttempts?? = nil,
-        game: SplitsIOCategory?? = nil,
-        category: SplitsIOCategory?? = nil,
+        game: SplitsIORunCategory?? = nil,
+        category: SplitsIORunCategory?? = nil,
         runners: [JSONAny]?? = nil,
         segments: [SplitsIOSegment]?? = nil
     ) -> SplitsIOExchangeFormat {
@@ -91,7 +91,7 @@ extension SplitsIOExchangeFormat {
         return try newJSONEncoder().encode(self)
     }
 
-    func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
+    public func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
         return String(data: try self.jsonData(), encoding: encoding)
     }
 }
@@ -140,13 +140,13 @@ extension SplitsIOAttempts {
         return try newJSONEncoder().encode(self)
     }
 
-    func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
+    public func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
         return String(data: try self.jsonData(), encoding: encoding)
     }
 }
 
 // MARK: - SplitsIOCategory
-public class SplitsIOCategory: Codable {
+public class SplitsIORunCategory: Codable {
    public  let longname, shortname: String?
    public  let links: SplitsIOCategoryLinks?
 
@@ -159,9 +159,9 @@ public class SplitsIOCategory: Codable {
 
 // MARK: SplitsIOCategory convenience initializers and mutators
 
-extension SplitsIOCategory {
+extension SplitsIORunCategory {
     convenience init(data: Data) throws {
-        let me = try newJSONDecoder().decode(SplitsIOCategory.self, from: data)
+        let me = try newJSONDecoder().decode(SplitsIORunCategory.self, from: data)
         self.init(longname: me.longname, shortname: me.shortname, links: me.links)
     }
 
@@ -180,8 +180,8 @@ extension SplitsIOCategory {
         longname: String?? = nil,
         shortname: String?? = nil,
         links: SplitsIOCategoryLinks?? = nil
-    ) -> SplitsIOCategory {
-        return SplitsIOCategory(
+    ) -> SplitsIORunCategory {
+        return SplitsIORunCategory(
             longname: longname ?? self.longname,
             shortname: shortname ?? self.shortname,
             links: links ?? self.links
@@ -192,7 +192,7 @@ extension SplitsIOCategory {
         return try newJSONEncoder().encode(self)
     }
 
-    func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
+    public func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
         return String(data: try self.jsonData(), encoding: encoding)
     }
 }
@@ -237,7 +237,7 @@ extension SplitsIOCategoryLinks {
         return try newJSONEncoder().encode(self)
     }
 
-    func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
+    public func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
         return String(data: try self.jsonData(), encoding: encoding)
     }
 }
@@ -278,7 +278,7 @@ extension SplitsIOExchangeFormatLinks {
         return try newJSONEncoder().encode(self)
     }
 
-    func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
+    public func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
         return String(data: try self.jsonData(), encoding: encoding)
     }
 }
@@ -338,7 +338,7 @@ extension SplitsIOSegment {
         return try newJSONEncoder().encode(self)
     }
 
-    func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
+    public func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
         return String(data: try self.jsonData(), encoding: encoding)
     }
 }
@@ -442,7 +442,7 @@ extension SplitsIOTimer {
         return try newJSONEncoder().encode(self)
     }
 
-    func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
+    public func jsonString(encoding: String.Encoding = .utf8) throws -> String? {
         return String(data: try self.jsonData(), encoding: encoding)
     }
 }

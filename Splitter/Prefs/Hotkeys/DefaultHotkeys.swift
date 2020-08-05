@@ -12,7 +12,7 @@ import Cocoa
 enum KeybindTitle: String {
 	case BringToFront = "Bring To Front"
 	case StartSplitTimer = "Start Timer/Split"
-	case PauseTimer = "Pause Timer"
+	case PauseTimer = "Pause/Resume Timer"
 	case PrevSplit = "Previous Split"
 	case StopTimer = "Stop Timer"
 	case ClearTimer = "Reset Run"
@@ -85,7 +85,6 @@ extension AppDelegate {
 				appKeybinds[i]!.keybind = sView.shortcutValue
 				let a = keybindAction(keybind: k.title)
 				if appKeybinds[i]?.keybind != nil {
-//				MASShortcutMonitor.shared()?.regisater(appKeybinds[i]!.keybind, withAction: a)
 				}
 			}
 			i = i + 1
@@ -109,7 +108,6 @@ extension AppDelegate {
 	}
 	
 	func updateSplitterKeybind(keybind: KeybindTitle, shortcut: MASShortcut) {
-//		var hey = UserDefaults.standard.object(forKey: "bringToFront") as? 
 		var i = 0
 		while i < appKeybinds.count {
 			if appKeybinds[i]?.title == keybind {
@@ -120,12 +118,9 @@ extension AppDelegate {
 				
 				appKeybinds[i]?.keybind = shortcut
 				let cKeybind = appKeybinds[i]
-//				let a = keybindAction(keybind: keybind)
-//				MASShortcutMonitor.shared()?.register(shortcut, withAction: a)
-//				MASShortcutBinder.shared()?.bindShortcut(withDefaultsKey: cKeybind?.settings.rawValue, toAction: a)
 				break
 			}
-		i = i + 1
+			i = i + 1
 		}
 		
 		updateKeyEquivs()
@@ -172,8 +167,6 @@ extension AppDelegate {
 		return {
 			self.showColumnOptionsHandler()
 			}
-		default:
-			break
 		}
 		return nil
 	}

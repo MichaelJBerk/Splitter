@@ -34,24 +34,6 @@ class LiveSplit: NSObject {
 	
 	var lsPointer: UnsafeMutableRawPointer?
 	
-	func displayImportDialog() {
-		
-		let dialog = NSOpenPanel();
-		dialog.title                   = "Choose a .lss file";
-		dialog.showsResizeIndicator    = true;
-		dialog.showsHiddenFiles        = false;
-		dialog.canChooseDirectories    = true;
-		dialog.canCreateDirectories    = true;
-		dialog.allowsMultipleSelection = false;
-		dialog.allowedFileTypes        = ["lss"];
-
-		if (dialog.runModal() == NSApplication.ModalResponse.OK) {
-			let result = dialog.url // Pathname of the file
-			path = result?.path
-		}
-		
-		
-	}
 	///Parses a `.lss` file
 	func parseLivesplit() {
 		let lssFile = try? File(path: path)

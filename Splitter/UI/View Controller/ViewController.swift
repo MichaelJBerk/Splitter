@@ -10,6 +10,7 @@ import Cocoa
 import Preferences
 import AppCenter
 import AppCenterCrashes
+import SplitsIOKit
 
 class ViewController: NSViewController {
 	
@@ -52,8 +53,8 @@ class ViewController: NSViewController {
 	@IBOutlet weak var columnOptionsPopoverButton: NSButton!
 	
 //MARK: - Setting Up Popovers
-	var columnOptionsPopover: SplitterPopover?
-	var infoPanelPopover: SplitterPopover?
+	var columnOptionsPopover: NSPopover?
+	var infoPanelPopover: NSPopover?
 	
 	
 //MARK: - Setting up Menu Items
@@ -67,6 +68,12 @@ class ViewController: NSViewController {
 	var startSplitItem: NSMenuItem? {
 		if let stopStart = view.window?.menu?.item(withIdentifier: menuIdentifiers.runMenu.StartSplit) {
 			return stopStart
+		}
+		return nil
+	}
+	var pauseMenuItem: NSMenuItem? {
+		if let pauseItem = view.window?.menu?.item(withIdentifier: menuIdentifiers.runMenu.pause) {
+			return pauseItem
 		}
 		return nil
 	}
@@ -175,33 +182,51 @@ class ViewController: NSViewController {
 		didSet {
 			stopButton.isHidden = shouldStopButtonBeHidden
 			trashCanPopupButton.isHidden = shouldTrashCanBeHidden
+			let prevSplitItem = view.window?.menu?.item(withIdentifier: menuIdentifiers.runMenu.back)
 			if timerState == .stopped {
-				timerStopItem?.isEnabled = false
+				setMenuItemEnabled(item: timerStopItem, enabled: false)
 				timerStopItem?.title = "Stop Timer"
 				
 				startSplitItem?.title = "Start Timer"
 				
+				setMenuItemEnabled(item: startSplitItem, enabled: true)
+				setMenuItemEnabled(item: prevSplitItem, enabled: false)
+				
+				setMenuItemEnabled(item: pauseMenuItem, enabled: false)
+				
 				addDeleteEnabled(true)
 				splitBackEnabled(false)
+				self.splitsTableView.reloadData(forRowIndexes: IndexSet(arrayLiteral: 0), columnIndexes: IndexSet(arrayLiteral: 0,1,2,3,4,5))
 			} else if timerState == .running {
 				timerStopItem?.title = "Stop Timer"
-				timerStopItem?.isEnabled = true
+				setMenuItemEnabled(item: timerStopItem, enabled: true)
 				
 				startSplitItem?.title = "Split"
+				setMenuItemEnabled(item: startSplitItem, enabled: true)
+				setMenuItemEnabled(item: prevSplitItem, enabled: true)
+				
+				setMenuItemEnabled(item: pauseMenuItem, enabled: true)
+				pauseMenuItem?.title = "Pause Timer"
 				
 				addDeleteEnabled(false)
 				splitBackEnabled(true)
 			} else if timerState == .paused {
-				timerStopItem?.isEnabled = true
+				setMenuItemEnabled(item: timerStopItem, enabled: true)
 				timerStopItem?.title = "Stop Timer"
+				setMenuItemEnabled(item: prevSplitItem, enabled: false)
 				
-				startSplitItem?.title = "Resume Timer"
+				setMenuItemEnabled(item: pauseMenuItem, enabled: true)
+				pauseMenuItem?.title = "Resume Timer"
+				
+				setMenuItemEnabled(item: startSplitItem, enabled: false)
+				
 				addDeleteEnabled(true)
 				splitBackEnabled(false)
 			}
 		}
 	}
 	
+	//TODO: see if I should just have a var "addDeleteEnabled" and set both equal to it instead of having a function for it
 	///Sets whethert the + and - buttons beneath the Table View are enabled or not
 	func addDeleteEnabled(_ enabled: Bool) {
 		plusButton.isEnabled = enabled
@@ -343,6 +368,7 @@ class ViewController: NSViewController {
 	
 	
 	//MARK: - Settings
+	var enabledMenuItems:[NSUserInterfaceItemIdentifier: Bool] = [:]
 	
 	var windowFloat = false
 	var UIHidden = false
@@ -376,7 +402,7 @@ class ViewController: NSViewController {
 	//MARK: - Main Functions
 	override func viewWillAppear() {
 		super.viewWillAppear()
-		tableBGColor = .controlColor
+		tableBGColor = .splitterTableViewColor
 		#if DEBUG
 		let breakMI = NSMenuItem(title: "Break", action: #selector(breakFunc), keyEquivalent: "b")
 		breakMI.keyEquivalentModifierMask = .command
@@ -408,7 +434,7 @@ class ViewController: NSViewController {
 			gameIconButton.image = gi
 		}
 		
-		timerStopItem?.isEnabled = false
+		setMenuItemEnabled(item: timerStopItem, enabled: false)
 	
 		if appearance != nil {
 			setSplitterAppearance(appearance: appearance!)
@@ -428,8 +454,20 @@ class ViewController: NSViewController {
 		
 		attemptField.stringValue = "\(attempts)"
 		attemptField.formatter = OnlyIntegerValueFormatter()
+		
+		gameToViewEdgeConstraint = NSLayoutConstraint(item: runTitleField.superview, attribute: .trailing, relatedBy: .equal, toItem: runTitleField, attribute: .trailing, multiplier: 1, constant: 8)
+		gameToViewEdgeConstraint?.isActive = false
+		categoryToViewEdgeConstraint = NSLayoutConstraint(item: categoryField.superview, attribute: .trailing, relatedBy: .equal, toItem: categoryField, attribute: .trailing, multiplier: 1, constant: 8)
+		categoryToViewEdgeConstraint?.isActive = false
+	}
+	func setMenuItemEnabled(item: NSMenuItem?, enabled: Bool) {
+		if let id = item?.identifier {
+			enabledMenuItems[id] = enabled
+		}
 	}
 	
+	var gameToViewEdgeConstraint: NSLayoutConstraint?
+	var categoryToViewEdgeConstraint: NSLayoutConstraint?
 	
 	
 	func setRightClickMenus() {
@@ -518,7 +556,7 @@ class ViewController: NSViewController {
 		infoPanelPopover?.contentViewController?.view.window?.close()
 		let destination = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: ViewControllerID.advanced) as! InfoPopoverTabViewController
 		destination.delegate = self
-		let pop = SplitterPopover()
+		let pop = NSPopover()
 		pop.delegate = self
 		pop.contentViewController = destination
 		pop.contentSize = NSSize(width: 450, height: 325)
@@ -534,7 +572,7 @@ class ViewController: NSViewController {
 		columnOptionsPopover?.contentViewController?.view.window?.close()
 		let destination = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: ViewControllerID.columnOptions) as! ColumnOptionsViewController
 		destination.delegate = self
-		let pop = SplitterPopover()
+		let pop = NSPopover()
 		pop.delegate = self
 		pop.contentViewController = destination
 		pop.appearance = NSAppearance(named: .vibrantDark)
@@ -601,9 +639,4 @@ extension ViewController: NSPopoverDelegate {
 		
 		super.present(viewController, asPopoverRelativeTo: positioningRect, of: positioningView, preferredEdge: preferredEdge, behavior: behavior)
 	}
-}
-
-//TODO: see if this is needed
-class SplitterPopover: NSPopover {
-
 }

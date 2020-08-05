@@ -13,6 +13,7 @@ import AppCenterAnalytics
 import AppCenterCrashes
 import Keys
 import Files
+import SwiftUI
 
 extension NSApplication {
 	static let appDelegate = NSApp.delegate as! AppDelegate
@@ -29,10 +30,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 	@IBOutlet private var window: NSWindow!
 	
 	public var hotkeyController: HotkeysViewController?
+	public static var shared: AppDelegate? = NSApplication.shared.delegate as? AppDelegate
 	
 	var appKeybinds: [SplitterKeybind?] = []
 	
-	
+	///Displays a dialog box informing the user to give Splitter the requisite permissions for Global Hotkeys to work.
 	func keybindAlert() {
 		let alert = NSAlert()
 		alert.messageText = "A brief note about Global Hotkeys"
@@ -41,32 +43,40 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 		
 		Of course, even if you don't give Splitter permission to have Global Hotkeys, you can still continue to use all of its other features just fine.
 		"""
-		alert.addButton(withTitle: "Dismiss")
+		alert.addButton(withTitle: "OK")
 		alert.addButton(withTitle: "Tell me more")
 		switch alert.runModal() {
 		case .alertSecondButtonReturn:
 			NSWorkspace.shared.open(URL(string: "https://mberk.com/splitter/notAnotherTripToSystemPreferences.html")!)
+		case .alertFirstButtonReturn:
+			self.askToOpenAccessibilitySettings()
 		default:
 			return
 		}
-		
-		
+	}
+	func reopenToApplyKeybindAlert() {
+		let alert = NSAlert()
+		alert.messageText = "Splitter's privacy settings have been changed"
+		alert.informativeText = "In order for these changes to take effect, you will need to quit and reopen Splitter."
+		alert.addButton(withTitle: "Dismiss")
+		alert.runModal()
 	}
 	
-	func setPaused(paused: Bool) {
-		
-	}
-	func checkIfInputMonitoringIsEnabled() {
+	///Displays the system's prompt for the user to grant Splitter Accessibility permissions
+	func askToOpenAccessibilitySettings() {
 		let options: NSDictionary = [kAXTrustedCheckOptionPrompt.takeUnretainedValue() as String : true]
-		let accessEnabled = AXIsProcessTrustedWithOptions(options)
-
-		if !accessEnabled {
-//			keybindAlert()
-		}
+		let _ = AXIsProcessTrustedWithOptions(options)
+	}
+	///Checks if Accessibility permissions are granted
+	func accessibilityGranted() -> Bool {
+		return AXIsProcessTrusted()
 	}
 	
-	func setKeyMonitor(event: NSEvent) {
-		
+	/// Performs the appropriate keybind action for the given event
+	/// - Parameter event: `NSEvent` to perform the keybind action for
+	///
+	/// When run, this method will take find the key that triggered `event` and perform its associated keybind action
+	func performGlobalKeybindAction(event: NSEvent) {
 		for k in self.appKeybinds {
 			let code = k?.keybind?.keyCode
 			let mods = k?.keybind?.modifierFlags
@@ -81,29 +91,33 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 		}
 	}
 	///Takes the hotkeys set as SplitterKeybinds and registers them for global input monitoring.
-	func MAStoStandardHotkeys() {
-		
+	///
+	///This method creates a global event monitor, watching for keypresses even when Splitter isn't the active app.
+	///When an event is triggered, if Global Hotkeys are enabled, then it will perform the keybind action associated with the key that was pressed.
+	///This does nothing if the app has not been granted Accessibility permissions in System Preferences
+	func setGlobalKeybindMonitor() {
 		NSEvent.addGlobalMonitorForEvents(matching: [.keyDown], handler: { event in
+			//If global keybinds are disabled, it won't perform the keybind action.
 			if Settings.enableGlobalHotkeys {
-				self.setKeyMonitor(event: event)
+				self.performGlobalKeybindAction(event: event)
 			}
-		})
-		//Set overrides for keys that KeyEquivalents has a problem with, like the spacebar
-		NSEvent.addLocalMonitorForEvents(matching: [.keyDown], handler: { event in
-
-			if event.keyCode == 49 {
-				let filterK = self.appKeybinds.filter( { keybind in
-					keybind?.keybind?.keyCode == Int(event.keyCode)
-				})
-				for k in filterK {
-					let action = self.keybindAction(keybind: k!.title)
-					action!()
-				}
-			}
-			return event
 		})
 	}
 	
+	///Invoked immediately before opening an untitled file.
+	///
+	///This is used to make the welcome window appear on startup, or when there's no open file.
+	func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
+		if Settings.showWelcomeWindow {
+			DispatchQueue.main.async {
+				guard sender.keyWindow == nil else { return }
+				self.openWelcomeWindow()
+			}
+			return false
+		} else {
+			return true
+		}
+	}
 	
 	func applicationDidFinishLaunching(_ notification: Notification) {
 		if !Settings.notFirstUse {
@@ -121,18 +135,20 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 			}
 		}
 		
-        if #available(OSX 10.16, *) {
-            preferencesWindowController.window?.toolbarStyle = .preference
-        } else {
-            // Fallback on earlier versions
-        }
+		
+		
 		Settings.lastOpenedVersion = otherConstants.version
 		Settings.lastOpenedBuild = otherConstants.build
 		loadDefaultSplitterKeybinds()
-		MAStoStandardHotkeys()
-		self.globalShortcuts = Settings.enableGlobalHotkeys
+		setGlobalKeybindMonitor()
 		
+		DistributedNotificationCenter.default().addObserver(forName: NSNotification.Name("com.apple.accessibility.api"), object: nil, queue: nil) { _ in
+		  DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+			self.reopenToApplyKeybindAlert()
+		  }
+		}
 		
+		//MSAppCenter stuff
 		MSCrashes.setDelegate(self)
 		let keys = SplitterKeys()
 		MSAppCenter.start("\(keys.appCenter)", withServices:[
@@ -170,28 +186,87 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 		  return true // Return true if the SDK should await user confirmation, otherwise return false.
 		})
 		
-//		MSCrashes.generateTestCrash()
+//		openWelcomeWindow()
+	}
+	//Need to store this as a var on the class or the app will crash when closing the welcome window
+	var welcomeWindow: NSWindow!
+	var searchWindow: NSWindow!
+	
+	func openWelcomeWindow() {
+		let welcomeView = WelcomeView()
+		welcomeWindow = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 800, height: 460), styleMask: [.fullSizeContentView, .titled, .closable], backing: .buffered, defer: false)
+		welcomeWindow.titleVisibility = .hidden
+		welcomeWindow.titlebarAppearsTransparent = true
+		welcomeWindow.isMovableByWindowBackground = true
+		
+//		welcomeWindow.standardWindowButton(.closeButton)?.isHidden = true
+		welcomeWindow.standardWindowButton(.miniaturizeButton)?.isHidden = true
+		welcomeWindow.standardWindowButton(.zoomButton)?.isHidden = true
+		welcomeWindow.setFrameAutosaveName("Welcome")
+		welcomeWindow.contentView = NSHostingView(rootView: welcomeView)
+//		welcomeWindow.center()
+//		welcomeWindow.makeKeyAndOrderFront(nil)
+//		welcomeWindow.isReleasedWhenClosed = false
+		let wc = WelcomeWindowController(window: welcomeWindow)
+		wc.showWindow(nil)
+		
+	}
+	@IBAction func welcomeWindowMenuItem(_ sender: Any) {
+		self.openWelcomeWindow()
 	}
 
+	func createSearchWindow() {
+//		let s = NSStoryboard(name: "Search", bundle: nil).instantiateInitialController() as! SearchWindowController
+//		
+//		s.window?.makeKeyAndOrderFront(nil)
+//		s.window?.center()
+//		s.window?.isReleasedWhenClosed = false
+////
+		let searchView = SplitsIOSearchView()
+		searchWindow = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 800, height: 460), styleMask: [.titled, .closable, .resizable], backing: .buffered, defer: false)
+		searchWindow.titleVisibility = .hidden
+		searchWindow.titlebarAppearsTransparent = true
+		searchWindow.isMovableByWindowBackground = true
+		searchWindow.standardWindowButton(.miniaturizeButton)?.isHidden = true
+		searchWindow.standardWindowButton(.zoomButton)?.isHidden = true
+//
+
+		searchWindow.setFrameAutosaveName("Welcome")
+		searchWindow.contentView = NSHostingView(rootView: searchView.environmentObject(SearchViewModel()))
+		searchWindow.center()
+		searchWindow.makeKeyAndOrderFront(nil)
+		searchWindow.isReleasedWhenClosed = false
+		self.window = searchWindow
+	}
 	func crashes(_ crashes: MSCrashes!, shouldProcessErrorReport errorReport: MSErrorReport!) -> Bool {
+		
 	  return true; // return true if the crash report should be processed, otherwise false.
 	}
 	func applicationWillTerminate(_ aNotification: Notification) {
 		// Insert code here to tear down your application
 	}
 
+	#if DEBUG
+	lazy var preferencesWindowController = PreferencesWindowController(
+		preferencePanes: [
+			DefaultPreferenceViewController(),
+			HotkeysViewController(),
+			DebugPrefsViewController()
+			]
+		
+	)
+	#else
 	lazy var preferencesWindowController = PreferencesWindowController(
 		preferencePanes: [
 			DefaultPreferenceViewController(),
 			HotkeysViewController()
-//			AdvancedPreferenceViewController()
-		]
+			]
+		
 	)
+	#endif
+	
 	
 	var viewController: ViewController? {
-//		if let vc =  NSApp.windows.first?.contentViewController as? ViewController {
-//			return vc
-//		}
 		get {
 			var viewC: ViewController? = nil
 			for window in NSApp.orderedWindows {
@@ -214,46 +289,17 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 	}
 
 	@IBAction func preferencesMenuItemActionHandler(_ sender: NSMenuItem) {
-//		preferencesWindowController.window = self.window
 		
 		preferencesWindowController.show()
 	}
+}
 	
 
-	var globalShortcuts: Bool! {
-		didSet {
-			if !globalShortcuts {
-				MASShortcutMonitor.shared()?.unregisterAllShortcuts()
-			} else {
-				for i in appKeybinds {
-					if let k = i {
-						if let kb = k.keybind {
-//							MASShortcutMonitor.shared()?.register(kb, withAction: keybindAction(keybind: k.title))
-						}
-					}
-				}
-			}
+extension AppDelegate: NSMenuItemValidation {
+	func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+		if let id = menuItem.identifier, id == menuIdentifiers.windowMenu.welcomeWindowItem {
+			if self.welcomeWindow != nil {return !self.welcomeWindow.isVisible}
 		}
+		return true
 	}
-	
-	
-	
-	// {
-//		didSet {
-//			if !globalShortcuts {
-//				MASShortcutMonitor.shared()?.unregisterAllShortcuts()
-//			}
-//			else {
-//				for i in appKeybinds {
-//					if let k = i {
-//						if let kb = k.keybind {
-//							updateSplitterKeybind(keybind: k.title, shortcut: kb)
-//						}
-////					let a = keybindAction(keybind: k.title)
-////					MASShortcutMonitor.shared()?.register(k.keybind, withAction: a)
-//					}
-//				}
-//			}
-//		}
-//	}
 }

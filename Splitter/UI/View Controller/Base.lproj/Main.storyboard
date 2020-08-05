@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17132" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17147" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17132"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17147"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -339,7 +339,7 @@
                             </menuItem>
                             <menuItem title="Run" allowsKeyEquivalentWhenHidden="YES" id="9qz-yz-8ec">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Run" autoenablesItems="NO" id="ddD-s5-Ef1">
+                                <menu key="submenu" title="Run" id="ddD-s5-Ef1">
                                     <items>
                                         <menuItem title="Start Timer" identifier="timerStartStop" id="3tG-fh-bQJ">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -359,13 +359,13 @@
                                                 <action selector="stopMenuItem:" target="Ady-hI-5gd" id="Tje-Uj-H0p"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="n5c-GI-xuS"/>
                                         <menuItem title="Previous Split" identifier="timerBack" id="JbY-xM-DFE">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="prevSplitMenuItem:" target="Ady-hI-5gd" id="vLH-ED-sfH"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="n5c-GI-xuS"/>
                                         <menuItem title="Reset Run" identifier="ResetRun" id="M2Y-AP-1Gh">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
@@ -392,7 +392,7 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Appearance" id="dmV-eJ-aDK">
                                     <items>
-                                        <menuItem title="Hide Timer/Splits Buttons" tag="2" identifier="HideButtonsItem" id="Elf-wD-0ZD">
+                                        <menuItem title="Hide Buttons" tag="2" identifier="HideButtonsItem" id="Elf-wD-0ZD">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="toggleShowHideUIMenuItem:" target="Ady-hI-5gd" id="8cb-qg-9go"/>
@@ -431,6 +431,12 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="3xg-gC-wM5"/>
+                                        <menuItem title="Welcome Window" keyEquivalent="1" identifier="welcomeWindowMenuItem" id="p9n-4B-sR3">
+                                            <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="welcomeWindowMenuItem:" target="Voe-Tx-rLC" id="cUm-gb-DFi"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="Close Current Window" identifier="CloseCurrentWindowMenuItem" id="aR5-WV-YxJ">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
@@ -551,7 +557,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" tableStyle="fullWidth" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="30" headerView="aVs-1A-u0Q" viewBased="YES" id="Ww4-Jn-tNR" customClass="SplitterTableView" customModule="Splitter" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="307" height="194"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="283" height="194"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -570,11 +576,11 @@
                                                     <tableColumnResizingMask key="resizingMask" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="DDG-t1-8d6" customClass="ImageButtonCellView" customModule="Splitter" customModuleProvider="target">
-                                                            <rect key="frame" x="11" y="1" width="37" height="17"/>
+                                                            <rect key="frame" x="1" y="1" width="32" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <button toolTip="Segment Icon. Click to change." id="VZF-y0-fze" customClass="IconButton" customModule="Splitter" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="-12" width="34" height="30"/>
+                                                                    <rect key="frame" x="0.0" y="-12" width="29" height="30"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                     <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Game Controller" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="R44-Yj-mVf">
                                                                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -604,7 +610,7 @@
                                                     <tableColumnResizingMask key="resizingMask" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="MX7-uO-mSv">
-                                                            <rect key="frame" x="51" y="1" width="80" height="19"/>
+                                                            <rect key="frame" x="36" y="1" width="80" height="19"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Zgl-iF-pqa">
@@ -640,11 +646,11 @@
                                                     <tableColumnResizingMask key="resizingMask" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="7FB-sm-vIX" customClass="TimeSplitCell" customModule="Splitter" customModuleProvider="target">
-                                                            <rect key="frame" x="134" y="1" width="90" height="17"/>
+                                                            <rect key="frame" x="119" y="1" width="90" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="9wd-Sb-6rV">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="90" height="17"/>
+                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9wd-Sb-6rV">
+                                                                    <rect key="frame" x="0.0" y="-1" width="90" height="17"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="17" id="VYB-xY-UHq"/>
                                                                     </constraints>
@@ -679,11 +685,11 @@
                                                     <tableColumnResizingMask key="resizingMask" userResizable="YES"/>
                                                     <prototypeCellViews>
                                                         <tableCellView id="8TX-qB-Vav" customClass="TimeSplitCell" customModule="Splitter" customModuleProvider="target">
-                                                            <rect key="frame" x="227" y="1" width="68" height="17"/>
+                                                            <rect key="frame" x="212" y="1" width="64" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="a8y-qx-fyd">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="68" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="64" height="17"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="17" id="8ED-2z-UK2"/>
                                                                     </constraints>
@@ -792,7 +798,7 @@
                                     </subviews>
                                     <nil key="backgroundColor"/>
                                 </clipView>
-                                <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="u5J-vU-46w" customClass="SplitterScroller" customModule="Splitter" customModuleProvider="target">
+                                <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="u5J-vU-46w" customClass="SplitterScroller" customModule="Splitter" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="203" width="283" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
@@ -801,28 +807,28 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <tableHeaderView key="headerView" wantsLayer="YES" id="aVs-1A-u0Q" customClass="SplitterTableHeader" customModule="Splitter" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="0.0" width="307" height="25"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="283" height="25"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                                 <connections>
                                     <outlet property="menu" destination="tBl-Z3-cF6" id="pSR-cg-UL1"/>
                                 </connections>
                             </scrollView>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Mj4-Ky-5e7">
-                                <rect key="frame" x="8" y="103" width="94" height="17"/>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mj4-Ky-5e7">
+                                <rect key="frame" x="8" y="103" width="95" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Current Time:" id="JfQ-8T-Ydb">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button toolTip="Remove Split" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="jC2-yS-poH">
-                                <rect key="frame" x="190" y="100" width="25" height="21"/>
+                            <button toolTip="Remove Split" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jC2-yS-poH">
+                                <rect key="frame" x="191" y="100" width="25" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="249-xc-MAe"/>
-                                    <constraint firstAttribute="height" constant="19" id="YMC-GK-qFs"/>
+                                    <constraint firstAttribute="height" constant="18" id="YFb-8s-e54"/>
                                 </constraints>
-                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="minus" catalog="system" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0Mt-iS-tkw">
+                                <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0Mt-iS-tkw">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -841,11 +847,11 @@
                                     <action selector="nextButtonClick:" target="5gI-5U-AMq" id="fjE-Ya-6Ng"/>
                                 </connections>
                             </button>
-                            <button toolTip="Add Split" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="OXM-M7-swh">
-                                <rect key="frame" x="217" y="100" width="25" height="21"/>
+                            <button toolTip="Add Split" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OXM-M7-swh">
+                                <rect key="frame" x="218" y="100" width="25" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="3qQ-Zf-ylZ"/>
-                                    <constraint firstAttribute="height" constant="19" id="4Ow-Ss-X4g"/>
+                                    <constraint firstAttribute="height" constant="18" id="IQK-ZT-CnY"/>
                                 </constraints>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="plus" catalog="system" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5oS-Ne-nTD">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -898,10 +904,10 @@
                                             <menuItem image="trash" catalog="system" hidden="YES" id="E4A-EA-ALB">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
-                                            <menuItem title="Clear Current Time" keyEquivalent="t" identifier="ClearCurrentTimeMenuItem" id="cio-kK-rtU">
+                                            <menuItem title="Clear Current Time" identifier="ClearCurrentTimeMenuItem" id="cio-kK-rtU">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
-                                            <menuItem title="Delete All Segments" keyEquivalent="e" identifier="ClearAllSplitsMenuItem" id="Lir-eD-mYQ">
+                                            <menuItem title="Delete All Segments" identifier="ClearAllSplitsMenuItem" id="Lir-eD-mYQ">
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
                                         </items>
@@ -927,7 +933,7 @@
                                 </connections>
                             </button>
                             <textField toolTip="Game/Run Title" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="749" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TSJ-mg-scq" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
-                                <rect key="frame" x="64" y="377" width="162" height="19"/>
+                                <rect key="frame" x="64" y="377" width="172" height="19"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" focusRingType="none" placeholderString="Game" id="nfV-Gy-dQR">
                                     <font key="font" metaFont="label" size="16"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -935,15 +941,15 @@
                                 </textFieldCell>
                             </textField>
                             <textField toolTip="Speedrun Category" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="748" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5cv-K8-dE8" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
-                                <rect key="frame" x="64" y="358" width="162" height="17"/>
+                                <rect key="frame" x="64" y="358" width="172" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" focusRingType="none" placeholderString="Category" id="j9g-Du-1pV">
                                     <font key="font" metaFont="menu" size="14"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <button verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="xLP-fd-tTq">
-                                <rect key="frame" x="245" y="100" width="24" height="21"/>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xLP-fd-tTq">
+                                <rect key="frame" x="246" y="100" width="24" height="20"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="24" id="BXL-vn-aDi"/>
                                     <constraint firstAttribute="height" constant="19" id="Umy-qe-zA2"/>
@@ -954,16 +960,6 @@
                                 </buttonCell>
                                 <connections>
                                     <action selector="displayColumnOptionsPopover:" target="5gI-5U-AMq" id="THZ-ni-fGB"/>
-                                </connections>
-                            </button>
-                            <button toolTip="Get Info" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="laY-Uh-RhP">
-                                <rect key="frame" x="226" y="360" width="50" height="31"/>
-                                <buttonCell key="cell" type="push" bezelStyle="rounded" image="gearshape.fill" catalog="system" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GL6-Z9-DG9">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <connections>
-                                    <action selector="displayInfoPopover:" target="5gI-5U-AMq" id="LFd-oe-9Er"/>
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rkm-yi-plE">
@@ -995,25 +991,35 @@
                                     <outlet property="menu" destination="wTE-Xp-5dN" id="sUd-F8-aZB"/>
                                 </connections>
                             </imageView>
+                            <button toolTip="Get Info" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="laY-Uh-RhP">
+                                <rect key="frame" x="236" y="360" width="50" height="31"/>
+                                <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSActionTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GL6-Z9-DG9">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="displayInfoPopover:" target="5gI-5U-AMq" id="LFd-oe-9Er"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="sEF-Zm-06R" firstAttribute="leading" secondItem="tIC-9A-PB1" secondAttribute="leading" id="1Ub-bb-zKK"/>
-                            <constraint firstItem="6rq-lR-6Um" firstAttribute="centerY" secondItem="laY-Uh-RhP" secondAttribute="centerY" id="2AO-4o-NO0"/>
+                            <constraint firstItem="6rq-lR-6Um" firstAttribute="centerY" secondItem="laY-Uh-RhP" secondAttribute="centerY" constant="2" id="2AO-4o-NO0"/>
                             <constraint firstAttribute="trailing" secondItem="Rkm-yi-plE" secondAttribute="trailing" constant="11" id="2GL-GD-5g3"/>
                             <constraint firstItem="Mj4-Ky-5e7" firstAttribute="top" secondItem="jC2-yS-poH" secondAttribute="top" id="3J3-kq-uF8"/>
                             <constraint firstItem="xLP-fd-tTq" firstAttribute="leading" secondItem="OXM-M7-swh" secondAttribute="trailing" constant="3" id="4k3-dK-Juh"/>
                             <constraint firstItem="OXM-M7-swh" firstAttribute="top" secondItem="xLP-fd-tTq" secondAttribute="top" id="6eU-Ac-i6A"/>
-                            <constraint firstItem="GLv-Wp-JTM" firstAttribute="top" secondItem="laY-Uh-RhP" secondAttribute="bottom" constant="20" symbolic="YES" id="6o0-ZG-X0v"/>
-                            <constraint firstItem="TSJ-mg-scq" firstAttribute="leading" secondItem="6rq-lR-6Um" secondAttribute="trailing" constant="7" id="9fa-Vx-rW4"/>
-                            <constraint firstItem="laY-Uh-RhP" firstAttribute="centerX" secondItem="xLP-fd-tTq" secondAttribute="centerX" constant="-6" id="ABg-9H-Snd"/>
+                            <constraint firstItem="TSJ-mg-scq" firstAttribute="leading" secondItem="6rq-lR-6Um" secondAttribute="trailing" constant="13" id="9fa-Vx-rW4"/>
+                            <constraint firstItem="laY-Uh-RhP" firstAttribute="centerX" secondItem="xLP-fd-tTq" secondAttribute="centerX" constant="1" id="ABg-9H-Snd"/>
                             <constraint firstAttribute="trailing" secondItem="XzH-Pf-d2x" secondAttribute="trailing" constant="11" id="BDf-W8-Wbo"/>
-                            <constraint firstItem="laY-Uh-RhP" firstAttribute="leading" secondItem="5cv-K8-dE8" secondAttribute="trailing" constant="1" id="DQp-Cr-IfL"/>
+                            <constraint firstItem="laY-Uh-RhP" firstAttribute="leading" secondItem="5cv-K8-dE8" secondAttribute="trailing" constant="8" identifier="categoryToInfoButton" id="DQp-Cr-IfL"/>
                             <constraint firstItem="udb-sn-xNY" firstAttribute="leading" secondItem="sEF-Zm-06R" secondAttribute="leading" id="Fuc-KQ-ce2"/>
                             <constraint firstItem="d2l-Lb-Z8r" firstAttribute="top" secondItem="Mj4-Ky-5e7" secondAttribute="bottom" constant="4" id="G93-Vs-Iwg"/>
-                            <constraint firstItem="GLv-Wp-JTM" firstAttribute="top" secondItem="5cv-K8-dE8" secondAttribute="bottom" constant="9" id="HG8-yy-5Bm"/>
+                            <constraint firstItem="GLv-Wp-JTM" firstAttribute="top" secondItem="5cv-K8-dE8" secondAttribute="bottom" constant="11" id="HG8-yy-5Bm"/>
                             <constraint firstItem="OXM-M7-swh" firstAttribute="leading" secondItem="jC2-yS-poH" secondAttribute="trailing" constant="2" id="JZT-mM-sHK"/>
                             <constraint firstAttribute="trailing" secondItem="gCo-Oe-sI7" secondAttribute="trailing" constant="6" id="Ntt-gS-p3J"/>
                             <constraint firstItem="6rq-lR-6Um" firstAttribute="leading" secondItem="nLC-ev-0ZO" secondAttribute="leading" constant="11" id="Nug-Nh-wTK"/>
+                            <constraint firstItem="laY-Uh-RhP" firstAttribute="top" secondItem="nLC-ev-0ZO" secondAttribute="top" constant="18" id="O83-xn-xq5"/>
                             <constraint firstItem="tIC-9A-PB1" firstAttribute="baseline" secondItem="5Ka-8A-G0d" secondAttribute="baseline" id="PnI-ZF-WqV"/>
                             <constraint firstItem="Rkm-yi-plE" firstAttribute="top" secondItem="xLP-fd-tTq" secondAttribute="bottom" constant="2" id="Tte-oy-VXr"/>
                             <constraint firstItem="Mj4-Ky-5e7" firstAttribute="leading" secondItem="d2l-Lb-Z8r" secondAttribute="leading" id="W20-HL-2Cd"/>
@@ -1024,7 +1030,7 @@
                             <constraint firstItem="d2l-Lb-Z8r" firstAttribute="top" secondItem="jC2-yS-poH" secondAttribute="bottom" constant="2" id="bjT-PD-Alh"/>
                             <constraint firstItem="sEF-Zm-06R" firstAttribute="bottom" secondItem="udb-sn-xNY" secondAttribute="bottom" id="eA0-Ag-ijo"/>
                             <constraint firstItem="Mj4-Ky-5e7" firstAttribute="leading" secondItem="nLC-ev-0ZO" secondAttribute="leading" constant="10" id="fWx-uJ-jgm"/>
-                            <constraint firstAttribute="trailing" secondItem="laY-Uh-RhP" secondAttribute="trailing" constant="4" id="i75-OX-uP0"/>
+                            <constraint firstAttribute="trailing" secondItem="laY-Uh-RhP" secondAttribute="trailing" constant="3" id="i75-OX-uP0"/>
                             <constraint firstItem="jC2-yS-poH" firstAttribute="leading" secondItem="Mj4-Ky-5e7" secondAttribute="trailing" constant="90" id="iep-EZ-YpZ"/>
                             <constraint firstItem="XzH-Pf-d2x" firstAttribute="top" secondItem="Rkm-yi-plE" secondAttribute="bottom" id="igF-qZ-eaR"/>
                             <constraint firstItem="5Ka-8A-G0d" firstAttribute="leading" secondItem="tIC-9A-PB1" secondAttribute="trailing" constant="5" id="j2y-bb-I7F"/>
@@ -1040,7 +1046,7 @@
                             <constraint firstItem="sEF-Zm-06R" firstAttribute="baseline" secondItem="gCo-Oe-sI7" secondAttribute="baseline" id="vJf-p9-RsS"/>
                             <constraint firstItem="GLv-Wp-JTM" firstAttribute="top" secondItem="6rq-lR-6Um" secondAttribute="bottom" constant="7" id="xD4-Ts-8Xh"/>
                             <constraint firstItem="gCo-Oe-sI7" firstAttribute="leading" secondItem="sEF-Zm-06R" secondAttribute="trailing" constant="12" symbolic="YES" id="yHM-AR-xOg"/>
-                            <constraint firstItem="laY-Uh-RhP" firstAttribute="leading" secondItem="TSJ-mg-scq" secondAttribute="trailing" constant="8" id="zUY-HW-ehM"/>
+                            <constraint firstItem="laY-Uh-RhP" firstAttribute="leading" secondItem="TSJ-mg-scq" secondAttribute="trailing" constant="8" identifier="gameToInfoButton" id="zUY-HW-ehM"/>
                             <constraint firstItem="tIC-9A-PB1" firstAttribute="top" secondItem="sEF-Zm-06R" secondAttribute="bottom" constant="3" id="zvN-T7-8UR"/>
                         </constraints>
                         <connections>
@@ -1637,11 +1643,11 @@ To remove, click and press backspace. </string>
     </scenes>
     <resources>
         <image name="Game Controller" width="256" height="255.5"/>
-        <image name="eye" catalog="system" width="20" height="11"/>
-        <image name="gearshape.fill" catalog="system" width="16" height="14"/>
-        <image name="minus" catalog="system" width="15" height="2"/>
-        <image name="plus" catalog="system" width="15" height="11"/>
+        <image name="NSActionTemplate" width="15" height="15"/>
+        <image name="NSRemoveTemplate" width="14" height="4"/>
+        <image name="eye" catalog="system" width="21" height="13"/>
+        <image name="plus" catalog="system" width="14" height="13"/>
         <image name="stop" width="12" height="12"/>
-        <image name="trash" catalog="system" width="15" height="15"/>
+        <image name="trash" catalog="system" width="15" height="17"/>
     </resources>
 </document>

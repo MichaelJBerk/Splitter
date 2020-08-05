@@ -46,7 +46,7 @@ final class HotkeysViewController: NSViewController, PreferencePane {
 		hotkeysTableView.reloadData()
 		
 		hotkeysTableView.reloadData()
-		globalHotkeysCheck.state.fromBool(bool: Settings.enableGlobalHotkeys)
+		globalHotkeysCheck.state = .init(bool: Settings.enableGlobalHotkeys)
 		
 	}
 	
@@ -59,12 +59,15 @@ final class HotkeysViewController: NSViewController, PreferencePane {
 	override func viewWillAppear() {
 	}
 	
-	@IBAction func globalHotkeysToggle(_ sender: Any) {
-		Settings.enableGlobalHotkeys = globalHotkeysCheck.state.toBool()
-		if let app = NSApp.delegate as? AppDelegate {
-			app.globalShortcuts = globalHotkeysCheck.state.toBool()
+	@IBAction func globalHotkeysToggle(_ sender: NSButton) {
+		guard let appDel = AppDelegate.shared else {return}
+		if appDel.accessibilityGranted() {
+			Settings.enableGlobalHotkeys = globalHotkeysCheck.state.toBool()
+		} else {
+			sender.state = .init(bool: false)
+			appDel.keybindAlert()
+			
 		}
-
 	}
 	@objc func openTellMeMore() {
 		NSWorkspace.shared.open(URL(string: "https://mberk.com/splitter/notAnotherTripToSystemPreferences.html")!)
@@ -73,8 +76,6 @@ final class HotkeysViewController: NSViewController, PreferencePane {
 		let helpText = """
 When enabled, hotkeys will activate even when Splitter is not the currently active app
 """
-
-		
 		let alert = NSAlert()
 		alert.messageText = helpText
 		alert.addButton(withTitle: "OK")
@@ -100,7 +101,6 @@ When enabled, hotkeys will activate even when Splitter is not the currently acti
 		
 		hotkeysTableView.reloadData()
 	}
-	
 }
 
 extension HotkeysViewController: NSTableViewDataSource {
@@ -144,7 +144,7 @@ extension HotkeysViewController: NSTableViewDelegate {
 						app.updateSplitterKeybind(keybind: app.appKeybinds[row]!.title, shortcut: short!.shortcutValue)
 				}
 				if short?.shortcutValue == nil {
-					print("empty")
+					
 					let sc = app.appKeybinds[row]!
 					MASShortcutBinder.shared()?.breakBinding(withDefaultsKey: sc.settings.rawValue)
 					MASShortcutMonitor.shared()?.unregisterShortcut(sc.keybind)
