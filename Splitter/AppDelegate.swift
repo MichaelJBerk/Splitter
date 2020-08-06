@@ -74,15 +74,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	/// When run, this method will take find the key that triggered `event` and perform its associated keybind action
 	func performGlobalKeybindAction(event: NSEvent) {
 		for k in self.appKeybinds {
-			let code = k?.keybind?.keyCode
-			let mods = k?.keybind?.modifierFlags
-			let eventMods = event.modifierFlags.intersection(.deviceIndependentFlagsMask)
-			
-			
-			
-			if Int(event.keyCode) == code && eventMods == mods {
-				let ka = self.keybindAction(keybind: k!.title)
-				ka!()
+			if let k = k, k == event, let action = keybindAction(keybind: k.title) {
+				action()
 			}
 		}
 	}
@@ -140,14 +133,10 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		preferencePanes: [
 			DefaultPreferenceViewController(),
 			HotkeysViewController()
-//			AdvancedPreferenceViewController()
 		]
 	)
 	
 	var viewController: ViewController? {
-//		if let vc =  NSApp.windows.first?.contentViewController as? ViewController {
-//			return vc
-//		}
 		get {
 			var viewC: ViewController? = nil
 			for window in NSApp.orderedWindows {
@@ -170,24 +159,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 
 	@IBAction func preferencesMenuItemActionHandler(_ sender: NSMenuItem) {
-//		preferencesWindowController.window = self.window
-		
 		preferencesWindowController.show()
 	}
-	
-
-//	var globalShortcuts: Bool! {
-//		didSet {
-//			if !globalShortcuts {
-//				MASShortcutMonitor.shared()?.unregisterAllShortcuts()
-//			} else {
-//				for i in appKeybinds {
-//					if let k = i {
-//						if let kb = k.keybind {
-//						}
-//					}
-//				}
-//			}
-//		}
-//	}
 }
