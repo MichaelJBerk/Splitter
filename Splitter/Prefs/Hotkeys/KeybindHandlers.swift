@@ -12,7 +12,6 @@ import Cocoa
 extension AppDelegate {
 	///Brings the current window to the front. Intended for use with keybinds.
 	func frontHandler()  {
-		
 		NSApplication.shared.orderedWindows.forEach({ (window) in
 			if let mainWindow = window as? MainWindow {
 				NSApplication.shared.activate(ignoringOtherApps: true)
@@ -20,7 +19,6 @@ extension AppDelegate {
 				mainWindow.makeKey()
 			}
 		})
-		
 	}
 	
 //TODO: Document why this exists

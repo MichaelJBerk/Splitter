@@ -94,4 +94,18 @@ extension ViewController {
 	@IBAction func closeMenuItem(_ sender: Any) {
 		view.window?.close()
 	}
+	
+//	override func performKeyEquivalent(with event: NSEvent) -> Bool {
+//
+//
+//		let sup = super.performKeyEquivalent(with: event)
+//		if let appDelegate = AppDelegate.shared {
+//			for k in appDelegate.appKeybinds {
+//				if let k = k, k == event, k.title == .BringToFront {
+//					return true
+//				}
+//			}
+//		}
+//		return sup
+//	}
 }

@@ -584,8 +584,7 @@ class ViewController: NSViewController {
 	//TODO: See if necessary
 	override func keyDown(with event: NSEvent) {
 		super.keyDown(with: event)
-		
-	}	
+	}
 }
 
 //TODO: See if this should be in a separate file, and if it should be with the VC or on its own or in Data
