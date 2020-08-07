@@ -2,30 +2,12 @@
   "object": {
     "pins": [
       {
-        "package": "Alamofire",
-        "repositoryURL": "https://github.com/Alamofire/Alamofire.git",
-        "state": {
-          "branch": null,
-          "revision": "becd9a729a37bdbef5bc39dc3c702b99f9e3d046",
-          "version": "5.2.2"
-        }
-      },
-      {
         "package": "Files",
         "repositoryURL": "https://github.com/JohnSundell/Files",
         "state": {
           "branch": null,
           "revision": "22fe84797d499ffca911ccd896b34efaf06a50b9",
           "version": "4.1.1"
-        }
-      },
-      {
-        "package": "Fuzzy",
-        "repositoryURL": "https://github.com/khoi/fuzzy-swift",
-        "state": {
-          "branch": null,
-          "revision": "48d0ddb4c226e8a28a8f905fa0549ee6f90954fc",
-          "version": "0.1.0"
         }
       },
       {
