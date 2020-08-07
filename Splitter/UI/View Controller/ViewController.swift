@@ -92,6 +92,7 @@ class ViewController: NSViewController {
 	var tableBGColor: NSColor = .splitterTableViewColor {
 		didSet {
 			splitsTableView.backgroundColor = self.tableBGColor
+			splitsTableView.enclosingScrollView?.backgroundColor = self.tableBGColor
 		}
 	}
 	var selectedColor: NSColor = .splitterRowSelected

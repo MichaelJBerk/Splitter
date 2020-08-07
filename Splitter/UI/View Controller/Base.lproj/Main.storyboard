@@ -552,7 +552,7 @@
                             <scrollView appearanceType="darkAqua" borderType="none" autohidesScrollers="YES" horizontalLineScroll="32" horizontalPageScroll="10" verticalLineScroll="32" verticalPageScroll="10" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="allowed" scrollerKnobStyle="dark" id="GLv-Wp-JTM" customClass="SplitterScrollView" customModule="Splitter" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="128" width="283" height="219"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="9dd-gf-lQy">
+                                <clipView key="contentView" copiesOnScroll="NO" id="9dd-gf-lQy">
                                     <rect key="frame" x="0.0" y="0.0" width="283" height="219"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
@@ -796,7 +796,6 @@
                                             </connections>
                                         </tableView>
                                     </subviews>
-                                    <nil key="backgroundColor"/>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="u5J-vU-46w" customClass="SplitterScroller" customModule="Splitter" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="203" width="283" height="16"/>
