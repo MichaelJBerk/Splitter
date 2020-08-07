@@ -403,6 +403,9 @@ class ViewController: NSViewController {
 	override func viewWillAppear() {
 		super.viewWillAppear()
 		tableBGColor = .splitterTableViewColor
+        if #available(macOS 11.0, *) {
+            splitsTableView.style = .fullWidth
+        }
 		#if DEBUG
 		let breakMI = NSMenuItem(title: "Break", action: #selector(breakFunc), keyEquivalent: "b")
 		breakMI.keyEquivalentModifierMask = .command
