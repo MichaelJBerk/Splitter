@@ -8,8 +8,6 @@
 
 import Cocoa
 import Preferences
-import AppCenter
-import AppCenterCrashes
 
 class ViewController: NSViewController {
 	
@@ -375,9 +373,6 @@ class ViewController: NSViewController {
 	var hotkeysController: HotkeysViewController?
 	
 	@objc func breakFunc() {
-		let m = MSCrashes()
-//		print(currentSplit?.mil)
-		MSCrashes.generateTestCrash()
 		
 		
 		

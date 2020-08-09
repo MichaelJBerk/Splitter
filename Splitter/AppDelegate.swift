@@ -8,9 +8,6 @@
 
 import Cocoa
 import Preferences
-import AppCenter
-import AppCenterAnalytics
-import AppCenterCrashes
 import Keys
 import Files
 
@@ -25,7 +22,7 @@ public static let build = Bundle.main.infoDictionary?["CFBundleVersion"] as! Str
 }
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate {
 	@IBOutlet private var window: NSWindow!
 	
 	public var hotkeyController: HotkeysViewController?
@@ -129,49 +126,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 		self.globalShortcuts = Settings.enableGlobalHotkeys
 		
 		
-		MSCrashes.setDelegate(self)
-		let keys = SplitterKeys()
-		MSAppCenter.start("\(keys.appCenter)", withServices:[
-			MSAnalytics.self,
-			MSCrashes.self
-		])
-		MSAppCenter.setLogLevel(.verbose)
-		MSCrashes.setEnabled(true)
-		UserDefaults.standard.register(defaults: ["NSApplicationCrashOnExceptions": true])
-		MSCrashes.setUserConfirmationHandler({ (errorReports: [MSErrorReport]) in
-
-		  // Your code to present your UI to the user, e.g. an NSAlert.
-		  let alert: NSAlert = NSAlert()
-		  alert.messageText = "Sorry about that!"
-		  alert.informativeText = "Do you want to send an anonymous crash report so we can fix the issue?"
-		  alert.addButton(withTitle: "Always send")
-		  alert.addButton(withTitle: "Send")
-		  alert.addButton(withTitle: "Don't send")
-			alert.alertStyle = .warning
-
-		  switch (alert.runModal()) {
-		case .alertFirstButtonReturn:
-			MSCrashes.notify(with: .always)
-			break;
-		case .alertSecondButtonReturn:
-			MSCrashes.notify(with: .send)
-			break;
-		case .alertThirdButtonReturn:
-			MSCrashes.notify(with: .dontSend)
-			break;
-		  default:
-			break;
-		  }
-
-		  return true // Return true if the SDK should await user confirmation, otherwise return false.
-		})
-		
-//		MSCrashes.generateTestCrash()
-	}
-
-	func crashes(_ crashes: MSCrashes!, shouldProcessErrorReport errorReport: MSErrorReport!) -> Bool {
-		
-	  return true; // return true if the crash report should be processed, otherwise false.
+	
 	}
 	func applicationWillTerminate(_ aNotification: Notification) {
 		// Insert code here to tear down your application

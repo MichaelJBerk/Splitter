@@ -7,8 +7,6 @@
 target 'Splitter' do
   # Comment the next line if you don't want to use dynamic frameworks
   	pod 'Preferences'
-  	pod 'AppCenter'
-  	pod 'Sparkle'
   	pod 'MASShortcut'
 
 plugin 'cocoapods-keys', {
