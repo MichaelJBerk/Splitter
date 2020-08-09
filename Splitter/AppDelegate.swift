@@ -39,15 +39,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		
 		Of course, even if you don't give Splitter permission to have Global Hotkeys, you can still continue to use all of its other features just fine.
 		"""
-		alert.addButton(withTitle: "OK")
-		alert.addButton(withTitle: "Tell me more")
+		alert.addButton(withTitle: "Allow")
+		alert.addButton(withTitle: "Dismiss")
+		alert.showsHelp = true
+		alert.delegate = keybindAlertDel
 		switch alert.runModal() {
-		case .alertSecondButtonReturn:
-			NSWorkspace.shared.open(URL(string: "https://mberk.com/splitter/notAnotherTripToSystemPreferences.html")!)
+			
 		case .alertFirstButtonReturn:
-			self.askToOpenAccessibilitySettings()
+			NSWorkspace.shared.open(URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility")!)
 		default:
 			return
+		}
+	}
+	var keybindAlertDel = KeybindAlertDelegate()
+	
+	class KeybindAlertDelegate: NSObject, NSAlertDelegate {
+		func alertShowHelp(_ alert: NSAlert) -> Bool {
+			NSWorkspace.shared.open(URL(string: "https://mberk.com/splitter/notAnotherTripToSystemPreferences.html")!)
 		}
 	}
 	func reopenToApplyKeybindAlert() {
@@ -56,12 +64,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		alert.informativeText = "In order for these changes to take effect, you will need to quit and reopen Splitter."
 		alert.addButton(withTitle: "Dismiss")
 		alert.runModal()
-	}
-	
-	///Displays the system's prompt for the user to grant Splitter Accessibility permissions
-	func askToOpenAccessibilitySettings() {
-		let options: NSDictionary = [kAXTrustedCheckOptionPrompt.takeUnretainedValue() as String : true]
-		let _ = AXIsProcessTrustedWithOptions(options)
 	}
 	///Checks if Accessibility permissions are granted
 	func accessibilityGranted() -> Bool {
