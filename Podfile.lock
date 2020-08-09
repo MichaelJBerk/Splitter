@@ -22,10 +22,6 @@ SPEC CHECKSUMS:
   MASShortcut: d9e4909e878661cc42877cc9d6efbe638273ab57
   Preferences: 1ce41315ecadd28a9a4dd92ccd5dea7ca3437f92
 
-<<<<<<< HEAD
 PODFILE CHECKSUM: 60a9f7ca836cc3fb5b340a6c96d23689144d471b
-=======
-PODFILE CHECKSUM: a28c9b253b3ceab5a13bb478aec7c99b09aafa78
->>>>>>> d971725... Fixing notarization issues
 
 COCOAPODS: 1.9.3
