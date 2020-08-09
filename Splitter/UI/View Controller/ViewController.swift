@@ -402,6 +402,9 @@ class ViewController: NSViewController {
 	//MARK: - Main Functions
 	override func viewWillAppear() {
 		super.viewWillAppear()
+		if let welcome = AppDelegate.shared?.welcomeWindow {
+			welcome.close()
+		}
 		tableBGColor = .splitterTableViewColor
 		#if DEBUG
 		let breakMI = NSMenuItem(title: "Break", action: #selector(breakFunc), keyEquivalent: "b")
