@@ -199,16 +199,14 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 		welcomeWindow.titlebarAppearsTransparent = true
 		welcomeWindow.isMovableByWindowBackground = true
 		
-//		welcomeWindow.standardWindowButton(.closeButton)?.isHidden = true
 		welcomeWindow.standardWindowButton(.miniaturizeButton)?.isHidden = true
 		welcomeWindow.standardWindowButton(.zoomButton)?.isHidden = true
 		welcomeWindow.setFrameAutosaveName("Welcome")
 		welcomeWindow.contentView = NSHostingView(rootView: welcomeView)
-//		welcomeWindow.center()
-//		welcomeWindow.makeKeyAndOrderFront(nil)
-//		welcomeWindow.isReleasedWhenClosed = false
+		welcomeWindow.center()
 		let wc = WelcomeWindowController(window: welcomeWindow)
 		wc.showWindow(nil)
+		
 		
 	}
 	@IBAction func welcomeWindowMenuItem(_ sender: Any) {
