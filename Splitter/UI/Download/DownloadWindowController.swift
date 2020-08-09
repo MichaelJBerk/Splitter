@@ -9,5 +9,12 @@
 import Cocoa
 
 class DownloadWindowController: NSWindowController {
+	@IBOutlet weak var searchField: NSSearchField!
 	
+	override func windowDidLoad() {
+		super.windowDidLoad()
+		if let vc = window?.contentViewController as? DownloadViewController {
+			vc.sField = searchField
+		}
+	}
 }

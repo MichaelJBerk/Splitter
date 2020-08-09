@@ -183,21 +183,11 @@ struct OpenFileButton: View {
 struct DownloadFileButton: View {
 	var body: some View {
 		Button(action: {
-//			(NSApp.delegate as? AppDelegate)?.createSearchWindow()
-//			let winC = MainWindowController(windowNibName: "DownloadWindow")
-//			let dvc = DownloadWindowController(windowNibName: "DownloadWindow")
-//			let vc = DownloadViewController(nibName: "DownloadWindow", bundle: nil)
 			let board = NSStoryboard(name: "DownloadWindow", bundle: nil).instantiateController(withIdentifier: "windowController") as? DownloadWindowController
+			if let win = board?.window {
+				AppDelegate.shared?.searchWindow = win
+			}
 			board?.window?.makeKeyAndOrderFront(nil)
-//			dvc.contentViewController = vc
-//			let window = NSWindow(contentViewController: dvc)
-//			dvc.window!.makeKeyAndOrderFront(nil)
-			
-//			winC.window!.makeKeyAndOrderFront(nil)
-//			let dWindow = Bundle.main.loadNibNamed("DownloadWindow", owner: nil, topLevelObjects: &array)
-//			guard let results = array {
-//
-//			}
 			
 			
 		}, label: {
