@@ -108,12 +108,16 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 	///
 	///This is used to make the welcome window appear on startup, or when there's no open file.
 	func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
-		if Settings.showWelcomeWindow {
-			DispatchQueue.main.async {
-				guard sender.keyWindow == nil else { return }
-				self.openWelcomeWindow()
+		if #available(macOS 10.15, *) {
+			if Settings.showWelcomeWindow {
+				DispatchQueue.main.async {
+					guard sender.keyWindow == nil else { return }
+					self.openWelcomeWindow()
+				}
+				return false
+			} else {
+				return true
 			}
-			return false
 		} else {
 			return true
 		}
@@ -134,7 +138,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 			if Settings.lastOpenedBuild != otherConstants.build {
 			}
 		}
-		
+		let welcomeWindowItem = NSApp.mainMenu?.item(withIdentifier: menuIdentifiers.windowMenu.welcomeWindowItem)
+		if #available(macOS 10.15, *) {
+			welcomeWindowItem?.isHidden = false
+		} else {
+			welcomeWindowItem?.isHidden = true
+		}
 		
 		
 		Settings.lastOpenedVersion = otherConstants.version
@@ -192,6 +201,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 	var welcomeWindow: NSWindow!
 	var searchWindow: NSWindow!
 	
+	@available(macOS 10.15, *)
 	func openWelcomeWindow() {
 		let welcomeView = WelcomeView()
 		welcomeWindow = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 800, height: 460), styleMask: [.fullSizeContentView, .titled, .closable], backing: .buffered, defer: false)
@@ -210,32 +220,22 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 		
 	}
 	@IBAction func welcomeWindowMenuItem(_ sender: Any) {
-		self.openWelcomeWindow()
+		if #available(macOS 10.15, *) {
+			self.openWelcomeWindow()
+		}
 	}
-
-	func createSearchWindow() {
-//		let s = NSStoryboard(name: "Search", bundle: nil).instantiateInitialController() as! SearchWindowController
-//		
-//		s.window?.makeKeyAndOrderFront(nil)
-//		s.window?.center()
-//		s.window?.isReleasedWhenClosed = false
-////
-		let searchView = SplitsIOSearchView()
-		searchWindow = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 800, height: 460), styleMask: [.titled, .closable, .resizable], backing: .buffered, defer: false)
-		searchWindow.titleVisibility = .hidden
-		searchWindow.titlebarAppearsTransparent = true
-		searchWindow.isMovableByWindowBackground = true
-		searchWindow.standardWindowButton(.miniaturizeButton)?.isHidden = true
-		searchWindow.standardWindowButton(.zoomButton)?.isHidden = true
-//
-
-		searchWindow.setFrameAutosaveName("Welcome")
-		searchWindow.contentView = NSHostingView(rootView: searchView.environmentObject(SearchViewModel()))
-		searchWindow.center()
-		searchWindow.makeKeyAndOrderFront(nil)
-		searchWindow.isReleasedWhenClosed = false
-		self.window = searchWindow
+	@IBAction func searchWindowMenuItem( _ sender: Any) {
+		self.openSearchWindow()
 	}
+	
+	func openSearchWindow() {
+		let board = NSStoryboard(name: "DownloadWindow", bundle: nil).instantiateController(withIdentifier: "windowController") as? DownloadWindowController
+		if let win = board?.window {
+			self.searchWindow = win
+			win.makeKeyAndOrderFront(nil)
+		}
+	}
+	
 	func crashes(_ crashes: MSCrashes!, shouldProcessErrorReport errorReport: MSErrorReport!) -> Bool {
 		
 	  return true; // return true if the crash report should be processed, otherwise false.

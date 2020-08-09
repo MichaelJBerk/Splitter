@@ -42,7 +42,7 @@ struct VisualEffectBackground: NSViewRepresentable {
 //		nsView.isEmphasized = context.environment.visualEffectEmphasized ?? isEmphasized
 	}
 }
-
+@available(macOS 10.15, *)
 extension View {
 	func visualEffect(
 		material: NSVisualEffectView.Material,

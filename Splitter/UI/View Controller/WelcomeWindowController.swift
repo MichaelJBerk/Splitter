@@ -7,15 +7,9 @@
 //
 
 import Cocoa
-import SwiftUI
 
 class WelcomeWindowController: NSWindowController {
-	
 
-//	required init?(coder: NSCoder) {
-//		super.init(coder: coder)
-//		self.contentViewController = NSHostingController(rootView: WelcomeView())
-//	}
     override func windowDidLoad() {
         super.windowDidLoad()
 		

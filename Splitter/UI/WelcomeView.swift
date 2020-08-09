@@ -9,8 +9,8 @@
 import SwiftUI
 import Cocoa
 import Files
-import Introspect
 
+@available(macOS 10.15, *)
 struct WelcomeView: View {
 	@State var selectKeeper: URL? = nil
 	var fileURLs = NSDocumentController.shared.recentDocumentURLs
@@ -25,7 +25,7 @@ struct WelcomeView: View {
 		.frame(width: 800, height: 460)
     }
 }
-
+@available(macOS 10.15, *)
 struct RecentsView: View {
 	var listStrs: [String] {
 		let urls = NSDocumentController.shared.recentDocumentURLs
@@ -51,7 +51,7 @@ struct RecentsView: View {
 		
 	}
 }
-
+@available(macOS 10.15, *)
 struct FileRow: View {
 	var url: URL
 	//Using hit testing to ensure that clicking on it anywhere in the row selects it (otherwise, clicking the text/image wouldn't select it).
@@ -123,7 +123,7 @@ struct FileRow: View {
 		return u ?? ""
 	}
 }
-
+@available(macOS 10.15, *)
 struct WelcomeButtonStyle: ButtonStyle {
 	func makeBody(configuration: Self.Configuration) -> some View {
 		configuration.label
@@ -131,6 +131,7 @@ struct WelcomeButtonStyle: ButtonStyle {
 			.foregroundColor(configuration.isPressed ? .secondary : .primary)
 	}
 }
+@available(macOS 10.15, *)
 struct CreateNewFileButton: View {
 	
 	var body: some View {
@@ -152,7 +153,7 @@ struct CreateNewFileButton: View {
 		}).buttonStyle(WelcomeButtonStyle())
 	}
 }
-
+@available(macOS 10.15, *)
 struct OpenFileButton: View {
 	var body: some View {
 		Button(action: {
@@ -175,11 +176,12 @@ struct OpenFileButton: View {
 				Text("Open an existing run").font(.headline)
 				Text("Open an existing .Split, LiveSplit, or Splits.io file on your Mac").font(.subheadline)
 			}
-			.alignmentGuide(.myAlignment) { d in d[HorizontalAlignment.center]}
+//			.alignmentGuide(.myAlignment) { d in d[HorizontalAlignment.center]}
 		}
 		}).buttonStyle(WelcomeButtonStyle())
 	}
 }
+@available(macOS 10.15, *)
 struct DownloadFileButton: View {
 	var body: some View {
 		Button(action: {
@@ -203,7 +205,7 @@ struct DownloadFileButton: View {
 		}).buttonStyle(WelcomeButtonStyle())
 	}
 }
-
+@available(macOS 10.15, *)
 extension HorizontalAlignment {
 	private enum MyAlignment : AlignmentID {
 		static func defaultValue(in d: ViewDimensions) -> CGFloat {
@@ -213,7 +215,7 @@ extension HorizontalAlignment {
 	static let myAlignment = HorizontalAlignment(MyAlignment.self)
 }
 
-
+@available(macOS 10.15, *)
 struct SplitterInfoView: View {
 	@State var selectKeeper: Int? = nil
 	@State var buttonHover: Bool = false
@@ -258,7 +260,7 @@ struct SplitterInfoView: View {
 		
 	}
 }
-
+@available(macOS 10.15, *)
 struct WelcomeView_Previews: PreviewProvider {
     static var previews: some View {
         WelcomeView()
