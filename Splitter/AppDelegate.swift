@@ -43,15 +43,23 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 		
 		Of course, even if you don't give Splitter permission to have Global Hotkeys, you can still continue to use all of its other features just fine.
 		"""
-		alert.addButton(withTitle: "OK")
-		alert.addButton(withTitle: "Tell me more")
+		alert.addButton(withTitle: "Allow")
+		alert.addButton(withTitle: "Dismiss")
+		alert.showsHelp = true
+		alert.delegate = keybindAlertDel
 		switch alert.runModal() {
-		case .alertSecondButtonReturn:
-			NSWorkspace.shared.open(URL(string: "https://mberk.com/splitter/notAnotherTripToSystemPreferences.html")!)
+			
 		case .alertFirstButtonReturn:
-			self.askToOpenAccessibilitySettings()
+			NSWorkspace.shared.open(URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility")!)
 		default:
 			return
+		}
+	}
+	var keybindAlertDel = KeybindAlertDelegate()
+	
+	class KeybindAlertDelegate: NSObject, NSAlertDelegate {
+		func alertShowHelp(_ alert: NSAlert) -> Bool {
+			NSWorkspace.shared.open(URL(string: "https://mberk.com/splitter/notAnotherTripToSystemPreferences.html")!)
 		}
 	}
 	func reopenToApplyKeybindAlert() {
@@ -60,12 +68,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 		alert.informativeText = "In order for these changes to take effect, you will need to quit and reopen Splitter."
 		alert.addButton(withTitle: "Dismiss")
 		alert.runModal()
-	}
-	
-	///Displays the system's prompt for the user to grant Splitter Accessibility permissions
-	func askToOpenAccessibilitySettings() {
-		let options: NSDictionary = [kAXTrustedCheckOptionPrompt.takeUnretainedValue() as String : true]
-		let _ = AXIsProcessTrustedWithOptions(options)
 	}
 	///Checks if Accessibility permissions are granted
 	func accessibilityGranted() -> Bool {
@@ -78,15 +80,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 	/// When run, this method will take find the key that triggered `event` and perform its associated keybind action
 	func performGlobalKeybindAction(event: NSEvent) {
 		for k in self.appKeybinds {
-			let code = k?.keybind?.keyCode
-			let mods = k?.keybind?.modifierFlags
-			let eventMods = event.modifierFlags.intersection(.deviceIndependentFlagsMask)
-			
-			
-			
-			if Int(event.keyCode) == code && eventMods == mods {
-				let ka = self.keybindAction(keybind: k!.title)
-				ka!()
+			if let k = k, k == event, let action = keybindAction(keybind: k.title) {
+				action()
 			}
 		}
 	}
