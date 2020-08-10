@@ -66,8 +66,10 @@ final class HotkeysViewController: NSViewController, PreferencePane {
 		} else {
 			sender.state = .init(bool: false)
 			appDel.keybindAlert()
-			
 		}
+		let rowIndexes = IndexSet(arrayLiteral: 0)
+		let colIndexes = IndexSet(arrayLiteral: 1)
+		hotkeysTableView.reloadData(forRowIndexes: rowIndexes, columnIndexes: colIndexes)
 	}
 	@objc func openTellMeMore() {
 		NSWorkspace.shared.open(URL(string: "https://mberk.com/splitter/notAnotherTripToSystemPreferences.html")!)
@@ -151,6 +153,13 @@ extension HotkeysViewController: NSTableViewDelegate {
 					app.appKeybinds[row]!.keybind = nil
 					app.updateKeyEquivs()
 					}
+				}
+				if !(Settings.enableGlobalHotkeys) {
+					if let title = app.appKeybinds[row]?.title, title == .BringToFront {
+						short?.isEnabled = false
+					}
+				} else {
+					short?.isEnabled = true
 				}
 				return cell
 			}

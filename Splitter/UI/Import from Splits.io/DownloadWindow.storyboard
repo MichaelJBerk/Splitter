@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097.2"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -29,6 +30,9 @@
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </searchFieldCell>
+                                        <connections>
+                                            <action selector="searchAction:" target="qdp-Jd-El2" id="t7C-mO-umR"/>
+                                        </connections>
                                     </searchField>
                                 </toolbarItem>
                             </allowedToolbarItems>
@@ -41,6 +45,7 @@
                         </connections>
                     </window>
                     <connections>
+                        <outlet property="searchField" destination="712-bf-mEW" id="q5g-bf-gUJ"/>
                         <segue destination="BVZ-iD-p8g" kind="relationship" relationship="window.shadowedContentViewController" id="UsM-ql-gjN"/>
                     </connections>
                 </windowController>
@@ -126,10 +131,13 @@
                                 <buttonCell key="cell" type="push" title="Next" bezelStyle="rounded" alignment="center" lineBreakMode="truncatingTail" enabled="NO" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BlG-jk-1gz">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
                                 </buttonCell>
                                 <connections>
                                     <action selector="nbcThing:" target="BVZ-iD-p8g" id="TCX-Up-Whs"/>
-                                    <segue destination="4u8-VA-zwt" kind="sheet" id="eHg-2j-sXP"/>
+                                    <segue destination="4u8-VA-zwt" kind="sheet" identifier="pickCategorySegue" id="eHg-2j-sXP"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -157,7 +165,7 @@
                 <viewController id="4u8-VA-zwt" customClass="CategoryViewController" customModule="Splitter" customModuleProvider="target" sceneMemberID="viewController">
                     <customView key="view" id="DWp-f7-XNF">
                         <rect key="frame" x="0.0" y="0.0" width="450" height="110"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TSh-k7-7vZ">
                                 <rect key="frame" x="18" y="74" width="110" height="16"/>
@@ -169,14 +177,12 @@
                             </textField>
                             <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Vlu-Jz-Roh">
                                 <rect key="frame" x="18" y="42" width="415" height="25"/>
-                                <popUpButtonCell key="cell" type="push" title="Item 1" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Tos-Ng-ZA7" id="YXf-KX-iUL">
+                                <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="Tos-Ng-ZA7" id="YXf-KX-iUL">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                     <menu key="menu" id="Ugp-SN-ail">
                                         <items>
-                                            <menuItem title="Item 1" state="on" id="Tos-Ng-ZA7"/>
-                                            <menuItem title="Item 2" id="TxS-OZ-Tkn"/>
-                                            <menuItem title="Item 3" id="5LQ-ax-yDz"/>
+                                            <menuItem state="on" hidden="YES" id="Tos-Ng-ZA7"/>
                                         </items>
                                     </menu>
                                 </popUpButtonCell>
@@ -192,7 +198,13 @@
                                 <buttonCell key="cell" type="push" title="Next" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hAC-Fa-P2e">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
                                 </buttonCell>
+                                <connections>
+                                    <action selector="nextButtonAction:" target="4u8-VA-zwt" id="qvc-2F-pX7"/>
+                                </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lSD-qm-rN7">
                                 <rect key="frame" x="291" y="5" width="82" height="32"/>

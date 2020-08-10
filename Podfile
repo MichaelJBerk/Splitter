@@ -24,19 +24,3 @@ plugin 'cocoapods-keys', {
   ]
 }
 end
-class Pod::Target::BuildSettings::AggregateTargetSettings
-    alias_method :ld_runpath_search_paths_original, :ld_runpath_search_paths
-
-    def ld_runpath_search_paths
-        return ld_runpath_search_paths_original unless configuration_name == "Debug"
-        return ld_runpath_search_paths_original + framework_search_paths
-    end
-end
-
-class Pod::Target::BuildSettings::PodTargetSettings
-    alias_method :ld_runpath_search_paths_original, :ld_runpath_search_paths
-
-    def ld_runpath_search_paths
-        return (ld_runpath_search_paths_original || []) + framework_search_paths
-    end
-end

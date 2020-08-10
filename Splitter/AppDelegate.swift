@@ -43,15 +43,23 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 		
 		Of course, even if you don't give Splitter permission to have Global Hotkeys, you can still continue to use all of its other features just fine.
 		"""
-		alert.addButton(withTitle: "OK")
-		alert.addButton(withTitle: "Tell me more")
+		alert.addButton(withTitle: "Allow")
+		alert.addButton(withTitle: "Dismiss")
+		alert.showsHelp = true
+		alert.delegate = keybindAlertDel
 		switch alert.runModal() {
-		case .alertSecondButtonReturn:
-			NSWorkspace.shared.open(URL(string: "https://mberk.com/splitter/notAnotherTripToSystemPreferences.html")!)
+			
 		case .alertFirstButtonReturn:
-			self.askToOpenAccessibilitySettings()
+			NSWorkspace.shared.open(URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility")!)
 		default:
 			return
+		}
+	}
+	var keybindAlertDel = KeybindAlertDelegate()
+	
+	class KeybindAlertDelegate: NSObject, NSAlertDelegate {
+		func alertShowHelp(_ alert: NSAlert) -> Bool {
+			NSWorkspace.shared.open(URL(string: "https://mberk.com/splitter/notAnotherTripToSystemPreferences.html")!)
 		}
 	}
 	func reopenToApplyKeybindAlert() {
@@ -60,12 +68,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 		alert.informativeText = "In order for these changes to take effect, you will need to quit and reopen Splitter."
 		alert.addButton(withTitle: "Dismiss")
 		alert.runModal()
-	}
-	
-	///Displays the system's prompt for the user to grant Splitter Accessibility permissions
-	func askToOpenAccessibilitySettings() {
-		let options: NSDictionary = [kAXTrustedCheckOptionPrompt.takeUnretainedValue() as String : true]
-		let _ = AXIsProcessTrustedWithOptions(options)
 	}
 	///Checks if Accessibility permissions are granted
 	func accessibilityGranted() -> Bool {
@@ -78,15 +80,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 	/// When run, this method will take find the key that triggered `event` and perform its associated keybind action
 	func performGlobalKeybindAction(event: NSEvent) {
 		for k in self.appKeybinds {
-			let code = k?.keybind?.keyCode
-			let mods = k?.keybind?.modifierFlags
-			let eventMods = event.modifierFlags.intersection(.deviceIndependentFlagsMask)
-			
-			
-			
-			if Int(event.keyCode) == code && eventMods == mods {
-				let ka = self.keybindAction(keybind: k!.title)
-				ka!()
+			if let k = k, k == event, let action = keybindAction(keybind: k.title) {
+				action()
 			}
 		}
 	}
@@ -108,12 +103,16 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 	///
 	///This is used to make the welcome window appear on startup, or when there's no open file.
 	func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
-		if Settings.showWelcomeWindow {
-			DispatchQueue.main.async {
-				guard sender.keyWindow == nil else { return }
-				self.openWelcomeWindow()
+		if #available(macOS 10.15, *) {
+			if Settings.showWelcomeWindow {
+				DispatchQueue.main.async {
+					guard sender.keyWindow == nil else { return }
+					self.openWelcomeWindow()
+				}
+				return false
+			} else {
+				return true
 			}
-			return false
 		} else {
 			return true
 		}
@@ -134,7 +133,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 			if Settings.lastOpenedBuild != otherConstants.build {
 			}
 		}
-		
+		let welcomeWindowItem = NSApp.mainMenu?.item(withIdentifier: menuIdentifiers.windowMenu.welcomeWindowItem)
+		if #available(macOS 10.15, *) {
+			welcomeWindowItem?.isHidden = false
+		} else {
+			welcomeWindowItem?.isHidden = true
+		}
 		
 		
 		Settings.lastOpenedVersion = otherConstants.version
@@ -192,6 +196,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 	var welcomeWindow: NSWindow!
 	var searchWindow: NSWindow!
 	
+	@available(macOS 10.15, *)
 	func openWelcomeWindow() {
 		let welcomeView = WelcomeView()
 		welcomeWindow = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 800, height: 460), styleMask: [.fullSizeContentView, .titled, .closable], backing: .buffered, defer: false)
@@ -199,45 +204,33 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 		welcomeWindow.titlebarAppearsTransparent = true
 		welcomeWindow.isMovableByWindowBackground = true
 		
-//		welcomeWindow.standardWindowButton(.closeButton)?.isHidden = true
 		welcomeWindow.standardWindowButton(.miniaturizeButton)?.isHidden = true
 		welcomeWindow.standardWindowButton(.zoomButton)?.isHidden = true
 		welcomeWindow.setFrameAutosaveName("Welcome")
 		welcomeWindow.contentView = NSHostingView(rootView: welcomeView)
-//		welcomeWindow.center()
-//		welcomeWindow.makeKeyAndOrderFront(nil)
-//		welcomeWindow.isReleasedWhenClosed = false
+		welcomeWindow.center()
 		let wc = WelcomeWindowController(window: welcomeWindow)
 		wc.showWindow(nil)
 		
+		
 	}
 	@IBAction func welcomeWindowMenuItem(_ sender: Any) {
-		self.openWelcomeWindow()
+		if #available(macOS 10.15, *) {
+			self.openWelcomeWindow()
+		}
 	}
-
-	func createSearchWindow() {
-//		let s = NSStoryboard(name: "Search", bundle: nil).instantiateInitialController() as! SearchWindowController
-//		
-//		s.window?.makeKeyAndOrderFront(nil)
-//		s.window?.center()
-//		s.window?.isReleasedWhenClosed = false
-////
-		let searchView = SplitsIOSearchView()
-		searchWindow = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 800, height: 460), styleMask: [.titled, .closable, .resizable], backing: .buffered, defer: false)
-		searchWindow.titleVisibility = .hidden
-		searchWindow.titlebarAppearsTransparent = true
-		searchWindow.isMovableByWindowBackground = true
-		searchWindow.standardWindowButton(.miniaturizeButton)?.isHidden = true
-		searchWindow.standardWindowButton(.zoomButton)?.isHidden = true
-//
-
-		searchWindow.setFrameAutosaveName("Welcome")
-		searchWindow.contentView = NSHostingView(rootView: searchView.environmentObject(SearchViewModel()))
-		searchWindow.center()
-		searchWindow.makeKeyAndOrderFront(nil)
-		searchWindow.isReleasedWhenClosed = false
-		self.window = searchWindow
+	@IBAction func searchWindowMenuItem( _ sender: Any) {
+		self.openSearchWindow()
 	}
+	
+	func openSearchWindow() {
+		let board = NSStoryboard(name: "DownloadWindow", bundle: nil).instantiateController(withIdentifier: "windowController") as? DownloadWindowController
+		if let win = board?.window {
+			self.searchWindow = win
+			win.makeKeyAndOrderFront(nil)
+		}
+	}
+	
 	func crashes(_ crashes: MSCrashes!, shouldProcessErrorReport errorReport: MSErrorReport!) -> Bool {
 		
 	  return true; // return true if the crash report should be processed, otherwise false.

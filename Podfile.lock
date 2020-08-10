@@ -16,26 +16,19 @@ DEPENDENCIES:
   - AppCenter
   - Keys (from `Pods/CocoaPodsKeys`)
   - MASShortcut
-  - Preferences (from `https://github.com/sindresorhus/Preferences.git`, branch `bigsur`)
+  - Preferences
   - Sparkle
 
 SPEC REPOS:
   trunk:
     - AppCenter
     - MASShortcut
+    - Preferences
     - Sparkle
 
 EXTERNAL SOURCES:
   Keys:
     :path: Pods/CocoaPodsKeys
-  Preferences:
-    :branch: bigsur
-    :git: https://github.com/sindresorhus/Preferences.git
-
-CHECKOUT OPTIONS:
-  Preferences:
-    :commit: 66eb42e69d0d19e10b639b3924fbbc8c56b74e95
-    :git: https://github.com/sindresorhus/Preferences.git
 
 SPEC CHECKSUMS:
   AppCenter: aba7de06e4c2184f90dc84f7866bd07f82427d69
@@ -44,6 +37,6 @@ SPEC CHECKSUMS:
   Preferences: 1ce41315ecadd28a9a4dd92ccd5dea7ca3437f92
   Sparkle: 55b1a87ba69d56913375a281546b7c82dec95bb0
 
-PODFILE CHECKSUM: 06205631c3f645111420f1bbd0fde8e3e885df64
+PODFILE CHECKSUM: 5f52b0c36a1457294dc208df79ab53096d28b321
 
 COCOAPODS: 1.9.3

@@ -36,7 +36,7 @@ enum KeybindSettingsKey: String {
 	case showColumnOptions = "showColumnOptions"
 }
 
-struct SplitterKeybind {
+struct SplitterKeybind: Equatable {
 	var keybind: MASShortcut?
 	var settings: KeybindSettingsKey
 	var title: KeybindTitle
@@ -55,6 +55,14 @@ struct SplitterKeybind {
 		self.title = title
 		self.menuItemID = menuItemID
 	}
+	
+	static func == (lhs: SplitterKeybind, rhs: NSEvent) -> Bool {
+		let code = lhs.keybind?.keyCode
+		let mods = lhs.keybind?.modifierFlags
+		let eventMods = rhs.modifierFlags.intersection(.deviceIndependentFlagsMask)
+		return Int(rhs.keyCode) == code && eventMods == mods
+	}
+	
 	
 }
 

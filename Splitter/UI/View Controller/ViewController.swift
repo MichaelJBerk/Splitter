@@ -403,6 +403,9 @@ class ViewController: NSViewController {
 	//MARK: - Main Functions
 	override func viewWillAppear() {
 		super.viewWillAppear()
+		if let welcome = AppDelegate.shared?.welcomeWindow {
+			welcome.close()
+		}
 		tableBGColor = .splitterTableViewColor
         if #available(macOS 11.0, *) {
             splitsTableView.style = .fullWidth
@@ -597,8 +600,7 @@ class ViewController: NSViewController {
 	//TODO: See if necessary
 	override func keyDown(with event: NSEvent) {
 		super.keyDown(with: event)
-		
-	}	
+	}
 }
 
 //TODO: See if this should be in a separate file, and if it should be with the VC or on its own or in Data

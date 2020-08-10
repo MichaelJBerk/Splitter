@@ -36,25 +36,19 @@ struct VisualEffectBackground: NSViewRepresentable {
 		nsView.material = material
 		nsView.blendingMode = blendingMode
 		nsView.isEmphasized = isEmphasized
-//		nsView.material = context.environment.visualEffectMaterial ?? material
-		
-//		nsView.blendingMode = context.environment.visualEffectBlending ?? blendingMode
-//		nsView.isEmphasized = context.environment.visualEffectEmphasized ?? isEmphasized
 	}
 }
 
-extension View {
-	func visualEffect(
-		material: NSVisualEffectView.Material,
-		blendingMode: NSVisualEffectView.BlendingMode = .behindWindow,
-		emphasized: Bool = false
-	) -> some View {
-		background(
-			VisualEffectBackground(
-				material: material,
-				blendingMode: blendingMode,
-				emphasized: emphasized
-			)
-		)
+@available(macOS 10.15, *)
+struct VisualEffect: ViewModifier {
+	@State var material: NSVisualEffectView.Material
+	@State var blendingMode: NSVisualEffectView.BlendingMode = .behindWindow
+	@State var emphasized: Bool = false
+	func body(content: Content) -> some View {
+		content
+		.background(VisualEffectBackground(
+			material: material,
+			blendingMode: blendingMode,
+			emphasized: emphasized))
 	}
 }

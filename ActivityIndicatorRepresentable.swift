@@ -7,7 +7,7 @@
 //
 
 import SwiftUI
-
+@available(macOS 10.15, *)
 struct ActivityIndicator: NSViewRepresentable {
 
 	@Binding var isAnimating: Bool
