@@ -11,57 +11,56 @@ import Cocoa
 import Files
 
 @available(macOS 10.15, *)
+/// View that prompts the user to open a new file, open an existing file, or import a file from Splits.io
 struct WelcomeView: View {
-	@State var selectKeeper: URL? = nil
+	/// URL for the currently selected file in the recents list
+	@State var selectedURL: URL? = nil
+	/// Array of the user's most recently opened documents
 	var fileURLs = NSDocumentController.shared.recentDocumentURLs
     var body: some View {
 		HStack {
 			SplitterInfoView()
 				.frame(maxWidth: .infinity, maxHeight: .infinity)
-			RecentsView(fileURLs: fileURLs, selectKeeper: $selectKeeper)
+			RecentsView(fileURLs: fileURLs, selectedURL: $selectedURL)
 				.frame(width: 309)
 				
 		}
 		.frame(width: 800, height: 460)
     }
 }
+// MARK: - Recents List (Right Side)
 @available(macOS 10.15, *)
+/// View that displays the user's most recently opened documents
 struct RecentsView: View {
-	var listStrs: [String] {
-		let urls = NSDocumentController.shared.recentDocumentURLs
-		var strs: [String] = []
-		for url in urls {
-			let fileName = url.lastPathComponent
-			strs.append(fileName)
-		}
-		return strs
-	}
+	/// URLs to display in the list
 	var fileURLs: [URL]
-	@Environment(\.controlActiveState) var focusthing: ControlActiveState
-	
-	@Binding var selectKeeper: URL?
+	/// URL for the currently selected file in the recents list
+	@Binding var selectedURL: URL?
 	var body: some View {
-		List(fileURLs, id: \.self, selection: $selectKeeper) { url in
-			FileRow(url: url, selectedURL: self.$selectKeeper)
+		List(fileURLs, id: \.self, selection: $selectedURL) { url in
+			RecentsRow(url: url, selectedURL: self.$selectedURL)
 				
 		}
 		.listRowBackground(Color.red)
 		.listStyle(SidebarListStyle())
-		
-		
 	}
 }
 @available(macOS 10.15, *)
-struct FileRow: View {
+/// Row for the RecentsView
+struct RecentsRow: View {
+	/// The file's path on the user's machine
 	var url: URL
-	//Using hit testing to ensure that clicking on it anywhere in the row selects it (otherwise, clicking the text/image wouldn't select it).
-	//If it was always false, then the custom gesture (to open the file) wouldn't work, so I had to get creative
+	/// Configures whether or not the label or icon should recieve user interations (i.e. clicks)
+	///
+	/// Hit testing is used to ensure that clicking anywhere in the row selects it (otherwise, clicking the text/image wouldn't select it). When false, the image and label will pass interactions to the row itself, instead of hogging them for themseleves.
+	/// If it was always false, then the custom gesture (to open the file) wouldn't work.
 	var shouldHitTest: Bool {
 		if selectedURL != url {
 			return false
 		}
 		return true
 	}
+	///Image to represent the file, depending on its file type
 	var icon: NSImage {
 		let format = DocFileType.fileExtension(fileExtension: url.pathExtension)
 		switch format {
@@ -73,6 +72,7 @@ struct FileRow: View {
 			return NSImage(contentsOf: Bundle.main.url(forResource: "Splitter Doc SplitsIO", withExtension: "icns")!)!
 		}
 	}
+	///The currently selected URL
 	@Binding var selectedURL: URL?
 	var body: some View {
 		HStack(alignment: .center) {
@@ -95,7 +95,6 @@ struct FileRow: View {
 			.allowsHitTesting(shouldHitTest)
 			
 		}
-		
 		.simultaneousGesture(TapGesture().onEnded({
 			if self.selectedURL == self.url {
 				
@@ -109,7 +108,7 @@ struct FileRow: View {
 		
 		.contentShape(Rectangle())
 	}
-	
+	///Gets the file name used for the label
 	func fileName() -> String {
 		if let r = url.lastPathComponent.range(of: #"^([^.]+)"#, options: .regularExpression) {
 			let s = url.lastPathComponent[r]
@@ -117,13 +116,18 @@ struct FileRow: View {
 		}
 		return ""
 	}
+	///Gets the file path used for the label
 	func filePath() -> String {
 		let u = url.deletingLastPathComponent().relativeString.replacingOccurrences(of: "file://", with: "").replacingOccurrences(of: "/Volumes/", with: "").removingPercentEncoding
 		
 		return u ?? ""
 	}
 }
+
+//MARK: - Info View (Left Side)
+//MARK: Buttons
 @available(macOS 10.15, *)
+/// Button Style used for buttons in the Welcome window
 struct WelcomeButtonStyle: ButtonStyle {
 	func makeBody(configuration: Self.Configuration) -> some View {
 		configuration.label
@@ -132,8 +136,8 @@ struct WelcomeButtonStyle: ButtonStyle {
 	}
 }
 @available(macOS 10.15, *)
+/// Button for the user to create a new file from the Welcome window
 struct CreateNewFileButton: View {
-	
 	var body: some View {
 		Button(action: {
 			NSDocumentController.shared.newDocument(nil)
@@ -143,17 +147,18 @@ struct CreateNewFileButton: View {
 				Text("􀑍").font(.system(size: 30))
 					
 					.foregroundColor(.blue)
-				VStack(alignment: WelcomeAlignment.myAlignment) {
+				VStack(alignment: WelcomeAlignment.welcomeAlignment) {
 					Text("New Run").font(.headline)
 					Text("Start a new speedrun").font(.subheadline)
 				}
-				.alignmentGuide(WelcomeAlignment.myAlignment) { d in d[HorizontalAlignment.center]}
+				.alignmentGuide(WelcomeAlignment.welcomeAlignment) { d in d[HorizontalAlignment.center]}
 				
 			}
 		}).buttonStyle(WelcomeButtonStyle())
 	}
 }
 @available(macOS 10.15, *)
+/// Button for the user to open an existing file from the Welcome window
 struct OpenFileButton: View {
 	var body: some View {
 		Button(action: {
@@ -172,16 +177,17 @@ struct OpenFileButton: View {
 		HStack {
 			Text("􀈕").font(.system(size: 25))
 				.foregroundColor(.blue)
-			VStack(alignment: WelcomeAlignment.myAlignment) {
+			VStack(alignment: WelcomeAlignment.welcomeAlignment) {
 				Text("Open an existing run").font(.headline)
 				Text("Open an existing .Split, LiveSplit, or Splits.io file on your Mac").font(.subheadline)
 			}
-			.alignmentGuide(WelcomeAlignment.myAlignment) { d in d[HorizontalAlignment.center]}
+			.alignmentGuide(WelcomeAlignment.welcomeAlignment) { d in d[HorizontalAlignment.center]}
 		}
 		}).buttonStyle(WelcomeButtonStyle())
 	}
 }
 @available(macOS 10.15, *)
+/// Button for the user to download a run from Splits.io in the Welcome window
 struct DownloadFileButton: View {
 	var body: some View {
 		Button(action: {
@@ -196,11 +202,11 @@ struct DownloadFileButton: View {
 		HStack {
 			Text("􀈅").font(.system(size: 30))
 				.foregroundColor(.blue)
-			VStack(alignment: WelcomeAlignment.myAlignment) {
+			VStack(alignment: WelcomeAlignment.welcomeAlignment) {
 				Text("Download a run from Splits.io").font(.headline)
 				Text("Use the splits from an existing run on Splits.io ").font(.subheadline)
 			}
-			.alignmentGuide(WelcomeAlignment.myAlignment) { d in d[HorizontalAlignment.center]}
+			.alignmentGuide(WelcomeAlignment.welcomeAlignment) { d in d[HorizontalAlignment.center]}
 			
 		}
 		}).buttonStyle(WelcomeButtonStyle())
@@ -208,19 +214,24 @@ struct DownloadFileButton: View {
 }
 
 @available(macOS 10.15, *)
+/// Alignment used for the Welcome window
 struct WelcomeAlignment {
-	private enum wAlignment: AlignmentID {
+	private enum privateWelcomeAlignment: AlignmentID {
 		static func defaultValue(in context: ViewDimensions) -> CGFloat {
 			return context[.leading]
 		}
 	}
-	static let myAlignment = HorizontalAlignment(wAlignment.self)
+	static let welcomeAlignment = HorizontalAlignment(privateWelcomeAlignment.self)
 }
 
+//MARK: Info View
 @available(macOS 10.15, *)
+/// View on the left side of the Welcome window
 struct SplitterInfoView: View {
-	@State var selectKeeper: Int? = nil
-	@State var buttonHover: Bool = false
+	
+	/// Whether or not the Welcome screen should be opened upon launch
+	///
+	/// Modifying this changes the setting in UserDefaults
 	@State var showWelcomeScreenOnLaunch: Bool = Settings.showWelcomeWindow {
 		didSet {
 			Settings.showWelcomeWindow = self.showWelcomeScreenOnLaunch
@@ -262,6 +273,7 @@ struct SplitterInfoView: View {
 		
 	}
 }
+//MARK: - Previews
 @available(macOS 10.15, *)
 struct WelcomeView_Previews: PreviewProvider {
     static var previews: some View {
