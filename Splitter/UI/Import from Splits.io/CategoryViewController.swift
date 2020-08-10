@@ -20,7 +20,7 @@ class CategoryViewController: NSViewController {
 		}
 		
     }
-	var game: SplitsIOGame?
+	var model: DownloadModel!
 	
 	@IBOutlet weak var cancelButton: NSButton!
 	@IBOutlet weak var nextButton: NSButton!
@@ -34,7 +34,7 @@ class CategoryViewController: NSViewController {
 		loadRun()
 	}
 	func loadCategories(completion: @escaping () -> Void) {
-		if let game = game {
+		if let game = model.game {
 			splitsIO.getCategories(for: game.shortname, completion: { cats in
 				self.categories = cats
 				self.categoryPopUpButton.menu?.items = self.makeMenuItems(categories: cats)

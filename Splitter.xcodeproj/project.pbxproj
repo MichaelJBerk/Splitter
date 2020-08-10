@@ -41,7 +41,7 @@
 		4A5F10AE23CFAA1F00DA043B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A5F10AD23CFAA1F00DA043B /* Assets.xcassets */; };
 		4A61438424801A28007C38E0 /* ColorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A61438324801A28007C38E0 /* ColorsView.swift */; };
 		4A61438624801A37007C38E0 /* ColorsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A61438524801A37007C38E0 /* ColorsView.xib */; };
-		4A66573023E3D34600D14A67 /* BuildFile in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4A66573023E3D34600D14A67 /* (null) in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4A66A43023DE2682005952FA /* ImageButtonCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A66A42F23DE2682005952FA /* ImageButtonCellView.swift */; };
 		4A66A43223DE2C88005952FA /* SplitTableViewColumnIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A66A43123DE2C88005952FA /* SplitTableViewColumnIdentifiers.swift */; };
 		4A6726EA23F05D17006F4BC4 /* LiveSplit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A617EBD23EBC65C0005D60E /* LiveSplit.swift */; };
@@ -66,12 +66,12 @@
 		4AA357B52416F79900219E65 /* liblivesplit_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA357B42416F79900219E65 /* liblivesplit_core.a */; };
 		4AA3DAB423E23DA900ADFA4A /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA3DAB323E23DA900ADFA4A /* IconButton.swift */; };
 		4AAD470A248432540094A31F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAD4709248432540094A31F /* Colors.swift */; };
-		4AB5627924338FB000D7F8D1 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 4AB5627824338FB000D7F8D1 /* SwiftPackageProductDependency */; };
+		4AB5627924338FB000D7F8D1 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 4AB5627824338FB000D7F8D1 /* SwiftyJSON */; };
 		4AC24DBA23EB4EC5003008BF /* Split Table Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC24DB923EB4EC5003008BF /* Split Table Row.swift */; };
 		4AC24DBC23EB4F17003008BF /* Split Table View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC24DBB23EB4F17003008BF /* Split Table View.swift */; };
 		4AC401F324BE145F005180F1 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		4ACCEA7823B02F520068F89E /* TimeSplit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACCEA7723B02F520068F89E /* TimeSplit.swift */; };
-		4AD7662E23DA5F9A0052409C /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 4AD7662D23DA5F9A0052409C /* SwiftPackageProductDependency */; };
+		4AD7662E23DA5F9A0052409C /* Files in Frameworks */ = {isa = PBXBuildFile; productRef = 4AD7662D23DA5F9A0052409C /* Files */; };
 		4AD77D16240ECA2800CD65AD /* ColumnOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD77D15240ECA2800CD65AD /* ColumnOptionsViewController.swift */; };
 		4ADB15F324BE247B006C5C55 /* Pods_Splitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 87E736D304B5FCD4C27DCCBA /* Pods_Splitter.framework */; };
 		4ADB15F424BE247B006C5C55 /* Pods_Splitter.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 87E736D304B5FCD4C27DCCBA /* Pods_Splitter.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
@@ -86,6 +86,7 @@
 		4AEC4C02240F5BA300B01799 /* RunOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEC4C01240F5BA300B01799 /* RunOptionsViewController.swift */; };
 		4AF953B523EB503100ED540C /* Timer Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF953B423EB503100ED540C /* Timer Functions.swift */; };
 		4AF953B723EB507800ED540C /* Splits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF953B623EB507800ED540C /* Splits.swift */; };
+		4AF9580024E1C68F00EEE054 /* DownloadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF957FF24E1C68F00EEE054 /* DownloadModel.swift */; };
 		4AF9E8A824CE2FE200DFD5BE /* SplitsIOKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4AF9E8A724CE2FE200DFD5BE /* SplitsIOKit */; };
 		4AF9E8AB24CE31CA00DFD5BE /* DebugPrefsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF9E8A924CE31CA00DFD5BE /* DebugPrefsViewController.swift */; };
 		4AF9E8AC24CE31CA00DFD5BE /* DebugPrefsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AF9E8AA24CE31CA00DFD5BE /* DebugPrefsViewController.xib */; };
@@ -118,7 +119,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				4ADB15F424BE247B006C5C55 /* Pods_Splitter.framework in Embed Frameworks */,
-				4A66573023E3D34600D14A67 /* BuildFile in Embed Frameworks */,
+				4A66573023E3D34600D14A67 /* (null) in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -126,8 +127,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		428B093696171CFDE34F8622 /* Pods-Splitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitter.release.xcconfig"; path = "Target Support Files/Pods-Splitter/Pods-Splitter.release.xcconfig"; sourceTree = "<group>"; };
-		4A0460EB24363C6200273657 /* TestPlan.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = TestPlan.xctestplan; sourceTree = "<group>"; };
 		4A05EEFC24D762E200873D07 /* DownloadWindow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DownloadWindow.storyboard; sourceTree = "<group>"; };
 		4A09E29924D751B60013D7BC /* DownloadWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DownloadWindow.xib; sourceTree = "<group>"; };
 		4A09E29B24D754520013D7BC /* DownloadWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadWindowController.swift; sourceTree = "<group>"; };
@@ -205,6 +204,7 @@
 		4AEC4C01240F5BA300B01799 /* RunOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunOptionsViewController.swift; sourceTree = "<group>"; };
 		4AF953B423EB503100ED540C /* Timer Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timer Functions.swift"; sourceTree = "<group>"; };
 		4AF953B623EB507800ED540C /* Splits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Splits.swift; sourceTree = "<group>"; };
+		4AF957FF24E1C68F00EEE054 /* DownloadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadModel.swift; sourceTree = "<group>"; };
 		4AF9D75B23ECD5110019BC9A /* livesplit_core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = livesplit_core.h; sourceTree = "<group>"; };
 		4AF9D75D23ECD5110019BC9A /* module.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.map; sourceTree = "<group>"; };
 		4AF9D76223ECD59A0019BC9A /* Splitter-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Splitter-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -217,11 +217,8 @@
 		4AFAD84424CF2CF8006FC480 /* WelcomeWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WelcomeWindowController.swift; path = "View Controller/WelcomeWindowController.swift"; sourceTree = "<group>"; };
 		87E736D304B5FCD4C27DCCBA /* Pods_Splitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Splitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		AB112D1E7E3623EA74C79CD1 /* Pods-Splitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitter.release.xcconfig"; path = "Target Support Files/Pods-Splitter/Pods-Splitter.release.xcconfig"; sourceTree = "<group>"; };
-		E8BF7290ADCAA74F9A15CCBE /* Pods-Splitter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitter.debug.xcconfig"; path = "Target Support Files/Pods-Splitter/Pods-Splitter.debug.xcconfig"; sourceTree = "<group>"; };
-		4AFEFFAF241AB9E400B00E45 /* TableViewAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewAppearance.swift; sourceTree = "<group>"; };
-		4AFEFFB1241AB9EC00B00E45 /* TableViewAppearance.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TableViewAppearance.xib; sourceTree = "<group>"; };
-		D9A00B044623884E3CEBC012 /* Pods-Splitter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitter.debug.xcconfig"; path = "Target Support Files/Pods-Splitter/Pods-Splitter.debug.xcconfig"; sourceTree = "<group>"; };
 		E625035A8B1699C4FC522DB8 /* Pods_Splitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Splitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		E8BF7290ADCAA74F9A15CCBE /* Pods-Splitter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitter.debug.xcconfig"; path = "Target Support Files/Pods-Splitter/Pods-Splitter.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -229,12 +226,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4AD7662E23DA5F9A0052409C /* BuildFile in Frameworks */,
+				4AD7662E23DA5F9A0052409C /* Files in Frameworks */,
 				4AA357B52416F79900219E65 /* liblivesplit_core.a in Frameworks */,
 				4ADB15F324BE247B006C5C55 /* Pods_Splitter.framework in Frameworks */,
 				4AF9E8A824CE2FE200DFD5BE /* SplitsIOKit in Frameworks */,
 				4AB5627924338FB000D7F8D1 /* SwiftyJSON in Frameworks */,
-				4AB5627924338FB000D7F8D1 /* BuildFile in Frameworks */,
+				4AB5627924338FB000D7F8D1 /* SwiftyJSON in Frameworks */,
 				4A6B4F7423F07C3900CB781F /* libresolv.tbd in Frameworks */,
 				2292650BB77F93AE92B24C0E /* Pods_Splitter.framework in Frameworks */,
 			);
@@ -276,6 +273,7 @@
 				4A05EEFC24D762E200873D07 /* DownloadWindow.storyboard */,
 				4A09E29924D751B60013D7BC /* DownloadWindow.xib */,
 				4A09E29D24D7555E0013D7BC /* DownloadView.swift */,
+				4AF957FF24E1C68F00EEE054 /* DownloadModel.swift */,
 			);
 			path = "Import from Splits.io";
 			sourceTree = "<group>";
@@ -357,6 +355,7 @@
 				4A230E9023B00A1D00959C57 /* Products */,
 				D37BEB9F742A1CC70715DDD3 /* Pods */,
 				0721BB701FB4FFBBA3F65AE9 /* Frameworks */,
+				4AF957FE24E1C59800EEE054 /* Recovered References */,
 			);
 			sourceTree = "<group>";
 		};
@@ -486,6 +485,14 @@
 			path = Native;
 			sourceTree = "<group>";
 		};
+		4AF957FE24E1C59800EEE054 /* Recovered References */ = {
+			isa = PBXGroup;
+			children = (
+				E625035A8B1699C4FC522DB8 /* Pods_Splitter.framework */,
+			);
+			name = "Recovered References";
+			sourceTree = "<group>";
+		};
 		4AF9D75623ECD4790019BC9A /* LiveSplit Core */ = {
 			isa = PBXGroup;
 			children = (
@@ -578,8 +585,8 @@
 				4AD7662D23DA5F9A0052409C /* Files */,
 				4AB5627824338FB000D7F8D1 /* SwiftyJSON */,
 				4AF9E8A724CE2FE200DFD5BE /* SplitsIOKit */,
-				4AD7662D23DA5F9A0052409C /* SwiftPackageProductDependency */,
-				4AB5627824338FB000D7F8D1 /* SwiftPackageProductDependency */,
+				4AD7662D23DA5F9A0052409C /* Files */,
+				4AB5627824338FB000D7F8D1 /* SwiftyJSON */,
 			);
 			productName = Splitter;
 			productReference = 4A230E8F23B00A1D00959C57 /* Splitter.app */;
@@ -654,8 +661,8 @@
 			);
 			mainGroup = 4A230E8623B00A1D00959C57;
 			packageReferences = (
-				4AD7662C23DA5F9A0052409C /* RemoteSwiftPackageReference */,
-				4AB5627724338FB000D7F8D1 /* RemoteSwiftPackageReference */,
+				4AD7662C23DA5F9A0052409C /* XCRemoteSwiftPackageReference "Files" */,
+				4AB5627724338FB000D7F8D1 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = 4A230E9023B00A1D00959C57 /* Products */;
 			projectDirPath = "";
@@ -823,6 +830,7 @@
 				4A1657B523EA5C320008CB5F /* Icon Actions.swift in Sources */,
 				4AD77D16240ECA2800CD65AD /* ColumnOptionsViewController.swift in Sources */,
 				4A6A3BE423CD621A002C20AE /* MainWindow.swift in Sources */,
+				4AF9580024E1C68F00EEE054 /* DownloadModel.swift in Sources */,
 				4A1657B323EA4F3C0008CB5F /* Button Actions.swift in Sources */,
 				4AF9E8AB24CE31CA00DFD5BE /* DebugPrefsViewController.swift in Sources */,
 				4A968C7C23F1F5FE001B74E8 /* lss.swift in Sources */,
@@ -1218,7 +1226,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		4AB5627724338FB000D7F8D1 /* RemoteSwiftPackageReference */ = {
+		4AB5627724338FB000D7F8D1 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
 			requirement = {
@@ -1226,7 +1234,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		4AD7662C23DA5F9A0052409C /* RemoteSwiftPackageReference */ = {
+		4AD7662C23DA5F9A0052409C /* XCRemoteSwiftPackageReference "Files" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/JohnSundell/Files";
 			requirement = {
@@ -1237,14 +1245,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		4AB5627824338FB000D7F8D1 /* SwiftPackageProductDependency */ = {
+		4AB5627824338FB000D7F8D1 /* SwiftyJSON */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4AB5627724338FB000D7F8D1 /* RemoteSwiftPackageReference */;
+			package = 4AB5627724338FB000D7F8D1 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
 		};
-		4AD7662D23DA5F9A0052409C /* SwiftPackageProductDependency */ = {
+		4AD7662D23DA5F9A0052409C /* Files */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4AD7662C23DA5F9A0052409C /* RemoteSwiftPackageReference */;
+			package = 4AD7662C23DA5F9A0052409C /* XCRemoteSwiftPackageReference "Files" */;
 			productName = Files;
 		};
 		4AF9E8A724CE2FE200DFD5BE /* SplitsIOKit */ = {
