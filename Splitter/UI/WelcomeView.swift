@@ -143,11 +143,11 @@ struct CreateNewFileButton: View {
 				Text("􀑍").font(.system(size: 30))
 					
 					.foregroundColor(.blue)
-				VStack(alignment: .myAlignment) {
+				VStack(alignment: WelcomeAlignment.myAlignment) {
 					Text("New Run").font(.headline)
 					Text("Start a new speedrun").font(.subheadline)
 				}
-				.alignmentGuide(.myAlignment) { d in d[HorizontalAlignment.center]}
+				.alignmentGuide(WelcomeAlignment.myAlignment) { d in d[HorizontalAlignment.center]}
 				
 			}
 		}).buttonStyle(WelcomeButtonStyle())
@@ -172,11 +172,11 @@ struct OpenFileButton: View {
 		HStack {
 			Text("􀈕").font(.system(size: 25))
 				.foregroundColor(.blue)
-			VStack(alignment: .myAlignment) {
+			VStack(alignment: WelcomeAlignment.myAlignment) {
 				Text("Open an existing run").font(.headline)
 				Text("Open an existing .Split, LiveSplit, or Splits.io file on your Mac").font(.subheadline)
 			}
-//			.alignmentGuide(.myAlignment) { d in d[HorizontalAlignment.center]}
+			.alignmentGuide(WelcomeAlignment.myAlignment) { d in d[HorizontalAlignment.center]}
 		}
 		}).buttonStyle(WelcomeButtonStyle())
 	}
@@ -196,23 +196,25 @@ struct DownloadFileButton: View {
 		HStack {
 			Text("􀈅").font(.system(size: 30))
 				.foregroundColor(.blue)
-			VStack(alignment: .myAlignment) {
+			VStack(alignment: WelcomeAlignment.myAlignment) {
 				Text("Download a run from Splits.io").font(.headline)
 				Text("Use the splits from an existing run on Splits.io ").font(.subheadline)
 			}
-			.alignmentGuide(.myAlignment) { d in d[HorizontalAlignment.center]}
+			.alignmentGuide(WelcomeAlignment.myAlignment) { d in d[HorizontalAlignment.center]}
+			
 		}
 		}).buttonStyle(WelcomeButtonStyle())
 	}
 }
+
 @available(macOS 10.15, *)
-extension HorizontalAlignment {
-	private enum MyAlignment : AlignmentID {
-		static func defaultValue(in d: ViewDimensions) -> CGFloat {
-			return d[.leading]
+struct WelcomeAlignment {
+	private enum wAlignment: AlignmentID {
+		static func defaultValue(in context: ViewDimensions) -> CGFloat {
+			return context[.leading]
 		}
 	}
-	static let myAlignment = HorizontalAlignment(MyAlignment.self)
+	static let myAlignment = HorizontalAlignment(wAlignment.self)
 }
 
 @available(macOS 10.15, *)

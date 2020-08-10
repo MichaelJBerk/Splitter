@@ -82,7 +82,6 @@
 		4AEA928423C4F140004F6CF9 /* DefaultPreferenceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AEA928223C4F140004F6CF9 /* DefaultPreferenceViewController.xib */; };
 		4AEC4C00240F564B00B01799 /* Time Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEC4BFF240F564B00B01799 /* Time Conversion.swift */; };
 		4AEC4C02240F5BA300B01799 /* RunOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEC4C01240F5BA300B01799 /* RunOptionsViewController.swift */; };
-		4AF8EE1A24BFEA8D008E8B9E /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 4AF8EE1924BFEA8D008E8B9E /* Introspect */; };
 		4AF953B523EB503100ED540C /* Timer Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF953B423EB503100ED540C /* Timer Functions.swift */; };
 		4AF953B723EB507800ED540C /* Splits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF953B623EB507800ED540C /* Splits.swift */; };
 		4AF9E8A824CE2FE200DFD5BE /* SplitsIOKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4AF9E8A724CE2FE200DFD5BE /* SplitsIOKit */; };
@@ -226,7 +225,6 @@
 				4ADB15F324BE247B006C5C55 /* Pods_Splitter.framework in Frameworks */,
 				4AF9E8A824CE2FE200DFD5BE /* SplitsIOKit in Frameworks */,
 				4AB5627924338FB000D7F8D1 /* SwiftyJSON in Frameworks */,
-				4AF8EE1A24BFEA8D008E8B9E /* Introspect in Frameworks */,
 				4A6B4F7423F07C3900CB781F /* libresolv.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -568,7 +566,6 @@
 			packageProductDependencies = (
 				4AD7662D23DA5F9A0052409C /* Files */,
 				4AB5627824338FB000D7F8D1 /* SwiftyJSON */,
-				4AF8EE1924BFEA8D008E8B9E /* Introspect */,
 				4AF9E8A724CE2FE200DFD5BE /* SplitsIOKit */,
 			);
 			productName = Splitter;
@@ -646,7 +643,6 @@
 			packageReferences = (
 				4AD7662C23DA5F9A0052409C /* XCRemoteSwiftPackageReference "Files" */,
 				4AB5627724338FB000D7F8D1 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
-				4AF8EE1824BFEA8D008E8B9E /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = 4A230E9023B00A1D00959C57 /* Products */;
 			projectDirPath = "";
@@ -1225,14 +1221,6 @@
 				minimumVersion = 4.1.1;
 			};
 		};
-		4AF8EE1824BFEA8D008E8B9E /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/siteline/SwiftUI-Introspect";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 0.1.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1245,11 +1233,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4AD7662C23DA5F9A0052409C /* XCRemoteSwiftPackageReference "Files" */;
 			productName = Files;
-		};
-		4AF8EE1924BFEA8D008E8B9E /* Introspect */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4AF8EE1824BFEA8D008E8B9E /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
-			productName = Introspect;
 		};
 		4AF9E8A724CE2FE200DFD5BE /* SplitsIOKit */ = {
 			isa = XCSwiftPackageProductDependency;
