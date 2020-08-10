@@ -257,7 +257,7 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		4A09E29F24D755680013D7BC /* Download */ = {
+		4A09E29F24D755680013D7BC /* Import from Splits.io */ = {
 			isa = PBXGroup;
 			children = (
 				4A09E2A624D75D6B0013D7BC /* CategoryViewController.swift */,
@@ -266,7 +266,7 @@
 				4A09E29924D751B60013D7BC /* DownloadWindow.xib */,
 				4A09E29D24D7555E0013D7BC /* DownloadView.swift */,
 			);
-			path = Download;
+			path = "Import from Splits.io";
 			sourceTree = "<group>";
 		};
 		4A0DC2832418216A00FC959A /* SplitsIO */ = {
@@ -512,7 +512,7 @@
 			isa = PBXGroup;
 			children = (
 				4AFAD84424CF2CF8006FC480 /* WelcomeWindowController.swift */,
-				4A09E29F24D755680013D7BC /* Download */,
+				4A09E29F24D755680013D7BC /* Import from Splits.io */,
 				4AE82A1524BFD4400044B6D3 /* WelcomeView.swift */,
 				4A18662F23C5257800FEEE54 /* MenuItemConstants.swift */,
 				4A894B1B249ABA71004FEEB3 /* LoadableNib.swift */,
