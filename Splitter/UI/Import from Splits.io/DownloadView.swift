@@ -37,12 +37,7 @@ class DarkSpinnerView: NSView {
 	
 }
 
-protocol DownloadDelegate {
-	var selectedGame: SplitsIOGame? {get set}
-	func closeWindow()
-}
-
-class DownloadViewController: NSViewController, DownloadDelegate {
+class DownloadViewController: NSViewController {
 	var sField: NSSearchField?
 	var darkenView: DarkSpinnerView?
 	
@@ -98,8 +93,7 @@ class DownloadViewController: NSViewController, DownloadDelegate {
 	override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
 		super.prepare(for: segue, sender: sender)
 		if segue.identifier == "pickCategorySegue", let destination = segue.destinationController as? CategoryViewController, tableView.selectedRow < games.count {
-			self.selectedGame = games[tableView.selectedRow]
-			destination.delegate = self
+			destination.game = selectedGame
 		}
 	}
 	func closeWindow() {
@@ -120,7 +114,14 @@ extension DownloadViewController: NSTableViewDelegate, NSTableViewDataSource {
 		return cell
 	}
 	func tableViewSelectionDidChange(_ notification: Notification) {
+		if tableView.selectedRow >= 0 {
+			self.selectedGame = games[tableView.selectedRow]
+		} else {
+			selectedGame = nil
+		}
+		
 		if tableView.numberOfSelectedRows > 0 {
+			
 			nextButton.isEnabled = true
 		}
 		else {

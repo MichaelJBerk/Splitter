@@ -13,16 +13,14 @@ class CategoryViewController: NSViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do view setup here.
 		popitem = categoryPopUpButton.selectedItem
 		showSpinner()
-//		categoryPopUpButton.menu?.items = [NSMenuItem(title: "Item1", action: nil, keyEquivalent: ""), NSMenuItem(title: "Item2", action: nil, keyEquivalent: "")]
 		loadCategories {
 			self.hideSpinner()
 		}
 		
     }
-	var delegate: DownloadDelegate!
+	var game: SplitsIOGame?
 	
 	@IBOutlet weak var cancelButton: NSButton!
 	@IBOutlet weak var nextButton: NSButton!
@@ -36,7 +34,7 @@ class CategoryViewController: NSViewController {
 		loadRun()
 	}
 	func loadCategories(completion: @escaping () -> Void) {
-		if let game = delegate.selectedGame {
+		if let game = game {
 			splitsIO.getCategories(for: game.shortname, completion: { cats in
 				self.categories = cats
 				self.categoryPopUpButton.menu?.items = self.makeMenuItems(categories: cats)
@@ -94,7 +92,8 @@ class CategoryViewController: NSViewController {
 			if let vc =  d.windowControllers.first?.window?.contentViewController as? ViewController {
 				self.dismiss(self)
 				vc.view.window?.makeKeyAndOrderFront(nil)
-				self.delegate.closeWindow()
+				self.view.window?.windowController?.close()
+				AppDelegate.shared?.searchWindow.close()
 			}
 		})
 	}
