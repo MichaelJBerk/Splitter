@@ -21,7 +21,8 @@ plugin 'cocoapods-keys', {
   :keys => [
     "AppCenter",
     "edKey",
-    "splitsio"
+    "splitsiosecret",
+    "splitsioclient"
   ]
 }
 end

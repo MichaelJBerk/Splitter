@@ -7,9 +7,12 @@ import Files
 
 public class SplitsIOKit {
 	var searchRequest: DataRequest?
-	public init(url: URL = URL(string:"https://splits.io")!) {
+	var authManager: SplitsIOAuth?
+	public init(url: URL = URL(string:"https://splits.io")!, auth: SplitsIOAuth? = nil) {
 		splitsIOURL = url
+		authManager = auth
 	}
+	
 	var splitsIOURL: URL
 	
 	enum SplitsIOError: Error {
@@ -21,14 +24,9 @@ public class SplitsIOKit {
 		if game.count == 0 {return}
 		let gamesURL = splitsIOURL.appendingPathComponent("/api/v4/games")
 		searchRequest = AF.request(gamesURL, method: .get, parameters: ["search":"\(game)"], encoding: URLEncoding.default).responseDecodable(of: SplitsIOGameSearch.self) { response in
-			
 			let v = response.value
-			
-			
 			completion(v?.games)
 		}
-		
-		
 	}
 
 	

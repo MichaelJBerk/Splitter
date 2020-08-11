@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0830564969D372933C224214 /* Pods_Splitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8E37CBC99674035EA1B43415 /* Pods_Splitter.framework */; };
 		4A05EEFD24D762E200873D07 /* DownloadWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A05EEFC24D762E200873D07 /* DownloadWindow.storyboard */; };
+		4A09819F24E3089B00E44792 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09819D24E3089B00E44792 /* LoginViewController.swift */; };
+		4A0981A024E3089B00E44792 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A09819E24E3089B00E44792 /* LoginViewController.xib */; };
 		4A09E29A24D751B60013D7BC /* DownloadWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A09E29924D751B60013D7BC /* DownloadWindow.xib */; };
 		4A09E29C24D754520013D7BC /* DownloadWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09E29B24D754520013D7BC /* DownloadWindowController.swift */; };
 		4A09E29E24D7555E0013D7BC /* DownloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09E29D24D7555E0013D7BC /* DownloadView.swift */; };
@@ -41,7 +42,7 @@
 		4A5F10AE23CFAA1F00DA043B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A5F10AD23CFAA1F00DA043B /* Assets.xcassets */; };
 		4A61438424801A28007C38E0 /* ColorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A61438324801A28007C38E0 /* ColorsView.swift */; };
 		4A61438624801A37007C38E0 /* ColorsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A61438524801A37007C38E0 /* ColorsView.xib */; };
-		4A66573023E3D34600D14A67 /* BuildFile in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4A66573023E3D34600D14A67 /* (null) in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4A66A43023DE2682005952FA /* ImageButtonCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A66A42F23DE2682005952FA /* ImageButtonCellView.swift */; };
 		4A66A43223DE2C88005952FA /* SplitTableViewColumnIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A66A43123DE2C88005952FA /* SplitTableViewColumnIdentifiers.swift */; };
 		4A6726EA23F05D17006F4BC4 /* LiveSplit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A617EBD23EBC65C0005D60E /* LiveSplit.swift */; };
@@ -66,14 +67,14 @@
 		4AA357B52416F79900219E65 /* liblivesplit_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA357B42416F79900219E65 /* liblivesplit_core.a */; };
 		4AA3DAB423E23DA900ADFA4A /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA3DAB323E23DA900ADFA4A /* IconButton.swift */; };
 		4AAD470A248432540094A31F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAD4709248432540094A31F /* Colors.swift */; };
-		4AB5627924338FB000D7F8D1 /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 4AB5627824338FB000D7F8D1 /* SwiftPackageProductDependency */; };
+		4AB5627924338FB000D7F8D1 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 4AB5627824338FB000D7F8D1 /* SwiftyJSON */; };
 		4AC24DBA23EB4EC5003008BF /* Split Table Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC24DB923EB4EC5003008BF /* Split Table Row.swift */; };
 		4AC24DBC23EB4F17003008BF /* Split Table View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC24DBB23EB4F17003008BF /* Split Table View.swift */; };
-		4AC401F324BE145F005180F1 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		4AC401F324BE145F005180F1 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		4ACCEA7823B02F520068F89E /* TimeSplit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACCEA7723B02F520068F89E /* TimeSplit.swift */; };
-		4AD7662E23DA5F9A0052409C /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 4AD7662D23DA5F9A0052409C /* SwiftPackageProductDependency */; };
+		4AD7662E23DA5F9A0052409C /* Files in Frameworks */ = {isa = PBXBuildFile; productRef = 4AD7662D23DA5F9A0052409C /* Files */; };
 		4AD77D16240ECA2800CD65AD /* ColumnOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD77D15240ECA2800CD65AD /* ColumnOptionsViewController.swift */; };
-		4ADB15F424BE247B006C5C55 /* BuildFile in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4ADB15F424BE247B006C5C55 /* (null) in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4ADE9226240F1FB900E0D99E /* InfoPopoverTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADE9225240F1FB900E0D99E /* InfoPopoverTabViewController.swift */; };
 		4ADFAE4923E4A0760049F57A /* QuickAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADFAE4823E4A0760049F57A /* QuickAlert.swift */; };
 		4AE82A1624BFD4400044B6D3 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE82A1524BFD4400044B6D3 /* WelcomeView.swift */; };
@@ -86,11 +87,12 @@
 		4AF953B523EB503100ED540C /* Timer Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF953B423EB503100ED540C /* Timer Functions.swift */; };
 		4AF953B723EB507800ED540C /* Splits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF953B623EB507800ED540C /* Splits.swift */; };
 		4AF9580024E1C68F00EEE054 /* DownloadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF957FF24E1C68F00EEE054 /* DownloadModel.swift */; };
-		4AF9E8A824CE2FE200DFD5BE /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 4AF9E8A724CE2FE200DFD5BE /* SwiftPackageProductDependency */; };
+		4AF9E8A824CE2FE200DFD5BE /* SplitsIOKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4AF9E8A724CE2FE200DFD5BE /* SplitsIOKit */; };
 		4AF9E8AB24CE31CA00DFD5BE /* DebugPrefsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF9E8A924CE31CA00DFD5BE /* DebugPrefsViewController.swift */; };
 		4AF9E8AC24CE31CA00DFD5BE /* DebugPrefsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AF9E8AA24CE31CA00DFD5BE /* DebugPrefsViewController.xib */; };
 		4AF9E8C224CE448B00DFD5BE /* SplitterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF9E8C124CE448B00DFD5BE /* SplitterUITests.swift */; };
 		4AFAD84524CF2CF8006FC480 /* WelcomeWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFAD84424CF2CF8006FC480 /* WelcomeWindowController.swift */; };
+		CA8419FF140C00045EBA5B68 /* Pods_Splitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34AD6C2466B7A595C7B6C1B0 /* Pods_Splitter.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -117,8 +119,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4ADB15F424BE247B006C5C55 /* BuildFile in Embed Frameworks */,
-				4A66573023E3D34600D14A67 /* BuildFile in Embed Frameworks */,
+				4ADB15F424BE247B006C5C55 /* (null) in Embed Frameworks */,
+				4A66573023E3D34600D14A67 /* (null) in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -126,7 +128,12 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		224FCB634535455ECB8CA680 /* Pods-Splitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitter.release.xcconfig"; path = "Target Support Files/Pods-Splitter/Pods-Splitter.release.xcconfig"; sourceTree = "<group>"; };
+		34AD6C2466B7A595C7B6C1B0 /* Pods_Splitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Splitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3BC3162DD6894F9DE2C6229A /* Pods-Splitter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitter.debug.xcconfig"; path = "Target Support Files/Pods-Splitter/Pods-Splitter.debug.xcconfig"; sourceTree = "<group>"; };
 		4A05EEFC24D762E200873D07 /* DownloadWindow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DownloadWindow.storyboard; sourceTree = "<group>"; };
+		4A09819D24E3089B00E44792 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		4A09819E24E3089B00E44792 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
 		4A09E29924D751B60013D7BC /* DownloadWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DownloadWindow.xib; sourceTree = "<group>"; };
 		4A09E29B24D754520013D7BC /* DownloadWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadWindowController.swift; sourceTree = "<group>"; };
 		4A09E29D24D7555E0013D7BC /* DownloadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadView.swift; sourceTree = "<group>"; };
@@ -214,9 +221,6 @@
 		4AF9E8C124CE448B00DFD5BE /* SplitterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterUITests.swift; sourceTree = "<group>"; };
 		4AF9E8C324CE448B00DFD5BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4AFAD84424CF2CF8006FC480 /* WelcomeWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WelcomeWindowController.swift; path = "View Controller/WelcomeWindowController.swift"; sourceTree = "<group>"; };
-		5F1EC8D0049ACA06B75F6E58 /* Pods-Splitter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitter.debug.xcconfig"; path = "Target Support Files/Pods-Splitter/Pods-Splitter.debug.xcconfig"; sourceTree = "<group>"; };
-		8E37CBC99674035EA1B43415 /* Pods_Splitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Splitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		ACCDC9FDC77FC27BDFA0FA2A /* Pods-Splitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitter.release.xcconfig"; path = "Target Support Files/Pods-Splitter/Pods-Splitter.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -224,13 +228,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4AD7662E23DA5F9A0052409C /* BuildFile in Frameworks */,
+				4AD7662E23DA5F9A0052409C /* Files in Frameworks */,
 				4AA357B52416F79900219E65 /* liblivesplit_core.a in Frameworks */,
-				4AF9E8A824CE2FE200DFD5BE /* BuildFile in Frameworks */,
-				4AB5627924338FB000D7F8D1 /* BuildFile in Frameworks */,
-				4AB5627924338FB000D7F8D1 /* BuildFile in Frameworks */,
+				4AF9E8A824CE2FE200DFD5BE /* SplitsIOKit in Frameworks */,
+				4AB5627924338FB000D7F8D1 /* SwiftyJSON in Frameworks */,
+				4AB5627924338FB000D7F8D1 /* SwiftyJSON in Frameworks */,
 				4A6B4F7423F07C3900CB781F /* libresolv.tbd in Frameworks */,
-				0830564969D372933C224214 /* Pods_Splitter.framework in Frameworks */,
+				CA8419FF140C00045EBA5B68 /* Pods_Splitter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -257,9 +261,18 @@
 				4A73B75023F0722800010F30 /* libresolv.tbd */,
 				4AA357B42416F79900219E65 /* liblivesplit_core.a */,
 				4AB3B93D23D96C10009C6AA6 /* Quartz.framework */,
-				8E37CBC99674035EA1B43415 /* Pods_Splitter.framework */,
+				34AD6C2466B7A595C7B6C1B0 /* Pods_Splitter.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		4A0981A124E308A100E44792 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				4A09819D24E3089B00E44792 /* LoginViewController.swift */,
+				4A09819E24E3089B00E44792 /* LoginViewController.xib */,
+			);
+			path = Login;
 			sourceTree = "<group>";
 		};
 		4A09E29F24D755680013D7BC /* Import from Splits.io */ = {
@@ -526,6 +539,7 @@
 			isa = PBXGroup;
 			children = (
 				4AFAD84424CF2CF8006FC480 /* WelcomeWindowController.swift */,
+				4A0981A124E308A100E44792 /* Login */,
 				4A09E29F24D755680013D7BC /* Import from Splits.io */,
 				4AE82A1524BFD4400044B6D3 /* WelcomeView.swift */,
 				4A18662F23C5257800FEEE54 /* MenuItemConstants.swift */,
@@ -550,8 +564,8 @@
 		D37BEB9F742A1CC70715DDD3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				5F1EC8D0049ACA06B75F6E58 /* Pods-Splitter.debug.xcconfig */,
-				ACCDC9FDC77FC27BDFA0FA2A /* Pods-Splitter.release.xcconfig */,
+				3BC3162DD6894F9DE2C6229A /* Pods-Splitter.debug.xcconfig */,
+				224FCB634535455ECB8CA680 /* Pods-Splitter.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -563,14 +577,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4A230EA123B00A1E00959C57 /* Build configuration list for PBXNativeTarget "Splitter" */;
 			buildPhases = (
-				E68E4F0983F0C6BE211DAB8A /* [CP] Check Pods Manifest.lock */,
+				E0FBD6246C45D51D0E7201A8 /* [CP] Check Pods Manifest.lock */,
 				4A66573423E3E0CE00D14A67 /* Run Script */,
 				4A230E8B23B00A1D00959C57 /* Sources */,
 				4A230E8C23B00A1D00959C57 /* Frameworks */,
 				4A230E8D23B00A1D00959C57 /* Resources */,
 				4AD7665C23DB5CFC0052409C /* Embed Frameworks */,
 				4A66573523E3E0D900D14A67 /* ShellScript */,
-				94D360AEB61A7AC903FAEB8C /* [CP] Embed Pods Frameworks */,
+				70A3E5EE96DC2FEC5CBCD380 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -578,11 +592,11 @@
 			);
 			name = Splitter;
 			packageProductDependencies = (
-				4AD7662D23DA5F9A0052409C /* SwiftPackageProductDependency */,
-				4AB5627824338FB000D7F8D1 /* SwiftPackageProductDependency */,
-				4AF9E8A724CE2FE200DFD5BE /* SwiftPackageProductDependency */,
-				4AD7662D23DA5F9A0052409C /* SwiftPackageProductDependency */,
-				4AB5627824338FB000D7F8D1 /* SwiftPackageProductDependency */,
+				4AD7662D23DA5F9A0052409C /* Files */,
+				4AB5627824338FB000D7F8D1 /* SwiftyJSON */,
+				4AF9E8A724CE2FE200DFD5BE /* SplitsIOKit */,
+				4AD7662D23DA5F9A0052409C /* Files */,
+				4AB5627824338FB000D7F8D1 /* SwiftyJSON */,
 			);
 			productName = Splitter;
 			productReference = 4A230E8F23B00A1D00959C57 /* Splitter.app */;
@@ -657,8 +671,8 @@
 			);
 			mainGroup = 4A230E8623B00A1D00959C57;
 			packageReferences = (
-				4AD7662C23DA5F9A0052409C /* RemoteSwiftPackageReference */,
-				4AB5627724338FB000D7F8D1 /* RemoteSwiftPackageReference */,
+				4AD7662C23DA5F9A0052409C /* XCRemoteSwiftPackageReference "Files" */,
+				4AB5627724338FB000D7F8D1 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 			);
 			productRefGroup = 4A230E9023B00A1D00959C57 /* Products */;
 			projectDirPath = "";
@@ -688,6 +702,7 @@
 				4A05EEFD24D762E200873D07 /* DownloadWindow.storyboard in Resources */,
 				4A230E9C23B00A1E00959C57 /* Main.storyboard in Resources */,
 				4A1DEFCF243D51EC00171A34 /* SplitterDocIcon.icns in Resources */,
+				4A0981A024E3089B00E44792 /* LoginViewController.xib in Resources */,
 				4A61438624801A37007C38E0 /* ColorsView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -744,7 +759,7 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n#if [ $CONFIGURATION == Release ]; then\n#    echo \"Bumping build number...\"\n#    plist=${PROJECT_DIR}/${INFOPLIST_FILE}\n\n# increment the build number (ie 115 to 116)\n #   buildnum=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${plist}\")\n  #  if [[ \"${buildnum}\" == \"\" ]]; then\n   #     echo \"No build number in $plist\"\n    #    exit 2\n    #fi\n\n    #buildnum=$(expr $buildnum + 1)\n    #/usr/libexec/Plistbuddy -c \"Set CFBundleVersion $buildnum\" \"${plist}\"\n    #echo \"Bumped build number to $buildnum\"\n\n#else\n #   echo $CONFIGURATION \" build - Not bumping build number.\"\n#fi\n";
 		};
-		94D360AEB61A7AC903FAEB8C /* [CP] Embed Pods Frameworks */ = {
+		70A3E5EE96DC2FEC5CBCD380 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -761,7 +776,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Splitter/Pods-Splitter-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		E68E4F0983F0C6BE211DAB8A /* [CP] Check Pods Manifest.lock */ = {
+		E0FBD6246C45D51D0E7201A8 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -834,6 +849,7 @@
 				4AEA928323C4F140004F6CF9 /* DefaultPreferenceViewController.swift in Sources */,
 				4A1C1469240ED30C0056B104 /* InfoOptionsViewController.swift in Sources */,
 				4A9DB792240847E40000D1B4 /* TimeSplitColumn.swift in Sources */,
+				4A09819F24E3089B00E44792 /* LoginViewController.swift in Sources */,
 				4A09E29C24D754520013D7BC /* DownloadWindowController.swift in Sources */,
 				4ADE9226240F1FB900E0D99E /* InfoPopoverTabViewController.swift in Sources */,
 				4A0F715F23F4A0A500E5948E /* SplitterDoc.swift in Sources */,
@@ -844,7 +860,7 @@
 				4A87265723BD5423003A14AF /* Prefs.swift in Sources */,
 				4AFAD84524CF2CF8006FC480 /* WelcomeWindowController.swift in Sources */,
 				4A230E9723B00A1D00959C57 /* Document.swift in Sources */,
-				4AC401F324BE145F005180F1 /* BuildFile in Sources */,
+				4AC401F324BE145F005180F1 /* (null) in Sources */,
 				4AE82A1624BFD4400044B6D3 /* WelcomeView.swift in Sources */,
 				4AE82A1C24BFD6060044B6D3 /* VisualEffectViewRepresentable.swift in Sources */,
 				4A6A3BE223CD1C7A002C20AE /* Storage.swift in Sources */,
@@ -1014,7 +1030,7 @@
 		};
 		4A230EA223B00A1E00959C57 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5F1EC8D0049ACA06B75F6E58 /* Pods-Splitter.debug.xcconfig */;
+			baseConfigurationReference = 3BC3162DD6894F9DE2C6229A /* Pods-Splitter.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Splitter/Splitter.entitlements;
@@ -1059,7 +1075,7 @@
 		};
 		4A230EA323B00A1E00959C57 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = ACCDC9FDC77FC27BDFA0FA2A /* Pods-Splitter.release.xcconfig */;
+			baseConfigurationReference = 224FCB634535455ECB8CA680 /* Pods-Splitter.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Splitter/Splitter.entitlements;
@@ -1222,7 +1238,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		4AB5627724338FB000D7F8D1 /* RemoteSwiftPackageReference */ = {
+		4AB5627724338FB000D7F8D1 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
 			requirement = {
@@ -1230,7 +1246,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		4AD7662C23DA5F9A0052409C /* RemoteSwiftPackageReference */ = {
+		4AD7662C23DA5F9A0052409C /* XCRemoteSwiftPackageReference "Files" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/JohnSundell/Files";
 			requirement = {
@@ -1241,17 +1257,17 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		4AB5627824338FB000D7F8D1 /* SwiftPackageProductDependency */ = {
+		4AB5627824338FB000D7F8D1 /* SwiftyJSON */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4AB5627724338FB000D7F8D1 /* RemoteSwiftPackageReference */;
+			package = 4AB5627724338FB000D7F8D1 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
 		};
-		4AD7662D23DA5F9A0052409C /* SwiftPackageProductDependency */ = {
+		4AD7662D23DA5F9A0052409C /* Files */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4AD7662C23DA5F9A0052409C /* RemoteSwiftPackageReference */;
+			package = 4AD7662C23DA5F9A0052409C /* XCRemoteSwiftPackageReference "Files" */;
 			productName = Files;
 		};
-		4AF9E8A724CE2FE200DFD5BE /* SwiftPackageProductDependency */ = {
+		4AF9E8A724CE2FE200DFD5BE /* SplitsIOKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SplitsIOKit;
 		};
