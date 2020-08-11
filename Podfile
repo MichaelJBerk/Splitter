@@ -20,7 +20,8 @@ plugin 'cocoapods-keys', {
   :target => "Splitter",
   :keys => [
     "AppCenter",
-    "edKey"
+    "edKey",
+    "splitsio"
   ]
 }
 end
