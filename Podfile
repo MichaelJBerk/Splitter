@@ -6,7 +6,7 @@ platform :osx, '10.15'
 
 target 'Splitter' do
   # Comment the next line if you don't want to use dynamic frameworks
-  	pod 'Preferences'
+  	pod 'Preferences', '2.0' 
   	pod 'AppCenter'
   	pod 'Sparkle'
   	pod 'MASShortcut'
