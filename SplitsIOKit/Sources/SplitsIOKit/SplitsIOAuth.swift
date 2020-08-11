@@ -11,7 +11,7 @@ import OAuth2
 /// Class for handling authentication with Splits.io
 ///
 /// To use this, you'll need to set up a client and secret on Splits.io.
-class SplitsIOAuth {
+public class SplitsIOAuth {
 	let oAuth2: OAuth2CodeGrant
 	
 	/// Initalize SplitsIOAuth. Requires developer setup from Splits.io
@@ -19,7 +19,7 @@ class SplitsIOAuth {
 	///   - client: Cleint ID
 	///   - secret: Secret ID
 	///   - redirects: Array of URI redirects for the application
-	init(client: String, secret: String, redirects: String) {
+	public init(client: String, secret: String, redirects: String) {
 		oAuth2 = OAuth2CodeGrant(settings: [
 		 "client_id": "\(client)",
 			"client_secret": "\(secret)",

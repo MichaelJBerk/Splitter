@@ -18,6 +18,7 @@ let package = Package(
 		.package(name: "Fuzzy", url: "https://github.com/khoi/fuzzy-swift", .upToNextMajor(from: "0.1.0")),
 		.package(name: "Files", url: "https://github.com/JohnSundell/Files", from: "4.0.0"),
 		.package(name: "OAuth2", url: "https://github.com/p2/OAuth2.git", .upToNextMajor(from: "5.2.0"))
+		
         // Dependencies declare other packages that this package depends on.
         // .package(url: /* package url */, from: "1.0.0"),
     ],

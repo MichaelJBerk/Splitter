@@ -46,6 +46,16 @@ final class SplitsIOKitTests: XCTestCase {
 		})
 		wait(for: [expectation], timeout: 10.0)
 	}
+	func testSRL() {
+		let expectation = XCTestExpectation(description: "get runs from SRL")
+		SplitsIOKit().getLatestSRLRaces(completion: { SRL in
+			expectation.fulfill()
+			print(SRL.count)
+			
+		})
+		wait(for: [expectation], timeout: 10.0)
+	}
+	
 	
 	
 }

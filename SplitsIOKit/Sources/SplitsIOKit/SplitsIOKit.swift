@@ -121,6 +121,30 @@ public class SplitsIOKit {
 		}
 	}
 	
+	public func getLatestSRLRaces(completion: @escaping(SRLRun) -> ()) {
+		let url = URL(string: "https://api.speedrunslive.com/races")!
+		AF.request(url, method: .get).responseData { response in
+			
+			if let data = response.data {
+				do {
+					let str = String(data: data, encoding: .utf8)
+					print(str)
+					let runs = try JSONDecoder().decode(SRLRun.self, from: data)
+					completion(runs)
+					
+				} catch {
+					print("Decode Error: ", error)
+					
+				}
+				
+			} else {
+				print(response.error)
+				
+			}
+			
+		}
+	}
+	
 
 	
 }
