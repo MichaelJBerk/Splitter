@@ -14,6 +14,7 @@ import AppCenterCrashes
 import Keys
 import Files
 import SwiftUI
+import SplitsIOKit
 
 extension NSApplication {
 	static let appDelegate = NSApp.delegate as! AppDelegate
@@ -29,9 +30,11 @@ public static let build = Bundle.main.infoDictionary?["CFBundleVersion"] as! Str
 class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 	@IBOutlet private var window: NSWindow!
 	
+	static var splitsIOAuth = SplitsIOAuth(client: SplitterKeys().splitsioclient, secret: SplitterKeys().splitsiosecret, redirects: "splitter://")
+	public static var splitsIOKit = SplitsIOKit(url: Settings.splitsIOURL, auth: AppDelegate.splitsIOAuth)
+	
 	public var hotkeyController: HotkeysViewController?
 	public static var shared: AppDelegate? = NSApplication.shared.delegate as? AppDelegate
-	
 	var appKeybinds: [SplitterKeybind?] = []
 	
 	///Displays a dialog box informing the user to give Splitter the requisite permissions for Global Hotkeys to work.
@@ -295,4 +298,8 @@ extension AppDelegate: NSMenuItemValidation {
 		}
 		return true
 	}
+}
+
+extension SplitsIOKit {
+	static var shared = AppDelegate.splitsIOKit
 }

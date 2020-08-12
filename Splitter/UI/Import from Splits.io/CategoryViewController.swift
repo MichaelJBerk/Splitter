@@ -9,46 +9,26 @@
 import Cocoa
 import SplitsIOKit
 
-class CategoryViewController: NSViewController {
+protocol CategoryPickerDelegate {
+	var game: SplitsIOGame? {get set}
+}
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-		popitem = categoryPopUpButton.selectedItem
-		showSpinner()
-		loadCategories {
+class CategoryViewController: NSViewController {
+	
+	var delegate: CategoryPickerDelegate!
+	var categories: [SplitsIOCat] = []
+	var splitsIO = SplitsIOKit.shared
+
+	override func viewDidLoad() {
+		   super.viewDidLoad()
+		   popitem = categoryPopUpButton.selectedItem
+		   showSpinner()
+		   loadCategories {
 			self.hideSpinner()
 		}
-		
-    }
-	var model: DownloadModel!
+	}
 	
-	@IBOutlet weak var cancelButton: NSButton!
-	@IBOutlet weak var nextButton: NSButton!
-	var categories: [SplitsIOCat] = []
-	var splitsIO = SplitsIOKit()
-	
-	@IBAction func cancelButtonAction(_ sender: NSButton) {
-		dismiss(nil)
-	}
-	@IBAction func nextButtonAction(_ sender: NSButton) {
-		loadRun()
-	}
-	func loadCategories(completion: @escaping () -> Void) {
-		if let game = model.game {
-			splitsIO.getCategories(for: game.shortname, completion: { cats in
-				self.categories = cats
-				self.categoryPopUpButton.menu?.items = self.makeMenuItems(categories: cats)
-				completion()
-			})
-		}
-	}
-	func makeMenuItems(categories: [SplitsIOCat]) -> [NSMenuItem] {
-		var items: [NSMenuItem] = []
-		for cat in categories {
-			items.append(NSMenuItem(title: cat.name, action: nil, keyEquivalent: ""))
-		}
-		return items
-	}
+	//MARK: - Loading Spinner
 	var darkSpinnerView: DarkSpinnerView?
 	
 	func showSpinner() {
@@ -64,13 +44,45 @@ class CategoryViewController: NSViewController {
 		nextButton.isEnabled = true
 	}
 	
+	//MARK: - Buttons
+	
+	@IBOutlet weak var cancelButton: NSButton!
+	@IBOutlet weak var nextButton: NSButton!
+	
+	@IBAction func cancelButtonAction(_ sender: NSButton) {
+		dismiss(nil)
+	}
+	@IBAction func nextButtonAction(_ sender: NSButton) {
+		loadRun()
+	}
+	
+	//MARK: Popup Button
+	
 	@IBOutlet weak var categoryPopUpButton: NSPopUpButton!
 	var popitem: NSMenuItem? = nil
 	
 	@IBAction func popUpAction(_ sender: NSPopUpButton) {
 		popitem = sender.selectedItem
 	}
-	var vcToLoad: ViewController?
+	
+	func loadCategories(completion: @escaping () -> Void) {
+		if let game = delegate.game {
+			splitsIO.getCategories(for: game.shortname, completion: { cats in
+				self.categories = cats
+				self.categoryPopUpButton.menu?.items = self.makeMenuItems(categories: cats)
+				completion()
+			})
+		}
+	}
+	func makeMenuItems(categories: [SplitsIOCat]) -> [NSMenuItem] {
+		var items: [NSMenuItem] = []
+		for cat in categories {
+			items.append(NSMenuItem(title: cat.name, action: nil, keyEquivalent: ""))
+		}
+		return items
+	}
+	
+	//MARK: - Loading the run
 	
 	func loadRun() {
 		let cat = categories[categoryPopUpButton.indexOfSelectedItem]

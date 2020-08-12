@@ -37,21 +37,22 @@ class DarkSpinnerView: NSView {
 	
 }
 
-class DownloadViewController: NSViewController {
+class DownloadViewController: NSViewController, CategoryPickerDelegate  {
 	var sField: NSSearchField?
 	var darkenView: DarkSpinnerView?
-	var model: DownloadModel = DownloadModel(splitsIOURL: Settings.splitsIOURL)
-	
+	var game: SplitsIOGame?
+	var games: [SplitsIOGame] = []
+	var selectedGame: SplitsIOGame?
+	var sField2: NSSearchField!
+	var splitsIO = SplitsIOKit.shared
 	
 	@IBOutlet weak var tableView: NSTableView!
-	
 	@IBOutlet weak var nextButton: NSButton!
 	@IBAction func nbcThing(_ sender: Any) {
 		print(tableView.selectedRow)
 		
 	}
-	var games: [SplitsIOGame] = []
-	var selectedGame: SplitsIOGame?
+	
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -89,13 +90,11 @@ class DownloadViewController: NSViewController {
 			})
 		}
 	}
-	var sField2: NSSearchField!
-	var splitsIO = SplitsIOKit()
 	
 	override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
 		super.prepare(for: segue, sender: sender)
 		if segue.identifier == "pickCategorySegue", let destination = segue.destinationController as? CategoryViewController, tableView.selectedRow < games.count {
-			destination.model = model
+			destination.delegate = self
 		}
 	}
 	func closeWindow() {
@@ -117,9 +116,9 @@ extension DownloadViewController: NSTableViewDelegate, NSTableViewDataSource {
 	}
 	func tableViewSelectionDidChange(_ notification: Notification) {
 		if tableView.selectedRow >= 0 {
-			model.game = games[tableView.selectedRow]
+			game = games[tableView.selectedRow]
 		} else {
-			model.game = nil
+			game = nil
 		}
 		
 		if tableView.numberOfSelectedRows > 0 {
