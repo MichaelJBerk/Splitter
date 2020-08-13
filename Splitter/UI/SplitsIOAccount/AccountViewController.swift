@@ -73,14 +73,9 @@ class AccountViewController: NSViewController, PreferencePane {
 		profileView = AccountProfileView()
 		profileView.loadViewFromNib()
 		profileView.accountController = self
-//		let p = profileView.frame.size
-//		self.view = profileView
-//		var s = view.frame.size
-		
 		loginView = LoginView()
 		loginView.loadViewFromNib()
 		loginView.accountController = self
-//		let l = loginView.frame.size
 		container = NSView(frame: NSRect(x: 0, y: 0, width: 100, height: 500))
 		
 		self.view = container

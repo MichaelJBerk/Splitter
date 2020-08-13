@@ -157,6 +157,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 		print("Auth Enabled: ", SplitsIOKit.shared.hasAuth)
 		
 		//MSAppCenter stuff
+		NSApp.mainMenu?.item(withIdentifier: menuIdentifiers.appMenu.updatesMenuItem)?.isHidden = false
 		MSCrashes.setDelegate(self)
 		let keys = SplitterKeys()
 		MSAppCenter.start("\(keys.appCenter)", withServices:[
