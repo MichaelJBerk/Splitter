@@ -65,6 +65,16 @@ final class SplitsIOKitTests: XCTestCase {
 		}
 		wait(for: [expectation], timeout: 10.0)
 	}
+	func testGetGamesFromRunner() {
+		let expectation = XCTestExpectation(description: "get lphantom games")
+		SplitsIOKit().getGamesFromRunner(runnerName: "lphantom", completion: { games in
+			XCTAssertFalse(games == nil)
+			expectation.fulfill()
+			
+		})
+		wait(for: [expectation], timeout: 10.0)
+		
+	}
 	
 	
 	

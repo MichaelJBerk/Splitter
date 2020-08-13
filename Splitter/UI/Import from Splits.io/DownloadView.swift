@@ -74,17 +74,34 @@ class DownloadViewController: NSViewController, CategoryPickerDelegate  {
 		tableView.isEnabled = true
 	}
 	
+	var showingCurrenRunnerGames = true
+	
+	func showGamesOfCurrentRunner() {
+		if let account = Settings.splitsIOUser {
+			showSpinner()
+			account.getGames(splitsIOKit: splitsIO, completion: showGames(games:))
+		}
+		
+	}
+	func showGames(games: [SplitsIOGame]?) {
+		if let games = games {
+			self.games = games
+		} else {
+			self.games = []
+		}
+		self.tableView.reloadData()
+		self.hideSpinner()
+	}
+	
 	
 	@IBAction func searchAction(_ sender: NSSearchField) {
 		if sender.stringValue.count > 0 {
+			showingCurrenRunnerGames = true
 			showSpinner()
-			splitsIO.searchSplitsIO(for: sender.stringValue, completion: { games in
-				if let games = games {
-					self.games = games
-					self.tableView.reloadData()
-					self.hideSpinner()
-				}
-			})
+			splitsIO.searchSplitsIO(for: sender.stringValue, completion: showGames(games:))
+		} else {
+			showingCurrenRunnerGames = false
+			showGamesOfCurrentRunner()
 		}
 	}
 	

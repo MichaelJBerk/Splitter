@@ -11,7 +11,12 @@ import SplitsIOKit
 class DownloadWindowController: NSWindowController {
 	@IBOutlet weak var searchField: NSSearchField!
 	@IBOutlet weak var accountButton: AccountButtonView!
-	
+	var account: SplitsIORunner? = Settings.splitsIOUser {
+		didSet {
+			accountButton.account = self.account
+			accountButton.setAccountLabel()
+		}
+	}
 	
 	
 	override func windowDidLoad() {
@@ -19,5 +24,23 @@ class DownloadWindowController: NSWindowController {
 		if let vc = window?.contentViewController as? DownloadViewController {
 			vc.sField = searchField
 		}
+		if let account = account { accountButton.accountLabel.stringValue = account.displayName }
+		NotificationCenter.default.addObserver(forName: .splitsIOLogin, object: nil, queue: nil, using: {_ in
+			self.getUser()
+		})
+		NotificationCenter.default.addObserver(forName: .splitsIOLogout, object: nil, queue: nil, using: { notification in
+			
+			Settings.splitsIOUser = nil
+			self.account = nil
+		})
 	}
+	
+	func getUser() {
+		try? SplitsIOKit.shared.getCurrentUser(completion: { runner in
+			self.account = runner
+			
+		})
+	}
+
+	
 }

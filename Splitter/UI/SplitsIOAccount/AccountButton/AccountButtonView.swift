@@ -18,11 +18,14 @@ class AccountButtonView: NSView, LoadableNib {
 	var account: SplitsIORunner? = Settings.splitsIOUser {
 		didSet {
 			Settings.splitsIOUser = account
-			if let account = account {
-				accountLabel.stringValue = account.displayName
-			} else {
-				accountLabel.stringValue = "Sign In"
-			}
+			setAccountLabel()
+		}
+	}
+	func setAccountLabel() {
+		if let account = account {
+			accountLabel.stringValue = account.displayName
+		} else {
+			accountLabel.stringValue = "Sign In"
 		}
 	}
 
@@ -38,22 +41,9 @@ class AccountButtonView: NSView, LoadableNib {
 		//For some reason, I need to manually do this so it doesn't show the placeholder when the view first appears if you're already logged in
 		
 		account = Settings.splitsIOUser
-		if let account = account { accountLabel.stringValue = account.displayName }
-		
-		NotificationCenter.default.addObserver(forName: .splitsIOLogin, object: nil, queue: nil, using: {_ in
-			self.getUser()
-		})
-		NotificationCenter.default.addObserver(forName: .splitsIOLogout, object: nil, queue: nil, using: { notification in
-			self.account = nil
-		})
 	}
 	
-	func getUser() {
-		try? SplitsIOKit.shared.getCurrentUser(completion: { runner in
-			self.account = runner
-			
-		})
-	}
+	
 	
 	@objc func clicked(_ sender: Any) {
 		let aView = AccountViewController()

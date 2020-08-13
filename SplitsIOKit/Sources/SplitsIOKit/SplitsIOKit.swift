@@ -207,6 +207,13 @@ public class SplitsIOKit {
 		authManager.oAuth2.handleRedirectURL(url)
 	}
 	
+	public func getGamesFromRunner(runnerName: String, completion: @escaping([SplitsIOGame]?) -> ()) {
+		let gamesURL = URL(string: "https://splits.io/api/v4/runners/\(runnerName)/games")!
+		searchRequest = AF.request(gamesURL, method: .get, encoding: URLEncoding.default).responseDecodable(of: SplitsIOGameSearch.self) { response in
+			let v = response.value
+			completion(v?.games)
+		}
+	}
 
 	
 }
@@ -249,7 +256,7 @@ public struct SplitsIOCat: Codable, Hashable {
 		case updatedAt = "updated_at"
 	}
 	///Completion - the path to the temporary lss file
-	public func getRun( completion: @escaping(String?) -> ()) {
+	public func getRun(splitsIOKit: SplitsIOKit = SplitsIOKit(), completion: @escaping(String?) -> ()) {
 		
 		return SplitsIOKit().getRunFromCat(categoryID: self.id, completion: { run in
 			completion(run)
@@ -271,4 +278,8 @@ public struct SplitsIORunner: Codable {
         case twitchName = "twitch_name"
         case updatedAt = "updated_at"
     }
+	public func getGames(splitsIOKit: SplitsIOKit, completion: @escaping([SplitsIOGame]?) -> ()) {
+		SplitsIOKit().getGamesFromRunner(runnerName: name, completion: completion)
+	}
+	
 }
