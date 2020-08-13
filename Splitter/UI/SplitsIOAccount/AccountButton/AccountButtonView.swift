@@ -35,7 +35,11 @@ class AccountButtonView: NSView, LoadableNib {
 		loadViewFromNib()
 		let click = NSClickGestureRecognizer(target: self, action: #selector(clicked(_:)))
 		self.addGestureRecognizer(click)
-		getUser()
+		//For some reason, I need to manually do this so it doesn't show the placeholder when the view first appears if you're already logged in
+		
+		account = Settings.splitsIOUser
+		if let account = account { accountLabel.stringValue = account.displayName }
+		
 		NotificationCenter.default.addObserver(forName: .splitsIOLogin, object: nil, queue: nil, using: {_ in
 			self.getUser()
 		})
