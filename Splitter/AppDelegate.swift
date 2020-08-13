@@ -30,7 +30,7 @@ public static let build = Bundle.main.infoDictionary?["CFBundleVersion"] as! Str
 class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 	@IBOutlet private var window: NSWindow!
 	
-	static var splitsIOAuth = SplitsIOAuth(client: SplitterKeys().splitsioclient, secret: SplitterKeys().splitsiosecret, redirects: "splitter://")
+	static var splitsIOAuth = SplitsIOAuth(client: SplitterKeys().splitsioclient, secret: SplitterKeys().splitsiosecret, redirects: "splitter://login")
 	public static var splitsIOKit = SplitsIOKit(url: Settings.splitsIOURL, auth: AppDelegate.splitsIOAuth)
 	
 	public var hotkeyController: HotkeysViewController?
@@ -154,6 +154,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 			self.reopenToApplyKeybindAlert()
 		  }
 		}
+		print("Auth Enabled: ", SplitsIOKit.shared.hasAuth)
 		
 		//MSAppCenter stuff
 		MSCrashes.setDelegate(self)
@@ -282,6 +283,19 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 			}
 			return viewC
 		}
+	}
+	func application(_ application: NSApplication, open urls: [URL]) {
+		if let authURL = urls.first(where: { url in
+			let comps = URLComponents(string: url.absoluteString)
+			return comps?.host == "login"
+		}) {
+			do {
+				try SplitsIOKit.shared.handleRedirectURL(url: authURL)
+			} catch {
+				print("Redirect Error: ", error)
+			}
+		}
+		
 	}
 
 	@IBAction func preferencesMenuItemActionHandler(_ sender: NSMenuItem) {

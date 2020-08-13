@@ -7,9 +7,12 @@
 //
 
 import Cocoa
-
+import SplitsIOKit
 class DownloadWindowController: NSWindowController {
 	@IBOutlet weak var searchField: NSSearchField!
+	@IBOutlet weak var accountButton: AccountButtonView!
+	
+	
 	
 	override func windowDidLoad() {
 		super.windowDidLoad()

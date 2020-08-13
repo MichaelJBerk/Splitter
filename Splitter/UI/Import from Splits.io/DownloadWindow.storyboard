@@ -12,17 +12,26 @@
                 <windowController storyboardIdentifier="windowController" id="Es1-GK-Eqf" customClass="DownloadWindowController" customModule="Splitter" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Download from Splits.io" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="utilityWindow" frameAutosaveName="" tabbingMode="disallowed" titleVisibility="hidden" id="XWD-gz-XN6">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" texturedBackground="YES"/>
-                        <windowCollectionBehavior key="collectionBehavior" transient="YES" fullScreenNone="YES" fullScreenDisallowsTiling="YES"/>
+                        <windowCollectionBehavior key="collectionBehavior" fullScreenNone="YES" fullScreenDisallowsTiling="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="249" width="805" height="412"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
-                        <toolbar key="toolbar" implicitIdentifier="AE0F3639-967C-4CD6-9F32-49D65EF937A1" centeredItem="xIt-tD-0DU" autosavesConfiguration="NO" allowsUserCustomization="NO" showsBaselineSeparator="NO" displayMode="iconOnly" sizeMode="regular" id="4I6-gd-aCO">
+                        <toolbar key="toolbar" implicitIdentifier="AE0F3639-967C-4CD6-9F32-49D65EF937A1" centeredItem="xIt-tD-0DU" autosavesConfiguration="NO" showsBaselineSeparator="NO" displayMode="iconOnly" sizeMode="regular" id="4I6-gd-aCO">
                             <allowedToolbarItems>
-                                <toolbarItem implicitItemIdentifier="AE7E9EBE-6A07-4831-BFDF-E2427E68882F" label="Search" paletteLabel="Search" autovalidates="NO" id="xIt-tD-0DU">
+                                <toolbarItem implicitItemIdentifier="6D255F12-91C6-4CA6-9C99-A85A7D94F8B9" label="Custom View" paletteLabel="Custom View" tag="-1" image="alamofire" autovalidates="NO" id="6lm-SS-hXq">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="100" height="22"/>
+                                    <size key="maxSize" width="180" height="22"/>
+                                    <customView key="view" translatesAutoresizingMaskIntoConstraints="NO" id="bZ2-EX-Ufj" customClass="AccountButtonView" customModule="Splitter" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="14" width="163" height="96"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                    </customView>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="AE7E9EBE-6A07-4831-BFDF-E2427E68882F" label="Search" paletteLabel="Search" tag="-1" visibilityPriority="1" autovalidates="NO" id="xIt-tD-0DU">
                                     <nil key="toolTip"/>
                                     <size key="minSize" width="400" height="22"/>
                                     <size key="maxSize" width="620" height="22"/>
-                                    <searchField key="view" wantsLayer="YES" verticalHuggingPriority="750" preferredMaxLayoutWidth="122" textCompletion="NO" id="712-bf-mEW">
+                                    <searchField key="view" wantsLayer="YES" verticalHuggingPriority="750" tag="-1" preferredMaxLayoutWidth="122" textCompletion="NO" id="712-bf-mEW">
                                         <rect key="frame" x="0.0" y="14" width="620" height="22"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                         <searchFieldCell key="cell" selectable="YES" editable="YES" borderStyle="bezel" placeholderString="Search Splits.io for a game" usesSingleLineMode="YES" bezelStyle="round" id="giG-xu-sX0">
@@ -35,9 +44,13 @@
                                         </connections>
                                     </searchField>
                                 </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="Ck3-5A-B3X"/>
+                                <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="iFk-I6-qJR"/>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
                                 <toolbarItem reference="xIt-tD-0DU"/>
+                                <toolbarItem reference="Ck3-5A-B3X"/>
+                                <toolbarItem reference="6lm-SS-hXq"/>
                             </defaultToolbarItems>
                         </toolbar>
                         <connections>
@@ -45,6 +58,7 @@
                         </connections>
                     </window>
                     <connections>
+                        <outlet property="accountButton" destination="bZ2-EX-Ufj" id="ekW-I2-bPy"/>
                         <outlet property="searchField" destination="712-bf-mEW" id="q5g-bf-gUJ"/>
                         <segue destination="BVZ-iD-p8g" kind="relationship" relationship="window.shadowedContentViewController" id="UsM-ql-gjN"/>
                     </connections>
@@ -246,4 +260,7 @@ Gw
             <point key="canvasLocation" x="579" y="1049"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="alamofire" width="850" height="250"/>
+    </resources>
 </document>

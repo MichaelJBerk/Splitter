@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097.2"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="AccountProfileView" customModule="Splitter" customModuleProvider="target">
+            <connections>
+                <outlet property="avatarView" destination="dxm-5b-qN8" id="GeA-VA-7W6"/>
+                <outlet property="contentView" destination="Hz6-mo-xeY" id="k9b-bw-n63"/>
+                <outlet property="logoutButton" destination="WbI-u9-ee3" id="K7F-22-73b"/>
+                <outlet property="twitchUsernameField" destination="5SY-iC-gur" id="hCG-8E-Ct5"/>
+                <outlet property="twitchUsernameLabel" destination="nxT-Fl-gBn" id="2JW-mX-0R1"/>
+                <outlet property="usernameField" destination="b7q-Ho-S1l" id="QVi-wR-o7O"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="397" height="172"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dxm-5b-qN8">
+                    <rect key="frame" x="20" y="20" width="132" height="132"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="132" id="ILW-7c-Ui3"/>
+                        <constraint firstAttribute="height" constant="132" id="aSe-fh-chJ"/>
+                    </constraints>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="splitsio" id="Klf-N8-Gfx"/>
+                </imageView>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="b7q-Ho-S1l">
+                    <rect key="frame" x="178" y="126" width="187" height="26"/>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="183" id="i7K-Up-Vgz"/>
+                    </constraints>
+                    <textFieldCell key="cell" lineBreakMode="clipping" placeholderString="User Name" id="Nzl-Xi-8Gp">
+                        <font key="font" metaFont="system" size="22"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="nxT-Fl-gBn">
+                    <rect key="frame" x="178" y="102" width="48" height="16"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Twitch:" id="cVj-Rz-duU">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5SY-iC-gur">
+                    <rect key="frame" x="232" y="102" width="133" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="129" id="mMO-j7-l81"/>
+                    </constraints>
+                    <textFieldCell key="cell" lineBreakMode="clipping" placeholderString="twitchusername" id="78c-BM-Al0">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WbI-u9-ee3">
+                    <rect key="frame" x="174" y="49" width="93" height="32"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="81" id="m1y-kG-8o6"/>
+                    </constraints>
+                    <buttonCell key="cell" type="push" title="Sign Out" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="t2m-9V-UC1">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="logoutButtonClick:" target="-2" id="m95-2d-hvJ"/>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="b7q-Ho-S1l" firstAttribute="leading" secondItem="dxm-5b-qN8" secondAttribute="trailing" constant="28" id="6OS-2K-4Od"/>
+                <constraint firstItem="dxm-5b-qN8" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" id="7IR-jX-MfT"/>
+                <constraint firstItem="nxT-Fl-gBn" firstAttribute="leading" secondItem="dxm-5b-qN8" secondAttribute="trailing" constant="28" id="AJC-RL-3fM"/>
+                <constraint firstItem="WbI-u9-ee3" firstAttribute="leading" secondItem="dxm-5b-qN8" secondAttribute="trailing" constant="28" id="C15-Gt-xPE"/>
+                <constraint firstItem="b7q-Ho-S1l" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" id="D8f-Oy-n5g"/>
+                <constraint firstItem="dxm-5b-qN8" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="Mpd-T3-DCF"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="WbI-u9-ee3" secondAttribute="trailing" constant="136" id="Q8p-b0-Phy"/>
+                <constraint firstItem="WbI-u9-ee3" firstAttribute="top" secondItem="nxT-Fl-gBn" secondAttribute="bottom" constant="25" id="RMH-4e-pHQ"/>
+                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="dxm-5b-qN8" secondAttribute="trailing" constant="227" id="Rt4-Li-5Dt"/>
+                <constraint firstAttribute="bottom" secondItem="dxm-5b-qN8" secondAttribute="bottom" constant="20" id="V6t-KG-HDo"/>
+                <constraint firstItem="nxT-Fl-gBn" firstAttribute="top" secondItem="b7q-Ho-S1l" secondAttribute="bottom" constant="8" id="bkm-sQ-0og"/>
+                <constraint firstItem="5SY-iC-gur" firstAttribute="top" secondItem="b7q-Ho-S1l" secondAttribute="bottom" constant="8" id="mUU-kF-DUw"/>
+                <constraint firstAttribute="trailing" secondItem="b7q-Ho-S1l" secondAttribute="trailing" constant="34" id="nM5-V6-KEX"/>
+                <constraint firstItem="5SY-iC-gur" firstAttribute="leading" secondItem="nxT-Fl-gBn" secondAttribute="trailing" constant="10" id="yws-of-YZV"/>
+            </constraints>
+            <point key="canvasLocation" x="97.5" y="104"/>
+        </customView>
+    </objects>
+    <resources>
+        <image name="splitsio" width="2000" height="2000"/>
+    </resources>
+</document>

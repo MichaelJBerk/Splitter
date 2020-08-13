@@ -4,6 +4,23 @@ import Fuzzy
 import Foundation
 import Files
 
+public enum SplitsIOError: Error, LocalizedError {
+	case cantGetRunID
+	case noAuthManager
+	case unauthorized
+	
+	public var errorDescription: String? {
+		switch self {
+		case .cantGetRunID:
+			return NSLocalizedString("Cannot get run ID", comment: "")
+		case .noAuthManager:
+			return NSLocalizedString("SplitsIOKit has not been provided with an authManager", comment: "")
+		case .unauthorized:
+			return NSLocalizedString("The user has not been authorized to perform this action", comment: "")
+		}
+	}
+}
+
 
 public class SplitsIOKit {
 	var searchRequest: DataRequest?
@@ -15,10 +32,6 @@ public class SplitsIOKit {
 	
 	var splitsIOURL: URL
 	
-	enum SplitsIOError: Error {
-		case cantGetRunID
-	}
-	
 	public func searchSplitsIO(for game: String, completion: @escaping ([SplitsIOGame]?) -> ()) {
 		searchRequest?.cancel()
 		if game.count == 0 {return}
@@ -27,6 +40,11 @@ public class SplitsIOKit {
 			let v = response.value
 			completion(v?.games)
 		}
+	}
+	
+	///Indicates whether or not this instance of SplitsIOKit has an authManager
+	public var hasAuth: Bool {
+		return authManager != nil
 	}
 
 	
@@ -93,7 +111,6 @@ public class SplitsIOKit {
 				let json = JSON(data)
 				let catJSON = json["categories"]
 				if let cats = try? JSONDecoder().decode([SplitsIOCat].self, from: catJSON.rawData()) {
-//					if let cat = try? JSONDecoder().decode(SplitsIOCat.self, from: catJSON.rawData()) {
 					completion(cats)
 					
 				}
@@ -112,11 +129,7 @@ public class SplitsIOKit {
 					if let cat = try? JSONDecoder().decode(SplitsIOCat.self, from: catJSON.rawData()) {
 						completion(cat)
 					}
-					
-					
 				}
-				
-				
 			}
 		}
 	}
@@ -143,6 +156,55 @@ public class SplitsIOKit {
 			}
 			
 		}
+	}
+	
+	public func getCurrentUser(completion: @escaping (SplitsIORunner?) -> ()) throws {
+		guard let authManager = authManager else {throw SplitsIOError.noAuthManager}
+		let runnerURL = splitsIOURL.appendingPathComponent("/api/v4/runner")
+		let authRequest = authManager.oAuth2.request(forURL: runnerURL)
+		getRunner(url: authRequest, completion: completion)
+	}
+	public func getRunner(name: String, completion: @escaping(SplitsIORunner?) -> ()) {
+		let runnerURL = splitsIOURL.appendingPathComponent("/api/v4/runners/\(name)")
+		getRunner(url: URLRequest(url: runnerURL), completion: completion)
+	}
+	
+	private func getRunner(url: URLRequest, completion: @escaping(SplitsIORunner?) -> ()) {
+		AF.request(url).validate().responseData { response in
+			if let error = response.error {
+				print("Error Getting Runner: ", error)
+				return
+			} else {
+				if let data = response.data {
+					completion(self.getRunnerFromDict(runnerData: data))
+				}
+			}
+		}
+	}
+	
+	private func getRunnerFromDict(runnerData: Data) -> SplitsIORunner? {
+		if let runnerDict = try? JSONDecoder().decode([String:SplitsIORunner].self, from: runnerData),
+			let runner = runnerDict["runner"] {
+			return runner
+		}
+		return nil
+	}
+	
+	public func login(completion: @escaping () -> ()) throws {
+		guard let authManager = authManager else {throw SplitsIOError.noAuthManager}
+		try authManager.authenticate {
+			completion()
+		}
+	}
+	public func logout(completion: @escaping () -> ()) throws {
+		guard let authManager = authManager else {throw SplitsIOError.noAuthManager}
+		authManager.logout() {
+			completion()
+		}
+	}
+	public func handleRedirectURL(url: URL) throws {
+		guard let authManager = authManager else {throw SplitsIOError.noAuthManager}
+		authManager.oAuth2.handleRedirectURL(url)
 	}
 	
 
@@ -193,4 +255,20 @@ public struct SplitsIOCat: Codable, Hashable {
 			completion(run)
 		})
 	}
+}
+// MARK: - SplitsIORunner
+public struct SplitsIORunner: Codable {
+    public let avatar: String
+    public let createdAt, displayName, id, name: String
+    public let twitchID, twitchName, updatedAt: String?
+
+    enum CodingKeys: String, CodingKey {
+        case avatar
+        case createdAt = "created_at"
+        case displayName = "display_name"
+        case id, name
+        case twitchID = "twitch_id"
+        case twitchName = "twitch_name"
+        case updatedAt = "updated_at"
+    }
 }

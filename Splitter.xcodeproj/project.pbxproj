@@ -8,9 +8,13 @@
 
 /* Begin PBXBuildFile section */
 		4A05EEFD24D762E200873D07 /* DownloadWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A05EEFC24D762E200873D07 /* DownloadWindow.storyboard */; };
-		4A09819F24E3089B00E44792 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09819D24E3089B00E44792 /* LoginViewController.swift */; };
-		4A0981A024E3089B00E44792 /* LoginViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A09819E24E3089B00E44792 /* LoginViewController.xib */; };
-		4A09E29A24D751B60013D7BC /* DownloadWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A09E29924D751B60013D7BC /* DownloadWindow.xib */; };
+		4A09819F24E3089B00E44792 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09819D24E3089B00E44792 /* LoginView.swift */; };
+		4A0981A024E3089B00E44792 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A09819E24E3089B00E44792 /* LoginView.xib */; };
+		4A0981A624E34DE400E44792 /* AccountButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0981A424E34DE400E44792 /* AccountButtonView.swift */; };
+		4A0981A724E34DE400E44792 /* AccountButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A0981A524E34DE400E44792 /* AccountButtonView.xib */; };
+		4A0981AC24E4816A00E44792 /* AccountProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A0981AA24E4816A00E44792 /* AccountProfileView.xib */; };
+		4A0981AF24E4844300E44792 /* AccountProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0981AE24E4844200E44792 /* AccountProfileView.swift */; };
+		4A0981B224E4853A00E44792 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0981B124E4853A00E44792 /* AccountViewController.swift */; };
 		4A09E29C24D754520013D7BC /* DownloadWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09E29B24D754520013D7BC /* DownloadWindowController.swift */; };
 		4A09E29E24D7555E0013D7BC /* DownloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09E29D24D7555E0013D7BC /* DownloadView.swift */; };
 		4A09E2A824D75D6B0013D7BC /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09E2A624D75D6B0013D7BC /* CategoryViewController.swift */; };
@@ -86,7 +90,6 @@
 		4AEC4C02240F5BA300B01799 /* RunOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEC4C01240F5BA300B01799 /* RunOptionsViewController.swift */; };
 		4AF953B523EB503100ED540C /* Timer Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF953B423EB503100ED540C /* Timer Functions.swift */; };
 		4AF953B723EB507800ED540C /* Splits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF953B623EB507800ED540C /* Splits.swift */; };
-		4AF9580024E1C68F00EEE054 /* DownloadModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF957FF24E1C68F00EEE054 /* DownloadModel.swift */; };
 		4AF9E8A824CE2FE200DFD5BE /* SplitsIOKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4AF9E8A724CE2FE200DFD5BE /* SplitsIOKit */; };
 		4AF9E8AB24CE31CA00DFD5BE /* DebugPrefsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF9E8A924CE31CA00DFD5BE /* DebugPrefsViewController.swift */; };
 		4AF9E8AC24CE31CA00DFD5BE /* DebugPrefsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AF9E8AA24CE31CA00DFD5BE /* DebugPrefsViewController.xib */; };
@@ -132,9 +135,13 @@
 		34AD6C2466B7A595C7B6C1B0 /* Pods_Splitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Splitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3BC3162DD6894F9DE2C6229A /* Pods-Splitter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitter.debug.xcconfig"; path = "Target Support Files/Pods-Splitter/Pods-Splitter.debug.xcconfig"; sourceTree = "<group>"; };
 		4A05EEFC24D762E200873D07 /* DownloadWindow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DownloadWindow.storyboard; sourceTree = "<group>"; };
-		4A09819D24E3089B00E44792 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		4A09819E24E3089B00E44792 /* LoginViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginViewController.xib; sourceTree = "<group>"; };
-		4A09E29924D751B60013D7BC /* DownloadWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DownloadWindow.xib; sourceTree = "<group>"; };
+		4A09819D24E3089B00E44792 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
+		4A09819E24E3089B00E44792 /* LoginView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
+		4A0981A424E34DE400E44792 /* AccountButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountButtonView.swift; sourceTree = "<group>"; };
+		4A0981A524E34DE400E44792 /* AccountButtonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountButtonView.xib; sourceTree = "<group>"; };
+		4A0981AA24E4816A00E44792 /* AccountProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountProfileView.xib; sourceTree = "<group>"; };
+		4A0981AE24E4844200E44792 /* AccountProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountProfileView.swift; sourceTree = "<group>"; };
+		4A0981B124E4853A00E44792 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
 		4A09E29B24D754520013D7BC /* DownloadWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadWindowController.swift; sourceTree = "<group>"; };
 		4A09E29D24D7555E0013D7BC /* DownloadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadView.swift; sourceTree = "<group>"; };
 		4A09E2A624D75D6B0013D7BC /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
@@ -210,7 +217,6 @@
 		4AEC4C01240F5BA300B01799 /* RunOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunOptionsViewController.swift; sourceTree = "<group>"; };
 		4AF953B423EB503100ED540C /* Timer Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timer Functions.swift"; sourceTree = "<group>"; };
 		4AF953B623EB507800ED540C /* Splits.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Splits.swift; sourceTree = "<group>"; };
-		4AF957FF24E1C68F00EEE054 /* DownloadModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadModel.swift; sourceTree = "<group>"; };
 		4AF9D75B23ECD5110019BC9A /* livesplit_core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = livesplit_core.h; sourceTree = "<group>"; };
 		4AF9D75D23ECD5110019BC9A /* module.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.map; sourceTree = "<group>"; };
 		4AF9D76223ECD59A0019BC9A /* Splitter-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Splitter-Bridging-Header.h"; sourceTree = "<group>"; };
@@ -269,10 +275,39 @@
 		4A0981A124E308A100E44792 /* Login */ = {
 			isa = PBXGroup;
 			children = (
-				4A09819D24E3089B00E44792 /* LoginViewController.swift */,
-				4A09819E24E3089B00E44792 /* LoginViewController.xib */,
+				4A09819D24E3089B00E44792 /* LoginView.swift */,
+				4A09819E24E3089B00E44792 /* LoginView.xib */,
 			);
 			path = Login;
+			sourceTree = "<group>";
+		};
+		4A0981A824E34DED00E44792 /* AccountButton */ = {
+			isa = PBXGroup;
+			children = (
+				4A0981A424E34DE400E44792 /* AccountButtonView.swift */,
+				4A0981A524E34DE400E44792 /* AccountButtonView.xib */,
+			);
+			path = AccountButton;
+			sourceTree = "<group>";
+		};
+		4A0981AD24E4817000E44792 /* AccountProfileViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4A0981AE24E4844200E44792 /* AccountProfileView.swift */,
+				4A0981AA24E4816A00E44792 /* AccountProfileView.xib */,
+			);
+			path = AccountProfileViewController;
+			sourceTree = "<group>";
+		};
+		4A0981B024E484BE00E44792 /* SplitsIOAccount */ = {
+			isa = PBXGroup;
+			children = (
+				4A0981AD24E4817000E44792 /* AccountProfileViewController */,
+				4A0981A824E34DED00E44792 /* AccountButton */,
+				4A0981B124E4853A00E44792 /* AccountViewController.swift */,
+				4A0981A124E308A100E44792 /* Login */,
+			);
+			path = SplitsIOAccount;
 			sourceTree = "<group>";
 		};
 		4A09E29F24D755680013D7BC /* Import from Splits.io */ = {
@@ -281,9 +316,7 @@
 				4A09E2A624D75D6B0013D7BC /* CategoryViewController.swift */,
 				4A09E29B24D754520013D7BC /* DownloadWindowController.swift */,
 				4A05EEFC24D762E200873D07 /* DownloadWindow.storyboard */,
-				4A09E29924D751B60013D7BC /* DownloadWindow.xib */,
 				4A09E29D24D7555E0013D7BC /* DownloadView.swift */,
-				4AF957FF24E1C68F00EEE054 /* DownloadModel.swift */,
 			);
 			path = "Import from Splits.io";
 			sourceTree = "<group>";
@@ -538,8 +571,8 @@
 		4AFCC52423C63F3E002216F1 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				4A0981B024E484BE00E44792 /* SplitsIOAccount */,
 				4AFAD84424CF2CF8006FC480 /* WelcomeWindowController.swift */,
-				4A0981A124E308A100E44792 /* Login */,
 				4A09E29F24D755680013D7BC /* Import from Splits.io */,
 				4AE82A1524BFD4400044B6D3 /* WelcomeView.swift */,
 				4A18662F23C5257800FEEE54 /* MenuItemConstants.swift */,
@@ -690,19 +723,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A09E29A24D751B60013D7BC /* DownloadWindow.xib in Resources */,
 				4A4D392323C4FAE500BF3FCD /* HotkeysViewController.xib in Resources */,
 				4AEA928423C4F140004F6CF9 /* DefaultPreferenceViewController.xib in Resources */,
 				4A7DDCE223BBDD0900A36AD1 /* Credits.html in Resources */,
 				4AF9E8AC24CE31CA00DFD5BE /* DebugPrefsViewController.xib in Resources */,
+				4A0981AC24E4816A00E44792 /* AccountProfileView.xib in Resources */,
 				4A87DEA523F251C700975EB8 /* livesplit.icns in Resources */,
 				4A4D391F23C4F29C00BF3FCD /* blankWindow.xib in Resources */,
 				4A5F10AE23CFAA1F00DA043B /* Assets.xcassets in Resources */,
+				4A0981A724E34DE400E44792 /* AccountButtonView.xib in Resources */,
 				4A1DEFD0243D51EC00171A34 /* Splitter Doc SplitsIO.icns in Resources */,
 				4A05EEFD24D762E200873D07 /* DownloadWindow.storyboard in Resources */,
 				4A230E9C23B00A1E00959C57 /* Main.storyboard in Resources */,
 				4A1DEFCF243D51EC00171A34 /* SplitterDocIcon.icns in Resources */,
-				4A0981A024E3089B00E44792 /* LoginViewController.xib in Resources */,
+				4A0981A024E3089B00E44792 /* LoginView.xib in Resources */,
 				4A61438624801A37007C38E0 /* ColorsView.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -807,6 +841,7 @@
 			files = (
 				4A7C648823F05FCF008C15EF /* LiveSplitCore.swift in Sources */,
 				4A6726EA23F05D17006F4BC4 /* LiveSplit.swift in Sources */,
+				4A0981B224E4853A00E44792 /* AccountViewController.swift in Sources */,
 				4AC24DBA23EB4EC5003008BF /* Split Table Row.swift in Sources */,
 				4A4070E1241AE2E0000927A5 /* AppearanceViewController.swift in Sources */,
 				4A87265523BD53F8003A14AF /* runInfo.swift in Sources */,
@@ -841,7 +876,6 @@
 				4A1657B523EA5C320008CB5F /* Icon Actions.swift in Sources */,
 				4AD77D16240ECA2800CD65AD /* ColumnOptionsViewController.swift in Sources */,
 				4A6A3BE423CD621A002C20AE /* MainWindow.swift in Sources */,
-				4AF9580024E1C68F00EEE054 /* DownloadModel.swift in Sources */,
 				4A1657B323EA4F3C0008CB5F /* Button Actions.swift in Sources */,
 				4AF9E8AB24CE31CA00DFD5BE /* DebugPrefsViewController.swift in Sources */,
 				4A968C7C23F1F5FE001B74E8 /* lss.swift in Sources */,
@@ -849,11 +883,13 @@
 				4AEA928323C4F140004F6CF9 /* DefaultPreferenceViewController.swift in Sources */,
 				4A1C1469240ED30C0056B104 /* InfoOptionsViewController.swift in Sources */,
 				4A9DB792240847E40000D1B4 /* TimeSplitColumn.swift in Sources */,
-				4A09819F24E3089B00E44792 /* LoginViewController.swift in Sources */,
+				4A09819F24E3089B00E44792 /* LoginView.swift in Sources */,
+				4A0981AF24E4844300E44792 /* AccountProfileView.swift in Sources */,
 				4A09E29C24D754520013D7BC /* DownloadWindowController.swift in Sources */,
 				4ADE9226240F1FB900E0D99E /* InfoPopoverTabViewController.swift in Sources */,
 				4A0F715F23F4A0A500E5948E /* SplitterDoc.swift in Sources */,
 				4A66A43023DE2682005952FA /* ImageButtonCellView.swift in Sources */,
+				4A0981A624E34DE400E44792 /* AccountButtonView.swift in Sources */,
 				4A894B1C249ABA71004FEEB3 /* LoadableNib.swift in Sources */,
 				4A3BDFA123E4C3B6001EA7FF /* DefaultHotkeys.swift in Sources */,
 				4A45BCF724084B3800F1A223 /* TimeSplitCell.swift in Sources */,

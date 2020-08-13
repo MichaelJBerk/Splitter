@@ -59,9 +59,6 @@ class DownloadViewController: NSViewController, CategoryPickerDelegate  {
 		
 		tableView?.delegate = self
 		tableView?.dataSource = self
-		#if DEBUG
-		nextButton.isEnabled = true
-		#endif
 		darkenView = DarkSpinnerView(sourceView: self.view, sourceFrame: NSRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height + 50))
 		
 	}
