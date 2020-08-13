@@ -8,6 +8,7 @@
 
 import Foundation
 import Cocoa
+import SplitsIOKit
 
 enum SettingsKeys {
 	public static let hideTitleBar = "hideTitleBar"
@@ -113,6 +114,19 @@ public struct Settings {
 			
 			UserDefaults.standard.set(newValue, forKey: SettingsKeys.splitsIOURL)
 			
+		}
+	}
+	public static var splitsIOUser: SplitsIORunner? {
+		set {
+			let encodedData = try? PropertyListEncoder().encode(newValue)
+			UserDefaults.standard.setValue(encodedData, forKey: "splitsIOUser")
+		}
+		get {
+			if let data = UserDefaults.standard.value(forKey: "splitsIOUser") as? Data {
+				let user = try? PropertyListDecoder().decode(SplitsIORunner.self, from: data)
+				return user
+			}
+			return nil
 		}
 	}
 }

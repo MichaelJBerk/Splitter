@@ -215,8 +215,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 		welcomeWindow.center()
 		let wc = WelcomeWindowController(window: welcomeWindow)
 		wc.showWindow(nil)
-		
-		
 	}
 	@IBAction func welcomeWindowMenuItem(_ sender: Any) {
 		if #available(macOS 10.15, *) {
@@ -248,6 +246,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 		preferencePanes: [
 			DefaultPreferenceViewController(),
 			HotkeysViewController(),
+			AccountViewController(),
 			DebugPrefsViewController()
 			]
 		
@@ -256,7 +255,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 	lazy var preferencesWindowController = PreferencesWindowController(
 		preferencePanes: [
 			DefaultPreferenceViewController(),
-			HotkeysViewController()
+			HotkeysViewController(),
+			AccountViewController()
 			]
 		
 	)

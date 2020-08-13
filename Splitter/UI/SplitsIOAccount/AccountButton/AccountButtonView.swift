@@ -15,8 +15,9 @@ class AccountButtonView: NSView, LoadableNib {
 	
 	@IBOutlet var accountLabel: NSTextField!
 	@IBOutlet var accountIcon: NSImageView!
-	var account: SplitsIORunner? {
+	var account: SplitsIORunner? = Settings.splitsIOUser {
 		didSet {
+			Settings.splitsIOUser = account
 			if let account = account {
 				accountLabel.stringValue = account.displayName
 			} else {
@@ -51,11 +52,12 @@ class AccountButtonView: NSView, LoadableNib {
 	}
 	
 	@objc func clicked(_ sender: Any) {
-		let aView = AccountViewController(account: account)
+		let aView = AccountViewController()
 		let pop = NSPopover()
 		pop.contentViewController = aView
 		pop.behavior = .semitransient
-		pop.contentSize = aView.view.frame.size
+//		print(aView.currentView.frame.size)
+//		pop.contentSize = aView.currentView.frame.size
 		pop.show(relativeTo: accountLabel.frame, of: self, preferredEdge: .minY)
 		NotificationCenter.default.addObserver(forName: .splitsIOLogout, object: nil, queue: nil, using: { _ in
 			pop.close()

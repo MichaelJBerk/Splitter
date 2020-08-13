@@ -14,5 +14,5 @@ extension Preferences.PaneIdentifier {
 	static let advanced = Self("advanced")
 	static let hotkeys = Self("hotkeys")
 	static let debug = Self("debug")
-		
+	static let splitsIO = Self("splitsIO")
 }

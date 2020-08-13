@@ -9,7 +9,7 @@
 import Cocoa
 import SplitsIOKit
 
-class AccountProfileView: NSView, AccountSubview, LoadableNib {
+class AccountProfileView: NSViewController, LoadableNib {
 	var accountController: AccountViewController!
 	
 	@IBOutlet var contentView: NSView!
@@ -23,6 +23,14 @@ class AccountProfileView: NSView, AccountSubview, LoadableNib {
 	
 	@IBAction func logoutButtonClick(_ sender: NSButton) {
 		logout()
+	}
+	override var view: NSView {
+		get {
+			return contentView
+		}
+		set {
+			contentView = newValue
+		}
 	}
 	
 	

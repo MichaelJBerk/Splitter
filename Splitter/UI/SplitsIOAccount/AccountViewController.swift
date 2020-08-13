@@ -8,9 +8,20 @@
 
 import Cocoa
 import SplitsIOKit
+import Preferences
 
-class AccountViewController: NSViewController {
-	var account: SplitsIORunner?
+class AccountViewController: NSViewController, PreferencePane {
+	var preferencePaneIdentifier = Preferences.PaneIdentifier.splitsIO
+	var preferencePaneTitle: String = "Splits.io"
+	let toolbarItemIcon: NSImage = #imageLiteral(resourceName: "splitsio")
+	
+	var container: NSView!
+	
+	var account: SplitsIORunner? {
+		didSet {
+			Settings.splitsIOUser = account
+		}
+	}
 	
 	///Indicates whether there's a user logged in
 	var loggedIn: Bool {
@@ -19,45 +30,105 @@ class AccountViewController: NSViewController {
 	
 	override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
 		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+		account = Settings.splitsIOUser
+		makeViews()
+		updateView()
 	}
 	convenience init() {
-		self.init(account: nil)
+		let account = Settings.splitsIOUser
+		self.init(account: account)
 	}
 	
 	init(account: SplitsIORunner?) {
 		super.init(nibName: nil, bundle: nil)
 		self.account = account
-		setView()
+		makeViews()
+		
+		updateView()
 	}
 	
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)
+		account = Settings.splitsIOUser
+		makeViews()
+		updateView()
+		
 	}
 	
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
 	}
-	
-	func setView() {
-		if let account = account {
-			let profileView = AccountProfileView()
-			profileView.loadViewFromNib()
-			profileView.accountController = self
-			profileView.setAccount(account: account)
-			self.view = profileView
-			self.preferredContentSize = view.frame.size
-			
-		} else {
-			let loginView = LoginView()
-			loginView.loadViewFromNib()
-			loginView.accountController = self
-			self.view = loginView
-			self.preferredContentSize = view.frame.size
+	override func viewDidLayout() {
+		super.viewDidLayout()
+		if let w = view.window?.windowController as? PreferencesWindowController {
+			w.setFrame()
 		}
 	}
 	
+	var profileView: AccountProfileView!
+	var loginView: LoginView!
+	
+	func makeViews() {
+		profileView = AccountProfileView()
+		profileView.loadViewFromNib()
+		profileView.accountController = self
+//		let p = profileView.frame.size
+//		self.view = profileView
+//		var s = view.frame.size
+		
+		loginView = LoginView()
+		loginView.loadViewFromNib()
+		loginView.accountController = self
+//		let l = loginView.frame.size
+		container = NSView(frame: NSRect(x: 0, y: 0, width: 100, height: 100))
+		self.view = container
+		self.addChild(loginView)
+		self.addChild(profileView)
+	}
+	
+	
+	var currentView: NSViewController!
+	
+	
+	func updateView() {
+		if container.subviews.count > 0 {
+			for sub in container.subviews {
+				sub.removeFromSuperview()
+			}
+		}
+		
+		if let account = account {
+			profileView.setAccount(account: account)
+			currentView = profileView
+			
+		} else {
+			currentView = loginView
+		}
+		
+		container.addSubview(currentView.view)
+		currentView.view.frame = self.container.bounds
+
+		preferredContentSize = currentView.view.frame.size
+		view.needsDisplay = true
+		view.canDrawSubviewsIntoLayer = true
+		
+		
+		
+//		blankView.addSubview(self.view)
+		
+//		currentView.wantsLayer = true
+//		currentView.needsDisplay = true
+		let s = view.frame.size
+//		let c = currentView.frame.size
+		NotificationCenter.default.addObserver(forName: NSView.frameDidChangeNotification, object: currentView, queue: nil, using: { notification in
+			if let viewFromNotification = notification.object as? NSView {
+				let s = viewFromNotification.frame.size
+				self.preferredContentSize = viewFromNotification.frame.size
+			}
+		})
+		
+	}
 	
 	
 	func setUser(completion: @escaping() -> ()) {
@@ -76,13 +147,15 @@ class AccountViewController: NSViewController {
 	func login() {
 		try? SplitsIOKit.shared.login {
 			self.setUser {
-				self.setView()
+				self.updateView()
 			}
 		}
-		
 	}
 	func logout() {
-		try? SplitsIOKit.shared.logout(completion: {})
+		try? SplitsIOKit.shared.logout(completion: {
+			self.account = nil
+			self.updateView()
+		})
 	}
 	/**
 	If user is logged in, give the account view controller
