@@ -9,21 +9,18 @@ PODS:
     - AppCenter/Core
   - Keys (1.0.1)
   - MASShortcut (2.4.0)
-  - Preferences (2.0.0)
   - Sparkle (1.23.0)
 
 DEPENDENCIES:
   - AppCenter
   - Keys (from `Pods/CocoaPodsKeys`)
   - MASShortcut
-  - Preferences (= 2.0)
   - Sparkle
 
 SPEC REPOS:
   trunk:
     - AppCenter
     - MASShortcut
-    - Preferences
     - Sparkle
 
 EXTERNAL SOURCES:
@@ -34,9 +31,8 @@ SPEC CHECKSUMS:
   AppCenter: aba7de06e4c2184f90dc84f7866bd07f82427d69
   Keys: a576f4c9c1c641ca913a959a9c62ed3f215a8de9
   MASShortcut: d9e4909e878661cc42877cc9d6efbe638273ab57
-  Preferences: 37738e374222e4f3c820b81cbc29094afada71d9
   Sparkle: 55b1a87ba69d56913375a281546b7c82dec95bb0
 
-PODFILE CHECKSUM: 505611870bba3710f419540b1dd9caf3381cf958
+PODFILE CHECKSUM: 68e54fb2eab99de9c19872b843e8fe06dace6a4f
 
 COCOAPODS: 1.9.3

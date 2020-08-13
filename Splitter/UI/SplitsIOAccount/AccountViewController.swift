@@ -59,12 +59,12 @@ class AccountViewController: NSViewController, PreferencePane {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 	}
-	override func viewDidLayout() {
-		super.viewDidLayout()
-		if let w = view.window?.windowController as? PreferencesWindowController {
-			w.setFrame()
-		}
-	}
+//	override func viewDidLayout() {
+//		super.viewDidLayout()
+//		if let w = view.window?.windowController as? PreferencesWindowController {
+////			w.resizeTab()
+//		}
+//	}
 	
 	var profileView: AccountProfileView!
 	var loginView: LoginView!
@@ -81,7 +81,8 @@ class AccountViewController: NSViewController, PreferencePane {
 		loginView.loadViewFromNib()
 		loginView.accountController = self
 //		let l = loginView.frame.size
-		container = NSView(frame: NSRect(x: 0, y: 0, width: 100, height: 100))
+		container = NSView(frame: NSRect(x: 0, y: 0, width: 100, height: 500))
+		
 		self.view = container
 		self.addChild(loginView)
 		self.addChild(profileView)
@@ -106,21 +107,19 @@ class AccountViewController: NSViewController, PreferencePane {
 			currentView = loginView
 		}
 		
+		currentView.view.frame = self.container.bounds
 		container.addSubview(currentView.view)
 		currentView.view.frame = self.container.bounds
 
-		preferredContentSize = currentView.view.frame.size
+//		preferredContentSize = currentView.view.frame.size
 		view.needsDisplay = true
 		view.canDrawSubviewsIntoLayer = true
 		
 		
 		
-//		blankView.addSubview(self.view)
 		
-//		currentView.wantsLayer = true
-//		currentView.needsDisplay = true
 		let s = view.frame.size
-//		let c = currentView.frame.size
+
 		NotificationCenter.default.addObserver(forName: NSView.frameDidChangeNotification, object: currentView, queue: nil, using: { notification in
 			if let viewFromNotification = notification.object as? NSView {
 				let s = viewFromNotification.frame.size

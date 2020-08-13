@@ -62,6 +62,7 @@
 		4A87265723BD5423003A14AF /* Prefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87265623BD5423003A14AF /* Prefs.swift */; };
 		4A87DEA523F251C700975EB8 /* livesplit.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4A87DEA423F251C700975EB8 /* livesplit.icns */; };
 		4A894B1C249ABA71004FEEB3 /* LoadableNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A894B1B249ABA71004FEEB3 /* LoadableNib.swift */; };
+		4A91EEDD24E5EA9C007C2A1B /* Preferences in Frameworks */ = {isa = PBXBuildFile; productRef = 4A91EEDC24E5EA9C007C2A1B /* Preferences */; };
 		4A9621F624C62401003CF23C /* ActivityIndicatorRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9621F524C62401003CF23C /* ActivityIndicatorRepresentable.swift */; };
 		4A968C7C23F1F5FE001B74E8 /* lss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A968C7B23F1F5FE001B74E8 /* lss.swift */; };
 		4A99813023F9ECE50037BF98 /* KeybindHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A99812F23F9ECE50037BF98 /* KeybindHandlers.swift */; };
@@ -239,6 +240,7 @@
 				4AF9E8A824CE2FE200DFD5BE /* SplitsIOKit in Frameworks */,
 				4AB5627924338FB000D7F8D1 /* SwiftyJSON in Frameworks */,
 				4AB5627924338FB000D7F8D1 /* SwiftyJSON in Frameworks */,
+				4A91EEDD24E5EA9C007C2A1B /* Preferences in Frameworks */,
 				4A6B4F7423F07C3900CB781F /* libresolv.tbd in Frameworks */,
 				CA8419FF140C00045EBA5B68 /* Pods_Splitter.framework in Frameworks */,
 			);
@@ -630,6 +632,7 @@
 				4AF9E8A724CE2FE200DFD5BE /* SplitsIOKit */,
 				4AD7662D23DA5F9A0052409C /* Files */,
 				4AB5627824338FB000D7F8D1 /* SwiftyJSON */,
+				4A91EEDC24E5EA9C007C2A1B /* Preferences */,
 			);
 			productName = Splitter;
 			productReference = 4A230E8F23B00A1D00959C57 /* Splitter.app */;
@@ -1293,6 +1296,10 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4A91EEDC24E5EA9C007C2A1B /* Preferences */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = Preferences;
+		};
 		4AB5627824338FB000D7F8D1 /* SwiftyJSON */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4AB5627724338FB000D7F8D1 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
