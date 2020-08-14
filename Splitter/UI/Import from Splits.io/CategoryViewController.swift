@@ -23,7 +23,11 @@ class CategoryViewController: NSViewController {
 		   super.viewDidLoad()
 		   popitem = categoryPopUpButton.selectedItem
 		   showSpinner()
-		   loadCategories {
+		   loadCategories { cats in
+			if let cats = cats {
+				self.categories = cats
+				self.categoryPopUpButton.menu?.items = self.makeMenuItems(categories: cats)
+			}
 			self.hideSpinner()
 		}
 	}
@@ -65,13 +69,17 @@ class CategoryViewController: NSViewController {
 		popitem = sender.selectedItem
 	}
 	
-	func loadCategories(completion: @escaping () -> Void) {
+	func loadCategories(completion: @escaping ([SplitsIOCat]?) -> Void) {
 		if let game = delegate.game {
-			splitsIO.getCategories(for: game.shortname, completion: { cats in
-				self.categories = cats
-				self.categoryPopUpButton.menu?.items = self.makeMenuItems(categories: cats)
-				completion()
-			})
+			if let shortName = game.shortname {
+				splitsIO.getCategories(for: shortName, completion: { cats in
+					completion(cats)
+				})
+			} else if game.categories.count > 0 {
+				completion(game.categories)
+			} else {
+				completion(nil)
+			}
 		}
 	}
 	func makeMenuItems(categories: [SplitsIOCat]) -> [NSMenuItem] {

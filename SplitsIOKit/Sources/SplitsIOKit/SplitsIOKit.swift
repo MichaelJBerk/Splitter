@@ -208,10 +208,23 @@ public class SplitsIOKit {
 	}
 	
 	public func getGamesFromRunner(runnerName: String, completion: @escaping([SplitsIOGame]?) -> ()) {
-		let gamesURL = URL(string: "https://splits.io/api/v4/runners/\(runnerName)/games")!
-		searchRequest = AF.request(gamesURL, method: .get, encoding: URLEncoding.default).responseDecodable(of: SplitsIOGameSearch.self) { response in
-			let v = response.value
-			completion(v?.games)
+		let gamesURL = splitsIOURL.appendingPathComponent("api/v4/runners/\(runnerName)/games")
+		searchRequest = AF.request(gamesURL, method: .get).responseData { response in
+			if let error = response.error {
+				print(error)
+			} else {
+				if let data = response.value {
+					do {
+						let games = try JSONDecoder().decode(SplitsIOGameSearch.self, from: data)
+						completion(games.games)
+						return
+					} catch {
+						print("Decode Error: ", error)
+					}
+					
+				}
+			}
+			completion(nil)
 		}
 	}
 
@@ -231,8 +244,9 @@ public struct SplitsIOGame: Codable, Hashable, Identifiable {
 	}
 	
 	public let categories: [SplitsIOCat]
-	public let createdAt, id, name, shortname: String
-	public let srdcID, updatedAt: String
+	public let createdAt, id, name: String
+	public let srdcID,shortname: String?
+	public let updatedAt: String
 
 	enum CodingKeys: String, CodingKey {
 		case categories
@@ -279,7 +293,7 @@ public struct SplitsIORunner: Codable {
         case updatedAt = "updated_at"
     }
 	public func getGames(splitsIOKit: SplitsIOKit, completion: @escaping([SplitsIOGame]?) -> ()) {
-		SplitsIOKit().getGamesFromRunner(runnerName: name, completion: completion)
+		splitsIOKit.getGamesFromRunner(runnerName: name, completion: completion)
 	}
 	
 }
