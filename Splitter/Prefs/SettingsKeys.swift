@@ -111,8 +111,8 @@ public struct Settings {
 			UserDefaults.standard.url(forKey: SettingsKeys.splitsIOURL) ?? URL(string: "https://splits.io")!
 		}
 		set {
-			
 			UserDefaults.standard.set(newValue, forKey: SettingsKeys.splitsIOURL)
+			SplitsIOKit.shared.splitsIOURL = newValue
 			
 		}
 	}

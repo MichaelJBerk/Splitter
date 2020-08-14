@@ -25,12 +25,38 @@ public enum SplitsIOError: Error, LocalizedError {
 public class SplitsIOKit {
 	var searchRequest: DataRequest?
 	var authManager: SplitsIOAuth?
-	public init(url: URL = URL(string:"https://splits.io")!, auth: SplitsIOAuth? = nil) {
+	
+	public static var shared = SplitsIOKit()
+	
+	
+	convenience init() {
+		self.init(auth: nil, url: URL(string:"https://splits.io")!)
+	}
+	/**
+	Initalizes a SplitsIOKit object
+	
+	Use this method if you set authorization or use a custom instance of Splits.io.
+	
+	If you need to use feature that require authorization, you'll need to pass in a `SplitsIOAuth` object. Should you call a method that requires \
+	authorization (such as `getCurrentUser(completion:)`) without this, it will throw a `SplitsIOError.noAuthManager ` error.
+	See the documentation for `SplitsIOAuth` for more information.
+	
+	To use a custom fork/clone/instance of Splits.io, pass the URL leading to it in the URL parameter.
+	For example, to lead it to your local development version:
+	
+		guard let url = URL(string: "http://localhost:3000")! else {return}
+		let splitsio = SplitsIOKit(url: url)
+	You can change the URL later by setting the `SplitsIOURL` property.
+	
+	- Parameter url: URL for Splits.io. By default, it's "https://splits.io".
+	- Parameter auth: Class to be used for managing authorization
+	*/
+	public init(auth: SplitsIOAuth?, url: URL = URL(string:"https://splits.io")!) {
 		splitsIOURL = url
 		authManager = auth
 	}
-	
-	var splitsIOURL: URL
+	/// URL to be used for Splits.io
+	public var splitsIOURL: URL
 	
 	public func searchSplitsIO(for game: String, completion: @escaping ([SplitsIOGame]?) -> ()) {
 		searchRequest?.cancel()
@@ -269,10 +295,14 @@ public struct SplitsIOCat: Codable, Hashable {
 		case srdcID = "srdc_id"
 		case updatedAt = "updated_at"
 	}
+	
+	public func getRun(completion: @escaping(String?) -> ()) {
+		getRun(splitsIOKit: SplitsIOKit(), completion: completion)
+	}
+	
 	///Completion - the path to the temporary lss file
-	public func getRun(splitsIOKit: SplitsIOKit = SplitsIOKit(), completion: @escaping(String?) -> ()) {
-		
-		return SplitsIOKit().getRunFromCat(categoryID: self.id, completion: { run in
+	public func getRun(splitsIOKit: SplitsIOKit, completion: @escaping(String?) -> ()) {
+		return splitsIOKit.getRunFromCat(categoryID: self.id, completion: { run in
 			completion(run)
 		})
 	}

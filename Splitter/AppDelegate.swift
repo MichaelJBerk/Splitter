@@ -31,7 +31,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 	@IBOutlet private var window: NSWindow!
 	
 	static var splitsIOAuth = SplitsIOAuth(client: SplitterKeys().splitsioclient, secret: SplitterKeys().splitsiosecret, redirects: "splitter://login")
-	public static var splitsIOKit = SplitsIOKit(url: Settings.splitsIOURL, auth: AppDelegate.splitsIOAuth)
+	public static var splitsIOKit = SplitsIOKit(auth: AppDelegate.splitsIOAuth, url: Settings.splitsIOURL)
 	
 	public var hotkeyController: HotkeysViewController?
 	public static var shared: AppDelegate? = NSApplication.shared.delegate as? AppDelegate
