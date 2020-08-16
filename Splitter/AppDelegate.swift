@@ -158,6 +158,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 		
 		//MSAppCenter stuff
 		NSApp.mainMenu?.item(withIdentifier: menuIdentifiers.appMenu.updatesMenuItem)?.isHidden = false
+		#if !DEBUG
 		MSCrashes.setDelegate(self)
 		let keys = SplitterKeys()
 		MSAppCenter.start("\(keys.appCenter)", withServices:[
@@ -194,6 +195,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 
 		  return true // Return true if the SDK should await user confirmation, otherwise return false.
 		})
+		#endif
 		
 //		openWelcomeWindow()
 	}

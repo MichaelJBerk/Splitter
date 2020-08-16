@@ -190,6 +190,7 @@ public class SplitsIOKit {
 		let authRequest = authManager.oAuth2.request(forURL: runnerURL)
 		getRunner(url: authRequest, completion: completion)
 	}
+	
 	public func getRunner(name: String, completion: @escaping(SplitsIORunner?) -> ()) {
 		let runnerURL = splitsIOURL.appendingPathComponent("/api/v4/runners/\(name)")
 		getRunner(url: URLRequest(url: runnerURL), completion: completion)
@@ -234,25 +235,108 @@ public class SplitsIOKit {
 	}
 	
 	public func getGamesFromRunner(runnerName: String, completion: @escaping([SplitsIOGame]?) -> ()) {
+		
 		let gamesURL = splitsIOURL.appendingPathComponent("api/v4/runners/\(runnerName)/games")
 		searchRequest = AF.request(gamesURL, method: .get).responseData { response in
-			if let error = response.error {
-				print(error)
-			} else {
-				if let data = response.value {
-					do {
-						let games = try JSONDecoder().decode(SplitsIOGameSearch.self, from: data)
-						completion(games.games)
-						return
-					} catch {
-						print("Decode Error: ", error)
-					}
-					
+			if let data = response.value {
+				do {
+					let games = try JSONDecoder().decode(SplitsIOGameSearch.self, from: data)
+					completion(games.games)
+					return
+				} catch {
+					print("Decode Error: ", error)
 				}
+				
 			}
 			completion(nil)
 		}
 	}
+	
+	public func uploadRunToSplitsIO(runString: String, completion: @escaping () -> ()) throws {
+		guard let authManager = authManager else {throw SplitsIOError.noAuthManager}
+		#if debug
+		authManager.oAuth2.logger = OAuth2DebugLogger(.trace)
+		#endif
+		let url1 = URL(string: "https://splits.io/api/v4/runs")!
+		
+		try? getCurrentUser { _ in
+			var authRequest = authManager.oAuth2.request(forURL: url1)
+			authRequest.method = .post
+			AF.request(authRequest).responseData { response1 in
+				if let error = response1.error {
+					print(error)
+				} else {
+					do {
+						let json = JSON(response1.data)
+						let presignedJSON = json["presigned_request"]["fields"]
+						print(json)
+
+						let awsURL = URL(string: json["presigned_request"]["uri"].stringValue)!
+						self.handlePresignedData(presignedJSON: presignedJSON, url: awsURL, runString: runString, completion: {
+							completion()
+						})
+						return
+						
+					} catch {
+						print("Decode error: ", error)
+					}
+				}
+			}
+		}
+		
+		
+	}
+	
+	private func handlePresignedData(presignedJSON: JSON, url: URL, runString: String, completion: @escaping () -> ()) {
+		#if debug
+		authManager.oAuth2.logger = OAuth2DebugLogger(.trace)
+		#endif
+		if var authRequest = authManager?.oAuth2.request(forURL: url) {
+//			authRequest.method = .post
+			print(authRequest.httpBody)
+			
+			
+			AF.upload(multipartFormData: { (multipartFormData) in
+				do {
+					
+					
+					self.jsonToMFD(multipartFormData: multipartFormData, json: presignedJSON, key: "key")
+					self.jsonToMFD(multipartFormData: multipartFormData, json: presignedJSON, key: "policy")
+					self.jsonToMFD(multipartFormData: multipartFormData, json: presignedJSON, key: "x-amz-credential")
+					self.jsonToMFD(multipartFormData: multipartFormData, json: presignedJSON, key: "x-amz-algorithm")
+					self.jsonToMFD(multipartFormData: multipartFormData, json: presignedJSON, key: "x-amz-date")
+					self.jsonToMFD(multipartFormData: multipartFormData, json: presignedJSON, key: "x-amz-signature")
+					if let runString = runString.data(using: .utf8) {
+						multipartFormData.append(runString, withName: "file")
+					}
+					
+					
+				} catch let error2 {
+					print("error2: ", error2)
+					
+				}
+			}, to: url, method: .post).responseString { resp2 in
+				if let error3 = resp2.error {
+					print("error3: ", error3)
+				} else {
+					if let str = try? resp2.result.get() {
+						print("str: ", str)
+						print(resp2.response)
+						
+					}
+				}
+				completion()
+			}
+		} else {
+			completion()
+		}
+	}
+	
+	private func jsonToMFD(multipartFormData: Alamofire.MultipartFormData, json: JSON, key: String) -> () {
+		guard let data = json[key].stringValue.data(using: .utf8) else {return }
+		return multipartFormData.append(data, withName: key)
+	}
+	
 
 	
 }
