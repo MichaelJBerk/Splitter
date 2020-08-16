@@ -263,71 +263,56 @@ public class SplitsIOKit {
 			var authRequest = authManager.oAuth2.request(forURL: url1)
 			authRequest.method = .post
 			AF.request(authRequest).responseData { response1 in
-				if let error = response1.error {
-					print(error)
-				} else {
-					do {
-						let json = JSON(response1.data)
-						let presignedJSON = json["presigned_request"]["fields"]
-						print(json)
+			if let error = response1.error {
+				print(error)
+			} else {
+				let json = JSON(response1.data)
+				let presignedJSON = json["presigned_request"]["fields"]
+				print(json)
 
-						let awsURL = URL(string: json["presigned_request"]["uri"].stringValue)!
-						self.handlePresignedData(presignedJSON: presignedJSON, url: awsURL, runString: runString, completion: {
-							completion()
-						})
-						return
-						
-					} catch {
-						print("Decode error: ", error)
-					}
+				let awsURL = URL(string: json["presigned_request"]["uri"].stringValue)!
+				self.handlePresignedData(presignedJSON: presignedJSON, url: awsURL, runString: runString, completion: {
+					completion()
+				})
+				return
+				
 				}
 			}
 		}
-		
-		
 	}
 	
 	private func handlePresignedData(presignedJSON: JSON, url: URL, runString: String, completion: @escaping () -> ()) {
 		#if debug
 		authManager.oAuth2.logger = OAuth2DebugLogger(.trace)
 		#endif
-		if var authRequest = authManager?.oAuth2.request(forURL: url) {
-//			authRequest.method = .post
-			print(authRequest.httpBody)
-			
-			
-			AF.upload(multipartFormData: { (multipartFormData) in
-				do {
-					
-					
-					self.jsonToMFD(multipartFormData: multipartFormData, json: presignedJSON, key: "key")
-					self.jsonToMFD(multipartFormData: multipartFormData, json: presignedJSON, key: "policy")
-					self.jsonToMFD(multipartFormData: multipartFormData, json: presignedJSON, key: "x-amz-credential")
-					self.jsonToMFD(multipartFormData: multipartFormData, json: presignedJSON, key: "x-amz-algorithm")
-					self.jsonToMFD(multipartFormData: multipartFormData, json: presignedJSON, key: "x-amz-date")
-					self.jsonToMFD(multipartFormData: multipartFormData, json: presignedJSON, key: "x-amz-signature")
-					if let runString = runString.data(using: .utf8) {
-						multipartFormData.append(runString, withName: "file")
-					}
-					
-					
-				} catch let error2 {
-					print("error2: ", error2)
-					
+		AF.upload(multipartFormData: { (multipartFormData) in
+			do {
+				
+				
+				self.jsonToMFD(multipartFormData: multipartFormData, json: presignedJSON, key: "key")
+				self.jsonToMFD(multipartFormData: multipartFormData, json: presignedJSON, key: "policy")
+				self.jsonToMFD(multipartFormData: multipartFormData, json: presignedJSON, key: "x-amz-credential")
+				self.jsonToMFD(multipartFormData: multipartFormData, json: presignedJSON, key: "x-amz-algorithm")
+				self.jsonToMFD(multipartFormData: multipartFormData, json: presignedJSON, key: "x-amz-date")
+				self.jsonToMFD(multipartFormData: multipartFormData, json: presignedJSON, key: "x-amz-signature")
+				if let runString = runString.data(using: .utf8) {
+					multipartFormData.append(runString, withName: "file")
 				}
-			}, to: url, method: .post).responseString { resp2 in
-				if let error3 = resp2.error {
-					print("error3: ", error3)
-				} else {
-					if let str = try? resp2.result.get() {
-						print("str: ", str)
-						print(resp2.response)
-						
-					}
-				}
-				completion()
+				
+				
+			} catch let error2 {
+				print("error2: ", error2)
+				
 			}
-		} else {
+		}, to: url, method: .post).responseString { resp2 in
+			if let error3 = resp2.error {
+				print("error3: ", error3)
+			} else {
+				if let str = try? resp2.result.get() {
+					print("str: ", str)
+					print(resp2.response)
+				}
+			}
 			completion()
 		}
 	}
