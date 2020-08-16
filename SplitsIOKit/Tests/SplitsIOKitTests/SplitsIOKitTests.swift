@@ -75,6 +75,15 @@ final class SplitsIOKitTests: XCTestCase {
 		wait(for: [expectation], timeout: 10.0)
 		
 	}
+	func testGetGamesFromSpedruncom() {
+		let expectation = XCTestExpectation(description: "get lphantom games")
+		Speedruncom().searchSpeedruncom(for: "Super Mario Odyssey", completion: { games in
+			XCTAssertFalse(games == nil)
+			expectation.fulfill()
+			
+		})
+		wait(for: [expectation], timeout: 10.0)
+	}
 	
 	
 	
