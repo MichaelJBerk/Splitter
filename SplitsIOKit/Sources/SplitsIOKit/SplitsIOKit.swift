@@ -69,7 +69,7 @@ public class SplitsIOKit {
 	
 	///Indicates whether or not this instance of SplitsIOKit has an authManager
 	public var hasAuth: Bool {
-		return authManager != nil
+		return (authManager != nil && authManager?.oAuth2.accessToken != nil)
 	}
 
 	
@@ -184,7 +184,7 @@ public class SplitsIOKit {
 	}
 	
 	public func getCurrentUser(completion: @escaping (SplitsIORunner?) -> ()) throws {
-		guard let authManager = authManager else {throw SplitsIOError.noAuthManager}
+		guard let authManager = authManager, hasAuth else {throw SplitsIOError.noAuthManager}
 		let runnerURL = splitsIOURL.appendingPathComponent("/api/v4/runner")
 		let authRequest = authManager.oAuth2.request(forURL: runnerURL)
 		getRunner(url: authRequest, completion: completion)
@@ -252,7 +252,7 @@ public class SplitsIOKit {
 	}
 	
 	public func uploadRunToSplitsIO(runString: String, completion: @escaping (String) -> ()) throws {
-		guard let authManager = authManager else {throw SplitsIOError.noAuthManager}
+		guard let authManager = authManager, hasAuth else {throw SplitsIOError.noAuthManager}
 		#if debug
 		authManager.oAuth2.logger = OAuth2DebugLogger(.trace)
 		#endif
