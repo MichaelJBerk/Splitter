@@ -1,6 +1,5 @@
 import Alamofire
 import SwiftyJSON
-import Fuzzy
 import Foundation
 import Files
 
@@ -252,7 +251,7 @@ public class SplitsIOKit {
 		}
 	}
 	
-	public func uploadRunToSplitsIO(runString: String, completion: @escaping () -> ()) throws {
+	public func uploadRunToSplitsIO(runString: String, completion: @escaping (String) -> ()) throws {
 		guard let authManager = authManager else {throw SplitsIOError.noAuthManager}
 		#if debug
 		authManager.oAuth2.logger = OAuth2DebugLogger(.trace)
@@ -272,7 +271,8 @@ public class SplitsIOKit {
 
 				let awsURL = URL(string: json["presigned_request"]["uri"].stringValue)!
 				self.handlePresignedData(presignedJSON: presignedJSON, url: awsURL, runString: runString, completion: {
-					completion()
+					let claimURI = json["uris"]["claim_uri"].stringValue
+					completion(claimURI)
 				})
 				return
 				

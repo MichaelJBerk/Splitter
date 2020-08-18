@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097.2"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="LoadingViewController" customModule="Splitter" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="Hz6-mo-xeY" id="GIT-zK-N0g"/>
+                <outlet property="imageView" destination="YtV-dF-r6b" id="nh1-uJ-QdI"/>
+                <outlet property="labelView" destination="FQv-Xr-PN6" id="Dmh-Ha-qGd"/>
+                <outlet property="loadingBar" destination="VPa-Pg-FhM" id="SME-1I-QxH"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="370" height="100"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YtV-dF-r6b">
+                    <rect key="frame" x="20" y="20" width="60" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="Nek-sp-LEj"/>
+                        <constraint firstAttribute="width" constant="60" id="fEF-qv-Z9X"/>
+                    </constraints>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="splitsio" id="WIF-Sa-kqZ"/>
+                </imageView>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FQv-Xr-PN6">
+                    <rect key="frame" x="88" y="64" width="64" height="16"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Loading..." id="cL0-m2-VSy">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <progressIndicator wantsLayer="YES" maxValue="100" indeterminate="YES" style="bar" translatesAutoresizingMaskIntoConstraints="NO" id="VPa-Pg-FhM">
+                    <rect key="frame" x="88" y="37" width="262" height="20"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="262" id="LLi-zN-B47"/>
+                    </constraints>
+                </progressIndicator>
+            </subviews>
+            <constraints>
+                <constraint firstItem="FQv-Xr-PN6" firstAttribute="leading" secondItem="YtV-dF-r6b" secondAttribute="trailing" constant="10" id="Mlx-GG-Di8"/>
+                <constraint firstItem="YtV-dF-r6b" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" id="a1l-NE-MXe"/>
+                <constraint firstItem="VPa-Pg-FhM" firstAttribute="leading" secondItem="YtV-dF-r6b" secondAttribute="trailing" constant="8" id="iFB-OH-IcL"/>
+                <constraint firstItem="YtV-dF-r6b" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="whe-kR-7dR"/>
+                <constraint firstItem="VPa-Pg-FhM" firstAttribute="top" secondItem="FQv-Xr-PN6" secondAttribute="bottom" constant="8" id="yKY-xS-OLc"/>
+                <constraint firstItem="FQv-Xr-PN6" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" id="zz0-ym-WZl"/>
+            </constraints>
+            <point key="canvasLocation" x="84" y="68"/>
+        </customView>
+    </objects>
+    <resources>
+        <image name="splitsio" width="2000" height="2000"/>
+    </resources>
+</document>

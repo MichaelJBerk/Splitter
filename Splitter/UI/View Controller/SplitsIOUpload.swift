@@ -11,8 +11,31 @@ import SplitsIOKit
 extension ViewController {
 	func uploadToSplitsIO() {
 		if let runString = makeSplitsIOJSON() {
-			try? SplitsIOKit.shared.uploadRunToSplitsIO(runString: runString, completion: {
-				
+			let confAlert = NSAlert()
+			confAlert.messageText = "Are you sure you would like to upload this run to Splits.io?"
+			confAlert.addButton(withTitle: "Upload")
+			confAlert.addButton(withTitle: "Cancel")
+			confAlert.beginSheetModal(for: view.window!, completionHandler: { response in
+				if response == .alertFirstButtonReturn {
+					let loadingView = LoadingViewController()
+					loadingView.loadViewFromNib()
+					loadingView.labelView.stringValue = "Uploading..."
+					self.presentAsSheet(loadingView)
+					try? SplitsIOKit.shared.uploadRunToSplitsIO(runString: runString, completion: { claimURI in
+						
+						self.dismiss(loadingView)
+						let finishedAlert = NSAlert()
+						finishedAlert.messageText = "Run has successfully been uploaded to Splits.io"
+						finishedAlert.addButton(withTitle: "OK")
+						finishedAlert.addButton(withTitle: "View on Splits.io")
+						finishedAlert.beginSheetModal(for: self.view.window!, completionHandler: { response2 in
+							if response2 == .alertSecondButtonReturn {
+								print(claimURI)
+								NSWorkspace.shared.open(URL(string: claimURI)!)
+							}
+						})
+					})
+				}
 			})
 		}
 	}

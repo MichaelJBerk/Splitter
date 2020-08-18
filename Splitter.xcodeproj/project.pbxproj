@@ -55,6 +55,8 @@
 		4A6A3BE223CD1C7A002C20AE /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6A3BE123CD1C7A002C20AE /* Storage.swift */; };
 		4A6A3BE423CD621A002C20AE /* MainWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6A3BE323CD621A002C20AE /* MainWindow.swift */; };
 		4A6A3BE623CD6463002C20AE /* BlankWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6A3BE523CD6463002C20AE /* BlankWindowController.swift */; };
+		4A6A965824EC3516008EFD2B /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6A965624EC3516008EFD2B /* LoadingViewController.swift */; };
+		4A6A965924EC3516008EFD2B /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6A965724EC3516008EFD2B /* LoadingViewController.xib */; };
 		4A6B4F7423F07C3900CB781F /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A73B75023F0722800010F30 /* libresolv.tbd */; };
 		4A71054C24BE267300FA9127 /* SplitterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A71054B24BE267300FA9127 /* SplitterTests.swift */; };
 		4A7C648823F05FCF008C15EF /* LiveSplitCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF9D76423ECD7520019BC9A /* LiveSplitCore.swift */; };
@@ -186,6 +188,8 @@
 		4A6A3BE123CD1C7A002C20AE /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		4A6A3BE323CD621A002C20AE /* MainWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindow.swift; sourceTree = "<group>"; };
 		4A6A3BE523CD6463002C20AE /* BlankWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankWindowController.swift; sourceTree = "<group>"; };
+		4A6A965624EC3516008EFD2B /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
+		4A6A965724EC3516008EFD2B /* LoadingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingViewController.xib; sourceTree = "<group>"; };
 		4A71054924BE267300FA9127 /* SplitterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SplitterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A71054B24BE267300FA9127 /* SplitterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterTests.swift; sourceTree = "<group>"; };
 		4A71054D24BE267300FA9127 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -579,6 +583,8 @@
 				4AFAD84424CF2CF8006FC480 /* WelcomeWindowController.swift */,
 				4A09E29F24D755680013D7BC /* Import from Splits.io */,
 				4AE82A1524BFD4400044B6D3 /* WelcomeView.swift */,
+				4A6A965624EC3516008EFD2B /* LoadingViewController.swift */,
+				4A6A965724EC3516008EFD2B /* LoadingViewController.xib */,
 				4A18662F23C5257800FEEE54 /* MenuItemConstants.swift */,
 				4A894B1B249ABA71004FEEB3 /* LoadableNib.swift */,
 				4A9621F524C62401003CF23C /* ActivityIndicatorRepresentable.swift */,
@@ -736,6 +742,7 @@
 				4A0981AC24E4816A00E44792 /* AccountProfileView.xib in Resources */,
 				4A87DEA523F251C700975EB8 /* livesplit.icns in Resources */,
 				4A4D391F23C4F29C00BF3FCD /* blankWindow.xib in Resources */,
+				4A6A965924EC3516008EFD2B /* LoadingViewController.xib in Resources */,
 				4A5F10AE23CFAA1F00DA043B /* Assets.xcassets in Resources */,
 				4A0981A724E34DE400E44792 /* AccountButtonView.xib in Resources */,
 				4A1DEFD0243D51EC00171A34 /* Splitter Doc SplitsIO.icns in Resources */,
@@ -902,6 +909,7 @@
 				4A45BCF724084B3800F1A223 /* TimeSplitCell.swift in Sources */,
 				4A87265723BD5423003A14AF /* Prefs.swift in Sources */,
 				4AFAD84524CF2CF8006FC480 /* WelcomeWindowController.swift in Sources */,
+				4A6A965824EC3516008EFD2B /* LoadingViewController.swift in Sources */,
 				4A230E9723B00A1D00959C57 /* Document.swift in Sources */,
 				4AC401F324BE145F005180F1 /* (null) in Sources */,
 				4AE82A1624BFD4400044B6D3 /* WelcomeView.swift in Sources */,

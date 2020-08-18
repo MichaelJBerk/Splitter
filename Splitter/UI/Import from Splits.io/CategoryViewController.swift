@@ -68,7 +68,7 @@ class CategoryViewController: NSViewController {
 	@IBAction func popUpAction(_ sender: NSPopUpButton) {
 		popitem = sender.selectedItem
 	}
-	
+	//TODO: Get only user's categories, if download view is currently showing user's runs
 	func loadCategories(completion: @escaping ([SplitsIOCat]?) -> Void) {
 		if let game = delegate.game {
 			if let shortName = game.shortname {
@@ -95,13 +95,10 @@ class CategoryViewController: NSViewController {
 	func loadRun() {
 		let cat = categories[categoryPopUpButton.indexOfSelectedItem]
 		
-		let loadingRunAlert = NSAlert()
-		loadingRunAlert.messageText = "Loading run..."
-		let loadingBar = NSProgressIndicator(frame: NSRect(x: 0, y: 0, width: 250, height: 16))
-		loadingBar.isIndeterminate = true
-		loadingRunAlert.accessoryView = loadingBar
-		loadingBar.startAnimation(self)
-		loadingRunAlert.beginSheetModal(for: view.window!, completionHandler: nil)
+		let loadingView = LoadingViewController()
+		loadingView.loadViewFromNib()
+		loadingView.labelView.stringValue = "Downloading..."
+		self.presentAsSheet(loadingView)
 		
 		splitsIO.getRunFromCat(categoryID: cat.id, completion: { run in
 			let d = lss()
