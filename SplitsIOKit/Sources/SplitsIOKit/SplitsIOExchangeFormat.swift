@@ -26,7 +26,7 @@ public class SplitsIOExchangeFormat: Codable {
     public let timer: SplitsIOTimer?
     public let attempts: SplitsIOAttempts?
     public let game, category: SplitsIORunCategory?
-    public let runners: [JSONAny]?
+    public let runners: [SplitsIOExchangeRunner]?
     public let segments: [SplitsIOSegment]?
 
     enum CodingKeys: String, CodingKey {
@@ -34,7 +34,7 @@ public class SplitsIOExchangeFormat: Codable {
         case links, timer, attempts, game, category, runners, segments
     }
 
-   public init(schemaVersion: String?, links: SplitsIOExchangeFormatLinks?, timer: SplitsIOTimer?, attempts: SplitsIOAttempts?, game: SplitsIORunCategory?, category: SplitsIORunCategory?, runners: [JSONAny]?, segments: [SplitsIOSegment]?) {
+   public init(schemaVersion: String?, links: SplitsIOExchangeFormatLinks?, timer: SplitsIOTimer?, attempts: SplitsIOAttempts?, game: SplitsIORunCategory?, category: SplitsIORunCategory?, runners: [SplitsIOExchangeRunner]?, segments: [SplitsIOSegment]?) {
         self.schemaVersion = schemaVersion
         self.links = links
         self.timer = timer
@@ -72,7 +72,7 @@ extension SplitsIOExchangeFormat {
         attempts: SplitsIOAttempts?? = nil,
         game: SplitsIORunCategory?? = nil,
         category: SplitsIORunCategory?? = nil,
-        runners: [JSONAny]?? = nil,
+        runners: [SplitsIOExchangeRunner]?? = nil,
         segments: [SplitsIOSegment]?? = nil
     ) -> SplitsIOExchangeFormat {
         return SplitsIOExchangeFormat(
@@ -95,6 +95,37 @@ extension SplitsIOExchangeFormat {
         return String(data: try self.jsonData(), encoding: encoding)
     }
 }
+
+// MARK: - SplitsIORunner
+public struct SplitsIOExchangeRunner: Codable {
+	public init(links: SplitsIORunnerLinks?, longname: String?, shortname: String) {
+		self.links = links
+		self.longname = longname
+		self.shortname = shortname
+	}
+	
+    /// Links specifies the runner's identity in other
+	public let links: SplitsIORunnerLinks?
+    /// Longname is a human-readable runner name, intended for display to users.
+    public let longname: String?
+    /// Shortname is a machine-readable runner name, intended for use in APIs, databases, URLs,
+    /// and filenames.
+    public let shortname: String
+}
+
+/// Links specifies the runner's identity in other services.
+// MARK: - SplitsIORunnerLinks
+public struct SplitsIORunnerLinks: Codable {
+    /// Speedrun.com ID specifies the runner's Speedrun.com ID.
+    public let speedruncomID: String?
+    /// Splits.io ID specifies the runner's Splits.io ID.
+    public let splitsioID: String?
+    /// Twitch ID specifies the runner's Twitch ID.
+    public let twitchID: String?
+    /// Twitter ID specifies the runner's Twitter ID.
+    public let twitterID: String?
+}
+
 
 // MARK: - SplitsIOAttempts
 public class SplitsIOAttempts: Codable {

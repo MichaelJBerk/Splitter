@@ -23,6 +23,7 @@ enum menuIdentifiers {
 	enum fileMenu {
 		
 		static let newFromSplitsIO = NSUserInterfaceItemIdentifier("newFromSplitsIO")
+		static let uploadToSplitsIO = NSUserInterfaceItemIdentifier("uploadToSplitsIO")
 	}
 	
 	
