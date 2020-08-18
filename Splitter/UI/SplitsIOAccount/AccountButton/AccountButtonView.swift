@@ -65,7 +65,6 @@ class AccountButtonView: NSView, LoadableNib {
 		let pop = NSPopover()
 		pop.contentViewController = aView
 		pop.behavior = .semitransient
-//		print(aView.currentView.frame.size)
 		pop.contentSize = aView.currentView.view.frame.size
 		pop.show(relativeTo: accountLabel.frame, of: self, preferredEdge: .minY)
 		
