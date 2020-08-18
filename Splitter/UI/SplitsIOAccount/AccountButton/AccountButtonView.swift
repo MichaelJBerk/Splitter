@@ -19,13 +19,28 @@ class AccountButtonView: NSView, LoadableNib {
 		didSet {
 			Settings.splitsIOUser = account
 			setAccountLabel()
+			setAccountImage()
 		}
+	}
+	func reloadData() {
+		setAccountLabel()
+		setAccountImage()
 	}
 	func setAccountLabel() {
 		if let account = account {
 			accountLabel.stringValue = account.displayName
 		} else {
 			accountLabel.stringValue = "Sign In"
+		}
+	}
+	
+	
+	func setAccountImage() {
+		if let account = account, let avatarURL = URL(string: account.avatar) {
+			let avatar = NSImage(byReferencing: avatarURL)
+			accountIcon.image = avatar
+		} else {
+			accountIcon.image = NSImage(named: NSImage.userName)
 		}
 	}
 

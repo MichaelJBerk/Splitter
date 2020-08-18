@@ -59,12 +59,6 @@ class AccountViewController: NSViewController, PreferencePane {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 	}
-//	override func viewDidLayout() {
-//		super.viewDidLayout()
-//		if let w = view.window?.windowController as? PreferencesWindowController {
-////			w.resizeTab()
-//		}
-//	}
 	
 	var profileView: AccountProfileView!
 	var loginView: LoginView!
@@ -106,21 +100,15 @@ class AccountViewController: NSViewController, PreferencePane {
 		container.addSubview(currentView.view)
 		currentView.view.frame = self.container.bounds
 
-//		preferredContentSize = currentView.view.frame.size
 		view.needsDisplay = true
 		view.canDrawSubviewsIntoLayer = true
-		
-		
-		
-		
-		let s = view.frame.size
 
-		NotificationCenter.default.addObserver(forName: NSView.frameDidChangeNotification, object: currentView, queue: nil, using: { notification in
-			if let viewFromNotification = notification.object as? NSView {
-				let s = viewFromNotification.frame.size
-				self.preferredContentSize = viewFromNotification.frame.size
-			}
-		})
+//		NotificationCenter.default.addObserver(forName: NSView.frameDidChangeNotification, object: currentView, queue: nil, using: { notification in
+//			if let viewFromNotification = notification.object as? NSView {
+//				let s = viewFromNotification.frame.size
+//				self.preferredContentSize = viewFromNotification.frame.size
+//			}
+//		})
 		
 	}
 	

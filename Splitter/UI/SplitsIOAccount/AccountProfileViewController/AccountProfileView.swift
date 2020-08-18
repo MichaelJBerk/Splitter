@@ -9,6 +9,7 @@
 import Cocoa
 import SplitsIOKit
 
+
 class AccountProfileView: NSViewController, LoadableNib {
 	var accountController: AccountViewController!
 	
@@ -40,6 +41,12 @@ class AccountProfileView: NSViewController, LoadableNib {
 		twitchUsernameField.isHidden = !hasTwitch
 		twitchUsernameLabel.isHidden = !hasTwitch
 		twitchUsernameField.stringValue = account.twitchName ?? ""
+		if let avatarURL = URL(string: account.avatar) {
+			let avatar = NSImage(byReferencing: avatarURL)
+			avatarView.image = avatar
+		} else {
+			avatarView.image = #imageLiteral(resourceName: "splitsio")
+		}
 	}
 	func logout() {
 		try? accountController.logout()

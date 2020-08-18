@@ -15,6 +15,7 @@ class DownloadWindowController: NSWindowController {
 		didSet {
 			accountButton.account = self.account
 			accountButton.setAccountLabel()
+			accountButton.setAccountImage()
 		}
 	}
 	
@@ -24,7 +25,7 @@ class DownloadWindowController: NSWindowController {
 		if let vc = window?.contentViewController as? DownloadViewController {
 			vc.sField = searchField
 		}
-		if let account = account { accountButton.accountLabel.stringValue = account.displayName }
+		if let account = account { accountButton.reloadData() }
 		NotificationCenter.default.addObserver(forName: .splitsIOLogin, object: nil, queue: nil, using: {_ in
 			self.getUser()
 		})
