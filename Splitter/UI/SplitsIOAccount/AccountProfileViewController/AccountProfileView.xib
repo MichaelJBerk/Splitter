@@ -46,17 +46,6 @@
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5SY-iC-gur">
-                    <rect key="frame" x="232" y="102" width="133" height="16"/>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="129" id="dFD-Mf-1yh"/>
-                    </constraints>
-                    <textFieldCell key="cell" lineBreakMode="clipping" placeholderString="twitchusername" id="78c-BM-Al0">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WbI-u9-ee3">
                     <rect key="frame" x="174" y="49" width="93" height="32"/>
                     <buttonCell key="cell" type="push" title="Sign Out" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="t2m-9V-UC1">
@@ -67,20 +56,30 @@
                         <action selector="logoutButtonClick:" target="-2" id="m95-2d-hvJ"/>
                     </connections>
                 </button>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5SY-iC-gur">
+                    <rect key="frame" x="228" y="102" width="133" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="129" id="dFD-Mf-1yh"/>
+                    </constraints>
+                    <textFieldCell key="cell" lineBreakMode="clipping" placeholderString="twitchusername" id="78c-BM-Al0">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
             </subviews>
             <constraints>
                 <constraint firstItem="dxm-5b-qN8" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" id="1VN-XM-KBE"/>
                 <constraint firstItem="b7q-Ho-S1l" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" id="2SK-kt-Ist"/>
                 <constraint firstItem="nxT-Fl-gBn" firstAttribute="top" secondItem="b7q-Ho-S1l" secondAttribute="bottom" constant="8" id="3ZY-LC-Tck"/>
-                <constraint firstItem="5SY-iC-gur" firstAttribute="leading" secondItem="nxT-Fl-gBn" secondAttribute="trailing" constant="10" id="4hN-hF-cuC"/>
                 <constraint firstAttribute="bottom" secondItem="WbI-u9-ee3" secondAttribute="bottom" constant="56" id="5ia-z4-SZP"/>
                 <constraint firstAttribute="trailing" secondItem="b7q-Ho-S1l" secondAttribute="trailing" constant="34" id="IwJ-HA-aeB"/>
                 <constraint firstItem="nxT-Fl-gBn" firstAttribute="leading" secondItem="dxm-5b-qN8" secondAttribute="trailing" constant="28" id="Iz9-Dx-ZVS"/>
                 <constraint firstItem="WbI-u9-ee3" firstAttribute="top" secondItem="nxT-Fl-gBn" secondAttribute="bottom" constant="25" id="SM6-o3-pon"/>
                 <constraint firstItem="5SY-iC-gur" firstAttribute="top" secondItem="b7q-Ho-S1l" secondAttribute="bottom" constant="8" id="Ua3-Zv-YGC"/>
-                <constraint firstAttribute="trailing" secondItem="5SY-iC-gur" secondAttribute="trailing" constant="34" id="Vwq-Ke-q3J"/>
                 <constraint firstItem="dxm-5b-qN8" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" id="b46-ea-9Cx"/>
                 <constraint firstItem="b7q-Ho-S1l" firstAttribute="leading" secondItem="dxm-5b-qN8" secondAttribute="trailing" constant="28" id="eHB-Gi-0Kx"/>
+                <constraint firstItem="5SY-iC-gur" firstAttribute="leading" secondItem="nxT-Fl-gBn" secondAttribute="trailing" constant="6" id="lLu-5X-UFj"/>
                 <constraint firstItem="WbI-u9-ee3" firstAttribute="leading" secondItem="dxm-5b-qN8" secondAttribute="trailing" constant="28" id="xwT-fg-ir2"/>
                 <constraint firstItem="WbI-u9-ee3" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="95" id="zqH-8t-PH8"/>
             </constraints>
