@@ -491,14 +491,11 @@ class ViewController: NSViewController {
 		textMenu?.addItem(.separator())
 		let optionsMenu = NSMenu(title: "Splitter...")
 		for i in standardMenu!.items {
-			
-		var icopy = NSMenuItem(title: i.title, action: i.action, keyEquivalent: i.keyEquivalent)
-		if i.title == "" {
-			icopy = NSMenuItem.separator()
-		}
-		optionsMenu.addItem(icopy)
-			
-			
+			var icopy = NSMenuItem(title: i.title, action: i.action, keyEquivalent: i.keyEquivalent)
+			if i.title == "" {
+				icopy = NSMenuItem.separator()
+			}
+			optionsMenu.addItem(icopy)
 		}
 		let subMenuItem = NSMenuItem(title: "Splitter...", action: nil, keyEquivalent: "")
 		

@@ -9,46 +9,63 @@
 import Foundation
 import Cocoa
 
+extension CellImageWell {
+	
+	override func mouseDown(with event: NSEvent) {
+		if event.type == .leftMouseDown, event.clickCount > 1 {
+			setImage()
+		}
+		
+		let indexSet = IndexSet(arrayLiteral: row)
+		splitController.splitsTableView.selectRowIndexes(indexSet, byExtendingSelection: false)
+	}
+
+	/// Prompts the user to select an image for the split icon
+	func setImage() {
+		let dialog = splitController.pictureFileDialog()
+		
+		let response = dialog.runModal()
+			if response == .OK {
+				let result = dialog.url
+				
+				if (result != nil) {
+					 let imageFile = try? Data(contentsOf: result!)
+					 
+					 let myImage = NSImage(data: imageFile!)
+					 
+					self.image = myImage
+			}
+		}
+	}
+
+	
+}
+
 extension ViewController {
 	// MARK: - Icon Actions
+	
+	/// Prompts the user to select a game icon image
+	///
+	///Used in right-click menu
+	@IBAction func pictureButtonPressed(_ sender: Any) {
+		let dialog = pictureFileDialog()
 		
-		@IBAction func pictureButtonPressed(_ sender: Any) {
-			let dialog = pictureFileDialog()
-			
-			dialog.beginSheetModal(for: view.window!) { (response) in
-				if response == .OK {
-					let result = dialog.url // Pathname of the file
+		dialog.beginSheetModal(for: view.window!) { (response) in
+			if response == .OK {
+				let result = dialog.url // Pathname of the file
+				
+				if (result != nil) {
+					 let imageFile = try? Data(contentsOf: result!)
+					 
+					 let myImage = NSImage(data: imageFile!)
+					 
+					self.gameIcon = myImage
+					self.gameIconButton.image = self.gameIcon
 					
-					if (result != nil) {
-						 let imageFile = try? Data(contentsOf: result!)
-						 
-						 let myImage = NSImage(data: imageFile!)
-						 
-						self.gameIcon = myImage
-						self.gameIconButton.image = self.gameIcon
-						
-					}
 				}
 			}
 		}
-		
-		@IBAction func rowPictureButtonPressed(_ sender: Any?) {
-			if let imageButton = sender as? NSButton {
-				let dialog = pictureFileDialog()
-				if (dialog.runModal() == NSApplication.ModalResponse.OK) {
-				let result = dialog.url
-					if (result != nil) {
-						let imageFile = try? Data(contentsOf: result!)
-						let myImage = NSImage(data: imageFile!)
-						if let sup = imageButton.superview as? NSTableCellView {
-							let r = splitsTableView.row(for: sup)
-							currentSplits[r].splitIcon = myImage
-							imageButton.image = myImage
-						}
-					}
-				}
-			}
-		}
+	}
 	
 	func pictureFileDialog() -> NSOpenPanel{
 		let dialog = NSOpenPanel();
@@ -61,38 +78,12 @@ extension ViewController {
 		dialog.allowedFileTypes        = ["png"]
 		return dialog
 	}
-		
-		@IBAction func removeGameIconMenuItem(sender: Any?) {
-			removeGameIcon(sender: sender)
-		}
-		
-		@objc func removeRunIconMenuItem(sender: Any?) {
-			removeRunIcon(sender: sender)
-		}
-		
-		func removeGameIcon(sender: Any?) {
-			gameIconButton.image = #imageLiteral(resourceName: "Game Controller")
-		}
-		
-		func removeRunIcon(sender: Any?) {
-			let row = splitsTableView.selectedRow
-			if row >= 0 {
-				currentSplits[row].splitIcon = nil
-				if let cell = splitsTableView.rowView(atRow: row, makeIfNecessary: false)?.view(atColumn: 0) as? ImageButtonCellView {
-					cell.imageButton.image = #imageLiteral(resourceName: "Game Controller")
-				}
-				splitsTableView.reloadData()
-			} else {
-				
-				let alert = NSAlert()
-				alert.messageText = "You need to select a row before you can edit it"
-				alert.alertStyle = .informational
-				alert.addButton(withTitle: "OK")
-				alert.runModal()
-			}
-		}
-		
-		
-		
-
+	///Used in right-click menu for game icon
+	@IBAction func removeGameIconMenuItem(sender: Any?) {
+		removeGameIcon(sender: sender)
+	}
+	///Used in right-click menu for game icon
+	func removeGameIcon(sender: Any?) {
+		gameIconButton.image = #imageLiteral(resourceName: "Game Controller")
+	}
 }

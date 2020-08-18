@@ -110,6 +110,14 @@ class SplitterTableView: NSTableView {
 		return IndexSet(cols)
 	}
 	
+	override func validateProposedFirstResponder(_ responder: NSResponder, for event: NSEvent?) -> Bool {
+		if (responder is ImageButtonCellView || responder is CellImageWell) {
+			return true
+		} else {
+			return super.validateProposedFirstResponder(responder, for: event)
+		}
+	}
+	
 }
 
 class SplitterTableHeader : NSTableHeaderView

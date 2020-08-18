@@ -1,6 +1,5 @@
 import Alamofire
 import SwiftyJSON
-import Fuzzy
 import Foundation
 import Files
 

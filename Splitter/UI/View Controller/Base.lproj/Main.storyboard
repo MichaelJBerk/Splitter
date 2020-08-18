@@ -500,10 +500,16 @@
             <objects>
                 <menu autoenablesItems="NO" id="tBl-Z3-cF6">
                     <items>
-                        <menuItem title="Clear Image" identifier="removeRunIcon" id="7Eg-o1-Mtk">
+                        <menuItem title="Change Image..." id="wnt-JP-1Ww">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
-                                <action selector="removeRunIconMenuItemWithSender:" target="2Tp-Fl-jBw" id="tMI-bl-0hQ"/>
+                                <action selector="chooseImageMenuItem:" target="2Tp-Fl-jBw" id="SKg-SE-nkg"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Remove Image" identifier="removeRunIcon" id="7Eg-o1-Mtk">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="removeImage:" target="2Tp-Fl-jBw" id="nEg-2N-XHz"/>
                             </connections>
                         </menuItem>
                     </items>
@@ -584,20 +590,18 @@
                                                             <rect key="frame" x="1" y="1" width="32" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <button toolTip="Segment Icon. Click to change." id="VZF-y0-fze" customClass="IconButton" customModule="Splitter" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="-12" width="30" height="30"/>
+                                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fWm-h9-MQx" customClass="CellImageWell" customModule="Splitter" customModuleProvider="target">
+                                                                    <rect key="frame" x="3" y="-9" width="24" height="24"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Game Controller" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="R44-Yj-mVf">
-                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                        <font key="font" metaFont="system"/>
-                                                                    </buttonCell>
+                                                                    <imageCell key="cell" selectable="YES" editable="YES" alignment="left" imageScaling="proportionallyDown" image="livesplit" id="7YC-zB-gvo"/>
                                                                     <connections>
-                                                                        <action selector="rowPictureButtonPressed:" target="5gI-5U-AMq" id="ZyA-Zo-Kt8"/>
+                                                                        <outlet property="menu" destination="tBl-Z3-cF6" id="q3S-A7-gEd"/>
+                                                                        <outlet property="splitController" destination="5gI-5U-AMq" id="p3F-qM-ixb"/>
                                                                     </connections>
-                                                                </button>
+                                                                </imageView>
                                                             </subviews>
                                                             <connections>
-                                                                <outlet property="imageButton" destination="VZF-y0-fze" id="kUc-5l-X66"/>
+                                                                <outlet property="imageWell" destination="fWm-h9-MQx" id="kmr-eN-aNC"/>
                                                             </connections>
                                                         </tableCellView>
                                                     </prototypeCellViews>
@@ -621,7 +625,7 @@
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Zgl-iF-pqa">
                                                                     <rect key="frame" x="0.0" y="3" width="95" height="14"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" alignment="left" title="Split Title" id="3Pe-jP-c4b">
-                                                                        <font key="font" metaFont="controlContent" size="11"/>
+                                                                        <font key="font" metaFont="label" size="11"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
@@ -733,7 +737,7 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="EDP-CX-XUd">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="4" height="17"/>
+                                                                    <rect key="frame" x="1" y="0.0" width="4" height="17"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="17" id="j7i-2I-Mle"/>
                                                                     </constraints>
@@ -772,7 +776,7 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="kIh-q7-hw5">
-                                                                    <rect key="frame" x="0.0" y="0.0" width="4" height="17"/>
+                                                                    <rect key="frame" x="1" y="0.0" width="4" height="17"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="17" id="qTR-88-1g0"/>
                                                                     </constraints>
@@ -814,9 +818,6 @@
                                     <rect key="frame" x="0.0" y="0.0" width="283" height="25"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
-                                <connections>
-                                    <outlet property="menu" destination="tBl-Z3-cF6" id="pSR-cg-UL1"/>
-                                </connections>
                             </scrollView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mj4-Ky-5e7">
                                 <rect key="frame" x="8" y="104" width="97" height="16"/>
@@ -1650,6 +1651,7 @@ To remove, click and press backspace. </string>
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSQuickLookTemplate" width="19" height="12"/>
         <image name="NSRemoveTemplate" width="11" height="11"/>
+        <image name="livesplit" width="512" height="512"/>
         <image name="stop" width="12" height="12"/>
         <image name="trash" width="12" height="12"/>
     </resources>

@@ -63,21 +63,17 @@ extension ViewController: NSTableViewDelegate {
 				tableView.selectRowIndexes(IndexSet(arrayLiteral: currentSplitNumber), byExtendingSelection: false)
 			}
 			
-			if let imageCell = cell as? ImageButtonCellView {
-				imageCell.cellNumber = row
-				if let currentImage = currentSplits[row].splitIcon {
-					imageCell.imageButton.image = currentImage
-				} else {
-					let i = NSImage(named: "Game Controller")!
-					i.isTemplate = true
-					imageCell.imageButton.image = i.image(with: textColor)
-				}
-				return imageCell
-			}
-			
 			currentSplits[row].roundTo = self.roundTo
 			
 			switch tableColumn?.identifier {
+			case STVColumnID.imageColumn:
+				let cell = cell as! ImageButtonCellView
+				cell.cellNumber = row
+				if let currentImage = currentSplits[row].splitIcon {
+					cell.imageWell!.image = currentImage
+				} else {
+					cell.imageWell.image = nil
+				}
 			case STVColumnID.splitTitleColumn:
 				let lastSplit = currentSplits[row]
 				cell.textField?.stringValue = lastSplit.splitName
