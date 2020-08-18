@@ -28,6 +28,10 @@ class SplitsIODoc: SplitterDoc {
 			vc.runTitle = si.game?.longname ?? ""
 			vc.category = si.category?.longname ?? ""
 			vc.attempts = si.attempts?.total ?? 0
+			if let imageStr = si.imageURL, let imageURL = URL(string: imageStr) {
+				let gameIcon = NSImage(byReferencing: imageURL)
+				vc.gameIcon = gameIcon
+			}
 			if let segs = si.segments {
 				var i = 0
 				for s in segs {

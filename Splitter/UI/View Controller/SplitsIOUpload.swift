@@ -68,7 +68,7 @@ extension ViewController {
 			let r = SplitsIOExchangeRunner(links: nil, longname: currentRunner.displayName, shortname: currentRunner.name)
 			runners.append(r)
 		}
-		let sIO = SplitsIOExchangeFormat(schemaVersion: "v1.0.1", links: nil, timer: timer, attempts: nil, game: game, category: cat, runners: runners, segments: cs)
+		let sIO = SplitsIOExchangeFormat(schemaVersion: "v1.0.1", links: nil, timer: timer, attempts: nil, game: game, category: cat, runners: runners, segments: cs, imageURL: nil)
 		if var jsonString = try? sIO.jsonString() {
 			return jsonString.replacingOccurrences(of: "schemaVersion", with: "_schemaVersion")
 		}

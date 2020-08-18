@@ -28,14 +28,14 @@ public class SplitsIOExchangeFormat: Codable {
     public let game, category: SplitsIORunCategory?
     public let runners: [SplitsIOExchangeRunner]?
     public let segments: [SplitsIOSegment]?
+	public let imageURL: String?
 
     enum CodingKeys: String, CodingKey {
-        case schemaVersion
+        case schemaVersion, imageURL
         case links, timer, attempts, game, category, runners, segments
     }
-
-   public init(schemaVersion: String?, links: SplitsIOExchangeFormatLinks?, timer: SplitsIOTimer?, attempts: SplitsIOAttempts?, game: SplitsIORunCategory?, category: SplitsIORunCategory?, runners: [SplitsIOExchangeRunner]?, segments: [SplitsIOSegment]?) {
-        self.schemaVersion = schemaVersion
+	public init(schemaVersion: String?, links: SplitsIOExchangeFormatLinks?, timer: SplitsIOTimer?, attempts: SplitsIOAttempts?, game: SplitsIORunCategory?, category: SplitsIORunCategory?, runners: [SplitsIOExchangeRunner]?, segments: [SplitsIOSegment]?, imageURL: String?) {
+		self.schemaVersion = schemaVersion
         self.links = links
         self.timer = timer
         self.attempts = attempts
@@ -43,6 +43,7 @@ public class SplitsIOExchangeFormat: Codable {
         self.category = category
         self.runners = runners
         self.segments = segments
+		self.imageURL = imageURL
     }
 }
 
@@ -51,7 +52,7 @@ public class SplitsIOExchangeFormat: Codable {
 extension SplitsIOExchangeFormat {
     convenience init(data: Data) throws {
         let me = try newJSONDecoder().decode(SplitsIOExchangeFormat.self, from: data)
-        self.init(schemaVersion: me.schemaVersion, links: me.links, timer: me.timer, attempts: me.attempts, game: me.game, category: me.category, runners: me.runners, segments: me.segments)
+		self.init(schemaVersion: me.schemaVersion, links: me.links, timer: me.timer, attempts: me.attempts, game: me.game, category: me.category, runners: me.runners, segments: me.segments, imageURL: me.imageURL)
     }
 
     convenience init(_ json: String, using encoding: String.Encoding = .utf8) throws {
@@ -73,7 +74,8 @@ extension SplitsIOExchangeFormat {
         game: SplitsIORunCategory?? = nil,
         category: SplitsIORunCategory?? = nil,
         runners: [SplitsIOExchangeRunner]?? = nil,
-        segments: [SplitsIOSegment]?? = nil
+        segments: [SplitsIOSegment]?? = nil,
+		imageURL: String?? = nil
     ) -> SplitsIOExchangeFormat {
         return SplitsIOExchangeFormat(
             schemaVersion: schemaVersion ?? self.schemaVersion,
@@ -83,7 +85,8 @@ extension SplitsIOExchangeFormat {
             game: game ?? self.game,
             category: category ?? self.category,
             runners: runners ?? self.runners,
-            segments: segments ?? self.segments
+			segments: segments ?? self.segments,
+			imageURL: imageURL ?? self.imageURL
         )
     }
 

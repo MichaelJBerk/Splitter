@@ -102,13 +102,6 @@ class AccountViewController: NSViewController, PreferencePane {
 
 		view.needsDisplay = true
 		view.canDrawSubviewsIntoLayer = true
-
-//		NotificationCenter.default.addObserver(forName: NSView.frameDidChangeNotification, object: currentView, queue: nil, using: { notification in
-//			if let viewFromNotification = notification.object as? NSView {
-//				let s = viewFromNotification.frame.size
-//				self.preferredContentSize = viewFromNotification.frame.size
-//			}
-//		})
 		
 	}
 	
