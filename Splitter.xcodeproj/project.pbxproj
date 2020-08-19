@@ -307,7 +307,7 @@
 			path = AccountProfileViewController;
 			sourceTree = "<group>";
 		};
-		4A0981B024E484BE00E44792 /* SplitsIOAccount */ = {
+		4A0981B024E484BE00E44792 /* Splits.ioAccount */ = {
 			isa = PBXGroup;
 			children = (
 				4A0981AD24E4817000E44792 /* AccountProfileViewController */,
@@ -315,10 +315,10 @@
 				4A0981B124E4853A00E44792 /* AccountViewController.swift */,
 				4A0981A124E308A100E44792 /* Login */,
 			);
-			path = SplitsIOAccount;
+			path = Splits.ioAccount;
 			sourceTree = "<group>";
 		};
-		4A09E29F24D755680013D7BC /* Import from Splits.io */ = {
+		4A09E29F24D755680013D7BC /* Import */ = {
 			isa = PBXGroup;
 			children = (
 				4A09E2A624D75D6B0013D7BC /* CategoryViewController.swift */,
@@ -326,7 +326,7 @@
 				4A05EEFC24D762E200873D07 /* DownloadWindow.storyboard */,
 				4A09E29D24D7555E0013D7BC /* DownloadView.swift */,
 			);
-			path = "Import from Splits.io";
+			path = Import;
 			sourceTree = "<group>";
 		};
 		4A0DC2832418216A00FC959A /* SplitsIO */ = {
@@ -579,9 +579,9 @@
 		4AFCC52423C63F3E002216F1 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				4A0981B024E484BE00E44792 /* SplitsIOAccount */,
+				4A0981B024E484BE00E44792 /* Splits.ioAccount */,
 				4AFAD84424CF2CF8006FC480 /* WelcomeWindowController.swift */,
-				4A09E29F24D755680013D7BC /* Import from Splits.io */,
+				4A09E29F24D755680013D7BC /* Import */,
 				4AE82A1524BFD4400044B6D3 /* WelcomeView.swift */,
 				4A6A965624EC3516008EFD2B /* LoadingViewController.swift */,
 				4A6A965724EC3516008EFD2B /* LoadingViewController.xib */,
