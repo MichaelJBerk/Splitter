@@ -6,7 +6,7 @@ platform :osx, '10.15'
 
 target 'Splitter' do
   # Comment the next line if you don't want to use dynamic frameworks
-  	pod 'Preferences', :git => 'https://github.com/sindresorhus/Preferences.git', :branch => 'bigsur'
+#   	pod 'Preferences', '2.0' 
   	pod 'AppCenter'
   	pod 'Sparkle'
   	pod 'MASShortcut'
@@ -20,7 +20,9 @@ plugin 'cocoapods-keys', {
   :target => "Splitter",
   :keys => [
     "AppCenter",
-    "edKey"
+    "edKey",
+    "splitsiosecret",
+    "splitsioclient"
   ]
 }
 end

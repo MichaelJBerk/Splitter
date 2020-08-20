@@ -4,5 +4,9 @@
 <dict>
 	<key>com.apple.security.cs.disable-library-validation</key>
 	<true/>
+	<key>keychain-access-groups</key>
+	<array>
+		<string>$(AppIdentifierPrefix)com.mibe.Splitter</string>
+	</array>
 </dict>
 </plist>

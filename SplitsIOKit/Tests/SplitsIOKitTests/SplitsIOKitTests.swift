@@ -46,6 +46,45 @@ final class SplitsIOKitTests: XCTestCase {
 		})
 		wait(for: [expectation], timeout: 10.0)
 	}
+	func testSRL() {
+		let expectation = XCTestExpectation(description: "get runs from SRL")
+		SplitsIOKit().getLatestSRLRaces(completion: { SRL in
+			expectation.fulfill()
+			print(SRL.count)
+			
+		})
+		wait(for: [expectation], timeout: 10.0)
+	}
+	func testGetRunner() {
+		let expectation = XCTestExpectation(description: "get lphantom")
+		SplitsIOKit().getRunner(name: "lphantom") {runner in
+			if let runner = runner {
+				expectation.fulfill()
+				print(runner.displayName)
+			}
+		}
+		wait(for: [expectation], timeout: 10.0)
+	}
+	func testGetGamesFromRunner() {
+		let expectation = XCTestExpectation(description: "get lphantom games")
+		SplitsIOKit().getGamesFromRunner(runnerName: "lphantom", completion: { games in
+			XCTAssertFalse(games == nil)
+			expectation.fulfill()
+			
+		})
+		wait(for: [expectation], timeout: 10.0)
+		
+	}
+	func testGetGamesFromSpedruncom() {
+		let expectation = XCTestExpectation(description: "get lphantom games")
+		Speedruncom().searchSpeedruncom(for: "Super Mario Odyssey", completion: { games in
+			XCTAssertFalse(games == nil)
+			expectation.fulfill()
+			
+		})
+		wait(for: [expectation], timeout: 10.0)
+	}
+	
 	
 	
 }

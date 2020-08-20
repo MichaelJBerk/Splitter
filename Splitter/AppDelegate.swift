@@ -14,6 +14,7 @@ import AppCenterCrashes
 import Keys
 import Files
 import SwiftUI
+import SplitsIOKit
 
 extension NSApplication {
 	static let appDelegate = NSApp.delegate as! AppDelegate
@@ -29,9 +30,11 @@ public static let build = Bundle.main.infoDictionary?["CFBundleVersion"] as! Str
 class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 	@IBOutlet private var window: NSWindow!
 	
+	static var splitsIOAuth = SplitsIOAuth(client: SplitterKeys().splitsioclient, secret: SplitterKeys().splitsiosecret, redirects: "splitter://login")
+	public static var splitsIOKit = SplitsIOKit(auth: AppDelegate.splitsIOAuth, url: Settings.splitsIOURL)
+	
 	public var hotkeyController: HotkeysViewController?
 	public static var shared: AppDelegate? = NSApplication.shared.delegate as? AppDelegate
-	
 	var appKeybinds: [SplitterKeybind?] = []
 	
 	///Displays a dialog box informing the user to give Splitter the requisite permissions for Global Hotkeys to work.
@@ -151,8 +154,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 			self.reopenToApplyKeybindAlert()
 		  }
 		}
+		print("Auth Enabled: ", SplitsIOKit.shared.hasAuth)
 		
 		//MSAppCenter stuff
+		NSApp.mainMenu?.item(withIdentifier: menuIdentifiers.appMenu.updatesMenuItem)?.isHidden = false
+		#if !DEBUG
 		MSCrashes.setDelegate(self)
 		let keys = SplitterKeys()
 		MSAppCenter.start("\(keys.appCenter)", withServices:[
@@ -189,6 +195,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 
 		  return true // Return true if the SDK should await user confirmation, otherwise return false.
 		})
+		#endif
 		
 //		openWelcomeWindow()
 	}
@@ -211,8 +218,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 		welcomeWindow.center()
 		let wc = WelcomeWindowController(window: welcomeWindow)
 		wc.showWindow(nil)
-		
-		
 	}
 	@IBAction func welcomeWindowMenuItem(_ sender: Any) {
 		if #available(macOS 10.15, *) {
@@ -244,6 +249,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 		preferencePanes: [
 			DefaultPreferenceViewController(),
 			HotkeysViewController(),
+			AccountViewController(),
 			DebugPrefsViewController()
 			]
 		
@@ -252,7 +258,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 	lazy var preferencesWindowController = PreferencesWindowController(
 		preferencePanes: [
 			DefaultPreferenceViewController(),
-			HotkeysViewController()
+			HotkeysViewController(),
+			AccountViewController()
 			]
 		
 	)
@@ -280,6 +287,19 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 			return viewC
 		}
 	}
+	func application(_ application: NSApplication, open urls: [URL]) {
+		if let authURL = urls.first(where: { url in
+			let comps = URLComponents(string: url.absoluteString)
+			return comps?.host == "login"
+		}) {
+			do {
+				try SplitsIOKit.shared.handleRedirectURL(url: authURL)
+			} catch {
+				print("Redirect Error: ", error)
+			}
+		}
+		
+	}
 
 	@IBAction func preferencesMenuItemActionHandler(_ sender: NSMenuItem) {
 		
@@ -295,4 +315,8 @@ extension AppDelegate: NSMenuItemValidation {
 		}
 		return true
 	}
+}
+
+extension SplitsIOKit {
+	static var shared = AppDelegate.splitsIOKit
 }

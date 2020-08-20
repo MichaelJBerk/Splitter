@@ -1,0 +1,3 @@
+[submodule "Preferences"]
+	path = Preferences
+	url = https://github.com/MichaelJBerk/Preferences.git

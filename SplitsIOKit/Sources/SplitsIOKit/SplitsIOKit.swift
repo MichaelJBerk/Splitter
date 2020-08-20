@@ -1,34 +1,75 @@
 import Alamofire
 import SwiftyJSON
-import Fuzzy
 import Foundation
 import Files
+
+public enum SplitsIOError: Error, LocalizedError {
+	case cantGetRunID
+	case noAuthManager
+	case unauthorized
+	
+	public var errorDescription: String? {
+		switch self {
+		case .cantGetRunID:
+			return NSLocalizedString("Cannot get run ID", comment: "")
+		case .noAuthManager:
+			return NSLocalizedString("SplitsIOKit has not been provided with an authManager", comment: "")
+		case .unauthorized:
+			return NSLocalizedString("The user has not been authorized to perform this action", comment: "")
+		}
+	}
+}
 
 
 public class SplitsIOKit {
 	var searchRequest: DataRequest?
-	public init(url: URL = URL(string:"https://splits.io")!) {
-		splitsIOURL = url
-	}
-	var splitsIOURL: URL
+	var authManager: SplitsIOAuth?
 	
-	enum SplitsIOError: Error {
-		case cantGetRunID
+	public static var shared = SplitsIOKit()
+	
+	
+	convenience init() {
+		self.init(auth: nil, url: URL(string:"https://splits.io")!)
 	}
+	/**
+	Initalizes a SplitsIOKit object
+	
+	Use this method if you set authorization or use a custom instance of Splits.io.
+	
+	If you need to use feature that require authorization, you'll need to pass in a `SplitsIOAuth` object. Should you call a method that requires \
+	authorization (such as `getCurrentUser(completion:)`) without this, it will throw a `SplitsIOError.noAuthManager ` error.
+	See the documentation for `SplitsIOAuth` for more information.
+	
+	To use a custom fork/clone/instance of Splits.io, pass the URL leading to it in the URL parameter.
+	For example, to lead it to your local development version:
+	
+		guard let url = URL(string: "http://localhost:3000")! else {return}
+		let splitsio = SplitsIOKit(url: url)
+	You can change the URL later by setting the `SplitsIOURL` property.
+	
+	- Parameter url: URL for Splits.io. By default, it's "https://splits.io".
+	- Parameter auth: Class to be used for managing authorization
+	*/
+	public init(auth: SplitsIOAuth?, url: URL = URL(string:"https://splits.io")!) {
+		splitsIOURL = url
+		authManager = auth
+	}
+	/// URL to be used for Splits.io
+	public var splitsIOURL: URL
 	
 	public func searchSplitsIO(for game: String, completion: @escaping ([SplitsIOGame]?) -> ()) {
 		searchRequest?.cancel()
 		if game.count == 0 {return}
 		let gamesURL = splitsIOURL.appendingPathComponent("/api/v4/games")
 		searchRequest = AF.request(gamesURL, method: .get, parameters: ["search":"\(game)"], encoding: URLEncoding.default).responseDecodable(of: SplitsIOGameSearch.self) { response in
-			
 			let v = response.value
-			
-			
 			completion(v?.games)
 		}
-		
-		
+	}
+	
+	///Indicates whether or not this instance of SplitsIOKit has an authManager
+	public var hasAuth: Bool {
+		return (authManager != nil && authManager?.oAuth2.accessToken != nil)
 	}
 
 	
@@ -95,7 +136,6 @@ public class SplitsIOKit {
 				let json = JSON(data)
 				let catJSON = json["categories"]
 				if let cats = try? JSONDecoder().decode([SplitsIOCat].self, from: catJSON.rawData()) {
-//					if let cat = try? JSONDecoder().decode(SplitsIOCat.self, from: catJSON.rawData()) {
 					completion(cats)
 					
 				}
@@ -114,13 +154,172 @@ public class SplitsIOKit {
 					if let cat = try? JSONDecoder().decode(SplitsIOCat.self, from: catJSON.rawData()) {
 						completion(cat)
 					}
+				}
+			}
+		}
+	}
+	
+	public func getLatestSRLRaces(completion: @escaping(SRLRun) -> ()) {
+		let url = URL(string: "https://api.speedrunslive.com/races")!
+		AF.request(url, method: .get).responseData { response in
+			
+			if let data = response.data {
+				do {
+					let str = String(data: data, encoding: .utf8)
+					print(str)
+					let runs = try JSONDecoder().decode(SRLRun.self, from: data)
+					completion(runs)
 					
+				} catch {
+					print("Decode Error: ", error)
 					
 				}
 				
+			} else {
+				print(response.error)
 				
 			}
+			
 		}
+	}
+	
+	public func getCurrentUser(completion: @escaping (SplitsIORunner?) -> ()) throws {
+		guard let authManager = authManager, hasAuth else {throw SplitsIOError.noAuthManager}
+		let runnerURL = splitsIOURL.appendingPathComponent("/api/v4/runner")
+		let authRequest = authManager.oAuth2.request(forURL: runnerURL)
+		getRunner(url: authRequest, completion: completion)
+	}
+	
+	public func getRunner(name: String, completion: @escaping(SplitsIORunner?) -> ()) {
+		let runnerURL = splitsIOURL.appendingPathComponent("/api/v4/runners/\(name)")
+		getRunner(url: URLRequest(url: runnerURL), completion: completion)
+	}
+	
+	private func getRunner(url: URLRequest, completion: @escaping(SplitsIORunner?) -> ()) {
+		AF.request(url).validate().responseData { response in
+			if let error = response.error {
+				print("Error Getting Runner: ", error)
+				return
+			} else {
+				if let data = response.data {
+					completion(self.getRunnerFromDict(runnerData: data))
+				}
+			}
+		}
+	}
+	
+	private func getRunnerFromDict(runnerData: Data) -> SplitsIORunner? {
+		if let runnerDict = try? JSONDecoder().decode([String:SplitsIORunner].self, from: runnerData),
+			let runner = runnerDict["runner"] {
+			return runner
+		}
+		return nil
+	}
+	
+	public func login(completion: @escaping () -> ()) throws {
+		guard let authManager = authManager else {throw SplitsIOError.noAuthManager}
+		try authManager.authenticate {
+			completion()
+		}
+	}
+	public func logout(completion: @escaping () -> ()) throws {
+		guard let authManager = authManager else {throw SplitsIOError.noAuthManager}
+		authManager.logout() {
+			completion()
+		}
+	}
+	public func handleRedirectURL(url: URL) throws {
+		guard let authManager = authManager else {throw SplitsIOError.noAuthManager}
+		authManager.oAuth2.handleRedirectURL(url)
+	}
+	
+	public func getGamesFromRunner(runnerName: String, completion: @escaping([SplitsIOGame]?) -> ()) {
+		
+		let gamesURL = splitsIOURL.appendingPathComponent("api/v4/runners/\(runnerName)/games")
+		searchRequest = AF.request(gamesURL, method: .get).responseData { response in
+			if let data = response.value {
+				do {
+					let games = try JSONDecoder().decode(SplitsIOGameSearch.self, from: data)
+					completion(games.games)
+					return
+				} catch {
+					print("Decode Error: ", error)
+				}
+				
+			}
+			completion(nil)
+		}
+	}
+	
+	public func uploadRunToSplitsIO(runString: String, completion: @escaping (String) -> ()) throws {
+		guard let authManager = authManager, hasAuth else {throw SplitsIOError.noAuthManager}
+		#if debug
+		authManager.oAuth2.logger = OAuth2DebugLogger(.trace)
+		#endif
+		let url1 = URL(string: "https://splits.io/api/v4/runs")!
+		
+		try? getCurrentUser { _ in
+			var authRequest = authManager.oAuth2.request(forURL: url1)
+			authRequest.method = .post
+			AF.request(authRequest).responseData { response1 in
+			if let error = response1.error {
+				print(error)
+			} else {
+				let json = JSON(response1.data)
+				let presignedJSON = json["presigned_request"]["fields"]
+				print(json)
+
+				let awsURL = URL(string: json["presigned_request"]["uri"].stringValue)!
+				self.handlePresignedData(presignedJSON: presignedJSON, url: awsURL, runString: runString, completion: {
+					let claimURI = json["uris"]["claim_uri"].stringValue
+					completion(claimURI)
+				})
+				return
+				
+				}
+			}
+		}
+	}
+	
+	private func handlePresignedData(presignedJSON: JSON, url: URL, runString: String, completion: @escaping () -> ()) {
+		#if debug
+		authManager.oAuth2.logger = OAuth2DebugLogger(.trace)
+		#endif
+		AF.upload(multipartFormData: { (multipartFormData) in
+			do {
+				
+				
+				self.jsonToMFD(multipartFormData: multipartFormData, json: presignedJSON, key: "key")
+				self.jsonToMFD(multipartFormData: multipartFormData, json: presignedJSON, key: "policy")
+				self.jsonToMFD(multipartFormData: multipartFormData, json: presignedJSON, key: "x-amz-credential")
+				self.jsonToMFD(multipartFormData: multipartFormData, json: presignedJSON, key: "x-amz-algorithm")
+				self.jsonToMFD(multipartFormData: multipartFormData, json: presignedJSON, key: "x-amz-date")
+				self.jsonToMFD(multipartFormData: multipartFormData, json: presignedJSON, key: "x-amz-signature")
+				if let runString = runString.data(using: .utf8) {
+					multipartFormData.append(runString, withName: "file")
+				}
+				
+				
+			} catch let error2 {
+				print("error2: ", error2)
+				
+			}
+		}, to: url, method: .post).responseString { resp2 in
+			if let error3 = resp2.error {
+				print("error3: ", error3)
+			} else {
+				if let str = try? resp2.result.get() {
+					print("str: ", str)
+					print(resp2.response)
+				}
+			}
+			completion()
+		}
+	}
+	
+	private func jsonToMFD(multipartFormData: Alamofire.MultipartFormData, json: JSON, key: String) -> () {
+		guard let data = json[key].stringValue.data(using: .utf8) else {return }
+		return multipartFormData.append(data, withName: key)
 	}
 	
 
@@ -140,8 +339,9 @@ public struct SplitsIOGame: Codable, Hashable, Identifiable {
 	}
 	
 	public let categories: [SplitsIOCat]
-	public let createdAt, id, name, shortname: String
-	public let srdcID, updatedAt: String
+	public let createdAt, id, name: String
+	public let srdcID,shortname: String?
+	public let updatedAt: String
 
 	enum CodingKeys: String, CodingKey {
 		case categories
@@ -164,11 +364,35 @@ public struct SplitsIOCat: Codable, Hashable {
 		case srdcID = "srdc_id"
 		case updatedAt = "updated_at"
 	}
+	
+	public func getRun(completion: @escaping(String?) -> ()) {
+		getRun(splitsIOKit: SplitsIOKit(), completion: completion)
+	}
+	
 	///Completion - the path to the temporary lss file
-	public func getRun( completion: @escaping(String?) -> ()) {
-		
-		return SplitsIOKit().getRunFromCat(categoryID: self.id, completion: { run in
+	public func getRun(splitsIOKit: SplitsIOKit, completion: @escaping(String?) -> ()) {
+		return splitsIOKit.getRunFromCat(categoryID: self.id, completion: { run in
 			completion(run)
 		})
 	}
+}
+// MARK: - SplitsIORunner
+public struct SplitsIORunner: Codable {
+    public let avatar: String
+    public let createdAt, displayName, id, name: String
+    public let twitchID, twitchName, updatedAt: String?
+
+    enum CodingKeys: String, CodingKey {
+        case avatar
+        case createdAt = "created_at"
+        case displayName = "display_name"
+        case id, name
+        case twitchID = "twitch_id"
+        case twitchName = "twitch_name"
+        case updatedAt = "updated_at"
+    }
+	public func getGames(splitsIOKit: SplitsIOKit, completion: @escaping([SplitsIOGame]?) -> ()) {
+		splitsIOKit.getGamesFromRunner(runnerName: name, completion: completion)
+	}
+	
 }

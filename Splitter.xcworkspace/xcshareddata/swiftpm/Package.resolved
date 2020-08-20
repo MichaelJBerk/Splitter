@@ -20,12 +20,21 @@
         }
       },
       {
-        "package": "Fuzzy",
-        "repositoryURL": "https://github.com/khoi/fuzzy-swift",
+        "package": "OAuth2",
+        "repositoryURL": "https://github.com/p2/OAuth2.git",
         "state": {
           "branch": null,
-          "revision": "48d0ddb4c226e8a28a8f905fa0549ee6f90954fc",
-          "version": "0.1.0"
+          "revision": "b0c71466176f3d7a22e5da20532c01d78a661f1d",
+          "version": "5.2.0"
+        }
+      },
+      {
+        "package": "Preferences",
+        "repositoryURL": "https://github.com/sindresorhus/Preferences",
+        "state": {
+          "branch": null,
+          "revision": "73664ff9f9faeb40f4b8f2c02d21b4486c82cce9",
+          "version": "2.0.0"
         }
       },
       {

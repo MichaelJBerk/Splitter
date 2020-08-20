@@ -37,32 +37,25 @@ class DarkSpinnerView: NSView {
 	
 }
 
-class DownloadViewController: NSViewController {
+class DownloadViewController: NSViewController, CategoryPickerDelegate  {
 	var sField: NSSearchField?
 	var darkenView: DarkSpinnerView?
-	var model: DownloadModel = DownloadModel(splitsIOURL: Settings.splitsIOURL)
-	
-	
-	@IBOutlet weak var tableView: NSTableView!
-	
-	@IBOutlet weak var nextButton: NSButton!
-	@IBAction func nbcThing(_ sender: Any) {
-		print(tableView.selectedRow)
-		
-	}
+	var game: SplitsIOGame?
 	var games: [SplitsIOGame] = []
 	var selectedGame: SplitsIOGame?
+	var sField2: NSSearchField!
+	var splitsIO = SplitsIOKit.shared
+	
+	@IBOutlet weak var tableView: NSTableView!
+	@IBOutlet weak var nextButton: NSButton!
+	
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
 		tableView?.delegate = self
 		tableView?.dataSource = self
-		#if DEBUG
-		nextButton.isEnabled = true
-		#endif
 		darkenView = DarkSpinnerView(sourceView: self.view, sourceFrame: NSRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height + 50))
-		
+		showGamesOfCurrentRunner()
 	}
 	
 	func showSpinner() {
@@ -76,26 +69,41 @@ class DownloadViewController: NSViewController {
 		tableView.isEnabled = true
 	}
 	
+	var showingCurrenRunnerGames = true
+	
+	func showGamesOfCurrentRunner() {
+		if let account = Settings.splitsIOUser {
+			showSpinner()
+			account.getGames(splitsIOKit: splitsIO, completion: showGames(games:))
+		}
+		
+	}
+	func showGames(games: [SplitsIOGame]?) {
+		if let games = games {
+			self.games = games
+		} else {
+			self.games = []
+		}
+		self.tableView.reloadData()
+		self.hideSpinner()
+	}
+	
 	
 	@IBAction func searchAction(_ sender: NSSearchField) {
 		if sender.stringValue.count > 0 {
+			showingCurrenRunnerGames = true
 			showSpinner()
-			splitsIO.searchSplitsIO(for: sender.stringValue, completion: { games in
-				if let games = games {
-					self.games = games
-					self.tableView.reloadData()
-					self.hideSpinner()
-				}
-			})
+			splitsIO.searchSplitsIO(for: sender.stringValue, completion: showGames(games:))
+		} else {
+			showingCurrenRunnerGames = false
+			showGamesOfCurrentRunner()
 		}
 	}
-	var sField2: NSSearchField!
-	var splitsIO = SplitsIOKit()
 	
 	override func prepare(for segue: NSStoryboardSegue, sender: Any?) {
 		super.prepare(for: segue, sender: sender)
 		if segue.identifier == "pickCategorySegue", let destination = segue.destinationController as? CategoryViewController, tableView.selectedRow < games.count {
-			destination.model = model
+			destination.delegate = self
 		}
 	}
 	func closeWindow() {
@@ -117,9 +125,9 @@ extension DownloadViewController: NSTableViewDelegate, NSTableViewDataSource {
 	}
 	func tableViewSelectionDidChange(_ notification: Notification) {
 		if tableView.selectedRow >= 0 {
-			model.game = games[tableView.selectedRow]
+			game = games[tableView.selectedRow]
 		} else {
-			model.game = nil
+			game = nil
 		}
 		
 		if tableView.numberOfSelectedRows > 0 {

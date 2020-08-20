@@ -27,3 +27,10 @@ extension LoadableNib where Self: NSView {
         }
     }
 }
+extension LoadableNib where Self: NSViewController {
+	func loadViewFromNib() {
+		let bundle = Bundle(for: type(of: self))
+		let nib = NSNib(nibNamed: .init(String(describing: type(of: self))), bundle: bundle)!
+		_ = nib.instantiate(withOwner: self, topLevelObjects: nil)
+	}
+}
