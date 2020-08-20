@@ -32,9 +32,9 @@
         "package": "Preferences",
         "repositoryURL": "https://github.com/sindresorhus/Preferences",
         "state": {
-          "branch": null,
-          "revision": "73664ff9f9faeb40f4b8f2c02d21b4486c82cce9",
-          "version": "2.0.0"
+          "branch": "bigsur",
+          "revision": "e3175c64559b2ccf9ce569e9ee4a33a3bc49ebd8",
+          "version": null
         }
       },
       {
