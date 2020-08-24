@@ -25,7 +25,7 @@ public class SplitsIOKit {
 	var searchRequest: DataRequest?
 	var authManager: SplitsIOAuth?
 	
-	public static var shared = SplitsIOKit()
+//	public static var shared = SplitsIOKit()
 	
 	
 	convenience init() {

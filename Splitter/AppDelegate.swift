@@ -318,5 +318,5 @@ extension AppDelegate: NSMenuItemValidation {
 }
 
 extension SplitsIOKit {
-	static var shared = AppDelegate.splitsIOKit
+	public static var shared = AppDelegate.splitsIOKit
 }

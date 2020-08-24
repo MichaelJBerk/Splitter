@@ -10,7 +10,8 @@ import Foundation
 import SplitsIOKit
 extension ViewController {
 	func uploadToSplitsIO() {
-		if let runString = makeSplitsIOJSON(), SplitsIOKit.shared.hasAuth {
+		if let runString = makeSplitsIOJSON(),
+			SplitsIOKit.shared.hasAuth {
 			let confAlert = NSAlert()
 			confAlert.messageText = "Are you sure you would like to upload this run to Splits.io?"
 			confAlert.addButton(withTitle: "Upload")
