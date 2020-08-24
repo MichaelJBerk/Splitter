@@ -101,16 +101,20 @@ class CategoryViewController: NSViewController {
 		self.presentAsSheet(loadingView)
 		
 		splitsIO.getRunFromCat(categoryID: cat.id, completion: { run in
-			let d = lss()
-			let url = URL(string: run!)!
-			d.tempURL = url
-			NSDocumentController.shared.addDocument(d)
-			d.makeWindowControllers()
-			if let vc =  d.windowControllers.first?.window?.contentViewController as? ViewController {
+			if let run = run {
+				let d = lss()
+				let url = URL(string: run)!
+				d.tempURL = url
+				NSDocumentController.shared.addDocument(d)
+				d.makeWindowControllers()
+				if let vc =  d.windowControllers.first?.window?.contentViewController as? ViewController {
+					self.dismiss(self)
+					vc.view.window?.makeKeyAndOrderFront(nil)
+					self.view.window?.windowController?.close()
+					AppDelegate.shared?.searchWindow.close()
+				}
+			} else {
 				self.dismiss(self)
-				vc.view.window?.makeKeyAndOrderFront(nil)
-				self.view.window?.windowController?.close()
-				AppDelegate.shared?.searchWindow.close()
 			}
 		})
 	}
