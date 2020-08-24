@@ -106,6 +106,7 @@ class CategoryViewController: NSViewController {
 		splitsIO.getRunFromCat(categoryID: cat.id, completion: { run in
 			if let run = run {
 				let d = lss()
+				d.template = true
 				let url = URL(string: run)!
 				d.tempURL = url
 				NSDocumentController.shared.addDocument(d)

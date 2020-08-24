@@ -36,6 +36,8 @@ class lss: SplitterDoc {
 		}
 			return nil
 	}
+	var template: Bool = false
+	
 	
 	override func makeWindowControllers() {
 		Swift.print(writableTypes(for: .saveOperation))
@@ -47,7 +49,7 @@ class lss: SplitterDoc {
 		if let url = urlToLoad {
 			let ls = LiveSplit()
 			ls.path = url.path
-			vc.loadLS(ls: ls)
+			vc.loadLS(ls: ls, asTemplate: template)
 		}
 	}
 	
