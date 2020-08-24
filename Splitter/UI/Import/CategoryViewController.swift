@@ -73,7 +73,10 @@ class CategoryViewController: NSViewController {
 		if let game = delegate.game {
 			if let shortName = game.shortname {
 				splitsIO.getCategories(for: shortName, completion: { cats in
-					completion(cats)
+					let sorted = cats.sorted(by: { cat1, cat2 in
+						return cat1.name < cat2.name
+					})
+					completion(sorted)
 				})
 			} else if game.categories.count > 0 {
 				completion(game.categories)
