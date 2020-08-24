@@ -41,7 +41,7 @@ extension ViewController {
 		} else {
 			if !SplitsIOKit.shared.hasAuth {
 				let notLoggedInAlert = NSAlert()
-				notLoggedInAlert.messageText = "Splitter is not logged in to Splits.io"
+				notLoggedInAlert.messageText = "Splitter is not signed in to Splits.io"
 				notLoggedInAlert.informativeText = "Log in with your Splits.io account to upload"
 				notLoggedInAlert.addButton(withTitle: "Log in")
 				notLoggedInAlert.addButton(withTitle: "Cancel")
