@@ -16,16 +16,18 @@ enum menuIdentifiers {
 		static let removeRunIcon = NSUserInterfaceItemIdentifier("removeRunIcon")
 	}
 	
+	//MARK: - App Menu
 	enum appMenu {
 		static let updatesMenuItem = NSUserInterfaceItemIdentifier("updatesMenuItem")
+		static let customizeTouchBarItem = NSUserInterfaceItemIdentifier("customizeTouchBarItem")
 	}
 	
+	//MARK: - File Menu
 	enum fileMenu {
 		
 		static let newFromSplitsIO = NSUserInterfaceItemIdentifier("newFromSplitsIO")
 		static let uploadToSplitsIO = NSUserInterfaceItemIdentifier("uploadToSplitsIO")
 	}
-	
 	
 	//MARK: - Timer Menu
 	enum runMenu{

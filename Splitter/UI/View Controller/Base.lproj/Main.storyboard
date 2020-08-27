@@ -35,6 +35,12 @@
                                                 <action selector="preferencesMenuItemActionHandler:" target="Voe-Tx-rLC" id="NY4-ZG-AzY"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Customize Touch Bar..." identifier="customizeTouchBarItem" id="kgz-dG-flw">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="editTB:" target="Ady-hI-5gd" id="UJc-q1-dgu"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
                                         <menuItem title="Services" id="NMo-om-nkz">
                                             <modifierMask key="keyEquivalentModifierMask"/>
