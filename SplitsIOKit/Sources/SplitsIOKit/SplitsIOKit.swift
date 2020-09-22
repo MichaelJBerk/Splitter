@@ -25,7 +25,7 @@ public class SplitsIOKit {
 	var searchRequest: DataRequest?
 	var authManager: SplitsIOAuth?
 	
-	public static var shared = SplitsIOKit()
+//	public static var shared = SplitsIOKit()
 	
 	
 	convenience init() {
@@ -53,6 +53,9 @@ public class SplitsIOKit {
 	public init(auth: SplitsIOAuth?, url: URL = URL(string:"https://splits.io")!) {
 		splitsIOURL = url
 		authManager = auth
+		authManager?.oAuth2.authorize(callback: { (_, _) in
+
+		})
 	}
 	/// URL to be used for Splits.io
 	public var splitsIOURL: URL

@@ -102,51 +102,6 @@ class ViewController: NSViewController {
 	var diffsShorterColor: NSColor = .green
 	var diffsNeutralColor: NSColor = .blue
 	
-	func setColorForControls() {
-		recColorForControls(view: self.view)
-		splitsTableView.parentViewController = self
-		splitsTableView.setHeaderColor(textColor: textColor, bgColor: tableBGColor)
-		splitsTableView.setCornerColor(cornerColor: tableBGColor)
-		
-		splitsTableView.reloadData()
-	}
-	
-	func recColorForControls(view: NSView) {
-		for v in view.subviews {
-			if let c = v as? NSButton {
-				c.contentTintColor = textColor
-				c.image?.isTemplate = true
-				if c.isEnabled {
-					c.appearance = NSAppearance(named: .darkAqua)
-				}
-				if let i = c.image {
-					i.isTemplate = true
-					let newImage = i.image(with: textColor)
-					
-					c.image = newImage
-				}
-				
-				c.image?.backgroundColor = textColor
-				c.attributedTitle = NSAttributedString(string: c.title, attributes: [.foregroundColor: textColor])
-			}
-			
-			if let p = v as? NSPopUpButton {
-				p.image?.isTemplate = true
-				if let i = p.menu!.items[0].image {
-					i.isTemplate = true
-					let newImage = i.image(with: textColor)
-					p.menu!.items[0].image = newImage
-				}
-				
-				
-			}
-			if let l = v as? NSTextField {
-				l.textColor = textColor
-			}
-		}
-		
-	}
-	
 	
 //MARK: - Other UI Elements
 	@IBOutlet weak var runTitleField: MetadataField!
@@ -154,11 +109,13 @@ class ViewController: NSViewController {
 	@IBOutlet weak var TimerLabel: NSTextField!
 	@IBOutlet weak var currentTimeLabel: NSTextField!
 	@IBOutlet weak var attemptField: MetadataField!
-	
 	@IBOutlet weak var splitsTableView: SplitterTableView!
-	
-	
 	var cellIdentifier: NSUserInterfaceItemIdentifier?
+	
+	//MARK: - Touch Bar Controls
+	var touchBarTotalTimeLabel: NSTextField = NSTextField(labelWithString: "00:00:00.00")
+	var touchBarDelegate: RunTouchBarDelegate!
+	
 	
 //MARK: - Timer Properties
 	var timerStarted = false
@@ -211,19 +168,24 @@ class ViewController: NSViewController {
 				
 				addDeleteEnabled(false)
 				splitBackEnabled(true)
+				touchBarDelegate.startSplitTitle = nextButton.baseTitle
+				
 			} else if timerState == .paused {
 				setMenuItemEnabled(item: timerStopItem, enabled: true)
 				timerStopItem?.title = "Stop Timer"
 				setMenuItemEnabled(item: prevSplitItem, enabled: false)
-				
 				setMenuItemEnabled(item: pauseMenuItem, enabled: true)
+				
 				pauseMenuItem?.title = "Resume Timer"
+				
 				
 				setMenuItemEnabled(item: startSplitItem, enabled: false)
 				
 				addDeleteEnabled(true)
 				splitBackEnabled(false)
 			}
+			touchBarDelegate.enableDisableButtons()
+			
 		}
 	}
 	
@@ -248,11 +210,14 @@ class ViewController: NSViewController {
 	var currentSplitNumber = 0 {
 		didSet {
 			let totalSplits = currentSplits.count - 1
+			var nextButtonTitle = "Split"
 			if currentSplitNumber == totalSplits && timerState != .stopped {
-				nextButton.baseTitle = "Finish"
-			} else {
-				nextButton.baseTitle = "Split"
+				nextButtonTitle = "Finish"
 			}
+			nextButton.baseTitle = nextButtonTitle
+			touchBarDelegate.startSplitTitle = nextButtonTitle
+//			touchBarSegmentNameLabel.stringValue = currentSplits[currentSplitNumber].splitName
+			touchBarDelegate.enableDisableButtons()
 		}
 	}
 	
@@ -418,6 +383,8 @@ class ViewController: NSViewController {
 		#endif
 		
 		view.window?.delegate = self
+		
+		touchBarDelegate = RunTouchBarDelegate(splitFunc: startSplitTimer, pauseFunc: pauseResumeTimer, prevFunc: goToPrevSplit, stopFunc: stopTimer, sourceVC: self)
 		//This line of code looks redundant, but it's here in order to make the timerState's property observer fire
 		let ts = timerState
 		timerState = ts
@@ -462,10 +429,11 @@ class ViewController: NSViewController {
 		attemptField.stringValue = "\(attempts)"
 		attemptField.formatter = OnlyIntegerValueFormatter()
 		
-		gameToViewEdgeConstraint = NSLayoutConstraint(item: runTitleField.superview, attribute: .trailing, relatedBy: .equal, toItem: runTitleField, attribute: .trailing, multiplier: 1, constant: 8)
+		gameToViewEdgeConstraint = NSLayoutConstraint(item: runTitleField.superview!, attribute: .trailing, relatedBy: .equal, toItem: runTitleField, attribute: .trailing, multiplier: 1, constant: 8)
 		gameToViewEdgeConstraint?.isActive = false
-		categoryToViewEdgeConstraint = NSLayoutConstraint(item: categoryField.superview, attribute: .trailing, relatedBy: .equal, toItem: categoryField, attribute: .trailing, multiplier: 1, constant: 8)
+		categoryToViewEdgeConstraint = NSLayoutConstraint(item: categoryField.superview!, attribute: .trailing, relatedBy: .equal, toItem: categoryField, attribute: .trailing, multiplier: 1, constant: 8)
 		categoryToViewEdgeConstraint?.isActive = false
+		
 	}
 	func setMenuItemEnabled(item: NSMenuItem?, enabled: Bool) {
 		if let id = item?.identifier {
@@ -539,7 +507,6 @@ class ViewController: NSViewController {
 	}
 
 	override func viewDidLoad() {
-		
 		
 		super.viewDidLoad()
 		self.view.wantsLayer = true

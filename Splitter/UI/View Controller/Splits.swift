@@ -15,10 +15,8 @@ extension ViewController {
 	func goToNextSplit() {
 		if timerStarted {
 		
-			
 			updateBestSplits(of: currentSplitNumber)
 			if currentSplits.count > currentSplitNumber + 1 {
-				
 				
 				updatePreviousSplit(of: currentSplitNumber + 1)
 				let currentSplitCopy = self.currentSplit?.copy() as! TimeSplit
@@ -30,7 +28,6 @@ extension ViewController {
 				//If it's at the last split, then stop the timer.
 				stopTimer()
 			}
-			
 			
 		}
 		//Need to reload the entire table view so that the hightlighted row in the table view will update

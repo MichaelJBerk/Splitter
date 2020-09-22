@@ -44,11 +44,7 @@ public class SplitsIOAuth {
 			}
 		} catch {
 			print("authURL error:", error)
-
 		}
-		
-		
-		
 	}
 	public func logout(completion: @escaping() -> ()) {
 		oAuth2.forgetTokens()

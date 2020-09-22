@@ -35,7 +35,7 @@ class LiveSplit: NSObject {
 	var lsPointer: UnsafeMutableRawPointer?
 	
 	///Parses a `.lss` file
-	func parseLivesplit() {
+	func parseLivesplit(template: Bool = false) {
 		let lssFile = try? File(path: path)
 		let lssData = try? lssFile?.read()
 		data = lssData!
@@ -46,7 +46,9 @@ class LiveSplit: NSObject {
 		
 		if cRun.parsedSuccessfully() {
 			let run = cRun.unwrap()
-			parseBestSplits(run: run)
+			parseBestSplits(run: run, template: template)
+			attempts = !template ? Int(run.attemptCount()) : 0
+			
 			
 			runTitle = run.gameName()
 			category = run.categoryName()
@@ -54,7 +56,7 @@ class LiveSplit: NSObject {
 			if let img = parseImageFromLiveSplit(icon: runIconStr) {
 				gameIcon = img
 			}
-			attempts = Int(run.attemptCount())
+			
 			platform = run.metadata().platformName()
 			region = run.metadata().regionName()
 			
@@ -66,7 +68,7 @@ class LiveSplit: NSObject {
 	}
 	
 	
-	private func parseBestSplits(run: LiveSplitCore.Run) {
+	private func parseBestSplits(run: LiveSplitCore.Run, template: Bool) {
 		let segCount = run.len()
 		var i = 0
 		var tsArray: [splitTableRow] = []
@@ -75,30 +77,34 @@ class LiveSplit: NSObject {
 			let segName = run.segment(i).name()
 			
 			var newTS = TimeSplit(mil: 0)
-			if let cTimeDouble = run.segment(i).personalBestSplitTime().realTime()?.totalSeconds() {
-				newTS = TimeSplit(seconds: cTimeDouble)
-			}
+			var newBest = TimeSplit(mil: 0)
 			
-			let bestTS = run.segment(i).bestSegmentTime().realTime()?.totalSeconds()
-			
-			
-			//Parse LiveSplit history
-			let iter = run.segment(i).segmentHistory().iter()
-			var last: Double? = nil
-			var secondToLast: Double? = nil
-			while (iter.next() != nil) {
-				secondToLast = iter.next()?.time().realTime()?.totalSeconds()
-				last = iter.next()?.time().realTime()?.totalSeconds()
+			if !template {
+				
+				if let cTimeDouble = run.segment(i).personalBestSplitTime().realTime()?.totalSeconds() {
+					newTS = TimeSplit(seconds: cTimeDouble)
+				}
+				
+				let bestTS = run.segment(i).bestSegmentTime().realTime()?.totalSeconds()
+				
+				
+				//Parse LiveSplit history
+				let iter = run.segment(i).segmentHistory().iter()
+				var last: Double? = nil
+				var secondToLast: Double? = nil
+				while (iter.next() != nil) {
+					secondToLast = iter.next()?.time().realTime()?.totalSeconds()
+					last = iter.next()?.time().realTime()?.totalSeconds()
+				}
+				newBest = TimeSplit(seconds: bestTS ?? 0)
+				if i > 0 {
+					newBest = newBest + tsArray[i - 1].bestSplit
+				}
 			}
 			
 			let imgStr = run.segment(i).icon()
 			let img = parseImageFromLiveSplit(icon: imgStr)
 			iconArray.append(img)
-			
-			var newBest = TimeSplit(seconds: bestTS ?? 0)
-			if i > 0 {
-				newBest = newBest + tsArray[i - 1].bestSplit
-			}
 			
 			let newRow = splitTableRow(splitName: segName, bestSplit: newTS, currentSplit: TimeSplit(), previousSplit: TimeSplit(), previousBest: newBest, splitIcon: nil)
 			tsArray.append(newRow)
@@ -171,8 +177,8 @@ class LiveSplit: NSObject {
 }
 
 extension ViewController {
-	func loadLS(ls: LiveSplit) {
-		ls.parseLivesplit()
+	func loadLS(ls: LiveSplit, asTemplate: Bool = false) {
+		ls.parseLivesplit(template: asTemplate)
 		if ls.splits.count > 0 {
 			var i = 0
 			

@@ -10,7 +10,8 @@ import Foundation
 import SplitsIOKit
 extension ViewController {
 	func uploadToSplitsIO() {
-		if let runString = makeSplitsIOJSON(), SplitsIOKit.shared.hasAuth {
+		if let runString = makeSplitsIOJSON(),
+			SplitsIOKit.shared.hasAuth {
 			let confAlert = NSAlert()
 			confAlert.messageText = "Are you sure you would like to upload this run to Splits.io?"
 			confAlert.addButton(withTitle: "Upload")
@@ -40,7 +41,7 @@ extension ViewController {
 		} else {
 			if !SplitsIOKit.shared.hasAuth {
 				let notLoggedInAlert = NSAlert()
-				notLoggedInAlert.messageText = "Splitter is not logged in to Splits.io"
+				notLoggedInAlert.messageText = "Splitter is not signed in to Splits.io"
 				notLoggedInAlert.informativeText = "Log in with your Splits.io account to upload"
 				notLoggedInAlert.addButton(withTitle: "Log in")
 				notLoggedInAlert.addButton(withTitle: "Cancel")

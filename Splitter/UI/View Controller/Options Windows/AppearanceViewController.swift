@@ -70,7 +70,7 @@ You can still close the window either with ⌘W or from the "Window" menu.
 			hideTitleBarCheck.state = .init(bool: newValue)
 		}
 		get {
-			return hideTitleBarCheck.state.toBool() ?? false
+			return hideTitleBarCheck.state.toBool() 
 		}
 	}
 	var hideButtons: Bool {

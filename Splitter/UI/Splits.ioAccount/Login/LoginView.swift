@@ -11,16 +11,7 @@ import SplitsIOKit
 
 class LoginView: NSViewController, LoadableNib {
 	var accountController: AccountViewController!
-//
-//	override init(frame frameRect: NSRect) {
-//        super.init(frame: frameRect)
-//        loadViewFromNib()
-//    }
 
-//    required init?(coder decoder: NSCoder) {
-//        super.init(coder: decoder)
-//        loadViewFromNib()
-//    }
 	override var view: NSView {
 		get {
 			return contentView

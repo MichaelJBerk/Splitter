@@ -44,7 +44,7 @@
                         <constraint firstAttribute="height" constant="48" id="5jO-Te-aYB"/>
                         <constraint firstAttribute="width" constant="289" id="7LZ-Oy-RgA"/>
                     </constraints>
-                    <textFieldCell key="cell" title="If you log in to Splits.io, you can upload runs and participate in races using Splitter" id="1fB-cS-hgh">
+                    <textFieldCell key="cell" title="If you sign in to Splits.io, you can upload runs and participate in races using Splitter" id="1fB-cS-hgh">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

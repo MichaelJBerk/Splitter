@@ -73,7 +73,10 @@ class CategoryViewController: NSViewController {
 		if let game = delegate.game {
 			if let shortName = game.shortname {
 				splitsIO.getCategories(for: shortName, completion: { cats in
-					completion(cats)
+					let sorted = cats.sorted(by: { cat1, cat2 in
+						return cat1.name < cat2.name
+					})
+					completion(sorted)
 				})
 			} else if game.categories.count > 0 {
 				completion(game.categories)
@@ -101,16 +104,21 @@ class CategoryViewController: NSViewController {
 		self.presentAsSheet(loadingView)
 		
 		splitsIO.getRunFromCat(categoryID: cat.id, completion: { run in
-			let d = lss()
-			let url = URL(string: run!)!
-			d.tempURL = url
-			NSDocumentController.shared.addDocument(d)
-			d.makeWindowControllers()
-			if let vc =  d.windowControllers.first?.window?.contentViewController as? ViewController {
+			if let run = run {
+				let d = lss()
+				d.template = true
+				let url = URL(string: run)!
+				d.tempURL = url
+				NSDocumentController.shared.addDocument(d)
+				d.makeWindowControllers()
+				if let vc =  d.windowControllers.first?.window?.contentViewController as? ViewController {
+					self.dismiss(self)
+					vc.view.window?.makeKeyAndOrderFront(nil)
+					self.view.window?.windowController?.close()
+					AppDelegate.shared?.searchWindow.close()
+				}
+			} else {
 				self.dismiss(self)
-				vc.view.window?.makeKeyAndOrderFront(nil)
-				self.view.window?.windowController?.close()
-				AppDelegate.shared?.searchWindow.close()
 			}
 		})
 	}

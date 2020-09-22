@@ -49,6 +49,6 @@ class AccountProfileView: NSViewController, LoadableNib {
 		}
 	}
 	func logout() {
-		try? accountController.logout()
+		accountController.logout()
 	}
 }

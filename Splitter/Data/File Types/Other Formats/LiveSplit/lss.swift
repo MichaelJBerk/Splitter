@@ -36,6 +36,8 @@ class lss: SplitterDoc {
 		}
 			return nil
 	}
+	var template: Bool = false
+	
 	
 	override func makeWindowControllers() {
 		Swift.print(writableTypes(for: .saveOperation))
@@ -47,21 +49,11 @@ class lss: SplitterDoc {
 		if let url = urlToLoad {
 			let ls = LiveSplit()
 			ls.path = url.path
-			vc.loadLS(ls: ls)
+			vc.loadLS(ls: ls, asTemplate: template)
 		}
 	}
 	
 	override func save(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, delegate: Any?, didSave didSaveSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
-//		switch typeName {
-//		case DocFileType.splitFile.rawValue:
-//			saveSplitFile(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: 	contextInfo)
-//		case DocFileType.liveSplit.rawValue:
-//			saveLiveSplitFile(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: 	contextInfo)
-//		case DocFileType.splitsioFile.rawValue:
-//			break
-//		default:
-//			break
-//		}
 		determineSave(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: 	contextInfo)
 	}
 	

@@ -27,9 +27,10 @@ extension NSButton {
 	}
 	
 	//I'm overriding the property observer so that the NSButton's appearance will be dark when the button is enabled, thus making it transparent
+	//The buttons for the Touch Bar are TBButtons, which I don't want to override the appearance of
 	open override var isEnabled: Bool {
 		didSet {
-			if !oldValue && self.isEnabled {
+			if !oldValue && self.isEnabled && !(self is TBButton) {
 				appearance = NSAppearance(named: .darkAqua)
 			}
 		}
@@ -95,4 +96,53 @@ extension NSColor {
         let brightness = Float(((components[0] * 299) + (components[1] * 587) + (components[2] * 114)) / 1000)
         return (brightness > threshold)
     }
+}
+extension ViewController {
+	func setColorForControls() {
+		recColorForControls(view: self.view)
+		splitsTableView.parentViewController = self
+		splitsTableView.setHeaderColor(textColor: textColor, bgColor: tableBGColor)
+		splitsTableView.setCornerColor(cornerColor: tableBGColor)
+		
+		splitsTableView.reloadData()
+	}
+	
+	func recColorForControls(view: NSView) {
+		for v in view.subviews {
+			if let c = v as? NSButton {
+				if c.title == "blah!" {
+					print("tb")
+				}
+				c.contentTintColor = textColor
+				c.image?.isTemplate = true
+				if c.isEnabled {
+					c.appearance = NSAppearance(named: .darkAqua)
+				}
+				if let i = c.image {
+					i.isTemplate = true
+					let newImage = i.image(with: textColor)
+					
+					c.image = newImage
+				}
+				
+				c.image?.backgroundColor = textColor
+				c.attributedTitle = NSAttributedString(string: c.title, attributes: [.foregroundColor: textColor])
+			}
+			
+			if let p = v as? NSPopUpButton {
+				p.image?.isTemplate = true
+				if let i = p.menu!.items[0].image {
+					i.isTemplate = true
+					let newImage = i.image(with: textColor)
+					p.menu!.items[0].image = newImage
+				}
+				
+				
+			}
+			if let l = v as? NSTextField {
+				l.textColor = textColor
+			}
+		}
+		
+	}
 }
