@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097.2"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -274,7 +274,7 @@
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="32" id="jGx-xn-Umv"/>
                         <constraint firstAttribute="width" relation="lessThanOrEqual" constant="407" id="lAA-so-FyU"/>
                     </constraints>
-                    <textFieldCell key="cell" title="Note: These settings will be saved to this file, and will take effect whever the file is opened. " id="Zb4-6l-EA1">
+                    <textFieldCell key="cell" title="Note: These settings will be saved to this file, and will take effect whenever the file is opened. " id="Zb4-6l-EA1">
                         <font key="font" usesAppearanceFont="YES"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

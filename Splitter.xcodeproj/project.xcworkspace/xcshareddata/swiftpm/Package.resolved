@@ -11,6 +11,15 @@
         }
       },
       {
+        "package": "Preferences",
+        "repositoryURL": "https://github.com/sindresorhus/Preferences",
+        "state": {
+          "branch": null,
+          "revision": "73664ff9f9faeb40f4b8f2c02d21b4486c82cce9",
+          "version": "2.0.0"
+        }
+      },
+      {
         "package": "SwiftyJSON",
         "repositoryURL": "https://github.com/SwiftyJSON/SwiftyJSON.git",
         "state": {

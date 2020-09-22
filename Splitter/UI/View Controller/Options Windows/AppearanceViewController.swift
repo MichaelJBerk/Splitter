@@ -39,7 +39,7 @@ class AppearanceViewController: NSViewController, advancedTabDelegate {
 
 	
 	var note = """
-Note: These settings will be saved to this file, and will take effect whenver the file is opened.
+Note: These settings will be saved to this file, and will take effect whenever the file is opened.
 """
 	
 	///Sets the help buttons next to each option, as well as their popovers
