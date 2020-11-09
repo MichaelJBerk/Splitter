@@ -62,14 +62,6 @@ struct splitTableRow {
 	}
 }
 
-final class Box<T> {
-    let value: T
-
-    init(_ value: T) {
-        self.value = value
-    }
-}
-
 enum SplitComparison: Int {
 	case previousSplit
 	case personalBest

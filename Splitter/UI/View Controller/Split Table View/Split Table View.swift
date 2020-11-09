@@ -19,13 +19,14 @@ extension ViewController: NSTableViewDataSource {
 
 class myRowView: NSTableRowView {
 	var selectedColor: NSColor = .splitterRowSelected
+    var isCurrentSegment: Bool = false
 	
 	override func draw(_ dirtyRect: NSRect) {
 		super.draw(dirtyRect)
 		
 		
 
-		if isSelected == true {
+		if isSelected == true || isCurrentSegment {
 			selectedColor.set()
 			dirtyRect.fill()
 		   }
@@ -39,6 +40,7 @@ extension ViewController: NSTableViewDelegate {
 		
 		let cRow = myRowView()
 		cRow.selectedColor = self.selectedColor
+        cRow.isCurrentSegment = (currentSplitNumber == row && timerState != .stopped)
 		
 		return cRow
 	}

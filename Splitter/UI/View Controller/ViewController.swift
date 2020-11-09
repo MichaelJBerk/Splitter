@@ -420,8 +420,6 @@ class ViewController: NSViewController {
 			addBlankSplit()
 		}
 		
-		
-		
 		setRightClickMenus()
 		
 		view.window?.makeFirstResponder(splitsTableView)
