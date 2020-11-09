@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -39,6 +39,12 @@
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="editTB:" target="Ady-hI-5gd" id="UJc-q1-dgu"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Set Hotkeys..." id="8Qq-Vd-StZ">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="hotkeysMenuItem:" target="Ady-hI-5gd" id="t5D-bx-bwz"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
@@ -471,6 +477,12 @@
                                             <connections>
                                                 <action selector="helpMenu:" target="Ady-hI-5gd" id="CmE-pH-FA3"/>
                                             </connections>
+                                        </menuItem>
+                                        <menuItem title="FAQ" id="gar-lD-1BC">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                        </menuItem>
+                                        <menuItem title="Discord Server" id="yrH-Cb-n3S">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
                                         </menuItem>
                                     </items>
                                 </menu>
@@ -914,7 +926,7 @@
                                 <rect key="frame" x="10" y="34" width="38" height="23"/>
                                 <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" autoenablesItems="NO" selectedItem="E4A-EA-ALB" id="gAh-qk-bIO">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="menu"/>
                                     <menu key="menu" showsStateColumn="NO" autoenablesItems="NO" id="EQW-m1-UW4">
                                         <items>
                                             <menuItem image="trash" catalog="system" hidden="YES" id="E4A-EA-ALB">
@@ -1396,7 +1408,7 @@ To remove, click and press backspace. </string>
                                             <rect key="frame" x="126" y="111" width="143" height="25"/>
                                             <popUpButtonCell key="cell" type="push" title="Previous Attempt" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" autoenablesItems="NO" selectedItem="PXQ-9Z-K1b" id="xtb-He-QHy">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
+                                                <font key="font" metaFont="menu"/>
                                                 <menu key="menu" autoenablesItems="NO" id="Yks-AJ-xS2">
                                                     <items>
                                                         <menuItem title="Previous Attempt" state="on" identifier="previousSplit" id="PXQ-9Z-K1b"/>
@@ -1440,7 +1452,7 @@ To remove, click and press backspace. </string>
                                             <rect key="frame" x="126" y="-3" width="149" height="25"/>
                                             <popUpButtonCell key="cell" type="push" title="Tenths (1.0)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="nMZ-sT-CSk" id="Tat-0W-Mzd">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
+                                                <font key="font" metaFont="menu"/>
                                                 <menu key="menu" id="g2j-NM-WrP">
                                                     <items>
                                                         <menuItem title="Tenths (1.0)" state="on" identifier="tenths" id="nMZ-sT-CSk"/>
