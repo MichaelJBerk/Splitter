@@ -30,6 +30,7 @@
 		4A18663223C5376900FEEE54 /* SettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A18663123C5376900FEEE54 /* SettingsKeys.swift */; };
 		4A1C1465240ECD610056B104 /* ViewControllerID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1C1464240ECD610056B104 /* ViewControllerID.swift */; };
 		4A1C1469240ED30C0056B104 /* InfoOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1C1467240ED30C0056B104 /* InfoOptionsViewController.swift */; };
+		4A214A70255C90720006FD9F /* SplitsIOKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4A214A6F255C90720006FD9F /* SplitsIOKit */; };
 		4A230E9323B00A1D00959C57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A230E9223B00A1D00959C57 /* AppDelegate.swift */; };
 		4A230E9523B00A1D00959C57 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A230E9423B00A1D00959C57 /* ViewController.swift */; };
 		4A230E9723B00A1D00959C57 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A230E9623B00A1D00959C57 /* Document.swift */; };
@@ -94,7 +95,6 @@
 		4AEC4C02240F5BA300B01799 /* RunOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEC4C01240F5BA300B01799 /* RunOptionsViewController.swift */; };
 		4AF953B523EB503100ED540C /* Timer Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF953B423EB503100ED540C /* Timer Functions.swift */; };
 		4AF953B723EB507800ED540C /* Splits.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF953B623EB507800ED540C /* Splits.swift */; };
-		4AF9E8A824CE2FE200DFD5BE /* SplitsIOKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4AF9E8A724CE2FE200DFD5BE /* SplitsIOKit */; };
 		4AF9E8AB24CE31CA00DFD5BE /* DebugPrefsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF9E8A924CE31CA00DFD5BE /* DebugPrefsViewController.swift */; };
 		4AF9E8AC24CE31CA00DFD5BE /* DebugPrefsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AF9E8AA24CE31CA00DFD5BE /* DebugPrefsViewController.xib */; };
 		4AF9E8C224CE448B00DFD5BE /* SplitterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF9E8C124CE448B00DFD5BE /* SplitterUITests.swift */; };
@@ -160,6 +160,7 @@
 		4A18663123C5376900FEEE54 /* SettingsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsKeys.swift; sourceTree = "<group>"; };
 		4A1C1464240ECD610056B104 /* ViewControllerID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerID.swift; sourceTree = "<group>"; };
 		4A1C1467240ED30C0056B104 /* InfoOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoOptionsViewController.swift; sourceTree = "<group>"; };
+		4A214A64255C8FB30006FD9F /* SplitsIOKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SplitsIOKit; sourceTree = "<group>"; };
 		4A230E8F23B00A1D00959C57 /* Splitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Splitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A230E9223B00A1D00959C57 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4A230E9423B00A1D00959C57 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -244,7 +245,7 @@
 				4AD7662E23DA5F9A0052409C /* Files in Frameworks */,
 				4ABB38A8255C79B00037536E /* SwiftyJSON in Frameworks */,
 				4AA357B52416F79900219E65 /* liblivesplit_core.a in Frameworks */,
-				4AF9E8A824CE2FE200DFD5BE /* SplitsIOKit in Frameworks */,
+				4A214A70255C90720006FD9F /* SplitsIOKit in Frameworks */,
 				4A1767B224EE095100571A6C /* Preferences in Frameworks */,
 				4A6B4F7423F07C3900CB781F /* libresolv.tbd in Frameworks */,
 				CA8419FF140C00045EBA5B68 /* Pods_Splitter.framework in Frameworks */,
@@ -399,6 +400,7 @@
 		4A230E8623B00A1D00959C57 = {
 			isa = PBXGroup;
 			children = (
+				4A214A64255C8FB30006FD9F /* SplitsIOKit */,
 				4A230E9123B00A1D00959C57 /* Splitter */,
 				4A71054A24BE267300FA9127 /* SplitterTests */,
 				4AF9E8C024CE448B00DFD5BE /* SplitterUITests */,
@@ -636,10 +638,10 @@
 			name = Splitter;
 			packageProductDependencies = (
 				4AD7662D23DA5F9A0052409C /* Files */,
-				4AF9E8A724CE2FE200DFD5BE /* SplitsIOKit */,
 				4AD7662D23DA5F9A0052409C /* Files */,
 				4A1767B124EE095100571A6C /* Preferences */,
 				4ABB38A7255C79B00037536E /* SwiftyJSON */,
+				4A214A6F255C90720006FD9F /* SplitsIOKit */,
 			);
 			productName = Splitter;
 			productReference = 4A230E8F23B00A1D00959C57 /* Splitter.app */;
@@ -1295,8 +1297,8 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/Preferences";
 			requirement = {
-				branch = bigsur;
-				kind = branch;
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.1.0;
 			};
 		};
 		4AB5627724338FB000D7F8D1 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
@@ -1323,6 +1325,10 @@
 			package = 4A1767B024EE095100571A6C /* XCRemoteSwiftPackageReference "Preferences" */;
 			productName = Preferences;
 		};
+		4A214A6F255C90720006FD9F /* SplitsIOKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = SplitsIOKit;
+		};
 		4ABB38A7255C79B00037536E /* SwiftyJSON */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4AB5627724338FB000D7F8D1 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
@@ -1332,10 +1338,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4AD7662C23DA5F9A0052409C /* XCRemoteSwiftPackageReference "Files" */;
 			productName = Files;
-		};
-		4AF9E8A724CE2FE200DFD5BE /* SplitsIOKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			productName = SplitsIOKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
