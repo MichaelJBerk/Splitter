@@ -2,12 +2,39 @@
   "object": {
     "pins": [
       {
+        "package": "Alamofire",
+        "repositoryURL": "https://github.com/Alamofire/Alamofire.git",
+        "state": {
+          "branch": null,
+          "revision": "9e0328127dfb801cefe8ac53a13c0c90a7770448",
+          "version": "5.4.0"
+        }
+      },
+      {
         "package": "Files",
         "repositoryURL": "https://github.com/JohnSundell/Files",
         "state": {
           "branch": null,
           "revision": "22fe84797d499ffca911ccd896b34efaf06a50b9",
           "version": "4.1.1"
+        }
+      },
+      {
+        "package": "OAuth2",
+        "repositoryURL": "https://github.com/p2/OAuth2.git",
+        "state": {
+          "branch": null,
+          "revision": "b0c71466176f3d7a22e5da20532c01d78a661f1d",
+          "version": "5.2.0"
+        }
+      },
+      {
+        "package": "Preferences",
+        "repositoryURL": "https://github.com/sindresorhus/Preferences",
+        "state": {
+          "branch": null,
+          "revision": "ad69881dc060cd590d3edfb84c7cc444d87e280a",
+          "version": "2.1.0"
         }
       },
       {

@@ -8,6 +8,7 @@
 
 import Cocoa
 import Preferences
+import SplitsIOKit
 
 class ViewController: NSViewController {
 	

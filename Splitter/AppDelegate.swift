@@ -150,12 +150,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		  DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
 			self.reopenToApplyKeybindAlert()
 		  }
-
-		  return true // Return true if the SDK should await user confirmation, otherwise return false.
-		})
-		#endif
-		
-//		openWelcomeWindow()
+		}
 	}
 	//Need to store this as a var on the class or the app will crash when closing the welcome window
 	var welcomeWindow: NSWindow!
@@ -198,10 +193,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         }
 	}
 	
-	func crashes(_ crashes: MSCrashes!, shouldProcessErrorReport errorReport: MSErrorReport!) -> Bool {
-		
-	  return true; // return true if the crash report should be processed, otherwise false.
-	}
 	func applicationWillTerminate(_ aNotification: Notification) {
 		// Insert code here to tear down your application
 	}

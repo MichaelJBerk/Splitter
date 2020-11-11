@@ -1,29 +1,14 @@
 PODS:
   - Keys (1.0.1)
   - MASShortcut (2.4.0)
-<<<<<<< HEAD
-  - Preferences (2.0.1)
-=======
-  - Sparkle (1.23.0)
->>>>>>> 3.0
 
 DEPENDENCIES:
   - Keys (from `Pods/CocoaPodsKeys`)
   - MASShortcut
-<<<<<<< HEAD
-  - Preferences
-=======
-  - Sparkle
->>>>>>> 3.0
 
 SPEC REPOS:
   trunk:
     - MASShortcut
-<<<<<<< HEAD
-    - Preferences
-=======
-    - Sparkle
->>>>>>> 3.0
 
 EXTERNAL SOURCES:
   Keys:
@@ -32,14 +17,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Keys: a576f4c9c1c641ca913a959a9c62ed3f215a8de9
   MASShortcut: d9e4909e878661cc42877cc9d6efbe638273ab57
-<<<<<<< HEAD
-  Preferences: 1ce41315ecadd28a9a4dd92ccd5dea7ca3437f92
 
-PODFILE CHECKSUM: 60a9f7ca836cc3fb5b340a6c96d23689144d471b
-=======
-  Sparkle: 55b1a87ba69d56913375a281546b7c82dec95bb0
-
-PODFILE CHECKSUM: 68e54fb2eab99de9c19872b843e8fe06dace6a4f
->>>>>>> 3.0
+PODFILE CHECKSUM: ee75fcd361a8d3aaa989c8d2e007d384c86f9830
 
 COCOAPODS: 1.9.3
