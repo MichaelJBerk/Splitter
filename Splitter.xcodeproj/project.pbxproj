@@ -75,7 +75,7 @@
 		4AA357B52416F79900219E65 /* liblivesplit_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA357B42416F79900219E65 /* liblivesplit_core.a */; };
 		4AA3DAB423E23DA900ADFA4A /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA3DAB323E23DA900ADFA4A /* IconButton.swift */; };
 		4AAD470A248432540094A31F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAD4709248432540094A31F /* Colors.swift */; };
-		4AB5627924338FB000D7F8D1 /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 4AB5627824338FB000D7F8D1 /* SwiftyJSON */; };
+		4ABB38A8255C79B00037536E /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 4ABB38A7255C79B00037536E /* SwiftyJSON */; };
 		4AC24DBA23EB4EC5003008BF /* Split Table Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC24DB923EB4EC5003008BF /* Split Table Row.swift */; };
 		4AC24DBC23EB4F17003008BF /* Split Table View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC24DBB23EB4F17003008BF /* Split Table View.swift */; };
 		4AC401F324BE145F005180F1 /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -242,10 +242,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				4AD7662E23DA5F9A0052409C /* Files in Frameworks */,
+				4ABB38A8255C79B00037536E /* SwiftyJSON in Frameworks */,
 				4AA357B52416F79900219E65 /* liblivesplit_core.a in Frameworks */,
 				4AF9E8A824CE2FE200DFD5BE /* SplitsIOKit in Frameworks */,
-				4AB5627924338FB000D7F8D1 /* SwiftyJSON in Frameworks */,
-				4AB5627924338FB000D7F8D1 /* SwiftyJSON in Frameworks */,
 				4A1767B224EE095100571A6C /* Preferences in Frameworks */,
 				4A6B4F7423F07C3900CB781F /* libresolv.tbd in Frameworks */,
 				CA8419FF140C00045EBA5B68 /* Pods_Splitter.framework in Frameworks */,
@@ -637,11 +636,10 @@
 			name = Splitter;
 			packageProductDependencies = (
 				4AD7662D23DA5F9A0052409C /* Files */,
-				4AB5627824338FB000D7F8D1 /* SwiftyJSON */,
 				4AF9E8A724CE2FE200DFD5BE /* SplitsIOKit */,
 				4AD7662D23DA5F9A0052409C /* Files */,
-				4AB5627824338FB000D7F8D1 /* SwiftyJSON */,
 				4A1767B124EE095100571A6C /* Preferences */,
+				4ABB38A7255C79B00037536E /* SwiftyJSON */,
 			);
 			productName = Splitter;
 			productReference = 4A230E8F23B00A1D00959C57 /* Splitter.app */;
@@ -1084,6 +1082,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3BC3162DD6894F9DE2C6229A /* Pods-Splitter.debug.xcconfig */;
 			buildSettings = {
+				ARCHS = x86_64;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Splitter/Splitter.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -1129,6 +1128,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 224FCB634535455ECB8CA680 /* Pods-Splitter.release.xcconfig */;
 			buildSettings = {
+				ARCHS = x86_64;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = Splitter/Splitter.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -1161,6 +1161,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MARKETING_VERSION = 3.0;
 				MODULEMAP_FILE = "\"$(PROJECT_DIR)/Splitter/LiveSplit Core/module.map\"";
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mibe.Splitter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1322,7 +1323,7 @@
 			package = 4A1767B024EE095100571A6C /* XCRemoteSwiftPackageReference "Preferences" */;
 			productName = Preferences;
 		};
-		4AB5627824338FB000D7F8D1 /* SwiftyJSON */ = {
+		4ABB38A7255C79B00037536E /* SwiftyJSON */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4AB5627724338FB000D7F8D1 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
