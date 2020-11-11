@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import Files
 
 class lss: SplitterDoc {
 
@@ -24,6 +25,20 @@ class lss: SplitterDoc {
 		
         // Add any code here that needs to be executed once the windowController has loaded the document's window.
     }
+	
+	var tempURL: URL?
+	private var urlToLoad: URL? {
+		if let url = tempURL {
+			return url
+		}
+		else if let url = fileURL {
+			return url
+		}
+			return nil
+	}
+	var template: Bool = false
+	
+	
 	override func makeWindowControllers() {
 		Swift.print(writableTypes(for: .saveOperation))
 		let storyboard = NSStoryboard(name: NSStoryboard.Name("Main"), bundle: nil)
@@ -31,27 +46,25 @@ class lss: SplitterDoc {
 		self.addWindowController(windowController)
 		let vc = windowController.contentViewController as! ViewController
 		vc.setColorForControls()
-		if let url = self.fileURL {
+		if let url = urlToLoad {
 			let ls = LiveSplit()
 			ls.path = url.path
-			vc.loadLS(ls: ls)
+			vc.loadLS(ls: ls, asTemplate: template)
 		}
 	}
 	
 	override func save(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, delegate: Any?, didSave didSaveSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
-//		switch typeName {
-//		case DocFileType.splitFile.rawValue:
-//			saveSplitFile(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: 	contextInfo)
-//		case DocFileType.liveSplit.rawValue:
-//			saveLiveSplitFile(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: 	contextInfo)
-//		case DocFileType.splitsioFile.rawValue:
-//			break
-//		default:
-//			break
-//		}
 		determineSave(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: 	contextInfo)
 	}
 	
+	override func close() {
+		super.close()
+		if let tempURL = tempURL {
+			let tempFile = try? File(path: tempURL.path)
+			try? tempFile?.delete()
+		}
+		
+	}
 	
 	
 	

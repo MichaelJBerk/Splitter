@@ -8,17 +8,44 @@
 
 import Cocoa
 
+
 class ImageButtonCellView: NSTableCellView {
+	
+	
+	var image: NSImage = #imageLiteral(resourceName: "Game Controller")
+	@IBOutlet var imageWell: CellImageWell!
 
-	@IBOutlet var imageButton: NSButton!
-	var cellNumber: Int?
-	
-    override func draw(_ dirtyRect: NSRect) {
-        super.draw(dirtyRect)
+	var cellNumber: Int! {
+		didSet {
+			imageWell.row = cellNumber
+		}
+	}
+}
 
-        // Drawing code here.
-    }
+class CellImageWell: NSImageView {
+	@IBOutlet var splitController: ViewController!
+	var row: Int!
 	
-	
-    
+	override var image: NSImage? {
+		didSet {
+			var newValue = self.image
+			if newValue == nil {
+				newValue = #imageLiteral(resourceName: "Game Controller")
+				newValue?.isTemplate = true
+				self.image = newValue?.image(with: splitController.textColor)
+				splitController.currentSplits[row].splitIcon = nil
+			} else {
+				splitController.currentSplits[row].splitIcon = newValue
+			}
+			
+		}
+	}
+	///Used in right-click menu
+	@IBAction func removeImage(_ sender: Any?) {
+		image = nil
+	}
+	///Used in right-click menu
+	@IBAction func chooseImageMenuItem(_ sender: Any?) {
+		setImage()
+	}
 }

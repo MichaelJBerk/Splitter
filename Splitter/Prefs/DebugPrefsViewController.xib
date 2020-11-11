@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16097" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="DebugPrefsViewController" customModule="Splitter" customModuleProvider="target">
+            <connections>
+                <outlet property="splitsIOURLTextField" destination="8aX-HQ-q69" id="xOu-qP-Wir"/>
+                <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView id="Hz6-mo-xeY">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="272"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <gridView xPlacement="leading" yPlacement="bottom" rowAlignment="none" translatesAutoresizingMaskIntoConstraints="NO" id="YmB-CH-INH">
+                    <rect key="frame" x="20" y="159" width="437" height="93"/>
+                    <rows>
+                        <gridRow id="8VS-hq-azr"/>
+                        <gridRow id="zOD-VY-bad"/>
+                        <gridRow id="kaa-NU-NXJ"/>
+                    </rows>
+                    <columns>
+                        <gridColumn width="108" id="r5W-5y-ziV"/>
+                        <gridColumn width="323" id="m29-jf-FdE"/>
+                    </columns>
+                    <gridCells>
+                        <gridCell row="8VS-hq-azr" column="r5W-5y-ziV" id="x8Q-tp-Ppi">
+                            <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8gy-OF-fha">
+                                <rect key="frame" x="-2" y="72" width="81" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Splits.io URL" id="l73-MP-IPF">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </gridCell>
+                        <gridCell row="8VS-hq-azr" column="m29-jf-FdE" id="Gnl-ni-NBf">
+                            <textField key="contentView" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8aX-HQ-q69">
+                                <rect key="frame" x="114" y="72" width="100" height="21"/>
+                                <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="dnA-P0-QRI">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                                <connections>
+                                    <action selector="editTextField:" target="-2" id="wAt-qU-ACY"/>
+                                </connections>
+                            </textField>
+                        </gridCell>
+                        <gridCell row="zOD-VY-bad" column="r5W-5y-ziV" id="SY3-3H-fT3"/>
+                        <gridCell row="zOD-VY-bad" column="m29-jf-FdE" id="DMi-sR-VaP"/>
+                        <gridCell row="kaa-NU-NXJ" column="r5W-5y-ziV" id="GIg-DK-J1z"/>
+                        <gridCell row="kaa-NU-NXJ" column="m29-jf-FdE" id="mdf-LV-Pbn"/>
+                    </gridCells>
+                </gridView>
+            </subviews>
+            <constraints>
+                <constraint firstItem="YmB-CH-INH" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" constant="20" symbolic="YES" id="6gr-bG-eQs"/>
+                <constraint firstItem="YmB-CH-INH" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" symbolic="YES" id="R5z-hW-Pab"/>
+            </constraints>
+            <point key="canvasLocation" x="139" y="154"/>
+        </customView>
+    </objects>
+</document>

@@ -8,7 +8,7 @@
 
 import Cocoa
 
-var splitNoteText = "Note: These settings will be saved to this file, and will take effect whever the file is opened. "
+var splitNoteText = "Note: These settings will be saved to this file, and will take effect whenever the file is opened. "
 var notSplitNoteText = "Note: These settings will not be saved to this file unless it is saved in the .split format"
 
 protocol advancedTabDelegate {

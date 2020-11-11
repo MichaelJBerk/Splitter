@@ -12,7 +12,13 @@ import Preferences
 final class DefaultPreferenceViewController: NSViewController, PreferencePane {
 	let preferencePaneIdentifier = Preferences.PaneIdentifier.general
 	let preferencePaneTitle = "Defaults"
-	let toolbarItemIcon = NSImage(named: NSImage.preferencesGeneralName)!
+    var toolbarItemIcon: NSImage {
+        if #available(macOS 10.16, *) {
+            return NSImage(systemSymbolName: "switch.2", accessibilityDescription: "Defaults")!
+        } else {
+            return NSImage(named: NSImage.preferencesGeneralName)!
+        }
+    }
 
 	override var nibName: NSNib.Name? { "DefaultPreferenceViewController" }
 	

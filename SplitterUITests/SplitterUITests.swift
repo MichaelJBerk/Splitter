@@ -60,13 +60,13 @@ class SplitterUITests: XCTestCase {
     }
 	
 	///Adds a split and starts the timer
-	func testAddSplitStartTimer() {
-		if windowCount < 1 {newWindow()}
-		mainWindow!.buttons["AddSplit"].click()
-		mainWindow!.buttons["Start"].click()
-		
-		
-	}
+//	func testAddSplitStartTimer() {
+//		if windowCount < 1 {newWindow()}
+//		mainWindow!.buttons["AddSplit"].click()
+//		mainWindow!.buttons["Start"].click()
+//
+//
+//	}
 	func testnew() {
 		
 	
@@ -80,8 +80,8 @@ class SplitterUITests: XCTestCase {
 		
 		let popoversQuery = untitledWindow.popovers
 		popoversQuery/*@START_MENU_TOKEN@*/.radioButtons["Appearance"]/*[[".radioGroups.radioButtons[\"Appearance\"]",".radioButtons[\"Appearance\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.click()
-		popoversQuery.groups.containing(.button, identifier:"Reset").children(matching: .colorWell).element(boundBy: 2).click()
-		app.windows["Colors"]/*@START_MENU_TOKEN@*/.radioButtons["Moss"]/*[[".splitGroups",".radioGroups[\"Pencils\"].radioButtons[\"Moss\"]",".radioButtons[\"Moss\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.click()
+//		popoversQuery.groups.containing(.button, identifier:"Reset").children(matching: .colorWell).element(boundBy: 2).click()
+//		app.windows["Colors"]/*@START_MENU_TOKEN@*/.radioButtons["Moss"]/*[[".splitGroups",".radioGroups[\"Pencils\"].radioButtons[\"Moss\"]",".radioButtons[\"Moss\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.click()
 		
 	}
 
@@ -93,4 +93,9 @@ class SplitterUITests: XCTestCase {
             }
         }
     }
+	func testSearchMK8() {
+		XCUIApplication().windows["Untitled"]/*@START_MENU_TOKEN@*/.tables.containing(.tableColumn, identifier:"ImageColumn").element/*[[".scrollViews",".tables.containing(.tableColumn, identifier:\"Difference\").element",".tables.containing(.tableColumn, identifier:\"CurrentSplit\").element",".tables.containing(.tableColumn, identifier:\"SplitTitle\").element",".tables.containing(.tableColumn, identifier:\"ImageColumn\").element"],[[[-1,4],[-1,3],[-1,2],[-1,1],[-1,0,1]],[[-1,4],[-1,3],[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.typeKey("!", modifierFlags:[.command, .shift])
+						
+	}
 }
+

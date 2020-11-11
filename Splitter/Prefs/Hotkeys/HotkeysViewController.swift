@@ -13,7 +13,13 @@ import Files
 final class HotkeysViewController: NSViewController, PreferencePane {
 	let preferencePaneIdentifier = Preferences.PaneIdentifier.hotkeys
 	let preferencePaneTitle = "Hotkeys"
-	let toolbarItemIcon = #imageLiteral(resourceName: "Hotkeys")
+    var toolbarItemIcon: NSImage {
+        if #available(macOS 10.16, *) {
+            return NSImage(systemSymbolName: "text.and.command.macwindow", accessibilityDescription: "Hotkeys")!
+        } else {
+            return #imageLiteral(resourceName: "Hotkeys")
+        }
+    }
 	@IBOutlet weak var hotkeysTableView: NSTableView!
 	
 	@IBOutlet weak var globalHotkeysCheck: NSButton!

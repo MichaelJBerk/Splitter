@@ -12,10 +12,6 @@ import Preferences
 
 extension ViewController {
 	//MARK: - Actions for the Menu Bar
-	@IBAction func helpMenu(_ sender: Any?) {
-		let url = URL(string: "https://mberk.com/splitter")!
-		NSWorkspace.shared.open(url)
-	}
 	
 	@IBAction func hotkeysMenuItem(_ sender: Any?) {
 		if let app = NSApp.delegate as? AppDelegate {
@@ -23,8 +19,12 @@ extension ViewController {
 		}
 	}
 	
+	
 	//MARK - File Menu
 	
+	@IBAction func uploadToSplitsIOMenuItem(_ sender: Any?) {
+		uploadToSplitsIO()
+	}
 	//MARK: Run Menu
 	///Action for Menu Bar that starts/pauses the timer
 	@IBAction func startSplitMenuItem(_ sender: Any?) {
@@ -95,17 +95,33 @@ extension ViewController {
 		view.window?.close()
 	}
 	
-//	override func performKeyEquivalent(with event: NSEvent) -> Bool {
-//
-//
-//		let sup = super.performKeyEquivalent(with: event)
-//		if let appDelegate = AppDelegate.shared {
-//			for k in appDelegate.appKeybinds {
-//				if let k = k, k == event, k.title == .BringToFront {
-//					return true
-//				}
-//			}
-//		}
-//		return sup
-//	}
+	//MARK: Help Menu
+	///Opens the Splitter landing page in a browser
+	@IBAction func helpMenu(_ sender: Any?) {
+		let url = URL(string: "https://mberk.com/splitter")!
+		NSWorkspace.shared.open(url)
+	}
+	///Opens the FAQ Wiki page in a browser
+	@IBAction func faqMenuItemAction(_ sender: Any?) {
+		let url = URL(string: "https://github.com/MichaelJBerk/Splitter/wiki/FAQ")!
+		NSWorkspace.shared.open(url)
+	}
+	///Opens the invite to the Discord server
+	@IBAction func discordMenuItemAction(_ sender: Any?) {
+		let url = URL(string: "https://mberk.com/splitter/discord")!
+		NSWorkspace.shared.open(url)
+	}
+}
+
+extension ViewController: NSMenuItemValidation {
+	///Sets which menu items should be enabled
+	func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+		
+		if let id = menuItem.identifier, let enabled = enabledMenuItems[id] {
+			return enabled
+		}
+		return true
+	}
+	
+	
 }

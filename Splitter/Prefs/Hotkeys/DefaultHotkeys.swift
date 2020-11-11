@@ -106,7 +106,6 @@ extension AppDelegate {
 		for i in appKeybinds {
 			if i?.menuItemID != nil {
 				let mi = NSApp.mainMenu?.item(withIdentifier: i!.menuItemID!)
-				print(i?.keybind?.keyCodeStringForKeyEquivalent)
 				mi!.keyEquivalent = i?.keybind?.keyCodeStringForKeyEquivalent ?? ""
 				if let mods = i?.keybind?.modifierFlags {
 					mi!.keyEquivalentModifierMask = mods

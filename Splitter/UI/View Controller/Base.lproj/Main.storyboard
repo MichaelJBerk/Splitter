@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -23,9 +24,28 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="S9e-wh-LEc"/>
+                                        <menuItem title="Check for Updates..." hidden="YES" identifier="updatesMenuItem" id="G5b-2i-GWW">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="checkForUpdates:" target="1Jn-Zc-U5S" id="uDN-y9-AhB"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
                                         <menuItem title="Preferences…" keyEquivalent="," id="BOF-NM-1cW">
                                             <connections>
                                                 <action selector="preferencesMenuItemActionHandler:" target="Voe-Tx-rLC" id="NY4-ZG-AzY"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Customize Touch Bar..." identifier="customizeTouchBarItem" id="kgz-dG-flw">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="editTB:" target="Ady-hI-5gd" id="UJc-q1-dgu"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Set Hotkeys..." id="8Qq-Vd-StZ">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="hotkeysMenuItem:" target="Ady-hI-5gd" id="t5D-bx-bwz"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
@@ -69,6 +89,11 @@
                                                 <action selector="newDocument:" target="Ady-hI-5gd" id="4Si-XN-c54"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="New from Splits.io..." keyEquivalent="N" identifier="newFromSplitsIO" id="ZnU-8E-Lbt">
+                                            <connections>
+                                                <action selector="searchWindowMenuItem:" target="Voe-Tx-rLC" id="Hy7-xI-8z7"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="Open…" keyEquivalent="o" id="IAo-SY-fd9">
                                             <connections>
                                                 <action selector="openDocument:" target="Ady-hI-5gd" id="bVn-NM-KNZ"/>
@@ -106,6 +131,12 @@
                                         <menuItem title="Revert to Saved" hidden="YES" keyEquivalent="r" id="KaW-ft-85H">
                                             <connections>
                                                 <action selector="revertDocumentToSaved:" target="Ady-hI-5gd" id="iJ3-Pv-kwq"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Upload to Splits.io..." identifier="uploadToSplitsIO" id="MjE-Fm-8dh">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="uploadToSplitsIOMenuItem:" target="Ady-hI-5gd" id="j37-Bs-A5P"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -332,7 +363,7 @@
                             </menuItem>
                             <menuItem title="Run" allowsKeyEquivalentWhenHidden="YES" id="9qz-yz-8ec">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Run" autoenablesItems="NO" id="ddD-s5-Ef1">
+                                <menu key="submenu" title="Run" id="ddD-s5-Ef1">
                                     <items>
                                         <menuItem title="Start Timer" identifier="timerStartStop" id="3tG-fh-bQJ">
                                             <modifierMask key="keyEquivalentModifierMask"/>
@@ -424,6 +455,12 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="3xg-gC-wM5"/>
+                                        <menuItem title="Welcome Window" keyEquivalent="1" identifier="welcomeWindowMenuItem" id="p9n-4B-sR3">
+                                            <modifierMask key="keyEquivalentModifierMask" shift="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="welcomeWindowMenuItem:" target="Voe-Tx-rLC" id="cUm-gb-DFi"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem title="Close Current Window" identifier="CloseCurrentWindowMenuItem" id="aR5-WV-YxJ">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
@@ -440,6 +477,18 @@
                                         <menuItem title="Splitter Help" keyEquivalent="?" id="FKE-Sm-Kum">
                                             <connections>
                                                 <action selector="helpMenu:" target="Ady-hI-5gd" id="CmE-pH-FA3"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Discord Server" identifier="DiscordMenuItem" id="yrH-Cb-n3S">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="discordMenuItemAction:" target="Ady-hI-5gd" id="WDD-fO-EGw"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="FAQ" identifier="FAQMenuItem" id="gar-lD-1BC">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="faqMenuItemAction:" target="Ady-hI-5gd" id="qrI-TJ-sYv"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -482,10 +531,16 @@
             <objects>
                 <menu autoenablesItems="NO" id="tBl-Z3-cF6">
                     <items>
-                        <menuItem title="Clear Image" identifier="removeRunIcon" id="7Eg-o1-Mtk">
+                        <menuItem title="Change Image..." id="wnt-JP-1Ww">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
-                                <action selector="removeRunIconMenuItemWithSender:" target="2Tp-Fl-jBw" id="tMI-bl-0hQ"/>
+                                <action selector="chooseImageMenuItem:" target="2Tp-Fl-jBw" id="SKg-SE-nkg"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Remove Image" identifier="removeRunIcon" id="7Eg-o1-Mtk">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="removeImage:" target="2Tp-Fl-jBw" id="nEg-2N-XHz"/>
                             </connections>
                         </menuItem>
                     </items>
@@ -543,7 +598,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="283" height="219"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="30" headerView="aVs-1A-u0Q" viewBased="YES" id="Ww4-Jn-tNR" customClass="SplitterTableView" customModule="Splitter" customModuleProvider="target">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" tableStyle="fullWidth" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="30" headerView="aVs-1A-u0Q" viewBased="YES" id="Ww4-Jn-tNR" customClass="SplitterTableView" customModule="Splitter" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="283" height="194"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
@@ -566,20 +621,18 @@
                                                             <rect key="frame" x="1" y="1" width="32" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <button toolTip="Segment Icon. Click to change." id="VZF-y0-fze" customClass="IconButton" customModule="Splitter" customModuleProvider="target">
-                                                                    <rect key="frame" x="0.0" y="-12" width="30" height="30"/>
+                                                                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fWm-h9-MQx" customClass="CellImageWell" customModule="Splitter" customModuleProvider="target">
+                                                                    <rect key="frame" x="3" y="-9" width="23" height="24"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                                    <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="Game Controller" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="R44-Yj-mVf">
-                                                                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                        <font key="font" metaFont="system"/>
-                                                                    </buttonCell>
+                                                                    <imageCell key="cell" selectable="YES" editable="YES" alignment="left" imageScaling="proportionallyDown" image="livesplit" id="7YC-zB-gvo"/>
                                                                     <connections>
-                                                                        <action selector="rowPictureButtonPressed:" target="5gI-5U-AMq" id="ZyA-Zo-Kt8"/>
+                                                                        <outlet property="menu" destination="tBl-Z3-cF6" id="q3S-A7-gEd"/>
+                                                                        <outlet property="splitController" destination="5gI-5U-AMq" id="p3F-qM-ixb"/>
                                                                     </connections>
-                                                                </button>
+                                                                </imageView>
                                                             </subviews>
                                                             <connections>
-                                                                <outlet property="imageButton" destination="VZF-y0-fze" id="kUc-5l-X66"/>
+                                                                <outlet property="imageWell" destination="fWm-h9-MQx" id="kmr-eN-aNC"/>
                                                             </connections>
                                                         </tableCellView>
                                                     </prototypeCellViews>
@@ -603,7 +656,7 @@
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Zgl-iF-pqa">
                                                                     <rect key="frame" x="0.0" y="3" width="95" height="14"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" alignment="left" title="Split Title" id="3Pe-jP-c4b">
-                                                                        <font key="font" metaFont="controlContent" size="11"/>
+                                                                        <font key="font" metaFont="message" size="11"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                     </textFieldCell>
@@ -715,7 +768,7 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="EDP-CX-XUd">
-                                                                    <rect key="frame" x="1" y="0.0" width="4" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="4" height="17"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="17" id="j7i-2I-Mle"/>
                                                                     </constraints>
@@ -754,7 +807,7 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="kIh-q7-hw5">
-                                                                    <rect key="frame" x="1" y="0.0" width="4" height="17"/>
+                                                                    <rect key="frame" x="0.0" y="0.0" width="4" height="17"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="height" constant="17" id="qTR-88-1g0"/>
                                                                     </constraints>
@@ -785,23 +838,20 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="u5J-vU-46w" customClass="SplitterScroller" customModule="Splitter" customModuleProvider="target">
-                                    <rect key="frame" x="-100" y="-100" width="281" height="16"/>
+                                    <rect key="frame" x="0.0" y="203" width="283" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="tC9-GG-98i" customClass="SplitterScroller" customModule="Splitter" customModuleProvider="target">
                                     <rect key="frame" x="-100" y="-100" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <tableHeaderView key="headerView" id="aVs-1A-u0Q" customClass="SplitterTableHeader" customModule="Splitter" customModuleProvider="target">
+                                <tableHeaderView key="headerView" wantsLayer="YES" id="aVs-1A-u0Q" customClass="SplitterTableHeader" customModule="Splitter" customModuleProvider="target">
                                     <rect key="frame" x="0.0" y="0.0" width="283" height="25"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
-                                <connections>
-                                    <outlet property="menu" destination="tBl-Z3-cF6" id="pSR-cg-UL1"/>
-                                </connections>
                             </scrollView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mj4-Ky-5e7">
-                                <rect key="frame" x="8" y="104" width="97" height="16"/>
+                                <rect key="frame" x="8" y="104" width="97" height="18"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Current Time:" id="JfQ-8T-Ydb">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -809,10 +859,9 @@
                                 </textFieldCell>
                             </textField>
                             <button toolTip="Remove Split" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jC2-yS-poH">
-                                <rect key="frame" x="193" y="101" width="25" height="20"/>
+                                <rect key="frame" x="193" y="101" width="25" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="249-xc-MAe"/>
-                                    <constraint firstAttribute="height" constant="18" id="YFb-8s-e54"/>
                                 </constraints>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0Mt-iS-tkw">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -834,10 +883,10 @@
                                 </connections>
                             </button>
                             <button toolTip="Add Split" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OXM-M7-swh">
-                                <rect key="frame" x="220" y="101" width="25" height="20"/>
+                                <rect key="frame" x="220" y="101" width="25" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="3qQ-Zf-ylZ"/>
-                                    <constraint firstAttribute="height" constant="18" id="IQK-ZT-CnY"/>
+                                    <constraint firstAttribute="height" constant="20" id="IQK-ZT-CnY"/>
                                 </constraints>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5oS-Ne-nTD">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -867,11 +916,11 @@
                                 </connections>
                             </button>
                             <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sEF-Zm-06R">
-                                <rect key="frame" x="4" y="28" width="42" height="32"/>
+                                <rect key="frame" x="4" y="28" width="55" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="4d7-yu-9vX"/>
+                                    <constraint firstAttribute="width" constant="43" id="4d7-yu-9vX"/>
                                 </constraints>
-                                <buttonCell key="cell" type="push" title=" " bezelStyle="rounded" image="stop" imagePosition="leading" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Iag-Q5-zEr">
+                                <buttonCell key="cell" type="push" title=" " bezelStyle="rounded" image="stop" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Iag-Q5-zEr">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -880,14 +929,15 @@
                                     <action selector="stopButtonClick:" target="5gI-5U-AMq" id="dgx-LK-i44"/>
                                 </connections>
                             </button>
-                            <popUpButton verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="udb-sn-xNY">
-                                <rect key="frame" x="10" y="34" width="38" height="23"/>
+                            <popUpButton hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="udb-sn-xNY">
+                                <rect key="frame" x="10" y="34" width="43" height="23"/>
                                 <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" autoenablesItems="NO" selectedItem="E4A-EA-ALB" id="gAh-qk-bIO">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="menu"/>
                                     <menu key="menu" showsStateColumn="NO" autoenablesItems="NO" id="EQW-m1-UW4">
                                         <items>
-                                            <menuItem image="trash" hidden="YES" id="E4A-EA-ALB">
+                                            <menuItem hidden="YES" id="E4A-EA-ALB">
+                                                <imageReference key="image" image="trash" symbolScale="large" renderingMode="template"/>
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
                                             <menuItem title="Clear Current Time" identifier="ClearCurrentTimeMenuItem" id="cio-kK-rtU">
@@ -904,24 +954,10 @@
                                     <action selector="trashCanPopupClick:" target="5gI-5U-AMq" id="iRE-n2-4Vm"/>
                                 </connections>
                             </popUpButton>
-                            <button toolTip="Start Timer" horizontalHuggingPriority="249" verticalHuggingPriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="gCo-Oe-sI7">
-                                <rect key="frame" x="46" y="28" width="237" height="32"/>
-                                <buttonCell key="cell" type="push" title="Start" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Z21-jw-aXO">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                    <string key="keyEquivalent">r</string>
-                                    <modifierMask key="keyEquivalentModifierMask" command="YES"/>
-                                </buttonCell>
-                                <color key="contentTintColor" name="systemGreenColor" catalog="System" colorSpace="catalog"/>
-                                <accessibility description="Start Time" identifier="StartTimer"/>
-                                <connections>
-                                    <action selector="timerButtonClick:" target="5gI-5U-AMq" id="5Bg-tR-Jey"/>
-                                </connections>
-                            </button>
                             <textField toolTip="Game/Run Title" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="749" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TSJ-mg-scq" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
                                 <rect key="frame" x="64" y="377" width="172" height="19"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" focusRingType="none" placeholderString="Game" id="nfV-Gy-dQR">
-                                    <font key="font" metaFont="label" size="16"/>
+                                    <font key="font" metaFont="system" size="16"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
@@ -935,9 +971,9 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xLP-fd-tTq">
-                                <rect key="frame" x="248" y="101" width="24" height="20"/>
+                                <rect key="frame" x="248" y="101" width="25" height="22"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="24" id="BXL-vn-aDi"/>
+                                    <constraint firstAttribute="width" constant="25" id="BXL-vn-aDi"/>
                                 </constraints>
                                 <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSQuickLookTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="krQ-zt-0w0">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -986,6 +1022,18 @@
                                     <action selector="displayInfoPopover:" target="5gI-5U-AMq" id="LFd-oe-9Er"/>
                                 </connections>
                             </button>
+                            <button toolTip="Start Timer" horizontalHuggingPriority="249" verticalHuggingPriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="gCo-Oe-sI7">
+                                <rect key="frame" x="51" y="50" width="231" height="32"/>
+                                <buttonCell key="cell" type="push" title="Start" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Z21-jw-aXO">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <color key="contentTintColor" name="systemGreenColor" catalog="System" colorSpace="catalog"/>
+                                <accessibility description="Start Time" identifier="StartTimer"/>
+                                <connections>
+                                    <action selector="timerButtonClick:" target="5gI-5U-AMq" id="5Bg-tR-Jey"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="sEF-Zm-06R" firstAttribute="leading" secondItem="tIC-9A-PB1" secondAttribute="leading" id="1Ub-bb-zKK"/>
@@ -1002,7 +1050,7 @@
                             <constraint firstItem="d2l-Lb-Z8r" firstAttribute="top" secondItem="Mj4-Ky-5e7" secondAttribute="bottom" constant="4" id="G93-Vs-Iwg"/>
                             <constraint firstItem="GLv-Wp-JTM" firstAttribute="top" secondItem="5cv-K8-dE8" secondAttribute="bottom" constant="11" id="HG8-yy-5Bm"/>
                             <constraint firstItem="OXM-M7-swh" firstAttribute="leading" secondItem="jC2-yS-poH" secondAttribute="trailing" constant="2" id="JZT-mM-sHK"/>
-                            <constraint firstAttribute="trailing" secondItem="gCo-Oe-sI7" secondAttribute="trailing" constant="6" id="Ntt-gS-p3J"/>
+                            <constraint firstAttribute="trailing" secondItem="gCo-Oe-sI7" secondAttribute="trailing" constant="7" id="Ntt-gS-p3J"/>
                             <constraint firstItem="6rq-lR-6Um" firstAttribute="leading" secondItem="nLC-ev-0ZO" secondAttribute="leading" constant="11" id="Nug-Nh-wTK"/>
                             <constraint firstItem="laY-Uh-RhP" firstAttribute="top" secondItem="nLC-ev-0ZO" secondAttribute="top" constant="18" id="O83-xn-xq5"/>
                             <constraint firstItem="tIC-9A-PB1" firstAttribute="baseline" secondItem="5Ka-8A-G0d" secondAttribute="baseline" id="PnI-ZF-WqV"/>
@@ -1030,7 +1078,7 @@
                             <constraint firstItem="jC2-yS-poH" firstAttribute="top" secondItem="OXM-M7-swh" secondAttribute="top" id="tbd-3v-gJd"/>
                             <constraint firstItem="sEF-Zm-06R" firstAttribute="baseline" secondItem="gCo-Oe-sI7" secondAttribute="baseline" id="vJf-p9-RsS"/>
                             <constraint firstItem="GLv-Wp-JTM" firstAttribute="top" secondItem="6rq-lR-6Um" secondAttribute="bottom" constant="7" id="xD4-Ts-8Xh"/>
-                            <constraint firstItem="gCo-Oe-sI7" firstAttribute="leading" secondItem="sEF-Zm-06R" secondAttribute="trailing" constant="12" symbolic="YES" id="yHM-AR-xOg"/>
+                            <constraint firstItem="gCo-Oe-sI7" firstAttribute="leading" secondItem="sEF-Zm-06R" secondAttribute="trailing" constant="4" id="yHM-AR-xOg"/>
                             <constraint firstItem="laY-Uh-RhP" firstAttribute="leading" secondItem="TSJ-mg-scq" secondAttribute="trailing" constant="8" identifier="gameToInfoButton" id="zUY-HW-ehM"/>
                             <constraint firstItem="tIC-9A-PB1" firstAttribute="top" secondItem="sEF-Zm-06R" secondAttribute="bottom" constant="3" id="zvN-T7-8UR"/>
                         </constraints>
@@ -1368,7 +1416,7 @@ To remove, click and press backspace. </string>
                                             <rect key="frame" x="126" y="111" width="143" height="25"/>
                                             <popUpButtonCell key="cell" type="push" title="Previous Attempt" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" autoenablesItems="NO" selectedItem="PXQ-9Z-K1b" id="xtb-He-QHy">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
+                                                <font key="font" metaFont="menu"/>
                                                 <menu key="menu" autoenablesItems="NO" id="Yks-AJ-xS2">
                                                     <items>
                                                         <menuItem title="Previous Attempt" state="on" identifier="previousSplit" id="PXQ-9Z-K1b"/>
@@ -1412,7 +1460,7 @@ To remove, click and press backspace. </string>
                                             <rect key="frame" x="126" y="-3" width="149" height="25"/>
                                             <popUpButtonCell key="cell" type="push" title="Tenths (1.0)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="nMZ-sT-CSk" id="Tat-0W-Mzd">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="system"/>
+                                                <font key="font" metaFont="menu"/>
                                                 <menu key="menu" id="g2j-NM-WrP">
                                                     <items>
                                                         <menuItem title="Tenths (1.0)" state="on" identifier="tenths" id="nMZ-sT-CSk"/>
@@ -1447,7 +1495,7 @@ To remove, click and press backspace. </string>
             <objects>
                 <viewController storyboardIdentifier="ColumnOptions" showSeguePresentationStyle="single" id="ZWR-WZ-mWq" customClass="ColumnOptionsViewController" customModule="Splitter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" appearanceType="darkAqua" id="ewb-kD-HLV">
-                        <rect key="frame" x="0.0" y="0.0" width="141" height="220"/>
+                        <rect key="frame" x="0.0" y="0.0" width="216" height="220"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TnF-wj-aMg">
@@ -1459,12 +1507,12 @@ To remove, click and press backspace. </string>
                                 </textFieldCell>
                             </textField>
                             <gridView xPlacement="leading" yPlacement="bottom" rowAlignment="none" translatesAutoresizingMaskIntoConstraints="NO" id="ndx-ES-ayK">
-                                <rect key="frame" x="20" y="146" width="100" height="30"/>
+                                <rect key="frame" x="20" y="146" width="172" height="30"/>
                                 <rows>
                                     <gridRow id="dRs-Kg-2V1"/>
                                 </rows>
                                 <columns>
-                                    <gridColumn id="v2W-mq-u6q"/>
+                                    <gridColumn width="172" id="v2W-mq-u6q"/>
                                 </columns>
                                 <gridCells>
                                     <gridCell row="dRs-Kg-2V1" column="v2W-mq-u6q" id="u7G-Yf-833"/>
@@ -1484,7 +1532,7 @@ To remove, click and press backspace. </string>
                 </viewController>
                 <customObject id="Lr9-4a-hBn" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="433.5" y="1242"/>
+            <point key="canvasLocation" x="471" y="1242"/>
         </scene>
         <!--Appearance-->
         <scene sceneID="hAL-Mc-wCT">
@@ -1492,11 +1540,11 @@ To remove, click and press backspace. </string>
                 <customObject id="3dh-TH-cbg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <viewController title="Appearance" id="RvU-oT-sfo" customClass="AppearanceViewController" customModule="Splitter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="qfc-N7-4eh">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="222"/>
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="232"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box fixedFrame="YES" title="Window" translatesAutoresizingMaskIntoConstraints="NO" id="a8f-fc-z2B">
-                                <rect key="frame" x="17" y="65" width="416" height="137"/>
+                                <rect key="frame" x="17" y="75" width="416" height="137"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="fGq-yW-bDj">
                                     <rect key="frame" x="3" y="3" width="410" height="119"/>
@@ -1586,7 +1634,7 @@ To remove, click and press backspace. </string>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="366" id="eXq-6I-d3i"/>
                                 </constraints>
-                                <textFieldCell key="cell" selectable="YES" title="Note: These settings will be saved to this file, and will take effect whever the file is opened. " id="kq5-cD-qUw">
+                                <textFieldCell key="cell" selectable="YES" title="Note: These settings will be saved to this file, and will take effect whenever the file is opened. " id="kq5-cD-qUw">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1610,7 +1658,7 @@ To remove, click and press backspace. </string>
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1357" y="437"/>
+            <point key="canvasLocation" x="1357" y="442"/>
         </scene>
         <!--Colors-->
         <scene sceneID="aUl-Ld-D5K">
@@ -1632,6 +1680,7 @@ To remove, click and press backspace. </string>
         <image name="NSAddTemplate" width="11" height="11"/>
         <image name="NSQuickLookTemplate" width="19" height="12"/>
         <image name="NSRemoveTemplate" width="11" height="11"/>
+        <image name="livesplit" width="512" height="512"/>
         <image name="stop" width="12" height="12"/>
         <image name="trash" width="12" height="12"/>
     </resources>

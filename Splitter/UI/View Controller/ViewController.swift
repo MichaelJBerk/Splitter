@@ -99,51 +99,6 @@ class ViewController: NSViewController {
 	var diffsShorterColor: NSColor = .green
 	var diffsNeutralColor: NSColor = .blue
 	
-	func setColorForControls() {
-		recColorForControls(view: self.view)
-		splitsTableView.parentViewController = self
-		splitsTableView.setHeaderColor(textColor: textColor, bgColor: tableBGColor)
-		splitsTableView.setCornerColor(cornerColor: tableBGColor)
-		
-		splitsTableView.reloadData()
-	}
-	
-	func recColorForControls(view: NSView) {
-		for v in view.subviews {
-			if let c = v as? NSButton {
-				c.contentTintColor = textColor
-				c.image?.isTemplate = true
-				if c.isEnabled {
-					c.appearance = NSAppearance(named: .darkAqua)
-				}
-				if let i = c.image {
-					i.isTemplate = true
-					let newImage = i.image(with: textColor)
-					
-					c.image = newImage
-				}
-				
-				c.image?.backgroundColor = textColor
-				c.attributedTitle = NSAttributedString(string: c.title, attributes: [.foregroundColor: textColor])
-			}
-			
-			if let p = v as? NSPopUpButton {
-				p.image?.isTemplate = true
-				if let i = p.menu!.items[0].image {
-					i.isTemplate = true
-					let newImage = i.image(with: textColor)
-					p.menu!.items[0].image = newImage
-				}
-				
-				
-			}
-			if let l = v as? NSTextField {
-				l.textColor = textColor
-			}
-		}
-		
-	}
-	
 	
 //MARK: - Other UI Elements
 	@IBOutlet weak var runTitleField: MetadataField!
@@ -151,11 +106,13 @@ class ViewController: NSViewController {
 	@IBOutlet weak var TimerLabel: NSTextField!
 	@IBOutlet weak var currentTimeLabel: NSTextField!
 	@IBOutlet weak var attemptField: MetadataField!
-	
 	@IBOutlet weak var splitsTableView: SplitterTableView!
-	
-	
 	var cellIdentifier: NSUserInterfaceItemIdentifier?
+	
+	//MARK: - Touch Bar Controls
+	var touchBarTotalTimeLabel: NSTextField = NSTextField(labelWithString: "00:00:00.00")
+	var touchBarDelegate: RunTouchBarDelegate!
+	
 	
 //MARK: - Timer Properties
 	var timerStarted = false
@@ -182,44 +139,50 @@ class ViewController: NSViewController {
 			trashCanPopupButton.isHidden = shouldTrashCanBeHidden
 			let prevSplitItem = view.window?.menu?.item(withIdentifier: menuIdentifiers.runMenu.back)
 			if timerState == .stopped {
-				timerStopItem?.isEnabled = false
+				setMenuItemEnabled(item: timerStopItem, enabled: false)
 				timerStopItem?.title = "Stop Timer"
 				
 				startSplitItem?.title = "Start Timer"
-				startSplitItem?.isEnabled = true
-				prevSplitItem?.isEnabled = false
 				
-				pauseMenuItem?.isEnabled = false
+				setMenuItemEnabled(item: startSplitItem, enabled: true)
+				setMenuItemEnabled(item: prevSplitItem, enabled: false)
+				
+				setMenuItemEnabled(item: pauseMenuItem, enabled: false)
 				
 				addDeleteEnabled(true)
 				splitBackEnabled(false)
 				self.splitsTableView.reloadData(forRowIndexes: IndexSet(arrayLiteral: 0), columnIndexes: IndexSet(arrayLiteral: 0,1,2,3,4,5))
 			} else if timerState == .running {
 				timerStopItem?.title = "Stop Timer"
-				timerStopItem?.isEnabled = true
+				setMenuItemEnabled(item: timerStopItem, enabled: true)
 				
 				startSplitItem?.title = "Split"
-				startSplitItem?.isEnabled = true
-				prevSplitItem?.isEnabled = true
+				setMenuItemEnabled(item: startSplitItem, enabled: true)
+				setMenuItemEnabled(item: prevSplitItem, enabled: true)
 				
-				pauseMenuItem?.isEnabled = true
+				setMenuItemEnabled(item: pauseMenuItem, enabled: true)
 				pauseMenuItem?.title = "Pause Timer"
 				
 				addDeleteEnabled(false)
 				splitBackEnabled(true)
-			} else if timerState == .paused {
-				timerStopItem?.isEnabled = true
-				timerStopItem?.title = "Stop Timer"
-				prevSplitItem?.isEnabled = false
+				touchBarDelegate.startSplitTitle = nextButton.baseTitle
 				
-				pauseMenuItem?.isEnabled = true
+			} else if timerState == .paused {
+				setMenuItemEnabled(item: timerStopItem, enabled: true)
+				timerStopItem?.title = "Stop Timer"
+				setMenuItemEnabled(item: prevSplitItem, enabled: false)
+				setMenuItemEnabled(item: pauseMenuItem, enabled: true)
+				
 				pauseMenuItem?.title = "Resume Timer"
 				
-				startSplitItem?.isEnabled = false
+				
+				setMenuItemEnabled(item: startSplitItem, enabled: false)
 				
 				addDeleteEnabled(true)
 				splitBackEnabled(false)
 			}
+			touchBarDelegate.enableDisableButtons()
+			
 		}
 	}
 	
@@ -244,11 +207,14 @@ class ViewController: NSViewController {
 	var currentSplitNumber = 0 {
 		didSet {
 			let totalSplits = currentSplits.count - 1
+			var nextButtonTitle = "Split"
 			if currentSplitNumber == totalSplits && timerState != .stopped {
-				nextButton.baseTitle = "Finish"
-			} else {
-				nextButton.baseTitle = "Split"
+				nextButtonTitle = "Finish"
 			}
+			nextButton.baseTitle = nextButtonTitle
+			touchBarDelegate.startSplitTitle = nextButtonTitle
+//			touchBarSegmentNameLabel.stringValue = currentSplits[currentSplitNumber].splitName
+			touchBarDelegate.enableDisableButtons()
 		}
 	}
 	
@@ -365,6 +331,7 @@ class ViewController: NSViewController {
 	
 	
 	//MARK: - Settings
+	var enabledMenuItems:[NSUserInterfaceItemIdentifier: Bool] = [:]
 	
 	var windowFloat = false
 	var UIHidden = false
@@ -395,7 +362,13 @@ class ViewController: NSViewController {
 	//MARK: - Main Functions
 	override func viewWillAppear() {
 		super.viewWillAppear()
+		if let welcome = AppDelegate.shared?.welcomeWindow {
+			welcome.close()
+		}
 		tableBGColor = .splitterTableViewColor
+        if #available(macOS 11.0, *) {
+            splitsTableView.style = .fullWidth
+        }
 		#if DEBUG
 		let breakMI = NSMenuItem(title: "Break", action: #selector(breakFunc), keyEquivalent: "b")
 		breakMI.keyEquivalentModifierMask = .command
@@ -404,6 +377,8 @@ class ViewController: NSViewController {
 		#endif
 		
 		view.window?.delegate = self
+		
+		touchBarDelegate = RunTouchBarDelegate(splitFunc: startSplitTimer, pauseFunc: pauseResumeTimer, prevFunc: goToPrevSplit, stopFunc: stopTimer, sourceVC: self)
 		//This line of code looks redundant, but it's here in order to make the timerState's property observer fire
 		let ts = timerState
 		timerState = ts
@@ -427,7 +402,7 @@ class ViewController: NSViewController {
 			gameIconButton.image = gi
 		}
 		
-		timerStopItem?.isEnabled = false
+		setMenuItemEnabled(item: timerStopItem, enabled: false)
 	
 		if appearance != nil {
 			setSplitterAppearance(appearance: appearance!)
@@ -439,8 +414,6 @@ class ViewController: NSViewController {
 			addBlankSplit()
 		}
 		
-		
-		
 		setRightClickMenus()
 		
 		view.window?.makeFirstResponder(splitsTableView)
@@ -448,11 +421,18 @@ class ViewController: NSViewController {
 		attemptField.stringValue = "\(attempts)"
 		attemptField.formatter = OnlyIntegerValueFormatter()
 		
-		gameToViewEdgeConstraint = NSLayoutConstraint(item: runTitleField.superview, attribute: .trailing, relatedBy: .equal, toItem: runTitleField, attribute: .trailing, multiplier: 1, constant: 8)
+		gameToViewEdgeConstraint = NSLayoutConstraint(item: runTitleField.superview!, attribute: .trailing, relatedBy: .equal, toItem: runTitleField, attribute: .trailing, multiplier: 1, constant: 8)
 		gameToViewEdgeConstraint?.isActive = false
-		categoryToViewEdgeConstraint = NSLayoutConstraint(item: categoryField.superview, attribute: .trailing, relatedBy: .equal, toItem: categoryField, attribute: .trailing, multiplier: 1, constant: 8)
+		categoryToViewEdgeConstraint = NSLayoutConstraint(item: categoryField.superview!, attribute: .trailing, relatedBy: .equal, toItem: categoryField, attribute: .trailing, multiplier: 1, constant: 8)
 		categoryToViewEdgeConstraint?.isActive = false
+		
 	}
+	func setMenuItemEnabled(item: NSMenuItem?, enabled: Bool) {
+		if let id = item?.identifier {
+			enabledMenuItems[id] = enabled
+		}
+	}
+	
 	var gameToViewEdgeConstraint: NSLayoutConstraint?
 	var categoryToViewEdgeConstraint: NSLayoutConstraint?
 	
@@ -474,14 +454,11 @@ class ViewController: NSViewController {
 		textMenu?.addItem(.separator())
 		let optionsMenu = NSMenu(title: "Splitter...")
 		for i in standardMenu!.items {
-			
-		var icopy = NSMenuItem(title: i.title, action: i.action, keyEquivalent: i.keyEquivalent)
-		if i.title == "" {
-			icopy = NSMenuItem.separator()
-		}
-		optionsMenu.addItem(icopy)
-			
-			
+			var icopy = NSMenuItem(title: i.title, action: i.action, keyEquivalent: i.keyEquivalent)
+			if i.title == "" {
+				icopy = NSMenuItem.separator()
+			}
+			optionsMenu.addItem(icopy)
 		}
 		let subMenuItem = NSMenuItem(title: "Splitter...", action: nil, keyEquivalent: "")
 		
@@ -523,12 +500,23 @@ class ViewController: NSViewController {
 
 	override func viewDidLoad() {
 		
-		
 		super.viewDidLoad()
 		self.view.wantsLayer = true
 		splitsTableView.reloadData()
-		
+		stopButton.image = nil
+		let tsItem = trashCanPopupButton.menu?.items[0]
+		tsItem?.image = nil
+		infoPanelPopoverButton.image = nil
+		if #available(macOS 11.0, *) {
+			infoPanelPopoverButton.image = NSImage(systemSymbolName: "gearshape.fill", accessibilityDescription: nil)
+			stopButton.image = NSImage(systemSymbolName: "stop.circle.fill", accessibilityDescription: nil)
+			tsItem?.image = NSImage(systemSymbolName: "trash", accessibilityDescription: nil)
+		} else {
+			stopButton.title = "􀜫"
+			tsItem?.title = "􀈑"
+			infoPanelPopoverButton.title = "􀣌"
 			
+		}
 	}
 	
 	override func viewWillDisappear() {

@@ -19,13 +19,14 @@ extension ViewController: NSTableViewDataSource {
 
 class myRowView: NSTableRowView {
 	var selectedColor: NSColor = .splitterRowSelected
+    var isCurrentSegment: Bool = false
 	
 	override func draw(_ dirtyRect: NSRect) {
 		super.draw(dirtyRect)
 		
 		
 
-		if isSelected == true {
+		if isSelected == true || isCurrentSegment {
 			selectedColor.set()
 			dirtyRect.fill()
 		   }
@@ -39,6 +40,7 @@ extension ViewController: NSTableViewDelegate {
 		
 		let cRow = myRowView()
 		cRow.selectedColor = self.selectedColor
+        cRow.isCurrentSegment = (currentSplitNumber == row && timerState != .stopped)
 		
 		return cRow
 	}
@@ -63,21 +65,17 @@ extension ViewController: NSTableViewDelegate {
 				tableView.selectRowIndexes(IndexSet(arrayLiteral: currentSplitNumber), byExtendingSelection: false)
 			}
 			
-			if let imageCell = cell as? ImageButtonCellView {
-				imageCell.cellNumber = row
-				if let currentImage = currentSplits[row].splitIcon {
-					imageCell.imageButton.image = currentImage
-				} else {
-					let i = NSImage(named: "Game Controller")!
-					i.isTemplate = true
-					imageCell.imageButton.image = i.image(with: textColor)
-				}
-				return imageCell
-			}
-			
 			currentSplits[row].roundTo = self.roundTo
 			
 			switch tableColumn?.identifier {
+			case STVColumnID.imageColumn:
+				let cell = cell as! ImageButtonCellView
+				cell.cellNumber = row
+				if let currentImage = currentSplits[row].splitIcon {
+					cell.imageWell!.image = currentImage
+				} else {
+					cell.imageWell.image = nil
+				}
 			case STVColumnID.splitTitleColumn:
 				let lastSplit = currentSplits[row]
 				cell.textField?.stringValue = lastSplit.splitName

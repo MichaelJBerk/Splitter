@@ -149,6 +149,7 @@ extension ViewController {
 		
 		if let currentTime = currentSplit?.timeString {
 			TimerLabel.stringValue = currentSplit!.timeString
+			touchBarTotalTimeLabel.stringValue = currentSplit!.timeString
 		}
 		//Update only the current row to ensure good performance when scrolling the tableview
 		splitsTableView.reloadData(forRowIndexes: IndexSet(arrayLiteral: currentSplitNumber), columnIndexes: IndexSet(columnArray()))

@@ -34,10 +34,6 @@ extension ViewController {
 			view.window?.titleVisibility = .visible
 
 			view.window?.styleMask.remove(.fullSizeContentView)
-			
-			
-			
-//
 		}
 		let showHideTitleBarItem = NSApp.mainMenu?.item(withIdentifier: menuIdentifiers.appearanceMenu.hideTitleBar)
 		showHideTitleBarItem?.title = showHideTitleBarItemText

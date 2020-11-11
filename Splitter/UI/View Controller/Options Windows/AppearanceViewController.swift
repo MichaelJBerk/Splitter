@@ -39,7 +39,7 @@ class AppearanceViewController: NSViewController, advancedTabDelegate {
 
 	
 	var note = """
-Note: These settings will be saved to this file, and will take effect whever the file is opened.
+Note: These settings will be saved to this file, and will take effect whenever the file is opened.
 """
 	
 	///Sets the help buttons next to each option, as well as their popovers
@@ -70,7 +70,7 @@ You can still close the window either with ⌘W or from the "Window" menu.
 			hideTitleBarCheck.state = .init(bool: newValue)
 		}
 		get {
-			return hideTitleBarCheck.state.toBool() ?? false
+			return hideTitleBarCheck.state.toBool() 
 		}
 	}
 	var hideButtons: Bool {

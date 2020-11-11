@@ -8,12 +8,26 @@
 
 import Cocoa
 import Files
+import SplitsIOKit
 
 enum DocFileType: String {
 	//public static let
 	case splitFile = "Split File"
 	case liveSplit = "LiveSplit File"
 	case splitsioFile = "Splits.io File"
+	
+	static func fileExtension(fileExtension: String) -> DocFileType {
+		switch fileExtension {
+		case "split":
+			return .splitFile
+		case "lss":
+			return .liveSplit
+		case "json":
+			return .splitsioFile
+		default:
+			return .splitFile
+		}
+	}
 }
 
 
@@ -29,7 +43,7 @@ class SplitterDoc: NSDocument {
 	///
 	///This is only here because swift's default `print` command is overriden by `NSDocument`'s `print` command.
 	func print(_ i: Any?) {
-		Swift.print(i)
+		Swift.print(i as Any)
 	}
 	
 	///A`File` that represents the document
@@ -214,20 +228,9 @@ class SplitterDoc: NSDocument {
 	///Saves a file in the  Splits.io Exchange Format (`.json`)
 	func saveSplitsio(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, delegate: Any?, didSave didSaveSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
 		if let vc = viewController {
-			let timer = SplitsIOTimer(shortname: "Splitter", longname: "Splitter", website: "https://mberk.com/splitter", version: "v\(otherConstants.version) (\(otherConstants.build))")
-			let game = SplitsIOCategory(longname: vc.runTitle, shortname: nil, links: nil)
-			let cat = SplitsIOCategory(longname: vc.category, shortname: nil, links: nil)
-			var cs: [SplitsIOSegment] = []
-			for s in vc.currentSplits {
-				let best = s.bestSplit.TSToMil()
-				let dur = SplitsIOBestDuration(realtimeMS: best, gametimeMS: best)
-				let seg = SplitsIOSegment(name: s.splitName, endedAt: dur, bestDuration: dur, isSkipped: nil, histories: nil)
-				cs.append(seg)
-			}
-			let sIO = SplitsIOExchangeFormat(schemaVersion: "v1.0.1", links: nil, timer: timer, attempts: nil, game: game, category: cat, runners: nil, segments: cs)
-			if var sioString = try? sIO.jsonString() {
+			if var sioString = vc.makeSplitsIOJSON() {
 				fileWrapperURL = url.absoluteString
-				sioString = sioString.replacingOccurrences(of: "schemaVersion", with: "_schemaVersion")
+				
 				if let sioData = sioString.data(using: .utf8) {
 					wrapper = FileWrapper(regularFileWithContents: sioData)
 				}
@@ -236,6 +239,8 @@ class SplitterDoc: NSDocument {
 		}
 		super.save(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: contextInfo)
 	}
+	
+	
 	
 	///Determines which format to save to
 	func determineSave(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, delegate: Any?, didSave didSaveSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {

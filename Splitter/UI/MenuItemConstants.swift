@@ -16,19 +16,18 @@ enum menuIdentifiers {
 		static let removeRunIcon = NSUserInterfaceItemIdentifier("removeRunIcon")
 	}
 	
+	//MARK: - App Menu
 	enum appMenu {
 		static let updatesMenuItem = NSUserInterfaceItemIdentifier("updatesMenuItem")
+		static let customizeTouchBarItem = NSUserInterfaceItemIdentifier("customizeTouchBarItem")
 	}
 	
+	//MARK: - File Menu
 	enum fileMenu {
-		enum importFromMenu{
-			static let splitsIO = NSUserInterfaceItemIdentifier("importSplitsIO")
-		}
-		enum exportFromMenu {
-			static let splitsIO = NSUserInterfaceItemIdentifier("exportSplitsIO")
-		}
+		
+		static let newFromSplitsIO = NSUserInterfaceItemIdentifier("newFromSplitsIO")
+		static let uploadToSplitsIO = NSUserInterfaceItemIdentifier("uploadToSplitsIO")
 	}
-	
 	
 	//MARK: - Timer Menu
 	enum runMenu{
@@ -57,6 +56,7 @@ enum menuIdentifiers {
 		
 		static let windowFloat = NSUserInterfaceItemIdentifier("WindowFloat")
 		static let closeCurrentWindow = NSUserInterfaceItemIdentifier("CloseCurrentWindowMenuItem")
+		static let welcomeWindowItem = NSUserInterfaceItemIdentifier("welcomeWindowMenuItem")
 	}
 	
 }

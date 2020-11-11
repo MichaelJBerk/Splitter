@@ -8,6 +8,7 @@
 
 import Foundation
 import Cocoa
+import SplitsIOKit
 
 enum SettingsKeys {
 	public static let hideTitleBar = "hideTitleBar"
@@ -18,6 +19,8 @@ enum SettingsKeys {
 	public static let notFirstUse = "notFirstUse"
 	public static let showBestSplits = "showBestSplits"
 	public static let globalHotkeys = "enableGlobalHotkeys"
+	public static let showWelcomeWindow = "showWelcomeWindow"
+	public static let splitsIOURL = "splitsIOURL"
 }
 
 public struct Settings {
@@ -91,6 +94,39 @@ public struct Settings {
 		}
 		set {
 			UserDefaults.standard.set(newValue, forKey: SettingsKeys.globalHotkeys)
+		}
+	}
+	public static var showWelcomeWindow: Bool {
+		set {
+			UserDefaults.standard.set(newValue, forKey: SettingsKeys.showWelcomeWindow)
+		}
+		get {
+			guard let value = UserDefaults.standard.object(forKey: SettingsKeys.showWelcomeWindow) else {return true}
+			return UserDefaults.standard.bool(forKey: SettingsKeys.showWelcomeWindow)
+		}
+		
+	}
+	public static var splitsIOURL: URL {
+		get {
+			UserDefaults.standard.url(forKey: SettingsKeys.splitsIOURL) ?? URL(string: "https://splits.io")!
+		}
+		set {
+			UserDefaults.standard.set(newValue, forKey: SettingsKeys.splitsIOURL)
+			SplitsIOKit.shared.splitsIOURL = newValue
+			
+		}
+	}
+	public static var splitsIOUser: SplitsIORunner? {
+		set {
+			let encodedData = try? PropertyListEncoder().encode(newValue)
+			UserDefaults.standard.setValue(encodedData, forKey: "splitsIOUser")
+		}
+		get {
+			if let data = UserDefaults.standard.value(forKey: "splitsIOUser") as? Data {
+				let user = try? PropertyListDecoder().decode(SplitsIORunner.self, from: data)
+				return user
+			}
+			return nil
 		}
 	}
 }

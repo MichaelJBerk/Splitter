@@ -10,6 +10,8 @@ import Cocoa
 import Preferences
 import Keys
 import Files
+import SwiftUI
+import SplitsIOKit
 
 extension NSApplication {
 	static let appDelegate = NSApp.delegate as! AppDelegate
@@ -25,9 +27,11 @@ public static let build = Bundle.main.infoDictionary?["CFBundleVersion"] as! Str
 class AppDelegate: NSObject, NSApplicationDelegate {
 	@IBOutlet private var window: NSWindow!
 	
+	static var splitsIOAuth = SplitsIOAuth(client: SplitterKeys().splitsioclient, secret: SplitterKeys().splitsiosecret, redirects: "splitter://login")
+	public static var splitsIOKit = SplitsIOKit(auth: splitsIOAuth, url: Settings.splitsIOURL)
+	
 	public var hotkeyController: HotkeysViewController?
 	public static var shared: AppDelegate? = NSApplication.shared.delegate as? AppDelegate
-	
 	var appKeybinds: [SplitterKeybind?] = []
 	
 	///Displays a dialog box informing the user to give Splitter the requisite permissions for Global Hotkeys to work.
@@ -95,6 +99,25 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		})
 	}
 	
+	///Invoked immediately before opening an untitled file.
+	///
+	///This is used to make the welcome window appear on startup, or when there's no open file.
+	func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
+		if #available(macOS 10.15, *) {
+			if Settings.showWelcomeWindow {
+				DispatchQueue.main.async {
+					guard sender.keyWindow == nil else { return }
+					self.openWelcomeWindow()
+				}
+				return false
+			} else {
+				return true
+			}
+		} else {
+			return true
+		}
+	}
+	
 	func applicationDidFinishLaunching(_ notification: Notification) {
 		if !Settings.notFirstUse {
 			Settings.hideUIButtons = false
@@ -110,7 +133,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			if Settings.lastOpenedBuild != otherConstants.build {
 			}
 		}
-		
+		let welcomeWindowItem = NSApp.mainMenu?.item(withIdentifier: menuIdentifiers.windowMenu.welcomeWindowItem)
+		if #available(macOS 10.15, *) {
+			welcomeWindowItem?.isHidden = false
+		} else {
+			welcomeWindowItem?.isHidden = true
+		}
 		
 		
 		Settings.lastOpenedVersion = otherConstants.version
@@ -122,21 +150,83 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		  DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
 			self.reopenToApplyKeybindAlert()
 		  }
-		}
+
+		  return true // Return true if the SDK should await user confirmation, otherwise return false.
+		})
+		#endif
 		
-		
+//		openWelcomeWindow()
+	}
+	//Need to store this as a var on the class or the app will crash when closing the welcome window
+	var welcomeWindow: NSWindow!
+	var searchWindow: NSWindow!
 	
+	@available(macOS 10.15, *)
+	func openWelcomeWindow() {
+		let welcomeView = WelcomeView()
+		welcomeWindow = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 800, height: 460), styleMask: [.fullSizeContentView, .titled, .closable], backing: .buffered, defer: false)
+		welcomeWindow.titleVisibility = .hidden
+		welcomeWindow.titlebarAppearsTransparent = true
+		welcomeWindow.isMovableByWindowBackground = true
+		
+		welcomeWindow.standardWindowButton(.miniaturizeButton)?.isHidden = true
+		welcomeWindow.standardWindowButton(.zoomButton)?.isHidden = true
+		welcomeWindow.setFrameAutosaveName("Welcome")
+		welcomeWindow.contentView = NSHostingView(rootView: welcomeView)
+		welcomeWindow.center()
+		let wc = WelcomeWindowController(window: welcomeWindow)
+		wc.showWindow(nil)
+	}
+	@IBAction func welcomeWindowMenuItem(_ sender: Any) {
+		if #available(macOS 10.15, *) {
+			self.openWelcomeWindow()
+		}
+	}
+	@IBAction func searchWindowMenuItem( _ sender: Any) {
+		self.openSearchWindow()
+	}
+	
+	func openSearchWindow() {
+        
+        
+		let board = NSStoryboard(name: "DownloadWindow", bundle: nil).instantiateController(withIdentifier: "windowController") as? DownloadWindowController
+        if self.searchWindow == nil, let win = board?.window {
+            self.searchWindow = win
+            win.makeKeyAndOrderFront(nil)
+        } else {
+            self.searchWindow.makeKeyAndOrderFront(nil)
+        }
+	}
+	
+	func crashes(_ crashes: MSCrashes!, shouldProcessErrorReport errorReport: MSErrorReport!) -> Bool {
+		
+	  return true; // return true if the crash report should be processed, otherwise false.
 	}
 	func applicationWillTerminate(_ aNotification: Notification) {
 		// Insert code here to tear down your application
 	}
 
+	#if DEBUG
 	lazy var preferencesWindowController = PreferencesWindowController(
 		preferencePanes: [
 			DefaultPreferenceViewController(),
-			HotkeysViewController()
-		]
+			HotkeysViewController(),
+			AccountViewController(),
+			DebugPrefsViewController()
+			]
+		
 	)
+	#else
+	lazy var preferencesWindowController = PreferencesWindowController(
+		preferencePanes: [
+			DefaultPreferenceViewController(),
+			HotkeysViewController(),
+			AccountViewController()
+			]
+		
+	)
+	#endif
+	
 	
 	var viewController: ViewController? {
 		get {
@@ -159,8 +249,36 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			return viewC
 		}
 	}
+	func application(_ application: NSApplication, open urls: [URL]) {
+		if let authURL = urls.first(where: { url in
+			let comps = URLComponents(string: url.absoluteString)
+			return comps?.host == "login"
+		}) {
+			do {
+				try SplitsIOKit.shared.handleRedirectURL(url: authURL)
+			} catch {
+				print("Redirect Error: ", error)
+			}
+		}
+		
+	}
 
 	@IBAction func preferencesMenuItemActionHandler(_ sender: NSMenuItem) {
+		
 		preferencesWindowController.show()
 	}
+}
+	
+
+extension AppDelegate: NSMenuItemValidation {
+	func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
+		if let id = menuItem.identifier, id == menuIdentifiers.windowMenu.welcomeWindowItem {
+			if self.welcomeWindow != nil {return !self.welcomeWindow.isVisible}
+		}
+		return true
+	}
+}
+
+extension SplitsIOKit {
+	public static var shared = AppDelegate.splitsIOKit
 }
