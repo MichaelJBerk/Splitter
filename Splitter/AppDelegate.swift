@@ -31,7 +31,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 	@IBOutlet private var window: NSWindow!
 	
 	static var splitsIOAuth = SplitsIOAuth(client: SplitterKeys().splitsioclient, secret: SplitterKeys().splitsiosecret, redirects: "splitter://login")
-	public static var splitsIOKit = SplitsIOKit(auth: AppDelegate.splitsIOAuth, url: Settings.splitsIOURL)
+	public static var splitsIOKit = SplitsIOKit(auth: splitsIOAuth, url: Settings.splitsIOURL)
 	
 	public var hotkeyController: HotkeysViewController?
 	public static var shared: AppDelegate? = NSApplication.shared.delegate as? AppDelegate
@@ -229,11 +229,15 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 	}
 	
 	func openSearchWindow() {
+        
+        
 		let board = NSStoryboard(name: "DownloadWindow", bundle: nil).instantiateController(withIdentifier: "windowController") as? DownloadWindowController
-		if let win = board?.window {
-			self.searchWindow = win
-			win.makeKeyAndOrderFront(nil)
-		}
+        if self.searchWindow == nil, let win = board?.window {
+            self.searchWindow = win
+            win.makeKeyAndOrderFront(nil)
+        } else {
+            self.searchWindow.makeKeyAndOrderFront(nil)
+        }
 	}
 	
 	func crashes(_ crashes: MSCrashes!, shouldProcessErrorReport errorReport: MSErrorReport!) -> Bool {

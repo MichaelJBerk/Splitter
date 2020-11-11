@@ -13,7 +13,14 @@ import Preferences
 class AccountViewController: NSViewController, PreferencePane {
 	var preferencePaneIdentifier = Preferences.PaneIdentifier.splitsIO
 	var preferencePaneTitle: String = "Splits.io"
-	let toolbarItemIcon: NSImage = #imageLiteral(resourceName: "splitsio")
+    var toolbarItemIcon: NSImage {
+        let img = NSImage(named: "splitsio")!
+        if #available(macOS 11.0, *) {
+            img.isTemplate = true
+        }
+        return img
+        
+    }
 	
 	var container: NSView!
 	
@@ -58,6 +65,7 @@ class AccountViewController: NSViewController, PreferencePane {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+        account = Settings.splitsIOUser
 	}
 	
 	var profileView: AccountProfileView!

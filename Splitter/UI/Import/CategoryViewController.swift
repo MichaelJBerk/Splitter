@@ -112,13 +112,14 @@ class CategoryViewController: NSViewController {
 				NSDocumentController.shared.addDocument(d)
 				d.makeWindowControllers()
 				if let vc =  d.windowControllers.first?.window?.contentViewController as? ViewController {
-					self.dismiss(self)
+					self.dismiss(loadingView)
 					vc.view.window?.makeKeyAndOrderFront(nil)
-					self.view.window?.windowController?.close()
-					AppDelegate.shared?.searchWindow.close()
 				}
 			} else {
-				self.dismiss(self)
+                let alert = NSAlert()
+                alert.messageText = "Splitter was unable to download the file"
+                alert.runModal()
+                self.dismiss(loadingView)
 			}
 		})
 	}

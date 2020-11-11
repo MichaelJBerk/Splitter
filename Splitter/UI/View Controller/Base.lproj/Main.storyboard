@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
+        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -478,11 +479,17 @@
                                                 <action selector="helpMenu:" target="Ady-hI-5gd" id="CmE-pH-FA3"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="FAQ" id="gar-lD-1BC">
+                                        <menuItem title="Discord Server" identifier="DiscordMenuItem" id="yrH-Cb-n3S">
                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="discordMenuItemAction:" target="Ady-hI-5gd" id="WDD-fO-EGw"/>
+                                            </connections>
                                         </menuItem>
-                                        <menuItem title="Discord Server" id="yrH-Cb-n3S">
+                                        <menuItem title="FAQ" identifier="FAQMenuItem" id="gar-lD-1BC">
                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="faqMenuItemAction:" target="Ady-hI-5gd" id="qrI-TJ-sYv"/>
+                                            </connections>
                                         </menuItem>
                                     </items>
                                 </menu>
@@ -615,7 +622,7 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fWm-h9-MQx" customClass="CellImageWell" customModule="Splitter" customModuleProvider="target">
-                                                                    <rect key="frame" x="3" y="-9" width="24" height="24"/>
+                                                                    <rect key="frame" x="3" y="-9" width="23" height="24"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                                     <imageCell key="cell" selectable="YES" editable="YES" alignment="left" imageScaling="proportionallyDown" image="livesplit" id="7YC-zB-gvo"/>
                                                                     <connections>
@@ -909,11 +916,11 @@
                                 </connections>
                             </button>
                             <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="sEF-Zm-06R">
-                                <rect key="frame" x="4" y="28" width="42" height="32"/>
+                                <rect key="frame" x="4" y="28" width="55" height="32"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="30" id="4d7-yu-9vX"/>
+                                    <constraint firstAttribute="width" constant="43" id="4d7-yu-9vX"/>
                                 </constraints>
-                                <buttonCell key="cell" type="push" title=" " bezelStyle="rounded" image="stop" imagePosition="leading" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Iag-Q5-zEr">
+                                <buttonCell key="cell" type="push" title=" " bezelStyle="rounded" image="stop" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Iag-Q5-zEr">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
                                 </buttonCell>
@@ -922,14 +929,15 @@
                                     <action selector="stopButtonClick:" target="5gI-5U-AMq" id="dgx-LK-i44"/>
                                 </connections>
                             </button>
-                            <popUpButton verticalHuggingPriority="750" imageHugsTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="udb-sn-xNY">
-                                <rect key="frame" x="10" y="34" width="38" height="23"/>
+                            <popUpButton hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="udb-sn-xNY">
+                                <rect key="frame" x="10" y="34" width="43" height="23"/>
                                 <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" autoenablesItems="NO" selectedItem="E4A-EA-ALB" id="gAh-qk-bIO">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="menu"/>
                                     <menu key="menu" showsStateColumn="NO" autoenablesItems="NO" id="EQW-m1-UW4">
                                         <items>
-                                            <menuItem image="trash" catalog="system" hidden="YES" id="E4A-EA-ALB">
+                                            <menuItem hidden="YES" id="E4A-EA-ALB">
+                                                <imageReference key="image" image="trash" symbolScale="large" renderingMode="template"/>
                                                 <modifierMask key="keyEquivalentModifierMask"/>
                                             </menuItem>
                                             <menuItem title="Clear Current Time" identifier="ClearCurrentTimeMenuItem" id="cio-kK-rtU">
@@ -946,18 +954,6 @@
                                     <action selector="trashCanPopupClick:" target="5gI-5U-AMq" id="iRE-n2-4Vm"/>
                                 </connections>
                             </popUpButton>
-                            <button toolTip="Start Timer" horizontalHuggingPriority="249" verticalHuggingPriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="gCo-Oe-sI7">
-                                <rect key="frame" x="46" y="28" width="237" height="32"/>
-                                <buttonCell key="cell" type="push" title="Start" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Z21-jw-aXO">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
-                                </buttonCell>
-                                <color key="contentTintColor" name="systemGreenColor" catalog="System" colorSpace="catalog"/>
-                                <accessibility description="Start Time" identifier="StartTimer"/>
-                                <connections>
-                                    <action selector="timerButtonClick:" target="5gI-5U-AMq" id="5Bg-tR-Jey"/>
-                                </connections>
-                            </button>
                             <textField toolTip="Game/Run Title" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="749" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="TSJ-mg-scq" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
                                 <rect key="frame" x="64" y="377" width="172" height="19"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" focusRingType="none" placeholderString="Game" id="nfV-Gy-dQR">
@@ -1026,6 +1022,18 @@
                                     <action selector="displayInfoPopover:" target="5gI-5U-AMq" id="LFd-oe-9Er"/>
                                 </connections>
                             </button>
+                            <button toolTip="Start Timer" horizontalHuggingPriority="249" verticalHuggingPriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="gCo-Oe-sI7">
+                                <rect key="frame" x="51" y="50" width="231" height="32"/>
+                                <buttonCell key="cell" type="push" title="Start" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Z21-jw-aXO">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <color key="contentTintColor" name="systemGreenColor" catalog="System" colorSpace="catalog"/>
+                                <accessibility description="Start Time" identifier="StartTimer"/>
+                                <connections>
+                                    <action selector="timerButtonClick:" target="5gI-5U-AMq" id="5Bg-tR-Jey"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstItem="sEF-Zm-06R" firstAttribute="leading" secondItem="tIC-9A-PB1" secondAttribute="leading" id="1Ub-bb-zKK"/>
@@ -1042,7 +1050,7 @@
                             <constraint firstItem="d2l-Lb-Z8r" firstAttribute="top" secondItem="Mj4-Ky-5e7" secondAttribute="bottom" constant="4" id="G93-Vs-Iwg"/>
                             <constraint firstItem="GLv-Wp-JTM" firstAttribute="top" secondItem="5cv-K8-dE8" secondAttribute="bottom" constant="11" id="HG8-yy-5Bm"/>
                             <constraint firstItem="OXM-M7-swh" firstAttribute="leading" secondItem="jC2-yS-poH" secondAttribute="trailing" constant="2" id="JZT-mM-sHK"/>
-                            <constraint firstAttribute="trailing" secondItem="gCo-Oe-sI7" secondAttribute="trailing" constant="6" id="Ntt-gS-p3J"/>
+                            <constraint firstAttribute="trailing" secondItem="gCo-Oe-sI7" secondAttribute="trailing" constant="7" id="Ntt-gS-p3J"/>
                             <constraint firstItem="6rq-lR-6Um" firstAttribute="leading" secondItem="nLC-ev-0ZO" secondAttribute="leading" constant="11" id="Nug-Nh-wTK"/>
                             <constraint firstItem="laY-Uh-RhP" firstAttribute="top" secondItem="nLC-ev-0ZO" secondAttribute="top" constant="18" id="O83-xn-xq5"/>
                             <constraint firstItem="tIC-9A-PB1" firstAttribute="baseline" secondItem="5Ka-8A-G0d" secondAttribute="baseline" id="PnI-ZF-WqV"/>
@@ -1070,7 +1078,7 @@
                             <constraint firstItem="jC2-yS-poH" firstAttribute="top" secondItem="OXM-M7-swh" secondAttribute="top" id="tbd-3v-gJd"/>
                             <constraint firstItem="sEF-Zm-06R" firstAttribute="baseline" secondItem="gCo-Oe-sI7" secondAttribute="baseline" id="vJf-p9-RsS"/>
                             <constraint firstItem="GLv-Wp-JTM" firstAttribute="top" secondItem="6rq-lR-6Um" secondAttribute="bottom" constant="7" id="xD4-Ts-8Xh"/>
-                            <constraint firstItem="gCo-Oe-sI7" firstAttribute="leading" secondItem="sEF-Zm-06R" secondAttribute="trailing" constant="12" symbolic="YES" id="yHM-AR-xOg"/>
+                            <constraint firstItem="gCo-Oe-sI7" firstAttribute="leading" secondItem="sEF-Zm-06R" secondAttribute="trailing" constant="4" id="yHM-AR-xOg"/>
                             <constraint firstItem="laY-Uh-RhP" firstAttribute="leading" secondItem="TSJ-mg-scq" secondAttribute="trailing" constant="8" identifier="gameToInfoButton" id="zUY-HW-ehM"/>
                             <constraint firstItem="tIC-9A-PB1" firstAttribute="top" secondItem="sEF-Zm-06R" secondAttribute="bottom" constant="3" id="zvN-T7-8UR"/>
                         </constraints>
@@ -1532,11 +1540,11 @@ To remove, click and press backspace. </string>
                 <customObject id="3dh-TH-cbg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <viewController title="Appearance" id="RvU-oT-sfo" customClass="AppearanceViewController" customModule="Splitter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="qfc-N7-4eh">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="222"/>
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="232"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box fixedFrame="YES" title="Window" translatesAutoresizingMaskIntoConstraints="NO" id="a8f-fc-z2B">
-                                <rect key="frame" x="17" y="65" width="416" height="137"/>
+                                <rect key="frame" x="17" y="75" width="416" height="137"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="fGq-yW-bDj">
                                     <rect key="frame" x="3" y="3" width="410" height="119"/>
@@ -1650,7 +1658,7 @@ To remove, click and press backspace. </string>
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1357" y="437"/>
+            <point key="canvasLocation" x="1357" y="442"/>
         </scene>
         <!--Colors-->
         <scene sceneID="aUl-Ld-D5K">
@@ -1674,6 +1682,6 @@ To remove, click and press backspace. </string>
         <image name="NSRemoveTemplate" width="11" height="11"/>
         <image name="livesplit" width="512" height="512"/>
         <image name="stop" width="12" height="12"/>
-        <image name="trash" catalog="system" width="15" height="17"/>
+        <image name="trash" width="12" height="12"/>
     </resources>
 </document>

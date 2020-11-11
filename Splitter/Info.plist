@@ -13,6 +13,8 @@
 			</array>
 			<key>CFBundleTypeIconFile</key>
 			<string>SplitterDocIcon</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Split File</string>
 			<key>CFBundleTypeRole</key>
@@ -30,7 +32,9 @@
 				<string>lss</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>livesplit</string>
+			<string>SplitterDocLSS</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>LiveSplit File</string>
 			<key>CFBundleTypeRole</key>
@@ -48,7 +52,9 @@
 				<string>json</string>
 			</array>
 			<key>CFBundleTypeIconFile</key>
-			<string>Splitter Doc SplitsIO</string>
+			<string>SplitterDocSplitsio</string>
+			<key>CFBundleTypeIconSystemGenerated</key>
+			<integer>1</integer>
 			<key>CFBundleTypeName</key>
 			<string>Splits.io File</string>
 			<key>CFBundleTypeRole</key>
@@ -124,6 +130,15 @@
 			<string>Split File</string>
 			<key>UTTypeIconFile</key>
 			<string>SplitterDocIcon</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>docBG</string>
+				<key>UTTypeIconBadgeName</key>
+				<string>splitDocIcon</string>
+				<key>UTTypeIconText</key>
+				<string>Splitter</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>mibe.split</string>
 			<key>UTTypeTagSpecification</key>
@@ -142,7 +157,16 @@
 			<key>UTTypeDescription</key>
 			<string>LiveSplit File</string>
 			<key>UTTypeIconFile</key>
-			<string>livesplit</string>
+			<string>SplitterDocLSS</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>docBG</string>
+				<key>UTTypeIconBadgeName</key>
+				<string>livesplit</string>
+				<key>UTTypeIconText</key>
+				<string>Livesplit</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>mibe.liveSplit</string>
 			<key>UTTypeTagSpecification</key>
@@ -161,9 +185,18 @@
 			<key>UTTypeDescription</key>
 			<string>Splits.io File</string>
 			<key>UTTypeIconFile</key>
-			<string>Splitter Doc SplitsIO</string>
+			<string>SplitterDocSplitsio</string>
+			<key>UTTypeIcons</key>
+			<dict>
+				<key>UTTypeIconBackgroundName</key>
+				<string>docBG</string>
+				<key>UTTypeIconBadgeName</key>
+				<string>splitsioDoc</string>
+				<key>UTTypeIconText</key>
+				<string>Splitsio</string>
+			</dict>
 			<key>UTTypeIdentifier</key>
-			<string>mibe.splitsIO</string>
+			<string>public.json</string>
 			<key>UTTypeTagSpecification</key>
 			<dict>
 				<key>public.filename-extension</key>

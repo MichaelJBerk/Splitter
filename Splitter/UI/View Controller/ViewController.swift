@@ -347,9 +347,6 @@ class ViewController: NSViewController {
 		let m = MSCrashes()
 //		print(currentSplit?.mil)
 		MSCrashes.generateTestCrash()
-		
-		
-		
 	}
 	
 	var breakID = NSUserInterfaceItemIdentifier("break")
@@ -509,8 +506,20 @@ class ViewController: NSViewController {
 		super.viewDidLoad()
 		self.view.wantsLayer = true
 		splitsTableView.reloadData()
-		
+		stopButton.image = nil
+		let tsItem = trashCanPopupButton.menu?.items[0]
+		tsItem?.image = nil
+		infoPanelPopoverButton.image = nil
+		if #available(macOS 11.0, *) {
+			infoPanelPopoverButton.image = NSImage(systemSymbolName: "gearshape.fill", accessibilityDescription: nil)
+			stopButton.image = NSImage(systemSymbolName: "stop.circle.fill", accessibilityDescription: nil)
+			tsItem?.image = NSImage(systemSymbolName: "trash", accessibilityDescription: nil)
+		} else {
+			stopButton.title = "􀜫"
+			tsItem?.title = "􀈑"
+			infoPanelPopoverButton.title = "􀣌"
 			
+		}
 	}
 	
 	override func viewWillDisappear() {

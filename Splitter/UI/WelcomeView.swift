@@ -13,6 +13,13 @@ import Files
 @available(macOS 10.15, *)
 /// View that prompts the user to open a new file, open an existing file, or import a file from Splits.io
 struct WelcomeView: View {
+	var listPadding: CGFloat {
+		if #available(macOS 11.0, *) {
+			return 0
+		} else {
+			return 10
+		}
+	}
 	/// URL for the currently selected file in the recents list
 	@State var selectedURL: URL? = nil
 	/// Array of the user's most recently opened documents
@@ -23,6 +30,7 @@ struct WelcomeView: View {
 				.frame(maxWidth: .infinity, maxHeight: .infinity)
 			RecentsView(fileURLs: fileURLs, selectedURL: $selectedURL)
 				.frame(width: 309)
+				.padding([.top, .bottom], listPadding)
 				
 		}
 		.frame(width: 800, height: 460)
@@ -43,6 +51,7 @@ struct RecentsView: View {
 		}
 		.listRowBackground(Color.red)
 		.listStyle(SidebarListStyle())
+		
 	}
 }
 @available(macOS 10.15, *)
@@ -65,11 +74,11 @@ struct RecentsRow: View {
 		let format = DocFileType.fileExtension(fileExtension: url.pathExtension)
 		switch format {
 		case .liveSplit:
-			return NSImage(contentsOf: Bundle.main.url(forResource: "livesplit", withExtension: "icns")!)!
+			return NSImage(contentsOf: Bundle.main.url(forResource: "SplitterDocLSS", withExtension: "icns")!)!
 		case .splitFile:
-			return NSImage(contentsOf: Bundle.main.url(forResource: "SplitterDocIcon", withExtension: "icns")!)!
-		case .splitsioFile:
-			return NSImage(contentsOf: Bundle.main.url(forResource: "Splitter Doc SplitsIO", withExtension: "icns")!)!
+			return NSImage(named: "splitDocIcon")!
+        case .splitsioFile:
+			return NSImage(contentsOf: Bundle.main.url(forResource: "SplitterDocSplitsio", withExtension: "icns")!)!
 		}
 	}
 	///The currently selected URL
@@ -244,14 +253,15 @@ struct SplitterInfoView: View {
 		return VStack {
 			
 			Spacer()
-			Image(nsImage: NSApplication.shared.applicationIconImage)
-				.resizable()
+            Image(nsImage: NSApplication.shared.applicationIconImage)
+//                .fixedSize()
 				.aspectRatio(contentMode: .fit)
 				
 			Text("Welcome to Splitter").font(.largeTitle)
 				
 			Text("The Speedrunning timer for macOS").font(.subheadline)
-			VStack(alignment: .leading, spacing: 10) {
+            Spacer()
+            VStack(alignment: .leading, spacing: 20) {
 				Spacer()
 					.frame(height: 15)
 				CreateNewFileButton()

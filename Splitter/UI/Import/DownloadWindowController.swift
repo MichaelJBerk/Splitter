@@ -8,7 +8,8 @@
 
 import Cocoa
 import SplitsIOKit
-class DownloadWindowController: NSWindowController {
+class DownloadWindowController: NSWindowController, NSWindowDelegate {
+    static var windowOpened: Bool = false
 	@IBOutlet weak var searchField: NSSearchField!
 	@IBOutlet weak var accountButton: AccountButtonView!
 	var account: SplitsIORunner? = Settings.splitsIOUser {
@@ -22,6 +23,7 @@ class DownloadWindowController: NSWindowController {
 	
 	override func windowDidLoad() {
 		super.windowDidLoad()
+        window?.delegate = self
 		if let vc = window?.contentViewController as? DownloadViewController {
 			vc.sField = searchField
 		}
@@ -34,7 +36,16 @@ class DownloadWindowController: NSWindowController {
 			Settings.splitsIOUser = nil
 			self.account = nil
 		})
+        
 	}
+    func windowWillClose(_ notification: Notification) {
+        Self.windowOpened = false
+    }
+    override func windowWillLoad() {
+        super.windowWillLoad()
+        Self.windowOpened = true
+    }
+    
 	
 	func getUser() {
 		try? SplitsIOKit.shared.getCurrentUser(completion: { runner in
@@ -42,6 +53,7 @@ class DownloadWindowController: NSWindowController {
 			
 		})
 	}
+    
 
 	
 }

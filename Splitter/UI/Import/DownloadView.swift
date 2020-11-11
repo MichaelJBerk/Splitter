@@ -56,6 +56,7 @@ class DownloadViewController: NSViewController, CategoryPickerDelegate  {
 		tableView?.dataSource = self
 		darkenView = DarkSpinnerView(sourceView: self.view, sourceFrame: NSRect(x: 0, y: 0, width: self.view.bounds.width, height: self.view.bounds.height + 50))
 		showGamesOfCurrentRunner()
+       
 	}
 	
 	func showSpinner() {
@@ -69,12 +70,18 @@ class DownloadViewController: NSViewController, CategoryPickerDelegate  {
 		tableView.isEnabled = true
 	}
 	
-	var showingCurrenRunnerGames = true
+	var showingCurrentRunnerGames = true
 	
 	func showGamesOfCurrentRunner() {
 		if let account = Settings.splitsIOUser {
 			showSpinner()
 			account.getGames(splitsIOKit: splitsIO, completion: showGames(games:))
+            
+            tableView.headerView = NSTableHeaderView()
+            tableView.tableColumns[0].headerCell.title = "My Runs"
+            if #available(macOS 11.0, *) {
+                tableView.style = .inset
+            }
 		}
 		
 	}
@@ -91,11 +98,12 @@ class DownloadViewController: NSViewController, CategoryPickerDelegate  {
 	
 	@IBAction func searchAction(_ sender: NSSearchField) {
 		if sender.stringValue.count > 0 {
-			showingCurrenRunnerGames = true
+			showingCurrentRunnerGames = true
 			showSpinner()
 			splitsIO.searchSplitsIO(for: sender.stringValue, completion: showGames(games:))
+            tableView.headerView = nil
 		} else {
-			showingCurrenRunnerGames = false
+			showingCurrentRunnerGames = false
 			showGamesOfCurrentRunner()
 		}
 	}
