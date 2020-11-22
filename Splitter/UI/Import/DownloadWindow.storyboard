@@ -11,7 +11,7 @@
             <objects>
                 <windowController storyboardIdentifier="windowController" showSeguePresentationStyle="single" id="Es1-GK-Eqf" customClass="DownloadWindowController" customModule="Splitter" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Download from Splits.io" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" restorable="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="utilityWindow" frameAutosaveName="" tabbingMode="disallowed" titleVisibility="hidden" id="XWD-gz-XN6">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" texturedBackground="YES"/>
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" fullScreenNone="YES" fullScreenDisallowsTiling="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="249" width="805" height="412"/>
@@ -21,7 +21,7 @@
                                 <toolbarItem implicitItemIdentifier="6D255F12-91C6-4CA6-9C99-A85A7D94F8B9" label="Custom View" paletteLabel="Custom View" tag="-1" image="alamofire" autovalidates="NO" id="6lm-SS-hXq">
                                     <nil key="toolTip"/>
                                     <size key="minSize" width="100" height="22"/>
-                                    <size key="maxSize" width="180" height="22"/>
+                                    <size key="maxSize" width="180" height="96"/>
                                     <customView key="view" translatesAutoresizingMaskIntoConstraints="NO" id="bZ2-EX-Ufj" customClass="AccountButtonView" customModule="Splitter" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="14" width="163" height="96"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>

@@ -18,15 +18,27 @@ class CategoryViewController: NSViewController {
 	var delegate: CategoryPickerDelegate!
 	var categories: [SplitsIOCat] = []
 	var splitsIO = SplitsIOKit.shared
+	var observer: NSKeyValueObservation?
+	func fixAppearance(_ appearance: NSAppearance) {
+		for view1 in view.subviews {
+			view1.appearance = appearance
+		}
+	}
 
 	override func viewDidLoad() {
-		   super.viewDidLoad()
-		   popitem = categoryPopUpButton.selectedItem
-		   showSpinner()
-		   loadCategories { cats in
+		super.viewDidLoad()
+		observer = NSApp.observe(\.effectiveAppearance, options: [.new, .old, .initial, .prior], changeHandler: {app, change in
+			if let c = change.newValue {
+				self.fixAppearance(c)
+			}
+		})
+		popitem = categoryPopUpButton.selectedItem
+		darkSpinnerView = DarkSpinnerView(sourceView: self.view, sourceFrame: self.view.frame)
+		loadCategories { cats in
 			if let cats = cats {
 				self.categories = cats
 				self.categoryPopUpButton.menu?.items = self.makeMenuItems(categories: cats)
+//				self.categoryPopUpButton.selectItem(at: 0)
 			}
 			self.hideSpinner()
 		}
@@ -36,7 +48,7 @@ class CategoryViewController: NSViewController {
 	var darkSpinnerView: DarkSpinnerView?
 	
 	func showSpinner() {
-		darkSpinnerView = DarkSpinnerView(sourceView: self.view)
+//		categoryPopUpButton.select(nil)
 		view.addSubview(darkSpinnerView!)
 		categoryPopUpButton.isEnabled = false
 		nextButton.isEnabled = false
@@ -46,6 +58,7 @@ class CategoryViewController: NSViewController {
 		darkSpinnerView?.removeFromSuperview()
 		categoryPopUpButton.isEnabled = true
 		nextButton.isEnabled = true
+		fixAppearance(NSApp.effectiveAppearance)	
 	}
 	
 	//MARK: - Buttons
@@ -71,6 +84,7 @@ class CategoryViewController: NSViewController {
 	//TODO: Get only user's categories, if download view is currently showing user's runs
 	func loadCategories(completion: @escaping ([SplitsIOCat]?) -> Void) {
 		if let game = delegate.game {
+			showSpinner()
 			if let shortName = game.shortname {
 				splitsIO.getCategories(for: shortName, completion: { cats in
 					let sorted = cats.sorted(by: { cat1, cat2 in
