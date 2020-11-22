@@ -76,14 +76,12 @@ class DownloadViewController: NSViewController, CategoryPickerDelegate  {
 		if let account = Settings.splitsIOUser {
 			showSpinner()
 			account.getGames(splitsIOKit: splitsIO, completion: showGames(games:))
-            
             tableView.headerView = NSTableHeaderView()
             tableView.tableColumns[0].headerCell.title = "My Runs"
             if #available(macOS 11.0, *) {
                 tableView.style = .inset
             }
 		}
-		
 	}
 	func showGames(games: [SplitsIOGame]?) {
 		if let games = games {
