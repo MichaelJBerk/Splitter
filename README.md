@@ -54,6 +54,8 @@ Note that you'll need to have Cocoapods and Cocoapods-keys installed to build th
 ### Acknowledgements
 [LiveSplit Core](https://github.com/LiveSplit/livesplit-core)
 
+[Splits.io](https://splits.io/)
+
 [Files by John Sundell](https://github.com/JohnSundell/Files)
 
 [MASShortcut by Vadim Shpakovski](https://github.com/shpakovski/MASShortcut)
