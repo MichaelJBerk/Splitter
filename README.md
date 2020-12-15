@@ -6,9 +6,9 @@ A native Speedrunning timer for macOS
 
 **[FAQ](https://github.com/MichaelJBerk/Splitter/wiki/FAQ)**
 
-**[Tips ("cool things Splitter can do")](https://github.com/MichaelJBerk/Splitter/wiki/Tips)**
+**[Tips](https://github.com/MichaelJBerk/Splitter/wiki/Tips)**
 
-**[Tips ("donate")](https://mberk.com/donate/)**
+**[Tip Jar](https://mberk.com/donate/)**
 
 ## Download
 
@@ -20,7 +20,7 @@ The latest stable release of Splitter is available on the Mac App Store:
 
 ## Beta Testing
 
-If you want to help test the next version of Splitter (or you just like living on the edge), you can try out the current beta release, which is based on the `dev` branch
+If you're a _"thrill seeker"_, want to help test the next version of Splitter, or just like living on the edge, you can try out the latest beta release, which is based on the `dev` branch
 
 [Download Latest Beta](https://install.appcenter.ms/users/mjosephberk/apps/splittertest/distribution_groups/public%20beta)
 
@@ -30,7 +30,6 @@ If you'd like to see what features are in the works, you can look at the [Roadma
 ## Discussion 
 
 You can suggest features, report issues, and contribute to the overall discussion about Splitter on the official [Discord Server](https://discord.gg/S6zCHYq). 
-
 
 ## Supported Formats
 
