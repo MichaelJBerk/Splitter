@@ -515,9 +515,9 @@ class ViewController: NSViewController {
 			stopButton.image = NSImage(systemSymbolName: "stop.circle.fill", accessibilityDescription: nil)
 			tsItem?.image = NSImage(systemSymbolName: "trash", accessibilityDescription: nil)
 		} else {
-			stopButton.title = "􀜫"
-			tsItem?.title = "􀈑"
-			infoPanelPopoverButton.title = "􀣌"
+			stopButton.image = NSImage(named: "stop")
+			tsItem?.image = NSImage(named: "trash")
+			infoPanelPopoverButton.image = NSImage(named: "gearshape")
 			
 		}
 	}

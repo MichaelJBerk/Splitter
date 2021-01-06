@@ -153,7 +153,10 @@ struct CreateNewFileButton: View {
 			(NSApplication.shared.delegate as? AppDelegate)?.welcomeWindow.close()
 		}, label: {
 			HStack {
-				Text("􀑍").font(.system(size: 30))
+				Image("plus.app")
+					.resizable()
+					.aspectRatio(contentMode: .fit)
+					.frame(width: 30)
 					
 					.foregroundColor(.blue)
 				VStack(alignment: WelcomeAlignment.welcomeAlignment) {
@@ -184,7 +187,10 @@ struct OpenFileButton: View {
 			
 		}, label: {
 		HStack {
-			Text("􀈕").font(.system(size: 25))
+			Image("folder")
+				.resizable()
+				.aspectRatio(contentMode: .fit)
+				.frame(width: 30)
 				.foregroundColor(.blue)
 			VStack(alignment: WelcomeAlignment.welcomeAlignment) {
 				Text("Open an existing run").font(.headline)
@@ -209,7 +215,10 @@ struct DownloadFileButton: View {
 			
 		}, label: {
 		HStack {
-			Text("􀈅").font(.system(size: 30))
+			Image("square.and.arrow.down.fill")
+				.resizable()
+				.aspectRatio(contentMode: .fit)
+				.frame(width: 30, height: 30)
 				.foregroundColor(.blue)
 			VStack(alignment: WelcomeAlignment.welcomeAlignment) {
 				Text("Download a run from Splits.io").font(.headline)

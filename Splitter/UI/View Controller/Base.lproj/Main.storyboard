@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
         <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -595,11 +595,11 @@
                                 <rect key="frame" x="0.0" y="128" width="283" height="219"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <clipView key="contentView" copiesOnScroll="NO" id="9dd-gf-lQy">
-                                    <rect key="frame" x="0.0" y="0.0" width="283" height="204"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="283" height="219"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" tableStyle="fullWidth" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="30" headerView="aVs-1A-u0Q" viewBased="YES" id="Ww4-Jn-tNR" customClass="SplitterTableView" customModule="Splitter" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="287" height="179"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="287" height="194"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -838,7 +838,7 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="u5J-vU-46w" customClass="SplitterScroller" customModule="Splitter" customModuleProvider="target">
-                                    <rect key="frame" x="0.0" y="204" width="283" height="15"/>
+                                    <rect key="frame" x="0.0" y="203" width="283" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" doubleValue="1" horizontal="NO" id="tC9-GG-98i" customClass="SplitterScroller" customModule="Splitter" customModuleProvider="target">
@@ -851,7 +851,7 @@
                                 </tableHeaderView>
                             </scrollView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mj4-Ky-5e7">
-                                <rect key="frame" x="8" y="101" width="100" height="18"/>
+                                <rect key="frame" x="8" y="101" width="99" height="18"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Current Time:" id="JfQ-8T-Ydb">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -859,7 +859,7 @@
                                 </textFieldCell>
                             </textField>
                             <button toolTip="Remove Split" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jC2-yS-poH">
-                                <rect key="frame" x="196" y="98" width="25" height="22"/>
+                                <rect key="frame" x="195" y="98" width="25" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="249-xc-MAe"/>
                                 </constraints>
@@ -883,7 +883,7 @@
                                 </connections>
                             </button>
                             <button toolTip="Add Split" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OXM-M7-swh">
-                                <rect key="frame" x="223" y="98" width="25" height="22"/>
+                                <rect key="frame" x="222" y="98" width="25" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="3qQ-Zf-ylZ"/>
                                     <constraint firstAttribute="height" constant="20" id="IQK-ZT-CnY"/>
@@ -971,7 +971,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xLP-fd-tTq">
-                                <rect key="frame" x="251" y="98" width="25" height="22"/>
+                                <rect key="frame" x="250" y="98" width="25" height="22"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="25" id="BXL-vn-aDi"/>
                                 </constraints>
@@ -1013,10 +1013,10 @@
                                 </connections>
                             </imageView>
                             <button toolTip="Get Info" horizontalHuggingPriority="750" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="laY-Uh-RhP">
-                                <rect key="frame" x="236" y="360" width="50" height="31"/>
-                                <buttonCell key="cell" type="push" bezelStyle="rounded" image="NSActionTemplate" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GL6-Z9-DG9">
+                                <rect key="frame" x="236" y="360" width="50" height="32"/>
+                                <buttonCell key="cell" type="push" bezelStyle="rounded" image="gearshape" imagePosition="only" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GL6-Z9-DG9">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="system"/>
+                                    <font key="font" metaFont="system" size="4"/>
                                 </buttonCell>
                                 <connections>
                                     <action selector="displayInfoPopover:" target="5gI-5U-AMq" id="LFd-oe-9Er"/>
@@ -1676,12 +1676,12 @@ To remove, click and press backspace. </string>
     </scenes>
     <resources>
         <image name="Game Controller" width="256" height="255.5"/>
-        <image name="NSActionTemplate" width="15" height="15"/>
         <image name="NSAddTemplate" width="14" height="13"/>
         <image name="NSQuickLookTemplate" width="21" height="13"/>
         <image name="NSRemoveTemplate" width="14" height="4"/>
+        <image name="gearshape" width="107" height="107"/>
         <image name="livesplit" width="512" height="512"/>
         <image name="stop" width="12" height="12"/>
-        <image name="trash" width="12" height="12"/>
+        <image name="trash" width="19" height="19"/>
     </resources>
 </document>

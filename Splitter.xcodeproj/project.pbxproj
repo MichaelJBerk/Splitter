@@ -280,6 +280,13 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		2CABEA5DE568414014847341 /* HappyCodingSupport */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = HappyCodingSupport;
+			sourceTree = "<group>";
+		};
 		4A0981A124E308A100E44792 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -436,6 +443,7 @@
 				4A5F10AD23CFAA1F00DA043B /* Assets.xcassets */,
 				4A230E9D23B00A1E00959C57 /* Info.plist */,
 				4A230E9E23B00A1E00959C57 /* Splitter.entitlements */,
+				2CABEA5DE568414014847341 /* HappyCodingSupport */,
 			);
 			path = Splitter;
 			sourceTree = "<group>";
@@ -814,9 +822,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Splitter/Pods-Splitter-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Splitter/Pods-Splitter-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1115,7 +1127,7 @@
 					"$(PROJECT_DIR)/livesplit-core/target/release",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 3.0;
+				MARKETING_VERSION = 3.0.2;
 				MODULEMAP_FILE = "\"$(PROJECT_DIR)/Splitter/LiveSplit Core/module.map\"";
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mibe.Splitter;
@@ -1161,7 +1173,7 @@
 					"$(PROJECT_DIR)/livesplit-core/target/release",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 3.0;
+				MARKETING_VERSION = 3.0.2;
 				MODULEMAP_FILE = "\"$(PROJECT_DIR)/Splitter/LiveSplit Core/module.map\"";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CODE_SIGN_FLAGS = "";
