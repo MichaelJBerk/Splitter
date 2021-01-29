@@ -344,9 +344,10 @@ class ViewController: NSViewController {
 	var hotkeysController: HotkeysViewController?
 	
 	@objc func breakFunc() {
-		let m = MSCrashes()
+//		let m = Crashes()
 //		print(currentSplit?.mil)
-		MSCrashes.generateTestCrash()
+//		MSCrashes.generateTestCrash()
+		Crashes.generateTestCrash()
 	}
 	
 	var breakID = NSUserInterfaceItemIdentifier("break")

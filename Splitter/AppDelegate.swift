@@ -8,7 +8,7 @@
 
 import Cocoa
 import Preferences
-import AppCenter
+//import AppCenter
 import AppCenterAnalytics
 import AppCenterCrashes
 import Keys
@@ -27,7 +27,7 @@ public static let build = Bundle.main.infoDictionary?["CFBundleVersion"] as! Str
 }
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 	@IBOutlet private var window: NSWindow!
 	
 	static var splitsIOAuth = SplitsIOAuth(client: SplitterKeys().splitsioclient, secret: SplitterKeys().splitsiosecret, redirects: "splitter://login")
@@ -159,42 +159,43 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
 		//MSAppCenter stuff
 		NSApp.mainMenu?.item(withIdentifier: menuIdentifiers.appMenu.updatesMenuItem)?.isHidden = false
 		#if !DEBUG
-		MSCrashes.setDelegate(self)
+		
+		Crashes.delegate = self
 		let keys = SplitterKeys()
-		MSAppCenter.start("\(keys.appCenter)", withServices:[
-			MSAnalytics.self,
-			MSCrashes.self
+		AppCenter.start(withAppSecret: "\(keys.appCenter)", services:[
+			Analytics.self,
+			Crashes.self
 		])
-		MSAppCenter.setLogLevel(.verbose)
-		MSCrashes.setEnabled(true)
+		AppCenter.logLevel = .verbose
+		Crashes.enabled = true
 		UserDefaults.standard.register(defaults: ["NSApplicationCrashOnExceptions": true])
-		MSCrashes.setUserConfirmationHandler({ (errorReports: [MSErrorReport]) in
-
-		  // Your code to present your UI to the user, e.g. an NSAlert.
-		  let alert: NSAlert = NSAlert()
-		  alert.messageText = "Sorry about that!"
-		  alert.informativeText = "Do you want to send an anonymous crash report so we can fix the issue?"
-		  alert.addButton(withTitle: "Always send")
-		  alert.addButton(withTitle: "Send")
-		  alert.addButton(withTitle: "Don't send")
+		Crashes.userConfirmationHandler = { (errorReports: [ErrorReport]) in
+			
+			// Your code to present your UI to the user, e.g. an NSAlert.
+			let alert: NSAlert = NSAlert()
+			alert.messageText = "Sorry about that!"
+			alert.informativeText = "Do you want to send an anonymous crash report so we can fix the issue?"
+			alert.addButton(withTitle: "Always send")
+			alert.addButton(withTitle: "Send")
+			alert.addButton(withTitle: "Don't send")
 			alert.alertStyle = .warning
-
-		  switch (alert.runModal()) {
-		case .alertFirstButtonReturn:
-			MSCrashes.notify(with: .always)
-			break;
-		case .alertSecondButtonReturn:
-			MSCrashes.notify(with: .send)
-			break;
-		case .alertThirdButtonReturn:
-			MSCrashes.notify(with: .dontSend)
-			break;
-		  default:
-			break;
-		  }
-
-		  return true // Return true if the SDK should await user confirmation, otherwise return false.
-		})
+			
+			switch (alert.runModal()) {
+			case .alertFirstButtonReturn:
+				Crashes.notify(with: .always)
+				break;
+			case .alertSecondButtonReturn:
+				Crashes.notify(with: .send)
+				break;
+			case .alertThirdButtonReturn:
+				Crashes.notify(with: .dontSend)
+				break;
+			default:
+				break;
+			}
+			
+			return true // Return true if the SDK should await user confirmation, otherwise return false.
+		}
 		#endif
 		
 //		openWelcomeWindow()
@@ -240,10 +241,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, MSCrashesDelegate {
         }
 	}
 	
-	func crashes(_ crashes: MSCrashes!, shouldProcessErrorReport errorReport: MSErrorReport!) -> Bool {
-		
-	  return true; // return true if the crash report should be processed, otherwise false.
-	}
+//	func crashes(_ crashes: MSCrashes!, shouldProcessErrorReport errorReport: MSErrorReport!) -> Bool {
+//
+//	  return true; // return true if the crash report should be processed, otherwise false.
+//	}
 	func applicationWillTerminate(_ aNotification: Notification) {
 		// Insert code here to tear down your application
 	}
