@@ -24,13 +24,13 @@
 		4A1657B123EA4EF60008CB5F /* Menu Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1657B023EA4EF60008CB5F /* Menu Items.swift */; };
 		4A1657B323EA4F3C0008CB5F /* Button Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1657B223EA4F3C0008CB5F /* Button Actions.swift */; };
 		4A1657B523EA5C320008CB5F /* Icon Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1657B423EA5C320008CB5F /* Icon Actions.swift */; };
-		4A1767B224EE095100571A6C /* Preferences in Frameworks */ = {isa = PBXBuildFile; productRef = 4A1767B124EE095100571A6C /* Preferences */; };
+		4A1767B224EE095100571A6C /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 4A1767B124EE095100571A6C /* SwiftPackageProductDependency */; };
 		4A18662E23C51D2800FEEE54 /* UISettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A18662D23C51D2800FEEE54 /* UISettings.swift */; };
 		4A18663023C5257800FEEE54 /* MenuItemConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A18662F23C5257800FEEE54 /* MenuItemConstants.swift */; };
 		4A18663223C5376900FEEE54 /* SettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A18663123C5376900FEEE54 /* SettingsKeys.swift */; };
 		4A1C1465240ECD610056B104 /* ViewControllerID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1C1464240ECD610056B104 /* ViewControllerID.swift */; };
 		4A1C1469240ED30C0056B104 /* InfoOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1C1467240ED30C0056B104 /* InfoOptionsViewController.swift */; };
-		4A214A70255C90720006FD9F /* SplitsIOKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4A214A6F255C90720006FD9F /* SplitsIOKit */; };
+		4A214A70255C90720006FD9F /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 4A214A6F255C90720006FD9F /* SwiftPackageProductDependency */; };
 		4A230E9323B00A1D00959C57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A230E9223B00A1D00959C57 /* AppDelegate.swift */; };
 		4A230E9523B00A1D00959C57 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A230E9423B00A1D00959C57 /* ViewController.swift */; };
 		4A230E9723B00A1D00959C57 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A230E9623B00A1D00959C57 /* Document.swift */; };
@@ -48,7 +48,7 @@
 		4A5F10AE23CFAA1F00DA043B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A5F10AD23CFAA1F00DA043B /* Assets.xcassets */; };
 		4A61438424801A28007C38E0 /* ColorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A61438324801A28007C38E0 /* ColorsView.swift */; };
 		4A61438624801A37007C38E0 /* ColorsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A61438524801A37007C38E0 /* ColorsView.xib */; };
-		4A66573023E3D34600D14A67 /* (null) in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4A66573023E3D34600D14A67 /* BuildFile in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4A66A43023DE2682005952FA /* ImageButtonCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A66A42F23DE2682005952FA /* ImageButtonCellView.swift */; };
 		4A66A43223DE2C88005952FA /* SplitTableViewColumnIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A66A43123DE2C88005952FA /* SplitTableViewColumnIdentifiers.swift */; };
 		4A6726EA23F05D17006F4BC4 /* LiveSplit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A617EBD23EBC65C0005D60E /* LiveSplit.swift */; };
@@ -76,14 +76,14 @@
 		4AA357B52416F79900219E65 /* liblivesplit_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA357B42416F79900219E65 /* liblivesplit_core.a */; };
 		4AA3DAB423E23DA900ADFA4A /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA3DAB323E23DA900ADFA4A /* IconButton.swift */; };
 		4AAD470A248432540094A31F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAD4709248432540094A31F /* Colors.swift */; };
-		4ABB38A8255C79B00037536E /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 4ABB38A7255C79B00037536E /* SwiftyJSON */; };
+		4ABB38A8255C79B00037536E /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 4ABB38A7255C79B00037536E /* SwiftPackageProductDependency */; };
 		4AC24DBA23EB4EC5003008BF /* Split Table Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC24DB923EB4EC5003008BF /* Split Table Row.swift */; };
 		4AC24DBC23EB4F17003008BF /* Split Table View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC24DBB23EB4F17003008BF /* Split Table View.swift */; };
-		4AC401F324BE145F005180F1 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		4AC401F324BE145F005180F1 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		4ACCEA7823B02F520068F89E /* TimeSplit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACCEA7723B02F520068F89E /* TimeSplit.swift */; };
-		4AD7662E23DA5F9A0052409C /* Files in Frameworks */ = {isa = PBXBuildFile; productRef = 4AD7662D23DA5F9A0052409C /* Files */; };
+		4AD7662E23DA5F9A0052409C /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 4AD7662D23DA5F9A0052409C /* SwiftPackageProductDependency */; };
 		4AD77D16240ECA2800CD65AD /* ColumnOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD77D15240ECA2800CD65AD /* ColumnOptionsViewController.swift */; };
-		4ADB15F424BE247B006C5C55 /* (null) in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		4ADB15F424BE247B006C5C55 /* BuildFile in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4ADE9226240F1FB900E0D99E /* InfoPopoverTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADE9225240F1FB900E0D99E /* InfoPopoverTabViewController.swift */; };
 		4ADFAE4923E4A0760049F57A /* QuickAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADFAE4823E4A0760049F57A /* QuickAlert.swift */; };
 		4AE82A1624BFD4400044B6D3 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE82A1524BFD4400044B6D3 /* WelcomeView.swift */; };
@@ -126,8 +126,8 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4ADB15F424BE247B006C5C55 /* (null) in Embed Frameworks */,
-				4A66573023E3D34600D14A67 /* (null) in Embed Frameworks */,
+				4ADB15F424BE247B006C5C55 /* BuildFile in Embed Frameworks */,
+				4A66573023E3D34600D14A67 /* BuildFile in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -242,11 +242,11 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4AD7662E23DA5F9A0052409C /* Files in Frameworks */,
-				4ABB38A8255C79B00037536E /* SwiftyJSON in Frameworks */,
+				4AD7662E23DA5F9A0052409C /* BuildFile in Frameworks */,
+				4ABB38A8255C79B00037536E /* BuildFile in Frameworks */,
 				4AA357B52416F79900219E65 /* liblivesplit_core.a in Frameworks */,
-				4A214A70255C90720006FD9F /* SplitsIOKit in Frameworks */,
-				4A1767B224EE095100571A6C /* Preferences in Frameworks */,
+				4A214A70255C90720006FD9F /* BuildFile in Frameworks */,
+				4A1767B224EE095100571A6C /* BuildFile in Frameworks */,
 				4A6B4F7423F07C3900CB781F /* libresolv.tbd in Frameworks */,
 				CA8419FF140C00045EBA5B68 /* Pods_Splitter.framework in Frameworks */,
 			);
@@ -645,11 +645,11 @@
 			);
 			name = Splitter;
 			packageProductDependencies = (
-				4AD7662D23DA5F9A0052409C /* Files */,
-				4AD7662D23DA5F9A0052409C /* Files */,
-				4A1767B124EE095100571A6C /* Preferences */,
-				4ABB38A7255C79B00037536E /* SwiftyJSON */,
-				4A214A6F255C90720006FD9F /* SplitsIOKit */,
+				4AD7662D23DA5F9A0052409C /* SwiftPackageProductDependency */,
+				4AD7662D23DA5F9A0052409C /* SwiftPackageProductDependency */,
+				4A1767B124EE095100571A6C /* SwiftPackageProductDependency */,
+				4ABB38A7255C79B00037536E /* SwiftPackageProductDependency */,
+				4A214A6F255C90720006FD9F /* SwiftPackageProductDependency */,
 			);
 			productName = Splitter;
 			productReference = 4A230E8F23B00A1D00959C57 /* Splitter.app */;
@@ -724,9 +724,9 @@
 			);
 			mainGroup = 4A230E8623B00A1D00959C57;
 			packageReferences = (
-				4AD7662C23DA5F9A0052409C /* XCRemoteSwiftPackageReference "Files" */,
-				4AB5627724338FB000D7F8D1 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
-				4A1767B024EE095100571A6C /* XCRemoteSwiftPackageReference "Preferences" */,
+				4AD7662C23DA5F9A0052409C /* RemoteSwiftPackageReference */,
+				4AB5627724338FB000D7F8D1 /* RemoteSwiftPackageReference */,
+				4A1767B024EE095100571A6C /* RemoteSwiftPackageReference */,
 			);
 			productRefGroup = 4A230E9023B00A1D00959C57 /* Products */;
 			projectDirPath = "";
@@ -822,13 +822,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Splitter/Pods-Splitter-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Splitter/Pods-Splitter-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -923,7 +919,7 @@
 				4AFAD84524CF2CF8006FC480 /* WelcomeWindowController.swift in Sources */,
 				4A6A965824EC3516008EFD2B /* LoadingViewController.swift in Sources */,
 				4A230E9723B00A1D00959C57 /* Document.swift in Sources */,
-				4AC401F324BE145F005180F1 /* (null) in Sources */,
+				4AC401F324BE145F005180F1 /* BuildFile in Sources */,
 				4AE82A1624BFD4400044B6D3 /* WelcomeView.swift in Sources */,
 				4AE82A1C24BFD6060044B6D3 /* VisualEffectViewRepresentable.swift in Sources */,
 				4A6A3BE223CD1C7A002C20AE /* Storage.swift in Sources */,
@@ -1305,7 +1301,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		4A1767B024EE095100571A6C /* XCRemoteSwiftPackageReference "Preferences" */ = {
+		4A1767B024EE095100571A6C /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/Preferences";
 			requirement = {
@@ -1313,7 +1309,7 @@
 				minimumVersion = 2.1.0;
 			};
 		};
-		4AB5627724338FB000D7F8D1 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+		4AB5627724338FB000D7F8D1 /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
 			requirement = {
@@ -1321,7 +1317,7 @@
 				minimumVersion = 5.0.0;
 			};
 		};
-		4AD7662C23DA5F9A0052409C /* XCRemoteSwiftPackageReference "Files" */ = {
+		4AD7662C23DA5F9A0052409C /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/JohnSundell/Files";
 			requirement = {
@@ -1332,23 +1328,23 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		4A1767B124EE095100571A6C /* Preferences */ = {
+		4A1767B124EE095100571A6C /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4A1767B024EE095100571A6C /* XCRemoteSwiftPackageReference "Preferences" */;
+			package = 4A1767B024EE095100571A6C /* RemoteSwiftPackageReference */;
 			productName = Preferences;
 		};
-		4A214A6F255C90720006FD9F /* SplitsIOKit */ = {
+		4A214A6F255C90720006FD9F /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SplitsIOKit;
 		};
-		4ABB38A7255C79B00037536E /* SwiftyJSON */ = {
+		4ABB38A7255C79B00037536E /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4AB5627724338FB000D7F8D1 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			package = 4AB5627724338FB000D7F8D1 /* RemoteSwiftPackageReference */;
 			productName = SwiftyJSON;
 		};
-		4AD7662D23DA5F9A0052409C /* Files */ = {
+		4AD7662D23DA5F9A0052409C /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4AD7662C23DA5F9A0052409C /* XCRemoteSwiftPackageReference "Files" */;
+			package = 4AD7662C23DA5F9A0052409C /* RemoteSwiftPackageReference */;
 			productName = Files;
 		};
 /* End XCSwiftPackageProductDependency section */

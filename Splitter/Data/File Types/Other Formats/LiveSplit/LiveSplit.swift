@@ -10,9 +10,6 @@ import Foundation
 import Cocoa
 import Files
 
-
-
-
 class LiveSplit: NSObject {
 	
 	var path: String!
@@ -52,8 +49,9 @@ class LiveSplit: NSObject {
 			
 			runTitle = run.gameName()
 			category = run.categoryName()
-			let runIconStr = run.gameIcon()
-			if let img = parseImageFromLiveSplit(icon: runIconStr) {
+			let iconPtr = run.gameIconPtr()
+			let iconlen = run.gameIconLen()
+			if let img = parseImageFromLiveSplit(ptr: iconPtr, len: iconlen) {
 				gameIcon = img
 			}
 			
@@ -101,9 +99,9 @@ class LiveSplit: NSObject {
 					newBest = newBest + tsArray[i - 1].bestSplit
 				}
 			}
-			
-			let imgStr = run.segment(i).icon()
-			let img = parseImageFromLiveSplit(icon: imgStr)
+			let iconPtr = run.segment(i).iconPtr()
+			let iconLen = run.segment(i).iconLen()
+			let img = parseImageFromLiveSplit(ptr: iconPtr, len: iconLen)
 			iconArray.append(img)
 			
 			let newRow = splitTableRow(splitName: segName, bestSplit: newTS, currentSplit: TimeSplit(), previousSplit: TimeSplit(), previousBest: newBest, splitIcon: nil)
@@ -114,15 +112,14 @@ class LiveSplit: NSObject {
 			self.splits = tsArray
 		}
 	}
-	
-	func parseImageFromLiveSplit(icon: String) -> NSImage? {
-		var img:NSImage? = nil
-		if let imgURL = URL(string: icon){
-			if let imgdata = try? Data(contentsOf: imgURL) {
-				img = NSImage(data: imgdata)
+	func parseImageFromLiveSplit(ptr: UnsafeMutableRawPointer?, len: size_t) -> NSImage? {
+		if let p = ptr {
+			let data = Data(bytes: p, count: Int(len))
+			if let img = NSImage(data: data) {
+				return img
 			}
 		}
-		return img
+		return nil
 	}
 	///Creates a string that to be saved to a `.lss` file
 	func liveSplitString() -> String {
