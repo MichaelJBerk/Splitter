@@ -38,7 +38,7 @@ class SplitsIODoc: SplitterDoc {
 					i = i + 1
 					let title = s.name ?? "\(i)"
 					let bestTS = TimeSplit(mil: s.bestDuration?.gametimeMS ?? 0)
-					let splitRow = splitTableRow(splitName: title, bestSplit: bestTS, currentSplit: TimeSplit(), previousSplit: bestTS, previousBest: bestTS)
+					let splitRow = SplitTableRow(splitName: title, bestSplit: bestTS, currentSplit: TimeSplit(), previousSplit: bestTS, previousBest: bestTS)
 					vc.currentSplits.append(splitRow)
 				}
 				vc.splitsTableView.reloadData()

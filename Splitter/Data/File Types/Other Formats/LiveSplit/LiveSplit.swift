@@ -14,7 +14,7 @@ class LiveSplit: NSObject {
 	
 	var path: String!
 	var data: Data!
-	var splits: [splitTableRow] = []
+	var splits: [SplitTableRow] = []
 	var icons: [NSImage?] = []
 	var gameIcon: NSImage?
 	var runTitle: String?
@@ -39,7 +39,7 @@ class LiveSplit: NSObject {
 		
 		let hand = FileHandle(forReadingAtPath: path)
 		let handle64 = Int64(hand!.fileDescriptor)
-		let cRun = LiveSplitCore.Run.parseFileHandle(handle64, path, true)
+		let cRun = Run.parseFileHandle(handle64, path, true)
 		
 		if cRun.parsedSuccessfully() {
 			let run = cRun.unwrap()
@@ -66,10 +66,10 @@ class LiveSplit: NSObject {
 	}
 	
 	
-	private func parseBestSplits(run: LiveSplitCore.Run, template: Bool) {
+	private func parseBestSplits(run: Run, template: Bool) {
 		let segCount = run.len()
 		var i = 0
-		var tsArray: [splitTableRow] = []
+		var tsArray: [SplitTableRow] = []
 		while i < segCount {
 			
 			let segName = run.segment(i).name()
@@ -104,7 +104,7 @@ class LiveSplit: NSObject {
 			let img = parseImageFromLiveSplit(ptr: iconPtr, len: iconLen)
 			iconArray.append(img)
 			
-			let newRow = splitTableRow(splitName: segName, bestSplit: newTS, currentSplit: TimeSplit(), previousSplit: TimeSplit(), previousBest: newBest, splitIcon: nil)
+			let newRow = SplitTableRow(splitName: segName, bestSplit: newTS, currentSplit: TimeSplit(), previousSplit: TimeSplit(), previousBest: newBest, splitIcon: nil)
 			tsArray.append(newRow)
 			i = i + 1
 		}
@@ -123,12 +123,12 @@ class LiveSplit: NSObject {
 	}
 	///Creates a string that to be saved to a `.lss` file
 	func liveSplitString() -> String {
-		let run = LiveSplitCore.Run()
+		let run = Run()
 		let segDel = "If you name a segment this it will be deleted"
-		let blankSeg = LiveSplitCore.Segment(segDel)
+		let blankSeg = Segment(segDel)
 		var i = 0
 		run.pushSegment(blankSeg)
-		let lss = LiveSplitCore.RunEditor(run)
+		let lss = RunEditor(run)
 		lss?.setGameName(runTitle ?? "")
 		lss?.setCategoryName(category ?? " ")
 		lss?.setPlatformName(platform ?? "")
@@ -163,6 +163,7 @@ class LiveSplit: NSObject {
 		lss?.selectOnly(0)
 		lss?.removeSegments()
 		run.ptr = lss?.ptr
+		
 		///For whatever reason, the expected way to save attempts to lss doesn't work, so I have to brute force it here.
 		var returnString = run.saveAsLss()
 		returnString = returnString.replacingOccurrences(of: "<AttemptCount>0</AttemptCount>", with: "<AttemptCount>\(attempts ?? 0)</AttemptCount>")
@@ -180,7 +181,7 @@ extension ViewController {
 			var i = 0
 			
 			while i < ls.splits.count {
-				currentSplits.append(ls.splits[i].copy() as! splitTableRow)
+				currentSplits.append(ls.splits[i].copy() as! SplitTableRow)
 				i = i + 1
 			}
 			

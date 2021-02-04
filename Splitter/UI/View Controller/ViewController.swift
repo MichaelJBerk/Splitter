@@ -123,8 +123,7 @@ class ViewController: NSViewController {
 	
 	
 	var timer = Timer()
-	var lscTimer: LiveSplitCore.Timer?
-	var sharedLSCTimer: LiveSplitCore.SharedTimer?
+	var lscTimer: LSTimer?
 	var refreshUITimer = Timer()
 	var milHundrethTimer = Timer()
 	
@@ -204,8 +203,8 @@ class ViewController: NSViewController {
 	//MARK: - Split Data/Properties
 	
 	var currentSplit: TimeSplit? = nil
-	var currentSplits: [splitTableRow] = []
-	var backupSplits: [splitTableRow] = []
+	var currentSplits: [SplitTableRow] = []
+	var backupSplits: [SplitTableRow] = []
 	var loadedFilePath: String = ""
 	var currentSplitNumber = 0 {
 		didSet {
@@ -266,6 +265,7 @@ class ViewController: NSViewController {
 	var gameRegion: String?
 	var startTime: Date?
 	var endTime: Date?
+	var fileID: String?
 	
 	
 
@@ -413,7 +413,10 @@ class ViewController: NSViewController {
 		} else {
 			setUpDefaults()
 		}
-		
+		if fileID == nil {
+			fileID = UUID().uuidString
+		}
+		view.window?.setFrameAutosaveName(fileID!)
 		if currentSplits.count == 0 {
 			addBlankSplit()
 		}
@@ -429,6 +432,7 @@ class ViewController: NSViewController {
 		gameToViewEdgeConstraint?.isActive = false
 		categoryToViewEdgeConstraint = NSLayoutConstraint(item: categoryField.superview!, attribute: .trailing, relatedBy: .equal, toItem: categoryField, attribute: .trailing, multiplier: 1, constant: 8)
 		categoryToViewEdgeConstraint?.isActive = false
+		
 		
 	}
 	func setMenuItemEnabled(item: NSMenuItem?, enabled: Bool) {

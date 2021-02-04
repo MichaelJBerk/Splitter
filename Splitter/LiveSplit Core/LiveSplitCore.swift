@@ -1,6 +1,5 @@
 import LiveSplitCoreNative
 
-public class LiveSplitCore {
 /**
     The analysis module provides a variety of functions for calculating
     information about runs.
@@ -4476,7 +4475,7 @@ public class SharedTimerRef {
         sharing the old timer will share the provided timer after successful
         completion.
     */
-    public func replaceInner(_ timer: Timer) {
+    public func replaceInner(_ timer: LSTimer) {
         assert(self.ptr != Optional.none)
         assert(timer.ptr != Optional.none)
         LiveSplitCoreNative.SharedTimer_replace_inner(self.ptr, timer.ptr)
@@ -5654,7 +5653,7 @@ public class TimerRefMut: TimerRef {
 /**
     A Timer provides all the capabilities necessary for doing speedrun attempts.
 */
-public class Timer : TimerRefMut {
+public class LSTimer : TimerRefMut {
     private func drop() {
         if self.ptr != Optional.none {
             LiveSplitCoreNative.Timer_drop(self.ptr)
@@ -6240,5 +6239,4 @@ public class TotalPlaytimeComponent : TotalPlaytimeComponentRefMut {
     override init(ptr: UnsafeMutableRawPointer?) {
         super.init(ptr: ptr)
     }
-}
 }

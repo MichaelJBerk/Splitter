@@ -56,7 +56,7 @@ extension ViewController {
 		var i = 0
 		backupSplits = []
 		while i < currentSplits.count {
-			backupSplits.append(currentSplits[i].copy() as! splitTableRow)
+			backupSplits.append(currentSplits[i].copy() as! SplitTableRow)
 			i = i + 1
 		}
 		updatePreviousSplit(of: 0)
@@ -71,13 +71,13 @@ extension ViewController {
 		
 		self.startTime = Date()
 		
-		let run = LiveSplitCore.Run()
+		let run = Run()
 		
-		let seg = LiveSplitCore.Segment("Segment")
+		let seg = Segment("Segment")
 		run.pushSegment(seg)
 		//Using reloadData to update the highlighted row in the tableview
 		splitsTableView.reloadData()
-		lscTimer = LiveSplitCore.Timer(run)
+		lscTimer = LSTimer(run)
 		lscTimer?.start()
 	}
 	

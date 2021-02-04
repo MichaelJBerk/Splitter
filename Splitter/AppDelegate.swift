@@ -8,7 +8,6 @@
 
 import Cocoa
 import Preferences
-//import AppCenter
 import AppCenterAnalytics
 import AppCenterCrashes
 import Keys
@@ -225,6 +224,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 			self.openWelcomeWindow()
 		}
 	}
+	
 	@IBAction func searchWindowMenuItem( _ sender: Any) {
 		self.openSearchWindow()
 	}

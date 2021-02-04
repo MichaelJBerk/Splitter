@@ -25,6 +25,7 @@ class Document: SplitterDocBundle {
 	
 	var gameIcon: NSImage?
 	var iconArray: [NSImage?] = []
+	var id: String? = nil
 	
 	override init() {
 	    super.init()
@@ -58,7 +59,11 @@ class Document: SplitterDocBundle {
 	}
 	
 	
-	
+	override func windowControllerDidLoadNib(_ windowController: NSWindowController) {
+//		super.windowControllerDidLoadNib(<#T##windowController: NSWindowController##NSWindowController#>)
+		
+		windowController.windowFrameAutosaveName = NSWindow.FrameAutosaveName(id!)
+	}
 	
 	
 	override func read(from fileWrapper: FileWrapper, ofType typeName: String) throws {

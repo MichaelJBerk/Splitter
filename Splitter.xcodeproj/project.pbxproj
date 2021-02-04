@@ -280,13 +280,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		2CABEA5DE568414014847341 /* HappyCodingSupport */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = HappyCodingSupport;
-			sourceTree = "<group>";
-		};
 		4A0981A124E308A100E44792 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -443,7 +436,6 @@
 				4A5F10AD23CFAA1F00DA043B /* Assets.xcassets */,
 				4A230E9D23B00A1E00959C57 /* Info.plist */,
 				4A230E9E23B00A1E00959C57 /* Splitter.entitlements */,
-				2CABEA5DE568414014847341 /* HappyCodingSupport */,
 			);
 			path = Splitter;
 			sourceTree = "<group>";
