@@ -20,6 +20,19 @@ extension ViewController {
 			}
 		}
 	}
+	///Sets the window to stay on top, depending on the current setting
+	func setFloatingWindow() {
+		let id = menuIdentifiers.windowMenu.windowFloat
+		if let menuItem = NSApp.mainMenu?.item(withIdentifier: id) {
+			if windowFloat {
+				view.window?.level = .floating
+				menuItem.state = .on
+			} else {
+				view.window?.level = .normal
+				menuItem.state = .off
+			}
+		}
+	}
 	
 	///Shows or hides the title bar, depending on the current setting
 	func showHideTitleBar() {
@@ -48,7 +61,7 @@ extension ViewController {
 	///Shows or hides the UI, depending on the current setting
 	func showHideUI() {
 		
-		if UIHidden {
+		if buttonHidden {
 			StartButton.isHidden = true
 			trashCanPopupButton.isHidden = true
 			stopButton.isHidden = true
@@ -59,7 +72,9 @@ extension ViewController {
 			prevButton.isHidden = true
 			infoPanelPopoverButton.isHidden = true
 			columnOptionsPopoverButton.isHidden = true
-			
+			bottomStackView.views[0].isHidden = true
+			bottomStackView.views[2].isHidden = true
+			bottomStackView.views[3].isHidden = true
 			gameToViewEdgeConstraint?.isActive = true
 			categoryToViewEdgeConstraint?.isActive = true
 		} else {
@@ -81,6 +96,9 @@ extension ViewController {
 			minusButton.isHidden = false
 			nextButton.isHidden = false
 			prevButton.isHidden = false
+			bottomStackView.views[0].isHidden = false
+			bottomStackView.views[2].isHidden = false
+			bottomStackView.views[3].isHidden = false
 			
 			gameToViewEdgeConstraint?.isActive = false
 			categoryToViewEdgeConstraint?.isActive = false
@@ -91,7 +109,7 @@ extension ViewController {
 	
 	var showHideButtonsText: String {
 		get {
-			if UIHidden {
+			if buttonHidden {
 				return "Show Buttons"
 			} else {
 				return "Hide Buttons"

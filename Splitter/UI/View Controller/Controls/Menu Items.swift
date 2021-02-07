@@ -65,7 +65,7 @@ extension ViewController {
 	///Action for Menu Bar that allows the user to hide or show the buttons in the UI
 	@IBAction func toggleShowHideUIMenuItem(_ sender: Any) {
 		if let menuItem = sender as? NSMenuItem {
-			UIHidden.toggle()
+			buttonHidden.toggle()
 			showHideUI()
 			
 		}
@@ -75,19 +75,6 @@ extension ViewController {
 	@IBAction func toggleKeepOnTop(_ sender: Any? ) {
 		windowFloat.toggle()
 		setFloatingWindow()
-	}
-	///Sets the window to stay on top, depending on the current setting
-	func setFloatingWindow() {
-		let id = menuIdentifiers.windowMenu.windowFloat
-		if let menuItem = NSApp.mainMenu?.item(withIdentifier: id) {
-			if windowFloat {
-				view.window?.level = .floating
-				menuItem.state = .on
-			} else {
-				view.window?.level = .normal
-				menuItem.state = .off
-			}
-		}
 	}
 		
 	///Action for Menu Bar that closes the current window. This can be useful if the title bar has been hidden by the user

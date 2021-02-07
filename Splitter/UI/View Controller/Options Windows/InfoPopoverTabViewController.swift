@@ -29,9 +29,6 @@ class InfoPopoverTabViewController: NSTabViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-		if let d = delegate {
-		}
-		
         // Do view setup here.
     }
 	override func tabView(_ tabView: NSTabView, didSelect tabViewItem: NSTabViewItem?) {
@@ -49,7 +46,6 @@ class InfoPopoverTabViewController: NSTabViewController {
 	
 	func setupTabViews() {
 		for i in tabViewItems {
-//			print(i.label)
 			if var v = i.viewController as? advancedTabDelegate {
 				v.delegate = self.delegate
 				v.setupDelegate()
@@ -60,4 +56,8 @@ class InfoPopoverTabViewController: NSTabViewController {
 		}
 	}
     
+	override func addTabViewItem(_ tabViewItem: NSTabViewItem) {
+		tabViewItem.color = .blue
+		super.addTabViewItem(tabViewItem)
+	}
 }

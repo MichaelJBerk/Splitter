@@ -17,7 +17,7 @@ class ViewController: NSViewController {
 //MARK: - Setting Up Buttons
 	@IBOutlet weak var trashCanPopupButton: NSPopUpButton!
 	var shouldTrashCanBeHidden: Bool {
-		if UIHidden {
+		if buttonHidden {
 			return true
 		}
 		switch self.timerState {
@@ -30,7 +30,7 @@ class ViewController: NSViewController {
 	@IBOutlet weak var stopButton: NSButton!
 	var shouldStopButtonBeHidden: Bool {
 		stopButton.isEnabled = true
-		if UIHidden {
+		if buttonHidden {
 			return true
 		}
 		switch self.timerState {
@@ -47,7 +47,11 @@ class ViewController: NSViewController {
 	@IBOutlet weak var plusButton: NSButton!
 	@IBOutlet weak var minusButton: NSButton!
 	@IBOutlet weak var gameIconButton: MetadataImage!
+	@IBOutlet weak var metadataView: NSView!
+	@IBOutlet weak var innerMetatdataStack: NSStackView!
+	@IBOutlet weak var tableButtonsStack: NSStackView!
 	
+	@IBOutlet weak var bottomStackView: NSStackView!
 	
 	@IBOutlet weak var infoPanelPopoverButton: NSButton!
 	@IBOutlet weak var columnOptionsPopoverButton: NSButton!
@@ -337,7 +341,7 @@ class ViewController: NSViewController {
 	var enabledMenuItems:[NSUserInterfaceItemIdentifier: Bool] = [:]
 	
 	var windowFloat = false
-	var UIHidden = false
+	var buttonHidden = false
 	var titleBarHidden = false
 	var showBestSplits = false
 	
@@ -488,7 +492,7 @@ class ViewController: NSViewController {
 		showHideTitleBar()
 		
 		
-		UIHidden = Settings.hideUIButtons
+		buttonHidden = Settings.hideUIButtons
 		 showHideUI()
 		
 		windowFloat = Settings.floatWindow
@@ -545,7 +549,7 @@ class ViewController: NSViewController {
 		pop.contentSize = NSSize(width: 450, height: 325)
 		pop.behavior = .semitransient
 		pop.appearance = NSAppearance(named: .vibrantDark)
-		pop.show(relativeTo: infoPanelPopoverButton.frame, of: self.view, preferredEdge: .maxX)
+		pop.show(relativeTo: infoPanelPopoverButton.frame, of: innerMetatdataStack, preferredEdge: .maxX)
 		infoPanelPopover = pop
 		destination.setupTabViews()
 	}
@@ -560,7 +564,7 @@ class ViewController: NSViewController {
 		pop.contentViewController = destination
 		pop.appearance = NSAppearance(named: .vibrantDark)
 		pop.behavior = .semitransient
-		pop.show(relativeTo: columnOptionsPopoverButton.frame, of: self.view, preferredEdge: .maxX)
+		pop.show(relativeTo: columnOptionsPopoverButton.frame, of: tableButtonsStack, preferredEdge: .maxX)
 		columnOptionsPopover = pop
 		destination.loadCheckBoxes()
 		

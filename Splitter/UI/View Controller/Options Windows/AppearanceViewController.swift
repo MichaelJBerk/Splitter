@@ -93,7 +93,7 @@ You can still close the window either with ⌘W or from the "Window" menu.
 	@objc func sendSettings(_ sender: Any) {
 		if let d = delegate {
 			d.titleBarHidden = hideTitleBar
-			d.UIHidden = hideButtons
+			d.buttonHidden = hideButtons
 			d.windowFloat = keepOnTop
 			d.showHideTitleBar()
 			d.showHideUI()
@@ -112,7 +112,7 @@ You can still close the window either with ⌘W or from the "Window" menu.
 		if let d = delegate {
 
 			hideTitleBar = d.titleBarHidden
-			hideButtons = d.UIHidden
+			hideButtons = d.buttonHidden
 			keepOnTop = d.windowFloat
 			
 			hideTitleBarCheck.target = self
