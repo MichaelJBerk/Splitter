@@ -369,7 +369,6 @@
 			isa = PBXGroup;
 			children = (
 				4A230E9423B00A1D00959C57 /* ViewController.swift */,
-				4A24F20224F6E0B100278EB7 /* TouchBarDelegate.swift */,
 				4A44FF4E24E9A9E60083013A /* SplitsIOUpload.swift */,
 				4A1C1464240ECD610056B104 /* ViewControllerID.swift */,
 				4A18662D23C51D2800FEEE54 /* UISettings.swift */,
@@ -590,6 +589,7 @@
 				4A894B1B249ABA71004FEEB3 /* LoadableNib.swift */,
 				4A9621F524C62401003CF23C /* ActivityIndicatorRepresentable.swift */,
 				4AE82A1B24BFD6060044B6D3 /* VisualEffectViewRepresentable.swift */,
+				4A24F20224F6E0B100278EB7 /* TouchBarDelegate.swift */,
 				4A1657AF23EA4EE20008CB5F /* View Controller */,
 				4A9FCC792411A093000937A2 /* Windows */,
 				4A9FCC7A2411A0A2000937A2 /* Controls */,
