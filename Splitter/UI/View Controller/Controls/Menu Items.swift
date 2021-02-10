@@ -23,7 +23,7 @@ extension ViewController {
 	//MARK - File Menu
 	
 	@IBAction func uploadToSplitsIOMenuItem(_ sender: Any?) {
-		uploadToSplitsIO()
+		splitsIOUploader.uploadToSplitsIO()
 	}
 	//MARK: Run Menu
 	///Action for Menu Bar that starts/pauses the timer

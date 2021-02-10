@@ -278,12 +278,12 @@ class ViewController: NSViewController {
 	var splitsIOSchemaVersion = "v1.0.1"
 	var splitsIOData: SplitsIOExchangeFormat!
 	var runInfoData: runInfo?
-	
 	var lsPointer: UnsafeMutableRawPointer?
-	
 	var appearance: splitterAppearance?
-		
-		var shouldLoadSplits = false
+	var shouldLoadSplits = false
+	
+	//MARK: Splits.io Uploading
+	var splitsIOUploader: SplitsIOUploader!
 	
 	//MARK: - Icon Data
 	
@@ -432,13 +432,16 @@ class ViewController: NSViewController {
 		attemptField.stringValue = "\(attempts)"
 		attemptField.formatter = OnlyIntegerValueFormatter()
 		
+		splitsIOUploader = SplitsIOUploader(viewController: self)
+	}
+	
+	func setupConstraints() {
 		gameToViewEdgeConstraint = NSLayoutConstraint(item: runTitleField.superview!, attribute: .trailing, relatedBy: .equal, toItem: runTitleField, attribute: .trailing, multiplier: 1, constant: 8)
 		gameToViewEdgeConstraint?.isActive = false
 		categoryToViewEdgeConstraint = NSLayoutConstraint(item: categoryField.superview!, attribute: .trailing, relatedBy: .equal, toItem: categoryField, attribute: .trailing, multiplier: 1, constant: 8)
 		categoryToViewEdgeConstraint?.isActive = false
-		
-		
 	}
+	
 	func setMenuItemEnabled(item: NSMenuItem?, enabled: Bool) {
 		if let id = item?.identifier {
 			enabledMenuItems[id] = enabled
