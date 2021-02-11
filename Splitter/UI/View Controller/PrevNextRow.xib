@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner" customClass="PrevNextRow" customModule="Splitter" customModuleProvider="target">
+            <connections>
+                <outlet property="contentView" destination="d3r-iD-RYb" id="Oii-9q-wyk"/>
+                <outlet property="nextButton" destination="Peg-41-ckQ" id="48A-o9-uBx"/>
+                <outlet property="prevButton" destination="Fzu-8E-GgA" id="jHw-94-3HN"/>
+            </connections>
+        </customObject>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <stackView distribution="fillEqually" orientation="horizontal" alignment="top" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" id="d3r-iD-RYb">
+            <rect key="frame" x="0.0" y="0.0" width="481" height="72"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+            <subviews>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Fzu-8E-GgA">
+                    <rect key="frame" x="-7" y="45" width="250" height="32"/>
+                    <buttonCell key="cell" type="push" title="Prev" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="YDZ-DR-d0l">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="prevButtonClick:" target="-2" id="bfs-tu-pd9"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Peg-41-ckQ">
+                    <rect key="frame" x="239" y="45" width="249" height="32"/>
+                    <buttonCell key="cell" type="push" title="Split" bezelStyle="rounded" alignment="center" scrollable="YES" lineBreakMode="clipping" truncatesLastVisibleLine="YES" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="kkT-ua-6Vj">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="nextButtonClick:" target="-2" id="CYE-Ro-nrO"/>
+                    </connections>
+                </button>
+            </subviews>
+            <constraints>
+                <constraint firstItem="Fzu-8E-GgA" firstAttribute="leading" secondItem="d3r-iD-RYb" secondAttribute="leading" id="AMX-t1-2mh"/>
+                <constraint firstItem="Fzu-8E-GgA" firstAttribute="width" secondItem="Peg-41-ckQ" secondAttribute="width" id="Z47-nT-F4f"/>
+                <constraint firstAttribute="trailing" secondItem="Peg-41-ckQ" secondAttribute="trailing" id="hdq-AG-TcH"/>
+                <constraint firstItem="Peg-41-ckQ" firstAttribute="leading" secondItem="Fzu-8E-GgA" secondAttribute="trailing" constant="10" id="nYp-ZK-wmA"/>
+                <constraint firstAttribute="height" secondItem="Fzu-8E-GgA" secondAttribute="height" multiplier="3.6" id="xYb-Ir-iLZ"/>
+            </constraints>
+            <visibilityPriorities>
+                <integer value="1000"/>
+                <integer value="1000"/>
+            </visibilityPriorities>
+            <customSpacing>
+                <real value="3.4028234663852886e+38"/>
+                <real value="3.4028234663852886e+38"/>
+            </customSpacing>
+            <point key="canvasLocation" x="-415" y="-136"/>
+        </stackView>
+    </objects>
+</document>

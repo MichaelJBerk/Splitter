@@ -11,8 +11,8 @@ import Cocoa
 
 
 class ColumnOptionsViewController: NSViewController, NSPopoverDelegate {
+	static var storyboardID = "ColumnOptions"
 	var delegate: ViewController?
-	
 	
 	@IBOutlet weak var CheckboxGridView: NSGridView!
 	

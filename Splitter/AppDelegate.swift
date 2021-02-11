@@ -157,6 +157,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 		
 		//MSAppCenter stuff
 		NSApp.mainMenu?.item(withIdentifier: menuIdentifiers.appMenu.updatesMenuItem)?.isHidden = false
+		addExtraMenuItems()
 		#if !DEBUG
 		
 		Crashes.delegate = self
@@ -199,6 +200,22 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 		
 //		openWelcomeWindow()
 	}
+	
+	func addExtraMenuItems() {
+		let testMenuItem = NSMenuItem(title: "TestView", action: #selector(testViewItemAction(_:)), keyEquivalent: "")
+		print(NSApp.mainMenu?.item(at: 1)?.title)
+		let splitterMenu = NSApp.mainMenu?.item(at: 1)?.submenu
+		testMenuItem.identifier = menuIdentifiers.windowMenu.welcomeWindowItem
+		testMenuItem.target = self
+		splitterMenu?.insertItem(testMenuItem, at: splitterMenu!.items.count)
+		
+//		splitterMenu?.insertItem(withTitle: "TestView", action: #selector(testViewItemAction(_:)), keyEquivalent: "", at: 2)//splitterMenu!.items.count)
+	}
+	@objc func testViewItemAction(_ sender: Any?) {
+		let windowController = NSWindowController(windowNibName: "TestWindow")
+		windowController.showWindow(nil)
+	}
+	
 	//Need to store this as a var on the class or the app will crash when closing the welcome window
 	var welcomeWindow: NSWindow!
 	var searchWindow: NSWindow!

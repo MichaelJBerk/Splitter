@@ -43,9 +43,6 @@ extension ViewController {
 		goToPrevSplit()
 	}
 	
-	
-	
-	
 	@IBAction func addButtonClick(_ sender: Any) {
 		if timerState == .stopped {
 			addSplit()

@@ -22,8 +22,6 @@ extension NSButton {
 		} get {
 			return self.title
 		}
-		
-		
 	}
 	
 	//I'm overriding the property observer so that the NSButton's appearance will be dark when the button is enabled, thus making it transparent

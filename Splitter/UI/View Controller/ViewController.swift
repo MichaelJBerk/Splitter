@@ -41,22 +41,25 @@ class ViewController: NSViewController {
 		}
 	}
 	
+//MARK: - Buttons
 	@IBOutlet weak var StartButton: NSButton!
 	@IBOutlet weak var nextButton: NSButton!
 	@IBOutlet weak var prevButton: NSButton!
 	@IBOutlet weak var plusButton: NSButton!
 	@IBOutlet weak var minusButton: NSButton!
 	@IBOutlet weak var gameIconButton: MetadataImage!
-	@IBOutlet weak var metadataView: NSView!
-	@IBOutlet weak var innerMetatdataStack: NSStackView!
-	@IBOutlet weak var tableButtonsStack: NSStackView!
-	
-	@IBOutlet weak var bottomStackView: NSStackView!
-	
 	@IBOutlet weak var infoPanelPopoverButton: NSButton!
 	@IBOutlet weak var columnOptionsPopoverButton: NSButton!
 	
-//MARK: - Setting Up Popovers
+//MARK: - Container Views
+	@IBOutlet weak var metadataView: NSView!
+	@IBOutlet weak var innerMetatdataStack: NSStackView!
+	@IBOutlet weak var tableButtonsStack: NSStackView!
+	@IBOutlet weak var bottomStackView: NSStackView!
+	
+	
+	
+//MARK: - Popovers
 	var columnOptionsPopover: NSPopover?
 	var infoPanelPopover: NSPopover?
 	
@@ -544,7 +547,7 @@ class ViewController: NSViewController {
 	///Displays the "get info" popover
 	@IBAction func displayInfoPopover(_ sender: Any) {
 		infoPanelPopover?.contentViewController?.view.window?.close()
-		let destination = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: ViewControllerID.advanced) as! InfoPopoverTabViewController
+		let destination = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: InfoPopoverTabViewController.storyboardID) as! InfoPopoverTabViewController
 		destination.delegate = self
 		let pop = NSPopover()
 		pop.delegate = self
@@ -560,7 +563,7 @@ class ViewController: NSViewController {
 	///Displays the "column options" popover
 	@IBAction func displayColumnOptionsPopover(_ sender: Any) {
 		columnOptionsPopover?.contentViewController?.view.window?.close()
-		let destination = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: ViewControllerID.columnOptions) as! ColumnOptionsViewController
+		let destination = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: ColumnOptionsViewController.storyboardID) as! ColumnOptionsViewController
 		destination.delegate = self
 		let pop = NSPopover()
 		pop.delegate = self

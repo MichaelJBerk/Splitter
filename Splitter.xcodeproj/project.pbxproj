@@ -28,7 +28,6 @@
 		4A18662E23C51D2800FEEE54 /* UISettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A18662D23C51D2800FEEE54 /* UISettings.swift */; };
 		4A18663023C5257800FEEE54 /* MenuItemConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A18662F23C5257800FEEE54 /* MenuItemConstants.swift */; };
 		4A18663223C5376900FEEE54 /* SettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A18663123C5376900FEEE54 /* SettingsKeys.swift */; };
-		4A1C1465240ECD610056B104 /* ViewControllerID.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1C1464240ECD610056B104 /* ViewControllerID.swift */; };
 		4A1C1469240ED30C0056B104 /* InfoOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1C1467240ED30C0056B104 /* InfoOptionsViewController.swift */; };
 		4A214A70255C90720006FD9F /* SplitsIOKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4A214A6F255C90720006FD9F /* SplitsIOKit */; };
 		4A230E9323B00A1D00959C57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A230E9223B00A1D00959C57 /* AppDelegate.swift */; };
@@ -37,6 +36,9 @@
 		4A230E9C23B00A1E00959C57 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A230E9A23B00A1E00959C57 /* Main.storyboard */; };
 		4A24F20324F6E0B100278EB7 /* TouchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A24F20224F6E0B100278EB7 /* TouchBarDelegate.swift */; };
 		4A327B0D23F491FB00A5CBFF /* splitterAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A327B0C23F491FB00A5CBFF /* splitterAppearance.swift */; };
+		4A388FC525D4AF2B00A63C9E /* PrevNextRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A388FC425D4AF2B00A63C9E /* PrevNextRow.swift */; };
+		4A388FCF25D4B00B00A63C9E /* PrevNextRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A388FCE25D4B00B00A63C9E /* PrevNextRow.xib */; };
+		4A388FDB25D4B85400A63C9E /* TestWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A388FDA25D4B85400A63C9E /* TestWindow.xib */; };
 		4A3BDFA123E4C3B6001EA7FF /* DefaultHotkeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3BDFA023E4C3B6001EA7FF /* DefaultHotkeys.swift */; };
 		4A4070E1241AE2E0000927A5 /* AppearanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4070E0241AE2E0000927A5 /* AppearanceViewController.swift */; };
 		4A44FF4F24E9A9E60083013A /* SplitsIOUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A44FF4E24E9A9E60083013A /* SplitsIOUpload.swift */; };
@@ -156,7 +158,6 @@
 		4A18662D23C51D2800FEEE54 /* UISettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISettings.swift; sourceTree = "<group>"; };
 		4A18662F23C5257800FEEE54 /* MenuItemConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemConstants.swift; sourceTree = "<group>"; };
 		4A18663123C5376900FEEE54 /* SettingsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsKeys.swift; sourceTree = "<group>"; };
-		4A1C1464240ECD610056B104 /* ViewControllerID.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerID.swift; sourceTree = "<group>"; };
 		4A1C1467240ED30C0056B104 /* InfoOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoOptionsViewController.swift; sourceTree = "<group>"; };
 		4A214A64255C8FB30006FD9F /* SplitsIOKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SplitsIOKit; sourceTree = "<group>"; };
 		4A230E8F23B00A1D00959C57 /* Splitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Splitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -168,6 +169,9 @@
 		4A230E9E23B00A1E00959C57 /* Splitter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Splitter.entitlements; sourceTree = "<group>"; };
 		4A24F20224F6E0B100278EB7 /* TouchBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchBarDelegate.swift; sourceTree = "<group>"; };
 		4A327B0C23F491FB00A5CBFF /* splitterAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = splitterAppearance.swift; sourceTree = "<group>"; };
+		4A388FC425D4AF2B00A63C9E /* PrevNextRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrevNextRow.swift; sourceTree = "<group>"; };
+		4A388FCE25D4B00B00A63C9E /* PrevNextRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrevNextRow.xib; sourceTree = "<group>"; };
+		4A388FDA25D4B85400A63C9E /* TestWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestWindow.xib; sourceTree = "<group>"; };
 		4A3BDFA023E4C3B6001EA7FF /* DefaultHotkeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultHotkeys.swift; sourceTree = "<group>"; };
 		4A4070E0241AE2E0000927A5 /* AppearanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceViewController.swift; sourceTree = "<group>"; };
 		4A44FF4E24E9A9E60083013A /* SplitsIOUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitsIOUpload.swift; sourceTree = "<group>"; };
@@ -369,12 +373,13 @@
 			isa = PBXGroup;
 			children = (
 				4A230E9423B00A1D00959C57 /* ViewController.swift */,
-				4A44FF4E24E9A9E60083013A /* SplitsIOUpload.swift */,
-				4A1C1464240ECD610056B104 /* ViewControllerID.swift */,
 				4A18662D23C51D2800FEEE54 /* UISettings.swift */,
 				4AF953B623EB507800ED540C /* Splits.swift */,
 				4AF953B423EB503100ED540C /* Timer Functions.swift */,
 				4A230E9A23B00A1E00959C57 /* Main.storyboard */,
+				4A388FCE25D4B00B00A63C9E /* PrevNextRow.xib */,
+				4A388FC425D4AF2B00A63C9E /* PrevNextRow.swift */,
+				4A388FDA25D4B85400A63C9E /* TestWindow.xib */,
 				4AAD4709248432540094A31F /* Colors.swift */,
 				4A1C1466240ED2F00056B104 /* Options Windows */,
 				4AC24DBD23EB4F73003008BF /* Split Table View */,
@@ -590,6 +595,7 @@
 				4A9621F524C62401003CF23C /* ActivityIndicatorRepresentable.swift */,
 				4AE82A1B24BFD6060044B6D3 /* VisualEffectViewRepresentable.swift */,
 				4A24F20224F6E0B100278EB7 /* TouchBarDelegate.swift */,
+				4A44FF4E24E9A9E60083013A /* SplitsIOUpload.swift */,
 				4A1657AF23EA4EE20008CB5F /* View Controller */,
 				4A9FCC792411A093000937A2 /* Windows */,
 				4A9FCC7A2411A0A2000937A2 /* Controls */,
@@ -745,6 +751,8 @@
 				4AEA928423C4F140004F6CF9 /* DefaultPreferenceViewController.xib in Resources */,
 				4A7DDCE223BBDD0900A36AD1 /* Credits.html in Resources */,
 				4AF9E8AC24CE31CA00DFD5BE /* DebugPrefsViewController.xib in Resources */,
+				4A388FCF25D4B00B00A63C9E /* PrevNextRow.xib in Resources */,
+				4A388FDB25D4B85400A63C9E /* TestWindow.xib in Resources */,
 				4A0981AC24E4816A00E44792 /* AccountProfileView.xib in Resources */,
 				4A4D391F23C4F29C00BF3FCD /* blankWindow.xib in Resources */,
 				4A75579D255C47F400ACE826 /* SplitterDocSplitsio.icns in Resources */,
@@ -887,7 +895,6 @@
 				4A61438424801A28007C38E0 /* ColorsView.swift in Sources */,
 				4A0DC28624186C6200FC959A /* SplitsIODoc.swift in Sources */,
 				4AF953B723EB507800ED540C /* Splits.swift in Sources */,
-				4A1C1465240ECD610056B104 /* ViewControllerID.swift in Sources */,
 				4A44FF4F24E9A9E60083013A /* SplitsIOUpload.swift in Sources */,
 				4ACCEA7823B02F520068F89E /* TimeSplit.swift in Sources */,
 				4A5C1D1523F4AFB80014E8D3 /* commonPaths.swift in Sources */,
@@ -911,6 +918,7 @@
 				4A0981A624E34DE400E44792 /* AccountButtonView.swift in Sources */,
 				4A894B1C249ABA71004FEEB3 /* LoadableNib.swift in Sources */,
 				4A3BDFA123E4C3B6001EA7FF /* DefaultHotkeys.swift in Sources */,
+				4A388FC525D4AF2B00A63C9E /* PrevNextRow.swift in Sources */,
 				4A45BCF724084B3800F1A223 /* TimeSplitCell.swift in Sources */,
 				4A87265723BD5423003A14AF /* Prefs.swift in Sources */,
 				4AFAD84524CF2CF8006FC480 /* WelcomeWindowController.swift in Sources */,
