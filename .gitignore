@@ -98,3 +98,6 @@ iOSInjectionProject/
 # End of https://www.gitignore.io/api/swift
 /Pods/CocoaPodsKeys/SplitterKeys.h
 /Pods/CocoaPodsKeys/SplitterKeys.m
+/archive/
+/NotarizationUUIDs.log
+/ExportOptions.plist
