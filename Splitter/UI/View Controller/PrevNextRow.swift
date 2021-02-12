@@ -16,10 +16,16 @@ class PrevNextRow: NSStackView, LoadableNib {
 	
 	var viewController: ViewController?
 	
-	required init?(coder aDecoder: NSCoder) {
-		super.init(coder: aDecoder)
-		loadViewFromNib()
-	}
+//	required init?(coder aDecoder: NSCoder) {
+//		super.init(coder: aDecoder)
+//		loadViewFromNib()
+//	}
+//	
+//	init(viewController: ViewController) {
+//		super.init(frame: NSRect.infinite)
+//		loadViewFromNib()
+//		self.viewController = viewController
+//	}
 	
 	@IBAction func prevButtonClick(_ sender: NSButton?) {
 		viewController?.goToPrevSplit()

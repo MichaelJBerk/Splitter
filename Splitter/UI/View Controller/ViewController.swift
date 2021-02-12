@@ -43,8 +43,11 @@ class ViewController: NSViewController {
 	
 //MARK: - Buttons
 	@IBOutlet weak var StartButton: NSButton!
-	@IBOutlet weak var nextButton: NSButton!
-	@IBOutlet weak var prevButton: NSButton!
+//	@IBOutlet weak var nextButton: NSButton!
+//	@IBOutlet weak var prevButton: NSButton!
+	var nextButton: NSButton!
+	var prevButton: NSButton!
+	
 	@IBOutlet weak var plusButton: NSButton!
 	@IBOutlet weak var minusButton: NSButton!
 	@IBOutlet weak var gameIconButton: MetadataImage!
@@ -368,7 +371,7 @@ class ViewController: NSViewController {
 		super.init(coder: coder)
 		
 	}
-	
+	var prevNextRow: PrevNextRow!
 	
 	//MARK: - Main Functions
 	override func viewWillAppear() {
@@ -436,6 +439,44 @@ class ViewController: NSViewController {
 		attemptField.formatter = OnlyIntegerValueFormatter()
 		
 		splitsIOUploader = SplitsIOUploader(viewController: self)
+		
+//		prevNextRow = PrevNextRow(viewController: self)
+		prevNextRow = PrevNextRow()
+		prevNextRow.loadViewFromNib()
+		prevNextRow.viewController = self
+		
+//		prevNextRow.translatesAutoresizingMaskIntoConstraints = false
+		bottomStackView.arrangedSubviews.last?.isHidden = true
+		addToStack(view: prevNextRow)
+//		bottomStackView.insertArrangedSubview(prevNextRow, at: bottomStackView.arrangedSubviews.count)
+//		NSLayoutConstraint.activate([
+//			prevNextRow.leftAnchor.constraint(equalTo: bottomStackView.superview!.leftAnchor, constant: 7),
+//			prevNextRow.rightAnchor.constraint(equalTo: bottomStackView.superview!.rightAnchor, constant: -7),
+//		])
+		prevButton = prevNextRow.prevButton
+		nextButton = prevNextRow.nextButton
+		
+//		newRow = PrevNextRow()
+//		newRow.viewController = self
+//		addToStack(view: newRow)
+//		NSLayoutConstraint.activate([
+//			prevnex
+////			.init(item: prevNextRow, attribute: .trailing, relatedBy: .equal, toItem: bottomStackView.superview!, attribute: .trailing, multiplier: 1, constant: 0),
+//			.init(item: prevNextRow, attribute: .leading, relatedBy: .equal, toItem: bottomStackView.superview!, attribute: .leading, multiplier: 1, constant: 0),
+//			.init(item: prevNextRow, attribute: .height, relatedBy: .equal, toItem: .none, attribute: .notAnAttribute, multiplier: 1, constant: 32)
+//		])
+		
+		
+	}
+	
+	func addToStack(view: NSView) {
+		bottomStackView.insertArrangedSubview(view, at: bottomStackView.arrangedSubviews.count)
+		if let bottomSuper = bottomStackView.superview {
+			NSLayoutConstraint.activate([
+				view.leftAnchor.constraint(equalTo: bottomSuper.leftAnchor, constant: 7),
+				view.rightAnchor.constraint(equalTo: bottomSuper.rightAnchor, constant: -7)
+			])
+		}
 	}
 	
 	func setupConstraints() {
