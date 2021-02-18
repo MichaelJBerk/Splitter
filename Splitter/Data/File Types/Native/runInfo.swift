@@ -27,7 +27,7 @@ struct runInfo: Codable {
 	
 	var version: String?
 	var build: String?
-	
+	var id: String?
 }
 
 
@@ -64,7 +64,8 @@ class splitToJSON {
 							 startTime: json.dictionary?["startTime"]?.stringValue,
 							 endTime: json.dictionary?["endTime"]?.stringValue,
 							 version: json.dictionary?["version"]?.stringValue,
-							 build: json.dictionary?["build"]?.stringValue)
+							 build: json.dictionary?["build"]?.stringValue,
+							 id: json.dictionary?["id"]?.stringValue)
 			return ri
 			
 		}
@@ -83,6 +84,7 @@ extension ViewController {
 			gameVersion = ri.version
 			attempts = ri.attempts ?? 0
 			gameRegion = ri.gameRegion
+			fileID = ri.id
 			if let st = ri.startTime {
 				self.startTime = dateForRFC3339DateTimeString(rfc3339DateTimeString: st)
 			}
@@ -97,7 +99,7 @@ extension ViewController {
 				let previousTimeSplit = TimeSplit(timeString: s.previousTime) ?? TimeSplit()
 				let previousBestTimeSplit = TimeSplit(timeString: s.previousPersonalBestTime) ?? TimeSplit()
 				
-				let newRow = splitTableRow(splitName: s.name, bestSplit: bestTimeSplit, currentSplit: currentTimeSplit, previousSplit: previousTimeSplit, previousBest: previousBestTimeSplit,compareTo: compare )
+				let newRow = SplitTableRow(splitName: s.name, bestSplit: bestTimeSplit, currentSplit: currentTimeSplit, previousSplit: previousTimeSplit, previousBest: previousBestTimeSplit,compareTo: compare )
 				currentSplits.append(newRow)
 				splitsTableView.reloadData()
 			}
@@ -106,7 +108,6 @@ extension ViewController {
 	}
 	
 	func saveToRunInfo() -> runInfo {
-		
 		var segments: [splitSegment] = []
 		for s in currentSplits {
 			let newSeg = splitSegment(name: s.splitName,
@@ -145,7 +146,8 @@ extension ViewController {
 						 startTime: startDate,
 						 endTime: endDate,
 						 version: otherConstants.version,
-						 build: otherConstants.build)
+						 build: otherConstants.build,
+						 id: fileID)
 		return ri
 	}
 	

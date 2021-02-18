@@ -15,7 +15,7 @@ class ViewController: NSViewController {
 //MARK: - Setting Up Buttons
 	@IBOutlet weak var trashCanPopupButton: NSPopUpButton!
 	var shouldTrashCanBeHidden: Bool {
-		if UIHidden {
+		if buttonHidden {
 			return true
 		}
 		switch self.timerState {
@@ -28,7 +28,7 @@ class ViewController: NSViewController {
 	@IBOutlet weak var stopButton: NSButton!
 	var shouldStopButtonBeHidden: Bool {
 		stopButton.isEnabled = true
-		if UIHidden {
+		if buttonHidden {
 			return true
 		}
 		switch self.timerState {
@@ -45,7 +45,11 @@ class ViewController: NSViewController {
 	@IBOutlet weak var plusButton: NSButton!
 	@IBOutlet weak var minusButton: NSButton!
 	@IBOutlet weak var gameIconButton: MetadataImage!
+	@IBOutlet weak var metadataView: NSView!
+	@IBOutlet weak var innerMetatdataStack: NSStackView!
+	@IBOutlet weak var tableButtonsStack: NSStackView!
 	
+	@IBOutlet weak var bottomStackView: NSStackView!
 	
 	@IBOutlet weak var infoPanelPopoverButton: NSButton!
 	@IBOutlet weak var columnOptionsPopoverButton: NSButton!
@@ -121,8 +125,7 @@ class ViewController: NSViewController {
 	
 	
 	var timer = Timer()
-	var lscTimer: LiveSplitCore.Timer?
-	var sharedLSCTimer: LiveSplitCore.SharedTimer?
+	var lscTimer: LSTimer?
 	var refreshUITimer = Timer()
 	var milHundrethTimer = Timer()
 	
@@ -202,8 +205,8 @@ class ViewController: NSViewController {
 	//MARK: - Split Data/Properties
 	
 	var currentSplit: TimeSplit? = nil
-	var currentSplits: [splitTableRow] = []
-	var backupSplits: [splitTableRow] = []
+	var currentSplits: [SplitTableRow] = []
+	var backupSplits: [SplitTableRow] = []
 	var loadedFilePath: String = ""
 	var currentSplitNumber = 0 {
 		didSet {
@@ -264,6 +267,7 @@ class ViewController: NSViewController {
 	var gameRegion: String?
 	var startTime: Date?
 	var endTime: Date?
+	var fileID: String?
 	
 	
 
@@ -272,12 +276,12 @@ class ViewController: NSViewController {
 	var splitsIOSchemaVersion = "v1.0.1"
 	var splitsIOData: SplitsIOExchangeFormat!
 	var runInfoData: runInfo?
-	
 	var lsPointer: UnsafeMutableRawPointer?
-	
 	var appearance: splitterAppearance?
-		
-		var shouldLoadSplits = false
+	var shouldLoadSplits = false
+	
+	//MARK: Splits.io Uploading
+	var splitsIOUploader: SplitsIOUploader!
 	
 	//MARK: - Icon Data
 	
@@ -335,7 +339,7 @@ class ViewController: NSViewController {
 	var enabledMenuItems:[NSUserInterfaceItemIdentifier: Bool] = [:]
 	
 	var windowFloat = false
-	var UIHidden = false
+	var buttonHidden = false
 	var titleBarHidden = false
 	var showBestSplits = false
 	
@@ -410,7 +414,10 @@ class ViewController: NSViewController {
 		} else {
 			setUpDefaults()
 		}
-		
+		if fileID == nil {
+			fileID = UUID().uuidString
+		}
+		view.window?.setFrameAutosaveName(fileID!)
 		if currentSplits.count == 0 {
 			addBlankSplit()
 		}
@@ -422,12 +429,16 @@ class ViewController: NSViewController {
 		attemptField.stringValue = "\(attempts)"
 		attemptField.formatter = OnlyIntegerValueFormatter()
 		
+		splitsIOUploader = SplitsIOUploader(viewController: self)
+	}
+	
+	func setupConstraints() {
 		gameToViewEdgeConstraint = NSLayoutConstraint(item: runTitleField.superview!, attribute: .trailing, relatedBy: .equal, toItem: runTitleField, attribute: .trailing, multiplier: 1, constant: 8)
 		gameToViewEdgeConstraint?.isActive = false
 		categoryToViewEdgeConstraint = NSLayoutConstraint(item: categoryField.superview!, attribute: .trailing, relatedBy: .equal, toItem: categoryField, attribute: .trailing, multiplier: 1, constant: 8)
 		categoryToViewEdgeConstraint?.isActive = false
-		
 	}
+	
 	func setMenuItemEnabled(item: NSMenuItem?, enabled: Bool) {
 		if let id = item?.identifier {
 			enabledMenuItems[id] = enabled
@@ -481,7 +492,7 @@ class ViewController: NSViewController {
 		showHideTitleBar()
 		
 		
-		UIHidden = Settings.hideUIButtons
+		buttonHidden = Settings.hideUIButtons
 		 showHideUI()
 		
 		windowFloat = Settings.floatWindow
@@ -538,7 +549,7 @@ class ViewController: NSViewController {
 		pop.contentSize = NSSize(width: 450, height: 325)
 		pop.behavior = .semitransient
 		pop.appearance = NSAppearance(named: .vibrantDark)
-		pop.show(relativeTo: infoPanelPopoverButton.frame, of: self.view, preferredEdge: .maxX)
+		pop.show(relativeTo: infoPanelPopoverButton.frame, of: innerMetatdataStack, preferredEdge: .maxX)
 		infoPanelPopover = pop
 		destination.setupTabViews()
 	}
@@ -553,7 +564,7 @@ class ViewController: NSViewController {
 		pop.contentViewController = destination
 		pop.appearance = NSAppearance(named: .vibrantDark)
 		pop.behavior = .semitransient
-		pop.show(relativeTo: columnOptionsPopoverButton.frame, of: self.view, preferredEdge: .maxX)
+		pop.show(relativeTo: columnOptionsPopoverButton.frame, of: tableButtonsStack, preferredEdge: .maxX)
 		columnOptionsPopover = pop
 		destination.loadCheckBoxes()
 		

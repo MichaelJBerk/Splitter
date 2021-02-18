@@ -10,7 +10,7 @@ import Foundation
 import Cocoa
 
 ///Row for holding data in the split table view
-struct splitTableRow {
+struct SplitTableRow {
 	var splitName: String
 	var bestSplit: TimeSplit
 	var currentSplit: TimeSplit
@@ -58,7 +58,7 @@ struct splitTableRow {
 	}
 	
 	func copy(with zone: NSZone? = nil) -> Any {
-		return splitTableRow(splitName: splitName.copy() as! String, bestSplit: bestSplit.copy() as! TimeSplit, currentSplit: currentSplit.copy() as! TimeSplit, previousSplit: previousSplit.tsCopy(), previousBest: previousBest.tsCopy(), splitIcon: splitIcon)
+		return SplitTableRow(splitName: splitName.copy() as! String, bestSplit: bestSplit.copy() as! TimeSplit, currentSplit: currentSplit.copy() as! TimeSplit, previousSplit: previousSplit.tsCopy(), previousBest: previousBest.tsCopy(), splitIcon: splitIcon)
 	}
 }
 

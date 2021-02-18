@@ -57,7 +57,7 @@ class TimeSplit: NSObject, NSCopying, Comparable {
 */
 	init?(timeString: String?) {
 		if let timeString = timeString,
-			let time = LiveSplitCore.TimeSpan.parse(timeString) {
+			let time = TimeSpan.parse(timeString) {
 			self.totalSec = time.totalSeconds()
 		} else {
 			return nil

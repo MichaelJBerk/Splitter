@@ -48,7 +48,6 @@
 		4A5F10AE23CFAA1F00DA043B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A5F10AD23CFAA1F00DA043B /* Assets.xcassets */; };
 		4A61438424801A28007C38E0 /* ColorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A61438324801A28007C38E0 /* ColorsView.swift */; };
 		4A61438624801A37007C38E0 /* ColorsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A61438524801A37007C38E0 /* ColorsView.xib */; };
-		4A66573023E3D34600D14A67 /* (null) in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4A66A43023DE2682005952FA /* ImageButtonCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A66A42F23DE2682005952FA /* ImageButtonCellView.swift */; };
 		4A66A43223DE2C88005952FA /* SplitTableViewColumnIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A66A43123DE2C88005952FA /* SplitTableViewColumnIdentifiers.swift */; };
 		4A6726EA23F05D17006F4BC4 /* LiveSplit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A617EBD23EBC65C0005D60E /* LiveSplit.swift */; };
@@ -83,7 +82,6 @@
 		4ACCEA7823B02F520068F89E /* TimeSplit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACCEA7723B02F520068F89E /* TimeSplit.swift */; };
 		4AD7662E23DA5F9A0052409C /* Files in Frameworks */ = {isa = PBXBuildFile; productRef = 4AD7662D23DA5F9A0052409C /* Files */; };
 		4AD77D16240ECA2800CD65AD /* ColumnOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD77D15240ECA2800CD65AD /* ColumnOptionsViewController.swift */; };
-		4ADB15F424BE247B006C5C55 /* (null) in Embed Frameworks */ = {isa = PBXBuildFile; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4ADE9226240F1FB900E0D99E /* InfoPopoverTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADE9225240F1FB900E0D99E /* InfoPopoverTabViewController.swift */; };
 		4ADFAE4923E4A0760049F57A /* QuickAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADFAE4823E4A0760049F57A /* QuickAlert.swift */; };
 		4AE82A1624BFD4400044B6D3 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE82A1524BFD4400044B6D3 /* WelcomeView.swift */; };
@@ -99,6 +97,8 @@
 		4AF9E8AC24CE31CA00DFD5BE /* DebugPrefsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AF9E8AA24CE31CA00DFD5BE /* DebugPrefsViewController.xib */; };
 		4AF9E8C224CE448B00DFD5BE /* SplitterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF9E8C124CE448B00DFD5BE /* SplitterUITests.swift */; };
 		4AFAD84524CF2CF8006FC480 /* WelcomeWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFAD84424CF2CF8006FC480 /* WelcomeWindowController.swift */; };
+		4AFD0F8B25C38F4C003D3171 /* AppCenterCrashes in Frameworks */ = {isa = PBXBuildFile; productRef = 4AFD0F8A25C38F4C003D3171 /* AppCenterCrashes */; };
+		4AFD0F8D25C38F4C003D3171 /* AppCenterAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4AFD0F8C25C38F4C003D3171 /* AppCenterAnalytics */; };
 		CA8419FF140C00045EBA5B68 /* Pods_Splitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34AD6C2466B7A595C7B6C1B0 /* Pods_Splitter.framework */; };
 /* End PBXBuildFile section */
 
@@ -126,8 +126,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4ADB15F424BE247B006C5C55 /* (null) in Embed Frameworks */,
-				4A66573023E3D34600D14A67 /* (null) in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -243,11 +241,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				4AD7662E23DA5F9A0052409C /* Files in Frameworks */,
+				4AFD0F8B25C38F4C003D3171 /* AppCenterCrashes in Frameworks */,
 				4ABB38A8255C79B00037536E /* SwiftyJSON in Frameworks */,
 				4AA357B52416F79900219E65 /* liblivesplit_core.a in Frameworks */,
 				4A214A70255C90720006FD9F /* SplitsIOKit in Frameworks */,
 				4A1767B224EE095100571A6C /* Preferences in Frameworks */,
 				4A6B4F7423F07C3900CB781F /* libresolv.tbd in Frameworks */,
+				4AFD0F8D25C38F4C003D3171 /* AppCenterAnalytics in Frameworks */,
 				CA8419FF140C00045EBA5B68 /* Pods_Splitter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -278,13 +278,6 @@
 				34AD6C2466B7A595C7B6C1B0 /* Pods_Splitter.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		2CABEA5DE568414014847341 /* HappyCodingSupport */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = HappyCodingSupport;
 			sourceTree = "<group>";
 		};
 		4A0981A124E308A100E44792 /* Login */ = {
@@ -376,7 +369,6 @@
 			isa = PBXGroup;
 			children = (
 				4A230E9423B00A1D00959C57 /* ViewController.swift */,
-				4A24F20224F6E0B100278EB7 /* TouchBarDelegate.swift */,
 				4A44FF4E24E9A9E60083013A /* SplitsIOUpload.swift */,
 				4A1C1464240ECD610056B104 /* ViewControllerID.swift */,
 				4A18662D23C51D2800FEEE54 /* UISettings.swift */,
@@ -443,7 +435,6 @@
 				4A5F10AD23CFAA1F00DA043B /* Assets.xcassets */,
 				4A230E9D23B00A1E00959C57 /* Info.plist */,
 				4A230E9E23B00A1E00959C57 /* Splitter.entitlements */,
-				2CABEA5DE568414014847341 /* HappyCodingSupport */,
 			);
 			path = Splitter;
 			sourceTree = "<group>";
@@ -598,6 +589,7 @@
 				4A894B1B249ABA71004FEEB3 /* LoadableNib.swift */,
 				4A9621F524C62401003CF23C /* ActivityIndicatorRepresentable.swift */,
 				4AE82A1B24BFD6060044B6D3 /* VisualEffectViewRepresentable.swift */,
+				4A24F20224F6E0B100278EB7 /* TouchBarDelegate.swift */,
 				4A1657AF23EA4EE20008CB5F /* View Controller */,
 				4A9FCC792411A093000937A2 /* Windows */,
 				4A9FCC7A2411A0A2000937A2 /* Controls */,
@@ -642,6 +634,8 @@
 			buildRules = (
 			);
 			dependencies = (
+				4AFD0F9C25C390EF003D3171 /* PBXTargetDependency */,
+				4AFD0F9A25C390EC003D3171 /* PBXTargetDependency */,
 			);
 			name = Splitter;
 			packageProductDependencies = (
@@ -650,6 +644,8 @@
 				4A1767B124EE095100571A6C /* Preferences */,
 				4ABB38A7255C79B00037536E /* SwiftyJSON */,
 				4A214A6F255C90720006FD9F /* SplitsIOKit */,
+				4AFD0F8A25C38F4C003D3171 /* AppCenterCrashes */,
+				4AFD0F8C25C38F4C003D3171 /* AppCenterAnalytics */,
 			);
 			productName = Splitter;
 			productReference = 4A230E8F23B00A1D00959C57 /* Splitter.app */;
@@ -727,6 +723,7 @@
 				4AD7662C23DA5F9A0052409C /* XCRemoteSwiftPackageReference "Files" */,
 				4AB5627724338FB000D7F8D1 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				4A1767B024EE095100571A6C /* XCRemoteSwiftPackageReference "Preferences" */,
+				4AFD0F8725C38F4C003D3171 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */,
 			);
 			productRefGroup = 4A230E9023B00A1D00959C57 /* Products */;
 			projectDirPath = "";
@@ -795,7 +792,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ $CONFIGURATION == Release ]; then\n    echo \"Bumping build number...\"\n    plist=${PROJECT_DIR}/${INFOPLIST_FILE}\n\n# increment the build number (ie 115 to 116)\n    buildnum=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${plist}\")\n    if [[ \"${buildnum}\" == \"\" ]]; then\n        echo \"No build number in $plist\"\n        exit 2\n    fi\n\n    buildnum=$(expr $buildnum + 1)\n    /usr/libexec/Plistbuddy -c \"Set CFBundleVersion $buildnum\" \"${plist}\"\n    echo \"Bumped build number to $buildnum\"\n\nelse\n    echo $CONFIGURATION \" build - Not bumping build number.\"\nfi\n";
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n#if [ $CONFIGURATION == Release ]; then\n   # echo \"Bumping build number...\"\n#    plist=${PROJECT_DIR}/${INFOPLIST_FILE}\n\n# increment the build number (ie 115 to 116)\n #   buildnum=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${plist}\")\n  #  if [[ \"${buildnum}\" == \"\" ]]; then\n   #     echo \"No build number in $plist\"\n    #    exit 2\n    #fi\n\n    #buildnum=$(expr $buildnum + 1)\n    #/usr/libexec/Plistbuddy -c \"Set CFBundleVersion $buildnum\" \"${plist}\"\n    #echo \"Bumped build number to $buildnum\"\n\n#else\n #   echo $CONFIGURATION \" build - Not bumping build number.\"\n#fi\n";
 		};
 		4A66573523E3E0D900D14A67 /* ShellScript */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -959,6 +956,14 @@
 			target = 4A230E8E23B00A1D00959C57 /* Splitter */;
 			targetProxy = 4AF9E8C424CE448B00DFD5BE /* PBXContainerItemProxy */;
 		};
+		4AFD0F9A25C390EC003D3171 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 4AFD0F9925C390EC003D3171 /* AppCenterCrashes */;
+		};
+		4AFD0F9C25C390EF003D3171 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			productRef = 4AFD0F9B25C390EF003D3171 /* AppCenterAnalytics */;
+		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -1092,13 +1097,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 3BC3162DD6894F9DE2C6229A /* Pods-Splitter.debug.xcconfig */;
 			buildSettings = {
-				ARCHS = x86_64;
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CODE_SIGN_ENTITLEMENTS = Splitter/Splitter.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 166;
+				CURRENT_PROJECT_VERSION = 201;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 39SZK2C73D;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1123,7 +1130,7 @@
 					"$(PROJECT_DIR)/livesplit-core/target/release",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 3.0.2;
+				MARKETING_VERSION = 3.1;
 				MODULEMAP_FILE = "\"$(PROJECT_DIR)/Splitter/LiveSplit Core/module.map\"";
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mibe.Splitter;
@@ -1131,6 +1138,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Splitter/Splitter-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
 		};
@@ -1138,13 +1146,15 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 224FCB634535455ECB8CA680 /* Pods-Splitter.release.xcconfig */;
 			buildSettings = {
-				ARCHS = x86_64;
+				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CODE_SIGN_ENTITLEMENTS = Splitter/Splitter.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 166;
+				CURRENT_PROJECT_VERSION = 201;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 39SZK2C73D;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1169,7 +1179,7 @@
 					"$(PROJECT_DIR)/livesplit-core/target/release",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 3.0.2;
+				MARKETING_VERSION = 3.1;
 				MODULEMAP_FILE = "\"$(PROJECT_DIR)/Splitter/LiveSplit Core/module.map\"";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CODE_SIGN_FLAGS = "";
@@ -1178,6 +1188,7 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Splitter/Splitter-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
+				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
@@ -1325,6 +1336,14 @@
 				minimumVersion = 4.1.1;
 			};
 		};
+		4AFD0F8725C38F4C003D3171 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/microsoft/appcenter-sdk-apple.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.1.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1346,6 +1365,26 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4AD7662C23DA5F9A0052409C /* XCRemoteSwiftPackageReference "Files" */;
 			productName = Files;
+		};
+		4AFD0F8A25C38F4C003D3171 /* AppCenterCrashes */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4AFD0F8725C38F4C003D3171 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
+			productName = AppCenterCrashes;
+		};
+		4AFD0F8C25C38F4C003D3171 /* AppCenterAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4AFD0F8725C38F4C003D3171 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
+			productName = AppCenterAnalytics;
+		};
+		4AFD0F9925C390EC003D3171 /* AppCenterCrashes */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4AFD0F8725C38F4C003D3171 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
+			productName = AppCenterCrashes;
+		};
+		4AFD0F9B25C390EF003D3171 /* AppCenterAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4AFD0F8725C38F4C003D3171 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
+			productName = AppCenterAnalytics;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

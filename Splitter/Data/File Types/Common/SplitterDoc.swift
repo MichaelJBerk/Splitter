@@ -228,7 +228,7 @@ class SplitterDoc: NSDocument {
 	///Saves a file in the  Splits.io Exchange Format (`.json`)
 	func saveSplitsio(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, delegate: Any?, didSave didSaveSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
 		if let vc = viewController {
-			if var sioString = vc.makeSplitsIOJSON() {
+			if var sioString = vc.splitsIOUploader.makeSplitsIOJSON() {
 				fileWrapperURL = url.absoluteString
 				
 				if let sioData = sioString.data(using: .utf8) {

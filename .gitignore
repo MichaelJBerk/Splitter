@@ -10,6 +10,7 @@
 ## Build generated
 build/
 DerivedData/
+archive/
 
 ## Various settings
 *.pbxuser
@@ -98,6 +99,8 @@ iOSInjectionProject/
 # End of https://www.gitignore.io/api/swift
 /Pods/CocoaPodsKeys/SplitterKeys.h
 /Pods/CocoaPodsKeys/SplitterKeys.m
+
 /archive/
-/NotarizationUUIDs.log
 /ExportOptions.plist
+/NotarizationUUIDs.log
+/archive.xcarchive/

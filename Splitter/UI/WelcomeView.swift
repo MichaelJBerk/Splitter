@@ -25,8 +25,12 @@ struct WelcomeView: View {
 	/// Array of the user's most recently opened documents
 	var fileURLs = NSDocumentController.shared.recentDocumentURLs
     var body: some View {
-		HStack {
-			SplitterInfoView()
+		HStack(spacing: 0) {
+			ZStack {
+				Color(NSColor.controlBackgroundColor)
+					.edgesIgnoringSafeArea(.all)
+				SplitterInfoView()
+			}
 				.frame(maxWidth: .infinity, maxHeight: .infinity)
 			RecentsView(fileURLs: fileURLs, selectedURL: $selectedURL)
 				.frame(width: 309)
@@ -49,7 +53,6 @@ struct RecentsView: View {
 			RecentsRow(url: url, selectedURL: self.$selectedURL)
 				
 		}
-		.listRowBackground(Color.red)
 		.listStyle(SidebarListStyle())
 		
 	}
@@ -157,8 +160,7 @@ struct CreateNewFileButton: View {
 					.resizable()
 					.aspectRatio(contentMode: .fit)
 					.frame(width: 30)
-					
-					.foregroundColor(.blue)
+					.foregroundColor(.accentColor)
 				VStack(alignment: WelcomeAlignment.welcomeAlignment) {
 					Text("New Run").font(.headline)
 					Text("Start a new speedrun").font(.subheadline)
@@ -191,7 +193,7 @@ struct OpenFileButton: View {
 				.resizable()
 				.aspectRatio(contentMode: .fit)
 				.frame(width: 30)
-				.foregroundColor(.blue)
+				.foregroundColor(.accentColor)
 			VStack(alignment: WelcomeAlignment.welcomeAlignment) {
 				Text("Open an existing run").font(.headline)
 				Text("Open an existing .Split, LiveSplit, or Splits.io file on your Mac").font(.subheadline)
@@ -219,7 +221,7 @@ struct DownloadFileButton: View {
 				.resizable()
 				.aspectRatio(contentMode: .fit)
 				.frame(width: 30, height: 30)
-				.foregroundColor(.blue)
+				.foregroundColor(.accentColor)
 			VStack(alignment: WelcomeAlignment.welcomeAlignment) {
 				Text("Download a run from Splits.io").font(.headline)
 				Text("Use the splits from an existing run on Splits.io ").font(.subheadline)
@@ -255,22 +257,18 @@ struct SplitterInfoView: View {
 			Settings.showWelcomeWindow = self.showWelcomeScreenOnLaunch
 		}
 	}
-	
-	var body: some View {
-		let showOnLaunch = Binding<Bool>(
-			get: {self.showWelcomeScreenOnLaunch}, set: {self.showWelcomeScreenOnLaunch = $0})
-		return VStack {
-			
+	func mainView(showOnLaunch: Binding<Bool>) -> some View {
+		VStack {
 			Spacer()
-            Image(nsImage: NSApplication.shared.applicationIconImage)
-//                .fixedSize()
+			Image(nsImage: NSApplication.shared.applicationIconImage)
+				//                .fixedSize()
 				.aspectRatio(contentMode: .fit)
-				
+			
 			Text("Welcome to Splitter").font(.largeTitle)
-				
+			
 			Text("The Speedrunning timer for macOS").font(.subheadline)
-            Spacer()
-            VStack(alignment: .leading, spacing: 20) {
+			Spacer()
+			VStack(alignment: .leading, spacing: 20) {
 				Spacer()
 					.frame(height: 15)
 				CreateNewFileButton()
@@ -285,11 +283,17 @@ struct SplitterInfoView: View {
 				}
 				Spacer()
 					.frame(height: 10)
+				
 			}
 			
 		}
 		
-		
+	}
+	
+	var body: some View {
+		let showOnLaunch = Binding<Bool>(
+			get: {self.showWelcomeScreenOnLaunch}, set: {self.showWelcomeScreenOnLaunch = $0})
+		return mainView(showOnLaunch: showOnLaunch)
 	}
 }
 //MARK: - Previews

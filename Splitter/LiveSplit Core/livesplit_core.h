@@ -28,8 +28,8 @@ void* Attempt_ended(void* self);
 void* BlankSpaceComponent_new(void);
 void BlankSpaceComponent_drop(void* self);
 void* BlankSpaceComponent_into_generic(void* self);
-char const* BlankSpaceComponent_state_as_json(void* self, void* timer);
-void* BlankSpaceComponent_state(void* self, void* timer);
+char const* BlankSpaceComponent_state_as_json(void* self);
+void* BlankSpaceComponent_state(void* self);
 
 void BlankSpaceComponentState_drop(void* self);
 uint32_t BlankSpaceComponentState_size(void* self);
@@ -42,30 +42,17 @@ void* CurrentComparisonComponent_into_generic(void* self);
 char const* CurrentComparisonComponent_state_as_json(void* self, void* timer);
 void* CurrentComparisonComponent_state(void* self, void* timer);
 
-void CurrentComparisonComponentState_drop(void* self);
-char const* CurrentComparisonComponentState_text(void* self);
-char const* CurrentComparisonComponentState_comparison(void* self);
-
 void* CurrentPaceComponent_new(void);
 void CurrentPaceComponent_drop(void* self);
 void* CurrentPaceComponent_into_generic(void* self);
 char const* CurrentPaceComponent_state_as_json(void* self, void* timer);
 void* CurrentPaceComponent_state(void* self, void* timer);
 
-void CurrentPaceComponentState_drop(void* self);
-char const* CurrentPaceComponentState_text(void* self);
-char const* CurrentPaceComponentState_time(void* self);
-
 void* DeltaComponent_new(void);
 void DeltaComponent_drop(void* self);
 void* DeltaComponent_into_generic(void* self);
 char const* DeltaComponent_state_as_json(void* self, void* timer, void* layout_settings);
 void* DeltaComponent_state(void* self, void* timer, void* layout_settings);
-
-void DeltaComponentState_drop(void* self);
-char const* DeltaComponentState_text(void* self);
-char const* DeltaComponentState_time(void* self);
-char const* DeltaComponentState_semantic_color(void* self);
 
 void* DetailedTimerComponent_new(void);
 void DetailedTimerComponent_drop(void* self);
@@ -85,7 +72,8 @@ char const* DetailedTimerComponentState_comparison1_time(void* self);
 bool DetailedTimerComponentState_comparison2_visible(void* self);
 char const* DetailedTimerComponentState_comparison2_name(void* self);
 char const* DetailedTimerComponentState_comparison2_time(void* self);
-char const* DetailedTimerComponentState_icon_change(void* self);
+void* DetailedTimerComponentState_icon_change_ptr(void* self);
+size_t DetailedTimerComponentState_icon_change_len(void* self);
 char const* DetailedTimerComponentState_segment_name(void* self);
 
 void* FuzzyList_new(void);
@@ -115,7 +103,9 @@ float GraphComponentState_middle(void* self);
 bool GraphComponentState_is_live_delta_active(void* self);
 bool GraphComponentState_is_flipped(void* self);
 
+void* HotkeyConfig_new(void);
 void* HotkeyConfig_parse_json(char const* settings);
+void* HotkeyConfig_parse_file_handle(int64_t handle);
 void HotkeyConfig_drop(void* self);
 char const* HotkeyConfig_settings_description_as_json(void* self);
 char const* HotkeyConfig_as_json(void* self);
@@ -124,18 +114,27 @@ bool HotkeyConfig_set_value(void* self, size_t index, void* value);
 void* HotkeySystem_new(void* shared_timer);
 void* HotkeySystem_with_config(void* shared_timer, void* config);
 void HotkeySystem_drop(void* self);
-void HotkeySystem_deactivate(void* self);
-void HotkeySystem_activate(void* self);
 void* HotkeySystem_config(void* self);
+bool HotkeySystem_deactivate(void* self);
+bool HotkeySystem_activate(void* self);
 bool HotkeySystem_set_config(void* self, void* config);
+
+void KeyValueComponentState_drop(void* self);
+char const* KeyValueComponentState_key(void* self);
+char const* KeyValueComponentState_value(void* self);
+char const* KeyValueComponentState_semantic_color(void* self);
 
 void* Layout_new(void);
 void* Layout_default_layout(void);
 void* Layout_parse_json(char const* settings);
+void* Layout_parse_file_handle(int64_t handle);
 void* Layout_parse_original_livesplit(void* data, size_t length);
 void Layout_drop(void* self);
 void* Layout_clone(void* self);
 char const* Layout_settings_as_json(void* self);
+void* Layout_state(void* self, void* timer);
+void Layout_update_state(void* self, void* state, void* timer);
+char const* Layout_update_state_as_json(void* self, void* state, void* timer);
 char const* Layout_state_as_json(void* self, void* timer);
 void Layout_push(void* self, void* component);
 void Layout_scroll_up(void* self);
@@ -145,6 +144,7 @@ void Layout_remount(void* self);
 void* LayoutEditor_new(void* layout);
 void* LayoutEditor_close(void* self);
 char const* LayoutEditor_state_as_json(void* self);
+void* LayoutEditor_state(void* self);
 char const* LayoutEditor_layout_state_as_json(void* self, void* timer);
 void LayoutEditor_select(void* self, size_t index);
 void LayoutEditor_add_component(void* self, void* component);
@@ -156,21 +156,47 @@ void LayoutEditor_duplicate_component(void* self);
 void LayoutEditor_set_component_settings_value(void* self, size_t index, void* value);
 void LayoutEditor_set_general_settings_value(void* self, size_t index, void* value);
 
+void LayoutEditorState_drop(void* self);
+size_t LayoutEditorState_component_len(void* self);
+char const* LayoutEditorState_component_text(void* self, size_t index);
+uint8_t LayoutEditorState_buttons(void* self);
+uint32_t LayoutEditorState_selected_component(void* self);
+size_t LayoutEditorState_field_len(void* self, bool component_settings);
+char const* LayoutEditorState_field_text(void* self, bool component_settings, size_t index);
+void* LayoutEditorState_field_value(void* self, bool component_settings, size_t index);
+
+void* LayoutState_new(void);
+void LayoutState_drop(void* self);
+char const* LayoutState_as_json(void* self);
+size_t LayoutState_len(void* self);
+char const* LayoutState_component_type(void* self, size_t index);
+void* LayoutState_component_as_blank_space(void* self, size_t index);
+void* LayoutState_component_as_detailed_timer(void* self, size_t index);
+void* LayoutState_component_as_graph(void* self, size_t index);
+void* LayoutState_component_as_key_value(void* self, size_t index);
+void* LayoutState_component_as_separator(void* self, size_t index);
+void* LayoutState_component_as_splits(void* self, size_t index);
+void* LayoutState_component_as_text(void* self, size_t index);
+void* LayoutState_component_as_timer(void* self, size_t index);
+void* LayoutState_component_as_title(void* self, size_t index);
+
 void ParseRunResult_drop(void* self);
 void* ParseRunResult_unwrap(void* self);
 bool ParseRunResult_parsed_successfully(void* self);
 char const* ParseRunResult_timer_kind(void* self);
 bool ParseRunResult_is_generic_timer(void* self);
 
+void* PbChanceComponent_new(void);
+void PbChanceComponent_drop(void* self);
+void* PbChanceComponent_into_generic(void* self);
+char const* PbChanceComponent_state_as_json(void* self, void* timer);
+void* PbChanceComponent_state(void* self, void* timer);
+
 void* PossibleTimeSaveComponent_new(void);
 void PossibleTimeSaveComponent_drop(void* self);
 void* PossibleTimeSaveComponent_into_generic(void* self);
 char const* PossibleTimeSaveComponent_state_as_json(void* self, void* timer);
 void* PossibleTimeSaveComponent_state(void* self, void* timer);
-
-void PossibleTimeSaveComponentState_drop(void* self);
-char const* PossibleTimeSaveComponentState_text(void* self);
-char const* PossibleTimeSaveComponentState_time(void* self);
 
 void PotentialCleanUp_drop(void* self);
 char const* PotentialCleanUp_message(void* self);
@@ -181,18 +207,14 @@ void* PreviousSegmentComponent_into_generic(void* self);
 char const* PreviousSegmentComponent_state_as_json(void* self, void* timer, void* layout_settings);
 void* PreviousSegmentComponent_state(void* self, void* timer, void* layout_settings);
 
-void PreviousSegmentComponentState_drop(void* self);
-char const* PreviousSegmentComponentState_text(void* self);
-char const* PreviousSegmentComponentState_time(void* self);
-char const* PreviousSegmentComponentState_semantic_color(void* self);
-
 void* Run_new(void);
 void* Run_parse(void* data, size_t length, char const* path, bool load_files);
 void* Run_parse_file_handle(int64_t handle, char const* path, bool load_files);
 void Run_drop(void* self);
 void* Run_clone(void* self);
 char const* Run_game_name(void* self);
-char const* Run_game_icon(void* self);
+void* Run_game_icon_ptr(void* self);
+size_t Run_game_icon_len(void* self);
 char const* Run_category_name(void* self);
 char const* Run_extended_file_name(void* self, bool use_extended_category_name);
 char const* Run_extended_name(void* self, bool use_extended_category_name);
@@ -231,8 +253,11 @@ void RunEditor_set_run_id(void* self, char const* name);
 void RunEditor_set_region_name(void* self, char const* name);
 void RunEditor_set_platform_name(void* self, char const* name);
 void RunEditor_set_emulator_usage(void* self, bool uses_emulator);
-void RunEditor_set_variable(void* self, char const* name, char const* value);
-void RunEditor_remove_variable(void* self, char const* name);
+void RunEditor_set_speedrun_com_variable(void* self, char const* name, char const* value);
+void RunEditor_remove_speedrun_com_variable(void* self, char const* name);
+void RunEditor_add_custom_variable(void* self, char const* name);
+void RunEditor_set_custom_variable(void* self, char const* name, char const* value);
+void RunEditor_remove_custom_variable(void* self, char const* name);
 void RunEditor_clear_metadata(void* self);
 void RunEditor_insert_segment_above(void* self);
 void RunEditor_insert_segment_below(void* self);
@@ -251,6 +276,7 @@ bool RunEditor_import_comparison(void* self, void* run, char const* comparison);
 void RunEditor_remove_comparison(void* self, char const* comparison);
 bool RunEditor_rename_comparison(void* self, char const* old_name, char const* new_name);
 bool RunEditor_move_comparison(void* self, size_t src_index, size_t dst_index);
+bool RunEditor_parse_and_generate_goal_comparison(void* self, char const* time);
 void RunEditor_clear_history(void* self);
 void RunEditor_clear_times(void* self);
 void* RunEditor_clean_sum_of_best(void* self);
@@ -259,19 +285,29 @@ char const* RunMetadata_run_id(void* self);
 char const* RunMetadata_platform_name(void* self);
 bool RunMetadata_uses_emulator(void* self);
 char const* RunMetadata_region_name(void* self);
-void* RunMetadata_variables(void* self);
+void* RunMetadata_speedrun_com_variables(void* self);
+void* RunMetadata_custom_variables(void* self);
 
-void RunMetadataVariable_drop(void* self);
-char const* RunMetadataVariable_name(void* self);
-char const* RunMetadataVariable_value(void* self);
+void RunMetadataCustomVariable_drop(void* self);
+char const* RunMetadataCustomVariable_name(void* self);
+char const* RunMetadataCustomVariable_value(void* self);
+bool RunMetadataCustomVariable_is_permanent(void* self);
 
-void RunMetadataVariablesIter_drop(void* self);
-void* RunMetadataVariablesIter_next(void* self);
+void RunMetadataCustomVariablesIter_drop(void* self);
+void* RunMetadataCustomVariablesIter_next(void* self);
+
+void RunMetadataSpeedrunComVariable_drop(void* self);
+char const* RunMetadataSpeedrunComVariable_name(void* self);
+char const* RunMetadataSpeedrunComVariable_value(void* self);
+
+void RunMetadataSpeedrunComVariablesIter_drop(void* self);
+void* RunMetadataSpeedrunComVariablesIter_next(void* self);
 
 void* Segment_new(char const* name);
 void Segment_drop(void* self);
 char const* Segment_name(void* self);
-char const* Segment_icon(void* self);
+void* Segment_icon_ptr(void* self);
+size_t Segment_icon_len(void* self);
 void* Segment_comparison(void* self, char const* comparison);
 void* Segment_personal_best_split_time(void* self);
 void* Segment_best_segment_time(void* self);
@@ -285,9 +321,18 @@ void* SegmentHistoryElement_time(void* self);
 void SegmentHistoryIter_drop(void* self);
 void* SegmentHistoryIter_next(void* self);
 
+void* SegmentTimeComponent_new(void);
+void SegmentTimeComponent_drop(void* self);
+void* SegmentTimeComponent_into_generic(void* self);
+char const* SegmentTimeComponent_state_as_json(void* self, void* timer);
+void* SegmentTimeComponent_state(void* self, void* timer);
+
 void* SeparatorComponent_new(void);
 void SeparatorComponent_drop(void* self);
 void* SeparatorComponent_into_generic(void* self);
+void* SeparatorComponent_state(void* self);
+
+void SeparatorComponentState_drop(void* self);
 
 void* SettingValue_from_bool(bool value);
 void* SettingValue_from_uint(uint32_t value);
@@ -311,15 +356,17 @@ void* SettingValue_from_alignment(char const* value);
 void* SettingValue_from_column_start_with(char const* value);
 void* SettingValue_from_column_update_with(char const* value);
 void* SettingValue_from_column_update_trigger(char const* value);
+void* SettingValue_from_layout_direction(char const* value);
+void* SettingValue_from_font(char const* family, char const* style, char const* weight, char const* stretch);
+void* SettingValue_from_empty_font(void);
 void SettingValue_drop(void* self);
+char const* SettingValue_as_json(void* self);
 
 void SharedTimer_drop(void* self);
 void* SharedTimer_share(void* self);
 void* SharedTimer_read(void* self);
 void* SharedTimer_write(void* self);
 void SharedTimer_replace_inner(void* self, void* timer);
-
-size_t SplitComponentState_columns_len(void* self, size_t index);
 
 void* SplitsComponent_new(void);
 void SplitsComponent_drop(void* self);
@@ -338,8 +385,10 @@ bool SplitsComponentState_final_separator_shown(void* self);
 size_t SplitsComponentState_len(void* self);
 size_t SplitsComponentState_icon_change_count(void* self);
 size_t SplitsComponentState_icon_change_segment_index(void* self, size_t icon_change_index);
-char const* SplitsComponentState_icon_change_icon(void* self, size_t icon_change_index);
+void* SplitsComponentState_icon_change_icon_ptr(void* self, size_t icon_change_index);
+size_t SplitsComponentState_icon_change_icon_len(void* self, size_t icon_change_index);
 char const* SplitsComponentState_name(void* self, size_t index);
+size_t SplitsComponentState_columns_len(void* self, size_t index);
 char const* SplitsComponentState_column_value(void* self, size_t index, size_t column_index);
 char const* SplitsComponentState_column_semantic_color(void* self, size_t index, size_t column_index);
 bool SplitsComponentState_is_current_split(void* self, size_t index);
@@ -354,15 +403,11 @@ void* SumOfBestComponent_into_generic(void* self);
 char const* SumOfBestComponent_state_as_json(void* self, void* timer);
 void* SumOfBestComponent_state(void* self, void* timer);
 
-void SumOfBestComponentState_drop(void* self);
-char const* SumOfBestComponentState_text(void* self);
-char const* SumOfBestComponentState_time(void* self);
-
 void* TextComponent_new(void);
 void TextComponent_drop(void* self);
 void* TextComponent_into_generic(void* self);
-char const* TextComponent_state_as_json(void* self);
-void* TextComponent_state(void* self);
+char const* TextComponent_state_as_json(void* self, void* timer);
+void* TextComponent_state(void* self, void* timer);
 void TextComponent_set_center(void* self, char const* text);
 void TextComponent_set_left(void* self, char const* text);
 void TextComponent_set_right(void* self, char const* text);
@@ -448,7 +493,8 @@ char const* TitleComponent_state_as_json(void* self, void* timer);
 void* TitleComponent_state(void* self, void* timer);
 
 void TitleComponentState_drop(void* self);
-char const* TitleComponentState_icon_change(void* self);
+void* TitleComponentState_icon_change_ptr(void* self);
+size_t TitleComponentState_icon_change_len(void* self);
 char const* TitleComponentState_line1(void* self);
 char const* TitleComponentState_line2(void* self);
 bool TitleComponentState_is_centered(void* self);
@@ -462,10 +508,6 @@ void TotalPlaytimeComponent_drop(void* self);
 void* TotalPlaytimeComponent_into_generic(void* self);
 char const* TotalPlaytimeComponent_state_as_json(void* self, void* timer);
 void* TotalPlaytimeComponent_state(void* self, void* timer);
-
-void TotalPlaytimeComponentState_drop(void* self);
-char const* TotalPlaytimeComponentState_text(void* self);
-char const* TotalPlaytimeComponentState_time(void* self);
 
 #ifdef __cplusplus
 }

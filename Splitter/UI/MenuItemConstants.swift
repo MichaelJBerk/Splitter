@@ -39,7 +39,7 @@ enum menuIdentifiers {
 		static let resetRun = NSUserInterfaceItemIdentifier("ResetRun")
 		static let reset = NSUserInterfaceItemIdentifier("ResetCurrentSplitMenuItem")
 		
-		static let infoPanel = NSUserInterfaceItemIdentifier("InfoMenuItem")
+		static let info = NSUserInterfaceItemIdentifier("InfoMenuBarItem")
 	}
 	
 	//MARK: -  Appearance Menu
@@ -59,6 +59,11 @@ enum menuIdentifiers {
 		static let welcomeWindowItem = NSUserInterfaceItemIdentifier("welcomeWindowMenuItem")
 	}
 	
+	//MARK: Right-Click Menu
+	///Menu items for the main View Controller
+	enum runVCMenu {
+		static let infoPanel = NSUserInterfaceItemIdentifier("InfoMenuItem")
+	}
 }
 
 //MARK: ButtonIdentifiers

@@ -177,6 +177,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			self.openWelcomeWindow()
 		}
 	}
+	
 	@IBAction func searchWindowMenuItem( _ sender: Any) {
 		self.openSearchWindow()
 	}

@@ -68,7 +68,7 @@ struct splitterAppearance: Codable {
 	
 	init(viewController: ViewController) {
 		self.hideTitlebar = viewController.titleBarHidden
-		self.hideButtons = viewController.UIHidden
+		self.hideButtons = viewController.buttonHidden
 		self.keepOnTop = viewController.windowFloat
 		self.hideColumns = [:]
 		self.columnSizes = [:]
@@ -157,7 +157,7 @@ extension ViewController {
 	///Sets the appearance of the VC to the contents of a SplitterAppearance object
 	func setSplitterAppearance(appearance: splitterAppearance) {
 		titleBarHidden = appearance.hideTitlebar ?? Settings.hideTitleBar
-		UIHidden = appearance.hideButtons ?? Settings.hideUIButtons
+		buttonHidden = appearance.hideButtons ?? Settings.hideUIButtons
 		windowFloat = appearance.keepOnTop ?? Settings.floatWindow
 		
 		showHideTitleBar()
