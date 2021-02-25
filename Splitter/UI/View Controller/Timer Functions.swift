@@ -15,7 +15,7 @@ extension ViewController {
 	func startTimer() {
 		timerStarted = true
 		timerState = .running
-		StartButton.baseTitle = "Pause"
+		startButton.baseTitle = "Pause"
 		setupTimer()
 		splitsTableView.scrollRowToVisible(currentSplitNumber)
 		attempts = attempts + 1
@@ -25,7 +25,7 @@ extension ViewController {
 	func stopTimer() {
 		timerStarted = false
 		timerState = .stopped
-		StartButton.baseTitle = "Start"
+		startButton.baseTitle = "Start"
 		resetTimer()
 		endTime = Date()
 	}
@@ -35,12 +35,12 @@ extension ViewController {
 		
 		switch timerState {
 		case .paused:
-			StartButton.baseTitle = "Pause"
+			startButton.baseTitle = "Pause"
 			currentSplit?.paused = false
 			timerState = .running
 			lscTimer?.resume()
 		default:
-			StartButton.baseTitle = "Resume"
+			startButton.baseTitle = "Resume"
 			currentSplit?.paused = true
 			timerPaused = true
 			timerState = .paused
@@ -71,13 +71,15 @@ extension ViewController {
 		
 		self.startTime = Date()
 		
-		let run = Run()
+		var run = Run()
 		
 		let seg = Segment("Segment")
+		
 		run.pushSegment(seg)
 		//Using reloadData to update the highlighted row in the tableview
 		splitsTableView.reloadData()
 		lscTimer = LSTimer(run)
+		
 		lscTimer?.start()
 	}
 	
@@ -148,9 +150,9 @@ extension ViewController {
 		}
 		
 		if let currentTime = currentSplit?.timeString {
-			TimerLabel.stringValue = currentSplit!.timeString
-			touchBarTotalTimeLabel.stringValue = currentSplit!.timeString
+			currentTimeString = currentTime
 		}
+		
 		//Update only the current row to ensure good performance when scrolling the tableview
 		splitsTableView.reloadData(forRowIndexes: IndexSet(arrayLiteral: currentSplitNumber), columnIndexes: IndexSet(columnArray()))
 		

@@ -62,7 +62,7 @@ extension ViewController {
 	func showHideUI() {
 		
 		if buttonHidden {
-			StartButton.isHidden = true
+			startButton.isHidden = true
 			trashCanPopupButton.isHidden = true
 			stopButton.isHidden = true
 			
@@ -78,7 +78,7 @@ extension ViewController {
 			gameToViewEdgeConstraint?.isActive = true
 			categoryToViewEdgeConstraint?.isActive = true
 		} else {
-			StartButton.isHidden = false
+			startButton.isHidden = false
 			if shouldStopButtonBeHidden == true {
 				stopButton.isHidden = true
 			} else {

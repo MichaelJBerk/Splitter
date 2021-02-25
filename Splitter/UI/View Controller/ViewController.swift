@@ -41,7 +41,7 @@ class ViewController: NSViewController {
 		}
 	}
 	
-	@IBOutlet weak var StartButton: NSButton!
+	@IBOutlet weak var startButton: NSButton!
 	@IBOutlet weak var nextButton: NSButton!
 	@IBOutlet weak var prevButton: NSButton!
 	@IBOutlet weak var plusButton: NSButton!
@@ -81,6 +81,12 @@ class ViewController: NSViewController {
 		}
 		return nil
 	}
+	var addRowMenuItem: NSMenuItem? {
+		return view.window?.menu?.item(withIdentifier: menuIdentifiers.runMenu.addRow)
+	}
+	var removeRowMenuItem: NSMenuItem? {
+		return view.window?.menu?.item(withIdentifier: menuIdentifiers.runMenu.removeRow)
+	}
 	
 //MARK: - Colors
 	var bgColor: NSColor = .splitterDefaultColor {
@@ -110,10 +116,17 @@ class ViewController: NSViewController {
 //MARK: - Other UI Elements
 	@IBOutlet weak var runTitleField: MetadataField!
 	@IBOutlet weak var categoryField: MetadataField!
-	@IBOutlet weak var TimerLabel: NSTextField!
+	@IBOutlet weak var timerLabel: NSTextField!
 	@IBOutlet weak var currentTimeLabel: NSTextField!
 	@IBOutlet weak var attemptField: MetadataField!
 	@IBOutlet weak var splitsTableView: SplitterTableView!
+	
+	var currentTimeString: String = "00:00:00" {
+		didSet {
+			timerLabel.stringValue = currentTimeString
+			touchBarTotalTimeLabel.stringValue = currentTimeString
+		}
+	}
 	var cellIdentifier: NSUserInterfaceItemIdentifier?
 	
 	//MARK: - Touch Bar Controls
@@ -147,12 +160,10 @@ class ViewController: NSViewController {
 			if timerState == .stopped {
 				setMenuItemEnabled(item: timerStopItem, enabled: false)
 				timerStopItem?.title = "Stop Timer"
-				
 				startSplitItem?.title = "Start Timer"
 				
 				setMenuItemEnabled(item: startSplitItem, enabled: true)
 				setMenuItemEnabled(item: prevSplitItem, enabled: false)
-				
 				setMenuItemEnabled(item: pauseMenuItem, enabled: false)
 				
 				addDeleteEnabled(true)
@@ -197,6 +208,8 @@ class ViewController: NSViewController {
 	func addDeleteEnabled(_ enabled: Bool) {
 		plusButton.isEnabled = enabled
 		minusButton.isEnabled = enabled
+		setMenuItemEnabled(item: addRowMenuItem, enabled: enabled)
+		setMenuItemEnabled(item: removeRowMenuItem, enabled: enabled)
 	}
 	///Sets whethert the "split" and "back" buttons are enabled or not
 	func splitBackEnabled(_ enabled: Bool) {
@@ -270,8 +283,6 @@ class ViewController: NSViewController {
 	var startTime: Date?
 	var endTime: Date?
 	var fileID: String?
-	
-	
 
 	//MARK: - External File Split Data
 	//Stuff that holds data from files
@@ -399,8 +410,8 @@ class ViewController: NSViewController {
 		
 		view.window?.isMovableByWindowBackground = true
 		
-		if StartButton.acceptsFirstResponder {
-			StartButton.window?.makeFirstResponder(StartButton)
+		if startButton.acceptsFirstResponder {
+			startButton.window?.makeFirstResponder(startButton)
 		}
 		
 		view.window?.standardWindowButton(.zoomButton)?.isHidden = true
@@ -433,6 +444,7 @@ class ViewController: NSViewController {
 		attemptField.formatter = OnlyIntegerValueFormatter()
 		
 		splitsIOUploader = SplitsIOUploader(viewController: self)
+		
 	}
 	
 	func setupConstraints() {
