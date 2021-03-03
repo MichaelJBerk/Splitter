@@ -28,13 +28,15 @@ class MetadataField: NSTextField  {
 		
 	}
 	var controller: metaController? {
-			if (findVC() as? ViewController) != nil {
-				return .mainViewController
-			} else if (findVC() as? InfoOptionsViewController) != nil {
-				return .infoViewController
-			}
-			return nil
+		if (findVC() as? ViewController) != nil {
+			return .mainViewController
+		} else if (findVC() as? InfoOptionsViewController) != nil {
+			return .infoViewController
+		} else if let _ = findVC() as? RunOptionsViewController {
+			return .runOptionsViewController
 		}
+		return nil
+	}
 		
 		func loadData() {
 			switch controller {
@@ -151,6 +153,7 @@ extension InfoOptionsViewController {
 enum metaController {
 	case mainViewController
 	case infoViewController
+	case runOptionsViewController
 }
 
 extension ViewController: NSTextViewDelegate {

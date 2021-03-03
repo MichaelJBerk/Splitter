@@ -15,7 +15,7 @@ extension ViewController {
 	func startTimer() {
 		timerStarted = true
 		timerState = .running
-		StartButton.baseTitle = "Pause"
+		startButton.baseTitle = "Pause"
 		setupTimer()
 		updateAttemptField()
 		splitsTableView.scrollRowToVisible(currentSplitNumber)
@@ -37,12 +37,12 @@ extension ViewController {
 		
 		switch timerState {
 		case .paused:
-			StartButton.baseTitle = "Pause"
+			startButton.baseTitle = "Pause"
 			currentSplit?.paused = false
 			timerState = .running
 			lscTimer?.resume()
 		default:
-			StartButton.baseTitle = "Resume"
+			startButton.baseTitle = "Resume"
 			currentSplit?.paused = true
 			timerPaused = true
 			timerState = .paused

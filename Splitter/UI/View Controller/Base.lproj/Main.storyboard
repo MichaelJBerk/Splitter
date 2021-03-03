@@ -410,6 +410,17 @@
                                                 <action selector="showInfoPanelMenuItem:" target="Ady-hI-5gd" id="7GL-xb-iAU"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="sOX-Mk-8XP"/>
+                                        <menuItem title="Add Row" keyEquivalent="=" identifier="AddRowMenuItem" id="tzZ-yU-YSP">
+                                            <connections>
+                                                <action selector="addRowMenuItemWithSender:" target="Ady-hI-5gd" id="tJ8-ry-4fk"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Remove Row" keyEquivalent="-" identifier="RemoveRowMenuItem" id="2Vl-sX-Vm6">
+                                            <connections>
+                                                <action selector="removeRowMenuItemWithSender:" target="Ady-hI-5gd" id="r6q-Kg-DTU"/>
+                                            </connections>
+                                        </menuItem>
                                     </items>
                                 </menu>
                             </menuItem>
@@ -516,7 +527,7 @@
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" fullScreenAuxiliary="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-                        <rect key="contentRect" x="196" y="240" width="480" height="270"/>
+                        <rect key="contentRect" x="458" y="290" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1440" height="900"/>
                     </window>
                     <connections>
@@ -969,7 +980,7 @@
                                                                         </buttonCell>
                                                                         <accessibility description="Remove Split" identifier="RemoveSplit"/>
                                                                         <connections>
-                                                                            <action selector="RemoveButtonClick:" target="5gI-5U-AMq" id="Rqp-0v-Ncb"/>
+                                                                            <action selector="removeButtonClick:" target="5gI-5U-AMq" id="Rqp-0v-Ncb"/>
                                                                         </connections>
                                                                     </button>
                                                                     <button toolTip="Add Split" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OXM-M7-swh">
@@ -1257,8 +1268,6 @@
                         </connections>
                     </view>
                     <connections>
-                        <outlet property="StartButton" destination="gCo-Oe-sI7" id="jgA-IG-Lnb"/>
-                        <outlet property="TimerLabel" destination="d2l-Lb-Z8r" id="5xN-95-XEJ"/>
                         <outlet property="attemptField" destination="XzH-Pf-d2x" id="QI9-9k-lRM"/>
                         <outlet property="bottomStackView" destination="HPQ-BI-dXc" id="ef7-VU-Vee"/>
                         <outlet property="categoryField" destination="5cv-K8-dE8" id="S7o-Cd-tug"/>
@@ -1274,13 +1283,15 @@
                         <outlet property="prevButton" destination="tIC-9A-PB1" id="myS-de-fcH"/>
                         <outlet property="runTitleField" destination="TSJ-mg-scq" id="rjM-Y4-yKr"/>
                         <outlet property="splitsTableView" destination="Ww4-Jn-tNR" id="Q7d-TC-F7o"/>
+                        <outlet property="startButton" destination="gCo-Oe-sI7" id="jgA-IG-Lnb"/>
                         <outlet property="stopButton" destination="sEF-Zm-06R" id="adg-cS-Yhf"/>
                         <outlet property="tableButtonsStack" destination="sgY-CA-g1A" id="2e3-3o-oPw"/>
+                        <outlet property="timerLabel" destination="d2l-Lb-Z8r" id="5xN-95-XEJ"/>
                         <outlet property="trashCanPopupButton" destination="udb-sn-xNY" id="5iy-ni-r1M"/>
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="131" y="1037"/>
+            <point key="canvasLocation" x="147.5" y="915.5"/>
         </scene>
         <!--Info Popover Tab View Controller-->
         <scene sceneID="ahx-t2-V9E">
@@ -1564,7 +1575,7 @@ To remove, click and press backspace. </string>
                                 </textFieldCell>
                             </textField>
                             <gridView xPlacement="leading" yPlacement="bottom" rowAlignment="none" translatesAutoresizingMaskIntoConstraints="NO" id="1WJ-LN-qqE">
-                                <rect key="frame" x="20" y="145" width="424" height="133"/>
+                                <rect key="frame" x="20" y="145" width="408" height="133"/>
                                 <rows>
                                     <gridRow id="Kxe-KU-ILE"/>
                                     <gridRow id="Ls0-A2-qsU"/>
@@ -1577,7 +1588,7 @@ To remove, click and press backspace. </string>
                                 <gridCells>
                                     <gridCell row="Kxe-KU-ILE" column="Vbu-Go-lnq" xPlacement="trailing" id="XJt-C5-VJr">
                                         <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gCf-4R-9aQ">
-                                            <rect key="frame" x="14" y="113" width="109" height="16"/>
+                                            <rect key="frame" x="-2" y="113" width="109" height="16"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Compare Time to" id="Rac-Ff-dLM">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1587,7 +1598,7 @@ To remove, click and press backspace. </string>
                                     </gridCell>
                                     <gridCell row="Kxe-KU-ILE" column="SdJ-WM-ZCg" id="Uw9-JA-0Wd">
                                         <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eQv-aA-TVK">
-                                            <rect key="frame" x="124" y="109" width="144" height="25"/>
+                                            <rect key="frame" x="108" y="109" width="144" height="25"/>
                                             <popUpButtonCell key="cell" type="push" title="Previous Attempt" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" autoenablesItems="NO" selectedItem="PXQ-9Z-K1b" id="xtb-He-QHy">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="menu"/>
@@ -1606,7 +1617,7 @@ To remove, click and press backspace. </string>
                                     <gridCell row="Ls0-A2-qsU" column="Vbu-Go-lnq" xPlacement="trailing" id="ezQ-jo-StM"/>
                                     <gridCell row="Ls0-A2-qsU" column="SdJ-WM-ZCg" id="yyv-MF-ioh">
                                         <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="w7L-YK-RyY">
-                                            <rect key="frame" x="125" y="26" width="301" height="81"/>
+                                            <rect key="frame" x="109" y="26" width="301" height="81"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="81" id="MjM-gA-KdR"/>
                                                 <constraint firstAttribute="width" constant="297" id="oXR-JX-QFK"/>
@@ -1621,8 +1632,8 @@ To remove, click and press backspace. </string>
                                     </gridCell>
                                     <gridCell row="Iod-SA-wsZ" column="Vbu-Go-lnq" xPlacement="trailing" id="rPL-mX-khL">
                                         <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VSz-dS-40q">
-                                            <rect key="frame" x="-2" y="0.0" width="125" height="16"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Round Difference to" id="G4A-qg-BnD">
+                                            <rect key="frame" x="16" y="0.0" width="91" height="16"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Round Diffs to" id="G4A-qg-BnD">
                                                 <font key="font" usesAppearanceFont="YES"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

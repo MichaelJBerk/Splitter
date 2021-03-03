@@ -40,6 +40,9 @@ enum menuIdentifiers {
 		static let reset = NSUserInterfaceItemIdentifier("ResetCurrentSplitMenuItem")
 		
 		static let info = NSUserInterfaceItemIdentifier("InfoMenuBarItem")
+		
+		static let addRow = NSUserInterfaceItemIdentifier("AddRowMenuItem")
+		static let removeRow = NSUserInterfaceItemIdentifier("RemoveRowMenuItem")
 	}
 	
 	//MARK: -  Appearance Menu
