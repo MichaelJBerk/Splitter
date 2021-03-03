@@ -206,9 +206,9 @@ class SplitterDoc: NSDocument {
 	func saveLiveSplitFile(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, delegate: Any?, didSave didSaveSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
 		let ls = LiveSplit()
 		if let vc = viewController {
-			ls.runTitle = vc.runTitle
-			ls.category = vc.category
-			ls.attempts = vc.attempts
+			ls.runTitle = vc.run.title
+			ls.category = vc.run.subtitle
+			ls.attempts = vc.run.attempts
 			ls.platform = vc.platform
 			ls.gameVersion = vc.gameVersion
 			ls.region = vc.gameRegion

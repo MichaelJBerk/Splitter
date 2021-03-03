@@ -17,14 +17,16 @@ extension ViewController {
 		timerState = .running
 		StartButton.baseTitle = "Pause"
 		setupTimer()
+		updateAttemptField()
 		splitsTableView.scrollRowToVisible(currentSplitNumber)
-		attempts = attempts + 1
 	}
 	
 	///Stops/"Finshes" the timer
 	func stopTimer() {
 		timerStarted = false
-		timerState = .stopped
+		if timerState != .stopped {
+			timerState = .stopped
+		}
 		StartButton.baseTitle = "Start"
 		resetTimer()
 		endTime = Date()
@@ -62,8 +64,12 @@ extension ViewController {
 		updatePreviousSplit(of: 0)
 		updateAllPreviousBestSplits()
 		
-		refreshUITimer = Cocoa.Timer.scheduledTimer(timeInterval: 0.01, target: self, selector: #selector(UpdateTimer), userInfo: nil, repeats: true)
-		RunLoop.current.add(refreshUITimer, forMode: .common)
+		refreshUITimer = Cocoa.Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { timer in
+			self.UpdateTimer()
+		})
+		run.timer.start()
+
+		
 		currentSplit = TimeSplit()
 		
 		currentSplitNumber = 0
@@ -71,14 +77,8 @@ extension ViewController {
 		
 		self.startTime = Date()
 		
-		let run = Run()
-		
-		let seg = Segment("Segment")
-		run.pushSegment(seg)
 		//Using reloadData to update the highlighted row in the tableview
 		splitsTableView.reloadData()
-		lscTimer = LSTimer(run)
-		lscTimer?.start()
 	}
 	
 	///Clears out the current time field on all segments in the Table View
@@ -147,9 +147,8 @@ extension ViewController {
 			currentSplit?.updateSec(sec: lscTimer?.currentTime().realTime()?.totalSeconds() ?? 0)
 		}
 		
-		if let currentTime = currentSplit?.timeString {
-			TimerLabel.stringValue = currentSplit!.timeString
-			touchBarTotalTimeLabel.stringValue = currentSplit!.timeString
+		if let timer = run.codableLayout.components[2].timer {
+			TimerLabel.stringValue = timer.timeText
 		}
 		//Update only the current row to ensure good performance when scrolling the tableview
 		splitsTableView.reloadData(forRowIndexes: IndexSet(arrayLiteral: currentSplitNumber), columnIndexes: IndexSet(columnArray()))

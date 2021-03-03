@@ -208,7 +208,7 @@ extension ViewController {
 		}
 		
 		if let att = ls.attempts {
-			attempts = att
+			run.attempts = att
 		}
 		if let reg = ls.region {
 			gameRegion = reg

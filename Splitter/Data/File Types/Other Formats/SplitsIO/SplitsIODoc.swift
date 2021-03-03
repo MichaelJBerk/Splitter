@@ -25,9 +25,9 @@ class SplitsIODoc: SplitterDoc {
 		let vc = windowController.contentViewController as! ViewController
 		vc.setColorForControls()
 		if let si = splitsio {
-			vc.runTitle = si.game?.longname ?? ""
-			vc.category = si.category?.longname ?? ""
-			vc.attempts = si.attempts?.total ?? 0
+			vc.run.title = si.game?.longname ?? ""
+			vc.run.subtitle = si.category?.longname ?? ""
+			vc.run.attempts = si.attempts?.total ?? 0
 			if let imageStr = si.imageURL, let imageURL = URL(string: imageStr) {
 				let gameIcon = NSImage(byReferencing: imageURL)
 				vc.gameIcon = gameIcon

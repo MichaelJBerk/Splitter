@@ -10,7 +10,7 @@ import Foundation
 import Cocoa
 
 ///Row for holding data in the split table view
-struct SplitTableRow {
+struct SplitTableRow: Hashable {
 	var splitName: String
 	var bestSplit: TimeSplit
 	var currentSplit: TimeSplit

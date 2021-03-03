@@ -4743,6 +4743,8 @@ public class SplitsComponentStateRef {
     public func name(_ index: size_t) -> String {
         assert(self.ptr != Optional.none)
         let result = LiveSplitCoreNative.SplitsComponentState_name(self.ptr, index)
+		let s = String(cString: result!, encoding: .unicode)
+		print(s)
         return String(cString: result!)
     }
     /**

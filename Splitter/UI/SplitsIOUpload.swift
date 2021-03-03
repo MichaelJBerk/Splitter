@@ -62,8 +62,8 @@ class SplitsIOUploader {
 	}
 	func makeSplitsIOJSON() -> String? {
 		let timer = SplitsIOTimer(shortname: "Splitter", longname: "Splitter", website: "https://mberk.com/splitter", version: "v\(otherConstants.version) (\(otherConstants.build))")
-		let game = SplitsIORunCategory(longname: viewController.runTitle, shortname: nil, links: nil)
-		let cat = SplitsIORunCategory(longname: viewController.category, shortname: nil, links: nil)
+		let game = SplitsIORunCategory(longname: viewController.run.title, shortname: nil, links: nil)
+		let cat = SplitsIORunCategory(longname: viewController.run.subtitle, shortname: nil, links: nil)
 		var cs: [SplitsIOSegment] = []
 		for s in viewController.currentSplits {
 			let best = s.bestSplit.TSToMil()

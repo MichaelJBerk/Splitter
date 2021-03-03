@@ -82,7 +82,7 @@ extension ViewController {
 			categoryField.stringValue = ri.category
 			platform = ri.platform
 			gameVersion = ri.version
-			attempts = ri.attempts ?? 0
+			run.attempts = ri.attempts ?? 0
 			gameRegion = ri.gameRegion
 			fileID = ri.id
 			if let st = ri.startTime {
@@ -138,7 +138,7 @@ extension ViewController {
 		let ri = runInfo(title: runTitleField.stringValue,
 						 category: categoryField.stringValue,
 						 segments: segments,
-						 attempts: attempts,
+						 attempts: run.attempts,
 						 platform: platform,
 						 gameVersion: gameVersion,
 						 gameRegion: gameRegion,

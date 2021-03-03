@@ -25,6 +25,7 @@ class MetadataField: NSTextField  {
 	override func textDidChange(_ notification: Notification) {
 		super.textDidChange(notification)
 		loadData()
+		
 	}
 	var controller: metaController? {
 			if (findVC() as? ViewController) != nil {
@@ -39,9 +40,7 @@ class MetadataField: NSTextField  {
 			switch controller {
 			case .mainViewController:
 				let c = findVC() as! ViewController
-				if let attemptsInt = Int(c.attemptField.stringValue) {
-					c.attempts = attemptsInt
-				}
+				c.updateRun()
 				if let tabVC = c.infoPanelPopover?.contentViewController as? InfoPopoverTabViewController {
 					if let infoVC = tabVC.tabView.selectedTabViewItem?.viewController as? InfoOptionsViewController {
 						infoVC.getDataFromMain()
@@ -89,6 +88,7 @@ class MetadataImage: NSImageView {
 	}
 	
 	func loadData() {
+		
 		switch controller {
 		case .mainViewController:
 			if let c = findVC() as? ViewController {
@@ -112,9 +112,9 @@ extension InfoOptionsViewController {
 	
 	///Loads the popover with data from the main window
 	func getDataFromMain() {
-		runTitleField.stringValue = delegate!.runTitleField.stringValue
+		runTitleField.stringValue = delegate!.run.title
 		categoryField.stringValue = delegate!.categoryField.stringValue
-		attemptField.stringValue = "\(delegate?.attempts ?? 0)"
+		attemptField.stringValue = "\(delegate?.run.attempts ?? 0)"
 		platformField.stringValue = delegate?.platform ?? ""
 		versionField.stringValue = delegate!.gameVersion ?? ""
 		regionField.stringValue = delegate!.gameRegion ?? ""
@@ -137,15 +137,13 @@ extension InfoOptionsViewController {
 	func sendDataToMain() {
 		delegate?.runTitleField.stringValue = runTitleField.stringValue
 		delegate?.categoryField.stringValue = categoryField.stringValue
-		if let attemptsInt = Int(attemptField.stringValue) {
-			delegate?.attempts = attemptsInt
-		}
+		delegate?.attemptField.stringValue = attemptField.stringValue
 		
 		delegate?.platform = platformField.stringValue
 		delegate?.gameVersion = versionField.stringValue
 		delegate?.gameRegion = regionField.stringValue
 		delegate?.gameIconButton.image = iconWell.image
-		
+//		delegate?.updateAttemptField()
 	}
 }
 

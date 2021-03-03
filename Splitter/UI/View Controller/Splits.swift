@@ -13,23 +13,22 @@ extension ViewController {
 	//MARK: - Split Navigation
 	///Moves the timer to the next split, or finishes the run if the current split is the last.
 	func goToNextSplit() {
-		if timerStarted {
-		
-			updateBestSplits(of: currentSplitNumber)
-			if currentSplits.count > currentSplitNumber + 1 {
-				
-				updatePreviousSplit(of: currentSplitNumber + 1)
-				let currentSplitCopy = self.currentSplit?.copy() as! TimeSplit
-				currentSplits[currentSplitNumber].currentSplit = currentSplitCopy
-				currentSplitNumber += 1
-				currentSplits[currentSplitNumber].currentSplit = self.currentSplit!
-				splitsTableView.scrollRowToVisible(currentSplitNumber)
-			} else {
-				//If it's at the last split, then stop the timer.
-				stopTimer()
-			}
-			
-		}
+		run.timer.splitOrStart()
+//		if timerStarted {
+//			updateBestSplits(of: currentSplitNumber)
+//			if currentSplits.count > currentSplitNumber + 1 {
+//
+//				updatePreviousSplit(of: currentSplitNumber + 1)
+//				let currentSplitCopy = self.currentSplit?.copy() as! TimeSplit
+//				currentSplits[currentSplitNumber].currentSplit = currentSplitCopy
+//				currentSplitNumber += 1
+//				currentSplits[currentSplitNumber].currentSplit = self.currentSplit!
+//				splitsTableView.scrollRowToVisible(currentSplitNumber)
+//			} else {
+//				//If it's at the last split, then stop the timer.
+//				stopTimer()
+//			}
+//		}
 		//Need to reload the entire table view so that the hightlighted row in the table view will update
 		//Since this only happens when advancing to the next split, it shouldn't affect scrolling performance
 		splitsTableView.reloadData()

@@ -11,6 +11,8 @@ import Preferences
 import AppCenter
 import AppCenterCrashes
 import SplitsIOKit
+//Only doing this to show the TCTestView
+import SwiftUI
 
 class ViewController: NSViewController {
 	
@@ -43,8 +45,6 @@ class ViewController: NSViewController {
 	
 //MARK: - Buttons
 	@IBOutlet weak var StartButton: NSButton!
-//	@IBOutlet weak var nextButton: NSButton!
-//	@IBOutlet weak var prevButton: NSButton!
 	var nextButton: NSButton!
 	var prevButton: NSButton!
 	
@@ -128,6 +128,10 @@ class ViewController: NSViewController {
 	
 	
 //MARK: - Timer Properties
+	
+	var run: SplitterRun!
+	
+	
 	var timerStarted = false
 	var timerPaused = false
 	
@@ -163,6 +167,7 @@ class ViewController: NSViewController {
 				
 				addDeleteEnabled(true)
 				splitBackEnabled(false)
+				stopTimer()
 				self.splitsTableView.reloadData(forRowIndexes: IndexSet(arrayLiteral: 0), columnIndexes: IndexSet(arrayLiteral: 0,1,2,3,4,5))
 			} else if timerState == .running {
 				timerStopItem?.title = "Stop Timer"
@@ -249,27 +254,7 @@ class ViewController: NSViewController {
 	
 
 	//MARK: - Other Split Metadata
-	var attempts: Int = 0 {
-		didSet {
-			attemptField.stringValue = "\(attempts)"
-		}
-	}
-	var runTitle: String {
-		get {
-			return runTitleField.stringValue
-		}
-		set {
-			runTitleField.stringValue = newValue
-		}
-	}
-	var category: String {
-		get {
-			return categoryField.stringValue
-		}
-		set {
-			categoryField.stringValue = newValue
-		}
-	}
+	
 	var platform: String?
 	var gameVersion: String?
 	var gameRegion: String?
@@ -376,6 +361,8 @@ class ViewController: NSViewController {
 	//MARK: - Main Functions
 	override func viewWillAppear() {
 		super.viewWillAppear()
+		run = SplitterRun(run: Run())
+		
 		if let welcome = AppDelegate.shared?.welcomeWindow {
 			welcome.close()
 		}
@@ -435,7 +422,7 @@ class ViewController: NSViewController {
 		
 		view.window?.makeFirstResponder(splitsTableView)
 		
-		attemptField.stringValue = "\(attempts)"
+		updateAttemptField()
 		attemptField.formatter = OnlyIntegerValueFormatter()
 		
 		splitsIOUploader = SplitsIOUploader(viewController: self)
@@ -465,7 +452,31 @@ class ViewController: NSViewController {
 //			.init(item: prevNextRow, attribute: .leading, relatedBy: .equal, toItem: bottomStackView.superview!, attribute: .leading, multiplier: 1, constant: 0),
 //			.init(item: prevNextRow, attribute: .height, relatedBy: .equal, toItem: .none, attribute: .notAnAttribute, multiplier: 1, constant: 32)
 //		])
+		NotificationCenter.default.addObserver(forName: .phaseChanged, object: nil, queue: nil, using: { notification in
+			let old: Int = Int(notification.userInfo!["oldPhase"] as! UInt8)
+			let phase: Int = Int(notification.userInfo!["phase"] as! UInt8)
+			if phase == 2 {
+				self.timerState = .stopped
+			}
+			if phase == 1 && old != 1 {
+				self.timerState = .running
+			}
+			if phase == 3 && old != 3 {
+				self.timerState = .paused
+			}
+			
+		})
 		
+	}
+	func updateAttemptField() {
+		attemptField.stringValue = "\(run.attempts)"
+	}
+	func updateRun() {
+		run.title = runTitleField.stringValue
+		run.subtitle = categoryField.stringValue
+		if let attemptsInt = Int(attemptField.stringValue) {
+			run.attempts = attemptsInt
+		}
 		
 	}
 	
@@ -626,6 +637,17 @@ class ViewController: NSViewController {
 	
 	//TODO: See if necessary
 	override func keyDown(with event: NSEvent) {
+//		if #available(macOS 11.0, *) {
+//			if event.specialKey == .some(.upArrow) {
+//				let timerCore = SplitterRun(run: Run())
+////				timerCore.addSegment(segment: .init(splitName: "Hey", bestSplit: .init(), currentSplit: .init(), previousSplit: .init(), previousBest: .init()))
+//				let testView = TimerCoreTest(timerCore: timerCore)
+//				let host = NSHostingController(rootView: testView)
+//				let window = NSWindow(contentViewController: host)
+//				window.makeKeyAndOrderFront(nil)
+//				return
+//			}
+//		}
 		super.keyDown(with: event)
 	}
 }
