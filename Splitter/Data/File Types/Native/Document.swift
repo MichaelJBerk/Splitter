@@ -26,84 +26,70 @@ class Document: SplitterDocBundle {
 	var gameIcon: NSImage?
 	var iconArray: [NSImage?] = []
 	var id: String? = nil
+	var versionUsed: Double?
+	var run: SplitterRun?
 	
 	override init() {
 	    super.init()
 		wrapper = try? fileWrapper(ofType: ".split")
-		
 		// Add your subclass-specific initialization here.
-	}
-
-	
-
-	override func makeWindowControllers() {
-		// Returns the Storyboard that contains your Document window.
-		
-		let storyboard = NSStoryboard(name: NSStoryboard.Name("Main"), bundle: nil)
-		let windowController = storyboard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("Document Window Controller")) as! NSWindowController
-		
-		
-		
-		self.addWindowController(windowController)
-		let vc = windowController.contentViewController as! ViewController
-		vc.setColorForControls()
-		if let ri = self.runInfoData {
-			vc.runInfoData = ri
-			vc.loadFromRunInfo(icons: iconArray)
-			vc.appearance = appearance
-			if let gi = self.gameIcon{
-				vc.gameIcon = gi
-			}
-			
-		}
 	}
 	
 	
 	override func windowControllerDidLoadNib(_ windowController: NSWindowController) {
-		
 		windowController.windowFrameAutosaveName = NSWindow.FrameAutosaveName(id!)
 	}
 	
+	/**
+	# How loading a file works
+	- Read the file in `read`
+	- Save this data to a property
+	- Hand it to the VC in `makeWindowControllers`
+	
+	*/
 	
 	override func read(from fileWrapper: FileWrapper, ofType typeName: String) throws {
-		let newURL = cleanFileURL
+		var beforeSplitter4 = false
+		if let runInfoFile = try? bundleFolder?.file(named: "runInfo.json") {
+			if let data = try? runInfoFile.read(), let json = try? JSON(data: data) {
+				//Check which version of Splitter saved the file
+				versionUsed = json["version"].doubleValue
+				if versionUsed! < 4 {
+					beforeSplitter4 = true
+					self.runInfoData = splitToJSON().runInfoFromJSON(json: json)
+				}
+			}
+		}
 		
-//		let bundleFolder = try? Folder(path: newURL!)
+		if beforeSplitter4 {
+			readOlderThanSplitter4(from: fileWrapper)
+		} else {
+			//TODO: Read newer version
+		}
+	}
+	
+	func readOlderThanSplitter4(from fileWrapper: FileWrapper) {
 		
-		let runInfoFile = try? bundleFolder?.file(named: "runInfo.json")
 		let appearanceFile = try? bundleFolder?.file(named: "appearance.json")
 		let iconFile = try? bundleFolder?.file(named: "gameIcon.png")
 		let segIconFolder = try? bundleFolder?.subfolder(named: "segIcons")
-		
-		let newJD = JSONDecoder()
-		
-		if runInfoFile != nil {
-			
-			if let data = try? runInfoFile?.read(), let json = try? JSON(data: data) {
-				self.runInfoData = splitToJSON().runInfoFromJSON(json: json)
-			}
-			
-		}
 		
 		if appearanceFile != nil {
 			if let data = try? appearanceFile?.read(), let json = try? JSON(data: data) {
 				let newAppearance = splitterAppearance(json: json)
 				self.appearance = newAppearance
 			}
-			
 		}
 		
 		
 		if iconFile != nil {
 			self.gameIcon = try? NSImage(data: iconFile!.read())
-			
 		}
-		
 		if segIconFolder != nil {
 			var i = 0
 			iconArray = []
 			var currentImage: NSImage?
-			if let segs = runInfoData?.segments.count {
+			if let segs = runInfoData?.segments?.count {
 				while i < segs {
 					currentImage = nil
 					if let iconFile = try? segIconFolder?.file(named: "\(i).png") {
@@ -119,11 +105,44 @@ class Document: SplitterDocBundle {
 		
 		
 		wrapper =  fileWrapper
+	}
+	
+	override func makeWindowControllers() {
+		// Returns the Storyboard that contains your Document window.
 		
+		let storyboard = NSStoryboard(name: NSStoryboard.Name("Main"), bundle: nil)
+		let windowController = storyboard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("Document Window Controller")) as! NSWindowController
+		self.addWindowController(windowController)
+		let vc = windowController.contentViewController as! ViewController
+		vc.setColorForControls()
+		if let ri = self.runInfoData {
+			vc.runInfoData = ri
+			if let v = versionUsed, v < 4 {
+				vc.loadFromOldRunInfo(icons: iconArray)
+			} else {
+				vc.loadFromRunInfo()
+				if let url = self.fileURL {
+					vc.loadLS(url: url)
+				}
+			}
+			vc.appearance = appearance
+			if let gi = self.gameIcon {
+				vc.gameIcon = gi
+			}
+		}
 	}
 	
 	override func save(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, delegate: Any?, didSave didSaveSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
+		if let version = versionUsed, version < 4 {
+			if !Settings.warningSuppresed(.overwritingSplitsFromOlderVersion) {
+				if !saveOlderVersionAlert() {
+					return
+				}
+				//TODO: Migrate
+			}
+		}
 		determineSave(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: contextInfo)
+		
 	}
 
 	override func read(from data: Data, ofType typeName: String) throws {

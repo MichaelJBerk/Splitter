@@ -29,11 +29,10 @@ extension CellImageWell {
 				let result = dialog.url
 				
 				if (result != nil) {
-					 let imageFile = try? Data(contentsOf: result!)
-					 
-					 let myImage = NSImage(data: imageFile!)
-					 
-					self.image = myImage
+					let imageFile = try? Data(contentsOf: result!)
+					let myImage = NSImage(data: imageFile!)
+					run.setIcon(for: row, image: myImage)
+					splitController.splitsTableView.reloadData(forRowIndexes: .init(arrayLiteral: row), columnIndexes: .init(arrayLiteral: 0))
 			}
 		}
 	}

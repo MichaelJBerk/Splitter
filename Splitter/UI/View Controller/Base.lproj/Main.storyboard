@@ -599,7 +599,7 @@
                     </items>
                 </menu>
                 <viewController storyboardIdentifier="MainViewController" id="5gI-5U-AMq" customClass="ViewController" customModule="Splitter" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="nLC-ev-0ZO">
+                    <view key="view" misplaced="YES" id="nLC-ev-0ZO">
                         <rect key="frame" x="0.0" y="0.0" width="494" height="378"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
@@ -716,7 +716,7 @@
                                                                     <subviews>
                                                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fWm-h9-MQx" customClass="CellImageWell" customModule="Splitter" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="3" width="37" height="25"/>
-                                                                            <imageCell key="cell" selectable="YES" editable="YES" alignment="left" imageScaling="proportionallyDown" image="livesplit" id="7YC-zB-gvo"/>
+                                                                            <imageCell key="cell" selectable="YES" editable="YES" alignment="left" imageScaling="proportionallyDown" id="7YC-zB-gvo"/>
                                                                             <connections>
                                                                                 <outlet property="menu" destination="tBl-Z3-cF6" id="q3S-A7-gEd"/>
                                                                                 <outlet property="splitController" destination="5gI-5U-AMq" id="p3F-qM-ixb"/>
@@ -1036,10 +1036,10 @@
                                                         </customSpacing>
                                                     </stackView>
                                                     <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="29" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="px3-Jy-gbq">
-                                                        <rect key="frame" x="0.0" y="188" width="481" height="50"/>
+                                                        <rect key="frame" x="0.0" y="27" width="481" height="211"/>
                                                         <subviews>
                                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="d2l-Lb-Z8r">
-                                                                <rect key="frame" x="-2" y="4" width="195" height="42"/>
+                                                                <rect key="frame" x="-2" y="17" width="195" height="177"/>
                                                                 <textFieldCell key="cell" lineBreakMode="clipping" title="00:00:00.00" placeholderString="00:00:00.00" id="JHU-AI-bFi">
                                                                     <font key="font" size="36" name="HelveticaNeue"/>
                                                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1047,7 +1047,7 @@
                                                                 </textFieldCell>
                                                             </textField>
                                                             <stackView distribution="fill" orientation="vertical" alignment="trailing" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hl7-IL-HE2">
-                                                                <rect key="frame" x="220" y="7" width="261" height="36"/>
+                                                                <rect key="frame" x="220" y="88" width="261" height="36"/>
                                                                 <subviews>
                                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rkm-yi-plE">
                                                                         <rect key="frame" x="210" y="20" width="53" height="16"/>
@@ -1089,7 +1089,7 @@
                                                         </customSpacing>
                                                     </stackView>
                                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="tEW-3m-2Cj" userLabel="Start Row">
-                                                        <rect key="frame" x="0.0" y="161" width="481" height="25"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="481" height="25"/>
                                                         <subviews>
                                                             <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u2u-en-rgq">
                                                                 <rect key="frame" x="1" y="2" width="43" height="21"/>
@@ -1167,44 +1167,6 @@
                                                             <constraint firstAttribute="bottom" secondItem="gCo-Oe-sI7" secondAttribute="bottom" constant="2" id="trf-cS-SW9"/>
                                                         </constraints>
                                                     </customView>
-                                                    <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Uey-g5-RxZ">
-                                                        <rect key="frame" x="0.0" y="0.0" width="481" height="159"/>
-                                                        <subviews>
-                                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tIC-9A-PB1">
-                                                                <rect key="frame" x="-7" y="132" width="250" height="32"/>
-                                                                <buttonCell key="cell" type="push" title="Prev" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ux6-T5-kx5">
-                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                    <font key="font" metaFont="system"/>
-                                                                </buttonCell>
-                                                                <connections>
-                                                                    <action selector="prevButtonClick:" target="5gI-5U-AMq" id="SRm-CB-TOB"/>
-                                                                </connections>
-                                                            </button>
-                                                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="5Ka-8A-G0d">
-                                                                <rect key="frame" x="239" y="132" width="249" height="32"/>
-                                                                <buttonCell key="cell" type="push" title="Split" bezelStyle="rounded" alignment="center" scrollable="YES" lineBreakMode="clipping" truncatesLastVisibleLine="YES" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xSV-AL-F6u">
-                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                    <font key="font" metaFont="system"/>
-                                                                </buttonCell>
-                                                                <connections>
-                                                                    <action selector="nextButtonClick:" target="5gI-5U-AMq" id="fjE-Ya-6Ng"/>
-                                                                </connections>
-                                                            </button>
-                                                        </subviews>
-                                                        <constraints>
-                                                            <constraint firstAttribute="trailing" secondItem="5Ka-8A-G0d" secondAttribute="trailing" id="IOY-M9-oKz"/>
-                                                            <constraint firstItem="tIC-9A-PB1" firstAttribute="leading" secondItem="Uey-g5-RxZ" secondAttribute="leading" id="Zdk-e5-mjr"/>
-                                                            <constraint firstItem="tIC-9A-PB1" firstAttribute="width" secondItem="5Ka-8A-G0d" secondAttribute="width" id="o3Q-7c-aDY"/>
-                                                        </constraints>
-                                                        <visibilityPriorities>
-                                                            <integer value="1000"/>
-                                                            <integer value="1000"/>
-                                                        </visibilityPriorities>
-                                                        <customSpacing>
-                                                            <real value="3.4028234663852886e+38"/>
-                                                            <real value="3.4028234663852886e+38"/>
-                                                        </customSpacing>
-                                                    </stackView>
                                                 </subviews>
                                                 <constraints>
                                                     <constraint firstAttribute="trailing" secondItem="px3-Jy-gbq" secondAttribute="trailing" id="6VV-M3-5vj"/>
@@ -1218,10 +1180,8 @@
                                                     <integer value="1000"/>
                                                     <integer value="1000"/>
                                                     <integer value="1000"/>
-                                                    <integer value="1000"/>
                                                 </visibilityPriorities>
                                                 <customSpacing>
-                                                    <real value="3.4028234663852886e+38"/>
                                                     <real value="3.4028234663852886e+38"/>
                                                     <real value="3.4028234663852886e+38"/>
                                                     <real value="3.4028234663852886e+38"/>
@@ -1230,8 +1190,6 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstItem="HPQ-BI-dXc" firstAttribute="top" secondItem="0DF-tP-BL4" secondAttribute="top" constant="10" id="0Qa-fB-6hl"/>
-                                            <constraint firstAttribute="trailing" secondItem="Uey-g5-RxZ" secondAttribute="trailing" constant="6" id="7v2-sy-EB3"/>
-                                            <constraint firstItem="Uey-g5-RxZ" firstAttribute="leading" secondItem="0DF-tP-BL4" secondAttribute="leading" constant="7" id="M6l-YI-UjR"/>
                                             <constraint firstAttribute="trailing" secondItem="HPQ-BI-dXc" secondAttribute="trailing" constant="6" id="PGN-IS-pNw"/>
                                             <constraint firstAttribute="bottom" secondItem="HPQ-BI-dXc" secondAttribute="bottom" constant="10" id="tcZ-J0-Acn"/>
                                             <constraint firstItem="HPQ-BI-dXc" firstAttribute="leading" secondItem="0DF-tP-BL4" secondAttribute="leading" constant="7" id="vba-lo-Qwl"/>
@@ -1278,9 +1236,7 @@
                         <outlet property="innerMetatdataStack" destination="Zvg-iD-B8R" id="chC-L4-IfO"/>
                         <outlet property="metadataView" destination="mAU-zf-6y9" id="oWJ-Ex-kRk"/>
                         <outlet property="minusButton" destination="jC2-yS-poH" id="MlL-63-BKb"/>
-                        <outlet property="nextButton" destination="5Ka-8A-G0d" id="Ajm-qR-y9L"/>
                         <outlet property="plusButton" destination="OXM-M7-swh" id="sb0-rS-PWM"/>
-                        <outlet property="prevButton" destination="tIC-9A-PB1" id="myS-de-fcH"/>
                         <outlet property="runTitleField" destination="TSJ-mg-scq" id="rjM-Y4-yKr"/>
                         <outlet property="splitsTableView" destination="Ww4-Jn-tNR" id="Q7d-TC-F7o"/>
                         <outlet property="startButton" destination="gCo-Oe-sI7" id="jgA-IG-Lnb"/>
@@ -1642,7 +1598,7 @@ To remove, click and press backspace. </string>
                                     </gridCell>
                                     <gridCell row="Iod-SA-wsZ" column="SdJ-WM-ZCg" id="t4A-KS-poq">
                                         <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3c2-Oc-T6R">
-                                            <rect key="frame" x="124" y="-4" width="149" height="25"/>
+                                            <rect key="frame" x="108" y="-4" width="149" height="25"/>
                                             <popUpButtonCell key="cell" type="push" title="Tenths (1.0)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="nMZ-sT-CSk" id="Tat-0W-Mzd">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="menu"/>
@@ -1865,7 +1821,6 @@ To remove, click and press backspace. </string>
         <image name="NSQuickLookTemplate" width="21" height="13"/>
         <image name="NSRemoveTemplate" width="14" height="4"/>
         <image name="gearshape" width="107" height="107"/>
-        <image name="livesplit" width="512" height="512"/>
         <image name="stop" width="12" height="12"/>
         <image name="trash" width="19" height="19"/>
         <namedColor name="accentColor">

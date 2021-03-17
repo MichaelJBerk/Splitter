@@ -58,8 +58,6 @@ class ViewController: NSViewController {
 	@IBOutlet weak var tableButtonsStack: NSStackView!
 	@IBOutlet weak var bottomStackView: NSStackView!
 	
-	
-	
 //MARK: - Popovers
 	var columnOptionsPopover: NSPopover?
 	var infoPanelPopover: NSPopover?
@@ -125,12 +123,6 @@ class ViewController: NSViewController {
 	@IBOutlet weak var attemptField: MetadataField!
 	@IBOutlet weak var splitsTableView: SplitterTableView!
 	
-	var currentTimeString: String = "00:00:00" {
-		didSet {
-			timerLabel.stringValue = currentTimeString
-			touchBarTotalTimeLabel.stringValue = currentTimeString
-		}
-	}
 	var cellIdentifier: NSUserInterfaceItemIdentifier?
 	
 	//MARK: - Touch Bar Controls
@@ -266,9 +258,24 @@ class ViewController: NSViewController {
 
 	//MARK: - Other Split Metadata
 	
-	var platform: String?
+	var platform: String {
+		get {
+			run.platform
+		}
+		set {
+			run.platform = newValue
+		}
+	}
+	
 	var gameVersion: String?
-	var gameRegion: String?
+	var gameRegion: String {
+		get {
+			run.region
+		}
+		set {
+			run.region = newValue
+		}
+	}
 	var startTime: Date?
 	var endTime: Date?
 	var fileID: String?
@@ -367,11 +374,21 @@ class ViewController: NSViewController {
 	}
 	var prevNextRow: PrevNextRow!
 	
+	func setupPrevNextRow() {
+		prevNextRow = PrevNextRow()
+		prevNextRow.loadViewFromNib()
+		prevNextRow.viewController = self
+		
+		bottomStackView.arrangedSubviews.last?.isHidden = true
+		addToStack(view: prevNextRow)
+		prevButton = prevNextRow.prevButton
+		nextButton = prevNextRow.nextButton
+	}
+	
 	//MARK: - Main Functions
 	override func viewWillAppear() {
 		super.viewWillAppear()
-		run = SplitterRun(run: Run())
-		
+		setupPrevNextRow()
 		if let welcome = AppDelegate.shared?.welcomeWindow {
 			welcome.close()
 		}
@@ -389,9 +406,6 @@ class ViewController: NSViewController {
 		view.window?.delegate = self
 		
 		touchBarDelegate = RunTouchBarDelegate(splitFunc: startSplitTimer, pauseFunc: pauseResumeTimer, prevFunc: goToPrevSplit, stopFunc: stopTimer, sourceVC: self)
-		//This line of code looks redundant, but it's here in order to make the timerState's property observer fire
-		let ts = timerState
-		timerState = ts
 		
 		view.window?.isOpaque = false
 		view.window?.backgroundColor = .splitterDefaultColor
@@ -436,31 +450,11 @@ class ViewController: NSViewController {
 		
 		splitsIOUploader = SplitsIOUploader(viewController: self)
 		
-//		prevNextRow = PrevNextRow(viewController: self)
-		prevNextRow = PrevNextRow()
-		prevNextRow.loadViewFromNib()
-		prevNextRow.viewController = self
+		//This line of code looks redundant, but it's here in order to make the timerState's property observer fire
+		let ts = timerState
+		timerState = ts
 		
-//		prevNextRow.translatesAutoresizingMaskIntoConstraints = false
-		bottomStackView.arrangedSubviews.last?.isHidden = true
-		addToStack(view: prevNextRow)
-//		bottomStackView.insertArrangedSubview(prevNextRow, at: bottomStackView.arrangedSubviews.count)
-//		NSLayoutConstraint.activate([
-//			prevNextRow.leftAnchor.constraint(equalTo: bottomStackView.superview!.leftAnchor, constant: 7),
-//			prevNextRow.rightAnchor.constraint(equalTo: bottomStackView.superview!.rightAnchor, constant: -7),
-//		])
-		prevButton = prevNextRow.prevButton
-		nextButton = prevNextRow.nextButton
 		
-//		newRow = PrevNextRow()
-//		newRow.viewController = self
-//		addToStack(view: newRow)
-//		NSLayoutConstraint.activate([
-//			prevnex
-////			.init(item: prevNextRow, attribute: .trailing, relatedBy: .equal, toItem: bottomStackView.superview!, attribute: .trailing, multiplier: 1, constant: 0),
-//			.init(item: prevNextRow, attribute: .leading, relatedBy: .equal, toItem: bottomStackView.superview!, attribute: .leading, multiplier: 1, constant: 0),
-//			.init(item: prevNextRow, attribute: .height, relatedBy: .equal, toItem: .none, attribute: .notAnAttribute, multiplier: 1, constant: 32)
-//		])
 		NotificationCenter.default.addObserver(forName: .phaseChanged, object: nil, queue: nil, using: { notification in
 			let old: Int = Int(notification.userInfo!["oldPhase"] as! UInt8)
 			let phase: Int = Int(notification.userInfo!["phase"] as! UInt8)
@@ -475,6 +469,7 @@ class ViewController: NSViewController {
 			}
 			
 		})
+		print("VWA Done!")
 		
 	}
 	func updateAttemptField() {
@@ -486,7 +481,11 @@ class ViewController: NSViewController {
 		if let attemptsInt = Int(attemptField.stringValue) {
 			run.attempts = attemptsInt
 		}
-		
+	}
+	func updateTextFields() {
+		runTitleField.stringValue = run.title
+		categoryField.stringValue = run.subtitle
+		attemptField.stringValue = "\(run.attempts)"
 	}
 	
 	func addToStack(view: NSView) {
@@ -514,7 +513,6 @@ class ViewController: NSViewController {
 	
 	var gameToViewEdgeConstraint: NSLayoutConstraint?
 	var categoryToViewEdgeConstraint: NSLayoutConstraint?
-	
 	
 	func setRightClickMenus() {
 		let standardMenu = view.menu
@@ -578,8 +576,9 @@ class ViewController: NSViewController {
 	}
 
 	override func viewDidLoad() {
-		
 		super.viewDidLoad()
+		run = SplitterRun(run: Run())
+		
 		self.view.wantsLayer = true
 		splitsTableView.reloadData()
 		stopButton.image = nil

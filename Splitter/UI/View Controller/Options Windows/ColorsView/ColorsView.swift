@@ -30,9 +30,13 @@ class ColorsView: NSView, LoadableNib, advancedTabDelegate {
 			d.tableBGColor = tableViewBGColorWell.color
 			d.textColor = textColorWell.color
 			d.selectedColor = selectedColorWell.color
-			d.diffsLongerColor = longerDiffColorWell.color
-			d.diffsShorterColor = shorterDiffColorWell.color
+			
+			d.run.longerColor = longerDiffColorWell.color
+			d.run.shorterColor = shorterDiffColorWell.color
+			//TODO: PB Color
+			
 			d.setColorForControls()
+			d.run.updateLayoutState()
 		}
 	}
 	
@@ -78,8 +82,9 @@ class ColorsView: NSView, LoadableNib, advancedTabDelegate {
 			tableViewBGColorWell.color = d.splitsTableView.backgroundColor
 			textColorWell.color = d.textColor
 			selectedColorWell.color = d.selectedColor
-			longerDiffColorWell.color = d.diffsLongerColor
-			shorterDiffColorWell.color = d.diffsShorterColor
+			longerDiffColorWell.color = d.run.longerColor
+//			longerDiffColorWell.color = d.diffsLongerColor
+			shorterDiffColorWell.color = d.run.shorterColor
 			
 			if let doc = delegate?.view.window?.windowController?.document as? NSDocument {
 				if doc.fileType != "Split File" {

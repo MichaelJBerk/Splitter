@@ -436,6 +436,7 @@ void* Timer_into_run(void* self, bool update_splits);
 void Timer_drop(void* self);
 uint8_t Timer_current_timing_method(void* self);
 char const* Timer_current_comparison(void* self);
+int64_t Timer_current_split_index(void* self);
 bool Timer_is_game_time_initialized(void* self);
 bool Timer_is_game_time_paused(void* self);
 void* Timer_loading_times(void* self);

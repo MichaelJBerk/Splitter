@@ -27,9 +27,11 @@ extension ViewController {
 		if timerState != .stopped {
 			timerState = .stopped
 		}
-		StartButton.baseTitle = "Start"
+		startButton.baseTitle = "Start"
 		resetTimer()
 		endTime = Date()
+		run.updateLayoutState()
+		splitsTableView.reloadData()
 	}
 	
 	///Pauses or resumes the current timer, depending on its current state.
@@ -40,14 +42,13 @@ extension ViewController {
 			startButton.baseTitle = "Pause"
 			currentSplit?.paused = false
 			timerState = .running
-			lscTimer?.resume()
 		default:
 			startButton.baseTitle = "Resume"
 			currentSplit?.paused = true
 			timerPaused = true
 			timerState = .paused
-		
 		}
+		run.timer.togglePause()
 	}
 	
 	
@@ -61,11 +62,8 @@ extension ViewController {
 			backupSplits.append(currentSplits[i].copy() as! SplitTableRow)
 			i = i + 1
 		}
-		updatePreviousSplit(of: 0)
-		updateAllPreviousBestSplits()
-		
-		refreshUITimer = Cocoa.Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { timer in
-			self.UpdateTimer()
+		refreshUITimer = Cocoa.Timer.scheduledTimer(withTimeInterval: 0.001, repeats: true, block: { timer in
+			self.updateTimer()
 		})
 		run.timer.start()
 
@@ -120,14 +118,14 @@ extension ViewController {
 	func resetTimer() {
 		milHundrethTimer.invalidate()
 		refreshUITimer.invalidate()
-		UpdateTimer()
+		updateTimer()
 	}
 	
 	
 	@objc func updateTime() {
 
 		if !currentSplit!.paused {
-			UpdateTimer()
+			updateTimer()
 		}
 	}
 	func columnArray() -> [Int] {
@@ -140,18 +138,22 @@ extension ViewController {
 		return cols
 	}
 	///Updates the current time on the timer
-	@objc func UpdateTimer() {
+	@objc func updateTimer() {
 		if currentSplit?.paused ?? false {
 			lscTimer?.pause()
 		} else {
-			currentSplit?.updateSec(sec: lscTimer?.currentTime().realTime()?.totalSeconds() ?? 0)
+//			currentSplit?.updateSec(sec: lscTimer?.currentTime().realTime()?.totalSeconds() ?? 0)
 		}
 		
 		if let timer = run.codableLayout.components[2].timer {
-			TimerLabel.stringValue = timer.timeText
+			timerLabel.stringValue = timer.timeText
+			touchBarTotalTimeLabel.stringValue = timer.timeText
 		}
+		
 		//Update only the current row to ensure good performance when scrolling the tableview
-		splitsTableView.reloadData(forRowIndexes: IndexSet(arrayLiteral: currentSplitNumber), columnIndexes: IndexSet(columnArray()))
+		if let index = run.currentSplit {
+			splitsTableView.reloadData(forRowIndexes: IndexSet(arrayLiteral: index), columnIndexes: IndexSet(columnArray()))
+		}
 		
 	}
 	/**

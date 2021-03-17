@@ -2884,6 +2884,21 @@ public class Run : RunRefMut {
         let result = ParseRunResult(ptr: LiveSplitCoreNative.Run_parse_file_handle(handle, path, loadFiles ? true : false))
         return result
     }
+	
+	///  Attempts to parse a splits file from a file by invoking the corresponding parser for the file format detected.
+	/// - Parameters:
+	///   - path: Path to the file to be parsed
+	///   - loadFiles: Should external files - such as images - be loaded
+	/// - Returns: The parsed run if successful, `nil` if not
+	/// - NOTE: File does not get closed
+	public static func parseFile(path: String, loadFiles: Bool) -> Run? {
+		if let handle = FileHandle(forReadingAtPath: path) {
+			let fd = Int64(handle.fileDescriptor)
+			return parseFileHandle(fd, path, loadFiles).unwrap()
+		}
+		return nil
+		
+	}
     override init(ptr: UnsafeMutableRawPointer?) {
         super.init(ptr: ptr)
     }
@@ -4743,8 +4758,6 @@ public class SplitsComponentStateRef {
     public func name(_ index: size_t) -> String {
         assert(self.ptr != Optional.none)
         let result = LiveSplitCoreNative.SplitsComponentState_name(self.ptr, index)
-		let s = String(cString: result!, encoding: .unicode)
-		print(s)
         return String(cString: result!)
     }
     /**
@@ -5421,6 +5434,20 @@ public class TimerRef {
         let result = TimeRef(ptr: LiveSplitCoreNative.Timer_current_time(self.ptr))
         return result
     }
+	
+	/**
+		Accesses the index of the split the attempt is currently on. If there's
+		no attempt in progress, `None` is returned instead. This returns an
+		index that is equal to the amount of segments when the attempt is
+		finished, but has not been reset. So you need to be careful when using
+		this value for indexing.
+	*/
+	public func currentSegmentIndex() -> Int64 {
+		assert(self.ptr != Optional.none)
+		let result = LiveSplitCoreNative.Timer_current_split_index(self.ptr)
+		return result
+	}
+	
     init(ptr: UnsafeMutableRawPointer?) {
         self.ptr = ptr
     }
@@ -6241,4 +6268,124 @@ public class TotalPlaytimeComponent : TotalPlaytimeComponentRefMut {
     override init(ptr: UnsafeMutableRawPointer?) {
         super.init(ptr: ptr)
     }
+}
+
+typealias LSCColumn = (index: Int, name: String, updateWith: ColumnUpdateWith, startWith: ColumnStartWith, updateFrom: ColumnUpdateWith, comparison: String?, timingMethod: TimingMethod)
+extension LayoutEditor {
+	/// - NOTE: Must have splits as the currently selected segment
+	
+	func settingsStartIndex(for column: Int) -> Int {
+		let value = 11 + (column * 6)
+		return value
+	}
+	func setNumberOfColumns(_ index: Int, count: Int) {
+		self.setComponentSettingsValue(10, .fromInt(Int32(count)))
+	}
+	
+	func setColumn(_ index: Int, name: String) {
+		let settingIndex = settingsStartIndex(for: index)
+		self.setComponentSettingsValue(settingIndex, .fromString(name))
+	}
+	func setColumn(_ index: Int, startWith: ColumnStartWith) {
+		let settingIndex = settingsStartIndex(for: index) + 1
+		if let startWith = SettingValue.fromColumnStartWith(startWith.rawValue) {
+			self.setComponentSettingsValue(settingIndex, startWith)
+		}
+	}
+	func setColumn(_ index: Int, updateWith: ColumnUpdateWith) {
+		let settingIndex = settingsStartIndex(for: index) + 2
+		if let setting = SettingValue.fromColumnUpdateWith(updateWith.rawValue) {
+			self.setComponentSettingsValue(settingIndex, SettingValue.fromColumnUpdateWith("DontUpdate")!)
+		}
+	}
+	func setColumn(_ index: Int, updateTrigger: ColumnUpdateTrigger) {
+		let settingIndex = settingsStartIndex(for: index) + 3
+		if let updateTrigger = SettingValue.fromColumnUpdateWith(updateTrigger.rawValue) {
+			self.setComponentSettingsValue(settingIndex, updateTrigger)
+		}
+	}
+	func setColumn(_ index: Int, comparison: String?) {
+		let settingIndex = settingsStartIndex(for: index) + 4
+		if let comparison = comparison {
+			let set = SettingValue.fromOptionalString(comparison)
+			self.setComponentSettingsValue(settingIndex, SettingValue.fromOptionalString(comparison))
+		}
+	}
+	func setColumn(_ index: Int, timingMethod: TimingMethod) {
+		let settingIndex = settingsStartIndex(for: index) + 5
+		if let timingMethod = SettingValue.fromOptionalTimingMethod(timingMethod.rawValue) {
+			self.setComponentSettingsValue(settingIndex, timingMethod)
+		}
+	}
+}
+
+
+enum TimingMethod: String {
+	case gameTime = "GameTime"
+	case realTime = "RealTime"
+}
+///Specifies the value a segment starts out with before it gets replaced with the current attempt's information when splitting.
+enum ColumnStartWith: String {
+	///The column starts out with an empty value.
+	case empty = "Empty"
+	///The column starts out with the times stored in the comparison that is being compared against.
+	case comparisonTime = "ComparisonTime"
+	///The column starts out with the segment times stored in the comparison that is being compared against.
+	case comparsionSegmentTime = "ComparisonSegmentTime"
+	///The column starts out with the time that can be saved on each individual segment stored in the comparison that is being compared against.
+	case possibleTimeSave = "PossibleTimeSave"
+}
+///Once a certain condition is met, which is usually being on the split or already having completed the split, the time gets updated with the value specified here.
+enum ColumnUpdateWith: String {
+	///The value doesn't get updated and stays on the value it started out with
+	case dontUpdate = "DontUpdate"
+	
+	///The value gets replaced by the current attempt's split time.
+	case splitTime = "SplitTime"
+	///Delta between the split time of the current attempt and the current comparison
+	///
+	///The value gets replaced by the delta of the current attempt's and the comparison's split time.
+	case delta = "Delta"
+	
+	///Delta, but shows the current Split Time if there isn't a delta
+	///
+	///The value gets replaced by the delta of the current attempt's and the comparison's split time. If there is no delta, the value gets replaced by the current attempt's split time instead.
+	case deltaWithFallback = "DeltaWithFallback"
+	
+	///The value gets replaced by the current attempt's segment time.
+	case segmentTime = "SegmentTime"
+	
+	///The value gets replaced by the current attempt's time saved or lost, which is how much faster or slower the current attempt's segment time is compared to the comparison's segment time. This matches the Previous Segment component.
+	case segmentDelta = "SegmentDelta"
+	///The value gets replaced by the current attempt's time saved or lost, which is how much faster or slower the current attempt's segment time is compared to the comparison's segment time. This matches the Previous Segment component. If there is no time saved or lost, then value gets replaced by the current attempt's segment time instead.
+	case segmentDeltaWithFallback = "SegmentDeltaWithFallback"
+
+}
+///Specifies when a column's value gets updated.
+enum ColumnUpdateTrigger: String {
+	//"When segment begins"
+	///The value gets updated as soon as the segment is started. The value constantly updates until the segment ends.
+	case onStartingSegment = "OnStartingSegment"
+	
+	//"After longer than comparison"?
+	///The value doesn't immediately get updated when the segment is started. Instead the value constantly gets updated once the segment time is longer than the best segment time. The final update to the value happens when the segment ends.
+	case contextual = "Contextual"
+	
+	//"When segment ends"
+	///The value of a segment gets updated once the segment ends.
+	case onEndingSegment = "OnEndingSegment"
+}
+
+private struct DecodedSettingsValue: Codable {
+	
+	var int: Int?
+	
+	enum CodingKeys: String, CodingKey {
+		case int = "UInt"
+	}
+	
+	init(from decoder: Decoder) throws {
+		let c = try decoder.container(keyedBy: CodingKeys.self)
+		int = try c.decodeIfPresent(Int.self, forKey: .int)
+	}
 }

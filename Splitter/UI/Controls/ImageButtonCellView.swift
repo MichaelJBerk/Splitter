@@ -11,7 +11,6 @@ import Cocoa
 
 class ImageButtonCellView: NSTableCellView {
 	
-	
 	var image: NSImage = #imageLiteral(resourceName: "Game Controller")
 	@IBOutlet var imageWell: CellImageWell!
 
@@ -25,21 +24,20 @@ class ImageButtonCellView: NSTableCellView {
 class CellImageWell: NSImageView {
 	@IBOutlet var splitController: ViewController!
 	var row: Int!
+	var run: SplitterRun {
+		return splitController.run
+	}
 	
 	override var image: NSImage? {
 		didSet {
-			var newValue = self.image
-			if newValue == nil {
-				newValue = #imageLiteral(resourceName: "Game Controller")
-				newValue?.isTemplate = true
-				self.image = newValue?.image(with: splitController.textColor)
-				splitController.currentSplits[row].splitIcon = nil
-			} else {
-				splitController.currentSplits[row].splitIcon = newValue
+			//Need to do this here to support removing icon via backpsace
+			if image == nil {
+				run.setIcon(for: row, image: nil)
+				splitController.splitsTableView.reloadData(forRowIndexes: .init(arrayLiteral: row), columnIndexes: .init(arrayLiteral: 0))
 			}
-			
 		}
 	}
+	
 	///Used in right-click menu
 	@IBAction func removeImage(_ sender: Any?) {
 		image = nil

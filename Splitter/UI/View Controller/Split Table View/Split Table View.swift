@@ -13,11 +13,11 @@ import Cocoa
 //MARK - Number of Rows
 extension ViewController: NSTableViewDataSource {
 	func numberOfRows(in tableView: NSTableView) -> Int {
-		return currentSplits.count
+		return run.layoutSplits.splits.count
 	}
 }
 
-class myRowView: NSTableRowView {
+class SplitterRowView: NSTableRowView {
 	var selectedColor: NSColor = .splitterRowSelected
     var isCurrentSegment: Bool = false
 	
@@ -38,10 +38,10 @@ extension ViewController: NSTableViewDelegate {
 	
 	func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
 		
-		let cRow = myRowView()
+		let cRow = SplitterRowView()
 		cRow.selectedColor = self.selectedColor
-        cRow.isCurrentSegment = (currentSplitNumber == row && timerState != .stopped)
-		
+		cRow.isCurrentSegment = (run.layoutSplits.splits[row].isCurrentSplit && timerState != .stopped)
+//		cRow.isCurrentSegment = run.layoutSplits.splits[row].isCurrentSplit
 		return cRow
 	}
 	
@@ -61,46 +61,34 @@ extension ViewController: NSTableViewDelegate {
 			
 			
 			//Highlight the current row if the user is in the middle of a run
-			if timerState != .stopped && row == currentSplitNumber {
-				tableView.selectRowIndexes(IndexSet(arrayLiteral: currentSplitNumber), byExtendingSelection: false)
+			let isCurrentSplit = run.layoutSplits.splits[row].isCurrentSplit
+			if timerState != .stopped && isCurrentSplit {
+				tableView.selectRowIndexes(IndexSet(arrayLiteral: row), byExtendingSelection: false)
 			}
 			
-			currentSplits[row].roundTo = self.roundTo
-			
+			let currentLayoutSegment = run.layoutSplits.splits[row]
 			switch tableColumn?.identifier {
 			case STVColumnID.imageColumn:
 				let cell = cell as! ImageButtonCellView
 				cell.cellNumber = row
-				if let currentImage = currentSplits[row].splitIcon {
-					cell.imageWell!.image = currentImage
+				if let image = run.icon(for: row) {
+					cell.imageWell!.image = image
 				} else {
-					cell.imageWell.image = nil
+					cell.imageWell.image = #imageLiteral(resourceName: "Game Controller")
 				}
 			case STVColumnID.splitTitleColumn:
-				let lastSplit = currentSplits[row]
-				cell.textField?.stringValue = lastSplit.splitName
+				cell.textField?.stringValue = currentLayoutSegment.name
 			case STVColumnID.currentSplitColumn:
-				let lastSplit = currentSplits[row]
-				cell.textField?.stringValue = lastSplit.currentSplit.timeString
+				cell.textField?.stringValue = currentLayoutSegment.columns[0].value
 			case STVColumnID.differenceColumn:
-				let sDiff = currentSplits[row].splitDiff
-				cell.textField?.stringValue = sDiff
-				if sDiff.hasPrefix("+"){
-					cell.textField?.textColor = diffsLongerColor
-				} else if sDiff.hasPrefix("-"){
-					cell.textField?.textColor = diffsShorterColor
-				} else {
-					cell.textField?.textColor = diffsNeutralColor
-				}
+				let color = NSColor(currentLayoutSegment.columns[1].visualColor)
+				cell.textField?.textColor = color
+				cell.textField?.stringValue = currentLayoutSegment.columns[1].value
 			case STVColumnID.bestSplitColumn:
-				let best = currentSplits[row].bestSplit
-				if best.timeString == TimeSplit().timeString {
-					cell.textField!.stringValue = "00:00:00.00"
-				}
-				cell.textField!.stringValue = best.timeString
+				cell.textField?.stringValue = currentLayoutSegment.columns[2].value
 			case STVColumnID.previousSplitColumn:
-				let prev = currentSplits[row].previousSplit
-				cell.textField!.stringValue = prev.timeString
+				let v = currentLayoutSegment.columns[3].value
+				cell.textField?.stringValue = v
 			default:
 					break
 			}
@@ -132,40 +120,25 @@ extension ViewController: NSTextFieldDelegate {
 		let cell = cellrow?.view(atColumn: colIndex) as! NSTableCellView
 		
 		
-		var editedSplit = currentSplits[r]
-		
-		
 		guard let cellText = cell.textField?.stringValue else {return false}
-		if colID == STVColumnID.splitTitleColumn {
-			editedSplit.splitName = cellText
-		} else {
-			if let newSplit = TimeSplit(timeString: cellText){
-			
-				
-				switch colID {
-				case STVColumnID.currentSplitColumn:
-					editedSplit.currentSplit = newSplit
-				case STVColumnID.bestSplitColumn:
-					editedSplit.bestSplit = newSplit
-					editedSplit.previousBest = newSplit
-				case STVColumnID.previousSplitColumn:
-					editedSplit.previousSplit = newSplit
-				default:
-					break
-				}
+		switch colID {
+		case STVColumnID.splitTitleColumn:
+			run.setSegTitle(index: r, title: cellText)
+		case STVColumnID.currentSplitColumn:
+			run.editRun { editor in
+				editor.selectOnly(r)
+				//TODO: Switch this if I implement the ability to show split or Segment time
+				_ = editor.activeParseAndSetSplitTime(cellText)
 			}
+			run.updateLayoutState()
+		case STVColumnID.bestSplitColumn:
+			break
+		case STVColumnID.previousSplitColumn:
+			break
+		default:
+			break
 		}
-		currentSplits[r] = editedSplit
-		if colID != STVColumnID.bestSplitColumn {
-			let lSplit = currentSplits[r].currentSplit.copy() as! TimeSplit
-			let rSplit = currentSplits[r].bestSplit.copy() as! TimeSplit
-			addBestSplit(lSplit: lSplit, rSplit: rSplit, splitRow: r)
-			if lSplit < rSplit {
-				currentSplits[r].previousBest = lSplit.tsCopy()
-			}
-		}
-		
-			return true
+		return true
 	}
 
 	

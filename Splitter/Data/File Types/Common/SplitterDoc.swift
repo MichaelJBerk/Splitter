@@ -130,13 +130,38 @@ class SplitterDoc: NSDocument {
 	}
 	
 	//MARK: - Saving Files
-
-//	
+	
+	func saveOlderVersionAlert() -> Bool {
+		
+		let alert = NSAlert()
+		let alertMessage = "\"\(displayName!)\" was created using an older version of Splitter."
+		let informText = "Saving this run as a Split file using this version of Splitter will update it, making the file unusable in versions of Splitter prior to 4.0"
+		alert.addButton(withTitle: "Save")
+		alert.addButton(withTitle: "Cancel")
+		alert.showsSuppressionButton = true
+		
+		alert.alertStyle = .warning
+		alert.messageText = alertMessage
+		alert.informativeText = informText
+		
+		let response = alert.runModal()
+		if alert.suppressionButton!.state == .on {
+			Settings.setWarning(.overwritingSplitsFromOlderVersion, suppresed: true)
+		}
+		switch response {
+		case .cancel:
+			return false
+		case .alertFirstButtonReturn:
+			return true
+		default:
+			return false
+		}
+	}
+	
 	///Saves a `.split` file
 	func saveSplitFile(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, delegate: Any?, didSave didSaveSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
 		if let vc = viewController {
 			let newRunInfo = vc.saveToRunInfo()
-			let newJE = JSONEncoder()
 			let cleanParentURL = url.deletingLastPathComponent().path
 
 			let newFileName = url.lastPathComponent
@@ -144,55 +169,31 @@ class SplitterDoc: NSDocument {
 			let parentFolder = try? Folder(path: cleanParentURL)
 
 			let currentBundleFolder = try? parentFolder?.createSubfolderIfNeeded(withName: newFileName)
-
-
+			
+			let newJE = JSONEncoder()
+			
+			//Encode RunInfo
 			if let dataToSave = try? newJE.encode(newRunInfo) {
 				let runInfoFile = try? currentBundleFolder?.createFileIfNeeded(withName: "runInfo.json")
 				try? runInfoFile?.write(dataToSave)
 			}
 			
+			///Encode Appearance
 			if let splitterAppData = encodeSplitterAppearance() {
 				let splitterAppFile = try? currentBundleFolder?.createFileIfNeeded(withName: "appearance.json")
 				try? splitterAppFile?.write(splitterAppData)
 			}
 			
+			let lssString = vc.run.saveToLSS()
+			if let splitsFile = try? currentBundleFolder?.createFileIfNeeded(withName: "splits.lss") {
+				try? splitsFile.write(lssString)
+			}
+			let lslJSONString = vc.run.layoutToJSON()
+			if let layoutFile = try? currentBundleFolder?.createFileIfNeeded(withName: "layout.lsl") {
+				try? layoutFile.write(lslJSONString)
+			}
 			
-			if vc.gameIcon != nil {
-				if let tiff = vc.gameIcon?.tiffRepresentation {
-					let gameIconFile = try? currentBundleFolder?.createFileIfNeeded(withName: "gameIcon.png")
-					try? gameIconFile?.write(tiff)
-				}
-			} else {
-				if currentBundleFolder?.containsFile(named: "gameIcon.png") != nil {
-					try? currentBundleFolder?.file(named: "gameIcon.png").delete()
-				}
-			}
-			let iconArray = vc.iconArray
-			Swift.print("is IA empty? ", iconArray.isEmpty)
-			if !iconArray.isEmpty {
-				let runIconsFolder = try? currentBundleFolder?.createSubfolderIfNeeded(withName: "segIcons")
-				var i = 0
-				while i < iconArray.count {
-					let icon = iconArray[i]
-					if icon != nil {
-						let newIconFile = try? runIconsFolder?.createFileIfNeeded(withName: "\(i).png")
-						try? newIconFile?.write((icon?.tiffRepresentation!)!)
-					} else {
-						if let iconFile = try? runIconsFolder?.file(named: "\(i).png") {
-							try? iconFile.delete()
-						}
-					}
-					i = i + 1
-				}
-				if runIconsFolder?.files.count() == 0 {
-					try? runIconsFolder?.delete()
-				}
-				
-			} else {
-				if let runIconsFolder = try? currentBundleFolder?.subfolder(named: "runicons") {
-					try? runIconsFolder.delete()
-				}
-			}
+			
 			fileWrapperURL = url.absoluteString
 			if let currentBundleFolder = currentBundleFolder {
 				self.wrapper = folderToFileWrapper(folder: currentBundleFolder)
@@ -204,23 +205,11 @@ class SplitterDoc: NSDocument {
 	
 	///Saves a `.lss` file
 	func saveLiveSplitFile(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, delegate: Any?, didSave didSaveSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
-		let ls = LiveSplit()
 		if let vc = viewController {
-			ls.runTitle = vc.run.title
-			ls.category = vc.run.subtitle
-			ls.attempts = vc.run.attempts
-			ls.platform = vc.platform
-			ls.gameVersion = vc.gameVersion
-			ls.region = vc.gameRegion
-			ls.splits = vc.currentSplits
-			ls.lsPointer = vc.lsPointer
-			ls.icons = vc.iconArray
-			ls.gameIcon = vc.gameIcon
-			let fileString = ls.liveSplitString()
+			let fileString = vc.run.saveToLSS()
 			if let lsData = fileString.data(using: .utf8) {
 				fileWrapperURL = url.absoluteString
 				wrapper = FileWrapper(regularFileWithContents: lsData)
-				
 			}
 		}
 		super.save(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: contextInfo)

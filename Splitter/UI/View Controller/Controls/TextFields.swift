@@ -75,17 +75,13 @@ class MetadataImage: NSImageView {
 								if let infoVC = tabVC.tabView.selectedTabViewItem?.viewController as? InfoOptionsViewController {
 									infoVC.getDataFromMain()
 								}
-							}
+						}
 					}
 				}
 			}
-		if let i = findVC() as? InfoOptionsViewController {
+			if let i = findVC() as? InfoOptionsViewController {
 				i.sendDataToMain()
-				
-			} else if let i = findVC() as? ViewController {
-				
 			}
-			
 		}
 	}
 	

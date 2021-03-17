@@ -23,6 +23,10 @@ enum SettingsKeys {
 	public static let splitsIOURL = "splitsIOURL"
 }
 
+public enum Warning: String {
+	case overwritingSplitsFromOlderVersion
+}
+
 public struct Settings {
 	///Whether or not the title bar is hidden by default on new windows
 	public static var hideTitleBar: Bool {
@@ -101,7 +105,7 @@ public struct Settings {
 			UserDefaults.standard.set(newValue, forKey: SettingsKeys.showWelcomeWindow)
 		}
 		get {
-			guard let value = UserDefaults.standard.object(forKey: SettingsKeys.showWelcomeWindow) else {return true}
+			guard UserDefaults.standard.object(forKey: SettingsKeys.showWelcomeWindow) != nil else {return true}
 			return UserDefaults.standard.bool(forKey: SettingsKeys.showWelcomeWindow)
 		}
 		
@@ -128,6 +132,15 @@ public struct Settings {
 			}
 			return nil
 		}
+	}
+	
+	///`true` if warning is suppresed, `false` if not
+	public static func warningSuppresed(_ warning: Warning) -> Bool {
+		guard UserDefaults.standard.object(forKey: warning.rawValue) != nil else {return false}
+		return UserDefaults.standard.bool(forKey: warning.rawValue)
+	}
+	public static func setWarning(_ warning: Warning, suppresed: Bool) {
+		UserDefaults.standard.setValue(suppresed, forKey: warning.rawValue)
 	}
 }
 

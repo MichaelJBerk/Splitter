@@ -36,35 +36,32 @@ extension ViewController {
 	}
 	///Moves the timer to the previous split, or restarts the run if the current split is the first
 	func goToPrevSplit() {
-		if timerStarted {
-			if currentSplitNumber > 0 {
-				currentSplits[currentSplitNumber - 1].currentSplit = currentSplit!
-				currentSplits.replaceSubrange(currentSplitNumber...currentSplitNumber, with: [backupSplits[currentSplitNumber]])
-				currentSplitNumber = currentSplitNumber - 1
-				
-				self.currentSplit = currentSplits[currentSplitNumber].currentSplit
-				splitsTableView.reloadData()
-
-			} else if currentSplitNumber == 0 {
-				self.currentSplit = TimeSplit(mil: 0, sec: 0, min: 0, hour: 0)
-				currentSplits[0].currentSplit = self.currentSplit!
-				splitsTableView.reloadData()
-			}
-		}
+		run.timer.previousSplit()
+		splitsTableView.reloadData()
+//		if timerStarted {
+//			if currentSplitNumber > 0 {
+//				currentSplits[currentSplitNumber - 1].currentSplit = currentSplit!
+//				currentSplits.replaceSubrange(currentSplitNumber...currentSplitNumber, with: [backupSplits[currentSplitNumber]])
+//				currentSplitNumber = currentSplitNumber - 1
+//
+//				self.currentSplit = currentSplits[currentSplitNumber].currentSplit
+//				splitsTableView.reloadData()
+//
+//			} else if currentSplitNumber == 0 {
+//				self.currentSplit = TimeSplit(mil: 0, sec: 0, min: 0, hour: 0)
+//				currentSplits[0].currentSplit = self.currentSplit!
+//				splitsTableView.reloadData()
+//			}
+//		}
 	}
 	
 	//MARK: - Adding and Removing Splits
 	//TODO: Make this remove a split given its index instead of the last one
-	func removeSplits() {
-		let oldSplitsCount = currentSplits.count
-		if oldSplitsCount > 1 {
-			currentSplits.removeLast()
-			splitsTableView.reloadData()
-		}
-		else if oldSplitsCount == 1{
-			currentSplits.removeLast()
-			addSplit()
-			splitsTableView.reloadData()
+	func removeSplits(at index: Int? = nil) {
+		if let index = index {
+			run.removeSegment(index)
+		} else {
+			run.removeBottomSegment()
 		}
 	}
 	
@@ -81,29 +78,11 @@ extension ViewController {
 	//TODO: See if all I need is addBlankSplit()
 	///Adds a new split to the table view, if the timer hasn't started yet.
 	func addSplit() {
-		var newSplit: TimeSplit
-		var bestSplit: TimeSplit
-		if !timerStarted {
-		
-			newSplit = TimeSplit(mil: 0, sec: 0, min: 0, hour: 0)
-			bestSplit = TimeSplit(mil: 0, sec: 0, min: 0, hour: 0)
-		} else {
-			let currentSplitCopy = self.currentSplit?.copy() as! TimeSplit
-			
-			let currentLastRow = currentSplits.last
-			let rowNum = currentSplits.count
-			let bestSplitCopy = getBestSplit(splitNumber: rowNum).copy() as! TimeSplit
-
-			let newLastRow = SplitTableRow(splitName: currentLastRow!.splitName, bestSplit: bestSplitCopy, currentSplit: currentSplitCopy, previousSplit: currentLastRow!.previousSplit, previousBest: currentLastRow!.previousBest)
-			currentSplits.removeLast()
-			currentSplits.append(newLastRow)
-			newSplit = currentSplit!
-		}
-
-		currentSplits.append(SplitTableRow(splitName: String(currentSplits.count + 1), bestSplit: newSplit.copy() as! TimeSplit, currentSplit: newSplit, previousSplit: newSplit.tsCopy(), previousBest: newSplit.tsCopy()))
+		run.addSegment(title: "new")
 		splitsTableView.reloadData()
 	}
 	
+	//TODO: May not be availiable in LiveSplit-Core
 	///Resets the current split to the time of the previous split, or resets the run if the current split is the last
 	func resetCurrentSplit() {
 		if currentSplitNumber > 0 {
@@ -119,8 +98,8 @@ extension ViewController {
 	
 	///Resets a run in progress to 00:00:00.
 	func resetRun() {
-		stopTimer()
-		resetAllCurrentSplitsToZero()
+		run.timer.resetRun()
+		run.updateLayoutState()
 	}
 	
 	//MARK: - Best Split
@@ -170,10 +149,6 @@ extension ViewController {
 	
 	//TODO: See if it makes more sense to implement this in the split table row itself
 	
-	///Updates the "previous split" for the segment to the "current split" of that segment
-	func updatePreviousSplit(of row: Int) {
-		currentSplits[row].previousSplit = currentSplits[row].currentSplit.tsCopy()
-	}
 	///Updates the "previous split"  for each segment in the run to the "current split" of that segment
 	func updatePreviousSplits() {
 		var i = 0

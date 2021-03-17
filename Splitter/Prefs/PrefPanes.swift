@@ -1,5 +1,5 @@
 //
-//  Prefs.swift
+//  PrefPanes.swift
 //  Splitter
 //
 //  Created by Michael Berk on 1/1/20.

@@ -50,7 +50,7 @@ class LiveSplit: NSObject {
 			category = run.categoryName()
 			let iconPtr = run.gameIconPtr()
 			let iconlen = run.gameIconLen()
-			if let img = parseImageFromLiveSplit(ptr: iconPtr, len: iconlen) {
+			if let img = Self.parseImageFromLiveSplit(ptr: iconPtr, len: iconlen) {
 				gameIcon = img
 			}
 			
@@ -100,7 +100,7 @@ class LiveSplit: NSObject {
 			}
 			let iconPtr = run.segment(i).iconPtr()
 			let iconLen = run.segment(i).iconLen()
-			let img = parseImageFromLiveSplit(ptr: iconPtr, len: iconLen)
+			let img = Self.parseImageFromLiveSplit(ptr: iconPtr, len: iconLen)
 			iconArray.append(img)
 			
 			let newRow = SplitTableRow(splitName: segName, bestSplit: newTS, currentSplit: TimeSplit(), previousSplit: TimeSplit(), previousBest: newBest, splitIcon: nil)
@@ -111,7 +111,7 @@ class LiveSplit: NSObject {
 			self.splits = tsArray
 		}
 	}
-	func parseImageFromLiveSplit(ptr: UnsafeMutableRawPointer?, len: size_t) -> NSImage? {
+	static func parseImageFromLiveSplit(ptr: UnsafeMutableRawPointer?, len: size_t) -> NSImage? {
 		if let p = ptr {
 			let data = Data(bytes: p, count: Int(len))
 			if let img = NSImage(data: data) {
@@ -174,51 +174,16 @@ class LiveSplit: NSObject {
 }
 
 extension ViewController {
-	func loadLS(ls: LiveSplit, asTemplate: Bool = false) {
-		ls.parseLivesplit(template: asTemplate)
-		if ls.splits.count > 0 {
-			var i = 0
-			
-			while i < ls.splits.count {
-				currentSplits.append(ls.splits[i].copy() as! SplitTableRow)
-				i = i + 1
+	func loadLS(url: URL, asTemplate: Bool = false) {
+		if let run = Run.parseFile(path: url.path, loadFiles: true) {
+			self.run.setRun(run)
+			if asTemplate {
+				self.run.timer.resetHistories()
 			}
-			
+			self.run.updateLayoutState()
+			self.updateTextFields()
+			self.splitsTableView.reloadData()
 		}
-		var i = 0
-		if ls.iconArray.count > 0 {
-			while i < currentSplits.count {
-				if ls.iconArray[i] != nil {
-					currentSplits[i].splitIcon = ls.iconArray[i]
-				}
-				i = i + 1
-			}
-		}
-		
-		if let gn = ls.runTitle {
-			if gn.count > 0 {
-				runTitleField.stringValue = gn
-			}
-		}
-		if let sb = ls.category {
-			if sb.count > 0 {
-				categoryField.stringValue = sb
-			}
-		}
-		
-		if let att = ls.attempts {
-			run.attempts = att
-		}
-		if let reg = ls.region {
-			gameRegion = reg
-		}
-		if let plat = ls.platform {
-			platform = plat
-		}
-		
-		self.lsPointer = ls.lsPointer
-		self.gameIcon = ls.gameIcon
-		splitsTableView.reloadData()
 	}
 }
 
@@ -247,4 +212,16 @@ extension String {
         }
         return nil
     }
+}
+extension NSImage {
+	//TODO: Us this when saving to LiveSplit
+	func toLSImage(_ withImage: (UnsafeMutableRawPointer?, Int) -> ()) {
+		if var giData = tiffRepresentation {
+			let giLen = giData.count
+			giData.withUnsafeMutableBytes( { bytes in
+				let umbp = bytes.baseAddress
+				withImage(umbp, giLen)
+			})
+		}
+}
 }

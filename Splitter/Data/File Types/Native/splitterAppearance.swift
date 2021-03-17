@@ -91,6 +91,7 @@ struct splitterAppearance: Codable {
 		self.tableColor = CodableColor(nsColor: viewController.tableBGColor)
 		self.textColor = CodableColor(nsColor: viewController.textColor)
 		self.selectColor = CodableColor(nsColor: viewController.selectedColor)
+		
 		self.diffsLongerColor = CodableColor(nsColor: viewController.diffsLongerColor)
 		self.diffsShorterColor = CodableColor(nsColor: viewController.diffsShorterColor)
 	}

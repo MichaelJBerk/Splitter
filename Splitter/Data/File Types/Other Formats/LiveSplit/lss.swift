@@ -47,9 +47,7 @@ class lss: SplitterDoc {
 		let vc = windowController.contentViewController as! ViewController
 		vc.setColorForControls()
 		if let url = urlToLoad {
-			let ls = LiveSplit()
-			ls.path = url.path
-			vc.loadLS(ls: ls, asTemplate: template)
+			vc.loadLS(url: url, asTemplate: template)
 		}
 	}
 	

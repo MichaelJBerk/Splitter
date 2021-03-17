@@ -16,7 +16,7 @@ import Foundation
 // MARK: - CLayout
 /// Wrapper for JSON from LiveSplit-Core JSON
 struct CLayout: Codable {
-	let components: [CComponent]
+	var components: [CComponent]
 	let direction: String
 	let timerFont, timesFont, textFont: JSONNull?
 	let background: CLayoutBackground
@@ -47,7 +47,7 @@ struct CLayoutBackground: Codable {
 // MARK: - CComponent
 struct CComponent: Codable {
 	let title: CTitle?
-	let splits: CSplits?
+	var splits: CSplits?
 	let timer: CTimer?
 	let keyValue: CKeyValue?
 
@@ -91,8 +91,8 @@ struct CurrentSplitGradientClass: Codable {
 // MARK: - CSplits
 struct CSplits: Codable {
 	let background: CPurpleBackground
-	let columnLabels: JSONNull?
-	let splits: [CSplit]
+	let columnLabels: [String]?
+	var splits: [CSplit]
 	let iconChanges: [CIconChange]
 	let hasIcons, showThinSeparators, showFinalSeparator, displayTwoRows: Bool
 	let currentSplitGradient: CurrentSplitGradientClass
@@ -138,7 +138,7 @@ struct CSplit: Codable, Hashable {
 //	}
 	
 	let name: String
-	let columns: [Column]
+	var columns: [Column]
 	let isCurrentSplit: Bool
 	let index: Double
 
@@ -149,15 +149,32 @@ struct CSplit: Codable, Hashable {
 	}
 }
 
+extension NSColor {
+	convenience init(_ color: [Double]) {
+		let floats = color.map({CGFloat($0)})
+		self.init(red: floats[0], green: floats[1], blue: floats[2], alpha: floats[3])
+	}
+	func toDouble() -> [Double] {
+		let floats = [self.redComponent, self.greenComponent, self.blueComponent, self.alphaComponent]
+		return floats.map({Double($0)})
+	}
+}
+
 // MARK: - Column
 struct Column: Codable, Hashable {
 	let value, semanticColor: String
 	let visualColor: [Double]
+	let startWith, updateWith, updateTrigger, comparisonOverride: String?
+	
 
 	enum CodingKeys: String, CodingKey {
 		case value
 		case semanticColor = "semantic_color"
 		case visualColor = "visual_color"
+		case startWith = "start_with"
+		case updateWith = "update_with"
+		case updateTrigger = "update_trigger"
+		case comparisonOverride = "comparison_override"
 	}
 }
 
@@ -445,5 +462,23 @@ class JSONAny: Codable {
 			var container = encoder.singleValueContainer()
 			try JSONAny.encode(to: &container, value: self.value)
 		}
+	}
+}
+
+struct CodableLayoutSettings: Codable {
+	
+	var general: GeneralCodableLayoutSettings
+	
+}
+struct GeneralCodableLayoutSettings: Codable {
+	
+	var aheadGainingTimeColor, aheadLosingTimeColor, behindGainingTimeColor, behindLosingTimeColor, personalBestColor: [Double]?
+	
+	enum CodingKeys: String, CodingKey {
+		case aheadGainingTimeColor = "ahead_gaining_time_color"
+		case aheadLosingTimeColor = "ahead_losing_time_color"
+		case behindGainingTimeColor = "behind_gaining_time_color"
+		case behindLosingTimeColor = "behind_losing_time_color"
+		case personalBestColor = "personal_best_color"
 	}
 }

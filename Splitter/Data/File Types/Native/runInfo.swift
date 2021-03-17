@@ -13,14 +13,16 @@ import SwiftyJSON
 //You may wonder why I don't just save Split Table rows directly to the file (since they're structs already anyway). I'm not doing that because I don't want to save the images to runInfo.json
 
 struct runInfo: Codable {
-	var title: String
-	var category: String
-	var segments: [splitSegment]
+	var title: String?
+	var category: String?
+	var segments: [splitSegment]?
 	var attempts: Int?
-	var platform: String?
 	var gameVersion: String?
-	var gameRegion: String?
 	var compareTo: Int?
+	
+	//These two are backed by LiveSplitCore, and thus aren't optional
+	var platform: String?
+	var gameRegion: String?
 	
 	var startTime: String?
 	var endTime: String?
@@ -55,10 +57,10 @@ class splitToJSON {
 						 category: json.dictionary!["category"]!.stringValue,
 						 segments: splitsegs,
 						 attempts: json.dictionary?["attempts"]?.intValue,
-						 platform: json.dictionary?["platform"]?.stringValue,
 						 gameVersion: json.dictionary?["gameVersion"]?.string,
-						 gameRegion: json.dictionary?["gameRegion"]?.string,
 						 compareTo: json.dictionary?["compareTo"]?.intValue,
+						 platform: json.dictionary?["platform"]?.stringValue ?? "",
+						 gameRegion: json.dictionary?["gameRegion"]?.string ?? "",
 						 startTime: json.dictionary?["startTime"]?.stringValue,
 						 endTime: json.dictionary?["endTime"]?.stringValue,
 						 version: json.dictionary?["version"]?.stringValue,
@@ -72,16 +74,21 @@ class splitToJSON {
 
 
 extension ViewController {
-	
-	
-	func loadFromRunInfo(icons: [NSImage?]) {
+	func loadFromRunInfo() {
 		if let ri = runInfoData {
-			runTitleField.stringValue = ri.title
-			categoryField.stringValue = ri.category
-			platform = ri.platform
-			gameVersion = ri.version
+			self.gameVersion = ri.gameVersion
+			self.fileID = ri.id
+		}
+	}
+	
+	func loadFromOldRunInfo(icons: [NSImage?]) {
+		if let ri = runInfoData {
+			runTitleField.stringValue = ri.title ?? ""
+			categoryField.stringValue = ri.category ?? ""
+			platform = ri.platform ?? ""
+			gameVersion = ri.gameVersion
 			run.attempts = ri.attempts ?? 0
-			gameRegion = ri.gameRegion
+			gameRegion = ri.gameRegion ?? ""
 			fileID = ri.id
 			if let st = ri.startTime {
 				self.startTime = dateForRFC3339DateTimeString(rfc3339DateTimeString: st)
@@ -89,54 +96,53 @@ extension ViewController {
 			if let et = ri.endTime {
 				self.endTime = dateForRFC3339DateTimeString(rfc3339DateTimeString: et)
 			}
-			currentSplits = []
-			for s in ri.segments {
+			if let segments = ri.segments {
 				let compare = SplitComparison(rawValue: ri.compareTo ?? 0)!
-				let bestTimeSplit = TimeSplit(timeString: s.personalBestTime) ?? TimeSplit()
-				let currentTimeSplit = TimeSplit(timeString: s.currentTime) ?? TimeSplit()
-				let previousTimeSplit = TimeSplit(timeString: s.previousTime) ?? TimeSplit()
-				let previousBestTimeSplit = TimeSplit(timeString: s.previousPersonalBestTime) ?? TimeSplit()
-				
-				let newRow = SplitTableRow(splitName: s.name, bestSplit: bestTimeSplit, currentSplit: currentTimeSplit, previousSplit: previousTimeSplit, previousBest: previousBestTimeSplit,compareTo: compare )
-				currentSplits.append(newRow)
-				splitsTableView.reloadData()
+				switch compare {
+				case .personalBest:
+					run.setComparison(LSComparison.personalBest.rawValue)
+				case .previousSplit:
+					run.setComparison(LSComparison.latest.rawValue)
+				}
+				run.editRun { editor in
+					for s in 0..<segments.count {
+						let segment = segments[s]
+						var bestTS = TimeSplit(timeString: segment.personalBestTime)!
+						if s > 0 {
+							editor.insertSegmentBelow()
+							editor.selectOnly(s)
+							let prevSegTS = TimeSplit(timeString: segments[s - 1].personalBestTime)!
+							bestTS = bestTS - prevSegTS
+						} else {
+							editor.selectOnly(0)
+						}
+						_ = editor.activeParseAndSetBestSegmentTime(bestTS.timeString)
+						
+						
+						editor.activeSetName(segment.name)
+						_ = editor.activeParseAndSetSplitTime(segment.currentTime)
+						
+						if let previousTime = segment.previousTime {
+							_ = editor.activeParseAndSetComparisonTime(LSComparison.latest.rawValue, previousTime)
+						}
+						
+						if s < icons.count, let image = icons[s] {
+							image.toLSImage{ ptr, len in
+								editor.activeSetIcon(ptr, len)
+							}
+						}
+					}
+					
+					splitsTableView.reloadData()
+					
+				}
+				run.updateLayoutState()
 			}
-			iconArray = icons
 		}
 	}
 	
 	func saveToRunInfo() -> runInfo {
-		var segments: [splitSegment] = []
-		for s in currentSplits {
-			let newSeg = splitSegment(name: s.splitName,
-									  currentTime: s.currentSplit.timeString,
-									  personalBestTime: s.bestSplit.timeString,
-									  previousTime: s.previousSplit.timeString,
-									  previousPersonalBestTime: s.previousBest.timeString)
-			segments.append(newSeg)
-		}
-		let startDate: String?
-		if startTime != nil {
-			startDate = rfc3339DateTimeStringForDate(date: startTime!)
-		} else {
-			startDate = nil
-		}
-		let endDate: String?
-		if endTime != nil {
-			endDate = rfc3339DateTimeStringForDate(date: endTime!)
-		} else {
-			endDate = nil
-		}
-		let ri = runInfo(title: runTitleField.stringValue,
-						 category: categoryField.stringValue,
-						 segments: segments,
-						 attempts: run.attempts,
-						 platform: platform,
-						 gameVersion: gameVersion,
-						 gameRegion: gameRegion,
-						 compareTo: compareTo.rawValue,
-						 startTime: startDate,
-						 endTime: endDate,
+		let ri = runInfo(gameVersion: gameVersion,
 						 version: otherConstants.version,
 						 build: otherConstants.build,
 						 id: fileID)
