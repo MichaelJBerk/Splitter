@@ -54,9 +54,9 @@ class Document: SplitterDocBundle {
 			if let data = try? runInfoFile.read(), let json = try? JSON(data: data) {
 				//Check which version of Splitter saved the file
 				versionUsed = json["version"].doubleValue
+				self.runInfoData = splitToJSON().runInfoFromJSON(json: json)
 				if versionUsed! < 4 {
 					beforeSplitter4 = true
-					self.runInfoData = splitToJSON().runInfoFromJSON(json: json)
 				}
 			}
 		}
@@ -64,7 +64,14 @@ class Document: SplitterDocBundle {
 		if beforeSplitter4 {
 			readOlderThanSplitter4(from: fileWrapper)
 		} else {
-			//TODO: Read newer version
+			if let splitsFile = try? bundleFolder?.file(named: "splits.lss") {
+				run = SplitterRun(run: Run())
+				_ = run?.timer.lsTimer.setRun(Run.parseFile(path: splitsFile.path, loadFiles: true)!)
+			}
+			if let layoutFile = try? bundleFolder?.file(named: "layout.lsl"),
+			   let json = try? layoutFile.readAsString() {
+				run?.layout = Layout.parseJson(json)!
+			}
 		}
 	}
 	
@@ -121,8 +128,12 @@ class Document: SplitterDocBundle {
 				vc.loadFromOldRunInfo(icons: iconArray)
 			} else {
 				vc.loadFromRunInfo()
-				if let url = self.fileURL {
-					vc.loadLS(url: url)
+//				if let url = self.fileURL {
+//					vc.loadLS(url: url)
+//				}
+				if let run = self.run {
+					vc.run = run
+					vc.run.updateLayoutState()
 				}
 			}
 			vc.appearance = appearance
@@ -147,7 +158,7 @@ class Document: SplitterDocBundle {
 
 	override func read(from data: Data, ofType typeName: String) throws {
 		// Insert code here to read your document from the given data ofr the specified type, throwing an error in case of failure.
-		// Alx5ternatively, you could remove this method and override read(from:ofType:) instead.
+		// Alternatively, you could remove this method and override read(from:ofType:) instead.
 		// If you do, you should also override isEntireFileLoaded to return false if the contents are lazily loaded.
 		throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
 	}

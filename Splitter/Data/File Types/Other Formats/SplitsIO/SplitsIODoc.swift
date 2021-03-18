@@ -30,16 +30,24 @@ class SplitsIODoc: SplitterDoc {
 			vc.run.attempts = si.attempts?.total ?? 0
 			if let imageStr = si.imageURL, let imageURL = URL(string: imageStr) {
 				let gameIcon = NSImage(byReferencing: imageURL)
-				vc.gameIcon = gameIcon
+				vc.run.gameIcon = gameIcon
 			}
 			if let segs = si.segments {
-				var i = 0
-				for s in segs {
-					i = i + 1
-					let title = s.name ?? "\(i)"
-					let bestTS = TimeSplit(mil: s.bestDuration?.gametimeMS ?? 0)
-					let splitRow = SplitTableRow(splitName: title, bestSplit: bestTS, currentSplit: TimeSplit(), previousSplit: bestTS, previousBest: bestTS)
-					vc.currentSplits.append(splitRow)
+				vc.run.editRun { editor in
+					for s in 0..<segs.count {
+						let seg = segs[s]
+						var prevSeg = TimeSplit(mil: seg.bestDuration?.realtimeMS ?? 0)
+						if s > 0 {
+							editor.insertSegmentBelow()
+							editor.selectOnly(s)
+							prevSeg = TimeSplit(mil: segs[s-1].bestDuration?.realtimeMS ?? 0)
+							let currentSeg = TimeSplit(mil: seg.bestDuration?.realtimeMS ?? 0)
+							prevSeg = currentSeg - prevSeg
+						}
+						editor.activeSetName(seg.name ?? "")
+						_ = editor.activeParseAndSetBestSegmentTime(prevSeg.timeString)
+						
+					}
 				}
 				vc.splitsTableView.reloadData()
 			}
@@ -63,7 +71,7 @@ class SplitsIODoc: SplitterDoc {
     }
     
     override func read(from data: Data, ofType typeName: String) throws {
-		var decoder = JSONDecoder()
+		let decoder = JSONDecoder()
 		splitsio = try? decoder.decode(SplitsIOExchangeFormat.self, from: data)
 		if splitsio == nil {
 			throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)

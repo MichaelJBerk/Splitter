@@ -77,14 +77,19 @@ class SplitterRun: NSObject {
 			editor.setComponentSettingsValue(1, .fromUint(0))
 			
 			editor.setComponentSettingsValue(10, .fromUint(4))
-			
 			editor.setComponentSettingsValue(9, .fromBool(true))
+			
+			//Setup Diffs Column
+			
+			editor.setColumn(1, updateWith: ColumnUpdateWith.segmentDelta)
+			editor.setColumn(1, updateTrigger: ColumnUpdateTrigger.onStartingSegment)
+			
 			//Setup PB column
 			editor.setColumn(2, name: "PB")
 			editor.setColumn(2, comparison: "Personal Best")
 			editor.setColumn(2, startWith: .comparisonTime)
-			editor.setColumn(2, updateWith: .splitTime)
-			editor.setColumn(2, updateTrigger: .contextual)
+			editor.setColumn(2, updateWith: ColumnUpdateWith.dontUpdate)
+			editor.setColumn(2, updateTrigger: ColumnUpdateTrigger.onEndingSegment)
 			
 			//Setup Previous column
 			editor.setColumn(3, name: "previous")

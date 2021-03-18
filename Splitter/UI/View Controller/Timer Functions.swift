@@ -18,7 +18,7 @@ extension ViewController {
 		startButton.baseTitle = "Pause"
 		setupTimer()
 		updateAttemptField()
-		splitsTableView.scrollRowToVisible(currentSplitNumber)
+		splitsTableView.scrollRowToVisible(run.currentSplit ?? 0)
 	}
 	
 	///Stops/"Finshes" the timer
@@ -69,12 +69,11 @@ extension ViewController {
 
 		
 		currentSplit = TimeSplit()
-		
-		currentSplitNumber = 0
 		currentSplits[0].currentSplit = self.currentSplit!
 		
 		self.startTime = Date()
 		
+		self.updateButtonTitles()
 		//Using reloadData to update the highlighted row in the tableview
 		splitsTableView.reloadData()
 	}
@@ -139,12 +138,6 @@ extension ViewController {
 	}
 	///Updates the current time on the timer
 	@objc func updateTimer() {
-		if currentSplit?.paused ?? false {
-			lscTimer?.pause()
-		} else {
-//			currentSplit?.updateSec(sec: lscTimer?.currentTime().realTime()?.totalSeconds() ?? 0)
-		}
-		
 		if let timer = run.codableLayout.components[2].timer {
 			timerLabel.stringValue = timer.timeText
 			touchBarTotalTimeLabel.stringValue = timer.timeText

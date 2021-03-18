@@ -34,14 +34,7 @@ extension ViewController {
 			}
 		}
 	}
-	
-	
-	@IBAction func nextButtonClick(_ sender: Any) {
-		goToNextSplit()
-	}
-	@IBAction func prevButtonClick(_ sender: Any) {
-		goToPrevSplit()
-	}
+
 	
 	@IBAction func addButtonClick(_ sender: Any) {
 		if timerState == .stopped {
@@ -54,9 +47,6 @@ extension ViewController {
 			splitsTableView.reloadData()
 		}
 	}
-	
-
-	
 	
 	
 	@IBAction func pauseButtonPressed(_ sender: Any) {

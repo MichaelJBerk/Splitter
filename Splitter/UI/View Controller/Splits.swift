@@ -10,53 +10,35 @@ import Foundation
 import Cocoa
 
 extension ViewController {
+	
+	///Updates the button titles when splitting
+	func updateButtonTitles() {
+		var nextButtonTitle = "Split"
+		if run.currentSplit == run.segmentCount - 1 && timerState != .stopped {
+			nextButtonTitle = "Finish"
+		}
+		nextButton.baseTitle = nextButtonTitle
+		touchBarDelegate.startSplitTitle = nextButtonTitle
+		touchBarDelegate.enableDisableButtons()
+		splitsTableView.reloadData()
+		splitsTableView.scrollRowToVisible(run.currentSplit ?? 0)
+	}
+	
 	//MARK: - Split Navigation
 	///Moves the timer to the next split, or finishes the run if the current split is the last.
 	func goToNextSplit() {
 		run.timer.splitOrStart()
-//		if timerStarted {
-//			updateBestSplits(of: currentSplitNumber)
-//			if currentSplits.count > currentSplitNumber + 1 {
-//
-//				updatePreviousSplit(of: currentSplitNumber + 1)
-//				let currentSplitCopy = self.currentSplit?.copy() as! TimeSplit
-//				currentSplits[currentSplitNumber].currentSplit = currentSplitCopy
-//				currentSplitNumber += 1
-//				currentSplits[currentSplitNumber].currentSplit = self.currentSplit!
-//				splitsTableView.scrollRowToVisible(currentSplitNumber)
-//			} else {
-//				//If it's at the last split, then stop the timer.
-//				stopTimer()
-//			}
-//		}
-		//Need to reload the entire table view so that the hightlighted row in the table view will update
-		//Since this only happens when advancing to the next split, it shouldn't affect scrolling performance
-		splitsTableView.reloadData()
+		updateButtonTitles()
 		
 	}
 	///Moves the timer to the previous split, or restarts the run if the current split is the first
 	func goToPrevSplit() {
 		run.timer.previousSplit()
 		splitsTableView.reloadData()
-//		if timerStarted {
-//			if currentSplitNumber > 0 {
-//				currentSplits[currentSplitNumber - 1].currentSplit = currentSplit!
-//				currentSplits.replaceSubrange(currentSplitNumber...currentSplitNumber, with: [backupSplits[currentSplitNumber]])
-//				currentSplitNumber = currentSplitNumber - 1
-//
-//				self.currentSplit = currentSplits[currentSplitNumber].currentSplit
-//				splitsTableView.reloadData()
-//
-//			} else if currentSplitNumber == 0 {
-//				self.currentSplit = TimeSplit(mil: 0, sec: 0, min: 0, hour: 0)
-//				currentSplits[0].currentSplit = self.currentSplit!
-//				splitsTableView.reloadData()
-//			}
-//		}
+		updateButtonTitles()
 	}
 	
 	//MARK: - Adding and Removing Splits
-	//TODO: Make this remove a split given its index instead of the last one
 	func removeSplits(at index: Int? = nil) {
 		if let index = index {
 			run.removeSegment(index)
@@ -72,31 +54,26 @@ extension ViewController {
 		let blankTableRow = SplitTableRow(splitName: "\(blankSplitNumber)", bestSplit: blankSplit, currentSplit: blankSplit, previousSplit: blankSplit, previousBest: blankSplit, splitIcon: nil)
 		currentSplits.append(blankTableRow)
 		splitsTableView.reloadData()
-		
 	}
 	
-	//TODO: See if all I need is addBlankSplit()
 	///Adds a new split to the table view, if the timer hasn't started yet.
 	func addSplit() {
-		run.addSegment(title: "new")
+		run.addSegment(title: "\(run.segmentCount + 1)")
 		splitsTableView.reloadData()
+		splitsTableView.scrollRowToVisible(run.segmentCount - 1)
 	}
 	
-	//TODO: May not be availiable in LiveSplit-Core
 	///Resets the current split to the time of the previous split, or resets the run if the current split is the last
 	func resetCurrentSplit() {
-		if currentSplitNumber > 0 {
-			let lastSplit = currentSplits[currentSplitNumber - 1]
-			currentSplits[currentSplitNumber].currentSplit = lastSplit.currentSplit
-			currentSplits[currentSplitNumber - 1].currentSplit = lastSplit.currentSplit.tsCopy()
-			currentSplit = currentSplits[currentSplitNumber].currentSplit
-		} else {
-			resetRun()
-		}
-		
+		let alert = NSAlert()
+		alert.alertStyle = .informational
+		alert.messageText = "Not sure if this is even in LiveSplit-Core"
+		alert.informativeText = "Sorry!"
+		alert.runModal()
+		//TODO: May not be availiable in LiveSplit-Core
 	}
 	
-	///Resets a run in progress to 00:00:00.
+	///Resets a run (Whatever that means in LiveSplit parlance)
 	func resetRun() {
 		run.timer.resetRun()
 		run.updateLayoutState()
@@ -112,8 +89,8 @@ extension ViewController {
 		}
 		
 	}
-	///`row` - Row in `CurrentSplits` to update
 	///Updates the best splits for a given row in the table
+	///`row` - Row in `CurrentSplits` to update
 	func updateBestSplits(of row: Int) {
 		let lSplit = currentSplits[row].currentSplit.tsCopy()
 		let rSplit = currentSplits[row].bestSplit.tsCopy()

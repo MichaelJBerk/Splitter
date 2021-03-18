@@ -47,14 +47,15 @@ struct splitSegment: Codable {
 class splitToJSON {
 	//Can't have this as an initalizer of the runInfo struct becuase then i'd have to re-implement the default initalizer
 	func runInfoFromJSON(json: JSON) -> runInfo {
-		let segs = json.dictionary!["segments"]?.array!
 		var splitsegs: [splitSegment] = []
-		for i in segs! {
-			let seg = splitSegment(name: i.dictionary!["name"]!.stringValue, currentTime: i.dictionary!["currentTime"]!.stringValue, personalBestTime: i.dictionary!["personalBestTime"]!.stringValue, previousTime: i.dictionary!["previousTime"]!.stringValue, previousPersonalBestTime: i.dictionary!["previousPersonalBestTime"]!.stringValue)
-			splitsegs.append(seg)
+		if let segs = json.dictionary?["segments"]?.array {
+			for i in segs {
+				let seg = splitSegment(name: i.dictionary!["name"]!.stringValue, currentTime: i.dictionary!["currentTime"]!.stringValue, personalBestTime: i.dictionary!["personalBestTime"]!.stringValue, previousTime: i.dictionary!["previousTime"]!.stringValue, previousPersonalBestTime: i.dictionary!["previousPersonalBestTime"]!.stringValue)
+				splitsegs.append(seg)
+			}
 		}
-		let ri = runInfo(title: json.dictionary!["title"]!.string!,
-						 category: json.dictionary!["category"]!.stringValue,
+		let ri = runInfo(title: json.dictionary?["title"]?.string,
+						 category: json.dictionary?["category"]?.stringValue,
 						 segments: splitsegs,
 						 attempts: json.dictionary?["attempts"]?.intValue,
 						 gameVersion: json.dictionary?["gameVersion"]?.string,

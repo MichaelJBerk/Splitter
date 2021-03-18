@@ -66,7 +66,7 @@ class RunTouchBarDelegate: NSObject, NSTouchBarDelegate {
 			startSplitButton.isEnabled = true
 			pauseButton.isEnabled = true
 			pauseButton.image = NSImage(named: NSImage.touchBarPauseTemplateName)
-			if sourceVC.currentSplitNumber == sourceVC.currentSplits.count - 1 {
+			if sourceVC.run.currentSplit == sourceVC.run.segmentCount - 1 {
 				startSplitButton.image = #imageLiteral(resourceName: "flag")
 			} else {
 				startSplitButton.image = NSImage(named: NSImage.touchBarSkipAheadTemplateName)
@@ -78,8 +78,7 @@ class RunTouchBarDelegate: NSObject, NSTouchBarDelegate {
 			
 		}
 		stopButton.isEnabled = !(timerState == .stopped)
-		let splitNumber = sourceVC.currentSplitNumber
-		prevButton.isEnabled = (timerState == .running &&  splitNumber > 0)
+		prevButton.isEnabled = (timerState == .running &&  (sourceVC.run.currentSplit ?? 0) > 0)
 	}
 	
 	var pauseButton: TBButton!

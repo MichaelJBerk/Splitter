@@ -6295,19 +6295,18 @@ extension LayoutEditor {
 	func setColumn(_ index: Int, updateWith: ColumnUpdateWith) {
 		let settingIndex = settingsStartIndex(for: index) + 2
 		if let setting = SettingValue.fromColumnUpdateWith(updateWith.rawValue) {
-			self.setComponentSettingsValue(settingIndex, SettingValue.fromColumnUpdateWith("DontUpdate")!)
+			self.setComponentSettingsValue(settingIndex, setting)
 		}
 	}
 	func setColumn(_ index: Int, updateTrigger: ColumnUpdateTrigger) {
 		let settingIndex = settingsStartIndex(for: index) + 3
-		if let updateTrigger = SettingValue.fromColumnUpdateWith(updateTrigger.rawValue) {
+		if let updateTrigger = SettingValue.fromColumnUpdateTrigger(updateTrigger.rawValue) {
 			self.setComponentSettingsValue(settingIndex, updateTrigger)
 		}
 	}
 	func setColumn(_ index: Int, comparison: String?) {
 		let settingIndex = settingsStartIndex(for: index) + 4
 		if let comparison = comparison {
-			let set = SettingValue.fromOptionalString(comparison)
 			self.setComponentSettingsValue(settingIndex, SettingValue.fromOptionalString(comparison))
 		}
 	}

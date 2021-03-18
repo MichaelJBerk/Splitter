@@ -16,8 +16,7 @@ import SwiftUI
 
 class ViewController: NSViewController {
 	
-//MARK: - Setting Up Buttons
-	@IBOutlet weak var trashCanPopupButton: NSPopUpButton!
+	//MARK: - Setting Up Buttons
 	var shouldTrashCanBeHidden: Bool {
 		if buttonHidden {
 			return true
@@ -29,7 +28,6 @@ class ViewController: NSViewController {
 				return true
 		}
 	}
-	@IBOutlet weak var stopButton: NSButton!
 	var shouldStopButtonBeHidden: Bool {
 		stopButton.isEnabled = true
 		if buttonHidden {
@@ -42,7 +40,8 @@ class ViewController: NSViewController {
 				return false
 		}
 	}
-	
+	@IBOutlet weak var trashCanPopupButton: NSPopUpButton!
+	@IBOutlet weak var stopButton: NSButton!
 	@IBOutlet weak var startButton: NSButton!
 	@IBOutlet weak var nextButton: NSButton!
 	@IBOutlet weak var prevButton: NSButton!
@@ -120,7 +119,7 @@ class ViewController: NSViewController {
 	@IBOutlet weak var categoryField: MetadataField!
 	@IBOutlet weak var timerLabel: NSTextField!
 	@IBOutlet weak var currentTimeLabel: NSTextField!
-	@IBOutlet weak var attemptField: MetadataField!
+	var attemptField: MetadataField!
 	@IBOutlet weak var splitsTableView: SplitterTableView!
 	
 	var cellIdentifier: NSUserInterfaceItemIdentifier?
@@ -133,7 +132,6 @@ class ViewController: NSViewController {
 //MARK: - Timer Properties
 	
 	var run: SplitterRun!
-	
 	
 	var timerStarted = false
 	var timerPaused = false
@@ -224,20 +222,7 @@ class ViewController: NSViewController {
 	var currentSplits: [SplitTableRow] = []
 	var backupSplits: [SplitTableRow] = []
 	var loadedFilePath: String = ""
-	var currentSplitNumber = 0 {
-		didSet {
-			let totalSplits = currentSplits.count - 1
-			var nextButtonTitle = "Split"
-			if currentSplitNumber == totalSplits && timerState != .stopped {
-				nextButtonTitle = "Finish"
-			}
-			nextButton.baseTitle = nextButtonTitle
-			touchBarDelegate.startSplitTitle = nextButtonTitle
-//			touchBarSegmentNameLabel.stringValue = currentSplits[currentSplitNumber].splitName
-			touchBarDelegate.enableDisableButtons()
-		}
-	}
-	
+
 	var compareTo: SplitComparison {
 		get {
 			return currentSplits.first?.compareTo ?? SplitComparison.previousSplit
@@ -372,6 +357,9 @@ class ViewController: NSViewController {
 		super.init(coder: coder)
 		
 	}
+	
+	var timeRow: TimeRow!
+	var startRow: StartRow!
 	var prevNextRow: PrevNextRow!
 	
 	func setupPrevNextRow() {
@@ -379,16 +367,54 @@ class ViewController: NSViewController {
 		prevNextRow.loadViewFromNib()
 		prevNextRow.viewController = self
 		
-		bottomStackView.arrangedSubviews.last?.isHidden = true
 		addToStack(view: prevNextRow)
 		prevButton = prevNextRow.prevButton
 		nextButton = prevNextRow.nextButton
+	}
+	func setupStartRow() {
+		startRow = StartRow()
+		startRow.loadViewFromNib()
+		startRow.viewController = self
+		
+		addToStack(view: startRow)
+		startButton = startRow.startButton
+		stopButton = startRow.stopButton
+		trashCanPopupButton = startRow.trashCanPopupButton
+	}
+	func setupTimeRow() {
+		timeRow = TimeRow()
+		timeRow.loadViewFromNib()
+		timeRow.viewController = self
+		addToStack(view: timeRow)
+		
+		timerLabel = timeRow.timeLabel
+		attemptField = timeRow.attemptsField
+		
 	}
 	
 	//MARK: - Main Functions
 	override func viewWillAppear() {
 		super.viewWillAppear()
+		setupTimeRow()
+		setupStartRow()
 		setupPrevNextRow()
+		
+		stopButton.image = nil
+		let tsItem = trashCanPopupButton.menu?.items[0]
+		tsItem?.image = nil
+		infoPanelPopoverButton.image = nil
+		if #available(macOS 11.0, *) {
+			infoPanelPopoverButton.image = NSImage(systemSymbolName: "gearshape.fill", accessibilityDescription: nil)
+			stopButton.image = NSImage(systemSymbolName: "stop.circle.fill", accessibilityDescription: nil)
+			tsItem?.image = NSImage(systemSymbolName: "trash", accessibilityDescription: nil)
+		} else {
+			stopButton.image = NSImage(named: "stop")
+			tsItem?.image = NSImage(named: "trash")
+			infoPanelPopoverButton.image = NSImage(named: "gearshape")
+			
+		}
+		
+		
 		if let welcome = AppDelegate.shared?.welcomeWindow {
 			welcome.close()
 		}
@@ -441,11 +467,11 @@ class ViewController: NSViewController {
 			addBlankSplit()
 		}
 		
-		setRightClickMenus()
 		
 		view.window?.makeFirstResponder(splitsTableView)
 		
 		updateAttemptField()
+		setRightClickMenus()
 		attemptField.formatter = OnlyIntegerValueFormatter()
 		
 		splitsIOUploader = SplitsIOUploader(viewController: self)
@@ -469,6 +495,7 @@ class ViewController: NSViewController {
 			}
 			
 		})
+		updateTextFields()
 		print("VWA Done!")
 		
 	}
@@ -549,7 +576,6 @@ class ViewController: NSViewController {
 		categoryField.menu = textMenu
 		attemptField.menu = textMenu
 		
-		
 	}
 	
 	func setUpDefaults() {
@@ -577,24 +603,11 @@ class ViewController: NSViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		run = SplitterRun(run: Run())
-		
+		if run == nil {
+			run = SplitterRun(run: Run())
+		}
 		self.view.wantsLayer = true
 		splitsTableView.reloadData()
-		stopButton.image = nil
-		let tsItem = trashCanPopupButton.menu?.items[0]
-		tsItem?.image = nil
-		infoPanelPopoverButton.image = nil
-		if #available(macOS 11.0, *) {
-			infoPanelPopoverButton.image = NSImage(systemSymbolName: "gearshape.fill", accessibilityDescription: nil)
-			stopButton.image = NSImage(systemSymbolName: "stop.circle.fill", accessibilityDescription: nil)
-			tsItem?.image = NSImage(systemSymbolName: "trash", accessibilityDescription: nil)
-		} else {
-			stopButton.image = NSImage(named: "stop")
-			tsItem?.image = NSImage(named: "trash")
-			infoPanelPopoverButton.image = NSImage(named: "gearshape")
-			
-		}
 	}
 	
 	override func viewWillDisappear() {

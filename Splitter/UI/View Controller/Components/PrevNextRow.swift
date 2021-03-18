@@ -9,7 +9,7 @@
 import Cocoa
 
 @IBDesignable
-class PrevNextRow: NSStackView, LoadableNib {
+class PrevNextRow: NSStackView, LoadableNib, SplitterComponent {
 	@IBOutlet var contentView: NSView!
 	@IBOutlet var prevButton: NSButton!
 	@IBOutlet var nextButton: NSButton!

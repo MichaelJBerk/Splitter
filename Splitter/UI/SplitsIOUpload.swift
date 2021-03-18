@@ -65,10 +65,14 @@ class SplitsIOUploader {
 		let game = SplitsIORunCategory(longname: viewController.run.title, shortname: nil, links: nil)
 		let cat = SplitsIORunCategory(longname: viewController.run.subtitle, shortname: nil, links: nil)
 		var cs: [SplitsIOSegment] = []
-		for s in viewController.currentSplits {
-			let best = s.bestSplit.TSToMil()
-			let dur = SplitsIOBestDuration(realtimeMS: best, gametimeMS: best)
-			let seg = SplitsIOSegment(name: s.splitName, endedAt: dur, bestDuration: dur, isSkipped: nil, histories: nil)
+		let run = viewController.run.timer.lsRun
+		let len = run.len()
+		for s in 0..<len {
+			let segment = run.segment(s)
+			let bestRT = segment.personalBestSplitTime().realTime()?.totalSeconds() ?? 0 * 1000
+			let bestGT = segment.personalBestSplitTime().gameTime()?.totalSeconds() ?? 0 * 1000
+			let dur = SplitsIOBestDuration(realtimeMS: Int(bestRT), gametimeMS: Int(bestGT))
+			let seg = SplitsIOSegment(name: segment.name(), endedAt: dur, bestDuration: dur, isSkipped: nil, histories: nil)
 			cs.append(seg)
 		}
 		var runners: [SplitsIOExchangeRunner] = []

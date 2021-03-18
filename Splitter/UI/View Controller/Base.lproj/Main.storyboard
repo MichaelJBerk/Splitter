@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -604,10 +603,10 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kx4-q1-74E">
-                                <rect key="frame" x="0.0" y="0.0" width="494" height="378"/>
+                                <rect key="frame" x="0.0" y="0.0" width="494" height="138"/>
                                 <subviews>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="mAU-zf-6y9">
-                                        <rect key="frame" x="0.0" y="312" width="286" height="66"/>
+                                        <rect key="frame" x="0.0" y="-168" width="286" height="66"/>
                                         <subviews>
                                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6rq-lR-6Um" customClass="MetadataImage" customModule="Splitter" customModuleProvider="target">
                                                 <rect key="frame" x="6" y="8" width="42" height="50"/>
@@ -686,7 +685,7 @@
                                         </constraints>
                                     </customView>
                                     <scrollView appearanceType="darkAqua" borderType="none" autohidesScrollers="YES" horizontalLineScroll="33" horizontalPageScroll="10" verticalLineScroll="33" verticalPageScroll="10" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="allowed" scrollerKnobStyle="dark" id="GLv-Wp-JTM" customClass="SplitterScrollView" customModule="Splitter" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="280" width="494" height="32"/>
+                                        <rect key="frame" x="0.0" y="40" width="494" height="32"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <clipView key="contentView" copiesOnScroll="NO" id="9dd-gf-lQy">
                                             <rect key="frame" x="0.0" y="0.0" width="494" height="32"/>
@@ -946,13 +945,13 @@
                                         </tableHeaderView>
                                     </scrollView>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="0DF-tP-BL4">
-                                        <rect key="frame" x="0.0" y="0.0" width="494" height="280"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="494" height="40"/>
                                         <subviews>
                                             <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HPQ-BI-dXc">
-                                                <rect key="frame" x="7" y="10" width="481" height="260"/>
+                                                <rect key="frame" x="7" y="10" width="481" height="20"/>
                                                 <subviews>
                                                     <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="107" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QCD-z8-dOV">
-                                                        <rect key="frame" x="0.0" y="240" width="481" height="20"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="481" height="20"/>
                                                         <subviews>
                                                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mj4-Ky-5e7">
                                                                 <rect key="frame" x="-2" y="4" width="299" height="16"/>
@@ -1035,155 +1034,15 @@
                                                             <real value="3.4028234663852886e+38"/>
                                                         </customSpacing>
                                                     </stackView>
-                                                    <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="29" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="px3-Jy-gbq">
-                                                        <rect key="frame" x="0.0" y="27" width="481" height="211"/>
-                                                        <subviews>
-                                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="d2l-Lb-Z8r">
-                                                                <rect key="frame" x="-2" y="17" width="195" height="177"/>
-                                                                <textFieldCell key="cell" lineBreakMode="clipping" title="00:00:00.00" placeholderString="00:00:00.00" id="JHU-AI-bFi">
-                                                                    <font key="font" size="36" name="HelveticaNeue"/>
-                                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                </textFieldCell>
-                                                            </textField>
-                                                            <stackView distribution="fill" orientation="vertical" alignment="trailing" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hl7-IL-HE2">
-                                                                <rect key="frame" x="220" y="88" width="261" height="36"/>
-                                                                <subviews>
-                                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rkm-yi-plE">
-                                                                        <rect key="frame" x="210" y="20" width="53" height="16"/>
-                                                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Attempt" id="6Q0-NB-XXc">
-                                                                            <font key="font" metaFont="system"/>
-                                                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                        </textFieldCell>
-                                                                    </textField>
-                                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XzH-Pf-d2x" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
-                                                                        <rect key="frame" x="209" y="0.0" width="54" height="20"/>
-                                                                        <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" editable="YES" alignment="right" placeholderString="0" id="4cM-0W-7b3">
-                                                                            <font key="font" metaFont="system" size="17"/>
-                                                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                        </textFieldCell>
-                                                                    </textField>
-                                                                </subviews>
-                                                                <visibilityPriorities>
-                                                                    <integer value="1000"/>
-                                                                    <integer value="1000"/>
-                                                                </visibilityPriorities>
-                                                                <customSpacing>
-                                                                    <real value="3.4028234663852886e+38"/>
-                                                                    <real value="3.4028234663852886e+38"/>
-                                                                </customSpacing>
-                                                            </stackView>
-                                                        </subviews>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" secondItem="d2l-Lb-Z8r" secondAttribute="height" multiplier="1.19048" id="6aP-25-MZ9"/>
-                                                        </constraints>
-                                                        <visibilityPriorities>
-                                                            <integer value="1000"/>
-                                                            <integer value="1000"/>
-                                                        </visibilityPriorities>
-                                                        <customSpacing>
-                                                            <real value="3.4028234663852886e+38"/>
-                                                            <real value="3.4028234663852886e+38"/>
-                                                        </customSpacing>
-                                                    </stackView>
-                                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="tEW-3m-2Cj" userLabel="Start Row">
-                                                        <rect key="frame" x="0.0" y="0.0" width="481" height="25"/>
-                                                        <subviews>
-                                                            <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="u2u-en-rgq">
-                                                                <rect key="frame" x="1" y="2" width="43" height="21"/>
-                                                                <subviews>
-                                                                    <popUpButton hidden="YES" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="udb-sn-xNY">
-                                                                        <rect key="frame" x="-3" y="-3" width="50" height="25"/>
-                                                                        <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" autoenablesItems="NO" selectedItem="E4A-EA-ALB" id="gAh-qk-bIO">
-                                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                            <font key="font" metaFont="menu"/>
-                                                                            <menu key="menu" showsStateColumn="NO" autoenablesItems="NO" id="EQW-m1-UW4">
-                                                                                <items>
-                                                                                    <menuItem hidden="YES" id="E4A-EA-ALB">
-                                                                                        <imageReference key="image" image="trash" symbolScale="large" renderingMode="template"/>
-                                                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                                                    </menuItem>
-                                                                                    <menuItem title="Clear Current Time" identifier="ClearCurrentTimeMenuItem" id="cio-kK-rtU">
-                                                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                                                    </menuItem>
-                                                                                    <menuItem title="Delete All Segments" identifier="ClearAllSplitsMenuItem" id="Lir-eD-mYQ">
-                                                                                        <modifierMask key="keyEquivalentModifierMask"/>
-                                                                                    </menuItem>
-                                                                                </items>
-                                                                            </menu>
-                                                                        </popUpButtonCell>
-                                                                        <color key="contentTintColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                                        <connections>
-                                                                            <action selector="trashCanPopupClick:" target="5gI-5U-AMq" id="iRE-n2-4Vm"/>
-                                                                        </connections>
-                                                                    </popUpButton>
-                                                                    <button hidden="YES" verticalHuggingPriority="750" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sEF-Zm-06R">
-                                                                        <rect key="frame" x="-7" y="-7" width="57" height="32"/>
-                                                                        <buttonCell key="cell" type="push" title=" " bezelStyle="rounded" image="stop" imagePosition="only" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Iag-Q5-zEr">
-                                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                            <font key="font" metaFont="system"/>
-                                                                        </buttonCell>
-                                                                        <color key="contentTintColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                                                                        <connections>
-                                                                            <action selector="stopButtonClick:" target="5gI-5U-AMq" id="dgx-LK-i44"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                </subviews>
-                                                                <constraints>
-                                                                    <constraint firstItem="sEF-Zm-06R" firstAttribute="width" secondItem="udb-sn-xNY" secondAttribute="width" id="BTw-45-gBj"/>
-                                                                    <constraint firstItem="udb-sn-xNY" firstAttribute="leading" secondItem="u2u-en-rgq" secondAttribute="leading" id="HMl-Dv-zqs"/>
-                                                                    <constraint firstItem="sEF-Zm-06R" firstAttribute="leading" secondItem="u2u-en-rgq" secondAttribute="leading" id="UEG-aF-ohr"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="sEF-Zm-06R" secondAttribute="bottom" id="Ua3-xA-k94"/>
-                                                                    <constraint firstItem="udb-sn-xNY" firstAttribute="top" secondItem="u2u-en-rgq" secondAttribute="top" id="Ucr-Vc-yDD"/>
-                                                                    <constraint firstAttribute="width" secondItem="udb-sn-xNY" secondAttribute="width" id="iy5-1G-11I"/>
-                                                                    <constraint firstAttribute="bottom" secondItem="udb-sn-xNY" secondAttribute="bottom" id="mXn-QR-Zfm"/>
-                                                                    <constraint firstItem="sEF-Zm-06R" firstAttribute="height" secondItem="udb-sn-xNY" secondAttribute="height" id="sUf-ww-UGM"/>
-                                                                    <constraint firstItem="sEF-Zm-06R" firstAttribute="top" secondItem="u2u-en-rgq" secondAttribute="top" id="w8Z-85-euC"/>
-                                                                </constraints>
-                                                            </customView>
-                                                            <button toolTip="Start Timer" horizontalHuggingPriority="249" verticalHuggingPriority="749" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gCo-Oe-sI7">
-                                                                <rect key="frame" x="45" y="-4" width="443" height="32"/>
-                                                                <buttonCell key="cell" type="push" title="Start" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Z21-jw-aXO">
-                                                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                    <font key="font" metaFont="system"/>
-                                                                </buttonCell>
-                                                                <color key="contentTintColor" name="systemGreenColor" catalog="System" colorSpace="catalog"/>
-                                                                <accessibility description="Start Time" identifier="StartTimer"/>
-                                                                <connections>
-                                                                    <action selector="timerButtonClick:" target="5gI-5U-AMq" id="5Bg-tR-Jey"/>
-                                                                </connections>
-                                                            </button>
-                                                        </subviews>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" constant="25" id="89j-eB-Nxc"/>
-                                                            <constraint firstItem="gCo-Oe-sI7" firstAttribute="leading" secondItem="u2u-en-rgq" secondAttribute="trailing" constant="5" id="EGa-1S-KL4"/>
-                                                            <constraint firstItem="u2u-en-rgq" firstAttribute="top" secondItem="tEW-3m-2Cj" secondAttribute="top" constant="2" id="JFo-IO-qFn"/>
-                                                            <constraint firstAttribute="bottom" secondItem="u2u-en-rgq" secondAttribute="bottom" constant="2" id="Koc-WU-E8C"/>
-                                                            <constraint firstItem="u2u-en-rgq" firstAttribute="leading" secondItem="tEW-3m-2Cj" secondAttribute="leading" id="dgb-lv-FnN"/>
-                                                            <constraint firstItem="gCo-Oe-sI7" firstAttribute="top" secondItem="tEW-3m-2Cj" secondAttribute="top" constant="2" id="mRO-QI-7mO"/>
-                                                            <constraint firstAttribute="trailing" secondItem="gCo-Oe-sI7" secondAttribute="trailing" id="rSS-WB-Anf"/>
-                                                            <constraint firstAttribute="bottom" secondItem="gCo-Oe-sI7" secondAttribute="bottom" constant="2" id="trf-cS-SW9"/>
-                                                        </constraints>
-                                                    </customView>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="trailing" secondItem="px3-Jy-gbq" secondAttribute="trailing" id="6VV-M3-5vj"/>
                                                     <constraint firstItem="QCD-z8-dOV" firstAttribute="leading" secondItem="HPQ-BI-dXc" secondAttribute="leading" id="6XW-kw-FAl"/>
                                                     <constraint firstAttribute="trailing" secondItem="QCD-z8-dOV" secondAttribute="trailing" id="Fks-mB-yPh"/>
-                                                    <constraint firstItem="tEW-3m-2Cj" firstAttribute="leading" secondItem="HPQ-BI-dXc" secondAttribute="leading" id="XIv-eJ-kNe"/>
-                                                    <constraint firstAttribute="trailing" secondItem="tEW-3m-2Cj" secondAttribute="trailing" id="ev2-M6-rE6"/>
-                                                    <constraint firstItem="px3-Jy-gbq" firstAttribute="leading" secondItem="HPQ-BI-dXc" secondAttribute="leading" id="fzS-2P-x7U"/>
                                                 </constraints>
                                                 <visibilityPriorities>
                                                     <integer value="1000"/>
-                                                    <integer value="1000"/>
-                                                    <integer value="1000"/>
                                                 </visibilityPriorities>
                                                 <customSpacing>
-                                                    <real value="3.4028234663852886e+38"/>
-                                                    <real value="3.4028234663852886e+38"/>
                                                     <real value="3.4028234663852886e+38"/>
                                                 </customSpacing>
                                             </stackView>
@@ -1226,7 +1085,6 @@
                         </connections>
                     </view>
                     <connections>
-                        <outlet property="attemptField" destination="XzH-Pf-d2x" id="QI9-9k-lRM"/>
                         <outlet property="bottomStackView" destination="HPQ-BI-dXc" id="ef7-VU-Vee"/>
                         <outlet property="categoryField" destination="5cv-K8-dE8" id="S7o-Cd-tug"/>
                         <outlet property="columnOptionsPopoverButton" destination="xLP-fd-tTq" id="XLN-jK-lh2"/>
@@ -1239,11 +1097,7 @@
                         <outlet property="plusButton" destination="OXM-M7-swh" id="sb0-rS-PWM"/>
                         <outlet property="runTitleField" destination="TSJ-mg-scq" id="rjM-Y4-yKr"/>
                         <outlet property="splitsTableView" destination="Ww4-Jn-tNR" id="Q7d-TC-F7o"/>
-                        <outlet property="startButton" destination="gCo-Oe-sI7" id="jgA-IG-Lnb"/>
-                        <outlet property="stopButton" destination="sEF-Zm-06R" id="adg-cS-Yhf"/>
                         <outlet property="tableButtonsStack" destination="sgY-CA-g1A" id="2e3-3o-oPw"/>
-                        <outlet property="timerLabel" destination="d2l-Lb-Z8r" id="5xN-95-XEJ"/>
-                        <outlet property="trashCanPopupButton" destination="udb-sn-xNY" id="5iy-ni-r1M"/>
                     </connections>
                 </viewController>
             </objects>
@@ -1821,8 +1675,6 @@ To remove, click and press backspace. </string>
         <image name="NSQuickLookTemplate" width="21" height="13"/>
         <image name="NSRemoveTemplate" width="14" height="4"/>
         <image name="gearshape" width="107" height="107"/>
-        <image name="stop" width="12" height="12"/>
-        <image name="trash" width="19" height="19"/>
         <namedColor name="accentColor">
             <color red="0.35699999332427979" green="0.28999999165534973" blue="0.70999997854232788" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

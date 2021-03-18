@@ -1,14 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="16097.2" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="16097.2"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="LoginView" customModule="Splitter" customModuleProvider="target">
             <connections>
                 <outlet property="contentView" destination="Hz6-mo-xeY" id="7ED-8m-TM3"/>
+                <outlet property="imageView" destination="B7e-yY-Pfh" id="0kT-L2-hPM"/>
                 <outlet property="loginButton" destination="K3K-em-Qf8" id="dVf-wQ-gmx"/>
             </connections>
         </customObject>
@@ -39,19 +40,19 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tQs-aX-w7s">
-                    <rect key="frame" x="172" y="76" width="293" height="48"/>
+                    <rect key="frame" x="172" y="75" width="293" height="48"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="5jO-Te-aYB"/>
                         <constraint firstAttribute="width" constant="289" id="7LZ-Oy-RgA"/>
                     </constraints>
-                    <textFieldCell key="cell" title="If you sign in to Splits.io, you can upload runs and participate in races using Splitter" id="1fB-cS-hgh">
+                    <textFieldCell key="cell" title="If you sign in to Splits.io, you can upload runs using Splitter" id="1fB-cS-hgh">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="K3K-em-Qf8">
-                    <rect key="frame" x="240" y="13" width="82" height="32"/>
+                    <rect key="frame" x="239" y="13" width="84" height="32"/>
                     <buttonCell key="cell" type="push" title="Sign In" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="zHn-hC-m1W">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
