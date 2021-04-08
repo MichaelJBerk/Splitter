@@ -10,22 +10,15 @@ import Cocoa
 
 @IBDesignable
 class PrevNextRow: NSStackView, LoadableNib, SplitterComponent {
+	
+	var displayTitle: String = "Previous/Next Buttons"
+	var displayDescription: String = ""
+	
 	@IBOutlet var contentView: NSView!
-	@IBOutlet var prevButton: NSButton!
-	@IBOutlet var nextButton: NSButton!
+	@IBOutlet var prevButton: ThemedButton!
+	@IBOutlet var nextButton: ThemedButton!
 	
 	var viewController: ViewController?
-	
-//	required init?(coder aDecoder: NSCoder) {
-//		super.init(coder: aDecoder)
-//		loadViewFromNib()
-//	}
-//	
-//	init(viewController: ViewController) {
-//		super.init(frame: NSRect.infinite)
-//		loadViewFromNib()
-//		self.viewController = viewController
-//	}
 	
 	@IBAction func prevButtonClick(_ sender: NSButton?) {
 		viewController?.goToPrevSplit()

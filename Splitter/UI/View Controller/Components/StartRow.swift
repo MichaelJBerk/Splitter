@@ -11,9 +11,13 @@ import Cocoa
 class StartRow: NSStackView, LoadableNib, SplitterComponent {
 	@IBOutlet var contentView: NSView!
 	
-	@IBOutlet var trashCanPopupButton: NSPopUpButton!
-	@IBOutlet var startButton: NSButton!
-	@IBOutlet var stopButton: NSButton!
+	var displayTitle: String = "Start Row"
+	var displayDescription: String = ""
+	
+	
+	@IBOutlet var trashCanPopupButton: ThemedPopUpButton!
+	@IBOutlet var startButton: ThemedButton!
+	@IBOutlet var stopButton: ThemedButton!
 	
 	var viewController: ViewController?
 	

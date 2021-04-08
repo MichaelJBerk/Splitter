@@ -9,12 +9,13 @@ import Cocoa
 
 class TimeRow: NSStackView, LoadableNib, SplitterComponent {
 	
+	var displayTitle: String = "Time Row"
+	var displayDescription: String = ""
 	@IBOutlet var contentView: NSView!
-	var viewController: ViewController?
-	
-	
 	@IBOutlet var timeLabel: NSTextField!
 	@IBOutlet var attemptsField: MetadataField!
+	var viewController: ViewController?
+	
 	
 //	@IBAction func attemptEdited(_ sender: Any) {
 //

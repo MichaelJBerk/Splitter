@@ -39,6 +39,7 @@ class InfoOptionsViewController: NSViewController, NSPopoverDelegate, advancedTa
 	
 	func setupDelegate() {
 		getDataFromMain()
+		getImageFromMain()
 		attemptField.formatter = OnlyIntegerValueFormatter()
 	}
 }

@@ -121,7 +121,6 @@ class Document: SplitterDocBundle {
 		let windowController = storyboard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("Document Window Controller")) as! NSWindowController
 		self.addWindowController(windowController)
 		let vc = windowController.contentViewController as! ViewController
-		vc.setColorForControls()
 		if let ri = self.runInfoData {
 			vc.runInfoData = ri
 			if let v = versionUsed, v < 4 {
@@ -138,7 +137,7 @@ class Document: SplitterDocBundle {
 			}
 			vc.appearance = appearance
 			if let gi = self.gameIcon {
-				vc.gameIcon = gi
+				vc.run.gameIcon = gi
 			}
 		}
 	}

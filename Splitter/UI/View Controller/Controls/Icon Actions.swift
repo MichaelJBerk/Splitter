@@ -58,8 +58,8 @@ extension ViewController {
 					 
 					 let myImage = NSImage(data: imageFile!)
 					 
-					self.gameIcon = myImage
-					self.gameIconButton.image = self.gameIcon
+					self.run.gameIcon = myImage
+					self.gameIconButton.image = self.run.gameIcon
 					
 				}
 			}
@@ -83,6 +83,6 @@ extension ViewController {
 	}
 	///Used in right-click menu for game icon
 	func removeGameIcon(sender: Any?) {
-		gameIconButton.image = #imageLiteral(resourceName: "Game Controller")
+		gameIconButton.image = .gameControllerIcon
 	}
 }

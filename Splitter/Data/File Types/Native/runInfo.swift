@@ -98,11 +98,11 @@ extension ViewController {
 				self.endTime = dateForRFC3339DateTimeString(rfc3339DateTimeString: et)
 			}
 			if let segments = ri.segments {
-				let compare = SplitComparison(rawValue: ri.compareTo ?? 0)!
+				let compare = ri.compareTo
 				switch compare {
-				case .personalBest:
+				case 0:
 					run.setComparison(LSComparison.personalBest.rawValue)
-				case .previousSplit:
+				default:
 					run.setComparison(LSComparison.latest.rawValue)
 				}
 				run.editRun { editor in

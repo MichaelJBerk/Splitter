@@ -24,7 +24,7 @@
                 <customView translatesAutoresizingMaskIntoConstraints="NO" id="uAx-Eg-8ek">
                     <rect key="frame" x="0.0" y="0.0" width="43" height="20"/>
                     <subviews>
-                        <popUpButton hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IUl-pl-z0H">
+                        <popUpButton hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IUl-pl-z0H" customClass="ThemedPopUpButton" customModule="Splitter" customModuleProvider="target">
                             <rect key="frame" x="-3" y="-4" width="50" height="25"/>
                             <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" autoenablesItems="NO" selectedItem="FTf-tR-crx" id="aMc-37-t3D">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -49,7 +49,7 @@
                                 <action selector="trashCanPopupClick:" target="-2" id="jSz-Qi-84h"/>
                             </connections>
                         </popUpButton>
-                        <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fSb-HD-vOl">
+                        <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fSb-HD-vOl" customClass="ThemedButton" customModule="Splitter" customModuleProvider="target">
                             <rect key="frame" x="-7" y="-7" width="57" height="32"/>
                             <buttonCell key="cell" type="push" bezelStyle="rounded" image="stop" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="eJw-aw-aNI">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -75,7 +75,7 @@
                         <constraint firstItem="fSb-HD-vOl" firstAttribute="height" secondItem="uAx-Eg-8ek" secondAttribute="height" id="zhs-sh-zaW"/>
                     </constraints>
                 </customView>
-                <button toolTip="Start Timer" horizontalHuggingPriority="249" verticalHuggingPriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="UnZ-zU-O1x">
+                <button toolTip="Start Timer" horizontalHuggingPriority="249" verticalHuggingPriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="UnZ-zU-O1x" customClass="ThemedButton" customModule="Splitter" customModuleProvider="target">
                     <rect key="frame" x="219" y="-7" width="64" height="32"/>
                     <buttonCell key="cell" type="push" title="Start" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="t71-Ja-BuN">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

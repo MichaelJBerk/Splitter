@@ -15,20 +15,19 @@ extension Notification.Name {
 
 
 class SplitterRun: NSObject {
-	//var splits
-	//var currenttime
 	var layout: Layout
 	var timer: SplitterTimer
 	var runPtr: UnsafeMutableRawPointer?
 	var codableLayout: CLayout!
 	var runString: String?
 	var refreshTimer: Timer?
+	
 	///Used to prevent crash with numberOfRowsInTableView
 	var hasSetLayout = false
 	
 	private var layoutSettings: CodableLayoutSettings!
 	init(run: Run, segments: [SplitTableRow]? = nil) {
-		//need to have at least one segment
+		//LiveSplit-Core runs need to have at least one segment
 		var vRun: Run = run
 		vRun.pushSegment(Segment("1"))
 		if let editor = RunEditor(vRun) {
@@ -69,7 +68,6 @@ class SplitterRun: NSObject {
 			13: Thin Separators
 			14: Separators
 			15: Text
-			
 			*/
 			
 			editor.select(1)
@@ -133,13 +131,13 @@ class SplitterRun: NSObject {
 		do {
 			let json = layout.stateAsJson(timer.lsTimer)
 			codableLayout = try JSONDecoder().decode(CLayout.self, from: json.data(using: .utf8)!)
-			
 		} catch {
 			print("Decode Error: \n\(error)")
 		}
 		super.init()
 		self.timer.splitterRun = self
 		setObservers()
+		setComparison(to: .latest)
 	}
 	
 	private func setObservers() {
@@ -274,6 +272,7 @@ class SplitterRun: NSObject {
 		
 	}
 	//TODO: Implement this in the game icon button
+	//why?
 	var gameIcon: NSImage? {
 		get {
 			let run = timer.lsTimer.getRun()
@@ -294,8 +293,8 @@ class SplitterRun: NSObject {
 		}
 	}
 	
+	///Updates CodableLayout to be
 	func updateLayoutState() {
-		
 		let state = layout.state(timer.lsTimer)
 		let refMutState = LayoutStateRefMut(ptr: state.ptr)
 		let json = layout.updateStateAsJson(refMutState, timer.lsTimer)
@@ -307,7 +306,8 @@ class SplitterRun: NSObject {
 		}
 	}
 	
-	func updateCodableLayout() {
+	///Updates layout from codableLayout
+	func updateFromCodableLayout() {
 		let encoder = JSONEncoder()
 		do {
 			let jData = try encoder.encode(codableLayout)
@@ -333,18 +333,45 @@ class SplitterRun: NSObject {
 		}
 		
 	}
+	func setComparison(to comparison: LSComparison) {
+		setComparison(comparison.rawValue)
+	}
+	
+	func getComparision() -> LSComparison {
+		//TODO: Handle if custom comparison?
+		return LSComparison(rawValue: timer.lsTimer.currentComparison())!
+	}
+	
 	var comparisons: [String] {
-		let len = timer.lsRun.customComparisonsLen()
+		let runCopy = timer.lsRun.clone()
+		let newTimer = LSTimer(runCopy)!
+		
+		let originalComparison = newTimer.currentComparison()
+		var currentComparison: String = originalComparison
 		var comparisons = [String]()
-		for i in 0..<len {
-			comparisons.append(timer.lsRun.customComparison(i))
+		newTimer.switchToNextComparison()
+		currentComparison = newTimer.currentComparison()
+		
+		while originalComparison != currentComparison {
+			comparisons.append(currentComparison)
+			newTimer.switchToNextComparison()
+			currentComparison = newTimer.currentComparison()
+			
 		}
+		
+//		for i in 0..<2 {
+//
+//			comparisons.append(newTimer.currentComparison())
+//			newTimer.switchToNextComparison()
+//		}
 		return comparisons
 	}
 	
 	
 	///Set the title for a given segment
 	func setSegTitle(index: Int, title: String) {
+		timer.resetRun(discardSplits: false)
+		updateLayoutState()
 		let timerRun = timer.lsTimer.getRun()
 		var newLSRun = timerRun.clone()
 		
@@ -369,6 +396,14 @@ class SplitterRun: NSObject {
 			return nil
 		}
 		return index
+	}
+	
+	func editLayout(_ edit: (LayoutEditor) -> ()) {
+		if let editor = LayoutEditor(layout) {
+			edit(editor)
+			self.layout = editor.close()
+			self.updateLayoutState()
+		}
 	}
 	
 	var longerColor: NSColor {
@@ -404,6 +439,52 @@ class SplitterRun: NSObject {
 			}
 		}
 		
+	}
+	
+	var backgroundColor: NSColor {
+		get {
+			if let doubles = codableLayout.background.asPlainColor() {
+				return NSColor(doubles)
+			}
+			return NSColor.splitterDefaultColor
+		}
+		set {
+			if let layoutEditor = LayoutEditor(layout) {
+				let doubles = newValue.toDouble().map({Float($0)})
+				let setting = SettingValue.fromColor(doubles[0], doubles[1], doubles[2], doubles[3])
+				layoutEditor.setGeneralSettingsValue(4, setting)
+				self.layout = layoutEditor.close()
+			}
+		}
+	}
+	var tableColor: NSColor {
+		get {
+			let state = layout.stateAsJson(timer.lsTimer)
+			print(state)
+			if let doubles = codableLayout.components[1].splits?.background.asPlainColor() {
+				return NSColor(doubles)
+			}
+			return .splitterTableViewColor
+		}
+		set {
+			editLayout { editor in
+				editor.select(1)
+				editor.setComponentSettingsValue(0, .fromAlternatingNSColor(newValue, newValue))
+			}
+		}
+	}
+	
+	var textColor: NSColor {
+		get {
+			let doubles = codableLayout.textColor
+			return NSColor(doubles)
+		}
+		set {
+			editLayout{ editor in
+				let setting = SettingValue.fromNSColor(newValue)
+				editor.setGeneralSettingsValue(15, setting)
+			}
+		}
 	}
 	
 	func saveToLSS() -> String {

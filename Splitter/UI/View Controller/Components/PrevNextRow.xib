@@ -19,7 +19,7 @@
             <rect key="frame" x="0.0" y="0.0" width="481" height="20"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
             <subviews>
-                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Fzu-8E-GgA">
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Fzu-8E-GgA" customClass="ThemedButton" customModule="Splitter" customModuleProvider="target">
                     <rect key="frame" x="-7" y="-7" width="62" height="32"/>
                     <buttonCell key="cell" type="push" title="Prev" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="YDZ-DR-d0l">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -29,7 +29,7 @@
                         <action selector="prevButtonClick:" target="-2" id="bfs-tu-pd9"/>
                     </connections>
                 </button>
-                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Peg-41-ckQ">
+                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Peg-41-ckQ" customClass="ThemedButton" customModule="Splitter" customModuleProvider="target">
                     <rect key="frame" x="426" y="-7" width="62" height="32"/>
                     <buttonCell key="cell" type="push" title="Split" bezelStyle="rounded" alignment="center" scrollable="YES" lineBreakMode="clipping" truncatesLastVisibleLine="YES" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="kkT-ua-6Vj">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>

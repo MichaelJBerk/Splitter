@@ -71,11 +71,14 @@ extension ViewController: NSTableViewDelegate {
 			case STVColumnID.imageColumn:
 				let cell = cell as! ImageButtonCellView
 				cell.cellNumber = row
+				cell.imageWell.run = self.run
 				if let image = run.icon(for: row) {
 					cell.imageWell!.image = image
 				} else {
-					cell.imageWell.image = #imageLiteral(resourceName: "Game Controller")
+					cell.imageWell.image = .gameControllerIcon
+					cell.imageWell.image?.isTemplate = true
 				}
+				cell.imageWell.setColor(run: run)
 			case STVColumnID.splitTitleColumn:
 				cell.textField?.stringValue = currentLayoutSegment.name
 			case STVColumnID.currentSplitColumn:
@@ -92,10 +95,15 @@ extension ViewController: NSTableViewDelegate {
 			default:
 					break
 			}
-			if let tf = cell.textField {
-				if tableColumn!.identifier != STVColumnID.differenceColumn {
-					cell.textField?.attributedStringValue = NSAttributedString(string: tf.stringValue, attributes: [.foregroundColor : textColor])
+			if let tf = cell.textField as? ThemedTextField {
+				if tf.themeable {
+					print(tableColumn!.identifier)
+					tf.setColor(run: run)
 				}
+//				if tableColumn!.identifier != STVColumnID.differenceColumn {
+//					cell.textField?.attributedStringValue = NSAttributedString(string: tf.stringValue, attributes: [.foregroundColor : run.textColor])
+//					cell.textField?.textColor = run.textColor
+//				}
 			}
 			return cell
 		}

@@ -26,16 +26,17 @@ class ColorsView: NSView, LoadableNib, advancedTabDelegate {
 	
 	@objc func sendSettings( _ sender: Any) {
 		if let d = delegate {
-			d.bgColor = bgColorWell.color
-			d.tableBGColor = tableViewBGColorWell.color
-			d.textColor = textColorWell.color
+			d.run.backgroundColor = bgColorWell.color
+			d.run.tableColor = tableViewBGColorWell.color
+			d.run.textColor = textColorWell.color
 			d.selectedColor = selectedColorWell.color
 			
 			d.run.longerColor = longerDiffColorWell.color
 			d.run.shorterColor = shorterDiffColorWell.color
 			//TODO: PB Color
-			
+
 			d.setColorForControls()
+			d.updateTextFields()
 			d.run.updateLayoutState()
 		}
 	}
@@ -60,7 +61,7 @@ class ColorsView: NSView, LoadableNib, advancedTabDelegate {
 	
 	
 	@IBAction func resetTextColorButton(_ sender: Any) {
-		textColorWell.color = .textColor
+		textColorWell.color = .white
 		sendSettings(sender)
 	}
 	
@@ -78,12 +79,11 @@ class ColorsView: NSView, LoadableNib, advancedTabDelegate {
 	
 	func loadFromDelegate() {
 		if let d = delegate {
-			bgColorWell.color = d.view.window!.backgroundColor
-			tableViewBGColorWell.color = d.splitsTableView.backgroundColor
-			textColorWell.color = d.textColor
+			bgColorWell.color = d.run.backgroundColor//d.view.window!.backgroundColor
+			tableViewBGColorWell.color = d.run.tableColor
+			textColorWell.color = d.run.textColor
 			selectedColorWell.color = d.selectedColor
 			longerDiffColorWell.color = d.run.longerColor
-//			longerDiffColorWell.color = d.diffsLongerColor
 			shorterDiffColorWell.color = d.run.shorterColor
 			
 			if let doc = delegate?.view.window?.windowController?.document as? NSDocument {

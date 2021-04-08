@@ -181,8 +181,6 @@ extension ViewController {
 				self.run.timer.resetHistories()
 			}
 			self.run.updateLayoutState()
-			self.updateTextFields()
-			self.splitsTableView.reloadData()
 		}
 	}
 }

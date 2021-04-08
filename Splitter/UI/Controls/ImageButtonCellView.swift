@@ -11,7 +11,7 @@ import Cocoa
 
 class ImageButtonCellView: NSTableCellView {
 	
-	var image: NSImage = #imageLiteral(resourceName: "Game Controller")
+	var image: NSImage = .gameControllerIcon
 	@IBOutlet var imageWell: CellImageWell!
 
 	var cellNumber: Int! {
@@ -21,12 +21,10 @@ class ImageButtonCellView: NSTableCellView {
 	}
 }
 
-class CellImageWell: NSImageView {
+class CellImageWell: ThemedImage {
 	@IBOutlet var splitController: ViewController!
 	var row: Int!
-	var run: SplitterRun {
-		return splitController.run
-	}
+	var run: SplitterRun!
 	
 	override var image: NSImage? {
 		didSet {

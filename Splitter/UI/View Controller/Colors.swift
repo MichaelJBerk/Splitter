@@ -97,11 +97,20 @@ extension NSColor {
 }
 extension ViewController {
 	func setColorForControls() {
-		recColorForControls(view: self.view)
-		splitsTableView.parentViewController = self
-		splitsTableView.setHeaderColor(textColor: textColor, bgColor: tableBGColor)
-		splitsTableView.setCornerColor(cornerColor: tableBGColor)
+		view.window?.backgroundColor = run.backgroundColor
+		splitsTableView.backgroundColor = run.tableColor
+		splitsTableView.enclosingScrollView?.backgroundColor = run.tableColor
+	
+//		gameIconButton.image = gameIconButton.image?.image(with: run.textColor)
 		
+		
+//		recColorForControls(view: self.view)
+		splitsTableView.parentViewController = self
+		
+		splitsTableView.setHeaderColor(textColor: run.textColor, bgColor: run.tableColor)
+		splitsTableView.setCornerColor(cornerColor: run.tableColor)
+		
+		NotificationCenter.default.post(.init(name: .updateComponents, userInfo: ["run": self.run as Any]))
 		splitsTableView.reloadData()
 	}
 	
@@ -111,34 +120,37 @@ extension ViewController {
 				if c.title == "blah!" {
 					print("tb")
 				}
-				c.contentTintColor = textColor
+				c.contentTintColor = run.textColor
 				c.image?.isTemplate = true
 				if c.isEnabled {
 					c.appearance = NSAppearance(named: .darkAqua)
 				}
 				if let i = c.image {
 					i.isTemplate = true
-					let newImage = i.image(with: textColor)
+					let newImage = i.image(with: run.textColor)
 					
 					c.image = newImage
 				}
 				
-				c.image?.backgroundColor = textColor
-				c.attributedTitle = NSAttributedString(string: c.title, attributes: [.foregroundColor: textColor])
+				c.image?.backgroundColor = run.textColor
+				c.attributedTitle = NSAttributedString(string: c.title, attributes: [.foregroundColor: run.textColor])
 			}
 			
 			if let p = v as? NSPopUpButton {
 				p.image?.isTemplate = true
 				if let i = p.menu!.items[0].image {
 					i.isTemplate = true
-					let newImage = i.image(with: textColor)
+					let newImage = i.image(with: run.textColor)
 					p.menu!.items[0].image = newImage
 				}
 				
 				
 			}
 			if let l = v as? NSTextField {
-				l.textColor = textColor
+				l.textColor = run.textColor
+				print(l.stringValue)
+				print(l.placeholderString)
+				
 			}
 		}
 		

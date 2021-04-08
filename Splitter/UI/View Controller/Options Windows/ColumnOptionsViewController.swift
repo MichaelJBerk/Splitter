@@ -48,7 +48,20 @@ class ColumnOptionsViewController: NSViewController, NSPopoverDelegate {
 			} else {
 				delegate?.splitsTableView.tableColumns[colID].isHidden = true
 			}
+			//Make sure that newly shown columns have the correct color
+			delegate?.setColorForControls()
 		}
+	}
+	override func viewWillAppear() {
+		super.viewWillAppear()
+		
+	}
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		loadCheckBoxes()
+//		preferredContentSize = NSSize(width: 216, height: 220)
+		preferredContentSize = view.frame.size
 	}
 }
 

@@ -88,7 +88,7 @@ class SplitterTableView: NSTableView {
 				let head = SplitterTableHeaderCell(textCell: headerStr)
 				head.drawsBackground = true
 				head.textColor = textColor
-				head.backgroundColor = parentViewController.tableBGColor
+				head.backgroundColor = parentViewController.run.tableColor
 				head.attributedStringValue = NSAttributedString(string: headerStr, attributes: [.foregroundColor: textColor])
 				head.isBordered = true
 				c.headerCell = head

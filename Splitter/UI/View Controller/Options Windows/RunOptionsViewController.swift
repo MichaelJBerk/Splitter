@@ -54,7 +54,7 @@ class RunOptionsViewController: NSViewController, advancedTabDelegate {
 		if compareToPopUpButton.selectedItem?.identifier == .personalBest {
 			delegate?.compareTo = .personalBest
 		} else {
-			delegate?.compareTo = .previousSplit
+			delegate?.compareTo = .latest
 		}
 	}
 	@IBAction func changeRoundDiffPopupButton(_ sender: Any) {

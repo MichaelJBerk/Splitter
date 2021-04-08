@@ -37,10 +37,28 @@ struct CLayout: Codable {
 
 // MARK: - CLayoutBackground
 struct CLayoutBackground: Codable {
-	let plain: [Double]
+	let plain: [Double]?
+	let alternating: [[Double]]?
 
 	enum CodingKeys: String, CodingKey {
 		case plain = "Plain"
+		case alternating = "Alternating"
+	}
+	
+	init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		plain = try container.decodeIfPresent([Double].self, forKey: .plain)
+		alternating = try container.decodeIfPresent([[Double]].self, forKey: .alternating)
+	}
+	
+	func asPlainColor() -> [Double]? {
+		if let plain = self.plain {
+			return plain
+		}
+		if let alternating = self.alternating {
+			return alternating[0]
+		}
+		return nil
 	}
 }
 
@@ -90,7 +108,8 @@ struct CurrentSplitGradientClass: Codable {
 
 // MARK: - CSplits
 struct CSplits: Codable {
-	let background: CPurpleBackground
+//	let background: CPurpleBackground
+	let background: CLayoutBackground
 	let columnLabels: [String]?
 	var splits: [CSplit]
 	let iconChanges: [CIconChange]
@@ -155,8 +174,29 @@ extension NSColor {
 		self.init(red: floats[0], green: floats[1], blue: floats[2], alpha: floats[3])
 	}
 	func toDouble() -> [Double] {
-		let floats = [self.redComponent, self.greenComponent, self.blueComponent, self.alphaComponent]
+		let converted = self.usingColorSpace(.sRGB)
+		let floats = [converted!.redComponent, converted!.greenComponent, converted!.blueComponent, converted!.alphaComponent]
 		return floats.map({Double($0)})
+	}
+	convenience init(_ color: [Float]) {
+		let floats = color.map({CGFloat($0)})
+		self.init(red: floats[0], green: floats[1], blue: floats[2], alpha: floats[3]) 
+	}
+	func toFloat() -> [Float] {
+		let converted = self.usingColorSpace(.sRGB)
+		let floats = [converted!.redComponent, converted!.greenComponent, converted!.blueComponent, converted!.alphaComponent]
+		return floats.map({Float($0)})
+	}
+}
+extension SettingValue {
+	public static func fromNSColor(_ color: NSColor) -> SettingValue {
+		let floats = color.toFloat()
+		return .fromColor(floats[0], floats[1], floats[2], floats[3])
+	}
+	public static func fromAlternatingNSColor(_ color1: NSColor, _ color2: NSColor) -> SettingValue {
+		let floats1 = color1.toFloat()
+		let floats2 = color2.toFloat()
+		return .fromAlternatingGradient(floats1[0], floats1[1], floats1[2], floats1[3], floats2[0], floats2[1], floats2[2], floats2[3])
 	}
 }
 

@@ -45,17 +45,17 @@ class ViewController: NSViewController {
 	@IBOutlet weak var startButton: NSButton!
 	@IBOutlet weak var nextButton: NSButton!
 	@IBOutlet weak var prevButton: NSButton!
-	@IBOutlet weak var plusButton: NSButton!
-	@IBOutlet weak var minusButton: NSButton!
+	@IBOutlet weak var plusButton: ThemedButton!
+	@IBOutlet weak var minusButton: ThemedButton!
 	@IBOutlet weak var gameIconButton: MetadataImage!
-	@IBOutlet weak var infoPanelPopoverButton: NSButton!
-	@IBOutlet weak var columnOptionsPopoverButton: NSButton!
+	@IBOutlet weak var infoPanelPopoverButton: ThemedButton!
+	@IBOutlet weak var columnOptionsPopoverButton: ThemedButton!
 	
 //MARK: - Container Views
 	@IBOutlet weak var metadataView: NSView!
 	@IBOutlet weak var innerMetatdataStack: NSStackView!
 	@IBOutlet weak var tableButtonsStack: NSStackView!
-	@IBOutlet weak var bottomStackView: NSStackView!
+	@IBOutlet weak var bottomStackView: DraggingStackView!
 	
 //MARK: - Popovers
 	var columnOptionsPopover: NSPopover?
@@ -100,14 +100,8 @@ class ViewController: NSViewController {
 			}
 		}
 	}
-	var tableBGColor: NSColor = .splitterTableViewColor {
-		didSet {
-			splitsTableView.backgroundColor = self.tableBGColor
-			splitsTableView.enclosingScrollView?.backgroundColor = self.tableBGColor
-		}
-	}
+	
 	var selectedColor: NSColor = .splitterRowSelected
-	var textColor: NSColor = .white
 	
 	var diffsLongerColor: NSColor = .red
 	var diffsShorterColor: NSColor = .green
@@ -223,17 +217,12 @@ class ViewController: NSViewController {
 	var backupSplits: [SplitTableRow] = []
 	var loadedFilePath: String = ""
 
-	var compareTo: SplitComparison {
+	var compareTo: LSComparison {
 		get {
-			return currentSplits.first?.compareTo ?? SplitComparison.previousSplit
+			return run.getComparision()
 		}
 		set {
-			var i = 0
-			while i < currentSplits.count {
-				currentSplits[i].compareTo = newValue
-				i = i + 1
-			}
-			splitsTableView.reloadData()
+			run.setComparison(to: newValue)
 		}
 	}
 	
@@ -311,22 +300,7 @@ class ViewController: NSViewController {
 			splitsTableView.reloadData()
 		}
 	}
-	var gameIcon: NSImage? {
-		get {
-			if gameIconButton.image == #imageLiteral(resourceName: "Game Controller") {
-				return nil
-			} else {
-				return gameIconButton.image
-			}
-		} set {
-			if newValue == nil {
-				gameIconButton.image = #imageLiteral(resourceName: "Game Controller")
-			} else {
-				gameIconButton.image = newValue
-			}
-		}
-		
-	}
+	
 	
 	
 	//MARK: - Settings
@@ -340,10 +314,10 @@ class ViewController: NSViewController {
 	var hotkeysController: HotkeysViewController?
 	
 	@objc func breakFunc() {
-//		let m = Crashes()
-//		print(currentSplit?.mil)
-//		MSCrashes.generateTestCrash()
-		Crashes.generateTestCrash()
+		print(run.getComparision())
+		print("--")
+		print(run.comparisons)
+		
 	}
 	
 	var breakID = NSUserInterfaceItemIdentifier("break")
@@ -389,7 +363,6 @@ class ViewController: NSViewController {
 		
 		timerLabel = timeRow.timeLabel
 		attemptField = timeRow.attemptsField
-		
 	}
 	
 	//MARK: - Main Functions
@@ -413,12 +386,10 @@ class ViewController: NSViewController {
 			infoPanelPopoverButton.image = NSImage(named: "gearshape")
 			
 		}
-		
-		
 		if let welcome = AppDelegate.shared?.welcomeWindow {
 			welcome.close()
 		}
-		tableBGColor = .splitterTableViewColor
+		run.tableColor = .splitterTableViewColor
         if #available(macOS 11.0, *) {
             splitsTableView.style = .fullWidth
         }
@@ -448,10 +419,6 @@ class ViewController: NSViewController {
 		view.window?.standardWindowButton(.zoomButton)?.isHidden = true
 		view.window?.standardWindowButton(.miniaturizeButton)?.isHidden = true
 		
-		if let gi = gameIcon {
-			gameIconButton.image = gi
-		}
-		
 		setMenuItemEnabled(item: timerStopItem, enabled: false)
 	
 		if appearance != nil {
@@ -467,10 +434,8 @@ class ViewController: NSViewController {
 			addBlankSplit()
 		}
 		
-		
 		view.window?.makeFirstResponder(splitsTableView)
 		
-		updateAttemptField()
 		setRightClickMenus()
 		attemptField.formatter = OnlyIntegerValueFormatter()
 		
@@ -496,12 +461,16 @@ class ViewController: NSViewController {
 			
 		})
 		updateTextFields()
+		gameIconButton.run = self.run
+		if let gi = run.gameIcon {
+			gameIconButton.image = gi
+		} else {
+			gameIconButton.image = .gameControllerIcon
+		}
 		print("VWA Done!")
-		
+		setColorForControls()
 	}
-	func updateAttemptField() {
-		attemptField.stringValue = "\(run.attempts)"
-	}
+	///Updates the run, with the current values from the view controller
 	func updateRun() {
 		run.title = runTitleField.stringValue
 		run.subtitle = categoryField.stringValue
@@ -509,6 +478,7 @@ class ViewController: NSViewController {
 			run.attempts = attemptsInt
 		}
 	}
+	///Updates textfields from the values in the current run
 	func updateTextFields() {
 		runTitleField.stringValue = run.title
 		categoryField.stringValue = run.subtitle
@@ -636,18 +606,20 @@ class ViewController: NSViewController {
 	///Displays the "column options" popover
 	@IBAction func displayColumnOptionsPopover(_ sender: Any) {
 		columnOptionsPopover?.contentViewController?.view.window?.close()
-		let destination = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: ColumnOptionsViewController.storyboardID) as! ColumnOptionsViewController
+		let tabView = NSStoryboard(name: "LayoutEditor", bundle: nil).instantiateInitialController() as? LayoutEditorTabViewController
+		tabView?.viewController = self
+		let layoutEditor = tabView?.tabViewItems[0].viewController as! LayoutEditorViewController
+		layoutEditor.runController = self
+		let destination = tabView?.tabViewItems[1].viewController as! ColumnOptionsViewController
+			//.instantiateController(withIdentifier: ColumnOptionsViewController.storyboardID) as! ColumnOptionsViewController
 		destination.delegate = self
 		let pop = NSPopover()
 		pop.delegate = self
-		pop.contentViewController = destination
+		pop.contentViewController = tabView
 		pop.appearance = NSAppearance(named: .vibrantDark)
 		pop.behavior = .semitransient
 		pop.show(relativeTo: columnOptionsPopoverButton.frame, of: tableButtonsStack, preferredEdge: .maxX)
 		columnOptionsPopover = pop
-		destination.loadCheckBoxes()
-		
-		
 	}
 	
 	override var representedObject: Any? {
@@ -660,6 +632,9 @@ class ViewController: NSViewController {
 	override func keyDown(with event: NSEvent) {
 		super.keyDown(with: event)
 	}
+}
+extension Notification.Name {
+	static let updateComponents = Notification.Name("updateComponents")
 }
 
 //TODO: See if this should be in a separate file, and if it should be with the VC or on its own or in Data

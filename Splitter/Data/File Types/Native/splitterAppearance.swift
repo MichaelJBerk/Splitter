@@ -85,11 +85,11 @@ struct splitterAppearance: Codable {
 		self.windowHeight = viewController.view.window?.frame.height
 		self.roundTo = viewController.roundTo.rawValue
 		self.bgColor = CodableColor(nsColor: viewController.bgColor)
-		if viewController.tableBGColor == NSColor.splitterTableViewColor {
+		if viewController.run.tableColor == NSColor.splitterTableViewColor {
 			
 		}
-		self.tableColor = CodableColor(nsColor: viewController.tableBGColor)
-		self.textColor = CodableColor(nsColor: viewController.textColor)
+		self.tableColor = CodableColor(nsColor: viewController.run.tableColor)
+		self.textColor = CodableColor(nsColor: viewController.run.textColor)
 		self.selectColor = CodableColor(nsColor: viewController.selectedColor)
 		
 		self.diffsLongerColor = CodableColor(nsColor: viewController.diffsLongerColor)
@@ -201,13 +201,13 @@ extension ViewController {
 			bgColor = bgc
 		}
 		if let tableC = appearance.tableColor?.nsColor {
-			tableBGColor = tableC
+			run.tableColor = tableC
 		}
 		if let textC = appearance.textColor?.nsColor {
 			if textC == NSColor.textColor {
-				textColor = .textColor
+				run.textColor = .textColor
 			} else {
-				textColor = textC
+				run.textColor = textC
 			}
 		}
 		

@@ -17,7 +17,7 @@ extension ViewController {
 		timerState = .running
 		startButton.baseTitle = "Pause"
 		setupTimer()
-		updateAttemptField()
+		updateTextFields()
 		splitsTableView.scrollRowToVisible(run.currentSplit ?? 0)
 	}
 	

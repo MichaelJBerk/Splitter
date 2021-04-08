@@ -10,4 +10,6 @@ import Foundation
 
 protocol SplitterComponent: NSView {
 	var viewController: ViewController? {get set}
+	var displayTitle: String { get }
+	var displayDescription: String { get }
 }

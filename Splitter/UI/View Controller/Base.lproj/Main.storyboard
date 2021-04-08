@@ -606,14 +606,14 @@
                                 <rect key="frame" x="0.0" y="0.0" width="494" height="138"/>
                                 <subviews>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="mAU-zf-6y9">
-                                        <rect key="frame" x="0.0" y="-168" width="286" height="66"/>
+                                        <rect key="frame" x="0.0" y="72" width="286" height="66"/>
                                         <subviews>
                                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6rq-lR-6Um" customClass="MetadataImage" customModule="Splitter" customModuleProvider="target">
                                                 <rect key="frame" x="6" y="8" width="42" height="50"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="42" id="U1C-6Q-rOI"/>
                                                 </constraints>
-                                                <imageCell key="cell" selectable="YES" editable="YES" alignment="left" imageScaling="proportionallyDown" image="Game Controller" id="xLg-Tz-pdd"/>
+                                                <imageCell key="cell" selectable="YES" editable="YES" alignment="left" imageScaling="proportionallyDown" id="xLg-Tz-pdd"/>
                                                 <connections>
                                                     <outlet property="menu" destination="wTE-Xp-5dN" id="sUd-F8-aZB"/>
                                                 </connections>
@@ -653,7 +653,7 @@
                                                             <real value="3.4028234663852886e+38"/>
                                                         </customSpacing>
                                                     </stackView>
-                                                    <button toolTip="Get Info" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="laY-Uh-RhP">
+                                                    <button toolTip="Get Info" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="laY-Uh-RhP" customClass="ThemedButton" customModule="Splitter" customModuleProvider="target">
                                                         <rect key="frame" x="189" y="4" width="38" height="27"/>
                                                         <buttonCell key="cell" type="push" bezelStyle="rounded" image="gearshape" imagePosition="only" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GL6-Z9-DG9">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -750,13 +750,16 @@
                                                                 <tableCellView translatesAutoresizingMaskIntoConstraints="NO" id="MX7-uO-mSv">
                                                                     <rect key="frame" x="41" y="1" width="80" height="31"/>
                                                                     <subviews>
-                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Zgl-iF-pqa">
+                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Zgl-iF-pqa" customClass="ThemedTextField" customModule="Splitter" customModuleProvider="target">
                                                                             <rect key="frame" x="-2" y="9" width="84" height="14"/>
                                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" alignment="left" title="Split Title" id="3Pe-jP-c4b">
                                                                                 <font key="font" metaFont="message" size="11"/>
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                             </textFieldCell>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="themeable" value="YES"/>
+                                                                            </userDefinedRuntimeAttributes>
                                                                         </textField>
                                                                     </subviews>
                                                                     <constraints>
@@ -786,7 +789,7 @@
                                                                     <rect key="frame" x="124" y="1" width="90" height="31"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
-                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9wd-Sb-6rV">
+                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9wd-Sb-6rV" customClass="ThemedTextField" customModule="Splitter" customModuleProvider="target">
                                                                             <rect key="frame" x="-2" y="8" width="94" height="16"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="16" id="s9Z-yZ-PW5"/>
@@ -825,7 +828,7 @@
                                                                     <rect key="frame" x="217" y="1" width="64" height="31"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
-                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a8y-qx-fyd">
+                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a8y-qx-fyd" customClass="ThemedTextField" customModule="Splitter" customModuleProvider="target">
                                                                             <rect key="frame" x="0.0" y="6" width="183" height="18"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="18" id="0uo-VM-Sm9"/>
@@ -835,6 +838,9 @@
                                                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                                             </textFieldCell>
+                                                                            <userDefinedRuntimeAttributes>
+                                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="themeable" value="NO"/>
+                                                                            </userDefinedRuntimeAttributes>
                                                                         </textField>
                                                                     </subviews>
                                                                     <constraints>
@@ -864,7 +870,7 @@
                                                                     <rect key="frame" x="1" y="1" width="0.0" height="31"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
-                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="EDP-CX-XUd">
+                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="EDP-CX-XUd" customClass="ThemedTextField" customModule="Splitter" customModuleProvider="target">
                                                                             <rect key="frame" x="-2" y="7" width="4" height="18"/>
                                                                             <constraints>
                                                                                 <constraint firstAttribute="height" constant="18" id="zhQ-cz-nxb"/>
@@ -903,7 +909,7 @@
                                                                     <rect key="frame" x="284" y="1" width="89" height="31"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                                     <subviews>
-                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="kIh-q7-hw5">
+                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="kIh-q7-hw5" customClass="ThemedTextField" customModule="Splitter" customModuleProvider="target">
                                                                             <rect key="frame" x="-2" y="8" width="93" height="16"/>
                                                                             <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="00:00:00.00" id="sY5-n5-Ucg">
                                                                                 <font key="font" metaFont="system"/>
@@ -947,13 +953,13 @@
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="0DF-tP-BL4">
                                         <rect key="frame" x="0.0" y="0.0" width="494" height="40"/>
                                         <subviews>
-                                            <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HPQ-BI-dXc">
+                                            <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HPQ-BI-dXc" customClass="DraggingStackView" customModule="Splitter" customModuleProvider="target">
                                                 <rect key="frame" x="7" y="10" width="481" height="20"/>
                                                 <subviews>
                                                     <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="107" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QCD-z8-dOV">
                                                         <rect key="frame" x="0.0" y="0.0" width="481" height="20"/>
                                                         <subviews>
-                                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mj4-Ky-5e7">
+                                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mj4-Ky-5e7" customClass="ThemedTextField" customModule="Splitter" customModuleProvider="target">
                                                                 <rect key="frame" x="-2" y="4" width="299" height="16"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="16" id="ABX-SI-o9R"/>
@@ -967,7 +973,7 @@
                                                             <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sgY-CA-g1A">
                                                                 <rect key="frame" x="402" y="0.0" width="79" height="20"/>
                                                                 <subviews>
-                                                                    <button toolTip="Remove Split" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jC2-yS-poH">
+                                                                    <button toolTip="Remove Split" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jC2-yS-poH" customClass="ThemedButton" customModule="Splitter" customModuleProvider="target">
                                                                         <rect key="frame" x="0.0" y="-1" width="25" height="22"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="width" constant="25" id="Vti-8J-w6G"/>
@@ -982,7 +988,7 @@
                                                                             <action selector="removeButtonClick:" target="5gI-5U-AMq" id="Rqp-0v-Ncb"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <button toolTip="Add Split" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OXM-M7-swh">
+                                                                    <button toolTip="Add Split" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OXM-M7-swh" customClass="ThemedButton" customModule="Splitter" customModuleProvider="target">
                                                                         <rect key="frame" x="27" y="-1" width="25" height="22"/>
                                                                         <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5oS-Ne-nTD">
                                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -993,7 +999,7 @@
                                                                             <action selector="addButtonClick:" target="5gI-5U-AMq" id="t7j-Yl-6Hn"/>
                                                                         </connections>
                                                                     </button>
-                                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xLP-fd-tTq">
+                                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xLP-fd-tTq" customClass="ThemedButton" customModule="Splitter" customModuleProvider="target">
                                                                         <rect key="frame" x="54" y="-1" width="25" height="22"/>
                                                                         <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSQuickLookTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="krQ-zt-0w0">
                                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -1485,50 +1491,6 @@ To remove, click and press backspace. </string>
             </objects>
             <point key="canvasLocation" x="1376" y="1295"/>
         </scene>
-        <!--Column Options View Controller-->
-        <scene sceneID="s3F-4X-FxP">
-            <objects>
-                <viewController storyboardIdentifier="ColumnOptions" showSeguePresentationStyle="single" id="ZWR-WZ-mWq" customClass="ColumnOptionsViewController" customModule="Splitter" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" appearanceType="darkAqua" id="ewb-kD-HLV">
-                        <rect key="frame" x="0.0" y="0.0" width="216" height="220"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TnF-wj-aMg">
-                                <rect key="frame" x="18" y="184" width="58" height="16"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Columns" id="zYH-Qa-2du">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <gridView xPlacement="leading" yPlacement="bottom" rowAlignment="none" translatesAutoresizingMaskIntoConstraints="NO" id="ndx-ES-ayK">
-                                <rect key="frame" x="20" y="146" width="172" height="30"/>
-                                <rows>
-                                    <gridRow id="dRs-Kg-2V1"/>
-                                </rows>
-                                <columns>
-                                    <gridColumn width="172" id="v2W-mq-u6q"/>
-                                </columns>
-                                <gridCells>
-                                    <gridCell row="dRs-Kg-2V1" column="v2W-mq-u6q" id="u7G-Yf-833"/>
-                                </gridCells>
-                            </gridView>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="TnF-wj-aMg" firstAttribute="top" secondItem="ewb-kD-HLV" secondAttribute="top" constant="20" id="a41-Rq-Vtp"/>
-                            <constraint firstItem="ndx-ES-ayK" firstAttribute="leading" secondItem="ewb-kD-HLV" secondAttribute="leading" constant="20" id="hwk-Ps-Q5B"/>
-                            <constraint firstItem="TnF-wj-aMg" firstAttribute="leading" secondItem="ewb-kD-HLV" secondAttribute="leading" constant="20" id="qls-Fg-dDL"/>
-                            <constraint firstItem="ndx-ES-ayK" firstAttribute="top" secondItem="TnF-wj-aMg" secondAttribute="bottom" constant="8" id="rJ8-eE-0cV"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="CheckboxGridView" destination="ndx-ES-ayK" id="QYU-va-6nB"/>
-                    </connections>
-                </viewController>
-                <customObject id="Lr9-4a-hBn" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="456" y="1328"/>
-        </scene>
         <!--Appearance-->
         <scene sceneID="hAL-Mc-wCT">
             <objects>
@@ -1670,7 +1632,6 @@ To remove, click and press backspace. </string>
         </scene>
     </scenes>
     <resources>
-        <image name="Game Controller" width="256" height="255.5"/>
         <image name="NSAddTemplate" width="14" height="13"/>
         <image name="NSQuickLookTemplate" width="21" height="13"/>
         <image name="NSRemoveTemplate" width="14" height="4"/>
