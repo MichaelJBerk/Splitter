@@ -51,7 +51,11 @@ struct RecentsView: View {
 	var body: some View {
 		List(fileURLs, id: \.self, selection: $selectedURL) { url in
 			RecentsRow(url: url, selectedURL: self.$selectedURL)
-				
+				.contextMenu(menuItems: {
+					Button("Show in Finder") {
+						NSWorkspace.shared.activateFileViewerSelecting([url])
+					}
+				})
 		}
 		.listStyle(SidebarListStyle())
 		
