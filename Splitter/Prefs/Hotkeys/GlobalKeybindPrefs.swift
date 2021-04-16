@@ -56,10 +56,6 @@ class GlobalKeybindPreferences: Codable, CustomStringConvertible {
         if self.capsLock {
             stringBuilder += "⇪"
         }
-
-		
-		
-		
 		
         if var characters = self.characters {
 			let intKC = Int(keyCode)

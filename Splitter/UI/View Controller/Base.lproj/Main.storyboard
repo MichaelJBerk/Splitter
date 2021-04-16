@@ -396,12 +396,6 @@
                                                 <action selector="resetRunMenuItem:" target="Ady-hI-5gd" id="5nP-JD-CFt"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Reset Current Split" identifier="ResetCurrentSplitMenuItem" id="K0I-d0-Dn3">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="resetCurrentSplitMenuItem:" target="Ady-hI-5gd" id="oAq-oR-kl8"/>
-                                            </connections>
-                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="6w8-fo-YRD"/>
                                         <menuItem title="Get Info..." identifier="InfoMenuBarItem" id="5s9-6C-CWW">
                                             <modifierMask key="keyEquivalentModifierMask"/>
