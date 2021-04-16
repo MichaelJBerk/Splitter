@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17506"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -27,13 +27,11 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                     </customView>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="AE7E9EBE-6A07-4831-BFDF-E2427E68882F" label="Search" paletteLabel="Search" tag="-1" visibilityPriority="1" autovalidates="NO" id="xIt-tD-0DU">
+                                <toolbarItem implicitItemIdentifier="AE7E9EBE-6A07-4831-BFDF-E2427E68882F" explicitItemIdentifier="searchItem" label="Search" paletteLabel="Search" tag="-1" visibilityPriority="1" sizingBehavior="auto" autovalidates="NO" id="xIt-tD-0DU">
                                     <nil key="toolTip"/>
-                                    <size key="minSize" width="400" height="22"/>
-                                    <size key="maxSize" width="620" height="22"/>
                                     <searchField key="view" wantsLayer="YES" verticalHuggingPriority="750" tag="-1" preferredMaxLayoutWidth="122" textCompletion="NO" id="712-bf-mEW">
                                         <rect key="frame" x="0.0" y="14" width="620" height="22"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
+                                        <autoresizingMask key="autoresizingMask"/>
                                         <searchFieldCell key="cell" selectable="YES" editable="YES" borderStyle="bezel" placeholderString="Search Splits.io for a game" usesSingleLineMode="YES" bezelStyle="round" id="giG-xu-sX0">
                                             <font key="font" metaFont="label" size="13"/>
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
