@@ -10,6 +10,7 @@ import Cocoa
 
 @IBDesignable
 class PrevNextRow: NSStackView, LoadableNib, SplitterComponent {
+	var optionsView: NSView! = NSView()
 	
 	var displayTitle: String = "Previous/Next Buttons"
 	var displayDescription: String = ""
@@ -25,6 +26,11 @@ class PrevNextRow: NSStackView, LoadableNib, SplitterComponent {
 	}
 	@IBAction func nextButtonClick(_ sender: NSButton?) {
 		viewController?.goToNextSplit()
+	}
+	var isSelected = false {
+		didSet {
+			self.didSetSelected()
+		}
 	}
 	
 	

@@ -7,9 +7,16 @@
 //
 
 import Cocoa
+extension NSGridView {
+	open override var isFlipped: Bool {
+		return true
+	}
+}
 
 class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
 	@IBOutlet var tableView: NSTableView!
+	@IBOutlet var scrollView: NSScrollView!
+	@IBOutlet var optionsView: NSView!
 	var rows = ["Row 1", "Row 2", "Row 3"]
 	var dropType: NSPasteboard.PasteboardType = .init("public.data")
 	var runController: ViewController!
@@ -20,7 +27,6 @@ class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTable
 		tableView.delegate = self
 		tableView.dataSource = self
 		tableView.registerForDraggedTypes([dropType])
-		
         
     }
 	func numberOfRows(in tableView: NSTableView) -> Int {
@@ -50,6 +56,33 @@ class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTable
 		return false
 		// Dont' forget to update model
 		
+	}
+	func tableViewSelectionDidChange(_ notification: Notification) {
+		let selected = tableView.selectedRow
+		
+		for i in 1..<runController.bottomStackView.views.count {
+			
+			if let selectedComponent = runController.bottomStackView.views[i] as? SplitterComponent {
+				if i - 1 == selected {
+					selectedComponent.isSelected = true
+					let ov = selectedComponent.optionsView!
+					ov.wantsLayer = true
+					ov.layer?.backgroundColor = NSColor.blue.cgColor
+					let ovSize =  ov.fittingSize
+					
+					ov.frame = NSRect(origin: CGPoint(x: 0, y: scrollView.contentView.frame.maxY), size: ovSize)
+					scrollView.documentView = ov
+				} else {
+					selectedComponent.isSelected = false
+				}
+			}
+		}
+	}
+	override func viewWillDisappear() {
+		super.viewWillDisappear()
+		if let selected = runController.bottomStackView.views[tableView.selectedRow + 1] as? SplitterComponent {
+			selected.isSelected = false
+		}
 	}
 	func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> NSPasteboardWriting? {
 		

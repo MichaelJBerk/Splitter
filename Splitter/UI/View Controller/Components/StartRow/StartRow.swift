@@ -9,6 +9,7 @@
 import Cocoa
 @IBDesignable
 class StartRow: NSStackView, LoadableNib, SplitterComponent {
+	
 	@IBOutlet var contentView: NSView!
 	
 	var displayTitle: String = "Start Row"
@@ -21,6 +22,24 @@ class StartRow: NSStackView, LoadableNib, SplitterComponent {
 	
 	var viewController: ViewController?
 	
+	
+	var isSelected = false {
+		didSet {
+			self.didSetSelected()
+		}
+	}
+	
+	var optionsView: NSView! {
+		let visibleCheck = NSButton(checkboxWithTitle: "Hidden", target: self, action: #selector(hideComp(_:)))
+		visibleCheck.state = .init(bool: isHidden)
+		let optionsView = NSGridView(views: [[visibleCheck]])
+		
+		return optionsView
+	}
+	
+	@objc func hideComp(_ sender: Any?) {
+		self.isHidden.toggle()
+	}
 	
 	
 	@IBAction func trashCanPopupClick(_ sender: Any) {

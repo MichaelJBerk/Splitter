@@ -74,7 +74,6 @@
 		4A9621F624C62401003CF23C /* ActivityIndicatorRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9621F524C62401003CF23C /* ActivityIndicatorRepresentable.swift */; };
 		4A968C7C23F1F5FE001B74E8 /* lss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A968C7B23F1F5FE001B74E8 /* lss.swift */; };
 		4A99813023F9ECE50037BF98 /* KeybindHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A99812F23F9ECE50037BF98 /* KeybindHandlers.swift */; };
-		4A9B9602261DF262000FC89C /* TimeRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A9B9601261DF262000FC89C /* TimeRow.xib */; };
 		4A9B9606261DF26D000FC89C /* TimeRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9B9605261DF26D000FC89C /* TimeRow.swift */; };
 		4A9D8BF6243A38C40048EA15 /* SplitterTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9D8BF5243A38C40048EA15 /* SplitterTableView.swift */; };
 		4A9DB792240847E40000D1B4 /* TimeSplitColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9DB791240847E40000D1B4 /* TimeSplitColumn.swift */; };
@@ -101,6 +100,7 @@
 		4AE168A626091CA900A6169B /* LayoutEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE168A526091CA900A6169B /* LayoutEditorViewController.swift */; };
 		4AE82A1624BFD4400044B6D3 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE82A1524BFD4400044B6D3 /* WelcomeView.swift */; };
 		4AE82A1C24BFD6060044B6D3 /* VisualEffectViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE82A1B24BFD6060044B6D3 /* VisualEffectViewRepresentable.swift */; };
+		4AEA331B2629F024001012BD /* TimeRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AEA331A2629F023001012BD /* TimeRow.xib */; };
 		4AEA927E23C4EF32004F6CF9 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEA927D23C4EF32004F6CF9 /* MainWindowController.swift */; };
 		4AEA928323C4F140004F6CF9 /* DefaultPreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEA928123C4F140004F6CF9 /* DefaultPreferenceViewController.swift */; };
 		4AEA928423C4F140004F6CF9 /* DefaultPreferenceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AEA928223C4F140004F6CF9 /* DefaultPreferenceViewController.xib */; };
@@ -221,8 +221,7 @@
 		4A9621F524C62401003CF23C /* ActivityIndicatorRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ActivityIndicatorRepresentable.swift; path = Splitter/UI/ActivityIndicatorRepresentable.swift; sourceTree = SOURCE_ROOT; };
 		4A968C7B23F1F5FE001B74E8 /* lss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lss.swift; sourceTree = "<group>"; };
 		4A99812F23F9ECE50037BF98 /* KeybindHandlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeybindHandlers.swift; sourceTree = "<group>"; };
-		4A9B9601261DF262000FC89C /* TimeRow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TimeRow.xib; path = "Splitter/UI/View Controller/TimeRow.xib"; sourceTree = SOURCE_ROOT; };
-		4A9B9605261DF26D000FC89C /* TimeRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TimeRow.swift; path = "Splitter/UI/View Controller/TimeRow.swift"; sourceTree = SOURCE_ROOT; };
+		4A9B9605261DF26D000FC89C /* TimeRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeRow.swift; sourceTree = "<group>"; };
 		4A9D8BF5243A38C40048EA15 /* SplitterTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterTableView.swift; sourceTree = "<group>"; };
 		4A9DB791240847E40000D1B4 /* TimeSplitColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSplitColumn.swift; sourceTree = "<group>"; };
 		4A9FCC7B2411A0CE000937A2 /* TextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFields.swift; sourceTree = "<group>"; };
@@ -246,6 +245,7 @@
 		4AE168A526091CA900A6169B /* LayoutEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutEditorViewController.swift; sourceTree = "<group>"; };
 		4AE82A1524BFD4400044B6D3 /* WelcomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		4AE82A1B24BFD6060044B6D3 /* VisualEffectViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectViewRepresentable.swift; sourceTree = "<group>"; };
+		4AEA331A2629F023001012BD /* TimeRow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeRow.xib; sourceTree = "<group>"; };
 		4AEA927D23C4EF32004F6CF9 /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		4AEA928123C4F140004F6CF9 /* DefaultPreferenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPreferenceViewController.swift; sourceTree = "<group>"; };
 		4AEA928223C4F140004F6CF9 /* DefaultPreferenceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DefaultPreferenceViewController.xib; sourceTree = "<group>"; };
@@ -532,13 +532,10 @@
 		4AA9ADB92608EFD3009B77B5 /* Components */ = {
 			isa = PBXGroup;
 			children = (
-				4A9B9601261DF262000FC89C /* TimeRow.xib */,
-				4A9B9605261DF26D000FC89C /* TimeRow.swift */,
+				4AEA33132629EFC4001012BD /* TimeRow */,
 				4AD026EA26090ED300F6CD0C /* SplitterComponent.swift */,
-				4A388FCE25D4B00B00A63C9E /* PrevNextRow.xib */,
-				4A388FC425D4AF2B00A63C9E /* PrevNextRow.swift */,
-				4AA9ADBA2608F02D009B77B5 /* StartRow.xib */,
-				4AA9ADBE2608F035009B77B5 /* StartRow.swift */,
+				4AEA33142629EFCE001012BD /* PrevNextRow */,
+				4AEA33172629EFD7001012BD /* StartRow */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -585,6 +582,33 @@
 				4A230E9623B00A1D00959C57 /* Document.swift */,
 			);
 			path = Native;
+			sourceTree = "<group>";
+		};
+		4AEA33132629EFC4001012BD /* TimeRow */ = {
+			isa = PBXGroup;
+			children = (
+				4A9B9605261DF26D000FC89C /* TimeRow.swift */,
+				4AEA331A2629F023001012BD /* TimeRow.xib */,
+			);
+			path = TimeRow;
+			sourceTree = "<group>";
+		};
+		4AEA33142629EFCE001012BD /* PrevNextRow */ = {
+			isa = PBXGroup;
+			children = (
+				4A388FCE25D4B00B00A63C9E /* PrevNextRow.xib */,
+				4A388FC425D4AF2B00A63C9E /* PrevNextRow.swift */,
+			);
+			path = PrevNextRow;
+			sourceTree = "<group>";
+		};
+		4AEA33172629EFD7001012BD /* StartRow */ = {
+			isa = PBXGroup;
+			children = (
+				4AA9ADBA2608F02D009B77B5 /* StartRow.xib */,
+				4AA9ADBE2608F035009B77B5 /* StartRow.swift */,
+			);
+			path = StartRow;
 			sourceTree = "<group>";
 		};
 		4AF957FE24E1C59800EEE054 /* Recovered References */ = {
@@ -798,7 +822,6 @@
 				4AEA928423C4F140004F6CF9 /* DefaultPreferenceViewController.xib in Resources */,
 				4A7DDCE223BBDD0900A36AD1 /* Credits.html in Resources */,
 				4A4ACF7C2609185C00C04DD6 /* LayoutEditor.storyboard in Resources */,
-				4A9B9602261DF262000FC89C /* TimeRow.xib in Resources */,
 				4AF9E8AC24CE31CA00DFD5BE /* DebugPrefsViewController.xib in Resources */,
 				4A388FCF25D4B00B00A63C9E /* PrevNextRow.xib in Resources */,
 				4A388FDB25D4B85400A63C9E /* TestWindow.xib in Resources */,
@@ -814,6 +837,7 @@
 				4A230E9C23B00A1E00959C57 /* Main.storyboard in Resources */,
 				4A0981A024E3089B00E44792 /* LoginView.xib in Resources */,
 				4A61438624801A37007C38E0 /* ColorsView.xib in Resources */,
+				4AEA331B2629F024001012BD /* TimeRow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

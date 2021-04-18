@@ -621,6 +621,33 @@ class ViewController: NSViewController {
 		pop.show(relativeTo: columnOptionsPopoverButton.frame, of: tableButtonsStack, preferredEdge: .maxX)
 		columnOptionsPopover = pop
 	}
+	//This will be good to have for later
+	func displayColumnOptionsAsWindow(sender: Any?) {
+		let tabView = NSStoryboard(name: "LayoutEditor", bundle: nil).instantiateInitialController() as? LayoutEditorTabViewController
+		let layoutEditor = tabView?.tabViewItems[0].viewController as! LayoutEditorViewController
+		tabView?.viewController = self
+		layoutEditor.runController = self
+		let destination = tabView?.tabViewItems[1].viewController as! ColumnOptionsViewController
+		destination.delegate = self
+		let coPanel = NSPanel(contentViewController: tabView!)
+		coPanel.styleMask.insert(.utilityWindow)
+		coPanel.styleMask.insert(.hudWindow)
+		coPanel.styleMask.insert(.fullSizeContentView)
+		coPanel.titlebarAppearsTransparent = true
+		coPanel.titleVisibility = .hidden
+		coPanel.standardWindowButton(.miniaturizeButton)?.isHidden = true
+		coPanel.standardWindowButton(.zoomButton)?.isHidden = true
+		coPanel.isMovableByWindowBackground = true
+		
+		var coButtonPoint = CGPoint(x: columnOptionsPopoverButton.frame.maxX, y: 0)
+		coButtonPoint = columnOptionsPopoverButton.convert(coButtonPoint, to: view)
+		coButtonPoint = view.window!.convertPoint(toScreen: coButtonPoint)
+		coPanel.setFrameTopLeftPoint(coButtonPoint)
+		
+		let windowController = NSWindowController(window: coPanel)
+		
+		windowController.showWindow(nil)
+	}
 	
 	override var representedObject: Any? {
 		didSet {

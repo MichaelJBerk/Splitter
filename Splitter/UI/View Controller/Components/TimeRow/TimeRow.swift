@@ -8,6 +8,7 @@
 import Cocoa
 
 class TimeRow: NSStackView, LoadableNib, SplitterComponent {
+	var optionsView: NSView! = NSView()
 	
 	var displayTitle: String = "Time Row"
 	var displayDescription: String = ""
@@ -15,6 +16,11 @@ class TimeRow: NSStackView, LoadableNib, SplitterComponent {
 	@IBOutlet var timeLabel: NSTextField!
 	@IBOutlet var attemptsField: MetadataField!
 	var viewController: ViewController?
+	var isSelected = false {
+		didSet {
+			self.didSetSelected()
+		}
+	}
 	
 	
 //	@IBAction func attemptEdited(_ sender: Any) {

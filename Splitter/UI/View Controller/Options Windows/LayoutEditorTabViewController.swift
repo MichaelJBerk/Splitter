@@ -20,7 +20,14 @@ class LayoutEditorTabViewController: NSTabViewController {
 		super.tabView(tabView, didSelect: tabViewItem)
 		if let v = tabViewItem?.viewController {
 			self.preferredContentSize = v.preferredContentSize
-			viewController.columnOptionsPopover?.contentSize = v.preferredContentSize
+			if let pop = viewController.columnOptionsPopover {
+				pop.contentSize = v.preferredContentSize
+			} else {
+				if let window = view.window {
+					let newFrame = NSRect(x: window.frame.origin.x, y: window.frame.origin.y, width: v.preferredContentSize.width, height: v.preferredContentSize.height)
+					self.view.window?.animator().setFrame(newFrame, display: true, animate: true)
+				}
+			}
 		}
 	}
     

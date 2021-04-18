@@ -12,4 +12,20 @@ protocol SplitterComponent: NSView {
 	var viewController: ViewController? {get set}
 	var displayTitle: String { get }
 	var displayDescription: String { get }
+	var optionsView: NSView! { get }
+	var isSelected: Bool {get set}
+}
+
+extension SplitterComponent {
+	func didSetSelected() {
+		if isSelected {
+			self.wantsLayer = true
+			self.layer?.borderWidth = 2
+			self.layer?.borderColor = NSColor.selectedControlColor.cgColor
+			self.layer?.cornerRadius = 10
+		} else {
+			self.wantsLayer = false
+			self.layer?.borderWidth = 0
+		}
+	}
 }
