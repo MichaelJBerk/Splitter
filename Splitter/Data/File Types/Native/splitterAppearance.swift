@@ -51,6 +51,7 @@ struct CodableColor: Codable {
 struct splitterAppearance: Codable {
 	var hideTitlebar: Bool?
 	var hideButtons: Bool?
+	var hideTitle: Bool?
 	var keepOnTop: Bool?
 	var hideColumns: [String: Bool]?  = [:]
 	var columnSizes: [String: CGFloat]? = [:]
@@ -70,6 +71,7 @@ struct splitterAppearance: Codable {
 		self.hideTitlebar = viewController.titleBarHidden
 		self.hideButtons = viewController.buttonHidden
 		self.keepOnTop = viewController.windowFloat
+		self.hideTitle = viewController.hideTitle
 		self.hideColumns = [:]
 		self.columnSizes = [:]
 		for c in colIds {
@@ -101,6 +103,7 @@ struct splitterAppearance: Codable {
 		self.hideTitlebar = json.dictionary?["hideTitlebar"]?.bool
 		self.hideButtons = json.dictionary?["hideButtons"]?.bool
 		self.keepOnTop = json.dictionary?["keepOnTop"]?.bool
+		self.hideTitle = json.dictionary?["hideTitle"]?.bool
 		if let cols = json.dictionary?["hideColumns"]?.dictionary {
 			for c in cols {
 				self.hideColumns?[c.key] = c.value.bool
@@ -160,10 +163,12 @@ extension ViewController {
 		titleBarHidden = appearance.hideTitlebar ?? Settings.hideTitleBar
 		buttonHidden = appearance.hideButtons ?? Settings.hideUIButtons
 		windowFloat = appearance.keepOnTop ?? Settings.floatWindow
+		hideTitle = appearance.hideTitle ?? false
 		
 		showHideTitleBar()
 		showHideUI()
 		setFloatingWindow()
+		showHideTitle()
 		
 		if let sc = appearance.hideColumns {
 			for c in sc {

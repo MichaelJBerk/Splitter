@@ -15,6 +15,7 @@ class AppearanceViewController: NSViewController, advancedTabDelegate {
 	@IBOutlet weak var hideTitleBarCheck: NSButton!
 	@IBOutlet weak var hideButtonsCheck: NSButton!
 	@IBOutlet weak var keepOnTopCheck: NSButton!
+	@IBOutlet weak var hideTitleCheck: NSButton!
 	
 	@IBOutlet weak var gridView: NSGridView!
 	
@@ -89,17 +90,29 @@ You can still close the window either with ⌘W or from the "Window" menu.
 			return keepOnTopCheck.state.toBool()
 		}
 	}
+	
+	var hideTitle: Bool {
+		set {
+			hideTitleCheck.state = .init(bool: newValue)
+		}
+		get {
+			return hideTitleCheck.state.toBool()
+		}
+	}
+	
 	///Sends settings back to the original view controller
 	@objc func sendSettings(_ sender: Any) {
 		if let d = delegate {
 			d.titleBarHidden = hideTitleBar
 			d.buttonHidden = hideButtons
 			d.windowFloat = keepOnTop
+			d.hideTitle = hideTitle
 			d.showHideTitleBar()
 			d.showHideUI()
 			d.setFloatingWindow()
 			
 			d.setColorForControls()
+			d.showHideTitle()
 		}
 	}
 	
@@ -114,17 +127,17 @@ You can still close the window either with ⌘W or from the "Window" menu.
 			hideTitleBar = d.titleBarHidden
 			hideButtons = d.buttonHidden
 			keepOnTop = d.windowFloat
+			hideTitle = d.hideTitle
 			
 			hideTitleBarCheck.target = self
 			hideButtonsCheck.target = self
 			keepOnTopCheck.target = self
+			hideTitleCheck.target = self
 			
 			hideTitleBarCheck.action = #selector(sendSettings(_:))
 			hideButtonsCheck.action = #selector(sendSettings(_:))
 			keepOnTopCheck.action = #selector(sendSettings(_:))
-			
-			
-			
+			hideTitleCheck.action = #selector(sendSettings(_:))
 			
 			if let doc = delegate?.view.window?.windowController?.document as? NSDocument {
 				if doc.fileType != "Split File" {

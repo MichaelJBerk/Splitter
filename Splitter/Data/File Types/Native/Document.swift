@@ -49,6 +49,14 @@ class Document: SplitterDocBundle {
 	*/
 	
 	override func read(from fileWrapper: FileWrapper, ofType typeName: String) throws {
+		let appearanceFile = try? bundleFolder?.file(named: "appearance.json")
+		if appearanceFile != nil {
+			if let data = try? appearanceFile?.read(), let json = try? JSON(data: data) {
+				let newAppearance = splitterAppearance(json: json)
+				self.appearance = newAppearance
+			}
+		}
+		
 		var beforeSplitter4 = false
 		if let runInfoFile = try? bundleFolder?.file(named: "runInfo.json") {
 			if let data = try? runInfoFile.read(), let json = try? JSON(data: data) {
@@ -76,18 +84,8 @@ class Document: SplitterDocBundle {
 	}
 	
 	func readOlderThanSplitter4(from fileWrapper: FileWrapper) {
-		
-		let appearanceFile = try? bundleFolder?.file(named: "appearance.json")
 		let iconFile = try? bundleFolder?.file(named: "gameIcon.png")
 		let segIconFolder = try? bundleFolder?.subfolder(named: "segIcons")
-		
-		if appearanceFile != nil {
-			if let data = try? appearanceFile?.read(), let json = try? JSON(data: data) {
-				let newAppearance = splitterAppearance(json: json)
-				self.appearance = newAppearance
-			}
-		}
-		
 		
 		if iconFile != nil {
 			self.gameIcon = try? NSImage(data: iconFile!.read())

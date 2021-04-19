@@ -310,6 +310,7 @@ class ViewController: NSViewController {
 	var buttonHidden = false
 	var titleBarHidden = false
 	var showBestSplits = false
+	var hideTitle = false
 	
 	var hotkeysController: HotkeysViewController?
 	

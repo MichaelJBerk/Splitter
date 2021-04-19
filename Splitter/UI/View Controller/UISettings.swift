@@ -51,6 +51,13 @@ extension ViewController {
 		let showHideTitleBarItem = NSApp.mainMenu?.item(withIdentifier: menuIdentifiers.appearanceMenu.hideTitleBar)
 		showHideTitleBarItem?.title = showHideTitleBarItemText
 	}
+	func showHideTitle() {
+		if hideTitle {
+			view.window?.titleVisibility = .hidden
+		} else {
+			view.window?.titleVisibility = .visible
+		}
+	}
 	
 	
 	@IBAction func showHideTitleBarMenuItem(_ sender: Any? ) {
