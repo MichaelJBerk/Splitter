@@ -48,6 +48,8 @@
 		4A4D391F23C4F29C00BF3FCD /* blankWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A4D391E23C4F29C00BF3FCD /* blankWindow.xib */; };
 		4A4D392223C4FAE500BF3FCD /* HotkeysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4D392023C4FAE500BF3FCD /* HotkeysViewController.swift */; };
 		4A4D392323C4FAE500BF3FCD /* HotkeysViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A4D392123C4FAE500BF3FCD /* HotkeysViewController.xib */; };
+		4A561386262CFB7F00702B0E /* OptionsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A561385262CFB7F00702B0E /* OptionsRow.swift */; };
+		4A56138A262CFB8900702B0E /* OptionsRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A561389262CFB8900702B0E /* OptionsRow.xib */; };
 		4A5C1D1523F4AFB80014E8D3 /* commonPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5C1D1423F4AFB80014E8D3 /* commonPaths.swift */; };
 		4A5F10AE23CFAA1F00DA043B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A5F10AD23CFAA1F00DA043B /* Assets.xcassets */; };
 		4A61438424801A28007C38E0 /* ColorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A61438324801A28007C38E0 /* ColorsView.swift */; };
@@ -194,6 +196,8 @@
 		4A4D391E23C4F29C00BF3FCD /* blankWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = blankWindow.xib; sourceTree = "<group>"; };
 		4A4D392023C4FAE500BF3FCD /* HotkeysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotkeysViewController.swift; sourceTree = "<group>"; };
 		4A4D392123C4FAE500BF3FCD /* HotkeysViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HotkeysViewController.xib; sourceTree = "<group>"; };
+		4A561385262CFB7F00702B0E /* OptionsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsRow.swift; sourceTree = "<group>"; };
+		4A561389262CFB8900702B0E /* OptionsRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OptionsRow.xib; sourceTree = "<group>"; };
 		4A5C1D1423F4AFB80014E8D3 /* commonPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = commonPaths.swift; sourceTree = "<group>"; };
 		4A5F10AD23CFAA1F00DA043B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4A61438324801A28007C38E0 /* ColorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsView.swift; sourceTree = "<group>"; };
@@ -534,6 +538,8 @@
 			children = (
 				4AEA33132629EFC4001012BD /* TimeRow */,
 				4AD026EA26090ED300F6CD0C /* SplitterComponent.swift */,
+				4A561385262CFB7F00702B0E /* OptionsRow.swift */,
+				4A561389262CFB8900702B0E /* OptionsRow.xib */,
 				4AEA33142629EFCE001012BD /* PrevNextRow */,
 				4AEA33172629EFD7001012BD /* StartRow */,
 			);
@@ -835,6 +841,7 @@
 				4A0981A724E34DE400E44792 /* AccountButtonView.xib in Resources */,
 				4A05EEFD24D762E200873D07 /* DownloadWindow.storyboard in Resources */,
 				4A230E9C23B00A1E00959C57 /* Main.storyboard in Resources */,
+				4A56138A262CFB8900702B0E /* OptionsRow.xib in Resources */,
 				4A0981A024E3089B00E44792 /* LoginView.xib in Resources */,
 				4A61438624801A37007C38E0 /* ColorsView.xib in Resources */,
 				4AEA331B2629F024001012BD /* TimeRow.xib in Resources */,
@@ -962,6 +969,7 @@
 				4A18663223C5376900FEEE54 /* SettingsKeys.swift in Sources */,
 				4A1657B123EA4EF60008CB5F /* Menu Items.swift in Sources */,
 				4ADFAE4923E4A0760049F57A /* QuickAlert.swift in Sources */,
+				4A561386262CFB7F00702B0E /* OptionsRow.swift in Sources */,
 				4A18662E23C51D2800FEEE54 /* UISettings.swift in Sources */,
 				4AA3DAB423E23DA900ADFA4A /* IconButton.swift in Sources */,
 				4A18663023C5257800FEEE54 /* MenuItemConstants.swift in Sources */,

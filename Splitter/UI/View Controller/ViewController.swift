@@ -45,11 +45,11 @@ class ViewController: NSViewController {
 	@IBOutlet weak var startButton: NSButton!
 	@IBOutlet weak var nextButton: NSButton!
 	@IBOutlet weak var prevButton: NSButton!
-	@IBOutlet weak var plusButton: ThemedButton!
-	@IBOutlet weak var minusButton: ThemedButton!
+	@IBOutlet weak var plusButton: NSButton!
+	@IBOutlet weak var minusButton: NSButton!
 	@IBOutlet weak var gameIconButton: MetadataImage!
 	@IBOutlet weak var infoPanelPopoverButton: ThemedButton!
-	@IBOutlet weak var columnOptionsPopoverButton: ThemedButton!
+	@IBOutlet weak var columnOptionsPopoverButton: NSButton!
 	
 //MARK: - Container Views
 	@IBOutlet weak var metadataView: NSView!
@@ -314,6 +314,10 @@ class ViewController: NSViewController {
 	var hotkeysController: HotkeysViewController?
 	
 	@objc func breakFunc() {
+		print(bottomStackView.views.count)
+		print(bottomStackView.views[0].isHidden)
+		
+		
 		print(run.getComparision())
 		print("--")
 		print(run.comparisons)
@@ -335,6 +339,20 @@ class ViewController: NSViewController {
 	var timeRow: TimeRow!
 	var startRow: StartRow!
 	var prevNextRow: PrevNextRow!
+	var optionsRow: OptionsRow!
+	func setupOptionsRow() {
+		optionsRow = OptionsRow.instantiateView()//.createFromNib()
+//		optionsRow.loadViewFromNib()
+//		NSNib(nibNamed: "OptionsRow", bundle: nil)?.instantiate(withOwner: optionsRow, topLevelObjects: nil)
+		optionsRow.viewController = self
+		
+		addToStack(view: optionsRow)
+		plusButton = optionsRow.plusButton
+		minusButton = optionsRow.minusButton
+		columnOptionsPopoverButton = optionsRow.columnOptionsButton
+		tableButtonsStack = optionsRow.tableButtonsStack
+		
+	}
 	
 	func setupPrevNextRow() {
 		prevNextRow = PrevNextRow()
@@ -368,6 +386,7 @@ class ViewController: NSViewController {
 	//MARK: - Main Functions
 	override func viewWillAppear() {
 		super.viewWillAppear()
+		setupOptionsRow()
 		setupTimeRow()
 		setupStartRow()
 		setupPrevNextRow()
@@ -638,6 +657,7 @@ class ViewController: NSViewController {
 		coPanel.standardWindowButton(.miniaturizeButton)?.isHidden = true
 		coPanel.standardWindowButton(.zoomButton)?.isHidden = true
 		coPanel.isMovableByWindowBackground = true
+		coPanel.animationBehavior = .none
 		
 		var coButtonPoint = CGPoint(x: columnOptionsPopoverButton.frame.maxX, y: 0)
 		coButtonPoint = columnOptionsPopoverButton.convert(coButtonPoint, to: view)

@@ -592,15 +592,15 @@
                     </items>
                 </menu>
                 <viewController storyboardIdentifier="MainViewController" id="5gI-5U-AMq" customClass="ViewController" customModule="Splitter" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" misplaced="YES" id="nLC-ev-0ZO">
+                    <view key="view" id="nLC-ev-0ZO">
                         <rect key="frame" x="0.0" y="0.0" width="494" height="378"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kx4-q1-74E">
-                                <rect key="frame" x="0.0" y="0.0" width="494" height="138"/>
+                                <rect key="frame" x="0.0" y="0.0" width="494" height="378"/>
                                 <subviews>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="mAU-zf-6y9">
-                                        <rect key="frame" x="0.0" y="72" width="286" height="66"/>
+                                        <rect key="frame" x="0.0" y="312" width="286" height="66"/>
                                         <subviews>
                                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6rq-lR-6Um" customClass="MetadataImage" customModule="Splitter" customModuleProvider="target">
                                                 <rect key="frame" x="6" y="8" width="42" height="50"/>
@@ -679,7 +679,7 @@
                                         </constraints>
                                     </customView>
                                     <scrollView appearanceType="darkAqua" borderType="none" autohidesScrollers="YES" horizontalLineScroll="33" horizontalPageScroll="10" verticalLineScroll="33" verticalPageScroll="10" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="allowed" scrollerKnobStyle="dark" id="GLv-Wp-JTM" customClass="SplitterScrollView" customModule="Splitter" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="40" width="494" height="32"/>
+                                        <rect key="frame" x="0.0" y="280" width="494" height="32"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <clipView key="contentView" copiesOnScroll="NO" id="9dd-gf-lQy">
                                             <rect key="frame" x="0.0" y="0.0" width="494" height="32"/>
@@ -945,106 +945,10 @@
                                         </tableHeaderView>
                                     </scrollView>
                                     <customView translatesAutoresizingMaskIntoConstraints="NO" id="0DF-tP-BL4">
-                                        <rect key="frame" x="0.0" y="0.0" width="494" height="40"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="494" height="280"/>
                                         <subviews>
                                             <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HPQ-BI-dXc" customClass="DraggingStackView" customModule="Splitter" customModuleProvider="target">
-                                                <rect key="frame" x="7" y="10" width="481" height="20"/>
-                                                <subviews>
-                                                    <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="107" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="QCD-z8-dOV">
-                                                        <rect key="frame" x="0.0" y="0.0" width="481" height="20"/>
-                                                        <subviews>
-                                                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Mj4-Ky-5e7" customClass="ThemedTextField" customModule="Splitter" customModuleProvider="target">
-                                                                <rect key="frame" x="-2" y="4" width="299" height="16"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="16" id="ABX-SI-o9R"/>
-                                                                </constraints>
-                                                                <textFieldCell key="cell" lineBreakMode="clipping" title="Current Time:" id="JfQ-8T-Ydb">
-                                                                    <font key="font" metaFont="system"/>
-                                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                                </textFieldCell>
-                                                            </textField>
-                                                            <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="sgY-CA-g1A">
-                                                                <rect key="frame" x="402" y="0.0" width="79" height="20"/>
-                                                                <subviews>
-                                                                    <button toolTip="Remove Split" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="jC2-yS-poH" customClass="ThemedButton" customModule="Splitter" customModuleProvider="target">
-                                                                        <rect key="frame" x="0.0" y="-1" width="25" height="22"/>
-                                                                        <constraints>
-                                                                            <constraint firstAttribute="width" constant="25" id="Vti-8J-w6G"/>
-                                                                            <constraint firstAttribute="height" constant="20" id="W8w-df-gUQ"/>
-                                                                        </constraints>
-                                                                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="0Mt-iS-tkw">
-                                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                            <font key="font" metaFont="system"/>
-                                                                        </buttonCell>
-                                                                        <accessibility description="Remove Split" identifier="RemoveSplit"/>
-                                                                        <connections>
-                                                                            <action selector="removeButtonClick:" target="5gI-5U-AMq" id="Rqp-0v-Ncb"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                    <button toolTip="Add Split" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OXM-M7-swh" customClass="ThemedButton" customModule="Splitter" customModuleProvider="target">
-                                                                        <rect key="frame" x="27" y="-1" width="25" height="22"/>
-                                                                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5oS-Ne-nTD">
-                                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                            <font key="font" metaFont="system"/>
-                                                                        </buttonCell>
-                                                                        <accessibility description="Add Split" identifier="AddSplit"/>
-                                                                        <connections>
-                                                                            <action selector="addButtonClick:" target="5gI-5U-AMq" id="t7j-Yl-6Hn"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                    <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xLP-fd-tTq" customClass="ThemedButton" customModule="Splitter" customModuleProvider="target">
-                                                                        <rect key="frame" x="54" y="-1" width="25" height="22"/>
-                                                                        <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSQuickLookTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="krQ-zt-0w0">
-                                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                                            <font key="font" metaFont="system"/>
-                                                                        </buttonCell>
-                                                                        <connections>
-                                                                            <action selector="displayColumnOptionsPopover:" target="5gI-5U-AMq" id="THZ-ni-fGB"/>
-                                                                        </connections>
-                                                                    </button>
-                                                                </subviews>
-                                                                <constraints>
-                                                                    <constraint firstItem="xLP-fd-tTq" firstAttribute="width" secondItem="OXM-M7-swh" secondAttribute="width" id="5FF-Ba-KMZ"/>
-                                                                    <constraint firstItem="OXM-M7-swh" firstAttribute="height" secondItem="jC2-yS-poH" secondAttribute="height" id="Aw1-sj-yfb"/>
-                                                                    <constraint firstItem="OXM-M7-swh" firstAttribute="width" secondItem="jC2-yS-poH" secondAttribute="width" id="dE5-9a-za3"/>
-                                                                    <constraint firstItem="xLP-fd-tTq" firstAttribute="height" secondItem="OXM-M7-swh" secondAttribute="height" id="gfv-62-np1"/>
-                                                                </constraints>
-                                                                <visibilityPriorities>
-                                                                    <integer value="1000"/>
-                                                                    <integer value="1000"/>
-                                                                    <integer value="1000"/>
-                                                                </visibilityPriorities>
-                                                                <customSpacing>
-                                                                    <real value="3.4028234663852886e+38"/>
-                                                                    <real value="3.4028234663852886e+38"/>
-                                                                    <real value="3.4028234663852886e+38"/>
-                                                                </customSpacing>
-                                                            </stackView>
-                                                        </subviews>
-                                                        <constraints>
-                                                            <constraint firstAttribute="height" secondItem="jC2-yS-poH" secondAttribute="height" id="lD3-e3-5g4"/>
-                                                        </constraints>
-                                                        <visibilityPriorities>
-                                                            <integer value="1000"/>
-                                                            <integer value="1000"/>
-                                                        </visibilityPriorities>
-                                                        <customSpacing>
-                                                            <real value="3.4028234663852886e+38"/>
-                                                            <real value="3.4028234663852886e+38"/>
-                                                        </customSpacing>
-                                                    </stackView>
-                                                </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="QCD-z8-dOV" firstAttribute="leading" secondItem="HPQ-BI-dXc" secondAttribute="leading" id="6XW-kw-FAl"/>
-                                                    <constraint firstAttribute="trailing" secondItem="QCD-z8-dOV" secondAttribute="trailing" id="Fks-mB-yPh"/>
-                                                </constraints>
-                                                <visibilityPriorities>
-                                                    <integer value="1000"/>
-                                                </visibilityPriorities>
-                                                <customSpacing>
-                                                    <real value="3.4028234663852886e+38"/>
-                                                </customSpacing>
+                                                <rect key="frame" x="7" y="10" width="481" height="260"/>
                                             </stackView>
                                         </subviews>
                                         <constraints>
@@ -1087,17 +991,12 @@
                     <connections>
                         <outlet property="bottomStackView" destination="HPQ-BI-dXc" id="ef7-VU-Vee"/>
                         <outlet property="categoryField" destination="5cv-K8-dE8" id="S7o-Cd-tug"/>
-                        <outlet property="columnOptionsPopoverButton" destination="xLP-fd-tTq" id="XLN-jK-lh2"/>
-                        <outlet property="currentTimeLabel" destination="Mj4-Ky-5e7" id="IfX-AV-VUa"/>
                         <outlet property="gameIconButton" destination="6rq-lR-6Um" id="AWF-ua-Hx9"/>
                         <outlet property="infoPanelPopoverButton" destination="laY-Uh-RhP" id="36Z-y3-khC"/>
                         <outlet property="innerMetatdataStack" destination="Zvg-iD-B8R" id="chC-L4-IfO"/>
                         <outlet property="metadataView" destination="mAU-zf-6y9" id="oWJ-Ex-kRk"/>
-                        <outlet property="minusButton" destination="jC2-yS-poH" id="MlL-63-BKb"/>
-                        <outlet property="plusButton" destination="OXM-M7-swh" id="sb0-rS-PWM"/>
                         <outlet property="runTitleField" destination="TSJ-mg-scq" id="rjM-Y4-yKr"/>
                         <outlet property="splitsTableView" destination="Ww4-Jn-tNR" id="Q7d-TC-F7o"/>
-                        <outlet property="tableButtonsStack" destination="sgY-CA-g1A" id="2e3-3o-oPw"/>
                     </connections>
                 </viewController>
             </objects>
@@ -1626,9 +1525,6 @@ To remove, click and press backspace. </string>
         </scene>
     </scenes>
     <resources>
-        <image name="NSAddTemplate" width="14" height="13"/>
-        <image name="NSQuickLookTemplate" width="21" height="13"/>
-        <image name="NSRemoveTemplate" width="14" height="4"/>
         <image name="gearshape" width="107" height="107"/>
         <namedColor name="accentColor">
             <color red="0.35699999332427979" green="0.28999999165534973" blue="0.70999997854232788" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

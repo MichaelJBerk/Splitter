@@ -30,12 +30,12 @@ class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTable
         
     }
 	func numberOfRows(in tableView: NSTableView) -> Int {
-		return runController.bottomStackView.views.count - 1
+		return runController.bottomStackView.views.count
 	}
 	
 	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 		let cell = tableView.makeView(withIdentifier: tableColumn!.identifier, owner: self) as! NSTableCellView
-		if let component = runController.bottomStackView.views[row + 1] as? SplitterComponent {
+		if let component = runController.bottomStackView.views[row] as? SplitterComponent {
 			cell.textField?.stringValue = component.displayTitle
 		}
 //		cell.textField?.stringValue = rows[row]
@@ -47,7 +47,7 @@ class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTable
 		if let data = pastboard.string(forType: dropType), let oldRow = Int(data) {
 //			rows.move(fromOffsets: IndexSet([oldRow]), toOffset: row)
 			var views = runController.bottomStackView.views
-			views.move(fromOffsets: IndexSet([oldRow + 1]), toOffset: row + 1)
+			views.move(fromOffsets: IndexSet([oldRow]), toOffset: row)
 //			runController.bottomStackView.setViews(views, in: .center)
 			runController.bottomStackView.update(runController.bottomStackView, views)
 			tableView.reloadData()
@@ -60,10 +60,10 @@ class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTable
 	func tableViewSelectionDidChange(_ notification: Notification) {
 		let selected = tableView.selectedRow
 		
-		for i in 1..<runController.bottomStackView.views.count {
+		for i in 0..<runController.bottomStackView.views.count {
 			
 			if let selectedComponent = runController.bottomStackView.views[i] as? SplitterComponent {
-				if i - 1 == selected {
+				if i == selected {
 					selectedComponent.isSelected = true
 					let ov = selectedComponent.optionsView!
 					ov.wantsLayer = true
@@ -79,10 +79,13 @@ class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTable
 		}
 	}
 	override func viewWillDisappear() {
-		super.viewWillDisappear()
-		if let selected = runController.bottomStackView.views[tableView.selectedRow + 1] as? SplitterComponent {
-			selected.isSelected = false
+		for v in runController.bottomStackView.views {
+			if let comp = v as? SplitterComponent {
+				comp.isSelected = false
+			}
 		}
+		
+		super.viewWillDisappear()
 	}
 	func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> NSPasteboardWriting? {
 		
