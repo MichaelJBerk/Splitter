@@ -98,13 +98,22 @@ extension NSColor {
 extension ViewController {
 	func setColorForControls() {
 		view.window?.backgroundColor = run.backgroundColor
-		splitsTableView.backgroundColor = run.tableColor
+		splitsTableView.backgroundColor = .clear
 		splitsTableView.enclosingScrollView?.backgroundColor = run.tableColor
-	
-//		gameIconButton.image = gameIconButton.image?.image(with: run.textColor)
+		splitsTableView.enclosingScrollView?.wantsLayer = true
+		splitsTableView.enclosingScrollView?.layer?.isOpaque = false
+		splitsTableView.enclosingScrollView?.layer?.backgroundColor = run.tableColor.cgColor
+		
+		//Make table view clear, so the rows don't look different from the BG
+		splitsTableView.wantsLayer = true
+		splitsTableView.layer?.isOpaque = false
+		splitsTableView.layer?.backgroundColor = .clear
+		
+		splitsTableView.headerView?.wantsLayer = true
+		splitsTableView.headerView?.layer?.isOpaque = false
+		splitsTableView.headerView?.layer?.backgroundColor = NSColor.red.cgColor
 		
 		
-//		recColorForControls(view: self.view)
 		splitsTableView.parentViewController = self
 		
 		splitsTableView.setHeaderColor(textColor: run.textColor, bgColor: run.tableColor)

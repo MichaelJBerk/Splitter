@@ -13,7 +13,6 @@ class SplitterScroller: NSScroller {
 	var bgColor: NSColor?
 	
 	override func drawKnobSlot(in slotRect: NSRect, highlight flag: Bool) {
-		
 	}
 }
 
@@ -22,33 +21,14 @@ class SplitterScrollView: NSScrollView {
 	///
 	///This is set after setting the scroll view's corner color. We can't just use the `backgroundColor` property, because then the correct color won't display
 	var tableBGColor: NSColor?
-
-	override func draw(_ dirtyRect: NSRect) {
-		super.draw(dirtyRect)
-
-        if hasVerticalScroller && hasHorizontalScroller {
-            guard verticalScroller != nil && horizontalScroller != nil else { return }
-
-            let vFrame = verticalScroller!.frame
-            let hFrame = horizontalScroller!.frame
-            let square = NSRect(origin: CGPoint(x: hFrame.maxX, y: vFrame.maxY), size: CGSize(width: vFrame.width, height: hFrame.height))
-
-            let path = NSBezierPath(rect: square)
-			let fillColor = tableBGColor
-            fillColor?.set()
-            path.fill()
-        }
-    }
+	
+	override func draw(_ dirtyRect: NSRect) {}
 }
 
 class SplitterTableView: NSTableView {
 	var parentViewController: ViewController!
 	
-    override func draw(_ dirtyRect: NSRect) {
-        super.draw(dirtyRect)
-
-        // Drawing code here.
-    }
+    override func draw(_ dirtyRect: NSRect) {}
 	
 	
 	/// Sets the background color for the view under the scroll bar
@@ -63,9 +43,9 @@ class SplitterTableView: NSTableView {
 		cornerV.layer?.backgroundColor = cornerColor.cgColor
 		
 		enclosingScrollView?.verticalScroller?.wantsLayer = true
-		enclosingScrollView?.verticalScroller?.layer?.isOpaque = true
+		enclosingScrollView?.verticalScroller?.layer?.isOpaque = false
 		enclosingScrollView?.horizontalScroller?.wantsLayer = true
-		enclosingScrollView?.horizontalScroller?.layer?.isOpaque = true
+		enclosingScrollView?.horizontalScroller?.layer?.isOpaque = false
 		
 		enclosingScrollView?.verticalScroller?.layer?.backgroundColor = cornerColor.cgColor
 		enclosingScrollView?.horizontalScroller?.layer?.backgroundColor = cornerColor.cgColor
@@ -123,14 +103,16 @@ class SplitterTableView: NSTableView {
 class SplitterTableHeader: NSTableHeaderView {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        self.wantsLayer = true
     }
+	
+	override init(frame frameRect: NSRect) {
+		super.init(frame: frameRect)
+	}
 
     override func draw(_ dirtyRect: NSRect) {
-        NSColor.blue.set()
-        dirtyRect.fill()
-        super.draw(dirtyRect)
-    }
+		super.draw(dirtyRect)
+		
+	}
 }
 
 

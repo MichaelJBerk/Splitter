@@ -315,14 +315,11 @@ class ViewController: NSViewController {
 	var hotkeysController: HotkeysViewController?
 	
 	@objc func breakFunc() {
-		print(bottomStackView.views.count)
-		print(bottomStackView.views[0].isHidden)
-		
-		
-		print(run.getComparision())
-		print("--")
-		print(run.comparisons)
-		
+		for window in NSApp.windows {
+			let w = window.styleMask
+			print(window.title)
+			
+		}
 	}
 	
 	var breakID = NSUserInterfaceItemIdentifier("break")
@@ -424,9 +421,6 @@ class ViewController: NSViewController {
 		
 		touchBarDelegate = RunTouchBarDelegate(splitFunc: startSplitTimer, pauseFunc: pauseResumeTimer, prevFunc: goToPrevSplit, stopFunc: stopTimer, sourceVC: self)
 		
-		view.window?.isOpaque = false
-		view.window?.backgroundColor = .splitterDefaultColor
-		splitsTableView.backgroundColor = .splitterTableViewColor
 		splitsTableView.delegate = self
 		splitsTableView.dataSource = self
 		
@@ -649,16 +643,22 @@ class ViewController: NSViewController {
 		layoutEditor.runController = self
 		let destination = tabView?.tabViewItems[1].viewController as! ColumnOptionsViewController
 		destination.delegate = self
+		
 		let coPanel = NSPanel(contentViewController: tabView!)
-		coPanel.styleMask.insert(.utilityWindow)
-		coPanel.styleMask.insert(.hudWindow)
-		coPanel.styleMask.insert(.fullSizeContentView)
+		
+		
+//		coPanel.styleMask.insert(.utilityWindow)
+//		coPanel.styleMask.insert(.hudWindow)
+//		coPanel.styleMask.insert(.resizable)
+//		coPanel.styleMask.insert(.fullSizeContentView)
 		coPanel.titlebarAppearsTransparent = true
-		coPanel.titleVisibility = .hidden
 		coPanel.standardWindowButton(.miniaturizeButton)?.isHidden = true
 		coPanel.standardWindowButton(.zoomButton)?.isHidden = true
 		coPanel.isMovableByWindowBackground = true
+		
+		
 		coPanel.animationBehavior = .none
+//		coPanel.appearance = NSAppearance(named: .darkAqua)
 		
 		var coButtonPoint = CGPoint(x: columnOptionsPopoverButton.frame.maxX, y: 0)
 		coButtonPoint = columnOptionsPopoverButton.convert(coButtonPoint, to: view)

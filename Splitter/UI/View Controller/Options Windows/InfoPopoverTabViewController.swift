@@ -62,4 +62,8 @@ class InfoPopoverTabViewController: NSTabViewController {
 		tabViewItem.color = .blue
 		super.addTabViewItem(tabViewItem)
 	}
+	override func viewWillDisappear() {
+		NSColorPanel.shared.close()
+		super.viewWillDisappear()
+	}
 }

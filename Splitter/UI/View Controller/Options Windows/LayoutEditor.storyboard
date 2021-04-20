@@ -9,7 +9,7 @@
         <!--Layout Editor Tab View Controller-->
         <scene sceneID="baY-dZ-HRi">
             <objects>
-                <tabViewController selectedTabViewItemIndex="0" id="l2B-99-QyF" customClass="LayoutEditorTabViewController" customModule="Splitter" customModuleProvider="target" sceneMemberID="viewController">
+                <tabViewController showSeguePresentationStyle="single" selectedTabViewItemIndex="0" id="l2B-99-QyF" customClass="LayoutEditorTabViewController" customModule="Splitter" customModuleProvider="target" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem label="Components" identifier="" id="KCF-Lz-yK0"/>
                         <tabViewItem label="Columns" id="wrx-aU-gkG"/>
@@ -35,19 +35,28 @@
         <!--Layout Editor View Controller-->
         <scene sceneID="UXU-ZH-z3V">
             <objects>
-                <viewController id="vuF-nh-xGc" customClass="LayoutEditorViewController" customModule="Splitter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController showSeguePresentationStyle="single" id="vuF-nh-xGc" customClass="LayoutEditorViewController" customModule="Splitter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="oad-Bb-Yav">
                         <rect key="frame" x="0.0" y="0.0" width="449" height="299"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NMQ-LW-8gc">
-                                <rect key="frame" x="18" y="269" width="82" height="15"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Components" id="Fd5-q8-jnT">
-                                    <font key="font" usesAppearanceFont="YES"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
+                            <visualEffectView hidden="YES" appearanceType="aqua" blendingMode="behindWindow" material="popover" state="active" translatesAutoresizingMaskIntoConstraints="NO" id="avr-qy-Xdu">
+                                <rect key="frame" x="0.0" y="-3" width="449" height="305"/>
+                                <subviews>
+                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NMQ-LW-8gc">
+                                        <rect key="frame" x="18" y="269" width="82" height="16"/>
+                                        <textFieldCell key="cell" lineBreakMode="clipping" title="Components" id="Fd5-q8-jnT">
+                                            <font key="font" usesAppearanceFont="YES"/>
+                                            <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </textFieldCell>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="NMQ-LW-8gc" firstAttribute="top" secondItem="avr-qy-Xdu" secondAttribute="top" constant="20" id="S35-C5-J41"/>
+                                    <constraint firstItem="NMQ-LW-8gc" firstAttribute="leading" secondItem="avr-qy-Xdu" secondAttribute="leading" constant="20" symbolic="YES" id="jPm-jO-3z5"/>
+                                </constraints>
+                            </visualEffectView>
                             <scrollView borderType="line" autohidesScrollers="YES" horizontalLineScroll="24" horizontalPageScroll="10" verticalLineScroll="24" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yhs-Zk-vET">
                                 <rect key="frame" x="20" y="44" width="193" height="211"/>
                                 <clipView key="contentView" ambiguous="YES" id="KY1-kk-uwv">
@@ -153,18 +162,19 @@
                         </subviews>
                         <constraints>
                             <constraint firstItem="yhs-Zk-vET" firstAttribute="trailing" secondItem="KVz-Ab-quM" secondAttribute="trailing" id="1CD-oh-4Fv"/>
+                            <constraint firstItem="avr-qy-Xdu" firstAttribute="width" secondItem="oad-Bb-Yav" secondAttribute="width" id="6Fs-lA-C4f"/>
                             <constraint firstItem="yhs-Zk-vET" firstAttribute="leading" secondItem="oad-Bb-Yav" secondAttribute="leading" constant="20" symbolic="YES" id="6PH-Cw-bof"/>
                             <constraint firstAttribute="trailing" secondItem="yaD-tf-pAs" secondAttribute="trailing" constant="20" symbolic="YES" id="9JL-NP-hIX"/>
+                            <constraint firstItem="avr-qy-Xdu" firstAttribute="height" secondItem="oad-Bb-Yav" secondAttribute="height" multiplier="1.01672" id="DGW-pe-UZv"/>
                             <constraint firstItem="yaD-tf-pAs" firstAttribute="top" secondItem="X5c-pJ-7vj" secondAttribute="bottom" constant="14" id="FI8-yi-boz"/>
-                            <constraint firstItem="NMQ-LW-8gc" firstAttribute="top" secondItem="oad-Bb-Yav" secondAttribute="top" constant="15" id="GKB-pf-EDN"/>
-                            <constraint firstItem="yhs-Zk-vET" firstAttribute="top" secondItem="NMQ-LW-8gc" secondAttribute="bottom" constant="14" id="JP3-7W-gUm"/>
                             <constraint firstItem="KVz-Ab-quM" firstAttribute="top" secondItem="yhs-Zk-vET" secondAttribute="bottom" constant="8" symbolic="YES" id="Nk0-IC-ao9"/>
                             <constraint firstAttribute="bottom" secondItem="KVz-Ab-quM" secondAttribute="bottom" constant="20" symbolic="YES" id="OOt-ri-w7s"/>
                             <constraint firstItem="yaD-tf-pAs" firstAttribute="leading" secondItem="X5c-pJ-7vj" secondAttribute="leading" id="QS9-P1-sWV"/>
+                            <constraint firstItem="avr-qy-Xdu" firstAttribute="centerX" secondItem="oad-Bb-Yav" secondAttribute="centerX" id="YUS-tZ-82F"/>
                             <constraint firstItem="X5c-pJ-7vj" firstAttribute="top" secondItem="oad-Bb-Yav" secondAttribute="top" constant="15" id="dyZ-jD-dzr"/>
                             <constraint firstItem="yhs-Zk-vET" firstAttribute="centerY" secondItem="oad-Bb-Yav" secondAttribute="centerY" id="fGq-Iv-AKe"/>
-                            <constraint firstItem="NMQ-LW-8gc" firstAttribute="leading" secondItem="oad-Bb-Yav" secondAttribute="leading" constant="20" symbolic="YES" id="kCk-Os-xZk"/>
                             <constraint firstAttribute="trailing" secondItem="X5c-pJ-7vj" secondAttribute="trailing" constant="132" id="kTz-l1-3W6"/>
+                            <constraint firstItem="avr-qy-Xdu" firstAttribute="centerY" secondItem="oad-Bb-Yav" secondAttribute="centerY" id="kaA-gz-QbP"/>
                             <constraint firstItem="KVz-Ab-quM" firstAttribute="leading" secondItem="oad-Bb-Yav" secondAttribute="leading" constant="197" id="uzB-k4-MBV"/>
                             <constraint firstItem="yaD-tf-pAs" firstAttribute="bottom" secondItem="yhs-Zk-vET" secondAttribute="bottom" id="wtB-PY-eRJ"/>
                         </constraints>
@@ -183,7 +193,7 @@
         <scene sceneID="Csm-ye-nVw">
             <objects>
                 <viewController storyboardIdentifier="ColumnOptions" showSeguePresentationStyle="single" id="CWf-RP-tup" customClass="ColumnOptionsViewController" customModule="Splitter" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" appearanceType="darkAqua" id="Rmn-ZB-iBs">
+                    <view key="view" id="Rmn-ZB-iBs">
                         <rect key="frame" x="0.0" y="0.0" width="216" height="220"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>

@@ -23,6 +23,10 @@ class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTable
 
     override func viewDidLoad() {
         super.viewDidLoad()
+//		let visualEffect = NSVisualEffectView(frame: view.frame)//(frame: NSRect(origin: coButtonPoint, size: tabView!.preferredContentSize))
+				
+//		self.view = visualEffect
+		//		coPanel.contentView = visualEffect
 		self.preferredContentSize = view.frame.size//NSSize(width: 300, height: 220)
 		tableView.delegate = self
 		tableView.dataSource = self
