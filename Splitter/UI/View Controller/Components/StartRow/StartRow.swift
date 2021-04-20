@@ -30,15 +30,8 @@ class StartRow: NSStackView, LoadableNib, SplitterComponent {
 	}
 	
 	var optionsView: NSView! {
-		let visibleCheck = NSButton(checkboxWithTitle: "Hidden", target: self, action: #selector(hideComp(_:)))
-		visibleCheck.state = .init(bool: isHidden)
-		let optionsView = NSGridView(views: [[visibleCheck]])
-		
+		let optionsView = NSGridView(views: defaultComponentOptions())
 		return optionsView
-	}
-	
-	@objc func hideComp(_ sender: Any?) {
-		self.isHidden.toggle()
 	}
 	
 	

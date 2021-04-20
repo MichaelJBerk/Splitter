@@ -23,11 +23,7 @@ class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTable
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//		let visualEffect = NSVisualEffectView(frame: view.frame)//(frame: NSRect(origin: coButtonPoint, size: tabView!.preferredContentSize))
-				
-//		self.view = visualEffect
-		//		coPanel.contentView = visualEffect
-		self.preferredContentSize = view.frame.size//NSSize(width: 300, height: 220)
+		self.preferredContentSize = view.frame.size
 		tableView.delegate = self
 		tableView.dataSource = self
 		tableView.registerForDraggedTypes([dropType])
@@ -42,8 +38,6 @@ class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTable
 		if let component = runController.bottomStackView.views[row] as? SplitterComponent {
 			cell.textField?.stringValue = component.displayTitle
 		}
-//		cell.textField?.stringValue = rows[row]
-		
 		return cell
 	}
 	func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
@@ -70,8 +64,6 @@ class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTable
 				if i == selected {
 					selectedComponent.isSelected = true
 					let ov = selectedComponent.optionsView!
-					ov.wantsLayer = true
-					ov.layer?.backgroundColor = NSColor.blue.cgColor
 					let ovSize =  ov.fittingSize
 					
 					ov.frame = NSRect(origin: CGPoint(x: 0, y: scrollView.contentView.frame.maxY), size: ovSize)

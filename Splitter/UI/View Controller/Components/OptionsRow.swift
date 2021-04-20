@@ -20,14 +20,16 @@ class OptionsRow: NSStackView, NibLoadable, SplitterComponent {
 	private func initialization() {
 		
 	}
+	var optionsView: NSView! {
+		let optionsView = NSGridView(views: defaultComponentOptions())
+		return optionsView
+	}
 	
 	var viewController: ViewController?
 	
 	var displayTitle: String = "Options Row"
 	
 	var displayDescription: String = "OR Desc"
-	
-	var optionsView: NSView! = NSView()
 	
 	@IBOutlet var contentView: NSView!
 	

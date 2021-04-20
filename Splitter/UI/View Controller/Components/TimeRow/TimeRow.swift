@@ -8,7 +8,10 @@
 import Cocoa
 
 class TimeRow: NSStackView, LoadableNib, SplitterComponent {
-	var optionsView: NSView! = NSView()
+	var optionsView: NSView! {
+		let optionsView = NSGridView(views: defaultComponentOptions())
+		return optionsView
+	}
 	
 	var displayTitle: String = "Time Row"
 	var displayDescription: String = ""

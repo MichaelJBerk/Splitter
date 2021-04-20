@@ -10,7 +10,10 @@ import Cocoa
 
 @IBDesignable
 class PrevNextRow: NSStackView, LoadableNib, SplitterComponent {
-	var optionsView: NSView! = NSView()
+	var optionsView: NSView! {
+		let optionsView = NSGridView(views: defaultComponentOptions())
+		return optionsView
+	}
 	
 	var displayTitle: String = "Previous/Next Buttons"
 	var displayDescription: String = ""

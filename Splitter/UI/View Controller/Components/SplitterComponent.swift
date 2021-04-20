@@ -17,7 +17,11 @@ protocol SplitterComponent: NSView {
 }
 
 extension SplitterComponent {
+	
+	
 	func didSetSelected() {
+		
+		
 		if isSelected {
 			self.wantsLayer = true
 			self.layer?.borderWidth = 2
@@ -27,5 +31,17 @@ extension SplitterComponent {
 			self.wantsLayer = false
 			self.layer?.borderWidth = 0
 		}
+	}
+	func defaultComponentOptions() -> [[NSView]] {
+		let visibleCheck = NSButton(checkboxWithTitle: "Hidden", target: self, action: #selector(hide(_:)))
+		visibleCheck.state = .init(bool: isHidden)
+		return [[visibleCheck]]
+	}
+	
+	
+}
+private extension NSView {
+	@objc func hide(_ sender: Any?) {
+		self.isHidden.toggle()
 	}
 }
