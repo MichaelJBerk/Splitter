@@ -35,7 +35,7 @@
 		4A230E9723B00A1D00959C57 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A230E9623B00A1D00959C57 /* Document.swift */; };
 		4A230E9C23B00A1E00959C57 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A230E9A23B00A1E00959C57 /* Main.storyboard */; };
 		4A24F20324F6E0B100278EB7 /* TouchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A24F20224F6E0B100278EB7 /* TouchBarDelegate.swift */; };
-		4A327B0D23F491FB00A5CBFF /* splitterAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A327B0C23F491FB00A5CBFF /* splitterAppearance.swift */; };
+		4A327B0D23F491FB00A5CBFF /* SplitterAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A327B0C23F491FB00A5CBFF /* SplitterAppearance.swift */; };
 		4A388FC525D4AF2B00A63C9E /* PrevNextRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A388FC425D4AF2B00A63C9E /* PrevNextRow.swift */; };
 		4A388FCF25D4B00B00A63C9E /* PrevNextRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A388FCE25D4B00B00A63C9E /* PrevNextRow.xib */; };
 		4A388FDB25D4B85400A63C9E /* TestWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A388FDA25D4B85400A63C9E /* TestWindow.xib */; };
@@ -55,7 +55,7 @@
 		4A61438424801A28007C38E0 /* ColorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A61438324801A28007C38E0 /* ColorsView.swift */; };
 		4A61438624801A37007C38E0 /* ColorsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A61438524801A37007C38E0 /* ColorsView.xib */; };
 		4A66A43023DE2682005952FA /* ImageButtonCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A66A42F23DE2682005952FA /* ImageButtonCellView.swift */; };
-		4A66A43223DE2C88005952FA /* SplitTableViewColumnIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A66A43123DE2C88005952FA /* SplitTableViewColumnIdentifiers.swift */; };
+		4A66A43223DE2C88005952FA /* SplitTableColumnIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A66A43123DE2C88005952FA /* SplitTableColumnIdentifiers.swift */; };
 		4A6726EA23F05D17006F4BC4 /* LiveSplit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A617EBD23EBC65C0005D60E /* LiveSplit.swift */; };
 		4A6A3BE023CD1C39002C20AE /* GlobalKeybindPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6A3BDF23CD1C39002C20AE /* GlobalKeybindPrefs.swift */; };
 		4A6A3BE223CD1C7A002C20AE /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6A3BE123CD1C7A002C20AE /* Storage.swift */; };
@@ -70,6 +70,7 @@
 		4A75579D255C47F400ACE826 /* SplitterDocSplitsio.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4A75579C255C47F300ACE826 /* SplitterDocSplitsio.icns */; };
 		4A7C648823F05FCF008C15EF /* LiveSplitCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF9D76423ECD7520019BC9A /* LiveSplitCore.swift */; };
 		4A7DDCE223BBDD0900A36AD1 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 4A7DDCE123BBDD0900A36AD1 /* Credits.html */; };
+		4A7F94AA26332DBE002861E3 /* Codextended in Frameworks */ = {isa = PBXBuildFile; productRef = 4A7F94A926332DBE002861E3 /* Codextended */; };
 		4A87265523BD53F8003A14AF /* runInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87265423BD53F8003A14AF /* runInfo.swift */; };
 		4A87265723BD5423003A14AF /* PrefPanes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87265623BD5423003A14AF /* PrefPanes.swift */; };
 		4A894B1C249ABA71004FEEB3 /* LoadableNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A894B1B249ABA71004FEEB3 /* LoadableNib.swift */; };
@@ -77,6 +78,7 @@
 		4A968C7C23F1F5FE001B74E8 /* lss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A968C7B23F1F5FE001B74E8 /* lss.swift */; };
 		4A99813023F9ECE50037BF98 /* KeybindHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A99812F23F9ECE50037BF98 /* KeybindHandlers.swift */; };
 		4A9B9606261DF26D000FC89C /* TimeRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9B9605261DF26D000FC89C /* TimeRow.swift */; };
+		4A9CA2A7263A2D4C0054D624 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9CA2A6263A2D4C0054D624 /* Extensions.swift */; };
 		4A9D8BF6243A38C40048EA15 /* SplitterTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9D8BF5243A38C40048EA15 /* SplitterTableView.swift */; };
 		4A9DB792240847E40000D1B4 /* TimeSplitColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9DB791240847E40000D1B4 /* TimeSplitColumn.swift */; };
 		4A9FCC7C2411A0CE000937A2 /* TextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9FCC7B2411A0CE000937A2 /* TextFields.swift */; };
@@ -89,17 +91,23 @@
 		4AB92AC2261F69ED00E8B814 /* ThemedPopUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB92AC1261F69ED00E8B814 /* ThemedPopUpButton.swift */; };
 		4AB92AC6261F6CD600E8B814 /* ThemedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB92AC5261F6CD600E8B814 /* ThemedTextField.swift */; };
 		4ABB38A8255C79B00037536E /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 4ABB38A7255C79B00037536E /* SwiftyJSON */; };
-		4AC24DBA23EB4EC5003008BF /* Split Table Row.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC24DB923EB4EC5003008BF /* Split Table Row.swift */; };
-		4AC24DBC23EB4F17003008BF /* Split Table View.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC24DBB23EB4F17003008BF /* Split Table View.swift */; };
+		4AC24DBA23EB4EC5003008BF /* SplitTableRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC24DB923EB4EC5003008BF /* SplitTableRow.swift */; };
+		4AC24DBC23EB4F17003008BF /* SplitterTableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC24DBB23EB4F17003008BF /* SplitterTableDelegate.swift */; };
 		4AC401F324BE145F005180F1 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		4ACCEA7823B02F520068F89E /* TimeSplit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACCEA7723B02F520068F89E /* TimeSplit.swift */; };
+		4ACFB1BD262F4E9700EA79B6 /* TitleComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ACFB1BC262F4E9700EA79B6 /* TitleComponent.xib */; };
+		4ACFB1E7262F53B100EA79B6 /* SplitsComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ACFB1E6262F53B100EA79B6 /* SplitsComponent.xib */; };
 		4AD026EB26090ED400F6CD0C /* SplitterComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD026EA26090ED300F6CD0C /* SplitterComponent.swift */; };
+		4AD44AD7262F40E3003375C4 /* SumOfBestComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD44AD6262F40E3003375C4 /* SumOfBestComponent.swift */; };
+		4AD44ADB262F463C003375C4 /* SumOfBestComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AD44ADA262F463C003375C4 /* SumOfBestComponent.xib */; };
+		4AD44ADF262F4CFB003375C4 /* TitleComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD44ADE262F4CFB003375C4 /* TitleComponent.swift */; };
 		4AD7662E23DA5F9A0052409C /* Files in Frameworks */ = {isa = PBXBuildFile; productRef = 4AD7662D23DA5F9A0052409C /* Files */; };
 		4AD77D16240ECA2800CD65AD /* ColumnOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD77D15240ECA2800CD65AD /* ColumnOptionsViewController.swift */; };
 		4ADE9226240F1FB900E0D99E /* InfoPopoverTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADE9225240F1FB900E0D99E /* InfoPopoverTabViewController.swift */; };
 		4ADFAE4923E4A0760049F57A /* QuickAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADFAE4823E4A0760049F57A /* QuickAlert.swift */; };
 		4AE168A226091B2E00A6169B /* LayoutEditorTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE168A126091B2E00A6169B /* LayoutEditorTabViewController.swift */; };
 		4AE168A626091CA900A6169B /* LayoutEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE168A526091CA900A6169B /* LayoutEditorViewController.swift */; };
+		4AE2CF3B2631F43100CC6CF7 /* SplitsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE2CF3A2631F43100CC6CF7 /* SplitsComponent.swift */; };
 		4AE82A1624BFD4400044B6D3 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE82A1524BFD4400044B6D3 /* WelcomeView.swift */; };
 		4AE82A1C24BFD6060044B6D3 /* VisualEffectViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE82A1B24BFD6060044B6D3 /* VisualEffectViewRepresentable.swift */; };
 		4AEA331B2629F024001012BD /* TimeRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AEA331A2629F023001012BD /* TimeRow.xib */; };
@@ -183,7 +191,7 @@
 		4A230E9D23B00A1E00959C57 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A230E9E23B00A1E00959C57 /* Splitter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Splitter.entitlements; sourceTree = "<group>"; };
 		4A24F20224F6E0B100278EB7 /* TouchBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchBarDelegate.swift; sourceTree = "<group>"; };
-		4A327B0C23F491FB00A5CBFF /* splitterAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = splitterAppearance.swift; sourceTree = "<group>"; };
+		4A327B0C23F491FB00A5CBFF /* SplitterAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterAppearance.swift; sourceTree = "<group>"; };
 		4A388FC425D4AF2B00A63C9E /* PrevNextRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrevNextRow.swift; sourceTree = "<group>"; };
 		4A388FCE25D4B00B00A63C9E /* PrevNextRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrevNextRow.xib; sourceTree = "<group>"; };
 		4A388FDA25D4B85400A63C9E /* TestWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TestWindow.xib; sourceTree = "<group>"; };
@@ -204,7 +212,7 @@
 		4A61438524801A37007C38E0 /* ColorsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorsView.xib; sourceTree = "<group>"; };
 		4A617EBD23EBC65C0005D60E /* LiveSplit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveSplit.swift; sourceTree = "<group>"; };
 		4A66A42F23DE2682005952FA /* ImageButtonCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButtonCellView.swift; sourceTree = "<group>"; };
-		4A66A43123DE2C88005952FA /* SplitTableViewColumnIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitTableViewColumnIdentifiers.swift; sourceTree = "<group>"; };
+		4A66A43123DE2C88005952FA /* SplitTableColumnIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitTableColumnIdentifiers.swift; sourceTree = "<group>"; };
 		4A6A3BDF23CD1C39002C20AE /* GlobalKeybindPrefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalKeybindPrefs.swift; sourceTree = "<group>"; };
 		4A6A3BE123CD1C7A002C20AE /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		4A6A3BE323CD621A002C20AE /* MainWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindow.swift; sourceTree = "<group>"; };
@@ -226,6 +234,7 @@
 		4A968C7B23F1F5FE001B74E8 /* lss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lss.swift; sourceTree = "<group>"; };
 		4A99812F23F9ECE50037BF98 /* KeybindHandlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeybindHandlers.swift; sourceTree = "<group>"; };
 		4A9B9605261DF26D000FC89C /* TimeRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeRow.swift; sourceTree = "<group>"; };
+		4A9CA2A6263A2D4C0054D624 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		4A9D8BF5243A38C40048EA15 /* SplitterTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterTableView.swift; sourceTree = "<group>"; };
 		4A9DB791240847E40000D1B4 /* TimeSplitColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSplitColumn.swift; sourceTree = "<group>"; };
 		4A9FCC7B2411A0CE000937A2 /* TextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFields.swift; sourceTree = "<group>"; };
@@ -238,15 +247,21 @@
 		4AB92ABD261F67B700E8B814 /* ThemedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedButton.swift; sourceTree = "<group>"; };
 		4AB92AC1261F69ED00E8B814 /* ThemedPopUpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedPopUpButton.swift; sourceTree = "<group>"; };
 		4AB92AC5261F6CD600E8B814 /* ThemedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedTextField.swift; sourceTree = "<group>"; };
-		4AC24DB923EB4EC5003008BF /* Split Table Row.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Split Table Row.swift"; sourceTree = "<group>"; };
-		4AC24DBB23EB4F17003008BF /* Split Table View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Split Table View.swift"; sourceTree = "<group>"; };
+		4AC24DB923EB4EC5003008BF /* SplitTableRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitTableRow.swift; sourceTree = "<group>"; };
+		4AC24DBB23EB4F17003008BF /* SplitterTableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterTableDelegate.swift; sourceTree = "<group>"; };
 		4ACCEA7723B02F520068F89E /* TimeSplit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSplit.swift; sourceTree = "<group>"; };
+		4ACFB1BC262F4E9700EA79B6 /* TitleComponent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleComponent.xib; sourceTree = "<group>"; };
+		4ACFB1E6262F53B100EA79B6 /* SplitsComponent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplitsComponent.xib; sourceTree = "<group>"; };
 		4AD026EA26090ED300F6CD0C /* SplitterComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterComponent.swift; sourceTree = "<group>"; };
+		4AD44AD6262F40E3003375C4 /* SumOfBestComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SumOfBestComponent.swift; sourceTree = "<group>"; };
+		4AD44ADA262F463C003375C4 /* SumOfBestComponent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SumOfBestComponent.xib; sourceTree = "<group>"; };
+		4AD44ADE262F4CFB003375C4 /* TitleComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleComponent.swift; sourceTree = "<group>"; };
 		4AD77D15240ECA2800CD65AD /* ColumnOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnOptionsViewController.swift; sourceTree = "<group>"; };
 		4ADE9225240F1FB900E0D99E /* InfoPopoverTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPopoverTabViewController.swift; sourceTree = "<group>"; };
 		4ADFAE4823E4A0760049F57A /* QuickAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickAlert.swift; sourceTree = "<group>"; };
 		4AE168A126091B2E00A6169B /* LayoutEditorTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutEditorTabViewController.swift; sourceTree = "<group>"; };
 		4AE168A526091CA900A6169B /* LayoutEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutEditorViewController.swift; sourceTree = "<group>"; };
+		4AE2CF3A2631F43100CC6CF7 /* SplitsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitsComponent.swift; sourceTree = "<group>"; };
 		4AE82A1524BFD4400044B6D3 /* WelcomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		4AE82A1B24BFD6060044B6D3 /* VisualEffectViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectViewRepresentable.swift; sourceTree = "<group>"; };
 		4AEA331A2629F023001012BD /* TimeRow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeRow.xib; sourceTree = "<group>"; };
@@ -280,6 +295,7 @@
 				4AA357B52416F79900219E65 /* liblivesplit_core.a in Frameworks */,
 				4A214A70255C90720006FD9F /* SplitsIOKit in Frameworks */,
 				4A1767B224EE095100571A6C /* Preferences in Frameworks */,
+				4A7F94AA26332DBE002861E3 /* Codextended in Frameworks */,
 				4A6B4F7423F07C3900CB781F /* libresolv.tbd in Frameworks */,
 				4AFD0F8D25C38F4C003D3171 /* AppCenterAnalytics in Frameworks */,
 				CA8419FF140C00045EBA5B68 /* Pods_Splitter.framework in Frameworks */,
@@ -414,7 +430,6 @@
 				4AAD4709248432540094A31F /* Colors.swift */,
 				4AA9ADB92608EFD3009B77B5 /* Components */,
 				4A1C1466240ED2F00056B104 /* Options Windows */,
-				4AC24DBD23EB4F73003008BF /* Split Table View */,
 				4A9FCC782411A069000937A2 /* Controls */,
 			);
 			path = "View Controller";
@@ -469,6 +484,7 @@
 				4AFCC52323C63F1E002216F1 /* Prefs */,
 				4A75578C255C426A00ACE826 /* SplitterDocLSS.icns */,
 				4A75579C255C47F300ACE826 /* SplitterDocSplitsio.icns */,
+				4A9CA2A6263A2D4C0054D624 /* Extensions.swift */,
 				4A230E9223B00A1D00959C57 /* AppDelegate.swift */,
 				4AFCC52423C63F3E002216F1 /* UI */,
 				4A7DDCE123BBDD0900A36AD1 /* Credits.html */,
@@ -536,10 +552,12 @@
 		4AA9ADB92608EFD3009B77B5 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				4AC24DBD23EB4F73003008BF /* SplitsComponent */,
+				4ACFB1C4262F52BF00EA79B6 /* TitleComponent */,
 				4AEA33132629EFC4001012BD /* TimeRow */,
 				4AD026EA26090ED300F6CD0C /* SplitterComponent.swift */,
-				4A561385262CFB7F00702B0E /* OptionsRow.swift */,
-				4A561389262CFB8900702B0E /* OptionsRow.xib */,
+				4ACFB1CA262F530000EA79B6 /* SumOfBestrComponent */,
+				4ACFB1C7262F52F700EA79B6 /* OptionsRow */,
 				4AEA33142629EFCE001012BD /* PrevNextRow */,
 				4AEA33172629EFD7001012BD /* StartRow */,
 			);
@@ -555,17 +573,46 @@
 			path = ColorsView;
 			sourceTree = "<group>";
 		};
-		4AC24DBD23EB4F73003008BF /* Split Table View */ = {
+		4AC24DBD23EB4F73003008BF /* SplitsComponent */ = {
 			isa = PBXGroup;
 			children = (
-				4AC24DB923EB4EC5003008BF /* Split Table Row.swift */,
-				4AC24DBB23EB4F17003008BF /* Split Table View.swift */,
-				4A9D8BF5243A38C40048EA15 /* SplitterTableView.swift */,
+				4AE2CF3A2631F43100CC6CF7 /* SplitsComponent.swift */,
+				4ACFB1E6262F53B100EA79B6 /* SplitsComponent.xib */,
+				4AC24DB923EB4EC5003008BF /* SplitTableRow.swift */,
 				4A9DB791240847E40000D1B4 /* TimeSplitColumn.swift */,
-				4A66A43123DE2C88005952FA /* SplitTableViewColumnIdentifiers.swift */,
+				4A9D8BF5243A38C40048EA15 /* SplitterTableView.swift */,
+				4AC24DBB23EB4F17003008BF /* SplitterTableDelegate.swift */,
+				4A66A43123DE2C88005952FA /* SplitTableColumnIdentifiers.swift */,
 				4A45BCF624084B3800F1A223 /* TimeSplitCell.swift */,
 			);
-			path = "Split Table View";
+			path = SplitsComponent;
+			sourceTree = "<group>";
+		};
+		4ACFB1C4262F52BF00EA79B6 /* TitleComponent */ = {
+			isa = PBXGroup;
+			children = (
+				4ACFB1BC262F4E9700EA79B6 /* TitleComponent.xib */,
+				4AD44ADE262F4CFB003375C4 /* TitleComponent.swift */,
+			);
+			path = TitleComponent;
+			sourceTree = "<group>";
+		};
+		4ACFB1C7262F52F700EA79B6 /* OptionsRow */ = {
+			isa = PBXGroup;
+			children = (
+				4A561385262CFB7F00702B0E /* OptionsRow.swift */,
+				4A561389262CFB8900702B0E /* OptionsRow.xib */,
+			);
+			path = OptionsRow;
+			sourceTree = "<group>";
+		};
+		4ACFB1CA262F530000EA79B6 /* SumOfBestrComponent */ = {
+			isa = PBXGroup;
+			children = (
+				4AD44AD6262F40E3003375C4 /* SumOfBestComponent.swift */,
+				4AD44ADA262F463C003375C4 /* SumOfBestComponent.xib */,
+			);
+			path = SumOfBestrComponent;
 			sourceTree = "<group>";
 		};
 		4AD780C323D5065B0068CDE3 /* Data */ = {
@@ -584,7 +631,7 @@
 			isa = PBXGroup;
 			children = (
 				4A87265423BD53F8003A14AF /* runInfo.swift */,
-				4A327B0C23F491FB00A5CBFF /* splitterAppearance.swift */,
+				4A327B0C23F491FB00A5CBFF /* SplitterAppearance.swift */,
 				4A230E9623B00A1D00959C57 /* Document.swift */,
 			);
 			path = Native;
@@ -729,6 +776,7 @@
 				4A214A6F255C90720006FD9F /* SplitsIOKit */,
 				4AFD0F8A25C38F4C003D3171 /* AppCenterCrashes */,
 				4AFD0F8C25C38F4C003D3171 /* AppCenterAnalytics */,
+				4A7F94A926332DBE002861E3 /* Codextended */,
 			);
 			productName = Splitter;
 			productReference = 4A230E8F23B00A1D00959C57 /* Splitter.app */;
@@ -807,6 +855,7 @@
 				4AB5627724338FB000D7F8D1 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				4A1767B024EE095100571A6C /* XCRemoteSwiftPackageReference "Preferences" */,
 				4AFD0F8725C38F4C003D3171 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */,
+				4A7F94A826332DBE002861E3 /* XCRemoteSwiftPackageReference "Codextended" */,
 			);
 			productRefGroup = 4A230E9023B00A1D00959C57 /* Products */;
 			projectDirPath = "";
@@ -826,6 +875,7 @@
 			files = (
 				4A4D392323C4FAE500BF3FCD /* HotkeysViewController.xib in Resources */,
 				4AEA928423C4F140004F6CF9 /* DefaultPreferenceViewController.xib in Resources */,
+				4AD44ADB262F463C003375C4 /* SumOfBestComponent.xib in Resources */,
 				4A7DDCE223BBDD0900A36AD1 /* Credits.html in Resources */,
 				4A4ACF7C2609185C00C04DD6 /* LayoutEditor.storyboard in Resources */,
 				4AF9E8AC24CE31CA00DFD5BE /* DebugPrefsViewController.xib in Resources */,
@@ -838,12 +888,14 @@
 				4A6A965924EC3516008EFD2B /* LoadingViewController.xib in Resources */,
 				4A5F10AE23CFAA1F00DA043B /* Assets.xcassets in Resources */,
 				4A75578D255C426A00ACE826 /* SplitterDocLSS.icns in Resources */,
+				4ACFB1E7262F53B100EA79B6 /* SplitsComponent.xib in Resources */,
 				4A0981A724E34DE400E44792 /* AccountButtonView.xib in Resources */,
 				4A05EEFD24D762E200873D07 /* DownloadWindow.storyboard in Resources */,
 				4A230E9C23B00A1E00959C57 /* Main.storyboard in Resources */,
 				4A56138A262CFB8900702B0E /* OptionsRow.xib in Resources */,
 				4A0981A024E3089B00E44792 /* LoginView.xib in Resources */,
 				4A61438624801A37007C38E0 /* ColorsView.xib in Resources */,
+				4ACFB1BD262F4E9700EA79B6 /* TitleComponent.xib in Resources */,
 				4AEA331B2629F024001012BD /* TimeRow.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -950,32 +1002,34 @@
 				4A6726EA23F05D17006F4BC4 /* LiveSplit.swift in Sources */,
 				4A0981B224E4853A00E44792 /* AccountViewController.swift in Sources */,
 				4A9B9606261DF26D000FC89C /* TimeRow.swift in Sources */,
-				4AC24DBA23EB4EC5003008BF /* Split Table Row.swift in Sources */,
+				4AC24DBA23EB4EC5003008BF /* SplitTableRow.swift in Sources */,
 				4AE168A626091CA900A6169B /* LayoutEditorViewController.swift in Sources */,
 				4A4070E1241AE2E0000927A5 /* AppearanceViewController.swift in Sources */,
 				4A87265523BD53F8003A14AF /* runInfo.swift in Sources */,
 				4A9FCC7C2411A0CE000937A2 /* TextFields.swift in Sources */,
-				4A327B0D23F491FB00A5CBFF /* splitterAppearance.swift in Sources */,
+				4A327B0D23F491FB00A5CBFF /* SplitterAppearance.swift in Sources */,
 				4A230E9523B00A1D00959C57 /* ViewController.swift in Sources */,
 				4A6A3BE623CD6463002C20AE /* BlankWindowController.swift in Sources */,
 				4AEC4C00240F564B00B01799 /* Time Conversion.swift in Sources */,
 				4AB92AC2261F69ED00E8B814 /* ThemedPopUpButton.swift in Sources */,
 				4AEC4C02240F5BA300B01799 /* RunOptionsViewController.swift in Sources */,
-				4A66A43223DE2C88005952FA /* SplitTableViewColumnIdentifiers.swift in Sources */,
+				4A66A43223DE2C88005952FA /* SplitTableColumnIdentifiers.swift in Sources */,
 				4A230E9323B00A1D00959C57 /* AppDelegate.swift in Sources */,
 				4AAD470A248432540094A31F /* Colors.swift in Sources */,
 				4A9621F624C62401003CF23C /* ActivityIndicatorRepresentable.swift in Sources */,
-				4AC24DBC23EB4F17003008BF /* Split Table View.swift in Sources */,
+				4AC24DBC23EB4F17003008BF /* SplitterTableDelegate.swift in Sources */,
 				4A18663223C5376900FEEE54 /* SettingsKeys.swift in Sources */,
 				4A1657B123EA4EF60008CB5F /* Menu Items.swift in Sources */,
 				4ADFAE4923E4A0760049F57A /* QuickAlert.swift in Sources */,
 				4A561386262CFB7F00702B0E /* OptionsRow.swift in Sources */,
 				4A18662E23C51D2800FEEE54 /* UISettings.swift in Sources */,
+				4AD44ADF262F4CFB003375C4 /* TitleComponent.swift in Sources */,
 				4AA3DAB423E23DA900ADFA4A /* IconButton.swift in Sources */,
 				4A18663023C5257800FEEE54 /* MenuItemConstants.swift in Sources */,
 				4A09E2A824D75D6B0013D7BC /* CategoryViewController.swift in Sources */,
 				4A0F716323F4A9E400E5948E /* SplitterDocBundle.swift in Sources */,
 				4A4D392223C4FAE500BF3FCD /* HotkeysViewController.swift in Sources */,
+				4AD44AD7262F40E3003375C4 /* SumOfBestComponent.swift in Sources */,
 				4A09E29E24D7555E0013D7BC /* DownloadView.swift in Sources */,
 				4A61438424801A28007C38E0 /* ColorsView.swift in Sources */,
 				4AD026EB26090ED400F6CD0C /* SplitterComponent.swift in Sources */,
@@ -1009,6 +1063,7 @@
 				4AB92AC6261F6CD600E8B814 /* ThemedTextField.swift in Sources */,
 				4AB92ABE261F67B700E8B814 /* ThemedButton.swift in Sources */,
 				4A3BDFA123E4C3B6001EA7FF /* DefaultHotkeys.swift in Sources */,
+				4A9CA2A7263A2D4C0054D624 /* Extensions.swift in Sources */,
 				4A388FC525D4AF2B00A63C9E /* PrevNextRow.swift in Sources */,
 				4A45BCF724084B3800F1A223 /* TimeSplitCell.swift in Sources */,
 				4A87265723BD5423003A14AF /* PrefPanes.swift in Sources */,
@@ -1020,6 +1075,7 @@
 				4AE82A1624BFD4400044B6D3 /* WelcomeView.swift in Sources */,
 				4AE82A1C24BFD6060044B6D3 /* VisualEffectViewRepresentable.swift in Sources */,
 				4A6A3BE223CD1C7A002C20AE /* Storage.swift in Sources */,
+				4AE2CF3B2631F43100CC6CF7 /* SplitsComponent.swift in Sources */,
 				4A99813023F9ECE50037BF98 /* KeybindHandlers.swift in Sources */,
 				4AEA927E23C4EF32004F6CF9 /* MainWindowController.swift in Sources */,
 				4A9D8BF6243A38C40048EA15 /* SplitterTableView.swift in Sources */,
@@ -1415,7 +1471,15 @@
 			repositoryURL = "https://github.com/sindresorhus/Preferences";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.1.0;
+				minimumVersion = 2.2.1;
+			};
+		};
+		4A7F94A826332DBE002861E3 /* XCRemoteSwiftPackageReference "Codextended" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/JohnSundell/Codextended.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.3.0;
 			};
 		};
 		4AB5627724338FB000D7F8D1 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
@@ -1453,6 +1517,11 @@
 		4A214A6F255C90720006FD9F /* SplitsIOKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SplitsIOKit;
+		};
+		4A7F94A926332DBE002861E3 /* Codextended */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4A7F94A826332DBE002861E3 /* XCRemoteSwiftPackageReference "Codextended" */;
+			productName = Codextended;
 		};
 		4ABB38A7255C79B00037536E /* SwiftyJSON */ = {
 			isa = XCSwiftPackageProductDependency;

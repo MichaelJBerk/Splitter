@@ -36,7 +36,7 @@ extension ViewController {
 	}
 	
 	@IBAction func stopMenuItem(_ sender: Any?) {
-		stopTimer()
+		cancelRun()
 	}
 
 	@IBAction func prevSplitMenuItem(_ sender: Any?) {
@@ -55,7 +55,7 @@ extension ViewController {
 		displayInfoPopover(sender)
 	}
 	@IBAction func showColumnOptionsMenuItem(_ sender: Any) {
-		displayColumnOptionsPopover(sender)
+		displayColumnOptionsAsWindow(sender: sender)
 	}
 	
 	@IBAction func addRowMenuItem(sender: Any) {
@@ -68,15 +68,6 @@ extension ViewController {
 	
 	//MARK: Appearance Menu
 	
-	
-	///Action for Menu Bar that allows the user to hide or show the buttons in the UI
-	@IBAction func toggleShowHideUIMenuItem(_ sender: Any) {
-		if let menuItem = sender as? NSMenuItem {
-			buttonHidden.toggle()
-			showHideUI()
-			
-		}
-	}
 		
 	//MARK: Window Menu
 	@IBAction func toggleKeepOnTop(_ sender: Any? ) {

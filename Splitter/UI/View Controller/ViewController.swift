@@ -11,54 +11,33 @@ import Preferences
 import AppCenter
 import AppCenterCrashes
 import SplitsIOKit
-//Only doing this to show the TCTestView
-import SwiftUI
 
 class ViewController: NSViewController {
 	
 	//MARK: - Setting Up Buttons
-	var shouldTrashCanBeHidden: Bool {
-		if buttonHidden {
-			return true
-		}
-		switch self.timerState {
-			case .stopped:
-				return false
-			default:
-				return true
-		}
+	weak var trashCanPopupButton: NSPopUpButton!
+	weak var stopButton: ThemedButton!
+	weak var startButton: ThemedButton!
+	weak var nextButton: ThemedButton!
+	weak var prevButton: ThemedButton!
+	weak var plusButton: ThemedButton!
+	weak var minusButton: ThemedButton!
+	weak var gameIconButton: MetadataImage!
+	weak var infoPanelPopoverButton: ThemedButton!
+	weak var columnOptionsPopoverButton: ThemedButton!
+	
+	override var undoManager: UndoManager? {
+		view.window?.windowController?.document?.undoManager
 	}
-	var shouldStopButtonBeHidden: Bool {
-		stopButton.isEnabled = true
-		if buttonHidden {
-			return true
-		}
-		switch self.timerState {
-			case .stopped:
-				return true
-			default:
-				return false
-		}
-	}
-	@IBOutlet weak var trashCanPopupButton: NSPopUpButton!
-	@IBOutlet weak var stopButton: NSButton!
-	@IBOutlet weak var startButton: NSButton!
-	@IBOutlet weak var nextButton: NSButton!
-	@IBOutlet weak var prevButton: NSButton!
-	@IBOutlet weak var plusButton: NSButton!
-	@IBOutlet weak var minusButton: NSButton!
-	@IBOutlet weak var gameIconButton: MetadataImage!
-	@IBOutlet weak var infoPanelPopoverButton: ThemedButton!
-	@IBOutlet weak var columnOptionsPopoverButton: NSButton!
 	
 //MARK: - Container Views
-	@IBOutlet weak var metadataView: NSView!
-	@IBOutlet weak var innerMetatdataStack: NSStackView!
+	@IBOutlet weak var mainStackView: DraggingStackView!
 	@IBOutlet weak var tableButtonsStack: NSStackView!
 	@IBOutlet weak var bottomStackView: DraggingStackView!
 	
 //MARK: - Popovers
 	var columnOptionsPopover: NSPopover?
+	var columnOptionsWindow: NSWindow?
 	var infoPanelPopover: NSPopover?
 	
 	
@@ -90,30 +69,21 @@ class ViewController: NSViewController {
 	}
 	
 //MARK: - Colors
-	var bgColor: NSColor = .splitterDefaultColor {
-		didSet {
-			view.window?.backgroundColor = self.bgColor
-			if self.bgColor.isLight()! {
-				view.window?.appearance = NSAppearance(named: .aqua)
-			} else {
-				view.window?.appearance = NSAppearance(named: .darkAqua)
-			}
-		}
-	}
+	/**
+	The only color managed directly by ViewController is `selectedColor` - the others are managed by `run`.
+	This is because of the weirdness with how LSL files can store color as different objects. We'll take care of that someother time.
+	*/
 	
+	///
 	var selectedColor: NSColor = .splitterRowSelected
-	
-	var diffsLongerColor: NSColor = .red
-	var diffsShorterColor: NSColor = .green
-	var diffsNeutralColor: NSColor = .blue
 	
 	
 //MARK: - Other UI Elements
-	@IBOutlet weak var runTitleField: MetadataField!
-	@IBOutlet weak var categoryField: MetadataField!
+	@IBOutlet weak var runTitleField: NSTextField!
+	@IBOutlet weak var categoryField: NSTextField!
 	@IBOutlet weak var timerLabel: NSTextField!
 	@IBOutlet weak var currentTimeLabel: NSTextField!
-	var attemptField: MetadataField!
+	var attemptField: NSTextField!
 	@IBOutlet weak var splitsTableView: SplitterTableView!
 	
 	var cellIdentifier: NSUserInterfaceItemIdentifier?
@@ -146,12 +116,12 @@ class ViewController: NSViewController {
 	///The timer's state - either stopped, running, or paused
 	var timerState: TimerState = .stopped {
 		didSet {
-			stopButton.isHidden = shouldStopButtonBeHidden
-			trashCanPopupButton.isHidden = shouldTrashCanBeHidden
+			stopButton.isHidden = startRow.shouldStopButtonBeHidden
+			trashCanPopupButton.isHidden = startRow.shouldTrashCanBeHidden
 			let prevSplitItem = view.window?.menu?.item(withIdentifier: menuIdentifiers.runMenu.back)
 			if timerState == .stopped {
 				setMenuItemEnabled(item: timerStopItem, enabled: false)
-				timerStopItem?.title = "Stop Timer"
+				timerStopItem?.title = "Cancel Run"
 				startSplitItem?.title = "Start Timer"
 				
 				setMenuItemEnabled(item: startSplitItem, enabled: true)
@@ -163,7 +133,7 @@ class ViewController: NSViewController {
 				stopTimer()
 				self.splitsTableView.reloadData(forRowIndexes: IndexSet(arrayLiteral: 0), columnIndexes: IndexSet(arrayLiteral: 0,1,2,3,4,5))
 			} else if timerState == .running {
-				timerStopItem?.title = "Stop Timer"
+				timerStopItem?.title = "Cancel Run"
 				setMenuItemEnabled(item: timerStopItem, enabled: true)
 				
 				startSplitItem?.title = "Split"
@@ -179,7 +149,7 @@ class ViewController: NSViewController {
 				
 			} else if timerState == .paused {
 				setMenuItemEnabled(item: timerStopItem, enabled: true)
-				timerStopItem?.title = "Stop Timer"
+				timerStopItem?.title = "Cancel Run"
 				setMenuItemEnabled(item: prevSplitItem, enabled: false)
 				setMenuItemEnabled(item: pauseMenuItem, enabled: true)
 				
@@ -241,7 +211,6 @@ class ViewController: NSViewController {
 		}
 	}
 	
-	var gameVersion: String?
 	var gameRegion: String {
 		get {
 			run.region
@@ -259,49 +228,11 @@ class ViewController: NSViewController {
 	var splitsIOSchemaVersion = "v1.0.1"
 	var splitsIOData: SplitsIOExchangeFormat!
 	var runInfoData: runInfo?
-	var lsPointer: UnsafeMutableRawPointer?
-	var appearance: splitterAppearance?
+	var appearance: SplitterAppearance?
 	var shouldLoadSplits = false
 	
 	//MARK: Splits.io Uploading
 	var splitsIOUploader: SplitsIOUploader!
-	
-	//MARK: - Icon Data
-	
-	var iconArray: [NSImage?] {
-		get {
-			var icons: [NSImage?] = []
-			var i = 0
-			while i < currentSplits.count {
-				let cS = currentSplits[i]
-				if cS.splitIcon != nil {
-					icons.append(cS.splitIcon)
-				} else {
-					icons.append(nil)
-				}
-					
-					i = i + 1
-				}
-			return icons
-		}
-		set(icons) {
-			var i = 0
-			var cI: NSImage?
-			while i < currentSplits.count {
-				if i > icons.count - 1 {
-					cI = nil
-				}
-				else {
-					cI = icons[i]
-				}
-				currentSplits[i].splitIcon = cI
-				i = i + 1
-			}
-			splitsTableView.reloadData()
-		}
-	}
-	
-	
 	
 	//MARK: - Settings
 	var enabledMenuItems:[NSUserInterfaceItemIdentifier: Bool] = [:]
@@ -315,34 +246,65 @@ class ViewController: NSViewController {
 	var hotkeysController: HotkeysViewController?
 	
 	@objc func breakFunc() {
-		for window in NSApp.windows {
-			let w = window.styleMask
-			print(window.title)
-			
-		}
+		run.addSegment(title: "Add", at: 2)
+		splitsTableView.reloadData()
 	}
 	
 	var breakID = NSUserInterfaceItemIdentifier("break")
 	
 	override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
 		super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-		
 	}
 	
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)
-		
 	}
 	
 	var timeRow: TimeRow!
 	var startRow: StartRow!
 	var prevNextRow: PrevNextRow!
 	var optionsRow: OptionsRow!
+	var titleRow: TitleComponent!
+	var scrollViewComponent: SplitsComponent!
+	
+	func addToStack(view: SplitterComponent) {
+		let position: Int = mainStackView.arrangedSubviews.count
+		mainStackView.insertArrangedSubview(view, at: position)
+		NSLayoutConstraint.activate([
+			view.leadingConstraint,
+			view.trailingConstraint
+		])
+		mainStackView.setCustomSpacing(view.afterSpacing, after: view)
+	}
+	func setupTitleRow() {
+		titleRow = TitleComponent.instantiateView()
+		titleRow.viewController = self
+		titleRow.run = self.run
+		titleRow.setupDefaultGameIcon()
+		addToStack(view: titleRow)
+		runTitleField = titleRow.gameTitleField
+		categoryField = titleRow.gameSubtitleField
+		gameIconButton = titleRow.gameIconButton
+		infoPanelPopoverButton = titleRow.infoButton
+	}
+	
+	func setupSplitTable() {
+		scrollViewComponent = SplitsComponent.instantiateView()
+		scrollViewComponent.viewController = self
+		scrollViewComponent.run = self.run
+		addToStack(view: scrollViewComponent)
+		let splitTable = scrollViewComponent.documentView as! SplitterTableView
+		splitsTableView = splitTable
+		splitsTableView.viewController = self
+		splitsTableView.delegate = self
+		splitsTableView.dataSource = self
+	}
+	
+	
 	func setupOptionsRow() {
-		optionsRow = OptionsRow.instantiateView()//.createFromNib()
-//		optionsRow.loadViewFromNib()
-//		NSNib(nibNamed: "OptionsRow", bundle: nil)?.instantiate(withOwner: optionsRow, topLevelObjects: nil)
+		optionsRow = OptionsRow.instantiateView()
 		optionsRow.viewController = self
+		optionsRow.run = self.run
 		
 		addToStack(view: optionsRow)
 		plusButton = optionsRow.plusButton
@@ -356,15 +318,16 @@ class ViewController: NSViewController {
 		prevNextRow = PrevNextRow()
 		prevNextRow.loadViewFromNib()
 		prevNextRow.viewController = self
+		prevNextRow.run = self.run
 		
 		addToStack(view: prevNextRow)
 		prevButton = prevNextRow.prevButton
 		nextButton = prevNextRow.nextButton
 	}
 	func setupStartRow() {
-		startRow = StartRow()
-		startRow.loadViewFromNib()
+		startRow = StartRow.instantiateView()
 		startRow.viewController = self
+		startRow.run = self.run
 		
 		addToStack(view: startRow)
 		startButton = startRow.startButton
@@ -372,44 +335,56 @@ class ViewController: NSViewController {
 		trashCanPopupButton = startRow.trashCanPopupButton
 	}
 	func setupTimeRow() {
-		timeRow = TimeRow()
-		timeRow.loadViewFromNib()
+		timeRow = TimeRow.instantiateView()
 		timeRow.viewController = self
+		timeRow.run = self.run
 		addToStack(view: timeRow)
 		
 		timerLabel = timeRow.timeLabel
 		attemptField = timeRow.attemptsField
 	}
 	
-	//MARK: - Main Functions
-	override func viewWillAppear() {
-		super.viewWillAppear()
+	var sumOfBestRow: SumOfBestComponent?
+	func setupSumOfBestRow() {
+		sumOfBestRow = SumOfBestComponent.instantiateView()
+		sumOfBestRow?.viewController = self
+		sumOfBestRow?.run = self.run
+		addToStack(view: sumOfBestRow!)
+		run.addSumOfBest()
+		print(run.layout.stateAsJson(run.timer.lsTimer))
+		view.window?.layoutIfNeeded()
+	}
+	func removeSumOfBestRow() {
+		if let row = bottomStackView.views.first(where: {$0 is SumOfBestComponent}) {
+			bottomStackView.removeView(row)
+		}
+	}
+	
+	private func setupDefaultStack() {
+		setupTitleRow()
+		setupSplitTable()
 		setupOptionsRow()
 		setupTimeRow()
 		setupStartRow()
 		setupPrevNextRow()
+	}
+	///Handles various window-related tasks
+	private func windowSetup() {
 		
-		stopButton.image = nil
-		let tsItem = trashCanPopupButton.menu?.items[0]
-		tsItem?.image = nil
-		infoPanelPopoverButton.image = nil
-		if #available(macOS 11.0, *) {
-			infoPanelPopoverButton.image = NSImage(systemSymbolName: "gearshape.fill", accessibilityDescription: nil)
-			stopButton.image = NSImage(systemSymbolName: "stop.circle.fill", accessibilityDescription: nil)
-			tsItem?.image = NSImage(systemSymbolName: "trash", accessibilityDescription: nil)
-		} else {
-			stopButton.image = NSImage(named: "stop")
-			tsItem?.image = NSImage(named: "trash")
-			infoPanelPopoverButton.image = NSImage(named: "gearshape")
-			
-		}
 		if let welcome = AppDelegate.shared?.welcomeWindow {
+			//Close the welcome window, if it's already open
 			welcome.close()
 		}
-		run.tableColor = .splitterTableViewColor
-        if #available(macOS 11.0, *) {
-            splitsTableView.style = .fullWidth
-        }
+		view.window?.delegate = self
+		view.window?.isMovableByWindowBackground = true
+		
+		view.window?.standardWindowButton(.zoomButton)?.isHidden = true
+		view.window?.standardWindowButton(.miniaturizeButton)?.isHidden = true
+	}
+	///Handles various tasks to set up certain keyboard commands, as well as the Touch Bar
+	private func keyAndMenuSetup() {
+		touchBarDelegate = RunTouchBarDelegate(splitFunc: startSplitTimer, pauseFunc: pauseResumeTimer, prevFunc: goToPrevSplit, stopFunc: stopTimer, sourceVC: self)
+		
 		#if DEBUG
 		let breakMI = NSMenuItem(title: "Break", action: #selector(breakFunc), keyEquivalent: "b")
 		breakMI.keyEquivalentModifierMask = .command
@@ -417,49 +392,12 @@ class ViewController: NSViewController {
 		NSApp.mainMenu?.item(at: 0)?.submenu?.addItem(breakMI)
 		#endif
 		
-		view.window?.delegate = self
-		
-		touchBarDelegate = RunTouchBarDelegate(splitFunc: startSplitTimer, pauseFunc: pauseResumeTimer, prevFunc: goToPrevSplit, stopFunc: stopTimer, sourceVC: self)
-		
-		splitsTableView.delegate = self
-		splitsTableView.dataSource = self
-		
-		view.window?.isMovableByWindowBackground = true
-		
-		if startButton.acceptsFirstResponder {
-			startButton.window?.makeFirstResponder(startButton)
-		}
-		
-		view.window?.standardWindowButton(.zoomButton)?.isHidden = true
-		view.window?.standardWindowButton(.miniaturizeButton)?.isHidden = true
-		
 		setMenuItemEnabled(item: timerStopItem, enabled: false)
-	
-		if appearance != nil {
-			setSplitterAppearance(appearance: appearance!)
-		} else {
-			setUpDefaults()
-		}
-		if fileID == nil {
-			fileID = UUID().uuidString
-		}
-		view.window?.setFrameAutosaveName(fileID!)
-		if currentSplits.count == 0 {
-			addBlankSplit()
-		}
-		
-		view.window?.makeFirstResponder(splitsTableView)
-		
 		setRightClickMenus()
-		attemptField.formatter = OnlyIntegerValueFormatter()
-		
-		splitsIOUploader = SplitsIOUploader(viewController: self)
-		
-		//This line of code looks redundant, but it's here in order to make the timerState's property observer fire
-		let ts = timerState
-		timerState = ts
-		
-		
+	}
+	
+	///Begins observing change-of-phase notifications
+	private func addPhaseChangedObserver() {
 		NotificationCenter.default.addObserver(forName: .phaseChanged, object: nil, queue: nil, using: { notification in
 			let old: Int = Int(notification.userInfo!["oldPhase"] as! UInt8)
 			let phase: Int = Int(notification.userInfo!["phase"] as! UInt8)
@@ -474,16 +412,106 @@ class ViewController: NSViewController {
 			}
 			
 		})
-		updateTextFields()
-		gameIconButton.run = self.run
-		if let gi = run.gameIcon {
-			gameIconButton.image = gi
-		} else {
-			gameIconButton.image = .gameControllerIcon
+	}
+	///Loads the data from the supplied `runInfo` file
+	private func loadRunInfo() {
+		if runInfoData != nil {
+			if let doc = document as? Document,
+			   let v = doc.versionUsed {
+				if v < 4 {
+					loadFromOldRunInfo(icons: doc.iconArray)
+				} else {
+					loadFromRunInfo()
+					if let run = doc.run {
+						self.run = run
+						self.run.updateLayoutState()
+						undoManager?.disableUndoRegistration()
+						titleRow.setupDefaultGameIcon()
+						undoManager?.enableUndoRegistration()
+					}
+				}
+				if let gameIcon = doc.gameIcon {
+					undoManager?.disableUndoRegistration()
+					self.run.gameIcon = gameIcon
+					self.run.updateLayoutState()
+					undoManager?.enableUndoRegistration()
+				}
+			}
 		}
+	}
+	var document: SplitterDoc!
+	
+	//MARK: - Main Functions
+	override func viewWillAppear() {
+		super.viewWillAppear()
+		if let components = appearance?.components {
+			for component in components {
+				switch component.type {
+				case .title:
+					setupTitleRow()
+				case .splits:
+					setupSplitTable()
+				case .tableOptions:
+					setupOptionsRow()
+				case .time:
+					setupTimeRow()
+				case .start:
+					setupStartRow()
+				case .prevNext:
+					setupPrevNextRow()
+				}
+				try? (mainStackView.views.last as! SplitterComponent).loadState(from: component)
+			}
+		} else {
+			setupDefaultStack()
+		}
+		windowSetup()
+		loadRunInfo()
+		keyAndMenuSetup()
+		run.document = document
+	
+		//Load the SplitterAppearance file if it exists. Otherwise, use the default appearance
+		if appearance != nil {
+			setSplitterAppearance(appearance: appearance!)
+		} else {
+			setUpDefaults()
+		}
+		
+		//Handle FileID, for proper window placement restoration
+		if fileID == nil {
+			fileID = UUID().uuidString
+		}
+		view.window?.setFrameAutosaveName(fileID!)
+		
+		//Need to add a blank split b/c of how LiveSplit-Core works
+		if currentSplits.count == 0 {
+			addBlankSplit()
+		}
+		
+		view.window?.makeFirstResponder(splitsTableView)
+		
+		splitsIOUploader = SplitsIOUploader(viewController: self)
+		
+		//This line of code looks redundant, but it's here in order to make the timerState's property observer fire
+		let ts = timerState
+		timerState = ts
+		
+		addPhaseChangedObserver()
+		updateTextFields()
+		
 		print("VWA Done!")
 		setColorForControls()
+		
+		NotificationCenter.default.addObserver(forName: .runEdited, object: nil, queue: nil, using: { notification in
+			self.updateTextFields()
+			self.updateTimer()
+		})
+		NotificationCenter.default.addObserver(forName: .splitsEdited, object: nil, queue: nil, using: { notification in
+			self.splitsTableView.reloadData()
+		})
+		
 	}
+	
 	///Updates the run, with the current values from the view controller
 	func updateRun() {
 		run.title = runTitleField.stringValue
@@ -499,22 +527,6 @@ class ViewController: NSViewController {
 		attemptField.stringValue = "\(run.attempts)"
 	}
 	
-	func addToStack(view: NSView) {
-		bottomStackView.insertArrangedSubview(view, at: bottomStackView.arrangedSubviews.count)
-		if let bottomSuper = bottomStackView.superview {
-			NSLayoutConstraint.activate([
-				view.leftAnchor.constraint(equalTo: bottomSuper.leftAnchor, constant: 7),
-				view.rightAnchor.constraint(equalTo: bottomSuper.rightAnchor, constant: -7)
-			])
-		}
-	}
-	
-	func setupConstraints() {
-		gameToViewEdgeConstraint = NSLayoutConstraint(item: runTitleField.superview!, attribute: .trailing, relatedBy: .equal, toItem: runTitleField, attribute: .trailing, multiplier: 1, constant: 8)
-		gameToViewEdgeConstraint?.isActive = false
-		categoryToViewEdgeConstraint = NSLayoutConstraint(item: categoryField.superview!, attribute: .trailing, relatedBy: .equal, toItem: categoryField, attribute: .trailing, multiplier: 1, constant: 8)
-		categoryToViewEdgeConstraint?.isActive = false
-	}
 	
 	func setMenuItemEnabled(item: NSMenuItem?, enabled: Bool) {
 		if let id = item?.identifier {
@@ -562,13 +574,10 @@ class ViewController: NSViewController {
 		
 	}
 	
+	///Sets up default appearance. Used when opening a new file, or any other case where there's no `splitterAppearance` file
 	func setUpDefaults() {
 		titleBarHidden = Settings.hideTitleBar
 		showHideTitleBar()
-		
-		
-		buttonHidden = Settings.hideUIButtons
-		 showHideUI()
 		
 		windowFloat = Settings.floatWindow
 		setFloatingWindow()
@@ -581,24 +590,21 @@ class ViewController: NSViewController {
 				c.width = 86
 			}
 		}
-		
-		
 	}
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		if run == nil {
-			run = SplitterRun(run: Run())
+			run = SplitterRun(run: Run(), isNewRun: true)
 		}
 		self.view.wantsLayer = true
-		splitsTableView.reloadData()
 	}
 	
 	override func viewWillDisappear() {
 		infoPanelPopover?.contentViewController?.view.window?.close()
 		columnOptionsPopover?.contentViewController?.view.window?.close()
+		columnOptionsWindow?.close()
 		super.viewWillDisappear()
-
 	}
 	
 	///Displays the "get info" popover
@@ -606,13 +612,14 @@ class ViewController: NSViewController {
 		infoPanelPopover?.contentViewController?.view.window?.close()
 		let destination = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: InfoPopoverTabViewController.storyboardID) as! InfoPopoverTabViewController
 		destination.delegate = self
+		destination.run = self.run
 		let pop = NSPopover()
 		pop.delegate = self
 		pop.contentViewController = destination
 		pop.contentSize = NSSize(width: 450, height: 325)
 		pop.behavior = .semitransient
 		pop.appearance = NSAppearance(named: .vibrantDark)
-		pop.show(relativeTo: infoPanelPopoverButton.frame, of: innerMetatdataStack, preferredEdge: .maxX)
+		pop.show(relativeTo: infoPanelPopoverButton.frame, of: titleRow, preferredEdge: .maxX)
 		infoPanelPopover = pop
 		destination.setupTabViews()
 	}
@@ -632,42 +639,49 @@ class ViewController: NSViewController {
 		pop.contentViewController = tabView
 		pop.appearance = NSAppearance(named: .vibrantDark)
 		pop.behavior = .semitransient
-		pop.show(relativeTo: columnOptionsPopoverButton.frame, of: tableButtonsStack, preferredEdge: .maxX)
+		var columnOptionsFrame = columnOptionsPopoverButton.frame
+		columnOptionsFrame = self.tableButtonsStack.convert(columnOptionsFrame, to: self.view)
+		let redView = NSView(frame: columnOptionsFrame)
+		redView.wantsLayer = true
+		redView.layer?.backgroundColor = NSColor.red.cgColor
+		self.view.addSubview(redView)
+		pop.show(relativeTo: columnOptionsFrame, of: self.view, preferredEdge: .maxX)
+//		pop.show(relativeTo: columnOptionsPopoverButton.frame, of: tableButtonsStack, preferredEdge: .maxX)
 		columnOptionsPopover = pop
 	}
-	//This will be good to have for later
+	
 	func displayColumnOptionsAsWindow(sender: Any?) {
-		let tabView = NSStoryboard(name: "LayoutEditor", bundle: nil).instantiateInitialController() as? LayoutEditorTabViewController
-		let layoutEditor = tabView?.tabViewItems[0].viewController as! LayoutEditorViewController
-		tabView?.viewController = self
-		layoutEditor.runController = self
-		let destination = tabView?.tabViewItems[1].viewController as! ColumnOptionsViewController
-		destination.delegate = self
-		
-		let coPanel = NSPanel(contentViewController: tabView!)
-		
-		
-//		coPanel.styleMask.insert(.utilityWindow)
-//		coPanel.styleMask.insert(.hudWindow)
-//		coPanel.styleMask.insert(.resizable)
-//		coPanel.styleMask.insert(.fullSizeContentView)
-		coPanel.titlebarAppearsTransparent = true
-		coPanel.standardWindowButton(.miniaturizeButton)?.isHidden = true
-		coPanel.standardWindowButton(.zoomButton)?.isHidden = true
-		coPanel.isMovableByWindowBackground = true
-		
-		
-		coPanel.animationBehavior = .none
-//		coPanel.appearance = NSAppearance(named: .darkAqua)
-		
-		var coButtonPoint = CGPoint(x: columnOptionsPopoverButton.frame.maxX, y: 0)
-		coButtonPoint = columnOptionsPopoverButton.convert(coButtonPoint, to: view)
-		coButtonPoint = view.window!.convertPoint(toScreen: coButtonPoint)
-		coPanel.setFrameTopLeftPoint(coButtonPoint)
-		
-		let windowController = NSWindowController(window: coPanel)
-		
-		windowController.showWindow(nil)
+		if let coWindow = columnOptionsWindow {
+			coWindow.makeKeyAndOrderFront(self)
+		} else {
+			let tabView = NSStoryboard(name: "LayoutEditor", bundle: nil).instantiateInitialController() as? LayoutEditorTabViewController
+			let layoutEditor = tabView?.tabViewItems[0].viewController as! LayoutEditorViewController
+			tabView?.viewController = self
+			layoutEditor.runController = self
+			let destination = tabView?.tabViewItems[1].viewController as! ColumnOptionsViewController
+			destination.delegate = self
+			
+			let coPanel = NSPanel(contentViewController: tabView!)
+			coPanel.titlebarAppearsTransparent = true
+			coPanel.styleMask.insert(.utilityWindow)
+			coPanel.standardWindowButton(.miniaturizeButton)?.isHidden = true
+			coPanel.standardWindowButton(.zoomButton)?.isHidden = true
+			coPanel.isMovableByWindowBackground = true
+			
+			coPanel.animationBehavior = .utilityWindow
+			
+			var coButtonPoint = CGPoint(x: columnOptionsPopoverButton.frame.maxX, y: 0)
+			coButtonPoint = columnOptionsPopoverButton.convert(coButtonPoint, to: view)
+			coButtonPoint = view.window!.convertPoint(toScreen: coButtonPoint)
+			coButtonPoint.x += 10
+			coPanel.setFrameTopLeftPoint(coButtonPoint)
+			coPanel.collectionBehavior = .transient
+			coPanel.appearance = self.view.effectiveAppearance
+			let windowController = NSWindowController(window: coPanel)
+			columnOptionsWindow = coPanel
+			windowController.showWindow(nil)
+			
+		}
 	}
 	
 	override var representedObject: Any? {

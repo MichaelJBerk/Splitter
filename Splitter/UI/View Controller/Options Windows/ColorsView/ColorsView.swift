@@ -10,6 +10,7 @@ import Cocoa
 
 class ColorsView: NSView, LoadableNib, advancedTabDelegate {
 	var delegate: ViewController?
+	var run: SplitterRun!
 	
 	@IBOutlet weak var bgColorWell: NSColorWell!
 	@IBOutlet weak var tableViewBGColorWell: NSColorWell!

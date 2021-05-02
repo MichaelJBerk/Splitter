@@ -38,12 +38,38 @@ class LayoutEditorTabViewController: NSTabViewController {
 				pop.contentSize = v.preferredContentSize
 			} else {
 				if let window = view.window {
-					let newFrame = NSRect(x: window.frame.origin.x, y: window.frame.origin.y, width: v.preferredContentSize.width, height: v.preferredContentSize.height)
-					self.view.window?.setFrame(newFrame, display: false, animate: false)
-//					self.view.window?.animator().setFrame(newFrame, display: true, animate: true)
+					var newSize = v.preferredContentSize
+					newSize.height += window.titlebarHeight
+					window.animator().setSize(newSize: newSize, display: true, animate: true)
 				}
 			}
 		}
 	}
+	override func viewDidDisappear() {
+		viewController.columnOptionsWindow = nil
+		super.viewDidDisappear()
+	}
     
+}
+
+extension NSWindow {
+	/// Sets the size of the window’s frame rectangle, with optional animation, according to a given size rectangle, thereby setting its and size onscreen.
+	///
+	/// - Note: Unlike `setFrame`, this method will try to keep the window at its current hieght
+	/// - Parameters:
+	///   - newSize: The size for the window, including the title bar.
+	///   - display: Specifies whether the window redraws the views that need to be displayed. When true the window sends a `displayIfNeeded()` message down its view hierarchy, thus redrawing all views.
+	///   - animate: Specifies whether the window performs a smooth resize. true to perform the animation, whose duration is specified by `animationResizeTime(_:)`.
+	func setSize(newSize: NSSize, display: Bool, animate: Bool) {
+		var newY = self.frame.origin.y
+		newY += self.frame.size.height
+		newY -= newSize.height
+		let newFrame = NSRect(x: self.frame.origin.x, y: newY, width: newSize.width, height: newSize.height)
+		self.setFrame(newFrame, display: display, animate: animate)
+	}
+	
+	var titlebarHeight: CGFloat {
+		frame.height - contentRect(forFrameRect: frame).height
+	}
+
 }

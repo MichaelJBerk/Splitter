@@ -10,15 +10,16 @@ import Cocoa
 
 
 
-class InfoOptionsViewController: NSViewController, NSPopoverDelegate, advancedTabDelegate {
+class InfoOptionsViewController: NSViewController, NSPopoverDelegate, advancedTabDelegate, NSTextFieldDelegate {
 
+	var run: SplitterRun!
 	var delegate: ViewController?
-	@IBOutlet weak var runTitleField: MetadataField!
-	@IBOutlet weak var categoryField: MetadataField!
-	@IBOutlet weak var attemptField: MetadataField!
-	@IBOutlet weak var platformField: MetadataField!
-	@IBOutlet weak var versionField: MetadataField!
-	@IBOutlet weak var regionField: MetadataField!
+	@IBOutlet weak var runTitleField: NSTextField!
+	@IBOutlet weak var categoryField: NSTextField!
+	@IBOutlet weak var attemptField: NSTextField!
+	@IBOutlet weak var platformField: NSTextField!
+	@IBOutlet weak var versionField: NSTextField!
+	@IBOutlet weak var regionField: NSTextField!
 	
 	@IBOutlet weak var startTimeLabel: NSTextField!
 	@IBOutlet weak var endTimeLabel: NSTextField!
@@ -27,6 +28,18 @@ class InfoOptionsViewController: NSViewController, NSPopoverDelegate, advancedTa
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
+		runTitleField.delegate = self
+		categoryField.delegate = self
+		attemptField.delegate = self
+		platformField.delegate = self
+		versionField.delegate = self
+		regionField.delegate = self
+		NotificationCenter.default.addObserver(forName: .runEdited, object: nil, queue: nil, using: { _ in
+			self.getDataFromMain()
+		})
+		NotificationCenter.default.addObserver(forName: .gameIconEdited, object: nil, queue: nil, using: { notification in
+			
+		})
     }
 	
 	@IBOutlet weak var startEndDateFormatter: DateFormatter!
@@ -42,42 +55,10 @@ class InfoOptionsViewController: NSViewController, NSPopoverDelegate, advancedTa
 		getImageFromMain()
 		attemptField.formatter = OnlyIntegerValueFormatter()
 	}
-}
-
-extension MetadataImage {
-	override func mouseDown(with event: NSEvent) {
-		if event.clickCount > 1 {
-			self.setImage()
-		}
-	}
-	func pictureFileDialog() -> NSOpenPanel{
-		let dialog = NSOpenPanel();
-		dialog.title                   = "Choose an image file"
-		dialog.showsResizeIndicator    = true
-		dialog.showsHiddenFiles        = false
-		dialog.canChooseDirectories    = false
-		dialog.canCreateDirectories    = false
-		dialog.allowsMultipleSelection = false
-		dialog.allowedFileTypes        = ["png"]
-		return dialog
+	func controlTextDidEndEditing(_ obj: Notification) {
+		sendDataToMain()
 	}
 	
-	func setImage() {
-		let dialog = pictureFileDialog()
-		
-		let response = dialog.runModal()
-			if response == .OK {
-				let result = dialog.url
-				
-				if (result != nil) {
-					 let imageFile = try? Data(contentsOf: result!)
-					 
-					 let myImage = NSImage(data: imageFile!)
-					 
-					self.image = myImage
-			}
-		}
-	}
 }
 
 class OnlyIntegerValueFormatter: NumberFormatter {

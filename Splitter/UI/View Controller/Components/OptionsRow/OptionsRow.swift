@@ -9,6 +9,11 @@
 import Cocoa
 
 class OptionsRow: NSStackView, NibLoadable, SplitterComponent {
+	var run: SplitterRun!
+	
+	var state: SplitterComponentState!
+	
+	var customSpacing: CGFloat? = nil
 	internal override func awakeAfter(using coder: NSCoder) -> Any? {
 		return instantiateView() // You need to add this line to load view
 	}
@@ -18,14 +23,10 @@ class OptionsRow: NSStackView, NibLoadable, SplitterComponent {
 		initialization()
 	}
 	private func initialization() {
-		
-	}
-	var optionsView: NSView! {
-		let optionsView = NSGridView(views: defaultComponentOptions())
-		return optionsView
+		detachesHiddenViews = false
 	}
 	
-	var viewController: ViewController?
+	var viewController: ViewController!
 	
 	var displayTitle: String = "Options Row"
 	
@@ -37,6 +38,7 @@ class OptionsRow: NSStackView, NibLoadable, SplitterComponent {
 	@IBOutlet var minusButton: ThemedButton!
 	@IBOutlet var columnOptionsButton: ThemedButton!
 	@IBOutlet var tableButtonsStack: NSStackView!
+	@IBOutlet weak var timeLabel: ThemedTextField!
 	
 	var isSelected: Bool = false {
 		didSet {
@@ -51,6 +53,40 @@ class OptionsRow: NSStackView, NibLoadable, SplitterComponent {
 	}
 	@IBAction func columnOptionsButtonClick(_ sender: Any) {
 		viewController!.displayColumnOptionsAsWindow(sender: sender)
+	}
+	let showLabelKey = "showLabel"
+	var showLabel: Bool {
+		get {
+			return !timeLabel.isHidden
+		}
+		set {
+			timeLabel.isHidden = !newValue
+		}
+	}
+	
+	func saveState() throws -> ComponentState {
+		var state = saveBasicState()
+		state.properties[showLabelKey] = showLabel
+		return state
+	}
+	func loadState(from state: ComponentState) throws {
+		loadBasicState(from: state.properties)
+		showLabel = (state.properties[showLabelKey] as? JSONAny)?.value as? Bool ?? true
+	}
+	
+	var optionsView: NSView! {
+		let defaultOptions = defaultComponentOptions() as! ComponentOptionsVstack
+		let showLabelButton = ComponentOptionsButton(checkboxWithTitle: "Show Label", clickAction: {
+			self.showLabel.toggle()			
+		})
+		
+		showLabelButton.state = .init(bool: showLabel)
+		defaultOptions.addArrangedSubview(showLabelButton)
+		return defaultOptions
+		
+	}
+	@objc func toggleLabel(sender: Any?) {
+		showLabel.toggle()
 	}
 }
 

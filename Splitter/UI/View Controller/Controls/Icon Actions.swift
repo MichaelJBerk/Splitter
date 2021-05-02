@@ -9,40 +9,10 @@
 import Foundation
 import Cocoa
 
-extension CellImageWell {
-	
-	override func mouseDown(with event: NSEvent) {
-		if event.type == .leftMouseDown, event.clickCount > 1 {
-			setImage()
-		}
-		
-		let indexSet = IndexSet(arrayLiteral: row)
-		splitController.splitsTableView.selectRowIndexes(indexSet, byExtendingSelection: false)
-	}
-
-	/// Prompts the user to select an image for the split icon
-	func setImage() {
-		let dialog = splitController.pictureFileDialog()
-		
-		let response = dialog.runModal()
-			if response == .OK {
-				let result = dialog.url
-				
-				if (result != nil) {
-					let imageFile = try? Data(contentsOf: result!)
-					let myImage = NSImage(data: imageFile!)
-					run.setIcon(for: row, image: myImage)
-					splitController.splitsTableView.reloadData(forRowIndexes: .init(arrayLiteral: row), columnIndexes: .init(arrayLiteral: 0))
-			}
-		}
-	}
-
-	
-}
-
 extension ViewController {
 	// MARK: - Icon Actions
 	
+	//TODO: Move This to MetadataImage
 	/// Prompts the user to select a game icon image
 	///
 	///Used in right-click menu

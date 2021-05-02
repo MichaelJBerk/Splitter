@@ -24,6 +24,8 @@ class ThemedButton: NSButton, Themeable {
 		self.image = newImage
 		self.contentTintColor = run.textColor
 		self.attributedTitle = NSAttributedString(string: self.title, attributes: [.foregroundColor: run.textColor])
+		self.appearance = NSAppearance(named: .darkAqua)
+		self.shadow = .none
 	}
 	
 	var themeable: Bool = true

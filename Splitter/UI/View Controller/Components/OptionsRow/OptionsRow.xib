@@ -30,6 +30,9 @@
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
+                    <connections>
+                        <action selector="timeLabel:" target="QLr-sF-5L1" id="WGE-A6-pgI"/>
+                    </connections>
                 </textField>
                 <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B89-EN-CgZ">
                     <rect key="frame" x="402" y="0.0" width="79" height="20"/>
@@ -107,6 +110,7 @@
                 <outlet property="minusButton" destination="a7B-XC-QeB" id="5FO-I5-xD5"/>
                 <outlet property="plusButton" destination="l5I-Qs-qXP" id="FPW-QU-Ibh"/>
                 <outlet property="tableButtonsStack" destination="B89-EN-CgZ" id="vEZ-7w-QNn"/>
+                <outlet property="timeLabel" destination="Ngc-Sv-8GD" id="lDr-Uk-jzV"/>
             </connections>
             <point key="canvasLocation" x="-296" y="116"/>
         </stackView>

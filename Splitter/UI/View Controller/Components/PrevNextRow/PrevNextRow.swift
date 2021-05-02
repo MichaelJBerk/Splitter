@@ -10,10 +10,10 @@ import Cocoa
 
 @IBDesignable
 class PrevNextRow: NSStackView, LoadableNib, SplitterComponent {
-	var optionsView: NSView! {
-		let optionsView = NSGridView(views: defaultComponentOptions())
-		return optionsView
-	}
+	var run: SplitterRun!
+	var state: SplitterComponentState!
+	
+	var customSpacing: CGFloat? = nil
 	
 	var displayTitle: String = "Previous/Next Buttons"
 	var displayDescription: String = ""
@@ -22,7 +22,7 @@ class PrevNextRow: NSStackView, LoadableNib, SplitterComponent {
 	@IBOutlet var prevButton: ThemedButton!
 	@IBOutlet var nextButton: ThemedButton!
 	
-	var viewController: ViewController?
+	var viewController: ViewController!
 	
 	@IBAction func prevButtonClick(_ sender: NSButton?) {
 		viewController?.goToPrevSplit()

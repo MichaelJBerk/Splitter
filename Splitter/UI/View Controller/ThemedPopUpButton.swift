@@ -29,6 +29,7 @@ class ThemedPopUpButton: NSPopUpButton, Themeable {
 		if let menu = menu {
 			setColors(for: menu, color: run.textColor)
 		}
+		self.appearance = NSAppearance(named: .darkAqua)
 	}
 	func setColors(for menu: NSMenu, color: NSColor) {
 		for item in menu.items {

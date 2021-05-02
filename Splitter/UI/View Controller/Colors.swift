@@ -9,7 +9,7 @@
 
 import Cocoa
 
-extension NSButton {
+extension ThemedButton {
 	var baseTitle: String {
 		set {
 			let attributes = self.attributedTitle
@@ -114,10 +114,17 @@ extension ViewController {
 		splitsTableView.headerView?.layer?.backgroundColor = NSColor.red.cgColor
 		
 		
-		splitsTableView.parentViewController = self
+		splitsTableView.viewController = self
 		
 		splitsTableView.setHeaderColor(textColor: run.textColor, bgColor: run.tableColor)
 		splitsTableView.setCornerColor(cornerColor: run.tableColor)
+		
+		view.window?.backgroundColor = run.backgroundColor
+		if run.backgroundColor.isLight()! {
+			view.window?.appearance = NSAppearance(named: .aqua)
+		} else {
+			view.window?.appearance = NSAppearance(named: .darkAqua)
+		}
 		
 		NotificationCenter.default.post(.init(name: .updateComponents, userInfo: ["run": self.run as Any]))
 		splitsTableView.reloadData()
@@ -157,9 +164,6 @@ extension ViewController {
 			}
 			if let l = v as? NSTextField {
 				l.textColor = run.textColor
-				print(l.stringValue)
-				print(l.placeholderString)
-				
 			}
 		}
 		

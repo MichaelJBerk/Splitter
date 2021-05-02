@@ -63,6 +63,14 @@ class SplitterDoc: NSDocument {
 		}
 	}
 	
+	func loadViewController() -> (windowController: NSWindowController, vc: ViewController){
+		let storyboard = NSStoryboard(name: NSStoryboard.Name("Main"), bundle: nil)
+		let windowController = storyboard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("Document Window Controller")) as! NSWindowController
+		self.addWindowController(windowController)
+		let vc = windowController.contentViewController as! ViewController
+		vc.document = self
+		return (windowController, vc)
+	}
 	
 	override class var autosavesInPlace: Bool {
 		return false
@@ -120,7 +128,7 @@ class SplitterDoc: NSDocument {
 	///Converts the window's setting to the data to be written to an `appearance.json` file
 	func encodeSplitterAppearance() -> Data? {
 		if let vc = viewController {
-			let app = splitterAppearance(viewController:vc)
+			let app = SplitterAppearance(viewController:vc)
 			let newJE = JSONEncoder()
 			if let sApp = try? newJE.encode(app) {
 				return sApp

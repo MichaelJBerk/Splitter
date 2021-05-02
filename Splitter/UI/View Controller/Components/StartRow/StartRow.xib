@@ -7,17 +7,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="StartRow" customModule="Splitter" customModuleProvider="target">
-            <connections>
-                <outlet property="contentView" destination="6Py-N8-LIW" id="eME-8b-m50"/>
-                <outlet property="startButton" destination="UnZ-zU-O1x" id="w6k-7r-05r"/>
-                <outlet property="stopButton" destination="fSb-HD-vOl" id="80F-wz-vK8"/>
-                <outlet property="trashCanPopupButton" destination="IUl-pl-z0H" id="SeK-rm-uQB"/>
-            </connections>
-        </customObject>
+        <customObject id="-2" userLabel="File's Owner"/>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" id="6Py-N8-LIW">
+        <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" id="6Py-N8-LIW" customClass="StartRow" customModule="Splitter" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="276" height="20"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
             <subviews>
@@ -46,7 +39,7 @@
                             </popUpButtonCell>
                             <color key="contentTintColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <connections>
-                                <action selector="trashCanPopupClick:" target="-2" id="jSz-Qi-84h"/>
+                                <action selector="trashCanPopupClick:" target="6Py-N8-LIW" id="nVV-dd-zNT"/>
                             </connections>
                         </popUpButton>
                         <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fSb-HD-vOl" customClass="ThemedButton" customModule="Splitter" customModuleProvider="target">
@@ -57,7 +50,7 @@
                             </buttonCell>
                             <color key="contentTintColor" name="textColor" catalog="System" colorSpace="catalog"/>
                             <connections>
-                                <action selector="stopButtonClick:" target="-2" id="5rU-Pc-M5W"/>
+                                <action selector="stopButtonClick:" target="6Py-N8-LIW" id="5oF-ag-MP6"/>
                             </connections>
                         </button>
                     </subviews>
@@ -84,7 +77,7 @@
                     <color key="contentTintColor" name="systemGreenColor" catalog="System" colorSpace="catalog"/>
                     <accessibility description="Start Time" identifier="StartTimer"/>
                     <connections>
-                        <action selector="startButtonClick:" target="-2" id="IkK-i7-er8"/>
+                        <action selector="startButtonClick:" target="6Py-N8-LIW" id="O7d-ND-U5z"/>
                     </connections>
                 </button>
             </subviews>
@@ -102,6 +95,11 @@
                 <real value="3.4028234663852886e+38"/>
                 <real value="3.4028234663852886e+38"/>
             </customSpacing>
+            <connections>
+                <outlet property="startButton" destination="UnZ-zU-O1x" id="Tqj-Jf-d4X"/>
+                <outlet property="stopButton" destination="fSb-HD-vOl" id="YK6-EK-Lad"/>
+                <outlet property="trashCanPopupButton" destination="IUl-pl-z0H" id="Twe-FA-Yh3"/>
+            </connections>
             <point key="canvasLocation" x="-214" y="-86"/>
         </stackView>
     </objects>

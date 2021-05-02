@@ -64,15 +64,6 @@ public struct Settings {
 			UserDefaults.standard.set(newValue, forKey: SettingsKeys.floatWindow)
 		}
 	}
-	///Whether or not the UI buttons are hidden by default on new windows
-	public static var hideUIButtons: Bool {
-		get {
-			UserDefaults.standard.bool(forKey: SettingsKeys.hideTimerButtons)
-		}
-		set {
-			UserDefaults.standard.set(newValue, forKey: SettingsKeys.hideTimerButtons)
-		}
-	}
 	///Whether or not the "Best Splits" column is hidden by default on new windows
 	public static var showBestSplits: Bool {
 		get {

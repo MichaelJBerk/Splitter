@@ -10,26 +10,38 @@ import Cocoa
 
 class RunOptionsViewController: NSViewController, advancedTabDelegate {
 	var delegate: ViewController?
-	
+	var run: SplitterRun!
 	func setupDelegate() {
 		
 	}
 	@IBOutlet weak var compareToPopUpButton: NSPopUpButton!
+	@IBOutlet weak var offsetTextField: NSTextField!
+	
+	@IBAction func offsetTextFieldEdited(_ sender: Any?) {
+//		delegate?.run.editRun { editor in
+		run.offset = Double(self.offsetTextField.stringValue) ?? 0
+//		}
+		run.updateLayoutState()
+		let offset = run.offset
+		offsetTextField.stringValue = "\(offset)"
+		delegate?.updateTimer()
+	}
 	
 	@IBOutlet weak var roundDiffPopUpButton: NSPopUpButton!
 	override func viewDidLoad() {
         super.viewDidLoad()
 		compareToPopUpButton.selectItem(at: delegateComparison)
-		roundDiffPopUpButton.selectItem(at: delegateRound)
+		let offset = run.offset
+		offsetTextField.stringValue = "\(offset)"
 		
-		
-        // Do view setup here.
+		//Only allow vaild strings in the Offset Text Field
+		NotificationCenter.default.addObserver(forName: NSTextField.textDidChangeNotification, object: offsetTextField, queue: nil, using: {notfication in
+			let tf = notfication.object as! NSTextField
+			let charSet = NSCharacterSet(charactersIn: "1234567890.-").inverted
+			let chars = tf.stringValue.components(separatedBy: charSet)
+			tf.stringValue = chars.joined()
+		})
     }
-	
-	
-	
-	
-	
 	
 	private var delegateComparison: Int {
 		switch delegate?.compareTo {

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner"/>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="fbj-Ys-5TO" customClass="SumOfBestComponent" customModule="Splitter" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="392" height="16"/>
+            <subviews>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kuC-Pn-vpG" customClass="ThemedTextField" customModule="Splitter" customModuleProvider="target">
+                    <rect key="frame" x="-2" y="0.0" width="204" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="200" id="snc-Us-Qx8"/>
+                    </constraints>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Sum of Best Segments" id="Gns-fz-AOi">
+                        <font key="font" usesAppearanceFont="YES"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="mqf-ab-3HY" customClass="ThemedTextField" customModule="Splitter" customModuleProvider="target">
+                    <rect key="frame" x="200" y="0.0" width="194" height="16"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="190" id="G7f-QN-ecW"/>
+                    </constraints>
+                    <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" id="fyn-bA-hKP">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="height" secondItem="kuC-Pn-vpG" secondAttribute="height" id="2vx-kQ-TkG"/>
+            </constraints>
+            <visibilityPriorities>
+                <integer value="1000"/>
+                <integer value="1000"/>
+            </visibilityPriorities>
+            <customSpacing>
+                <real value="3.4028234663852886e+38"/>
+                <real value="3.4028234663852886e+38"/>
+            </customSpacing>
+            <connections>
+                <outlet property="textField" destination="mqf-ab-3HY" id="Wx5-pJ-MqG"/>
+            </connections>
+            <point key="canvasLocation" x="145" y="8"/>
+        </stackView>
+    </objects>
+</document>

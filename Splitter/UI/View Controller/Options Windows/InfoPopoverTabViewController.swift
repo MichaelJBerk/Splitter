@@ -13,6 +13,7 @@ var notSplitNoteText = "Note: These settings will not be saved to this file unle
 
 protocol advancedTabDelegate {
 	var delegate: ViewController? { get set }
+	var run: SplitterRun! {get set}
 	func setupDelegate()
 	var height: CGFloat {get}
 }
@@ -28,6 +29,7 @@ extension advancedTabDelegate {
 class InfoPopoverTabViewController: NSTabViewController {
 	static var storyboardID = "Advanced"
 	var delegate: ViewController?
+	var run: SplitterRun!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,9 +52,11 @@ class InfoPopoverTabViewController: NSTabViewController {
 		for i in tabViewItems {
 			if var v = i.viewController as? advancedTabDelegate {
 				v.delegate = self.delegate
+				v.run = self.run
 				v.setupDelegate()
 			} else if var v = i.viewController?.view as? advancedTabDelegate {
 				v.delegate = self.delegate
+				v.run = self.run
 				v.setupDelegate()
 			}
 		}

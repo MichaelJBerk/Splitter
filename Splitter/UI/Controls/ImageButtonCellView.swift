@@ -22,18 +22,33 @@ class ImageButtonCellView: NSTableCellView {
 }
 
 class CellImageWell: ThemedImage {
+	
 	@IBOutlet var splitController: ViewController!
 	var row: Int!
-	var run: SplitterRun!
 	
-	override var image: NSImage? {
-		didSet {
-			//Need to do this here to support removing icon via backpsace
-			if image == nil {
-				run.setIcon(for: row, image: nil)
-				splitController.splitsTableView.reloadData(forRowIndexes: .init(arrayLiteral: row), columnIndexes: .init(arrayLiteral: 0))
-			}
+	required init?(coder: NSCoder) {
+		super.init(coder: coder)
+		setup()
+	}
+	override init(frame frameRect: NSRect) {
+		super.init(frame: frameRect)
+		setup()
+	}
+	
+	func setup() {
+		self.target = self
+		self.action = #selector(imageChanged(_:))
+	}
+	
+	func setPlaceholderImage() {
+		if self.image == nil {
+			self.image = .gameControllerIcon
 		}
+	}
+	
+	@objc func imageChanged(_ sender: Any?) {
+		run.setIcon(for: row, image: self.image)
+		setPlaceholderImage()
 	}
 	
 	///Used in right-click menu
@@ -44,4 +59,34 @@ class CellImageWell: ThemedImage {
 	@IBAction func chooseImageMenuItem(_ sender: Any?) {
 		setImage()
 	}
+}
+extension CellImageWell {
+	
+	override func mouseDown(with event: NSEvent) {
+		if event.type == .leftMouseDown, event.clickCount > 1 {
+			setImage()
+		}
+		
+		let indexSet = IndexSet(arrayLiteral: row)
+		splitController.splitsTableView.selectRowIndexes(indexSet, byExtendingSelection: false)
+	}
+
+	/// Prompts the user to select an image for the split icon
+	func setImage() {
+		let dialog = splitController.pictureFileDialog()
+		
+		let response = dialog.runModal()
+			if response == .OK {
+				let result = dialog.url
+				
+				if (result != nil) {
+					let imageFile = try? Data(contentsOf: result!)
+					let myImage = NSImage(data: imageFile!)
+					run.setIcon(for: row, image: myImage)
+					splitController.splitsTableView.reloadData(forRowIndexes: .init(arrayLiteral: row), columnIndexes: .init(arrayLiteral: 0))
+			}
+		}
+	}
+
+	
 }

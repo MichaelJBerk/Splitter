@@ -20,7 +20,7 @@ class Document: SplitterDocBundle {
 	var gameIconFileName = "gameIcon.png"
 	
 	var runInfoData: runInfo?
-	var appearance: splitterAppearance?
+	var appearance: SplitterAppearance?
 	var data: Data?
 	
 	var gameIcon: NSImage?
@@ -52,7 +52,7 @@ class Document: SplitterDocBundle {
 		let appearanceFile = try? bundleFolder?.file(named: "appearance.json")
 		if appearanceFile != nil {
 			if let data = try? appearanceFile?.read(), let json = try? JSON(data: data) {
-				let newAppearance = splitterAppearance(json: json)
+				let newAppearance = SplitterAppearance(json: json)
 				self.appearance = newAppearance
 			}
 		}
@@ -61,7 +61,9 @@ class Document: SplitterDocBundle {
 		if let runInfoFile = try? bundleFolder?.file(named: "runInfo.json") {
 			if let data = try? runInfoFile.read(), let json = try? JSON(data: data) {
 				//Check which version of Splitter saved the file
-				versionUsed = json["version"].doubleValue
+				let verString = json["version"].stringValue
+				let verSplit = verString.split(separator: ".")
+				versionUsed = Double(verSplit[0])
 				self.runInfoData = splitToJSON().runInfoFromJSON(json: json)
 				if versionUsed! < 4 {
 					beforeSplitter4 = true
@@ -73,8 +75,9 @@ class Document: SplitterDocBundle {
 			readOlderThanSplitter4(from: fileWrapper)
 		} else {
 			if let splitsFile = try? bundleFolder?.file(named: "splits.lss") {
-				run = SplitterRun(run: Run())
-				_ = run?.timer.lsTimer.setRun(Run.parseFile(path: splitsFile.path, loadFiles: true)!)
+				let lsRun = Run.parseFile(path: splitsFile.path, loadFiles: true)!
+				run = SplitterRun(run: lsRun)
+				run?.document = self
 			}
 			if let layoutFile = try? bundleFolder?.file(named: "layout.lsl"),
 			   let json = try? layoutFile.readAsString() {
@@ -115,28 +118,11 @@ class Document: SplitterDocBundle {
 	override func makeWindowControllers() {
 		// Returns the Storyboard that contains your Document window.
 		
-		let storyboard = NSStoryboard(name: NSStoryboard.Name("Main"), bundle: nil)
-		let windowController = storyboard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("Document Window Controller")) as! NSWindowController
-		self.addWindowController(windowController)
-		let vc = windowController.contentViewController as! ViewController
+		let load = loadViewController()
+		let vc = load.vc
 		if let ri = self.runInfoData {
 			vc.runInfoData = ri
-			if let v = versionUsed, v < 4 {
-				vc.loadFromOldRunInfo(icons: iconArray)
-			} else {
-				vc.loadFromRunInfo()
-//				if let url = self.fileURL {
-//					vc.loadLS(url: url)
-//				}
-				if let run = self.run {
-					vc.run = run
-					vc.run.updateLayoutState()
-				}
-			}
 			vc.appearance = appearance
-			if let gi = self.gameIcon {
-				vc.run.gameIcon = gi
-			}
 		}
 	}
 	
@@ -147,6 +133,9 @@ class Document: SplitterDocBundle {
 					return
 				}
 				//TODO: Migrate
+				if let iconFile = try? bundleFolder?.file(named: "gameIcon.png") {
+					try? iconFile.delete()
+				}
 			}
 		}
 		determineSave(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: contextInfo)

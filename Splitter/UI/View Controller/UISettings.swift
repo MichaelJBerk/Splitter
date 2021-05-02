@@ -65,55 +65,6 @@ extension ViewController {
 		showHideTitleBar()
 	}
 	
-	///Shows or hides the UI, depending on the current setting
-	func showHideUI() {
-		
-		if buttonHidden {
-			startButton.isHidden = true
-			trashCanPopupButton.isHidden = true
-			stopButton.isHidden = true
-			
-			plusButton.isHidden = true
-			minusButton.isHidden = true
-			nextButton.isHidden = true
-			prevButton.isHidden = true
-			infoPanelPopoverButton.isHidden = true
-			columnOptionsPopoverButton.isHidden = true
-			bottomStackView.views[0].isHidden = true
-			bottomStackView.views[2].isHidden = true
-			bottomStackView.views[3].isHidden = true
-			gameToViewEdgeConstraint?.isActive = true
-			categoryToViewEdgeConstraint?.isActive = true
-		} else {
-			startButton.isHidden = false
-			if shouldStopButtonBeHidden == true {
-				stopButton.isHidden = true
-			} else {
-				stopButton.isHidden = false
-			}
-			if shouldTrashCanBeHidden == true {
-				trashCanPopupButton.isHidden = true
-			} else {
-				trashCanPopupButton.isHidden = false
-			}
-			infoPanelPopoverButton.isHidden = false
-			columnOptionsPopoverButton.isHidden = false
-			
-			plusButton.isHidden = false
-			minusButton.isHidden = false
-			nextButton.isHidden = false
-			prevButton.isHidden = false
-			bottomStackView.views[0].isHidden = false
-			bottomStackView.views[2].isHidden = false
-			bottomStackView.views[3].isHidden = false
-			
-			gameToViewEdgeConstraint?.isActive = false
-			categoryToViewEdgeConstraint?.isActive = false
-		}
-		let mi = NSApp.mainMenu?.item(withIdentifier: menuIdentifiers.appearanceMenu.hideButtons)
-		mi?.title = showHideButtonsText
-	}
-	
 	var showHideButtonsText: String {
 		get {
 			if buttonHidden {

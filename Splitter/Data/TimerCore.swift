@@ -7,10 +7,15 @@
 //
 
 import Foundation
+import Cocoa
 import SwiftyJSON
 
 extension Notification.Name {
 	static let phaseChanged = Notification.Name("timerPhaseChanged")
+	static let runEdited = Notification.Name("runEdited")
+	static let splitsEdited = Notification.Name("splitsEdited")
+	static let gameIconEdited = Notification.Name("gameIconEdited")
+	static let segmentIconEdited = Notification.Name("segmentIconChanged")
 }
 
 
@@ -21,12 +26,17 @@ class SplitterRun: NSObject {
 	var codableLayout: CLayout!
 	var runString: String?
 	var refreshTimer: Timer?
+	var document: SplitterDoc!
+	var undoManager: UndoManager? {
+		return document!.undoManager
+	}
 	
 	///Used to prevent crash with numberOfRowsInTableView
 	var hasSetLayout = false
 	
 	private var layoutSettings: CodableLayoutSettings!
-	init(run: Run, segments: [SplitTableRow]? = nil) {
+	init(run: Run, segments: [SplitTableRow]? = nil, isNewRun: Bool = false) {
+		
 		//LiveSplit-Core runs need to have at least one segment
 		var vRun: Run = run
 		vRun.pushSegment(Segment("1"))
@@ -69,33 +79,7 @@ class SplitterRun: NSObject {
 			14: Separators
 			15: Text
 			*/
-			
-			editor.select(1)
-			//Include all splits in layout
-			editor.setComponentSettingsValue(1, .fromUint(0))
-			
-			editor.setComponentSettingsValue(10, .fromUint(4))
-			editor.setComponentSettingsValue(9, .fromBool(true))
-			
-			//Setup Diffs Column
-			
-			editor.setColumn(1, updateWith: ColumnUpdateWith.segmentDelta)
-			editor.setColumn(1, updateTrigger: ColumnUpdateTrigger.onStartingSegment)
-			
-			//Setup PB column
-			editor.setColumn(2, name: "PB")
-			editor.setColumn(2, comparison: "Personal Best")
-			editor.setColumn(2, startWith: .comparisonTime)
-			editor.setColumn(2, updateWith: ColumnUpdateWith.dontUpdate)
-			editor.setColumn(2, updateTrigger: ColumnUpdateTrigger.onEndingSegment)
-			
-			//Setup Previous column
-			editor.setColumn(3, name: "previous")
-			editor.setColumn(3, comparison: "Latest Run")
-			editor.setColumn(3, startWith: ColumnStartWith.comparisonTime)
-			editor.setColumn(3, updateWith: ColumnUpdateWith.dontUpdate)
-			editor.setColumn(3, updateTrigger: ColumnUpdateTrigger.onStartingSegment)
-			//TODO: Set rounding
+			editor.setGeneralSettingsValue(4, .fromNSColor(.splitterDefaultColor))
 			
 			/**
 			- NOTE: Settings for Splits component:
@@ -124,6 +108,33 @@ class SplitterRun: NSObject {
 			
 			- NOTE: Must have column labels on to set column names
 			**/
+			editor.select(1)
+			//Include all splits in layout
+			editor.setComponentSettingsValue(1, .fromUint(0))
+			editor.setComponentSettingsValue(0, .fromAlternatingNSColor(.splitterTableViewColor, .splitterTableViewColor))
+			
+			editor.setComponentSettingsValue(10, .fromUint(4))
+			editor.setComponentSettingsValue(9, .fromBool(true))
+			
+			//Setup Diffs Column
+			
+			editor.setColumn(1, updateWith: ColumnUpdateWith.segmentDelta)
+			editor.setColumn(1, updateTrigger: ColumnUpdateTrigger.onStartingSegment)
+			
+			//Setup PB column
+			editor.setColumn(2, name: "PB")
+			editor.setColumn(2, comparison: "Personal Best")
+			editor.setColumn(2, startWith: .comparisonTime)
+			editor.setColumn(2, updateWith: ColumnUpdateWith.dontUpdate)
+			editor.setColumn(2, updateTrigger: ColumnUpdateTrigger.onEndingSegment)
+			
+			//Setup Previous column
+			editor.setColumn(3, name: "previous")
+			editor.setColumn(3, comparison: "Latest Run")
+			editor.setColumn(3, startWith: ColumnStartWith.comparisonTime)
+			editor.setColumn(3, updateWith: ColumnUpdateWith.dontUpdate)
+			editor.setColumn(3, updateTrigger: ColumnUpdateTrigger.onStartingSegment)
+			//TODO: Set rounding
 			
 			
 			self.layout = editor.close()
@@ -137,7 +148,14 @@ class SplitterRun: NSObject {
 		super.init()
 		self.timer.splitterRun = self
 		setObservers()
-		setComparison(to: .latest)
+		
+		//Comparisons aren't saved in LiveSplit,, so we need a custom variable.
+		//We load it here, and set it. Before saving the file, we set the custom variable.
+		if let comp = getCustomVariable(name: "currentComparison") {
+			setComparison(comp)
+		} else {
+			setComparison(to: .latest, disableUndo: true)
+		}
 	}
 	
 	private func setObservers() {
@@ -163,31 +181,54 @@ class SplitterRun: NSObject {
 		refreshTimer = nil
 	}
 	
+	/// Edits the run, and makes it undoable.
+	/// - Parameters:
+	///   - kp: The KeyPath for the variable on `SplitterRun` to write to
+	///   - newValue: The new value
+	///   - edit: Closure, defining how to edit the LiveSplit run
+	func undoableEditRun<T: Equatable>(kp: WritableKeyPath<SplitterRun, T>, actionName: String? = nil, newValue: T, edit: @escaping (RunEditor, T) -> ()) {
+		let old = self[keyPath: kp]
+		if old != newValue {
+			undoManager!.registerUndo(withTarget: self, handler: {hey in
+				//				$0[keyPath: old]
+				hey.undoableEditRun(kp: kp, newValue: old, edit: edit)
+			})
+			if let actionName = actionName {
+				undoManager?.setActionName(actionName)
+			}
+			editRun({edit($0, newValue)})
+			NotificationCenter.default.post(.init(name: .runEdited))
+		}
+	}
+
+	
 	var attempts: Int {
 		get {
 			let aCount = timer.lsTimer.getRun().attemptCount()
 			return Int(aCount)
 		}
 		set {
-			editRun{
-				_ = $0.parseAndSetAttemptCount("\(newValue)")
+			undoableEditRun(kp: \.attempts, actionName: "Set Attempt Count", newValue: newValue) {
+				_ = $0.parseAndSetAttemptCount("\($1)")
 			}
 		}
 	}
+	
 	var title: String {
 		get {
 			timer.lsTimer.getRun().gameName()
 		}
 		set {
-			editRun {$0.setGameName(newValue)}
+			undoableEditRun(kp: \.title, actionName: "Set Title", newValue: newValue, edit: {$0.setGameName($1)})
 		}
 	}
+	
 	var subtitle: String {
 		get {
 			timer.lsTimer.getRun().categoryName()
 		}
 		set {
-			editRun {$0.setCategoryName(newValue)}
+			undoableEditRun(kp: \.subtitle, actionName: "Set Category", newValue: newValue, edit: {$0.setCategoryName($1)})
 		}
 	}
 	
@@ -196,19 +237,37 @@ class SplitterRun: NSObject {
 			timer.lsTimer.getRun().metadata().platformName()
 		}
 		set {
-			editRun { editor in
-				editor.setPlatformName(newValue)
-			}
+			undoableEditRun(kp: \.platform, actionName: "Set Platform", newValue: newValue, edit: {$0.setPlatformName($1)})
 		}
 	}
+	
+	func getCustomVariable(name: String) -> String? {
+		let customVars = timer.lsTimer.getRun().metadata().customVariables()
+		var cVar = customVars.next()
+		while (cVar?.name() != name && cVar != nil) {
+			cVar = customVars.next()
+		}
+		return cVar?.value()
+	}
+	
+	var gameVersion: String {
+		get {
+			getCustomVariable(name: "gameVersion") ?? ""
+		}
+		set {
+			undoableEditRun(kp: \.gameVersion, actionName: "Set Game Version", newValue: newValue, edit: {
+				$0.addCustomVariable("gameVersion")
+				$0.setCustomVariable("gameVersion", $1)
+			})
+		}
+	}
+	
 	var region: String {
 		get {
 			timer.lsTimer.getRun().metadata().regionName()
 		}
 		set {
-			editRun { editor in
-				editor.setRegionName(newValue)
-			}
+			undoableEditRun(kp: \.region, actionName: "Undo Set Region", newValue: newValue, edit: {$0.setRegionName($1)})
 		}
 	}
 	
@@ -227,29 +286,39 @@ class SplitterRun: NSObject {
 		}
 	}
 	
-	func addSegment(title: String) {
-		let timerRun = timer.lsTimer.getRun()
-		var newLSRun = timerRun.clone()
-		if let editor = RunEditor(newLSRun) {
-			editor.selectOnly(timerRun.len() - 1)
+	func addSegment(title: String, at i: Int? = nil) {
+		var index: Int
+		if let idx = i {
+			index = idx - 1
+		} else {
+			let timerRun = timer.lsTimer.getRun()
+			index = timerRun.len() - 1
+		}
+		undoManager?.registerUndo(withTarget: self, handler: {$0.removeSegment(index + 1)})
+		undoManager?.setActionName("Add Segment")
+		editRun { editor in
+			editor.selectOnly(index)
 			editor.insertSegmentBelow()
 			editor.activeSetName(title)
-			newLSRun = editor.close()
-			_ = timer.lsTimer.setRun(newLSRun)
 		}
 		updateLayoutState()
+		NotificationCenter.default.post(.init(name: .splitsEdited))
 	}
 	func removeSegment(_ index: Int) {
+		let segTitle = timer.lsRun.segment(index).name()
+		undoManager?.registerUndo(withTarget: self, handler: {$0.addSegment(title: segTitle, at: index)})
+		undoManager?.setActionName("Remove Segment")
 		editRun { editor in
 			editor.selectOnly(index)
 			editor.removeSegments()
 		}
+		updateLayoutState()
+		NotificationCenter.default.post(.init(name: .splitsEdited))
 	}
 	func removeBottomSegment() {
 		let run = timer.lsTimer.getRun()
 		let len = run.len()
 		removeSegment(len - 1)
-		updateLayoutState()
 	}
 	
 	func icon(for segment: Int) -> NSImage? {
@@ -259,17 +328,24 @@ class SplitterRun: NSObject {
 		return image
 	}
 	func setIcon(for segment: Int, image: NSImage?) {
-		editRun({ editor in
-			editor.selectOnly(segment)
-			if let image = image {
-				image.toLSImage { ptr, len in
-					editor.activeSetIcon(ptr, len)
+		let oldValue = self.icon(for: segment)?.copy() as? NSImage
+		if NSImage.isDiff(oldValue, image) {
+			undoManager?.registerUndo(withTarget: self, handler: { r in
+				r.setIcon(for: segment, image: oldValue)
+			})
+			undoManager?.setActionName("Set Segment Icon")
+			editRun({ editor in
+				editor.selectOnly(segment)
+				if let image = image {
+					image.toLSImage { ptr, len in
+						editor.activeSetIcon(ptr, len)
+					}
+				} else {
+					editor.activeRemoveIcon()
 				}
-			} else {
-				editor.activeRemoveIcon()
-			}
-		})
-		
+			})
+			NotificationCenter.default.post(.init(name: .splitsEdited))
+		}
 	}
 	//TODO: Implement this in the game icon button
 	//why?
@@ -281,15 +357,34 @@ class SplitterRun: NSObject {
 			return LiveSplit.parseImageFromLiveSplit(ptr: ptr, len: len)
 		}
 		set {
-			editRun { editor in
-				if let image = newValue {
-					image.toLSImage { ptr, len in
-						editor.setGameIcon(ptr, len)
+			let oldValue = self.gameIcon?.copy() as? NSImage
+			if NSImage.isDiff(newValue, oldValue) {
+				undoManager?.registerUndo(withTarget: self, handler: { r in
+					r.gameIcon = oldValue
+				})
+				editRun { editor in
+					if let image = newValue {
+						image.toLSImage { ptr, len in
+							editor.setGameIcon(ptr, len)
+						}
+					} else {
+						editor.removeGameIcon()
 					}
-				} else {
-					editor.activeRemoveIcon()
 				}
+				undoManager?.setActionName("Set Game Icon")
+				NotificationCenter.default.post(.init(name: .gameIconEdited, object: newValue))
 			}
+		}
+	}
+	
+	var offset: Double {
+		get {
+			timer.lsRun.offset().totalSeconds()
+		}
+		set {
+			undoableEditRun(kp: \.offset, actionName: "Set Offset", newValue: newValue, edit: {
+				_ = $0.parseAndSetOffset("\($1)")
+			})
 		}
 	}
 	
@@ -322,7 +417,6 @@ class SplitterRun: NSObject {
 	
 	//TODO: Set current comparison
 	func setComparison(_ comparison: String) {
-//		timer.lsRun.customComparisonsLen()
 		if !comparisons.contains(comparison) {
 			editRun { editor in
 				_ = editor.addComparison(comparison)
@@ -331,10 +425,19 @@ class SplitterRun: NSObject {
 		while timer.lsTimer.currentComparison() != comparison {
 			timer.lsTimer.switchToNextComparison()
 		}
-		
+	}
+	private func setComparison(to comparison: LSComparison, disableUndo: Bool = false) {
+		let oldValue = self.getComparision()
+		if !disableUndo {
+			undoManager?.registerUndo(withTarget: self, handler: { r in
+				r.setComparison(to: oldValue)
+			})
+			undoManager?.setActionName("Set Comparison")
+		}
+		setComparison(comparison.rawValue)
 	}
 	func setComparison(to comparison: LSComparison) {
-		setComparison(comparison.rawValue)
+		self.setComparison(to: comparison, disableUndo: false)
 	}
 	
 	func getComparision() -> LSComparison {
@@ -358,12 +461,6 @@ class SplitterRun: NSObject {
 			currentComparison = newTimer.currentComparison()
 			
 		}
-		
-//		for i in 0..<2 {
-//
-//			comparisons.append(newTimer.currentComparison())
-//			newTimer.switchToNextComparison()
-//		}
 		return comparisons
 	}
 	
@@ -373,16 +470,32 @@ class SplitterRun: NSObject {
 		timer.resetRun(discardSplits: false)
 		updateLayoutState()
 		let timerRun = timer.lsTimer.getRun()
-		var newLSRun = timerRun.clone()
-		
-		if let editor = RunEditor(newLSRun) {
+		let oldName = timerRun.segment(index).name()
+		undoManager?.registerUndo(withTarget: self, handler: {$0.setSegTitle(index: index, title: oldName)
+			//Since the splits are edited in the table view, there's no point in posting the notification for it to refresh - the new values are already there. However, we do need it when undoing.
+			NotificationCenter.default.post(.init(name: .splitsEdited))
+		})
+		undoManager?.setActionName("Set Segment Title")
+		editRun({ editor in
 			editor.selectOnly(index)
 			editor.activeSetName(title)
-			
-			newLSRun = editor.close()
-			_ = timer.lsTimer.setRun(newLSRun)
-		}
+		})
 		updateLayoutState()
+	}
+	func setSplitTime(index: Int, time: String) {
+		let oldTime = timer.lsTimer.getRun().segment(index).name()
+		undoManager?.registerUndo(withTarget: self, handler: {
+			$0.setSplitTime(index: index, time: oldTime)
+			//We only post the notification when undoing, for the same reasons as in setSegTitle.
+			NotificationCenter.default.post(.init(name: .splitsEdited))
+		})
+		undoManager?.setActionName("Set Segment Time")
+		
+		editRun { editor in
+			editor.selectOnly(index)
+			_ = editor.activeParseAndSetSplitTime(time)
+		}
+		self.updateLayoutState()
 	}
 	
 	var layoutSplits: CSplits {
@@ -390,7 +503,7 @@ class SplitterRun: NSObject {
 	}
 	
 	var currentSplit: Int? {
-		let index = Int(timer.lsTimer.currentSegmentIndex())
+		let index = Int(timer.lsTimer.currentSplitIndex())
 		let len = timer.lsTimer.getRun().len()
 		if index < 0 || index >= len {
 			return nil
@@ -459,9 +572,9 @@ class SplitterRun: NSObject {
 	}
 	var tableColor: NSColor {
 		get {
-			let state = layout.stateAsJson(timer.lsTimer)
-			print(state)
 			if let doubles = codableLayout.components[1].splits?.background.asPlainColor() {
+				if doubles.count > 0 {
+				}
 				return NSColor(doubles)
 			}
 			return .splitterTableViewColor
@@ -488,13 +601,36 @@ class SplitterRun: NSObject {
 	}
 	
 	func saveToLSS() -> String {
-		timer.lsTimer.saveAsLss()
+		let comparison = self.getComparision()
+		editRun({ editor in
+			editor.addCustomVariable("currentComparison")
+			editor.setCustomVariable("currentComparison", comparison.rawValue)
+		})
+		return timer.lsTimer.saveAsLss()
 	}
 	func layoutToJSON() -> String {
 		layout.settingsAsJson()
 	}
 	func setRun(_ run: Run) {
 		_ = timer.lsTimer.setRun(run)
+	}
+	func addSumOfBest() {
+		editLayout{ editor in
+			let comp = LSSumOfBestComponent()
+			editor.addComponent(comp.intoGeneric())
+		}
+		updateLayoutState()
+	}
+	
+	//Blank Space = "Splitter Custom Component"
+	//add to SplitterAppearance file, and reference it there
+	
+	func addCustomComponent() {
+		editLayout { editor in
+			let kvc = BlankSpaceComponent().intoGeneric()
+			editor.addComponent(kvc)
+			
+		}
 	}
 }
 class SplitterTimer {
@@ -544,6 +680,7 @@ class SplitterTimer {
 		lsTimer.undoSplit()
 		splitterRun.updateLayoutState()
 	}
+
 	
 	//TODO: Figure out how resetting run should behave
 	///Resets the current run

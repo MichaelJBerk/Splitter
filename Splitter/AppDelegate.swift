@@ -122,19 +122,18 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 	
 	func applicationDidFinishLaunching(_ notification: Notification) {
 		if !Settings.notFirstUse {
-			Settings.hideUIButtons = false
 			Settings.hideTitleBar = false
-			Settings.floatWindow = false
 			Settings.showBestSplits = false
 			Settings.enableGlobalHotkeys = false
-			
 			Settings.notFirstUse = true
-			
 			keybindAlert()
 		} else {
 			if Settings.lastOpenedBuild != otherConstants.build {
 			}
 		}
+		UserDefaults.standard.removeObject(forKey: SettingsKeys.hideTimerButtons)
+		
+		
 		let welcomeWindowItem = NSApp.mainMenu?.item(withIdentifier: menuIdentifiers.windowMenu.welcomeWindowItem)
 		if #available(macOS 10.15, *) {
 			welcomeWindowItem?.isHidden = false
@@ -324,7 +323,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 	}
 
 	@IBAction func preferencesMenuItemActionHandler(_ sender: NSMenuItem) {
-		
 		preferencesWindowController.show()
 	}
 }

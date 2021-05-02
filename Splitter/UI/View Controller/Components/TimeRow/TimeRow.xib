@@ -6,16 +6,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <customObject id="-2" userLabel="File's Owner" customClass="TimeRow" customModule="Splitter" customModuleProvider="target">
-            <connections>
-                <outlet property="attemptsField" destination="w9Z-NV-iTD" id="kvY-5e-Xhg"/>
-                <outlet property="contentView" destination="feY-pv-Cdy" id="En0-q4-TzK"/>
-                <outlet property="timeLabel" destination="tK9-YK-iFx" id="ftS-4v-Aps"/>
-            </connections>
-        </customObject>
+        <customObject id="-2" userLabel="File's Owner" customClass="TimeRow" customModule="Splitter" customModuleProvider="target"/>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" id="feY-pv-Cdy">
+        <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" id="feY-pv-Cdy" customClass="TimeRow" customModule="Splitter" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="249" height="42"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
@@ -38,7 +32,7 @@
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                             </textFieldCell>
                         </textField>
-                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9Z-NV-iTD" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w9Z-NV-iTD" customClass="ThemedTextField" customModule="Splitter" customModuleProvider="target">
                             <rect key="frame" x="-2" y="0.0" width="54" height="20"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" editable="YES" alignment="right" placeholderString="0" id="XX4-ho-Xfj">
                                 <font key="font" metaFont="system" size="17"/>
@@ -73,6 +67,12 @@
                 <real value="3.4028234663852886e+38"/>
                 <real value="3.4028234663852886e+38"/>
             </customSpacing>
+            <connections>
+                <outlet property="attemptsField" destination="w9Z-NV-iTD" id="meB-ki-8A1"/>
+                <outlet property="attemptsLabel" destination="uGM-ou-HQW" id="uF2-Bv-pH6"/>
+                <outlet property="attemptsStackView" destination="w2h-zj-jyc" id="c13-vn-pvL"/>
+                <outlet property="timeLabel" destination="tK9-YK-iFx" id="OGe-s6-dMa"/>
+            </connections>
             <point key="canvasLocation" x="-144" y="79"/>
         </stackView>
     </objects>

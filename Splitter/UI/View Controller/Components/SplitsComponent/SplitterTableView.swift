@@ -8,25 +8,9 @@
 
 import Cocoa
 
-class SplitterScroller: NSScroller {
-	
-	var bgColor: NSColor?
-	
-	override func drawKnobSlot(in slotRect: NSRect, highlight flag: Bool) {
-	}
-}
-
-class SplitterScrollView: NSScrollView {
-	///Background color when scrolling past the items in the table view
-	///
-	///This is set after setting the scroll view's corner color. We can't just use the `backgroundColor` property, because then the correct color won't display
-	var tableBGColor: NSColor?
-	
-	override func draw(_ dirtyRect: NSRect) {}
-}
-
 class SplitterTableView: NSTableView {
-	var parentViewController: ViewController!
+	var viewController: ViewController!
+	
 	
     override func draw(_ dirtyRect: NSRect) {}
 	
@@ -52,7 +36,7 @@ class SplitterTableView: NSTableView {
 		
 		self.cornerView = cornerV
 		
-		(enclosingScrollView as? SplitterScrollView)?.tableBGColor = cornerColor
+		(enclosingScrollView as? SplitsComponent)?.tableBGColor = cornerColor
 	}
 	
 	/// Sets the background color of the table header to the specified color
@@ -68,7 +52,7 @@ class SplitterTableView: NSTableView {
 				let head = SplitterTableHeaderCell(textCell: headerStr)
 				head.drawsBackground = true
 				head.textColor = textColor
-				head.backgroundColor = parentViewController.run.tableColor
+				head.backgroundColor = viewController.run.tableColor
 				head.attributedStringValue = NSAttributedString(string: headerStr, attributes: [.foregroundColor: textColor])
 				head.isBordered = true
 				c.headerCell = head

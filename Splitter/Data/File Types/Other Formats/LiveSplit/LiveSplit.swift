@@ -221,5 +221,5 @@ extension NSImage {
 				withImage(umbp, giLen)
 			})
 		}
-}
+	}
 }

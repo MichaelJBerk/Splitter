@@ -3,7 +3,6 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
-        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -377,7 +376,7 @@
                                                 <action selector="pauseMenuItem:" target="Ady-hI-5gd" id="5Gw-DN-mHA"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Stop Timer" identifier="stopTimer" id="TFi-Xy-CSu">
+                                        <menuItem title="Cancel Run" identifier="stopTimer" id="TFi-Xy-CSu">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="stopMenuItem:" target="Ady-hI-5gd" id="Tje-Uj-H0p"/>
@@ -421,12 +420,6 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Appearance" id="dmV-eJ-aDK">
                                     <items>
-                                        <menuItem title="Hide Buttons" tag="2" identifier="HideButtonsItem" id="Elf-wD-0ZD">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="toggleShowHideUIMenuItem:" target="Ady-hI-5gd" id="8cb-qg-9go"/>
-                                            </connections>
-                                        </menuItem>
                                         <menuItem title="Hide Title Bar" tag="3" identifier="HideStoplightsItem" id="hNe-f9-14f">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
@@ -516,7 +509,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController storyboardIdentifier="Document Window Controller" id="jGA-0Y-lOj" customClass="MainWindowController" customModule="Splitter" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" hasShadow="NO" releasedWhenClosed="NO" animationBehavior="utilityWindow" appearanceType="darkAqua" frameAutosaveName="" tabbingMode="disallowed" titlebarAppearsTransparent="YES" id="Ckk-yw-fiv" customClass="MainWindow" customModule="Splitter" customModuleProvider="target">
+                    <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" hasShadow="NO" releasedWhenClosed="NO" animationBehavior="utilityWindow" frameAutosaveName="" tabbingMode="disallowed" titlebarAppearsTransparent="YES" id="Ckk-yw-fiv" customClass="MainWindow" customModule="Splitter" customModuleProvider="target">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" fullScreenAuxiliary="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
@@ -581,6 +574,29 @@
                         </menuItem>
                     </items>
                 </menu>
+                <viewController storyboardIdentifier="MainViewController" id="5gI-5U-AMq" customClass="ViewController" customModule="Splitter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="nLC-ev-0ZO">
+                        <rect key="frame" x="0.0" y="0.0" width="494" height="378"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kx4-q1-74E" customClass="DraggingStackView" customModule="Splitter" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="10" width="494" height="368"/>
+                            </stackView>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="Kx4-q1-74E" firstAttribute="top" secondItem="nLC-ev-0ZO" secondAttribute="top" id="UCK-07-jA6"/>
+                            <constraint firstAttribute="bottom" secondItem="Kx4-q1-74E" secondAttribute="bottom" constant="10" id="WnI-LX-92U"/>
+                            <constraint firstItem="Kx4-q1-74E" firstAttribute="leading" secondItem="nLC-ev-0ZO" secondAttribute="leading" id="Zze-Kw-HKy"/>
+                            <constraint firstAttribute="trailing" secondItem="Kx4-q1-74E" secondAttribute="trailing" id="kEx-wO-ewG"/>
+                        </constraints>
+                        <connections>
+                            <outlet property="menu" destination="4TY-Vv-7Ay" id="Zab-qA-NeN"/>
+                        </connections>
+                    </view>
+                    <connections>
+                        <outlet property="mainStackView" destination="Kx4-q1-74E" id="3Wt-La-UfN"/>
+                    </connections>
+                </viewController>
                 <menu title="IconMenu" autoenablesItems="NO" id="wTE-Xp-5dN">
                     <items>
                         <menuItem title="Clear Game Icon" identifier="removeGameIcon" id="38C-gT-fgS">
@@ -591,416 +607,8 @@
                         </menuItem>
                     </items>
                 </menu>
-                <viewController storyboardIdentifier="MainViewController" id="5gI-5U-AMq" customClass="ViewController" customModule="Splitter" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="nLC-ev-0ZO">
-                        <rect key="frame" x="0.0" y="0.0" width="494" height="378"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <subviews>
-                            <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kx4-q1-74E">
-                                <rect key="frame" x="0.0" y="0.0" width="494" height="378"/>
-                                <subviews>
-                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="mAU-zf-6y9">
-                                        <rect key="frame" x="0.0" y="312" width="286" height="66"/>
-                                        <subviews>
-                                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="6rq-lR-6Um" customClass="MetadataImage" customModule="Splitter" customModuleProvider="target">
-                                                <rect key="frame" x="6" y="8" width="42" height="50"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="42" id="U1C-6Q-rOI"/>
-                                                </constraints>
-                                                <imageCell key="cell" selectable="YES" editable="YES" alignment="left" imageScaling="proportionallyDown" id="xLg-Tz-pdd"/>
-                                                <connections>
-                                                    <outlet property="menu" destination="wTE-Xp-5dN" id="sUd-F8-aZB"/>
-                                                </connections>
-                                            </imageView>
-                                            <stackView distribution="fill" orientation="horizontal" alignment="centerY" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Zvg-iD-B8R">
-                                                <rect key="frame" x="57" y="14" width="221" height="38"/>
-                                                <subviews>
-                                                    <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ORt-qp-T9T">
-                                                        <rect key="frame" x="0.0" y="0.0" width="187" height="38"/>
-                                                        <subviews>
-                                                            <textField toolTip="Game/Run Title" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="TSJ-mg-scq" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
-                                                                <rect key="frame" x="-2" y="19" width="191" height="19"/>
-                                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" focusRingType="none" placeholderString="Game" id="nfV-Gy-dQR">
-                                                                    <font key="font" metaFont="system" size="16"/>
-                                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                    <color key="backgroundColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
-                                                                </textFieldCell>
-                                                            </textField>
-                                                            <textField toolTip="Speedrun Category" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="748" translatesAutoresizingMaskIntoConstraints="NO" id="5cv-K8-dE8" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
-                                                                <rect key="frame" x="-2" y="0.0" width="191" height="17"/>
-                                                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" focusRingType="none" placeholderString="Category" id="j9g-Du-1pV">
-                                                                    <font key="font" metaFont="menu" size="14"/>
-                                                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                                    <color key="backgroundColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
-                                                                </textFieldCell>
-                                                            </textField>
-                                                        </subviews>
-                                                        <constraints>
-                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="187" id="kM1-tI-ghV"/>
-                                                        </constraints>
-                                                        <visibilityPriorities>
-                                                            <integer value="1000"/>
-                                                            <integer value="1000"/>
-                                                        </visibilityPriorities>
-                                                        <customSpacing>
-                                                            <real value="3.4028234663852886e+38"/>
-                                                            <real value="3.4028234663852886e+38"/>
-                                                        </customSpacing>
-                                                    </stackView>
-                                                    <button toolTip="Get Info" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="laY-Uh-RhP" customClass="ThemedButton" customModule="Splitter" customModuleProvider="target">
-                                                        <rect key="frame" x="189" y="4" width="38" height="27"/>
-                                                        <buttonCell key="cell" type="push" bezelStyle="rounded" image="gearshape" imagePosition="only" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GL6-Z9-DG9">
-                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" metaFont="smallSystem"/>
-                                                        </buttonCell>
-                                                        <connections>
-                                                            <action selector="displayInfoPopover:" target="5gI-5U-AMq" id="LFd-oe-9Er"/>
-                                                        </connections>
-                                                    </button>
-                                                </subviews>
-                                                <visibilityPriorities>
-                                                    <integer value="1000"/>
-                                                    <integer value="1000"/>
-                                                </visibilityPriorities>
-                                                <customSpacing>
-                                                    <real value="3.4028234663852886e+38"/>
-                                                    <real value="3.4028234663852886e+38"/>
-                                                </customSpacing>
-                                            </stackView>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="height" constant="66" id="0c7-aa-ZQi"/>
-                                            <constraint firstAttribute="trailing" secondItem="Zvg-iD-B8R" secondAttribute="trailing" constant="8" id="5ou-Oe-XMQ"/>
-                                            <constraint firstItem="6rq-lR-6Um" firstAttribute="top" secondItem="mAU-zf-6y9" secondAttribute="top" constant="8" id="AMD-Rq-eQL"/>
-                                            <constraint firstItem="Zvg-iD-B8R" firstAttribute="leading" secondItem="6rq-lR-6Um" secondAttribute="trailing" constant="9" id="JQT-rz-YxD"/>
-                                            <constraint firstItem="6rq-lR-6Um" firstAttribute="leading" secondItem="mAU-zf-6y9" secondAttribute="leading" constant="6" id="MNg-BE-kDZ"/>
-                                            <constraint firstItem="Zvg-iD-B8R" firstAttribute="centerY" secondItem="mAU-zf-6y9" secondAttribute="centerY" id="eNT-M6-FwH"/>
-                                            <constraint firstAttribute="bottom" secondItem="6rq-lR-6Um" secondAttribute="bottom" constant="8" id="x5O-cA-0iX"/>
-                                        </constraints>
-                                    </customView>
-                                    <scrollView appearanceType="darkAqua" borderType="none" autohidesScrollers="YES" horizontalLineScroll="33" horizontalPageScroll="10" verticalLineScroll="33" verticalPageScroll="10" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="allowed" scrollerKnobStyle="dark" id="GLv-Wp-JTM" customClass="SplitterScrollView" customModule="Splitter" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="280" width="494" height="32"/>
-                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <clipView key="contentView" copiesOnScroll="NO" id="9dd-gf-lQy">
-                                            <rect key="frame" x="0.0" y="0.0" width="494" height="32"/>
-                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                            <subviews>
-                                                <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" tableStyle="fullWidth" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="31" headerView="aVs-1A-u0Q" viewBased="YES" id="Ww4-Jn-tNR" customClass="SplitterTableView" customModule="Splitter" customModuleProvider="target">
-                                                    <rect key="frame" x="0.0" y="0.0" width="494" height="33"/>
-                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                    <size key="intercellSpacing" width="3" height="2"/>
-                                                    <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                    <color key="gridColor" name="accentColor"/>
-                                                    <tableColumns>
-                                                        <tableColumn identifier="ImageColumn" width="32" minWidth="10" maxWidth="3.4028234663852886e+38" id="ljG-co-EDf">
-                                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left">
-                                                                <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </tableHeaderCell>
-                                                            <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="Fye-y2-bpH">
-                                                                <font key="font" metaFont="system"/>
-                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                            </textFieldCell>
-                                                            <tableColumnResizingMask key="resizingMask" userResizable="YES"/>
-                                                            <prototypeCellViews>
-                                                                <tableCellView translatesAutoresizingMaskIntoConstraints="NO" id="DDG-t1-8d6" customClass="ImageButtonCellView" customModule="Splitter" customModuleProvider="target">
-                                                                    <rect key="frame" x="1" y="1" width="37" height="31"/>
-                                                                    <subviews>
-                                                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="fWm-h9-MQx" customClass="CellImageWell" customModule="Splitter" customModuleProvider="target">
-                                                                            <rect key="frame" x="0.0" y="3" width="37" height="25"/>
-                                                                            <imageCell key="cell" selectable="YES" editable="YES" alignment="left" imageScaling="proportionallyDown" id="7YC-zB-gvo"/>
-                                                                            <connections>
-                                                                                <outlet property="menu" destination="tBl-Z3-cF6" id="q3S-A7-gEd"/>
-                                                                                <outlet property="splitController" destination="5gI-5U-AMq" id="p3F-qM-ixb"/>
-                                                                            </connections>
-                                                                        </imageView>
-                                                                    </subviews>
-                                                                    <constraints>
-                                                                        <constraint firstAttribute="bottom" secondItem="fWm-h9-MQx" secondAttribute="bottom" constant="3" id="22f-gH-l5d"/>
-                                                                        <constraint firstItem="fWm-h9-MQx" firstAttribute="leading" secondItem="DDG-t1-8d6" secondAttribute="leading" id="CPX-10-60A"/>
-                                                                        <constraint firstItem="fWm-h9-MQx" firstAttribute="top" secondItem="DDG-t1-8d6" secondAttribute="top" constant="3" id="Da9-sv-XaE"/>
-                                                                        <constraint firstAttribute="trailing" secondItem="fWm-h9-MQx" secondAttribute="trailing" id="KQd-4e-JG2"/>
-                                                                        <constraint firstItem="fWm-h9-MQx" firstAttribute="centerX" secondItem="DDG-t1-8d6" secondAttribute="centerX" id="KRX-l5-kE5"/>
-                                                                    </constraints>
-                                                                    <connections>
-                                                                        <outlet property="imageWell" destination="fWm-h9-MQx" id="kmr-eN-aNC"/>
-                                                                    </connections>
-                                                                </tableCellView>
-                                                            </prototypeCellViews>
-                                                        </tableColumn>
-                                                        <tableColumn identifier="SplitTitle" width="80" minWidth="40" maxWidth="1000" id="rA7-ZF-Uc6">
-                                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Split">
-                                                                <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
-                                                                <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
-                                                            </tableHeaderCell>
-                                                            <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" title="Text Cell" placeholderString="Llaaa" id="jcv-dW-os6">
-                                                                <font key="font" metaFont="system"/>
-                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                            </textFieldCell>
-                                                            <tableColumnResizingMask key="resizingMask" userResizable="YES"/>
-                                                            <prototypeCellViews>
-                                                                <tableCellView translatesAutoresizingMaskIntoConstraints="NO" id="MX7-uO-mSv">
-                                                                    <rect key="frame" x="41" y="1" width="80" height="31"/>
-                                                                    <subviews>
-                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="Zgl-iF-pqa" customClass="ThemedTextField" customModule="Splitter" customModuleProvider="target">
-                                                                            <rect key="frame" x="-2" y="9" width="84" height="14"/>
-                                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" alignment="left" title="Split Title" id="3Pe-jP-c4b">
-                                                                                <font key="font" metaFont="message" size="11"/>
-                                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                            </textFieldCell>
-                                                                            <userDefinedRuntimeAttributes>
-                                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="themeable" value="YES"/>
-                                                                            </userDefinedRuntimeAttributes>
-                                                                        </textField>
-                                                                    </subviews>
-                                                                    <constraints>
-                                                                        <constraint firstItem="Zgl-iF-pqa" firstAttribute="centerY" secondItem="MX7-uO-mSv" secondAttribute="centerY" id="dN7-8j-UvO"/>
-                                                                        <constraint firstAttribute="trailing" secondItem="Zgl-iF-pqa" secondAttribute="trailing" id="efx-MV-op2"/>
-                                                                        <constraint firstItem="Zgl-iF-pqa" firstAttribute="leading" secondItem="MX7-uO-mSv" secondAttribute="leading" id="tKN-eR-mwr"/>
-                                                                    </constraints>
-                                                                    <connections>
-                                                                        <outlet property="textField" destination="Zgl-iF-pqa" id="EgN-7T-PSz"/>
-                                                                    </connections>
-                                                                </tableCellView>
-                                                            </prototypeCellViews>
-                                                        </tableColumn>
-                                                        <tableColumn identifier="CurrentSplit" width="90" minWidth="10" maxWidth="3.4028234663852886e+38" id="rN9-Ff-1yR" customClass="TimeSplitColumn" customModule="Splitter" customModuleProvider="target">
-                                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Time">
-                                                                <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </tableHeaderCell>
-                                                            <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="1aN-Zy-166">
-                                                                <font key="font" metaFont="system"/>
-                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                            </textFieldCell>
-                                                            <tableColumnResizingMask key="resizingMask" userResizable="YES"/>
-                                                            <prototypeCellViews>
-                                                                <tableCellView id="7FB-sm-vIX" customClass="TimeSplitCell" customModule="Splitter" customModuleProvider="target">
-                                                                    <rect key="frame" x="124" y="1" width="90" height="31"/>
-                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                                    <subviews>
-                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9wd-Sb-6rV" customClass="ThemedTextField" customModule="Splitter" customModuleProvider="target">
-                                                                            <rect key="frame" x="-2" y="8" width="94" height="16"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="height" constant="16" id="s9Z-yZ-PW5"/>
-                                                                            </constraints>
-                                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="00:00:00.00" id="YPM-W5-n1X">
-                                                                                <font key="font" metaFont="systemBold"/>
-                                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                            </textFieldCell>
-                                                                        </textField>
-                                                                    </subviews>
-                                                                    <constraints>
-                                                                        <constraint firstItem="9wd-Sb-6rV" firstAttribute="centerX" secondItem="7FB-sm-vIX" secondAttribute="centerX" id="5xd-Cq-nCQ"/>
-                                                                        <constraint firstItem="9wd-Sb-6rV" firstAttribute="leading" secondItem="7FB-sm-vIX" secondAttribute="leading" id="dr7-lr-CUx"/>
-                                                                        <constraint firstItem="9wd-Sb-6rV" firstAttribute="centerY" secondItem="7FB-sm-vIX" secondAttribute="centerY" id="ofK-ue-fL9"/>
-                                                                    </constraints>
-                                                                    <connections>
-                                                                        <outlet property="textField" destination="9wd-Sb-6rV" id="5Ma-ve-GcS"/>
-                                                                    </connections>
-                                                                </tableCellView>
-                                                            </prototypeCellViews>
-                                                        </tableColumn>
-                                                        <tableColumn identifier="Difference" editable="NO" width="64" minWidth="10" maxWidth="3.4028234663852886e+38" id="xLb-1p-wmS" customClass="TimeSplitColumn" customModule="Splitter" customModuleProvider="target">
-                                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Diff">
-                                                                <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </tableHeaderCell>
-                                                            <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" alignment="left" title="Text Cell" id="hAE-Jw-8eR">
-                                                                <font key="font" metaFont="system"/>
-                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                            </textFieldCell>
-                                                            <tableColumnResizingMask key="resizingMask" userResizable="YES"/>
-                                                            <prototypeCellViews>
-                                                                <tableCellView id="8TX-qB-Vav" customClass="TimeSplitCell" customModule="Splitter" customModuleProvider="target">
-                                                                    <rect key="frame" x="217" y="1" width="64" height="31"/>
-                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                                    <subviews>
-                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a8y-qx-fyd" customClass="ThemedTextField" customModule="Splitter" customModuleProvider="target">
-                                                                            <rect key="frame" x="0.0" y="6" width="183" height="18"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="height" constant="18" id="0uo-VM-Sm9"/>
-                                                                            </constraints>
-                                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="00:00.00" id="IRa-aS-5KY">
-                                                                                <font key="font" metaFont="system"/>
-                                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                            </textFieldCell>
-                                                                            <userDefinedRuntimeAttributes>
-                                                                                <userDefinedRuntimeAttribute type="boolean" keyPath="themeable" value="NO"/>
-                                                                            </userDefinedRuntimeAttributes>
-                                                                        </textField>
-                                                                    </subviews>
-                                                                    <constraints>
-                                                                        <constraint firstItem="a8y-qx-fyd" firstAttribute="leading" secondItem="8TX-qB-Vav" secondAttribute="leading" id="0Ag-MX-mK5"/>
-                                                                        <constraint firstItem="a8y-qx-fyd" firstAttribute="centerX" secondItem="8TX-qB-Vav" secondAttribute="centerX" id="H4p-PP-CfN"/>
-                                                                        <constraint firstItem="a8y-qx-fyd" firstAttribute="centerY" secondItem="8TX-qB-Vav" secondAttribute="centerY" id="sBX-YS-b6W"/>
-                                                                    </constraints>
-                                                                    <connections>
-                                                                        <outlet property="textField" destination="a8y-qx-fyd" id="GIF-dR-akf"/>
-                                                                    </connections>
-                                                                </tableCellView>
-                                                            </prototypeCellViews>
-                                                        </tableColumn>
-                                                        <tableColumn identifier="B" width="173" minWidth="10" maxWidth="3.4028234663852886e+38" hidden="YES" id="RXR-Oz-PMu" customClass="TimeSplitColumn" customModule="Splitter" customModuleProvider="target">
-                                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="PB">
-                                                                <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </tableHeaderCell>
-                                                            <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="dc5-WJ-xB3">
-                                                                <font key="font" metaFont="system"/>
-                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                            </textFieldCell>
-                                                            <tableColumnResizingMask key="resizingMask" userResizable="YES"/>
-                                                            <prototypeCellViews>
-                                                                <tableCellView id="KQB-tH-eJU" customClass="TimeSplitCell" customModule="Splitter" customModuleProvider="target">
-                                                                    <rect key="frame" x="1" y="1" width="0.0" height="31"/>
-                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                                    <subviews>
-                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="EDP-CX-XUd" customClass="ThemedTextField" customModule="Splitter" customModuleProvider="target">
-                                                                            <rect key="frame" x="-2" y="7" width="4" height="18"/>
-                                                                            <constraints>
-                                                                                <constraint firstAttribute="height" constant="18" id="zhQ-cz-nxb"/>
-                                                                            </constraints>
-                                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="00:00:00.00" id="mUe-XU-rXP">
-                                                                                <font key="font" metaFont="system"/>
-                                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                            </textFieldCell>
-                                                                        </textField>
-                                                                    </subviews>
-                                                                    <constraints>
-                                                                        <constraint firstItem="EDP-CX-XUd" firstAttribute="leading" secondItem="KQB-tH-eJU" secondAttribute="leading" id="6Rq-jx-HIl"/>
-                                                                        <constraint firstAttribute="trailing" secondItem="EDP-CX-XUd" secondAttribute="trailing" id="dMa-rW-Kuf"/>
-                                                                        <constraint firstItem="EDP-CX-XUd" firstAttribute="centerY" secondItem="KQB-tH-eJU" secondAttribute="centerY" id="e4u-Y5-N08"/>
-                                                                    </constraints>
-                                                                    <connections>
-                                                                        <outlet property="textField" destination="EDP-CX-XUd" id="zeU-40-u9J"/>
-                                                                    </connections>
-                                                                </tableCellView>
-                                                            </prototypeCellViews>
-                                                        </tableColumn>
-                                                        <tableColumn identifier="PreviousSplit" width="85" minWidth="10" maxWidth="3.4028234663852886e+38" id="Q3y-d2-rYY" customClass="TimeSplitColumn" customModule="Splitter" customModuleProvider="target">
-                                                            <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Previous">
-                                                                <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
-                                                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                            </tableHeaderCell>
-                                                            <textFieldCell key="dataCell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" alignment="left" title="Text Cell" id="zGn-Ya-6bg">
-                                                                <font key="font" metaFont="system"/>
-                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                                            </textFieldCell>
-                                                            <tableColumnResizingMask key="resizingMask" userResizable="YES"/>
-                                                            <prototypeCellViews>
-                                                                <tableCellView id="UsZ-ab-Q8h" customClass="TimeSplitCell" customModule="Splitter" customModuleProvider="target">
-                                                                    <rect key="frame" x="284" y="1" width="89" height="31"/>
-                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                                                    <subviews>
-                                                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="kIh-q7-hw5" customClass="ThemedTextField" customModule="Splitter" customModuleProvider="target">
-                                                                            <rect key="frame" x="-2" y="8" width="93" height="16"/>
-                                                                            <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="00:00:00.00" id="sY5-n5-Ucg">
-                                                                                <font key="font" metaFont="system"/>
-                                                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                                            </textFieldCell>
-                                                                        </textField>
-                                                                    </subviews>
-                                                                    <constraints>
-                                                                        <constraint firstItem="kIh-q7-hw5" firstAttribute="leading" secondItem="UsZ-ab-Q8h" secondAttribute="leading" id="Ekb-L4-qhM"/>
-                                                                        <constraint firstAttribute="trailing" secondItem="kIh-q7-hw5" secondAttribute="trailing" id="JRh-CN-Pop"/>
-                                                                        <constraint firstItem="kIh-q7-hw5" firstAttribute="centerY" secondItem="UsZ-ab-Q8h" secondAttribute="centerY" id="lgi-zp-1pM"/>
-                                                                    </constraints>
-                                                                    <connections>
-                                                                        <outlet property="textField" destination="kIh-q7-hw5" id="hGN-EA-lgd"/>
-                                                                    </connections>
-                                                                </tableCellView>
-                                                            </prototypeCellViews>
-                                                        </tableColumn>
-                                                    </tableColumns>
-                                                    <connections>
-                                                        <outlet property="dataSource" destination="5gI-5U-AMq" id="mc1-9T-cO9"/>
-                                                        <outlet property="delegate" destination="5gI-5U-AMq" id="CfU-XV-zpj"/>
-                                                    </connections>
-                                                </tableView>
-                                            </subviews>
-                                        </clipView>
-                                        <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="u5J-vU-46w" customClass="SplitterScroller" customModule="Splitter" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="155" width="286" height="16"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </scroller>
-                                        <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="tC9-GG-98i" customClass="SplitterScroller" customModule="Splitter" customModuleProvider="target">
-                                            <rect key="frame" x="-100" y="-100" width="15" height="102"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </scroller>
-                                        <tableHeaderView key="headerView" wantsLayer="YES" id="aVs-1A-u0Q" customClass="SplitterTableHeader" customModule="Splitter" customModuleProvider="target">
-                                            <rect key="frame" x="0.0" y="0.0" width="494" height="25"/>
-                                            <autoresizingMask key="autoresizingMask"/>
-                                        </tableHeaderView>
-                                    </scrollView>
-                                    <customView translatesAutoresizingMaskIntoConstraints="NO" id="0DF-tP-BL4">
-                                        <rect key="frame" x="0.0" y="0.0" width="494" height="280"/>
-                                        <subviews>
-                                            <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="HPQ-BI-dXc" customClass="DraggingStackView" customModule="Splitter" customModuleProvider="target">
-                                                <rect key="frame" x="7" y="10" width="481" height="260"/>
-                                            </stackView>
-                                        </subviews>
-                                        <constraints>
-                                            <constraint firstItem="HPQ-BI-dXc" firstAttribute="top" secondItem="0DF-tP-BL4" secondAttribute="top" constant="10" id="0Qa-fB-6hl"/>
-                                            <constraint firstAttribute="trailing" secondItem="HPQ-BI-dXc" secondAttribute="trailing" constant="6" id="PGN-IS-pNw"/>
-                                            <constraint firstAttribute="bottom" secondItem="HPQ-BI-dXc" secondAttribute="bottom" constant="10" id="tcZ-J0-Acn"/>
-                                            <constraint firstItem="HPQ-BI-dXc" firstAttribute="leading" secondItem="0DF-tP-BL4" secondAttribute="leading" constant="7" id="vba-lo-Qwl"/>
-                                        </constraints>
-                                    </customView>
-                                </subviews>
-                                <constraints>
-                                    <constraint firstItem="mAU-zf-6y9" firstAttribute="top" secondItem="Kx4-q1-74E" secondAttribute="top" id="3L6-fw-XKn"/>
-                                    <constraint firstAttribute="trailing" secondItem="0DF-tP-BL4" secondAttribute="trailing" id="Jzt-KX-hYU"/>
-                                    <constraint firstItem="mAU-zf-6y9" firstAttribute="leading" secondItem="Kx4-q1-74E" secondAttribute="leading" id="PGl-me-wO5"/>
-                                    <constraint firstItem="GLv-Wp-JTM" firstAttribute="leading" secondItem="Kx4-q1-74E" secondAttribute="leading" id="bSE-Hm-gio"/>
-                                    <constraint firstItem="0DF-tP-BL4" firstAttribute="leading" secondItem="Kx4-q1-74E" secondAttribute="leading" id="dpS-J3-BJo"/>
-                                </constraints>
-                                <visibilityPriorities>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                    <integer value="1000"/>
-                                </visibilityPriorities>
-                                <customSpacing>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                    <real value="3.4028234663852886e+38"/>
-                                </customSpacing>
-                            </stackView>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="Kx4-q1-74E" firstAttribute="top" secondItem="nLC-ev-0ZO" secondAttribute="top" id="UCK-07-jA6"/>
-                            <constraint firstAttribute="bottom" secondItem="Kx4-q1-74E" secondAttribute="bottom" id="WnI-LX-92U"/>
-                            <constraint firstItem="Kx4-q1-74E" firstAttribute="leading" secondItem="nLC-ev-0ZO" secondAttribute="leading" id="Zze-Kw-HKy"/>
-                            <constraint firstAttribute="trailing" secondItem="Kx4-q1-74E" secondAttribute="trailing" id="kEx-wO-ewG"/>
-                        </constraints>
-                        <connections>
-                            <outlet property="menu" destination="4TY-Vv-7Ay" id="Zab-qA-NeN"/>
-                        </connections>
-                    </view>
-                    <connections>
-                        <outlet property="bottomStackView" destination="HPQ-BI-dXc" id="ef7-VU-Vee"/>
-                        <outlet property="categoryField" destination="5cv-K8-dE8" id="S7o-Cd-tug"/>
-                        <outlet property="gameIconButton" destination="6rq-lR-6Um" id="AWF-ua-Hx9"/>
-                        <outlet property="infoPanelPopoverButton" destination="laY-Uh-RhP" id="36Z-y3-khC"/>
-                        <outlet property="innerMetatdataStack" destination="Zvg-iD-B8R" id="chC-L4-IfO"/>
-                        <outlet property="metadataView" destination="mAU-zf-6y9" id="oWJ-Ex-kRk"/>
-                        <outlet property="runTitleField" destination="TSJ-mg-scq" id="rjM-Y4-yKr"/>
-                        <outlet property="splitsTableView" destination="Ww4-Jn-tNR" id="Q7d-TC-F7o"/>
-                    </connections>
-                </viewController>
             </objects>
-            <point key="canvasLocation" x="147.5" y="915.5"/>
+            <point key="canvasLocation" x="147" y="915"/>
         </scene>
         <!--Info Popover Tab View Controller-->
         <scene sceneID="ahx-t2-V9E">
@@ -1080,7 +688,7 @@ To remove, click and press backspace. </string>
                                         </textField>
                                     </gridCell>
                                     <gridCell row="L6o-JX-ii0" column="vxy-hV-tJz" id="5p2-am-4Fp">
-                                        <textField key="contentView" toolTip="Game Title" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="UXc-S9-jFn" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
+                                        <textField key="contentView" toolTip="Game Title" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="UXc-S9-jFn">
                                             <rect key="frame" x="112" y="186" width="100" height="21"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="GMu-GZ-I0O">
                                                 <font key="font" metaFont="system"/>
@@ -1100,7 +708,7 @@ To remove, click and press backspace. </string>
                                         </textField>
                                     </gridCell>
                                     <gridCell row="m0S-8J-6Ce" column="vxy-hV-tJz" id="8ay-bC-oS1">
-                                        <textField key="contentView" toolTip="Speedrun Category (i.e. Any %)" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="XqK-XY-ils" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
+                                        <textField key="contentView" toolTip="Speedrun Category (i.e. Any %)" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="XqK-XY-ils">
                                             <rect key="frame" x="112" y="159" width="100" height="21"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" toolTip="Speedrun Category (i.e. Any %)" drawsBackground="YES" id="8xO-mB-dqj">
                                                 <font key="font" metaFont="system"/>
@@ -1120,7 +728,7 @@ To remove, click and press backspace. </string>
                                         </textField>
                                     </gridCell>
                                     <gridCell row="UbN-2k-LQs" column="vxy-hV-tJz" id="LWx-U4-bP7">
-                                        <textField key="contentView" toolTip="Number of times this run has been attempted " verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xtG-uJ-IZa" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
+                                        <textField key="contentView" toolTip="Number of times this run has been attempted " verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xtG-uJ-IZa">
                                             <rect key="frame" x="112" y="132" width="100" height="21"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="zfc-Nr-qcx">
                                                 <font key="font" metaFont="system"/>
@@ -1143,7 +751,7 @@ To remove, click and press backspace. </string>
                                         </textField>
                                     </gridCell>
                                     <gridCell row="hsq-T1-mTZ" column="vxy-hV-tJz" id="e3T-nQ-owx">
-                                        <textField key="contentView" toolTip="Platform the game is being played on" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="26X-Fy-Txf" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
+                                        <textField key="contentView" toolTip="Platform the game is being played on" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="26X-Fy-Txf">
                                             <rect key="frame" x="112" y="105" width="100" height="21"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="Pk3-fq-DK4">
                                                 <font key="font" metaFont="system"/>
@@ -1163,7 +771,7 @@ To remove, click and press backspace. </string>
                                         </textField>
                                     </gridCell>
                                     <gridCell row="xhD-Rb-aXY" column="vxy-hV-tJz" id="Rlq-mV-KZd">
-                                        <textField key="contentView" toolTip="Version of the game being played (i.e. 1.3.0)" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="WAV-8P-f9h" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
+                                        <textField key="contentView" toolTip="Version of the game being played (i.e. 1.3.0)" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="WAV-8P-f9h">
                                             <rect key="frame" x="112" y="78" width="100" height="21"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="N7c-x2-gbT">
                                                 <font key="font" metaFont="system"/>
@@ -1183,7 +791,7 @@ To remove, click and press backspace. </string>
                                         </textField>
                                     </gridCell>
                                     <gridCell row="6g6-5p-fsl" column="vxy-hV-tJz" id="nuX-2A-7Ur">
-                                        <textField key="contentView" toolTip="Regional version of the game being played (i.e. &quot;USA&quot;)" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="18O-lk-nAH" customClass="MetadataField" customModule="Splitter" customModuleProvider="target">
+                                        <textField key="contentView" toolTip="Regional version of the game being played (i.e. &quot;USA&quot;)" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="18O-lk-nAH">
                                             <rect key="frame" x="112" y="51" width="100" height="21"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="oAh-Hl-ZOu">
                                                 <font key="font" metaFont="system"/>
@@ -1284,7 +892,7 @@ To remove, click and press backspace. </string>
                                 </textFieldCell>
                             </textField>
                             <gridView xPlacement="leading" yPlacement="bottom" rowAlignment="none" translatesAutoresizingMaskIntoConstraints="NO" id="1WJ-LN-qqE">
-                                <rect key="frame" x="20" y="145" width="408" height="133"/>
+                                <rect key="frame" x="20" y="144" width="408" height="134"/>
                                 <rows>
                                     <gridRow id="Kxe-KU-ILE"/>
                                     <gridRow id="Ls0-A2-qsU"/>
@@ -1297,7 +905,7 @@ To remove, click and press backspace. </string>
                                 <gridCells>
                                     <gridCell row="Kxe-KU-ILE" column="Vbu-Go-lnq" xPlacement="trailing" id="XJt-C5-VJr">
                                         <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gCf-4R-9aQ">
-                                            <rect key="frame" x="-2" y="113" width="109" height="16"/>
+                                            <rect key="frame" x="-2" y="114" width="109" height="16"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Compare Time to" id="Rac-Ff-dLM">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -1307,7 +915,7 @@ To remove, click and press backspace. </string>
                                     </gridCell>
                                     <gridCell row="Kxe-KU-ILE" column="SdJ-WM-ZCg" id="Uw9-JA-0Wd">
                                         <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eQv-aA-TVK">
-                                            <rect key="frame" x="108" y="109" width="144" height="25"/>
+                                            <rect key="frame" x="108" y="110" width="144" height="25"/>
                                             <popUpButtonCell key="cell" type="push" title="Previous Attempt" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" autoenablesItems="NO" selectedItem="PXQ-9Z-K1b" id="xtb-He-QHy">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="menu"/>
@@ -1326,7 +934,7 @@ To remove, click and press backspace. </string>
                                     <gridCell row="Ls0-A2-qsU" column="Vbu-Go-lnq" xPlacement="trailing" id="ezQ-jo-StM"/>
                                     <gridCell row="Ls0-A2-qsU" column="SdJ-WM-ZCg" id="yyv-MF-ioh">
                                         <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="w7L-YK-RyY">
-                                            <rect key="frame" x="109" y="26" width="301" height="81"/>
+                                            <rect key="frame" x="109" y="27" width="301" height="81"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="81" id="MjM-gA-KdR"/>
                                                 <constraint firstAttribute="width" constant="297" id="oXR-JX-QFK"/>
@@ -1340,9 +948,9 @@ To remove, click and press backspace. </string>
                                         </textField>
                                     </gridCell>
                                     <gridCell row="Iod-SA-wsZ" column="Vbu-Go-lnq" xPlacement="trailing" id="rPL-mX-khL">
-                                        <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="VSz-dS-40q">
-                                            <rect key="frame" x="16" y="0.0" width="91" height="16"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Round Diffs to" id="G4A-qg-BnD">
+                                        <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="c1I-nd-vZM">
+                                            <rect key="frame" x="-1" y="0.0" width="108" height="16"/>
+                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Offset (Seconds)" id="FmD-xz-5Mf">
                                                 <font key="font" usesAppearanceFont="YES"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -1350,22 +958,17 @@ To remove, click and press backspace. </string>
                                         </textField>
                                     </gridCell>
                                     <gridCell row="Iod-SA-wsZ" column="SdJ-WM-ZCg" id="t4A-KS-poq">
-                                        <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3c2-Oc-T6R">
-                                            <rect key="frame" x="108" y="-4" width="149" height="25"/>
-                                            <popUpButtonCell key="cell" type="push" title="Tenths (1.0)" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="nMZ-sT-CSk" id="Tat-0W-Mzd">
-                                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="menu"/>
-                                                <menu key="menu" id="g2j-NM-WrP">
-                                                    <items>
-                                                        <menuItem title="Tenths (1.0)" state="on" identifier="tenths" id="nMZ-sT-CSk"/>
-                                                        <menuItem title="Hundredths (1.00)" identifier="hundredths" id="e39-7p-dnU"/>
-                                                    </items>
-                                                </menu>
-                                            </popUpButtonCell>
+                                        <textField key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dhP-h7-t16">
+                                            <rect key="frame" x="111" y="0.0" width="100" height="21"/>
+                                            <textFieldCell key="cell" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" id="EV8-dn-lFt">
+                                                <font key="font" usesAppearanceFont="YES"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
                                             <connections>
-                                                <action selector="changeRoundDiffPopupButton:" target="aIO-Eg-hvI" id="J6Y-nY-b5p"/>
+                                                <action selector="offsetTextFieldEdited:" target="aIO-Eg-hvI" id="QOX-Gi-yBZ"/>
                                             </connections>
-                                        </popUpButton>
+                                        </textField>
                                     </gridCell>
                                 </gridCells>
                             </gridView>
@@ -1377,7 +980,7 @@ To remove, click and press backspace. </string>
                     </view>
                     <connections>
                         <outlet property="compareToPopUpButton" destination="eQv-aA-TVK" id="rQP-ji-3P6"/>
-                        <outlet property="roundDiffPopUpButton" destination="3c2-Oc-T6R" id="ERX-FW-wfN"/>
+                        <outlet property="offsetTextField" destination="dhP-h7-t16" id="Pfn-TU-S4N"/>
                     </connections>
                 </viewController>
                 <customObject id="zdC-me-PFw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -1401,10 +1004,9 @@ To remove, click and press backspace. </string>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <gridView xPlacement="leading" yPlacement="bottom" rowAlignment="none" translatesAutoresizingMaskIntoConstraints="NO" id="yti-1B-Vv4">
-                                            <rect key="frame" x="0.0" y="19" width="410" height="158"/>
+                                            <rect key="frame" x="0.0" y="60" width="410" height="117"/>
                                             <rows>
                                                 <gridRow yPlacement="center" height="35" id="AMM-IJ-WjW"/>
-                                                <gridRow yPlacement="center" height="35" id="ZxY-tT-aa5"/>
                                                 <gridRow yPlacement="center" height="35" id="DHP-S5-sT1"/>
                                                 <gridRow yPlacement="center" height="35" id="aIw-lL-hwA"/>
                                             </rows>
@@ -1417,7 +1019,7 @@ To remove, click and press backspace. </string>
                                                 <gridCell row="AMM-IJ-WjW" column="fm8-dP-Eb8" id="Hy4-K6-h0E"/>
                                                 <gridCell row="AMM-IJ-WjW" column="gqm-xY-pbD" id="NBK-Nr-InD">
                                                     <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KdL-ri-VdY">
-                                                        <rect key="frame" x="32" y="132" width="108" height="18"/>
+                                                        <rect key="frame" x="32" y="91" width="108" height="18"/>
                                                         <buttonCell key="cell" type="check" title="Hide Title Bar" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="H6d-Wj-qAk">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                             <font key="font" metaFont="system"/>
@@ -1426,27 +1028,8 @@ To remove, click and press backspace. </string>
                                                 </gridCell>
                                                 <gridCell row="AMM-IJ-WjW" column="sZ3-UK-dPQ" id="B07-c0-HC1">
                                                     <button key="contentView" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qCT-Wf-FTs" customClass="helpButton" customModule="Splitter" customModuleProvider="target">
-                                                        <rect key="frame" x="370" y="127" width="25" height="25"/>
-                                                        <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5fB-Fb-LPg">
-                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" metaFont="system"/>
-                                                        </buttonCell>
-                                                    </button>
-                                                </gridCell>
-                                                <gridCell row="ZxY-tT-aa5" column="fm8-dP-Eb8" id="dDp-yi-J1j"/>
-                                                <gridCell row="ZxY-tT-aa5" column="gqm-xY-pbD" yPlacement="center" id="ONu-xj-1HC">
-                                                    <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="H55-YO-vGp">
-                                                        <rect key="frame" x="32" y="91" width="105" height="18"/>
-                                                        <buttonCell key="cell" type="check" title="Hide Buttons" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="GtI-P7-9yv">
-                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                            <font key="font" metaFont="system"/>
-                                                        </buttonCell>
-                                                    </button>
-                                                </gridCell>
-                                                <gridCell row="ZxY-tT-aa5" column="sZ3-UK-dPQ" id="VlI-I0-IB3">
-                                                    <button key="contentView" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LZG-o3-NMC" customClass="helpButton" customModule="Splitter" customModuleProvider="target">
                                                         <rect key="frame" x="370" y="86" width="25" height="25"/>
-                                                        <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ifk-J0-glH">
+                                                        <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5fB-Fb-LPg">
                                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                             <font key="font" metaFont="system"/>
                                                         </buttonCell>
@@ -1509,9 +1092,7 @@ To remove, click and press backspace. </string>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="buttonHelp" destination="LZG-o3-NMC" id="fBL-uP-hNm"/>
                         <outlet property="gridView" destination="yti-1B-Vv4" id="lrc-cx-Tdc"/>
-                        <outlet property="hideButtonsCheck" destination="H55-YO-vGp" id="L0e-Ut-tmN"/>
                         <outlet property="hideTitleBarCheck" destination="KdL-ri-VdY" id="23i-J6-H3k"/>
                         <outlet property="hideTitleCheck" destination="afc-on-JTN" id="wKQ-Gu-jfT"/>
                         <outlet property="keepOnTopCheck" destination="NX0-Jl-BA1" id="uyt-SX-5qf"/>
@@ -1537,10 +1118,4 @@ To remove, click and press backspace. </string>
             <point key="canvasLocation" x="883" y="68"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="gearshape" width="107" height="107"/>
-        <namedColor name="accentColor">
-            <color red="0.35699999332427979" green="0.28999999165534973" blue="0.70999997854232788" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-    </resources>
 </document>

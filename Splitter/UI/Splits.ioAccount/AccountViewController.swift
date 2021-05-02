@@ -14,7 +14,7 @@ class AccountViewController: NSViewController, PreferencePane {
 	var preferencePaneIdentifier = Preferences.PaneIdentifier.splitsIO
 	var preferencePaneTitle: String = "Splits.io"
     var toolbarItemIcon: NSImage {
-        let img = NSImage(named: "splitsio")!
+		let img = NSImage(named: "splitsio")!.copy() as! NSImage
         if #available(macOS 11.0, *) {
             img.isTemplate = true
         }

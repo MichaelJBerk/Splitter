@@ -83,6 +83,7 @@ class MetadataField: ThemedTextField  {
 }
 class ThemedImage: NSImageView, Themeable {
 	var themeable: Bool = true
+	var run: SplitterRun!
 	override init(frame frameRect: NSRect) {
 		super.init(frame: frameRect)
 		setColorObserver()
@@ -99,46 +100,54 @@ class ThemedImage: NSImageView, Themeable {
 	}
 }
 
+///Game Icon
 class MetadataImage: ThemedImage {
 	var controller: metaController?
-	var run: SplitterRun!
-	
-	var allowsUpdate = true
-	
-	override var image: NSImage? {
-		
-		didSet {
-			if allowsUpdate {
-				var newValue = self.image
-				if newValue == nil {
-					newValue = .gameControllerIcon
-					self.image = newValue
-					run.gameIcon = nil
-				}
-				if let i = findVC() as? ViewController {
-					let gi = i.run.gameIcon
-					if gi == newValue {
-						
-					}
-					if i.run.gameIcon != newValue {
-						if newValue == NSImage.gameControllerIcon {
-							
-						} else {
-							run.gameIcon = newValue
-							if let tabVC = i.infoPanelPopover?.contentViewController as? InfoPopoverTabViewController {
-								if let infoVC = tabVC.tabView.selectedTabViewItem?.viewController as? InfoOptionsViewController {
-									infoVC.getImageFromMain()
-								}
-							}
-						}
-					}
-				}
-				if let i = findVC() as? InfoOptionsViewController {
-					i.sendImageToMain()
-				}
+	override var themeable: Bool {
+		get {
+			if run.gameIcon == nil {
+				return true
 			}
+			return false
+		}
+		set {}
+	}
+	
+	required init?(coder: NSCoder) {
+		super.init(coder: coder)
+		setup()
+	}
+	override init(frame frameRect: NSRect) {
+		super.init(frame: frameRect)
+		setup()
+	}
+	func setup() {
+		self.target = self
+		self.action = #selector(imageChanged(_:))
+		NotificationCenter.default.addObserver(forName: .gameIconEdited, object: nil, queue: nil, using: { notification in
+			self.image = self.run.gameIcon
+			self.setPlaceholderImage()
+			self.setColor(run: self.run)
+		})
+	}
+	override func setColor(run: SplitterRun) {
+		if themeable {
+			self.contentTintColor = run.textColor
 		}
 	}
+	
+	func setPlaceholderImage() {
+		if self.image == nil {
+			self.image = .gameControllerIcon
+		}
+	}
+	
+	@objc func imageChanged(_ sender: Any?) {
+		run.gameIcon = self.image
+		setPlaceholderImage()
+	}
+	
+	var allowsUpdate = true
 	
 	func loadData() {
 		
@@ -159,6 +168,43 @@ class MetadataImage: ThemedImage {
 	}
 	
 }
+extension MetadataImage {
+	override func mouseDown(with event: NSEvent) {
+		if event.clickCount > 1 {
+			self.setImage()
+		}
+	}
+	func pictureFileDialog() -> NSOpenPanel{
+		let dialog = NSOpenPanel();
+		dialog.title                   = "Choose an image file"
+		dialog.showsResizeIndicator    = true
+		dialog.showsHiddenFiles        = false
+		dialog.canChooseDirectories    = false
+		dialog.canCreateDirectories    = false
+		dialog.allowsMultipleSelection = false
+		dialog.allowedFileTypes        = ["png"]
+		return dialog
+	}
+	
+	func setImage() {
+		let dialog = pictureFileDialog()
+		
+		let response = dialog.runModal()
+			if response == .OK {
+				let result = dialog.url
+				
+				if (result != nil) {
+					 let imageFile = try? Data(contentsOf: result!)
+					 
+					 let myImage = NSImage(data: imageFile!)
+					 
+					self.image = myImage
+					self.imageChanged(nil)
+			}
+		}
+	}
+}
+
 
 
 extension InfoOptionsViewController {
@@ -170,8 +216,8 @@ extension InfoOptionsViewController {
 		categoryField.stringValue = delegate!.categoryField.stringValue
 		attemptField.stringValue = "\(delegate?.run.attempts ?? 0)"
 		platformField.stringValue = delegate?.platform ?? ""
-		versionField.stringValue = delegate!.gameVersion ?? ""
-		regionField.stringValue = delegate!.gameRegion ?? ""
+		versionField.stringValue = run.gameVersion ?? ""
+		regionField.stringValue = run.region
 		
 		if let st = delegate?.startTime {
 //			let sDate = dateToRFC339String(date: st)
@@ -188,12 +234,21 @@ extension InfoOptionsViewController {
 	///Sends data from the popover to the main window
 	func sendDataToMain() {
 		delegate?.runTitleField.stringValue = runTitleField.stringValue
+		run.title = runTitleField.stringValue
+		
 		delegate?.categoryField.stringValue = categoryField.stringValue
+		run.subtitle = categoryField.stringValue
+		
 		delegate?.attemptField.stringValue = attemptField.stringValue
+		run.attempts = Int(attemptField.stringValue) ?? 0
 		
 		delegate?.platform = platformField.stringValue
-		delegate?.gameVersion = versionField.stringValue
+		run.platform = platformField.stringValue
+		
+		run.gameVersion = versionField.stringValue
+		
 		delegate?.gameRegion = regionField.stringValue
+		run.region = regionField.stringValue
 		
 //		delegate?.updateAttemptField()
 	}

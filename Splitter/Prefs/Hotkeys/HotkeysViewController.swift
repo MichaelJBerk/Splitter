@@ -78,16 +78,26 @@ final class HotkeysViewController: NSViewController, PreferencePane {
 		let helpText = """
 When enabled, hotkeys will activate even when Splitter is not the currently active app
 """
+		
 		let alert = NSAlert()
 		alert.messageText = helpText
 		alert.addButton(withTitle: "OK")
 		alert.addButton(withTitle: "Tell Me More")
-		switch alert.runModal() {
-		case .alertSecondButtonReturn:
-			self.openTellMeMore()
-			
-		default: return
-		}
+		alert.beginSheetModal(for: self.view.window!, completionHandler: { response in
+			switch response {
+			case .alertSecondButtonReturn:
+				self.openTellMeMore()
+			default:
+				print(self.view.window?.effectiveAppearance)
+				return
+			}
+		})
+//		switch alert.runModal() {
+//		case .alertSecondButtonReturn:
+//			self.openTellMeMore()
+//
+//		default: return
+//		}
 	}
 	
 	@IBAction func clearHotkeyButtons(_ sender: Any) {

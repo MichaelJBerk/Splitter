@@ -1,5 +1,5 @@
 //
-//  Split Table View.swift
+//  SplitterTableDelegate.swift
 //  Splitter
 //
 //  Created by Michael Berk on 2/5/20.
@@ -13,7 +13,9 @@ import Cocoa
 //MARK - Number of Rows
 extension ViewController: NSTableViewDataSource {
 	func numberOfRows(in tableView: NSTableView) -> Int {
-		return run.layoutSplits.splits.count
+		let c = run.layoutSplits.splits.count
+		print("c:", c)
+		return c
 	}
 }
 
@@ -41,7 +43,6 @@ extension ViewController: NSTableViewDelegate {
 		let cRow = SplitterRowView()
 		cRow.selectedColor = self.selectedColor
 		cRow.isCurrentSegment = (run.layoutSplits.splits[row].isCurrentSplit && timerState != .stopped)
-//		cRow.isCurrentSegment = run.layoutSplits.splits[row].isCurrentSplit
 		return cRow
 	}
 	
@@ -72,6 +73,7 @@ extension ViewController: NSTableViewDelegate {
 				let cell = cell as! ImageButtonCellView
 				cell.cellNumber = row
 				cell.imageWell.run = self.run
+				cell.imageWell.splitController = self
 				if let image = run.icon(for: row) {
 					cell.imageWell!.image = image
 				} else {
@@ -100,10 +102,6 @@ extension ViewController: NSTableViewDelegate {
 					print(tableColumn!.identifier)
 					tf.setColor(run: run)
 				}
-//				if tableColumn!.identifier != STVColumnID.differenceColumn {
-//					cell.textField?.attributedStringValue = NSAttributedString(string: tf.stringValue, attributes: [.foregroundColor : run.textColor])
-//					cell.textField?.textColor = run.textColor
-//				}
 			}
 			return cell
 		}
@@ -133,11 +131,7 @@ extension ViewController: NSTextFieldDelegate {
 		case STVColumnID.splitTitleColumn:
 			run.setSegTitle(index: r, title: cellText)
 		case STVColumnID.currentSplitColumn:
-			run.editRun { editor in
-				editor.selectOnly(r)
-				//TODO: Switch this if I implement the ability to show split or Segment time
-				_ = editor.activeParseAndSetSplitTime(cellText)
-			}
+			run.setSplitTime(index: r, time: cellText)
 			run.updateLayoutState()
 		case STVColumnID.bestSplitColumn:
 			break

@@ -9,6 +9,7 @@
 import Foundation
 import Cocoa
 import SwiftyJSON
+import Codextended
 
 struct CodableColor: Codable {
 	 var red : CGFloat = 0.0, green: CGFloat = 0.0, blue: CGFloat = 0.0, alpha: CGFloat = 0.0
@@ -35,8 +36,6 @@ struct CodableColor: Codable {
 		green = ciColor.green
 		blue = ciColor.blue
 		alpha = ciColor.alpha
-//		nsColor.getRed(&red, green: &green, blue: &blue, alpha: &alpha)
-		 
 	 }
 	
 	init(json: JSON) {
@@ -48,7 +47,34 @@ struct CodableColor: Codable {
 	}
 }
 
-struct splitterAppearance: Codable {
+struct ComponentState: Codable {
+	var type: SplitterComponentType
+	var properties: [String: Codable]
+	
+	init(type: SplitterComponentType, properties: [String: Codable]) {
+		self.type = type
+		self.properties = properties
+	}
+	
+	init(from decoder: Decoder) throws {
+		self.type = try decoder.decode("type")
+		self.properties = try decoder.decode("properties", as: [String: JSONAny].self)
+	}
+	func encode(to encoder: Encoder) throws {
+		try encoder.encode(type, for: "type")
+		let propMap: [String: JSONAny] = try properties.mapValues({
+			let e = try $0.encoded()
+			return try e.decoded(as: JSONAny.self, using: JSONDecoder())
+			
+		})
+		try encoder.encode(propMap, for: "properties")
+	}
+	
+}
+
+//for 4.0, only store order; no custom options (yet)
+
+struct SplitterAppearance: Codable {
 	var hideTitlebar: Bool?
 	var hideButtons: Bool?
 	var hideTitle: Bool?
@@ -65,9 +91,18 @@ struct splitterAppearance: Codable {
 	var selectColor: CodableColor?
 	var diffsLongerColor: CodableColor?
 	var diffsShorterColor: CodableColor?
+	var components: [ComponentState]?
 	
 	
-	init(viewController: ViewController) {
+	//MARK: - Splitter 4.0 Settings
+	
+	
+	
+	/// Initalizes a SplitterAppearance Object
+	/// - Parameters:
+	///   - viewController: `ViewController` to save settings from
+	///   - postV4: Determines if values that have been migrated to `layout.lsl` are included. Defaults to `true`.
+	init(viewController: ViewController, postV4: Bool = true) {
 		self.hideTitlebar = viewController.titleBarHidden
 		self.hideButtons = viewController.buttonHidden
 		self.keepOnTop = viewController.windowFloat
@@ -80,22 +115,25 @@ struct splitterAppearance: Codable {
 			let hidden = col.isHidden
 			self.hideColumns?[c.key] = hidden
 			
-			var size = col.width
+			let size = col.width
 			self.columnSizes?[c.key] = size
 		}
 		self.windowWidth = viewController.view.window?.frame.width
 		self.windowHeight = viewController.view.window?.frame.height
-		self.roundTo = viewController.roundTo.rawValue
-		self.bgColor = CodableColor(nsColor: viewController.bgColor)
-		if viewController.run.tableColor == NSColor.splitterTableViewColor {
-			
-		}
-		self.tableColor = CodableColor(nsColor: viewController.run.tableColor)
-		self.textColor = CodableColor(nsColor: viewController.run.textColor)
 		self.selectColor = CodableColor(nsColor: viewController.selectedColor)
-		
-		self.diffsLongerColor = CodableColor(nsColor: viewController.diffsLongerColor)
-		self.diffsShorterColor = CodableColor(nsColor: viewController.diffsShorterColor)
+		if !postV4 {
+			self.tableColor = CodableColor(nsColor: viewController.run.tableColor)
+			self.bgColor = CodableColor(nsColor: viewController.run.backgroundColor)
+			self.textColor = CodableColor(nsColor: viewController.run.textColor)
+			self.diffsLongerColor = CodableColor(nsColor: viewController.run.longerColor)
+			self.diffsShorterColor = CodableColor(nsColor: viewController.run.shorterColor)
+		}
+		if postV4 {
+			self.components = []
+			for component in viewController.mainStackView.views.map({$0 as! SplitterComponent}) {
+				self.components!.append(try! component.saveState())
+			}
+		}
 	}
 	
 	
@@ -144,7 +182,12 @@ struct splitterAppearance: Codable {
 		if let wh = json.dictionary?["windowHeight"]?.float {
 			self.windowHeight = CGFloat(wh)
 		}
-		self.roundTo = json.dictionary?["roundTo"]?.int
+		if let comps = try? json.dictionary?["components"]?.rawData() {
+			let components = try! JSONDecoder().decode([ComponentState].self, from: comps)
+			self.components = components
+			print("")
+		}
+//		self.roundTo = json.dictionary?["roundTo"]?.int
 		
 		
 	}
@@ -159,14 +202,20 @@ enum SplitterAppearanceError: Error {
 
 extension ViewController {
 	///Sets the appearance of the VC to the contents of a SplitterAppearance object
-	func setSplitterAppearance(appearance: splitterAppearance) {
+	func setSplitterAppearance(appearance: SplitterAppearance) {
 		titleBarHidden = appearance.hideTitlebar ?? Settings.hideTitleBar
-		buttonHidden = appearance.hideButtons ?? Settings.hideUIButtons
+		buttonHidden = appearance.hideButtons ?? false
 		windowFloat = appearance.keepOnTop ?? Settings.floatWindow
 		hideTitle = appearance.hideTitle ?? false
 		
+		//Backwards Compatbility
+		if buttonHidden {
+			prevNextRow.isHidden = true
+			startRow.isHidden = true
+			optionsRow.isHidden = true
+		}
+		
 		showHideTitleBar()
-		showHideUI()
 		setFloatingWindow()
 		showHideTitle()
 		
@@ -203,7 +252,7 @@ extension ViewController {
 			view.window?.setFrame(windowFrame, display: true)
 		}
 		if let bgc = appearance.bgColor?.nsColor {
-			bgColor = bgc
+			run.backgroundColor = bgc
 		}
 		if let tableC = appearance.tableColor?.nsColor {
 			run.tableColor = tableC
@@ -220,14 +269,12 @@ extension ViewController {
 			selectedColor = selectC
 		}
 		if let longC = appearance.diffsLongerColor?.nsColor {
-			diffsLongerColor = longC
+			run.longerColor = longC
 		}
 		if let shortC = appearance.diffsShorterColor?.nsColor {
-			diffsShorterColor = shortC
+			run.shorterColor = shortC
 		}
 		
-		
-		roundTo = SplitRounding(rawValue: appearance.roundTo ?? 0) ?? SplitRounding.tenths
 		splitsTableView.reloadData()
 		setColorForControls()
 		

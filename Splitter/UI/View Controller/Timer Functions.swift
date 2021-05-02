@@ -188,4 +188,9 @@ extension ViewController {
 		///It may not look like there's a point  to this right now, but I may add other functionality when a run is finished, and it would go here in that casse
 		stopTimer()
 	}
+	func cancelRun() {
+		run.timer.resetRun(discardSplits: true)
+		run.attempts = run.attempts - 1
+		stopTimer()
+	}
 }

@@ -77,7 +77,6 @@ class splitToJSON {
 extension ViewController {
 	func loadFromRunInfo() {
 		if let ri = runInfoData {
-			self.gameVersion = ri.gameVersion
 			self.fileID = ri.id
 		}
 	}
@@ -87,7 +86,7 @@ extension ViewController {
 			runTitleField.stringValue = ri.title ?? ""
 			categoryField.stringValue = ri.category ?? ""
 			platform = ri.platform ?? ""
-			gameVersion = ri.gameVersion
+			run.gameVersion = ri.gameVersion ?? ""
 			run.attempts = ri.attempts ?? 0
 			gameRegion = ri.gameRegion ?? ""
 			fileID = ri.id
@@ -101,9 +100,9 @@ extension ViewController {
 				let compare = ri.compareTo
 				switch compare {
 				case 0:
-					run.setComparison(LSComparison.personalBest.rawValue)
+					run.setComparison(to: LSComparison.personalBest)
 				default:
-					run.setComparison(LSComparison.latest.rawValue)
+					run.setComparison(to: LSComparison.latest)
 				}
 				run.editRun { editor in
 					for s in 0..<segments.count {
@@ -143,8 +142,7 @@ extension ViewController {
 	}
 	
 	func saveToRunInfo() -> runInfo {
-		let ri = runInfo(gameVersion: gameVersion,
-						 version: otherConstants.version,
+		let ri = runInfo(version: otherConstants.version,
 						 build: otherConstants.build,
 						 id: fileID)
 		return ri

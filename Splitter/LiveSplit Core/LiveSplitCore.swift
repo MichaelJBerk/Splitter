@@ -4655,7 +4655,7 @@ public class SplitsComponentRefMut: SplitsComponentRef {
     time. The list provides scrolling functionality, so not every segment needs
     to be shown all the time.
 */
-public class SplitsComponent : SplitsComponentRefMut {
+public class LSSplitsComponent : SplitsComponentRefMut {
     private func drop() {
         if self.ptr != Optional.none {
             LiveSplitCoreNative.SplitsComponent_drop(self.ptr)
@@ -4969,7 +4969,7 @@ public class SumOfBestComponentRefMut: SumOfBestComponentRef {
     sum of their best segment times. The name is therefore a bit misleading, but
     sticks around for historical reasons.
 */
-public class SumOfBestComponent : SumOfBestComponentRefMut {
+public class LSSumOfBestComponent : SumOfBestComponentRefMut {
     private func drop() {
         if self.ptr != Optional.none {
             LiveSplitCoreNative.SumOfBestComponent_drop(self.ptr)
@@ -5442,7 +5442,7 @@ public class TimerRef {
 		finished, but has not been reset. So you need to be careful when using
 		this value for indexing.
 	*/
-	public func currentSegmentIndex() -> Int64 {
+	public func currentSplitIndex() -> Int64 {
 		assert(self.ptr != Optional.none)
 		let result = LiveSplitCoreNative.Timer_current_split_index(self.ptr)
 		return result
@@ -6019,10 +6019,10 @@ public class TitleComponentRefMut: TitleComponentRef {
     /**
         Calculates the component's state based on the timer provided.
     */
-    public func state(_ timer: TimerRef) -> TitleComponentState {
+    public func state(_ timer: TimerRef) -> LSTitleComponentState {
         assert(self.ptr != Optional.none)
         assert(timer.ptr != Optional.none)
-        let result = TitleComponentState(ptr: LiveSplitCoreNative.TitleComponent_state(self.ptr, timer.ptr))
+        let result = LSTitleComponentState(ptr: LiveSplitCoreNative.TitleComponent_state(self.ptr, timer.ptr))
         return result
     }
     override init(ptr: UnsafeMutableRawPointer?) {
@@ -6035,7 +6035,7 @@ public class TitleComponentRefMut: TitleComponentRef {
     category that is being run. Additionally, the game icon, the attempt count,
     and the total number of successfully finished runs can be shown.
 */
-public class TitleComponent : TitleComponentRefMut {
+public class LSTitleComponent : TitleComponentRefMut {
     private func drop() {
         if self.ptr != Optional.none {
             LiveSplitCoreNative.TitleComponent_drop(self.ptr)
@@ -6173,7 +6173,7 @@ public class TitleComponentStateRefMut: TitleComponentStateRef {
 /**
     The state object describes the information to visualize for this component.
 */
-public class TitleComponentState : TitleComponentStateRefMut {
+public class LSTitleComponentState : TitleComponentStateRefMut {
     private func drop() {
         if self.ptr != Optional.none {
             LiveSplitCoreNative.TitleComponentState_drop(self.ptr)

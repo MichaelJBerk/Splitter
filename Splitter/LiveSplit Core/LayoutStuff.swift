@@ -68,12 +68,14 @@ struct CComponent: Codable {
 	var splits: CSplits?
 	let timer: CTimer?
 	let keyValue: CKeyValue?
+	let sumOfBest: CSumOfBest?
 
 	enum CodingKeys: String, CodingKey {
 		case title = "Title"
 		case splits = "Splits"
 		case timer = "Timer"
 		case keyValue = "KeyValue"
+		case sumOfBest = "SumOfBest"
 	}
 }
 
@@ -108,7 +110,6 @@ struct CurrentSplitGradientClass: Codable {
 
 // MARK: - CSplits
 struct CSplits: Codable {
-//	let background: CPurpleBackground
 	let background: CLayoutBackground
 	let columnLabels: [String]?
 	var splits: [CSplit]
@@ -126,15 +127,6 @@ struct CSplits: Codable {
 		case showFinalSeparator = "show_final_separator"
 		case displayTwoRows = "display_two_rows"
 		case currentSplitGradient = "current_split_gradient"
-	}
-}
-
-// MARK: - CPurpleBackground
-struct CPurpleBackground: Codable {
-	let alternating: [[Double]]
-
-	enum CodingKeys: String, CodingKey {
-		case alternating = "Alternating"
 	}
 }
 
@@ -186,17 +178,6 @@ extension NSColor {
 		let converted = self.usingColorSpace(.sRGB)
 		let floats = [converted!.redComponent, converted!.greenComponent, converted!.blueComponent, converted!.alphaComponent]
 		return floats.map({Float($0)})
-	}
-}
-extension SettingValue {
-	public static func fromNSColor(_ color: NSColor) -> SettingValue {
-		let floats = color.toFloat()
-		return .fromColor(floats[0], floats[1], floats[2], floats[3])
-	}
-	public static func fromAlternatingNSColor(_ color1: NSColor, _ color2: NSColor) -> SettingValue {
-		let floats1 = color1.toFloat()
-		let floats2 = color2.toFloat()
-		return .fromAlternatingGradient(floats1[0], floats1[1], floats1[2], floats1[3], floats2[0], floats2[1], floats2[2], floats2[3])
 	}
 }
 
@@ -256,6 +237,15 @@ struct CTitle: Codable {
 		case isCentered = "is_centered"
 		case finishedRuns = "finished_runs"
 		case attempts
+	}
+}
+
+//MARK: - CSumOfBest
+struct CSumOfBest: Codable {
+	let displayTwoRows: Bool?
+	
+	enum CodingKeys: String, CodingKey {
+		case displayTwoRows = "display_two_rows"
 	}
 }
 
@@ -520,5 +510,16 @@ struct GeneralCodableLayoutSettings: Codable {
 		case behindGainingTimeColor = "behind_gaining_time_color"
 		case behindLosingTimeColor = "behind_losing_time_color"
 		case personalBestColor = "personal_best_color"
+	}
+}
+extension SettingValue {
+	public static func fromNSColor(_ color: NSColor) -> SettingValue {
+		let floats = color.toFloat()
+		return .fromColor(floats[0], floats[1], floats[2], floats[3])
+	}
+	public static func fromAlternatingNSColor(_ color1: NSColor, _ color2: NSColor) -> SettingValue {
+		let floats1 = color1.toFloat()
+		let floats2 = color2.toFloat()
+		return .fromAlternatingGradient(floats1[0], floats1[1], floats1[2], floats1[3], floats2[0], floats2[1], floats2[2], floats2[3])
 	}
 }

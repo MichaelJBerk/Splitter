@@ -1,5 +1,5 @@
 //
-//  Split Table Row.swift
+//  SplitTableRow.swift
 //  Splitter
 //
 //  Created by Michael Berk on 2/5/20.

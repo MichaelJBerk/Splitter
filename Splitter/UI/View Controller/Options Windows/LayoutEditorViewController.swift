@@ -17,6 +17,7 @@ class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTable
 	@IBOutlet var tableView: NSTableView!
 	@IBOutlet var scrollView: NSScrollView!
 	@IBOutlet var optionsView: NSView!
+	@IBOutlet var plusButton: NSButton!
 	var rows = ["Row 1", "Row 2", "Row 3"]
 	var dropType: NSPasteboard.PasteboardType = .init("public.data")
 	var runController: ViewController!
@@ -27,15 +28,39 @@ class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTable
 		tableView.delegate = self
 		tableView.dataSource = self
 		tableView.registerForDraggedTypes([dropType])
-        
     }
+	
+	var componentsPopUpMenu: NSMenu {
+		let items: [NSMenuItem] = [
+			.init(title: "Split Table", action: #selector(addSplitTable(sender:)), keyEquivalent: ""),
+			.init(title: "Sum of Best", action: #selector(addSumOfBestComponent(sender:)), keyEquivalent: "")
+		]
+		let menu = NSMenu(title: "")
+		for item in items {
+			menu.addItem(item)
+		}
+		return menu
+	}
+	@objc func addSplitTable(sender: Any?) {
+		
+	}
+	
+	@objc func addSumOfBestComponent(sender: Any?) {
+		runController.setupSumOfBestRow()
+	}
+	
+	@IBAction func plusButtonClick(sender: Any?) {
+		if let event = NSApplication.shared.currentEvent {
+			NSMenu.popUpContextMenu(componentsPopUpMenu, with: event, for: plusButton)
+		}
+	}
 	func numberOfRows(in tableView: NSTableView) -> Int {
-		return runController.bottomStackView.views.count
+		return runController.mainStackView.views.count
 	}
 	
 	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 		let cell = tableView.makeView(withIdentifier: tableColumn!.identifier, owner: self) as! NSTableCellView
-		if let component = runController.bottomStackView.views[row] as? SplitterComponent {
+		if let component = runController.mainStackView.views[row] as? SplitterComponent {
 			cell.textField?.stringValue = component.displayTitle
 		}
 		return cell
@@ -44,10 +69,12 @@ class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTable
 		let pastboard = info.draggingPasteboard
 		if let data = pastboard.string(forType: dropType), let oldRow = Int(data) {
 //			rows.move(fromOffsets: IndexSet([oldRow]), toOffset: row)
-			var views = runController.bottomStackView.views
+			var views = runController.mainStackView.views
 			views.move(fromOffsets: IndexSet([oldRow]), toOffset: row)
-//			runController.bottomStackView.setViews(views, in: .center)
-			runController.bottomStackView.update(runController.bottomStackView, views)
+//			runController.mainStackView.setViews(views, in: .center)
+			
+			runController.mainStackView.update(runController.mainStackView, views)
+//			runController.mainStackView.updateConstraints()
 			tableView.reloadData()
 			return true
 		}
@@ -58,16 +85,22 @@ class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTable
 	func tableViewSelectionDidChange(_ notification: Notification) {
 		let selected = tableView.selectedRow
 		
-		for i in 0..<runController.bottomStackView.views.count {
+		for i in 0..<runController.mainStackView.views.count {
 			
-			if let selectedComponent = runController.bottomStackView.views[i] as? SplitterComponent {
+			if let selectedComponent = runController.mainStackView.views[i] as? SplitterComponent {
 				if i == selected {
 					selectedComponent.isSelected = true
 					let ov = selectedComponent.optionsView!
-					let ovSize =  ov.fittingSize
+//					let ovSize =
 					
-					ov.frame = NSRect(origin: CGPoint(x: 0, y: scrollView.contentView.frame.maxY), size: ovSize)
 					scrollView.documentView = ov
+					ov.translatesAutoresizingMaskIntoConstraints = false
+					NSLayoutConstraint.activate([
+						ov.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+						ov.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: -5),
+						ov.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -5)
+//						ov.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -5),
+					])
 				} else {
 					selectedComponent.isSelected = false
 				}
@@ -75,7 +108,7 @@ class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTable
 		}
 	}
 	override func viewWillDisappear() {
-		for v in runController.bottomStackView.views {
+		for v in runController.mainStackView.views {
 			if let comp = v as? SplitterComponent {
 				comp.isSelected = false
 			}
@@ -125,12 +158,16 @@ class DraggingStackView: NSStackView {
 	// MARK: -
 	// MARK: Update Function
 	var update: (NSStackView, Array<NSView>)->Void = { stack, views in
+		var viewConstraints = [NSView: [NSLayoutConstraint]]()
 		stack.views.forEach {
+			viewConstraints[$0] = $0.constraints
 			stack.removeView($0)
 		}
 
 		views.forEach {
 			stack.addView($0, in: .leading)
+			let comp = $0 as! SplitterComponent
+			stack.setCustomSpacing(comp.afterSpacing, after: $0)
 
 			switch stack.orientation {
 			case .horizontal:
@@ -138,8 +175,14 @@ class DraggingStackView: NSStackView {
 				$0.bottomAnchor.constraint(equalTo: stack.bottomAnchor).isActive = true
 
 			case .vertical:
-				$0.leadingAnchor.constraint(equalTo: stack.leadingAnchor).isActive = true
-				$0.trailingAnchor.constraint(equalTo: stack.trailingAnchor).isActive = true
+					NSLayoutConstraint.activate([
+						comp.leadingConstraint,
+						comp.trailingConstraint
+					])
+//				let sv = self().superview
+//				print($0.constraints.filter({abs($0.constant) == 7}))
+//				$0.leadingAnchor.constraint(equalTo: stack.leadingAnchor).isActive = true
+//				$0.trailingAnchor.constraint(equalTo: stack.trailingAnchor).isActive = true
 			@unknown default:
 				break
 			}

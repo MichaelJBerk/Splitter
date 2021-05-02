@@ -25,18 +25,12 @@ final class DefaultPreferenceViewController: NSViewController, PreferencePane {
 	
 	@IBOutlet weak var app: NSView!
 	@IBOutlet weak var titleBarCheck: NSButton!
-	@IBOutlet weak var timerButtonCheck: NSButton!
 	@IBOutlet weak var floatWindowCheck: NSButton!
 	
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		
-		if timerButtonCheck.state == .on {
-			print("state: on")
-		} else if timerButtonCheck.state == .off {
-			print("state: off")
-		}
 		let UIHidden = UserDefaults.standard.bool(forKey: SettingsKeys.hideTimerButtons)
 		
 		if UIHidden {
@@ -46,7 +40,6 @@ final class DefaultPreferenceViewController: NSViewController, PreferencePane {
 		}
 		
 		titleBarCheck.state = .init(bool: Settings.hideTitleBar)
-		timerButtonCheck.state = .init(bool: Settings.hideUIButtons)
 		floatWindowCheck.state = .init(bool: Settings.floatWindow)
 		
 		
@@ -61,12 +54,6 @@ final class DefaultPreferenceViewController: NSViewController, PreferencePane {
 	
 	@IBAction func titleBarToggled(_ sender: Any) {
 		Settings.hideTitleBar = titleBarCheck.state.toBool()
-	}
-	
-	@IBAction func buttonsToggled(_ sender: Any) {
-		
-		Settings.hideUIButtons = timerButtonCheck.state.toBool()
-		
 	}
 	
 	@IBAction func floatToggle(_ sender: Any) {

@@ -17,7 +17,7 @@ extension ViewController {
 	}
 	
 	@IBAction func stopButtonClick(_ sender: Any) {
-		finishRun()
+		cancelRun()
 	}
 	//TODO: See if name should be changed
 	@IBAction func trashStCanClick(_ sender: Any) {

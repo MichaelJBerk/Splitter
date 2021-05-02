@@ -15,15 +15,12 @@ class SplitsIODoc: SplitterDoc {
 	
 	override func makeWindowControllers() {
 		// Returns the Storyboard that contains your Document window.
+		let load = loadViewController()
+		let vc = load.vc
 		
-		let storyboard = NSStoryboard(name: NSStoryboard.Name("Main"), bundle: nil)
-		let windowController = storyboard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("Document Window Controller")) as! NSWindowController
-		
-		
-		
-		self.addWindowController(windowController)
-		let vc = windowController.contentViewController as! ViewController
 		if let si = splitsio {
+			vc.run.document = self
+			vc.undoManager?.disableUndoRegistration()
 			vc.run.title = si.game?.longname ?? ""
 			vc.run.subtitle = si.category?.longname ?? ""
 			vc.run.attempts = si.attempts?.total ?? 0
@@ -48,8 +45,8 @@ class SplitsIODoc: SplitterDoc {
 						
 					}
 				}
-				vc.splitsTableView.reloadData()
 			}
+			vc.undoManager?.enableUndoRegistration()
 		}
 		
 	}

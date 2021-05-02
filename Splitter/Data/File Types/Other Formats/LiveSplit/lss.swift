@@ -40,11 +40,8 @@ class lss: SplitterDoc {
 	
 	
 	override func makeWindowControllers() {
-		Swift.print(writableTypes(for: .saveOperation))
-		let storyboard = NSStoryboard(name: NSStoryboard.Name("Main"), bundle: nil)
-		let windowController = storyboard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("Document Window Controller")) as! NSWindowController
-		self.addWindowController(windowController)
-		let vc = windowController.contentViewController as! ViewController
+		let load = loadViewController()
+		let vc = load.vc
 		if let url = urlToLoad {
 			vc.loadLS(url: url, asTemplate: template)
 		}

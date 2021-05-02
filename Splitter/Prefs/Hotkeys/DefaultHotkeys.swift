@@ -14,7 +14,7 @@ enum KeybindTitle: String {
 	case StartSplitTimer = "Start Timer/Split"
 	case PauseTimer = "Pause/Resume Timer"
 	case PrevSplit = "Previous Split"
-	case StopTimer = "Stop Timer"
+	case StopTimer = "Cancel Run"
 	case ClearTimer = "Reset Run"
 	case ResetCurrentSplit = "Reset Current Split"
 	case ShowInfoPanel = "Get Info..."
