@@ -15,7 +15,6 @@ extension ViewController {
 	func startTimer() {
 		timerStarted = true
 		timerState  = .running
-		startButton.baseTitle = "Pause"
 		setupTimer()
 		updateTextFields()
 		splitsTableView.scrollRowToVisible(run.currentSplit ?? 0)
@@ -27,7 +26,6 @@ extension ViewController {
 		if timerState != .stopped {
 			timerState = .stopped
 		}
-		startButton.baseTitle = "Start"
 		resetTimer()
 		endTime = Date()
 		run.updateLayoutState()
@@ -38,11 +36,9 @@ extension ViewController {
 	func pauseResumeTimer() {
 		switch timerState {
 		case .paused:
-			startButton.baseTitle = "Pause"
 			currentSplit?.paused = false
 			timerState = .running
 		default:
-			startButton.baseTitle = "Resume"
 			currentSplit?.paused = true
 			timerPaused = true
 			timerState = .paused

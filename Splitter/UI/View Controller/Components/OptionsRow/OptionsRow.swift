@@ -13,17 +13,33 @@ class OptionsRow: NSStackView, NibLoadable, SplitterComponent {
 	
 	var state: SplitterComponentState!
 	
-	var customSpacing: CGFloat? = nil
-	internal override func awakeAfter(using coder: NSCoder) -> Any? {
-		return instantiateView() // You need to add this line to load view
+	static func instantiateView(with run: SplitterRun, _ viewController: ViewController) -> OptionsRow {
+		let row: OptionsRow = OptionsRow.instantiateView()
+		row.viewController = viewController
+		row.run = run
+		row.initialization()
+		return row
 	}
 	
-	internal override func awakeFromNib() {
-		super.awakeFromNib()
-		initialization()
-	}
+	var customSpacing: CGFloat? = nil
+//	internal override func awakeAfter(using coder: NSCoder) -> Any? {
+//		return instantiateView() // You need to add this line to load view
+//	}
+//
+//	internal override func awakeFromNib() {
+//		super.awakeFromNib()
+//		initialization()
+//	}
 	private func initialization() {
 		detachesHiddenViews = false
+		NotificationCenter.default.addObserver(forName: .timerStateChanged, object: self.run.timer, queue: nil, using: { notification in
+			guard let timerState = notification.userInfo?["timerState"] as? TimerState else {return}
+			if timerState == .stopped {
+				self.addDeleteEnabled(true)
+			} else {
+				self.addDeleteEnabled(false)
+			}
+		})
 	}
 	
 	var viewController: ViewController!
@@ -54,6 +70,14 @@ class OptionsRow: NSStackView, NibLoadable, SplitterComponent {
 	@IBAction func columnOptionsButtonClick(_ sender: Any) {
 		viewController!.displayColumnOptionsAsWindow(sender: sender)
 	}
+	
+	//TODO: see if I should just have a var "addDeleteEnabled" and set both equal to it instead of having a function for it
+	///Sets whethert the + and - buttons beneath the Table View are enabled or not
+	func addDeleteEnabled(_ enabled: Bool) {
+		plusButton.isEnabled = enabled
+		minusButton.isEnabled = enabled
+	}
+	
 	let showLabelKey = "showLabel"
 	var showLabel: Bool {
 		get {

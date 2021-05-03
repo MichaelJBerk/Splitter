@@ -25,7 +25,7 @@ class SplitterTimer {
 	
 	var timerState: TimerState = .stopped {
 		didSet {
-			NotificationCenter.default.post(name: .timerStateChanged, object: self.timerState)
+			NotificationCenter.default.post(name: .timerStateChanged, object: self, userInfo: ["timerState": self.timerState])
 		}
 	}
 	var lsRun: RunRef {

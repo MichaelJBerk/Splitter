@@ -38,6 +38,24 @@ class StartRow: NSStackView, NibLoadable, SplitterComponent {
 		if startButton.acceptsFirstResponder {
 			startButton.window?.makeFirstResponder(startButton)
 		}
+		NotificationCenter.default.addObserver(forName: .timerStateChanged, object: nil, queue: nil, using: { notification in
+			guard let timerState = notification.userInfo?["timerState"] as? TimerState else {return}
+			switch timerState {
+			case .paused:
+				self.startButton.baseTitle = "Resume"
+			case .running:
+				self.startButton.baseTitle = "Pause"
+			case .stopped:
+				self.startButton.baseTitle = "Start"
+			}
+			self.setVisibleButtons()
+		})
+//		setVisibleButtons()
+	}
+	
+	func setVisibleButtons() {
+		trashCanPopupButton.isHidden = shouldTrashCanBeHidden
+		stopButton.isHidden = shouldStopButtonBeHidden
 	}
 	
 	var displayTitle: String = "Start Row"
@@ -68,10 +86,7 @@ class StartRow: NSStackView, NibLoadable, SplitterComponent {
 	}
 	
 	var shouldTrashCanBeHidden: Bool {
-		if viewController.buttonHidden {
-			return true
-		}
-		switch viewController.timerState {
+		switch run.timer.timerState {
 			case .stopped:
 				return false
 			default:
@@ -81,10 +96,7 @@ class StartRow: NSStackView, NibLoadable, SplitterComponent {
 	
 	var shouldStopButtonBeHidden: Bool {
 		stopButton.isEnabled = true
-		if viewController.buttonHidden {
-			return true
-		}
-		switch viewController.timerState {
+		switch run.timer.timerState {
 			case .stopped:
 				return true
 			default:

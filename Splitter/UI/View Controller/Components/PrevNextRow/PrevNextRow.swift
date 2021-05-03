@@ -28,7 +28,7 @@ class PrevNextRow: NSStackView, NibLoadable, SplitterComponent {
 	}
 	private func initialization() {
 		NotificationCenter.default.addObserver(forName: .timerStateChanged, object: nil, queue: nil, using: { notification in
-			guard let timerState = notification.object as? TimerState else {return}
+			guard let timerState = notification.userInfo?["timerState"] as? TimerState else {return}
 			var buttonsEnabled = false
 			if timerState == .running {
 				buttonsEnabled = true

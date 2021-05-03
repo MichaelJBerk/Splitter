@@ -19,11 +19,6 @@ extension Notification.Name {
 class ViewController: NSViewController {
 	
 	//MARK: - Setting Up Buttons
-	weak var trashCanPopupButton: NSPopUpButton!
-	weak var stopButton: ThemedButton!
-	weak var startButton: ThemedButton!
-	weak var plusButton: ThemedButton!
-	weak var minusButton: ThemedButton!
 	weak var gameIconButton: MetadataImage!
 	weak var infoPanelPopoverButton: ThemedButton!
 	weak var columnOptionsPopoverButton: ThemedButton!
@@ -35,7 +30,6 @@ class ViewController: NSViewController {
 //MARK: - Container Views
 	@IBOutlet weak var mainStackView: DraggingStackView!
 	@IBOutlet weak var tableButtonsStack: NSStackView!
-	@IBOutlet weak var bottomStackView: DraggingStackView!
 	
 //MARK: - Popovers
 	var columnOptionsPopover: NSPopover?
@@ -118,15 +112,6 @@ class ViewController: NSViewController {
 		}
 	}
 	
-	//TODO: see if I should just have a var "addDeleteEnabled" and set both equal to it instead of having a function for it
-	///Sets whethert the + and - buttons beneath the Table View are enabled or not
-	func addDeleteEnabled(_ enabled: Bool) {
-		plusButton.isEnabled = enabled
-		minusButton.isEnabled = enabled
-		setMenuItemEnabled(item: addRowMenuItem, enabled: enabled)
-		setMenuItemEnabled(item: removeRowMenuItem, enabled: enabled)
-	}
-
 	//MARK: - Split Data/Properties
 	
 	var currentSplit: TimeSplit? = nil
@@ -249,13 +234,11 @@ class ViewController: NSViewController {
 	
 	
 	func setupOptionsRow() {
-		optionsRow = OptionsRow.instantiateView()
-		optionsRow.viewController = self
-		optionsRow.run = self.run
+		optionsRow = OptionsRow.instantiateView(with: self.run, self)
+//		optionsRow.viewController = self
+//		optionsRow.run = self.run
 		
 		addToStack(view: optionsRow)
-		plusButton = optionsRow.plusButton
-		minusButton = optionsRow.minusButton
 		columnOptionsPopoverButton = optionsRow.columnOptionsButton
 		tableButtonsStack = optionsRow.tableButtonsStack
 	}
@@ -273,9 +256,6 @@ class ViewController: NSViewController {
 		startRow.run = self.run
 		
 		addToStack(view: startRow)
-		startButton = startRow.startButton
-		stopButton = startRow.stopButton
-		trashCanPopupButton = startRow.trashCanPopupButton
 	}
 	func setupTimeRow() {
 		timeRow = TimeRow.instantiateView()
@@ -296,8 +276,8 @@ class ViewController: NSViewController {
 		view.window?.layoutIfNeeded()
 	}
 	func removeSumOfBestRow() {
-		if let row = bottomStackView.views.first(where: {$0 is SumOfBestComponent}) {
-			bottomStackView.removeView(row)
+		if let row = mainStackView.views.first(where: {$0 is SumOfBestComponent}) {
+			mainStackView.removeView(row)
 		}
 	}
 	
@@ -339,8 +319,8 @@ class ViewController: NSViewController {
 	}
 	
 	private func addTimerStateChangedObserver() {
-		NotificationCenter.default.addObserver(forName: .timerStateChanged, object: nil, queue: nil) {notification in
-			if let timerState = notification.object as? TimerState {
+		NotificationCenter.default.addObserver(forName: .timerStateChanged, object: self.run.timer, queue: nil) {notification in
+			if let timerState = notification.userInfo?["timerState"] as? TimerState {
 				self.timerStateChanged(timerState: timerState)
 			}
 		}
@@ -351,8 +331,6 @@ class ViewController: NSViewController {
 		})
 	}
 	private func timerStateChanged(timerState: TimerState) {
-		stopButton.isHidden = startRow.shouldStopButtonBeHidden
-		trashCanPopupButton.isHidden = startRow.shouldTrashCanBeHidden
 		let prevSplitItem = view.window?.menu?.item(withIdentifier: menuIdentifiers.runMenu.back)
 		if timerState == .stopped {
 			setMenuItemEnabled(item: timerStopItem, enabled: false)
@@ -363,7 +341,8 @@ class ViewController: NSViewController {
 			setMenuItemEnabled(item: prevSplitItem, enabled: false)
 			setMenuItemEnabled(item: pauseMenuItem, enabled: false)
 			
-			addDeleteEnabled(true)
+			setMenuItemEnabled(item: addRowMenuItem, enabled: true)
+			setMenuItemEnabled(item: removeRowMenuItem, enabled: true)
 			stopTimer()
 			self.splitsTableView.reloadData(forRowIndexes: IndexSet(arrayLiteral: 0), columnIndexes: IndexSet(arrayLiteral: 0,1,2,3,4,5))
 		} else if timerState == .running {
@@ -377,7 +356,8 @@ class ViewController: NSViewController {
 			setMenuItemEnabled(item: pauseMenuItem, enabled: true)
 			pauseMenuItem?.title = "Pause Timer"
 			
-			addDeleteEnabled(false)
+			setMenuItemEnabled(item: addRowMenuItem, enabled: false)
+			setMenuItemEnabled(item: removeRowMenuItem, enabled: false)
 			touchBarDelegate.startSplitTitle = run.nextButtonTitle
 			
 		} else if timerState == .paused {
@@ -390,8 +370,6 @@ class ViewController: NSViewController {
 			
 			
 			setMenuItemEnabled(item: startSplitItem, enabled: false)
-			
-			addDeleteEnabled(true)
 		}
 		touchBarDelegate.enableDisableButtons()
 	}
@@ -481,9 +459,9 @@ class ViewController: NSViewController {
 		
 		splitsIOUploader = SplitsIOUploader(viewController: self)
 		
-		//This line of code looks redundant, but it's here in order to make the timerState's property observer fire
-		self.timerStateChanged(timerState: .stopped)
 		self.addTimerStateChangedObserver()
+		//This line of code looks redundant, but it's here in order to make the timerState's notification trigger
+		self.timerState = .stopped
 		self.addSplitChangedObserver()
 		
 		updateTextFields()
