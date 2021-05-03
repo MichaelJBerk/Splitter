@@ -13,12 +13,7 @@ extension ViewController {
 	
 	///Updates the button titles when splitting
 	func updateButtonTitles() {
-		var nextButtonTitle = "Split"
-		if run.currentSplit == run.segmentCount - 1 && timerState != .stopped {
-			nextButtonTitle = "Finish"
-		}
-		nextButton.baseTitle = nextButtonTitle
-		touchBarDelegate.startSplitTitle = nextButtonTitle
+		touchBarDelegate.startSplitTitle = run.nextButtonTitle
 		touchBarDelegate.enableDisableButtons()
 		splitsTableView.reloadData()
 		splitsTableView.scrollRowToVisible(run.currentSplit ?? 0)
@@ -28,14 +23,12 @@ extension ViewController {
 	///Moves the timer to the next split, or finishes the run if the current split is the last.
 	func goToNextSplit() {
 		run.timer.splitOrStart()
-		updateButtonTitles()
 		
 	}
 	///Moves the timer to the previous split, or restarts the run if the current split is the first
 	func goToPrevSplit() {
 		run.timer.previousSplit()
 		splitsTableView.reloadData()
-		updateButtonTitles()
 	}
 	
 	//MARK: - Adding and Removing Splits

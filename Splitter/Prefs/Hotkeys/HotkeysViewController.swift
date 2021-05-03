@@ -88,7 +88,6 @@ When enabled, hotkeys will activate even when Splitter is not the currently acti
 			case .alertSecondButtonReturn:
 				self.openTellMeMore()
 			default:
-				print(self.view.window?.effectiveAppearance)
 				return
 			}
 		})

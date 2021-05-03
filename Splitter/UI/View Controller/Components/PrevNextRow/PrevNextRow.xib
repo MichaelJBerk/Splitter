@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,28 +15,28 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <stackView distribution="fillEqually" orientation="horizontal" alignment="top" spacing="10" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" id="d3r-iD-RYb">
+        <stackView distribution="fillEqually" orientation="horizontal" alignment="top" spacing="5" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" id="d3r-iD-RYb" customClass="PrevNextRow" customModule="Splitter" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="481" height="20"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
             <subviews>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Fzu-8E-GgA" customClass="ThemedButton" customModule="Splitter" customModuleProvider="target">
-                    <rect key="frame" x="-7" y="-7" width="62" height="32"/>
+                    <rect key="frame" x="-7" y="-7" width="252" height="32"/>
                     <buttonCell key="cell" type="push" title="Prev" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="YDZ-DR-d0l">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <action selector="prevButtonClick:" target="-2" id="bfs-tu-pd9"/>
+                        <action selector="prevButtonClick:" target="d3r-iD-RYb" id="Afg-Rd-1G4"/>
                     </connections>
                 </button>
                 <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Peg-41-ckQ" customClass="ThemedButton" customModule="Splitter" customModuleProvider="target">
-                    <rect key="frame" x="426" y="-7" width="62" height="32"/>
+                    <rect key="frame" x="236" y="-7" width="252" height="32"/>
                     <buttonCell key="cell" type="push" title="Split" bezelStyle="rounded" alignment="center" scrollable="YES" lineBreakMode="clipping" truncatesLastVisibleLine="YES" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="kkT-ua-6Vj">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
                     </buttonCell>
                     <connections>
-                        <action selector="nextButtonClick:" target="-2" id="CYE-Ro-nrO"/>
+                        <action selector="nextButtonClick:" target="d3r-iD-RYb" id="OnS-1M-YU0"/>
                     </connections>
                 </button>
             </subviews>
@@ -55,6 +55,10 @@
                 <real value="3.4028234663852886e+38"/>
                 <real value="3.4028234663852886e+38"/>
             </customSpacing>
+            <connections>
+                <outlet property="nextButton" destination="Peg-41-ckQ" id="BeX-h0-zzq"/>
+                <outlet property="prevButton" destination="Fzu-8E-GgA" id="D4C-fe-zjn"/>
+            </connections>
             <point key="canvasLocation" x="-415" y="-136"/>
         </stackView>
     </objects>

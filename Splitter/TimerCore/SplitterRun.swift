@@ -508,12 +508,15 @@ class SplitterRun: NSObject {
 	}
 	
 	var currentSplit: Int? {
-		let index = Int(timer.lsTimer.currentSplitIndex())
-		let len = timer.lsTimer.getRun().len()
-		if index < 0 || index >= len {
-			return nil
+		timer.currentSplit
+	}
+	
+	var nextButtonTitle: String {
+		var nextButtonTitle = "Split"
+		if currentSplit == segmentCount - 1 && timer.timerState != .stopped {
+			nextButtonTitle = "Finish"
 		}
-		return index
+		return nextButtonTitle
 	}
 	
 	func editLayout(_ edit: (LayoutEditor) -> ()) {

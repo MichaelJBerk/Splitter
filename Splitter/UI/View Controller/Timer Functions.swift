@@ -14,7 +14,7 @@ extension ViewController {
 	///Starts the timer.
 	func startTimer() {
 		timerStarted = true
-		timerState = .running
+		timerState  = .running
 		startButton.baseTitle = "Pause"
 		setupTimer()
 		updateTextFields()
@@ -36,7 +36,6 @@ extension ViewController {
 	
 	///Pauses or resumes the current timer, depending on its current state.
 	func pauseResumeTimer() {
-		
 		switch timerState {
 		case .paused:
 			startButton.baseTitle = "Pause"

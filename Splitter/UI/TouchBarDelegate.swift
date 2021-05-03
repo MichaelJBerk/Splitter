@@ -37,7 +37,7 @@ class RunTouchBarDelegate: NSObject, NSTouchBarDelegate {
 		}
 	}
 	
-	var timerState: ViewController.TimerState {
+	var timerState: TimerState {
 		get {
 			return sourceVC.timerState
 		}
@@ -193,7 +193,6 @@ extension ViewController {
 		touchBar.defaultItemIdentifiers = items
 		touchBar.customizationAllowedItemIdentifiers = items //+ [.fixedSpaceLarge, .fixedSpaceSmall]
 		let i = touchBar.itemIdentifiers
-		print(i)
 		return touchBar
 	}
 	

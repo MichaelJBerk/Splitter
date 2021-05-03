@@ -54,7 +54,6 @@ class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTable
 		return menu
 	}
 	@objc func addComponent(sender: Any?) {
-		print(type(of: sender))
 		if let sender = sender as? NSMenuItem,
 		   let type = sender.representedObject as? SplitterComponentType {
 			runController.addComponent(type)
@@ -199,10 +198,6 @@ class DraggingStackView: NSStackView {
 						comp.leadingConstraint,
 						comp.trailingConstraint
 					])
-//				let sv = self().superview
-//				print($0.constraints.filter({abs($0.constant) == 7}))
-//				$0.leadingAnchor.constraint(equalTo: stack.leadingAnchor).isActive = true
-//				$0.trailingAnchor.constraint(equalTo: stack.trailingAnchor).isActive = true
 			@unknown default:
 				break
 			}

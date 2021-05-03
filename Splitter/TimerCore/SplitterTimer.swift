@@ -7,14 +7,35 @@
 //
 
 import Foundation
+
+extension Notification.Name {
+	static let splitChanged = Notification.Name("splitChanged")
+}
+
+///States that the timer can be in
+enum TimerState {
+	case stopped
+	case running
+	case paused
+}
+
 class SplitterTimer {
 	var splitterRun: SplitterRun!
 	var lsTimer: LSTimer
+	
+	var timerState: TimerState = .stopped {
+		didSet {
+			NotificationCenter.default.post(name: .timerStateChanged, object: self.timerState)
+		}
+	}
 	var lsRun: RunRef {
 		return lsTimer.getRun()
 	}
 	init(run: Run) {
 		lsTimer = LSTimer(run)!
+		let ts = timerState
+		timerState = ts
+		self.addPhaseChangedObserver()
 	}
 	
 	private func resetIfNeeded(update: Bool) {
@@ -42,6 +63,7 @@ class SplitterTimer {
 		splitterRun.updateLayoutState()
 		let newPhase = lsTimer.currentPhase()
 		NotificationCenter.default.post(.init(name: .phaseChanged, object: nil, userInfo: ["phase": newPhase, "oldPhase": initialPhase]))
+		NotificationCenter.default.post(name: .splitChanged, object: nil, userInfo: ["current": currentSplit as Any])
 	}
 	func togglePause() {
 		let initialPhase = lsTimer.currentPhase()
@@ -54,6 +76,15 @@ class SplitterTimer {
 		lsTimer.undoSplit()
 		splitterRun.updateLayoutState()
 	}
+	
+	var currentSplit: Int? {
+		let index = Int(lsTimer.currentSplitIndex())
+		let len = lsTimer.getRun().len()
+		if index < 0 || index >= len {
+			return nil
+		}
+		return index
+	}
 
 	
 	//TODO: Figure out how resetting run should behave
@@ -62,12 +93,7 @@ class SplitterTimer {
 	func resetRun(discardSplits: Bool = false) {
 		lsTimer.reset(!discardSplits)
 		splitterRun.updateLayoutState()
-//		if let s = splitterRun.codableLayout.components[1].splits?.splits[0] {
-//			for i in 0..<s.columns.count {
-//				print(s.columns[i].value)
-//
-//			}
-//		}
+		NotificationCenter.default.post(name: .splitChanged, object: nil, userInfo: ["current": currentSplit as Any])
 	}
 	
 	func resetHistories() {
@@ -84,6 +110,23 @@ class SplitterTimer {
 			}
 			_  = lsTimer.setRun(editor.close())
 		}
+	}
+	
+	private func addPhaseChangedObserver() {
+		NotificationCenter.default.addObserver(forName: .phaseChanged, object: nil, queue: nil, using: { notification in
+			let old: Int = Int(notification.userInfo!["oldPhase"] as! UInt8)
+			let phase: Int = Int(notification.userInfo!["phase"] as! UInt8)
+			if phase == 2 {
+				self.timerState = .stopped
+			}
+			if phase == 1 && old != 1 {
+				self.timerState = .running
+			}
+			if phase == 3 && old != 3 {
+				self.timerState = .paused
+			}
+			
+		})
 	}
 	
 }

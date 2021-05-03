@@ -22,8 +22,6 @@ class ViewController: NSViewController {
 	weak var trashCanPopupButton: NSPopUpButton!
 	weak var stopButton: ThemedButton!
 	weak var startButton: ThemedButton!
-	weak var nextButton: ThemedButton!
-	weak var prevButton: ThemedButton!
 	weak var plusButton: ThemedButton!
 	weak var minusButton: ThemedButton!
 	weak var gameIconButton: MetadataImage!
@@ -110,64 +108,13 @@ class ViewController: NSViewController {
 	var refreshUITimer = Timer()
 	var milHundrethTimer = Timer()
 	
-	///States that the timer can be in
-	enum TimerState {
-		case stopped
-		case running
-		case paused
-	}
-	
 	///The timer's state - either stopped, running, or paused
-	var timerState: TimerState = .stopped {
-		didSet {
-			NotificationCenter.default.post(name: .timerStateChanged, object: self.timerState)
-			stopButton.isHidden = startRow.shouldStopButtonBeHidden
-			trashCanPopupButton.isHidden = startRow.shouldTrashCanBeHidden
-			let prevSplitItem = view.window?.menu?.item(withIdentifier: menuIdentifiers.runMenu.back)
-			if timerState == .stopped {
-				setMenuItemEnabled(item: timerStopItem, enabled: false)
-				timerStopItem?.title = "Cancel Run"
-				startSplitItem?.title = "Start Timer"
-				
-				setMenuItemEnabled(item: startSplitItem, enabled: true)
-				setMenuItemEnabled(item: prevSplitItem, enabled: false)
-				setMenuItemEnabled(item: pauseMenuItem, enabled: false)
-				
-				addDeleteEnabled(true)
-				splitBackEnabled(false)
-				stopTimer()
-				self.splitsTableView.reloadData(forRowIndexes: IndexSet(arrayLiteral: 0), columnIndexes: IndexSet(arrayLiteral: 0,1,2,3,4,5))
-			} else if timerState == .running {
-				timerStopItem?.title = "Cancel Run"
-				setMenuItemEnabled(item: timerStopItem, enabled: true)
-				
-				startSplitItem?.title = "Split"
-				setMenuItemEnabled(item: startSplitItem, enabled: true)
-				setMenuItemEnabled(item: prevSplitItem, enabled: true)
-				
-				setMenuItemEnabled(item: pauseMenuItem, enabled: true)
-				pauseMenuItem?.title = "Pause Timer"
-				
-				addDeleteEnabled(false)
-				splitBackEnabled(true)
-				touchBarDelegate.startSplitTitle = nextButton.baseTitle
-				
-			} else if timerState == .paused {
-				setMenuItemEnabled(item: timerStopItem, enabled: true)
-				timerStopItem?.title = "Cancel Run"
-				setMenuItemEnabled(item: prevSplitItem, enabled: false)
-				setMenuItemEnabled(item: pauseMenuItem, enabled: true)
-				
-				pauseMenuItem?.title = "Resume Timer"
-				
-				
-				setMenuItemEnabled(item: startSplitItem, enabled: false)
-				
-				addDeleteEnabled(true)
-				splitBackEnabled(false)
-			}
-			touchBarDelegate.enableDisableButtons()
-			
+	var timerState: TimerState {
+		get {
+			run.timer.timerState
+		}
+		set {
+			run.timer.timerState = newValue
 		}
 	}
 	
@@ -178,11 +125,6 @@ class ViewController: NSViewController {
 		minusButton.isEnabled = enabled
 		setMenuItemEnabled(item: addRowMenuItem, enabled: enabled)
 		setMenuItemEnabled(item: removeRowMenuItem, enabled: enabled)
-	}
-	///Sets whethert the "split" and "back" buttons are enabled or not
-	func splitBackEnabled(_ enabled: Bool) {
-		nextButton.isEnabled = enabled
-		prevButton.isEnabled = enabled
 	}
 
 	//MARK: - Split Data/Properties
@@ -319,14 +261,11 @@ class ViewController: NSViewController {
 	}
 	
 	func setupPrevNextRow() {
-		prevNextRow = PrevNextRow()
-		prevNextRow.loadViewFromNib()
+		prevNextRow = PrevNextRow.instantiateView()
 		prevNextRow.viewController = self
 		prevNextRow.run = self.run
 		
 		addToStack(view: prevNextRow)
-		prevButton = prevNextRow.prevButton
-		nextButton = prevNextRow.nextButton
 	}
 	func setupStartRow() {
 		startRow = StartRow.instantiateView()
@@ -399,22 +338,62 @@ class ViewController: NSViewController {
 		setRightClickMenus()
 	}
 	
-	///Begins observing change-of-phase notifications
-	private func addPhaseChangedObserver() {
-		NotificationCenter.default.addObserver(forName: .phaseChanged, object: nil, queue: nil, using: { notification in
-			let old: Int = Int(notification.userInfo!["oldPhase"] as! UInt8)
-			let phase: Int = Int(notification.userInfo!["phase"] as! UInt8)
-			if phase == 2 {
-				self.timerState = .stopped
+	private func addTimerStateChangedObserver() {
+		NotificationCenter.default.addObserver(forName: .timerStateChanged, object: nil, queue: nil) {notification in
+			if let timerState = notification.object as? TimerState {
+				self.timerStateChanged(timerState: timerState)
 			}
-			if phase == 1 && old != 1 {
-				self.timerState = .running
-			}
-			if phase == 3 && old != 3 {
-				self.timerState = .paused
-			}
-			
+		}
+	}
+	private func addSplitChangedObserver() {
+		NotificationCenter.default.addObserver(forName: .splitChanged, object: nil, queue: nil, using: { notification in
+			self.updateButtonTitles()
 		})
+	}
+	private func timerStateChanged(timerState: TimerState) {
+		stopButton.isHidden = startRow.shouldStopButtonBeHidden
+		trashCanPopupButton.isHidden = startRow.shouldTrashCanBeHidden
+		let prevSplitItem = view.window?.menu?.item(withIdentifier: menuIdentifiers.runMenu.back)
+		if timerState == .stopped {
+			setMenuItemEnabled(item: timerStopItem, enabled: false)
+			timerStopItem?.title = "Cancel Run"
+			startSplitItem?.title = "Start Timer"
+			
+			setMenuItemEnabled(item: startSplitItem, enabled: true)
+			setMenuItemEnabled(item: prevSplitItem, enabled: false)
+			setMenuItemEnabled(item: pauseMenuItem, enabled: false)
+			
+			addDeleteEnabled(true)
+			stopTimer()
+			self.splitsTableView.reloadData(forRowIndexes: IndexSet(arrayLiteral: 0), columnIndexes: IndexSet(arrayLiteral: 0,1,2,3,4,5))
+		} else if timerState == .running {
+			timerStopItem?.title = "Cancel Run"
+			setMenuItemEnabled(item: timerStopItem, enabled: true)
+			
+			startSplitItem?.title = "Split"
+			setMenuItemEnabled(item: startSplitItem, enabled: true)
+			setMenuItemEnabled(item: prevSplitItem, enabled: true)
+			
+			setMenuItemEnabled(item: pauseMenuItem, enabled: true)
+			pauseMenuItem?.title = "Pause Timer"
+			
+			addDeleteEnabled(false)
+			touchBarDelegate.startSplitTitle = run.nextButtonTitle
+			
+		} else if timerState == .paused {
+			setMenuItemEnabled(item: timerStopItem, enabled: true)
+			timerStopItem?.title = "Cancel Run"
+			setMenuItemEnabled(item: prevSplitItem, enabled: false)
+			setMenuItemEnabled(item: pauseMenuItem, enabled: true)
+			
+			pauseMenuItem?.title = "Resume Timer"
+			
+			
+			setMenuItemEnabled(item: startSplitItem, enabled: false)
+			
+			addDeleteEnabled(true)
+		}
+		touchBarDelegate.enableDisableButtons()
 	}
 	///Loads the data from the supplied `runInfo` file
 	private func loadRunInfo() {
@@ -503,10 +482,10 @@ class ViewController: NSViewController {
 		splitsIOUploader = SplitsIOUploader(viewController: self)
 		
 		//This line of code looks redundant, but it's here in order to make the timerState's property observer fire
-		let ts = timerState
-		timerState = ts
+		self.timerStateChanged(timerState: .stopped)
+		self.addTimerStateChangedObserver()
+		self.addSplitChangedObserver()
 		
-		addPhaseChangedObserver()
 		updateTextFields()
 		
 		print("VWA Done!")

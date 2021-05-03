@@ -13,9 +13,7 @@ import Cocoa
 //MARK - Number of Rows
 extension ViewController: NSTableViewDataSource {
 	func numberOfRows(in tableView: NSTableView) -> Int {
-		let c = run.layoutSplits.splits.count
-		print("c:", c)
-		return c
+		return run.layoutSplits.splits.count
 	}
 }
 
@@ -99,7 +97,6 @@ extension ViewController: NSTableViewDelegate {
 			}
 			if let tf = cell.textField as? ThemedTextField {
 				if tf.themeable {
-					print(tableColumn!.identifier)
 					tf.setColor(run: run)
 				}
 			}
