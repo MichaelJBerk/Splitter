@@ -167,13 +167,14 @@ struct BasicComponentState: SplitterComponentState {
 	var isHidden: Bool
 	
 }
-enum SplitterComponentType: Int, Codable {
+enum SplitterComponentType: Int, Codable, CaseIterable {
 	case title
 	case splits
 	case tableOptions
 	case time
 	case start
 	case prevNext
+	case sumOfBest
 	
 	var componentType: SplitterComponent.Type {
 		switch self {
@@ -189,6 +190,8 @@ enum SplitterComponentType: Int, Codable {
 			return StartRow.self
 		case .prevNext:
 			return PrevNextRow.self
+		case .sumOfBest:
+			return SumOfBestComponent.self
 		}
 	}
 	static func FromType(_ type: SplitterComponent) -> SplitterComponentType? {
@@ -206,6 +209,8 @@ enum SplitterComponentType: Int, Codable {
 			return .start
 		} else if type is PrevNextRow {
 			return .prevNext
+		} else if type is SumOfBestComponent {
+			return .sumOfBest
 		}
 		return nil
 	}

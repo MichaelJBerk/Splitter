@@ -82,8 +82,8 @@ struct CComponent: Codable {
 // MARK: - CKeyValue
 struct CKeyValue: Codable {
 	let background: CurrentSplitGradientClass
-	let keyColor: JSONNull?
-	let valueColor: [Double]
+	let keyColor: JSONAny?
+	let valueColor: [Double]?
 	let semanticColor, key, value: String
 	let keyAbbreviations: [String]
 	let displayTwoRows: Bool

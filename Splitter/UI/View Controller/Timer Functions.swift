@@ -143,6 +143,10 @@ extension ViewController {
 			touchBarTotalTimeLabel.stringValue = timer.timeText
 		}
 		
+		if let sumOfBest = run.codableLayout.components.first(where: {$0.keyValue?.key == "Sum of Best Component"})?.keyValue {
+			sumOfBestRow?.sumOfBestText = sumOfBest.value
+		}
+		
 		//Update only the current row to ensure good performance when scrolling the tableview
 		if let index = run.currentSplit {
 			splitsTableView.reloadData(forRowIndexes: IndexSet(arrayLiteral: index), columnIndexes: IndexSet(columnArray()))

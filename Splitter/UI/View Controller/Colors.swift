@@ -9,6 +9,10 @@
 
 import Cocoa
 
+extension Notification.Name {
+	static let updateComponentColors = Notification.Name("updateComponents")
+}
+
 extension ThemedButton {
 	var baseTitle: String {
 		set {
@@ -126,7 +130,7 @@ extension ViewController {
 			view.window?.appearance = NSAppearance(named: .darkAqua)
 		}
 		
-		NotificationCenter.default.post(.init(name: .updateComponents, userInfo: ["run": self.run as Any]))
+		NotificationCenter.default.post(.init(name: .updateComponentColors, userInfo: ["run": self.run as Any]))
 		splitsTableView.reloadData()
 	}
 	

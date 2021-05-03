@@ -100,9 +100,9 @@ extension ViewController {
 				let compare = ri.compareTo
 				switch compare {
 				case 0:
-					run.setComparison(to: LSComparison.personalBest)
+					run.setComparison(to: TimeComparison.personalBest)
 				default:
-					run.setComparison(to: LSComparison.latest)
+					run.setComparison(to: TimeComparison.latest)
 				}
 				run.editRun { editor in
 					for s in 0..<segments.count {
@@ -123,7 +123,7 @@ extension ViewController {
 						_ = editor.activeParseAndSetSplitTime(segment.currentTime)
 						
 						if let previousTime = segment.previousTime {
-							_ = editor.activeParseAndSetComparisonTime(LSComparison.latest.rawValue, previousTime)
+							_ = editor.activeParseAndSetComparisonTime(TimeComparison.latest.rawValue, previousTime)
 						}
 						
 						if s < icons.count, let image = icons[s] {

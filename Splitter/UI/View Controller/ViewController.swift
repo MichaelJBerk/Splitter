@@ -12,6 +12,10 @@ import AppCenter
 import AppCenterCrashes
 import SplitsIOKit
 
+extension Notification.Name {
+	static let timerStateChanged = Notification.Name("timerStateChanged")
+}
+
 class ViewController: NSViewController {
 	
 	//MARK: - Setting Up Buttons
@@ -116,6 +120,7 @@ class ViewController: NSViewController {
 	///The timer's state - either stopped, running, or paused
 	var timerState: TimerState = .stopped {
 		didSet {
+			NotificationCenter.default.post(name: .timerStateChanged, object: self.timerState)
 			stopButton.isHidden = startRow.shouldStopButtonBeHidden
 			trashCanPopupButton.isHidden = startRow.shouldTrashCanBeHidden
 			let prevSplitItem = view.window?.menu?.item(withIdentifier: menuIdentifiers.runMenu.back)
@@ -187,7 +192,7 @@ class ViewController: NSViewController {
 	var backupSplits: [SplitTableRow] = []
 	var loadedFilePath: String = ""
 
-	var compareTo: LSComparison {
+	var compareTo: TimeComparison {
 		get {
 			return run.getComparision()
 		}
@@ -311,7 +316,6 @@ class ViewController: NSViewController {
 		minusButton = optionsRow.minusButton
 		columnOptionsPopoverButton = optionsRow.columnOptionsButton
 		tableButtonsStack = optionsRow.tableButtonsStack
-		
 	}
 	
 	func setupPrevNextRow() {
@@ -350,8 +354,6 @@ class ViewController: NSViewController {
 		sumOfBestRow?.viewController = self
 		sumOfBestRow?.run = self.run
 		addToStack(view: sumOfBestRow!)
-		run.addSumOfBest()
-		print(run.layout.stateAsJson(run.timer.lsTimer))
 		view.window?.layoutIfNeeded()
 	}
 	func removeSumOfBestRow() {
@@ -367,6 +369,7 @@ class ViewController: NSViewController {
 		setupTimeRow()
 		setupStartRow()
 		setupPrevNextRow()
+		sumOfBestRow?.isHidden = true
 	}
 	///Handles various window-related tasks
 	private func windowSetup() {
@@ -439,6 +442,26 @@ class ViewController: NSViewController {
 			}
 		}
 	}
+	
+	func addComponent(_ component: SplitterComponentType) {
+		switch component {
+		case .title:
+			setupTitleRow()
+		case .splits:
+			setupSplitTable()
+		case .tableOptions:
+			setupOptionsRow()
+		case .time:
+			setupTimeRow()
+		case .start:
+			setupStartRow()
+		case .prevNext:
+			setupPrevNextRow()
+		case .sumOfBest:
+			setupSumOfBestRow()
+		}
+	}
+	
 	var document: SplitterDoc!
 	
 	//MARK: - Main Functions
@@ -446,20 +469,7 @@ class ViewController: NSViewController {
 		super.viewWillAppear()
 		if let components = appearance?.components {
 			for component in components {
-				switch component.type {
-				case .title:
-					setupTitleRow()
-				case .splits:
-					setupSplitTable()
-				case .tableOptions:
-					setupOptionsRow()
-				case .time:
-					setupTimeRow()
-				case .start:
-					setupStartRow()
-				case .prevNext:
-					setupPrevNextRow()
-				}
+				addComponent(component.type)
 				try? (mainStackView.views.last as! SplitterComponent).loadState(from: component)
 			}
 		} else {
@@ -695,10 +705,6 @@ class ViewController: NSViewController {
 		super.keyDown(with: event)
 	}
 }
-extension Notification.Name {
-	static let updateComponents = Notification.Name("updateComponents")
-}
-
 //TODO: See if this should be in a separate file, and if it should be with the VC or on its own or in Data
 //IDK why I added this, but it looks important
 extension DateComponents {

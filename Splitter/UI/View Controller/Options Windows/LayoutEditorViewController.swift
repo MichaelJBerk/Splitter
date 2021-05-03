@@ -12,12 +12,19 @@ extension NSGridView {
 		return true
 	}
 }
+extension NSMenuItem {
+	convenience init(title: String, action: Selector, keyEquivalent: String, representedObject: Any?) {
+		self.init(title: title, action: action, keyEquivalent: keyEquivalent)
+		self.representedObject = representedObject
+	}
+}
 
 class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
 	@IBOutlet var tableView: NSTableView!
 	@IBOutlet var scrollView: NSScrollView!
 	@IBOutlet var optionsView: NSView!
 	@IBOutlet var plusButton: NSButton!
+	@IBOutlet var minusButton: NSButton!
 	var rows = ["Row 1", "Row 2", "Row 3"]
 	var dropType: NSPasteboard.PasteboardType = .init("public.data")
 	var runController: ViewController!
@@ -28,21 +35,38 @@ class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTable
 		tableView.delegate = self
 		tableView.dataSource = self
 		tableView.registerForDraggedTypes([dropType])
+		minusButton.isEnabled = false
     }
 	
 	var componentsPopUpMenu: NSMenu {
-		let items: [NSMenuItem] = [
-			.init(title: "Split Table", action: #selector(addSplitTable(sender:)), keyEquivalent: ""),
-			.init(title: "Sum of Best", action: #selector(addSumOfBestComponent(sender:)), keyEquivalent: "")
-		]
+		var items = [NSMenuItem]()
+		let existingTypes = runController.mainStackView.views.map({ SplitterComponentType.FromType(($0 as! SplitterComponent))})
+		for type in SplitterComponentType.allCases {
+			if !existingTypes.contains(type) {
+				let t = type.componentType.init()
+				items.append(.init(title: t.displayTitle, action: #selector(addComponent(sender:)), keyEquivalent: "", representedObject: type))
+			}
+		}
 		let menu = NSMenu(title: "")
 		for item in items {
 			menu.addItem(item)
 		}
 		return menu
 	}
-	@objc func addSplitTable(sender: Any?) {
-		
+	@objc func addComponent(sender: Any?) {
+		print(type(of: sender))
+		if let sender = sender as? NSMenuItem,
+		   let type = sender.representedObject as? SplitterComponentType {
+			runController.addComponent(type)
+		}
+	}
+	
+	@IBAction func minusButtonClick(sender: Any?) {
+		let sr = tableView.selectedRow
+		if sr >= 0 {
+			let viewToRemove = runController.mainStackView.views[sr]
+			runController.mainStackView.removeView(viewToRemove)
+		}
 	}
 	
 	@objc func addSumOfBestComponent(sender: Any?) {
@@ -68,13 +92,9 @@ class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTable
 	func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
 		let pastboard = info.draggingPasteboard
 		if let data = pastboard.string(forType: dropType), let oldRow = Int(data) {
-//			rows.move(fromOffsets: IndexSet([oldRow]), toOffset: row)
 			var views = runController.mainStackView.views
 			views.move(fromOffsets: IndexSet([oldRow]), toOffset: row)
-//			runController.mainStackView.setViews(views, in: .center)
-			
 			runController.mainStackView.update(runController.mainStackView, views)
-//			runController.mainStackView.updateConstraints()
 			tableView.reloadData()
 			return true
 		}
@@ -84,22 +104,22 @@ class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTable
 	}
 	func tableViewSelectionDidChange(_ notification: Notification) {
 		let selected = tableView.selectedRow
-		
+		if selected >= 0 {
+			minusButton.isEnabled = true
+		} else {
+			minusButton.isEnabled = false
+		}
 		for i in 0..<runController.mainStackView.views.count {
-			
 			if let selectedComponent = runController.mainStackView.views[i] as? SplitterComponent {
 				if i == selected {
 					selectedComponent.isSelected = true
 					let ov = selectedComponent.optionsView!
-//					let ovSize =
-					
 					scrollView.documentView = ov
 					ov.translatesAutoresizingMaskIntoConstraints = false
 					NSLayoutConstraint.activate([
 						ov.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
 						ov.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: -5),
 						ov.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -5)
-//						ov.widthAnchor.constraint(equalTo: scrollView.widthAnchor, constant: -5),
 					])
 				} else {
 					selectedComponent.isSelected = false

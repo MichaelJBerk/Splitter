@@ -41,7 +41,7 @@ class SplitterRun: NSObject {
 		var vRun: Run = run
 		vRun.pushSegment(Segment("1"))
 		if let editor = RunEditor(vRun) {
-			_ = editor.addComparison(LSComparison.latest.rawValue)
+			_ = editor.addComparison(TimeComparison.latest.rawValue)
 			vRun = editor.close()
 		}
 		for i in 0..<vRun.customComparisonsLen() {
@@ -136,7 +136,12 @@ class SplitterRun: NSObject {
 			editor.setColumn(3, updateTrigger: ColumnUpdateTrigger.onStartingSegment)
 			//TODO: Set rounding
 			
-			
+			editor.addComponent(LSSumOfBestComponent().intoGeneric())
+			for var i in 0..<editor.state().componentLen() {
+				print(editor.state().componentText(i))
+				
+				i+=1
+			}
 			self.layout = editor.close()
 		}
 		do {
@@ -426,7 +431,7 @@ class SplitterRun: NSObject {
 			timer.lsTimer.switchToNextComparison()
 		}
 	}
-	private func setComparison(to comparison: LSComparison, disableUndo: Bool = false) {
+	private func setComparison(to comparison: TimeComparison, disableUndo: Bool = false) {
 		let oldValue = self.getComparision()
 		if !disableUndo {
 			undoManager?.registerUndo(withTarget: self, handler: { r in
@@ -436,13 +441,13 @@ class SplitterRun: NSObject {
 		}
 		setComparison(comparison.rawValue)
 	}
-	func setComparison(to comparison: LSComparison) {
+	func setComparison(to comparison: TimeComparison) {
 		self.setComparison(to: comparison, disableUndo: false)
 	}
 	
-	func getComparision() -> LSComparison {
+	func getComparision() -> TimeComparison {
 		//TODO: Handle if custom comparison?
-		return LSComparison(rawValue: timer.lsTimer.currentComparison())!
+		return TimeComparison(rawValue: timer.lsTimer.currentComparison())!
 	}
 	
 	var comparisons: [String] {
@@ -613,131 +618,5 @@ class SplitterRun: NSObject {
 	}
 	func setRun(_ run: Run) {
 		_ = timer.lsTimer.setRun(run)
-	}
-	func addSumOfBest() {
-		editLayout{ editor in
-			let comp = LSSumOfBestComponent()
-			editor.addComponent(comp.intoGeneric())
-		}
-		updateLayoutState()
-	}
-	
-	//Blank Space = "Splitter Custom Component"
-	//add to SplitterAppearance file, and reference it there
-	
-	func addCustomComponent() {
-		editLayout { editor in
-			let kvc = BlankSpaceComponent().intoGeneric()
-			editor.addComponent(kvc)
-			
-		}
-	}
-}
-class SplitterTimer {
-	fileprivate var splitterRun: SplitterRun!
-	var lsTimer: LSTimer
-	var lsRun: RunRef {
-		return lsTimer.getRun()
-	}
-	init(run: Run) {
-		lsTimer = LSTimer(run)!
-	}
-	
-	private func resetIfNeeded(update: Bool) {
-		let initialPhase = lsTimer.currentPhase()
-		if initialPhase == 2 {
-			lsTimer.reset(update)
-		}
-	}
-	
-	func start() {
-		let initialPhase = lsTimer.currentPhase()
-		resetIfNeeded(update: true)
-		lsTimer.start()
-		let newPhase = lsTimer.currentPhase()
-		splitterRun.updateLayoutState()
-		if newPhase == 1 && initialPhase != 1 {
-			NotificationCenter.default.post(.init(name: .phaseChanged, object: nil, userInfo: ["phase": newPhase, "oldPhase": initialPhase]))
-		}
-	}
-	func splitOrStart() {
-		/// - Note: If there's a negative offset, and the time < 0, then if won't be counted as having "ednqed" for some reason;
-		let initialPhase = lsTimer.currentPhase()
-		resetIfNeeded(update: true)
-		lsTimer.splitOrStart()
-		splitterRun.updateLayoutState()
-		let newPhase = lsTimer.currentPhase()
-		NotificationCenter.default.post(.init(name: .phaseChanged, object: nil, userInfo: ["phase": newPhase, "oldPhase": initialPhase]))
-	}
-	func togglePause() {
-		let initialPhase = lsTimer.currentPhase()
-		lsTimer.togglePause()
-		splitterRun.updateLayoutState()
-		let newPhase = lsTimer.currentPhase()
-		NotificationCenter.default.post(.init(name: .phaseChanged, object: nil, userInfo: ["phase": newPhase, "oldPhase": initialPhase]))
-	}
-	func previousSplit() {
-		lsTimer.undoSplit()
-		splitterRun.updateLayoutState()
-	}
-
-	
-	//TODO: Figure out how resetting run should behave
-	///Resets the current run
-	/// - Parameter discardSplits: `true` if the current splits are to be discarded, `false` if they are to be kept. Defaults to `false`
-	func resetRun(discardSplits: Bool = false) {
-		lsTimer.reset(!discardSplits)
-		splitterRun.updateLayoutState()
-//		if let s = splitterRun.codableLayout.components[1].splits?.splits[0] {
-//			for i in 0..<s.columns.count {
-//				print(s.columns[i].value)
-//
-//			}
-//		}
-	}
-	
-	func resetHistories() {
-		var customComparisons = [String]()
-		let run = lsTimer.getRun().clone()
-		let compsLen = run.customComparisonsLen()
-		for i in 0..<compsLen {
-			customComparisons.append(run.customComparison(i))
-		}
-		if let editor = RunEditor(run) {
-			editor.clearTimes()
-			for i in 0..<customComparisons.count {
-				_ = editor.addComparison(customComparisons[i])
-			}
-			_  = lsTimer.setRun(editor.close())
-		}
-	}
-	
-}
-enum LSComparison: String, CaseIterable {
-	///Defines the Comparison Generator for calculating the Average Segments of a Run. The Average Segments are calculated through a weighted arithmetic mean that gives more recent segments a larger weight so that the Average Segments are more suited to represent the current performance of a runner.
-	case averageSegments = "Average Segments"
-	///Defines the Comparison Generator for calculating the Latest Run. Using the Segment History, this comparison reconstructs the splits of the furthest, most recent attempt. If at least one attempt has been finished, this comparison will show the most recent finished attempt. If no attempts have been finished yet, this comparison will show the attempt that got the furthest.
-	case latest = "Latest Run"
-	///Defines the Personal Best comparison.
-	case personalBest = "Personal Best"
-	///Defines the Comparison Generator for calculating a comparison which has the same final time as the runner's Personal Best. Unlike the Personal Best however, all the other split times are automatically balanced by the runner's history in order to balance out the mistakes present in the Personal Best throughout the comparison. Running against an unbalanced Personal Best can cause frustrations. A Personal Best with a mediocre early game and a really good end game has a high chance of the runner losing a lot of time compared to the Personal Best towards the end of a run. This may discourage the runner, which may lead them to reset the attempt. That's the perfect situation to compare against the Balanced Personal Best comparison instead, as all of the mistakes of the early game in such a situation would be smoothed out throughout the whole comparison.
-	case balancedPB = "Balanced PB"
-	///Defines the Comparison Generator for calculating the Best Segments of a Run.
-	case bestSegments = "Best Segments"
-	///Defines the Comparison Generator for the Best Split Times. The Best Split Times represent the best pace that the runner was ever on up to each split in the run. The Best Split Times are calculated by taking the best split time for each individual split from all of the runner's attempts.
-	case bestSplitTimes = "Best Split Times"
-	///Defines the Comparison Generator for calculating the Median Segments of a Run. The Median Segments are calculated through a weighted median that gives more recent segments a larger weight so that the Median Segments are more suited to represent the current performance of a runner.
-	case medianSegments = "Median Segments"
-	///	Defines the Comparison Generator for calculating the Worst Segments of a Run.
-	case worstSegments = "Worst Segments"
-}
-extension SettingValueRef {
-	func toColor() -> NSColor? {
-
-		let json = JSON(self.asJson().data(using: .utf8)!)
-		if let doubles = json["Color"].arrayObject?.compactMap({ $0 as? Double}) {
-			return NSColor(doubles)
-		}
-		return nil
 	}
 }

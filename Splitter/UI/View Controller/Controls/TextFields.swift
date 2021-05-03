@@ -29,7 +29,7 @@ extension Themeable {
 		return "run"
 	}
 	func setColorObserver() {
-		NotificationCenter.default.addObserver(forName: .updateComponents, object: nil, queue: nil, using: { notification in
+		NotificationCenter.default.addObserver(forName: .updateComponentColors, object: nil, queue: nil, using: { notification in
 			if themeable, let run = (notification.userInfo?[Self.runKey])! as? SplitterRun {
 				setColor(run: run)
 			}
