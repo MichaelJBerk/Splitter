@@ -68,7 +68,7 @@
 		4A6A965924EC3516008EFD2B /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6A965724EC3516008EFD2B /* LoadingViewController.xib */; };
 		4A6B4F7423F07C3900CB781F /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A73B75023F0722800010F30 /* libresolv.tbd */; };
 		4A71054C24BE267300FA9127 /* SplitterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A71054B24BE267300FA9127 /* SplitterTests.swift */; };
-		4A74D4ED25EE9DD700A3D9C7 /* TimerCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A74D4EC25EE9DD700A3D9C7 /* TimerCore.swift */; };
+		4A74D4ED25EE9DD700A3D9C7 /* SplitterRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A74D4EC25EE9DD700A3D9C7 /* SplitterRun.swift */; };
 		4A75578D255C426A00ACE826 /* SplitterDocLSS.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4A75578C255C426A00ACE826 /* SplitterDocLSS.icns */; };
 		4A75579D255C47F400ACE826 /* SplitterDocSplitsio.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4A75579C255C47F300ACE826 /* SplitterDocSplitsio.icns */; };
 		4A7C648823F05FCF008C15EF /* LiveSplitCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF9D76423ECD7520019BC9A /* LiveSplitCore.swift */; };
@@ -229,7 +229,7 @@
 		4A71054B24BE267300FA9127 /* SplitterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterTests.swift; sourceTree = "<group>"; };
 		4A71054D24BE267300FA9127 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A73B75023F0722800010F30 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
-		4A74D4EC25EE9DD700A3D9C7 /* TimerCore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerCore.swift; sourceTree = "<group>"; };
+		4A74D4EC25EE9DD700A3D9C7 /* SplitterRun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterRun.swift; sourceTree = "<group>"; };
 		4A75578C255C426A00ACE826 /* SplitterDocLSS.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = SplitterDocLSS.icns; sourceTree = "<group>"; };
 		4A75579C255C47F300ACE826 /* SplitterDocSplitsio.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = SplitterDocSplitsio.icns; sourceTree = "<group>"; };
 		4A7DDCE123BBDD0900A36AD1 /* Credits.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
@@ -460,7 +460,7 @@
 		4A20C46526406D0400307993 /* TimerCore */ = {
 			isa = PBXGroup;
 			children = (
-				4A74D4EC25EE9DD700A3D9C7 /* TimerCore.swift */,
+				4A74D4EC25EE9DD700A3D9C7 /* SplitterRun.swift */,
 				4A20C46626406D4800307993 /* SplitterTimer.swift */,
 				4A20C46826406D9500307993 /* TimeComparison.swift */,
 				4A3F989825EFDB0800B2B955 /* LayoutStuff.swift */,
@@ -495,8 +495,8 @@
 		4A230E9123B00A1D00959C57 /* Splitter */ = {
 			isa = PBXGroup;
 			children = (
-				4A20C46526406D0400307993 /* TimerCore */,
 				4AF9D76223ECD59A0019BC9A /* Splitter-Bridging-Header.h */,
+				4A20C46526406D0400307993 /* TimerCore */,
 				4AF9D75623ECD4790019BC9A /* LiveSplit Core */,
 				4AD780C323D5065B0068CDE3 /* Data */,
 				4AFCC52323C63F1E002216F1 /* Prefs */,
@@ -1059,7 +1059,7 @@
 				4AF953B523EB503100ED540C /* Timer Functions.swift in Sources */,
 				4A1657B523EA5C320008CB5F /* Icon Actions.swift in Sources */,
 				4AD77D16240ECA2800CD65AD /* ColumnOptionsViewController.swift in Sources */,
-				4A74D4ED25EE9DD700A3D9C7 /* TimerCore.swift in Sources */,
+				4A74D4ED25EE9DD700A3D9C7 /* SplitterRun.swift in Sources */,
 				4AA9ADBF2608F035009B77B5 /* StartRow.swift in Sources */,
 				4A6A3BE423CD621A002C20AE /* MainWindow.swift in Sources */,
 				4A1657B323EA4F3C0008CB5F /* Button Actions.swift in Sources */,
