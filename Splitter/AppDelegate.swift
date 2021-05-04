@@ -216,13 +216,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 	}
 	
 	//Need to store this as a var on the class or the app will crash when closing the welcome window
-	var welcomeWindow: NSWindow!
+	var welcomeWindow: KeyDownWindow!
 	var searchWindow: NSWindow!
 	
 	@available(macOS 10.15, *)
 	func openWelcomeWindow() {
 		let welcomeView = WelcomeView()
-		welcomeWindow = NSWindow(contentRect: NSRect(x: 0, y: 0, width: 800, height: 460), styleMask: [.fullSizeContentView, .titled, .closable], backing: .buffered, defer: false)
+		welcomeWindow = KeyDownWindow(contentRect: NSRect(x: 0, y: 0, width: 800, height: 460), styleMask: [.fullSizeContentView, .titled, .closable], backing: .buffered, defer: false)
 		welcomeWindow.titleVisibility = .hidden
 		welcomeWindow.titlebarAppearsTransparent = true
 		welcomeWindow.isMovableByWindowBackground = true

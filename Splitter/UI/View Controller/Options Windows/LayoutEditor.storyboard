@@ -93,7 +93,7 @@
                                     </subviews>
                                 </clipView>
                                 <scroller key="horizontalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="wfN-yr-hkL">
-                                    <rect key="frame" x="1" y="194" width="171" height="16"/>
+                                    <rect key="frame" x="1" y="194" width="157" height="16"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                                 <scroller key="verticalScroller" hidden="YES" wantsLayer="YES" verticalHuggingPriority="750" horizontal="NO" id="Elp-uk-ki1">
@@ -111,7 +111,7 @@
                             </textField>
                             <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="yaD-tf-pAs">
                                 <rect key="frame" x="246" y="44" width="242" height="211"/>
-                                <clipView key="contentView" id="XYn-fy-h7G">
+                                <clipView key="contentView" drawsBackground="NO" id="XYn-fy-h7G">
                                     <rect key="frame" x="0.0" y="0.0" width="242" height="211"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>

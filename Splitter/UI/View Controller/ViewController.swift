@@ -391,10 +391,8 @@ class ViewController: NSViewController {
 					}
 				}
 				if let gameIcon = doc.gameIcon {
-					undoManager?.disableUndoRegistration()
 					self.run.gameIcon = gameIcon
 					self.run.updateLayoutState()
-					undoManager?.enableUndoRegistration()
 				}
 			}
 		}
@@ -424,6 +422,8 @@ class ViewController: NSViewController {
 	//MARK: - Main Functions
 	override func viewWillAppear() {
 		super.viewWillAppear()
+		run.document = self.document
+		undoManager?.disableUndoRegistration()
 		if let components = appearance?.components {
 			for component in components {
 				addComponent(component.type)
@@ -432,6 +432,7 @@ class ViewController: NSViewController {
 		} else {
 			setupDefaultStack()
 		}
+		
 		windowSetup()
 		loadRunInfo()
 		keyAndMenuSetup()
@@ -476,7 +477,7 @@ class ViewController: NSViewController {
 		NotificationCenter.default.addObserver(forName: .splitsEdited, object: nil, queue: nil, using: { notification in
 			self.splitsTableView.reloadData()
 		})
-		
+		undoManager?.enableUndoRegistration()
 	}
 	
 	///Updates the run, with the current values from the view controller
@@ -563,6 +564,9 @@ class ViewController: NSViewController {
 		super.viewDidLoad()
 		if run == nil {
 			run = SplitterRun(run: Run(), isNewRun: true)
+			let d = self.document
+			run.document = self.document
+			
 		}
 		self.view.wantsLayer = true
 	}

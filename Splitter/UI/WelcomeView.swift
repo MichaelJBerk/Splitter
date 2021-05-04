@@ -9,6 +9,7 @@
 import SwiftUI
 import Cocoa
 import Files
+import Introspect
 
 @available(macOS 10.15, *)
 /// View that prompts the user to open a new file, open an existing file, or import a file from Splits.io
@@ -33,6 +34,7 @@ struct WelcomeView: View {
 			}
 				.frame(maxWidth: .infinity, maxHeight: .infinity)
 			RecentsView(fileURLs: fileURLs, selectedURL: $selectedURL)
+				.modifier(FirstResponderModifier())
 				.frame(width: 309)
 				.padding([.top, .bottom], listPadding)
 				
@@ -40,6 +42,23 @@ struct WelcomeView: View {
 		.frame(width: 800, height: 460)
     }
 }
+
+/**
+Attempts to make the given view the first responder.
+
+This is implemented so that the default selection in the Recents list has the correct background color.
+*/
+@available (macOS 10.15, *)
+struct FirstResponderModifier: ViewModifier {
+	func body(content: Content) -> some View {
+		content
+			.introspect(selector: { introspectionView in
+				guard let viewHost = Introspect.findViewHost(from: introspectionView) else { return nil }
+				return Introspect.previousSibling(containing: NSView.self, from: viewHost)
+			}, customize: {$0.becomeFirstResponder()})
+	}
+}
+
 // MARK: - Recents List (Right Side)
 @available(macOS 10.15, *)
 /// View that displays the user's most recently opened documents
@@ -58,7 +77,32 @@ struct RecentsView: View {
 				})
 		}
 		.listStyle(SidebarListStyle())
-		
+		//This is what triggers the button's action when clicked
+		.onReceive(NotificationCenter.default.publisher(for: .init("RecentButtonClick")), perform: { notification in
+			if let url = notification.userInfo?["url"] as? URL {
+				self.openFile(url: url)
+			}
+		})
+		.onAppear(perform: {
+			if let firstURL = fileURLs.first,
+			   selectedURL == nil {
+				self.selectedURL = firstURL
+			}
+			//In order so that pressing the enter key triggers the button's action, we use a custom subclass of of `NSWindow` - `KeyDownWindow`, lets me customize the behavior of the `keyDown` function using the code below.
+			//For more info, see the documentation on `KeyDownWindow`.
+			AppDelegate.shared?.welcomeWindow.keyDownBehavior = { event in
+				if event.keyCode == 36, let sURL = selectedURL {
+					self.openFile(url: sURL)
+					return false
+				}
+				return true
+			}
+		})
+	}
+	func openFile(url: URL) {
+		NSDocumentController.shared.openDocument(withContentsOf: url, display: true, completionHandler: {_,_,_ in
+			(NSApp.delegate as? AppDelegate)?.welcomeWindow.close()
+		})
 	}
 }
 @available(macOS 10.15, *)
@@ -66,10 +110,12 @@ struct RecentsView: View {
 struct RecentsRow: View {
 	/// The file's path on the user's machine
 	var url: URL
-	/// Configures whether or not the label or icon should recieve user interations (i.e. clicks)
-	///
-	/// Hit testing is used to ensure that clicking anywhere in the row selects it (otherwise, clicking the text/image wouldn't select it). When false, the image and label will pass interactions to the row itself, instead of hogging them for themseleves.
-	/// If it was always false, then the custom gesture (to open the file) wouldn't work.
+	/**
+	Configures whether or not the label or icon should recieve user interations (i.e. clicks)
+	
+	Hit testing is used to ensure that clicking anywhere in the row selects it (otherwise, clicking the text/image wouldn't select it). When `false`, the image and label will pass interactions to the row itself, instead of hogging them for themseleves.
+	If it was always `false`, then the custom gesture (to open the file) wouldn't work.
+	*/
 	var shouldHitTest: Bool {
 		if selectedURL != url {
 			return false
@@ -91,38 +137,35 @@ struct RecentsRow: View {
 	///The currently selected URL
 	@Binding var selectedURL: URL?
 	var body: some View {
-		HStack(alignment: .center) {
-			VStack{
-				Spacer()
-				Image(nsImage: icon)
-					.resizable()
-					.aspectRatio(contentMode: .fit)
-					.frame(height: 25, alignment: .center)
-				Spacer()
-			}
-			.allowsHitTesting(shouldHitTest)
-			
-			VStack(alignment: .leading) {
-				Spacer()
-				Text(fileName()).font(.subheadline)
-				Text(filePath()).truncationMode(.head)
-				Spacer()
-			}
-			.allowsHitTesting(shouldHitTest)
-			
-		}
-		.simultaneousGesture(TapGesture().onEnded({
-			if self.selectedURL == self.url {
+		Button(action: {
+			NotificationCenter.default.post(.init(name: .init("RecentButtonClick"), object: nil, userInfo: ["url": self.url]))
+		}, label: {
+			HStack(alignment: .center) {
+				VStack{
+					Spacer()
+					Image(nsImage: icon)
+						.resizable()
+						.aspectRatio(contentMode: .fit)
+						.frame(height: 25, alignment: .center)
+					Spacer()
+				}
+				.allowsHitTesting(shouldHitTest)
 				
-				NSDocumentController.shared.openDocument(withContentsOf: self.url, display: true, completionHandler: {_,_,_ in
-				(NSApp.delegate as? AppDelegate)?.welcomeWindow.close()
-			})
+				VStack(alignment: .leading) {
+					Spacer()
+					Text(fileName()).font(.subheadline)
+					Text(filePath()).truncationMode(.head)
+					Spacer()
+				}
+				.allowsHitTesting(shouldHitTest)
 			}
-		}), including: .gesture)
-		.padding([.top, .bottom], 5)
-		.frame(maxHeight: 50)
-		
-		.contentShape(Rectangle())
+			.padding([.top, .bottom], 5)
+			.frame(maxHeight: 50)
+			
+			.contentShape(Rectangle())
+		})
+		.buttonStyle(PlainButtonStyle())
+		.allowsHitTesting(shouldHitTest)
 	}
 	///Gets the file name used for the label
 	func fileName() -> String {
@@ -265,7 +308,6 @@ struct SplitterInfoView: View {
 		VStack {
 			Spacer()
 			Image(nsImage: NSApplication.shared.applicationIconImage)
-				//                .fixedSize()
 				.aspectRatio(contentMode: .fit)
 			
 			Text("Welcome to Splitter").font(.largeTitle)
@@ -300,6 +342,29 @@ struct SplitterInfoView: View {
 		return mainView(showOnLaunch: showOnLaunch)
 	}
 }
+
+/**
+A window with a customizable KeyDown function.
+
+We use this so that pressing the enter key on the Welcome window triggers the button press.
+
+# Why?
+
+- We can't use the `.keyboardShortcut` modifier because it's unsupported on 10.15, and only works if you use the SwiftUI App Lifecycle
+- Can't use a local event monitor because there's no reliable way to get rid of it
+**/
+
+class KeyDownWindow: NSWindow {
+	//if true, fall back to default behavior
+	var keyDownBehavior: (NSEvent) -> Bool = {_ in return false}
+	override func keyDown(with event: NSEvent) {
+		let b = keyDownBehavior(event)
+		if b {
+			super.keyDown(with: event)
+		}
+	}
+}
+
 //MARK: - Previews
 @available(macOS 10.15, *)
 struct WelcomeView_Previews: PreviewProvider {
