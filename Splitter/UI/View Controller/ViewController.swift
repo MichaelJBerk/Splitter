@@ -99,7 +99,6 @@ class ViewController: NSViewController {
 	
 	var timer = Timer()
 	var lscTimer: LSTimer?
-	var refreshUITimer = Timer()
 	var milHundrethTimer = Timer()
 	
 	///The timer's state - either stopped, running, or paused
@@ -178,8 +177,9 @@ class ViewController: NSViewController {
 	var hotkeysController: HotkeysViewController?
 	
 	@objc func breakFunc() {
-		run.addSegment(title: "Add", at: 2)
-		splitsTableView.reloadData()
+		let pasteboard = NSPasteboard.general
+		pasteboard.declareTypes([.string], owner: nil)
+		pasteboard.setString(run.layout.stateAsJson(run.timer.lsTimer), forType: .string)
 	}
 	
 	var breakID = NSUserInterfaceItemIdentifier("break")
@@ -267,18 +267,25 @@ class ViewController: NSViewController {
 		attemptField = timeRow.attemptsField
 	}
 	
-	var sumOfBestRow: SumOfBestComponent?
-	func setupSumOfBestRow() {
-		sumOfBestRow = SumOfBestComponent.instantiateView()
-		sumOfBestRow?.viewController = self
-		sumOfBestRow?.run = self.run
-		addToStack(view: sumOfBestRow!)
-		view.window?.layoutIfNeeded()
+	func setupKeyValueComponent(key: KeyValueComponentType) {
+		if let lIndex = run.addComponent(component: key.componentType) {
+			let sumOfBestRow = KeyValueComponent.instantiateView(with: run, self, type: key, layoutIndex: lIndex)
+			addToStack(view: sumOfBestRow)
+			view.window?.layoutIfNeeded()
+		}
 	}
 	func removeSumOfBestRow() {
-		if let row = mainStackView.views.first(where: {$0 is SumOfBestComponent}) {
+		if let row = mainStackView.views.first(where: {$0 is KeyValueComponent}) {
 			mainStackView.removeView(row)
 		}
+	}
+	func removeView(view: SplitterComponent) {
+		if let type = SplitterComponentType.FromType(view) {
+			if view is KeyValueComponent {
+				run.removeComponent(component: type)
+			}
+		}
+		mainStackView.removeView(view)
 	}
 	
 	private func setupDefaultStack() {
@@ -288,7 +295,6 @@ class ViewController: NSViewController {
 		setupTimeRow()
 		setupStartRow()
 		setupPrevNextRow()
-		sumOfBestRow?.isHidden = true
 	}
 	///Handles various window-related tasks
 	private func windowSetup() {
@@ -413,17 +419,25 @@ class ViewController: NSViewController {
 		case .prevNext:
 			setupPrevNextRow()
 		case .sumOfBest:
-			setupSumOfBestRow()
+			setupKeyValueComponent(key: .sumOfBest)
+		case .previousSegment:
+			setupKeyValueComponent(key: .previousSegment)
 		}
 	}
+	
 	
 	var document: SplitterDoc!
 	
 	//MARK: - Main Functions
 	override func viewWillAppear() {
 		super.viewWillAppear()
-		run.document = self.document
+		if run == nil {
+			run = SplitterRun(run: Run(), isNewRun: true)
+			let d = self.document
+			run.document = self.document
+		}
 		undoManager?.disableUndoRegistration()
+		print(run.segmentCount)
 		if let components = appearance?.components {
 			for component in components {
 				addComponent(component.type)
@@ -476,6 +490,9 @@ class ViewController: NSViewController {
 		})
 		NotificationCenter.default.addObserver(forName: .splitsEdited, object: nil, queue: nil, using: { notification in
 			self.splitsTableView.reloadData()
+		})
+		NotificationCenter.default.addObserver(forName: .updateIsEdited, object: self.run.timer, queue: nil, using: { notification in
+			self.view.window?.isDocumentEdited = true
 		})
 		undoManager?.enableUndoRegistration()
 	}
@@ -562,12 +579,6 @@ class ViewController: NSViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		if run == nil {
-			run = SplitterRun(run: Run(), isNewRun: true)
-			let d = self.document
-			run.document = self.document
-			
-		}
 		self.view.wantsLayer = true
 	}
 	

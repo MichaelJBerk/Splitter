@@ -102,8 +102,8 @@
 		4ACFB1BD262F4E9700EA79B6 /* TitleComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ACFB1BC262F4E9700EA79B6 /* TitleComponent.xib */; };
 		4ACFB1E7262F53B100EA79B6 /* SplitsComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ACFB1E6262F53B100EA79B6 /* SplitsComponent.xib */; };
 		4AD026EB26090ED400F6CD0C /* SplitterComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD026EA26090ED300F6CD0C /* SplitterComponent.swift */; };
-		4AD44AD7262F40E3003375C4 /* SumOfBestComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD44AD6262F40E3003375C4 /* SumOfBestComponent.swift */; };
-		4AD44ADB262F463C003375C4 /* SumOfBestComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AD44ADA262F463C003375C4 /* SumOfBestComponent.xib */; };
+		4AD44AD7262F40E3003375C4 /* KeyValueComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD44AD6262F40E3003375C4 /* KeyValueComponent.swift */; };
+		4AD44ADB262F463C003375C4 /* KeyValueComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AD44ADA262F463C003375C4 /* KeyValueComponent.xib */; };
 		4AD44ADF262F4CFB003375C4 /* TitleComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD44ADE262F4CFB003375C4 /* TitleComponent.swift */; };
 		4AD7662E23DA5F9A0052409C /* Files in Frameworks */ = {isa = PBXBuildFile; productRef = 4AD7662D23DA5F9A0052409C /* Files */; };
 		4AD77D16240ECA2800CD65AD /* ColumnOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD77D15240ECA2800CD65AD /* ColumnOptionsViewController.swift */; };
@@ -260,8 +260,8 @@
 		4ACFB1BC262F4E9700EA79B6 /* TitleComponent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleComponent.xib; sourceTree = "<group>"; };
 		4ACFB1E6262F53B100EA79B6 /* SplitsComponent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplitsComponent.xib; sourceTree = "<group>"; };
 		4AD026EA26090ED300F6CD0C /* SplitterComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterComponent.swift; sourceTree = "<group>"; };
-		4AD44AD6262F40E3003375C4 /* SumOfBestComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SumOfBestComponent.swift; sourceTree = "<group>"; };
-		4AD44ADA262F463C003375C4 /* SumOfBestComponent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SumOfBestComponent.xib; sourceTree = "<group>"; };
+		4AD44AD6262F40E3003375C4 /* KeyValueComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyValueComponent.swift; sourceTree = "<group>"; };
+		4AD44ADA262F463C003375C4 /* KeyValueComponent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KeyValueComponent.xib; sourceTree = "<group>"; };
 		4AD44ADE262F4CFB003375C4 /* TitleComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleComponent.swift; sourceTree = "<group>"; };
 		4AD77D15240ECA2800CD65AD /* ColumnOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnOptionsViewController.swift; sourceTree = "<group>"; };
 		4ADE9225240F1FB900E0D99E /* InfoPopoverTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPopoverTabViewController.swift; sourceTree = "<group>"; };
@@ -576,7 +576,7 @@
 				4ACFB1C4262F52BF00EA79B6 /* TitleComponent */,
 				4AEA33132629EFC4001012BD /* TimeRow */,
 				4AD026EA26090ED300F6CD0C /* SplitterComponent.swift */,
-				4ACFB1CA262F530000EA79B6 /* SumOfBestrComponent */,
+				4ACFB1CA262F530000EA79B6 /* KeyValueComponent */,
 				4ACFB1C7262F52F700EA79B6 /* OptionsRow */,
 				4AEA33142629EFCE001012BD /* PrevNextRow */,
 				4AEA33172629EFD7001012BD /* StartRow */,
@@ -626,13 +626,13 @@
 			path = OptionsRow;
 			sourceTree = "<group>";
 		};
-		4ACFB1CA262F530000EA79B6 /* SumOfBestrComponent */ = {
+		4ACFB1CA262F530000EA79B6 /* KeyValueComponent */ = {
 			isa = PBXGroup;
 			children = (
-				4AD44AD6262F40E3003375C4 /* SumOfBestComponent.swift */,
-				4AD44ADA262F463C003375C4 /* SumOfBestComponent.xib */,
+				4AD44AD6262F40E3003375C4 /* KeyValueComponent.swift */,
+				4AD44ADA262F463C003375C4 /* KeyValueComponent.xib */,
 			);
-			path = SumOfBestrComponent;
+			path = KeyValueComponent;
 			sourceTree = "<group>";
 		};
 		4AD780C323D5065B0068CDE3 /* Data */ = {
@@ -896,7 +896,7 @@
 			files = (
 				4A4D392323C4FAE500BF3FCD /* HotkeysViewController.xib in Resources */,
 				4AEA928423C4F140004F6CF9 /* DefaultPreferenceViewController.xib in Resources */,
-				4AD44ADB262F463C003375C4 /* SumOfBestComponent.xib in Resources */,
+				4AD44ADB262F463C003375C4 /* KeyValueComponent.xib in Resources */,
 				4A7DDCE223BBDD0900A36AD1 /* Credits.html in Resources */,
 				4A4ACF7C2609185C00C04DD6 /* LayoutEditor.storyboard in Resources */,
 				4AF9E8AC24CE31CA00DFD5BE /* DebugPrefsViewController.xib in Resources */,
@@ -1051,7 +1051,7 @@
 				4A09E2A824D75D6B0013D7BC /* CategoryViewController.swift in Sources */,
 				4A0F716323F4A9E400E5948E /* SplitterDocBundle.swift in Sources */,
 				4A4D392223C4FAE500BF3FCD /* HotkeysViewController.swift in Sources */,
-				4AD44AD7262F40E3003375C4 /* SumOfBestComponent.swift in Sources */,
+				4AD44AD7262F40E3003375C4 /* KeyValueComponent.swift in Sources */,
 				4A09E29E24D7555E0013D7BC /* DownloadView.swift in Sources */,
 				4A61438424801A28007C38E0 /* ColorsView.swift in Sources */,
 				4AD026EB26090ED400F6CD0C /* SplitterComponent.swift in Sources */,

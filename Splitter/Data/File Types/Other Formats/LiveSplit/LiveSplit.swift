@@ -176,7 +176,7 @@ class LiveSplit: NSObject {
 extension ViewController {
 	func loadLS(url: URL, asTemplate: Bool = false) {
 		if let run = Run.parseFile(path: url.path, loadFiles: true) {
-			self.run.setRun(run)
+			self.run  = SplitterRun (run: run, isNewRun: false)
 			if asTemplate {
 				self.run.timer.resetHistories()
 			}

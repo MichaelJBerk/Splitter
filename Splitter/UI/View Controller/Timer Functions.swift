@@ -9,6 +9,12 @@
 import Foundation
 import Cocoa
 
+extension Notification.Name {
+	
+	static let startTimer = Notification.Name("startTimer")
+	static let stopTimer = Notification.Name("stopTimer")
+}
+
 extension ViewController {
 	// MARK: - Timer functions
 	///Starts the timer.
@@ -57,9 +63,7 @@ extension ViewController {
 			backupSplits.append(currentSplits[i].copy() as! SplitTableRow)
 			i = i + 1
 		}
-		refreshUITimer = Cocoa.Timer.scheduledTimer(withTimeInterval: 0.001, repeats: true, block: { timer in
-			self.updateTimer()
-		})
+		NotificationCenter.default.post(.init(name: .startTimer))
 		run.timer.start()
 
 		
@@ -101,7 +105,8 @@ extension ViewController {
 	///Deletes all of the segments in the table view, leaving just one with a time of 00:00:00. Shouldn't be directly triggered by the user; use `askToClearTimer()` for that instead.
 	func clearTimer() {
 		milHundrethTimer.invalidate()
-		refreshUITimer.invalidate()
+		NotificationCenter.default.post(.init(name: .stopTimer))
+		
 		currentSplit = TimeSplit(mil: 0,sec: 0,min: 0,hour: 0)
 		currentSplits = []
 		loadedFilePath = ""
@@ -111,17 +116,11 @@ extension ViewController {
 	///Resets the timer to 00:00:00.
 	func resetTimer() {
 		milHundrethTimer.invalidate()
-		refreshUITimer.invalidate()
+		NotificationCenter.default.post(.init(name: .stopTimer))
 		updateTimer()
 	}
 	
 	
-	@objc func updateTime() {
-
-		if !currentSplit!.paused {
-			updateTimer()
-		}
-	}
 	func columnArray() -> [Int] {
 		var cols: [Int] = []
 		var i = 0
@@ -133,13 +132,9 @@ extension ViewController {
 	}
 	///Updates the current time on the timer
 	@objc func updateTimer() {
-		if let timer = run.codableLayout.components[2].timer {
+		if let timer = (run.codableLayout.components[2] as? CTimer) {
 			timerLabel.stringValue = timer.timeText
 			touchBarTotalTimeLabel.stringValue = timer.timeText
-		}
-		
-		if let sumOfBest = run.codableLayout.components.first(where: {$0.keyValue?.key == "Sum of Best Component"})?.keyValue {
-			sumOfBestRow?.sumOfBestText = sumOfBest.value
 		}
 		
 		//Update only the current row to ensure good performance when scrolling the tableview

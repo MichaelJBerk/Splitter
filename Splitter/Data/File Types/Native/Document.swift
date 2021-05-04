@@ -121,6 +121,10 @@ class Document: SplitterDocBundle {
 		let load = loadViewController()
 		let vc = load.vc
 		vc.document = self
+		if let run = run {
+			
+			vc.run = run
+		}
 		if let ri = self.runInfoData {
 			vc.runInfoData = ri
 			vc.appearance = appearance

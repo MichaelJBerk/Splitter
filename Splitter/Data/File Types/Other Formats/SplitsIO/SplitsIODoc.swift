@@ -19,6 +19,8 @@ class SplitsIODoc: SplitterDoc {
 		let vc = load.vc
 		
 		if let si = splitsio {
+			let newRun = SplitterRun(run: Run(), segments: nil, isNewRun: true)
+			vc.run = newRun
 			vc.run.document = self
 			vc.undoManager?.disableUndoRegistration()
 			vc.run.title = si.game?.longname ?? ""
@@ -30,6 +32,7 @@ class SplitsIODoc: SplitterDoc {
 			}
 			if let segs = si.segments {
 				vc.run.editRun { editor in
+					vc.run.removeSegment(0)
 					for s in 0..<segs.count {
 						let seg = segs[s]
 						var prevSeg = TimeSplit(mil: seg.bestDuration?.realtimeMS ?? 0)

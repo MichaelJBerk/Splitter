@@ -167,6 +167,7 @@ struct BasicComponentState: SplitterComponentState {
 	var isHidden: Bool
 	
 }
+
 enum SplitterComponentType: Int, Codable, CaseIterable {
 	case title
 	case splits
@@ -175,6 +176,29 @@ enum SplitterComponentType: Int, Codable, CaseIterable {
 	case start
 	case prevNext
 	case sumOfBest
+	case previousSegment
+	
+	var displayTitle: String {
+		switch self {
+		case .title:
+			return "Title"
+		case .splits:
+			return "Splits"
+		case .tableOptions:
+			return "Table Options Row"
+		case .time:
+			return "Time"
+		case .start:
+			return "Start/Delete Buttons"
+		case .prevNext:
+			return "Prev/Next Buttons"
+		case .sumOfBest:
+			return "Sum of Best"
+		case .previousSegment:
+			return "Previous Segment"
+		}
+		
+	}
 	
 	var componentType: SplitterComponent.Type {
 		switch self {
@@ -191,7 +215,9 @@ enum SplitterComponentType: Int, Codable, CaseIterable {
 		case .prevNext:
 			return PrevNextRow.self
 		case .sumOfBest:
-			return SumOfBestComponent.self
+			return KeyValueComponent.self
+		case .previousSegment:
+			return KeyValueComponent.self
 		}
 	}
 	static func FromType(_ type: SplitterComponent) -> SplitterComponentType? {
@@ -209,35 +235,49 @@ enum SplitterComponentType: Int, Codable, CaseIterable {
 			return .start
 		} else if type is PrevNextRow {
 			return .prevNext
-		} else if type is SumOfBestComponent {
-			return .sumOfBest
+		} else if let kvc = type as? KeyValueComponent {
+			switch kvc.key {
+			case .sumOfBest:
+				return .sumOfBest
+			case .previousSegment:
+				return .previousSegment
+			default:
+				return nil
+			}
 		}
 		return nil
 	}
 }
 
+enum KeyValueComponentType: String, Codable, CaseIterable {
+	case sumOfBest = "Sum of Best Segments"
+	case previousSegment = "Previous Segment"
+	
+	var componentType: SplitterComponentType{
+		switch self {
+		case .sumOfBest:
+			return .sumOfBest
+		case .previousSegment:
+			return .previousSegment
+		}
+	}
+	
+	init(from decoder: Decoder) throws {
+		let str: String = try decoder.decodeSingleValue()
+		if str == "Sum of Best Segments" {
+			self = .sumOfBest
+			return
+		}
+		if str == "Previous Segment" || str == "Live Segment" {
+			self = .previousSegment
+			return
+		}
+		throw DecodingError.typeMismatch(Self.Type.self, .init(codingPath: decoder.codingPath, debugDescription: "Can't decode"))
+		
+	}
+}
+
 typealias ComponentStateDict = [String: JSONAny]
-
-
-
-//enum ComponentStateType: Codable {
-//	case basic(BasicComponentState)
-//	case title(TitleComponent.TitleComponentState)
-//	case timeRow(TimeRow.TimeRowState)
-//	case optionsRow(OptionsRow.OptionsRowState)
-//	case splits(SplitsComponent.SplitsComponentState)
-//
-//	init(from decoder: Decoder) throws {
-//		let container = try decoder.singleValueContainer()
-//		if let basic = try? container.decode(BasicComponentState.self) {
-//			self = .basic(basic)
-//		}
-//	}
-//	func encode(to encoder: Encoder) throws {
-//
-//	}
-//
-//}
 
 protocol LiveSplitSplitterComponent: SplitterComponent {
 	

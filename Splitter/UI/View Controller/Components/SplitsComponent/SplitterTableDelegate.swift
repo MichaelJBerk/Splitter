@@ -40,6 +40,7 @@ extension ViewController: NSTableViewDelegate {
 		
 		let cRow = SplitterRowView()
 		cRow.selectedColor = self.selectedColor
+		let l = run.layoutSplits
 		cRow.isCurrentSegment = (run.layoutSplits.splits[row].isCurrentSplit && timerState != .stopped)
 		return cRow
 	}

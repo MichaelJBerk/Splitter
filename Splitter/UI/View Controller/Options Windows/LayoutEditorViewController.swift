@@ -43,8 +43,7 @@ class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTable
 		let existingTypes = runController.mainStackView.views.map({ SplitterComponentType.FromType(($0 as! SplitterComponent))})
 		for type in SplitterComponentType.allCases {
 			if !existingTypes.contains(type) {
-				let t = type.componentType.init()
-				items.append(.init(title: t.displayTitle, action: #selector(addComponent(sender:)), keyEquivalent: "", representedObject: type))
+				items.append(.init(title: type.displayTitle, action: #selector(addComponent(sender:)), keyEquivalent: "", representedObject: type))
 			}
 		}
 		let menu = NSMenu(title: "")
@@ -57,6 +56,8 @@ class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTable
 		if let sender = sender as? NSMenuItem,
 		   let type = sender.representedObject as? SplitterComponentType {
 			runController.addComponent(type)
+			runController.setColorForControls()
+			tableView.reloadData()
 		}
 	}
 	
@@ -64,12 +65,8 @@ class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTable
 		let sr = tableView.selectedRow
 		if sr >= 0 {
 			let viewToRemove = runController.mainStackView.views[sr]
-			runController.mainStackView.removeView(viewToRemove)
+			runController.removeView(view: viewToRemove as! SplitterComponent)
 		}
-	}
-	
-	@objc func addSumOfBestComponent(sender: Any?) {
-		runController.setupSumOfBestRow()
 	}
 	
 	@IBAction func plusButtonClick(sender: Any?) {
@@ -83,8 +80,8 @@ class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTable
 	
 	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 		let cell = tableView.makeView(withIdentifier: tableColumn!.identifier, owner: self) as! NSTableCellView
-		if let component = runController.mainStackView.views[row] as? SplitterComponent {
-			cell.textField?.stringValue = component.displayTitle
+		if let component = runController.mainStackView.views[row] as? SplitterComponent, let type = SplitterComponentType.FromType(component) {
+			cell.textField?.stringValue = type.displayTitle
 		}
 		return cell
 	}

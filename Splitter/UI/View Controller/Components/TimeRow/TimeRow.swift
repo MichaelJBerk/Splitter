@@ -10,6 +10,7 @@ import Cocoa
 class TimeRow: NSStackView, NibLoadable, SplitterComponent, NSTextFieldDelegate {
 	var run: SplitterRun!
 	var customSpacing: CGFloat? = nil
+	var refreshUITimer = Timer()
 	
 	override func awakeFromNib() {
 		super.awakeFromNib()
@@ -20,6 +21,14 @@ class TimeRow: NSStackView, NibLoadable, SplitterComponent, NSTextFieldDelegate 
 		detachesHiddenViews = false
 		attemptsStackView.detachesHiddenViews = false
 		attemptsField.delegate = self
+		NotificationCenter.default.addObserver(forName: .startTimer, object: nil, queue: nil, using: { _ in 
+			self.refreshUITimer = Cocoa.Timer.scheduledTimer(withTimeInterval: 0.001, repeats: true, block: { timer in
+				self.viewController.updateTimer()
+			})
+		})
+		NotificationCenter.default.addObserver(forName: .stopTimer, object: nil, queue: nil, using: { _ in
+			self.refreshUITimer.invalidate()
+		})
 	}
 	
 	let showAttemptsKey = "showAttempts"

@@ -31,15 +31,20 @@ class SplitterRun: NSObject {
 		return document!.undoManager
 	}
 	
+	var runThing: String?
+	
 	///Used to prevent crash with numberOfRowsInTableView
 	var hasSetLayout = false
 	
 	private var layoutSettings: CodableLayoutSettings!
 	init(run: Run, segments: [SplitTableRow]? = nil, isNewRun: Bool = false) {
 		
-		//LiveSplit-Core runs need to have at least one segment
 		var vRun: Run = run
-		vRun.pushSegment(Segment("1"))
+		if isNewRun == true || run.len() == 0 {
+			//LiveSplit-Core runs need to have at least one segment
+			vRun.pushSegment(Segment("1"))
+		}
+		
 		if let editor = RunEditor(vRun) {
 			_ = editor.addComparison(TimeComparison.latest.rawValue)
 			vRun = editor.close()
@@ -136,12 +141,7 @@ class SplitterRun: NSObject {
 			editor.setColumn(3, updateTrigger: ColumnUpdateTrigger.onStartingSegment)
 			//TODO: Set rounding
 			
-			editor.addComponent(LSSumOfBestComponent().intoGeneric())
-			for var i in 0..<editor.state().componentLen() {
-				print(editor.state().componentText(i))
-				
-				i+=1
-			}
+//			editor.addComponent(LSSumOfBestComponent().intoGeneric())
 			self.layout = editor.close()
 		}
 		do {
@@ -160,6 +160,52 @@ class SplitterRun: NSObject {
 			setComparison(comp)
 		} else {
 			setComparison(to: .latest, disableUndo: true)
+		}
+	}
+	
+	
+	func addComponent(component: SplitterComponentType) -> Int? {
+		var index: Int? = nil
+		var compToAdd: Component
+		var stringToCheck: String
+		switch component {
+		case .sumOfBest:
+			compToAdd = LSSumOfBestComponent().intoGeneric()
+			stringToCheck = KeyValueComponentType.sumOfBest.rawValue
+		case .previousSegment:
+			compToAdd = PreviousSegmentComponent().intoGeneric()
+			stringToCheck = KeyValueComponentType.previousSegment.rawValue
+		default:
+			return nil
+		}
+		
+		editLayout({ editor in
+			var i = 0
+			while i < editor.state().componentLen() {
+				if editor.state().componentText(i).contains(stringToCheck) {
+					index = i
+					i = editor.state().componentLen()
+				}
+				i+=1
+			}
+			if index == nil {
+				index = editor.state().componentLen()
+				editor.addComponent(compToAdd)
+			}
+		})
+		return index
+	}
+	func removeComponent(component: SplitterComponentType) {
+		editLayout{ editor in
+			var i = 0
+			while i < editor.state().componentLen() {
+				if editor.state().componentText(i).contains("Sum of Best Segments") {
+					editor.select(i)
+					editor.removeComponent()
+					i = editor.state().componentLen()
+				}
+				i+=1
+			}
 		}
 	}
 	
@@ -504,7 +550,7 @@ class SplitterRun: NSObject {
 	}
 	
 	var layoutSplits: CSplits {
-		codableLayout.components[1].splits!
+		codableLayout.components[1] as! CSplits
 	}
 	
 	var currentSplit: Int? {
@@ -580,7 +626,7 @@ class SplitterRun: NSObject {
 	}
 	var tableColor: NSColor {
 		get {
-			if let doubles = codableLayout.components[1].splits?.background.asPlainColor() {
+			if let doubles = self.layoutSplits.background.asPlainColor() {
 				if doubles.count > 0 {
 				}
 				return NSColor(doubles)

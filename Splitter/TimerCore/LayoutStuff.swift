@@ -12,11 +12,12 @@
 //   let cLayout = try? newJSONDecoder().decode(CLayout.self, from: jsonData)
 
 import Foundation
+import Codextended
 
 // MARK: - CLayout
 /// Wrapper for JSON from LiveSplit-Core JSON
 struct CLayout: Codable {
-	var components: [CComponent]
+	var components: [CComponentable]
 	let direction: String
 	let timerFont, timesFont, textFont: JSONNull?
 	let background: CLayoutBackground
@@ -33,7 +34,72 @@ struct CLayout: Codable {
 		case separatorsColor = "separators_color"
 		case textColor = "text_color"
 	}
+	
+	init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		self.direction = try container.decode(String.self, forKey: .direction)
+		self.background = try container.decode(CLayoutBackground.self, forKey: .background)
+		self.thinSeparatorsColor = try container.decode([Double].self, forKey: .thinSeparatorsColor)
+		self.separatorsColor = try container.decode([Double].self, forKey: .separatorsColor)
+		self.textColor = try container.decode([Double].self, forKey: .textColor)
+		var realComponents = [CComponentable]()
+		var c2 = try container.nestedUnkeyedContainer(forKey: .components)
+		
+		while !c2.isAtEnd {
+			print(c2.codingPath)
+			if let keyValueComp = try? c2.decode([String: CKeyValueComponent].self) {
+				realComponents.append(keyValueComp.values.first!)
+			}
+			else if let splits = try? c2.decode([String: CSplits].self) {
+				realComponents.append(splits.values.first!)
+			}
+			else if let title = try? c2.decode([String: CTitle].self) {
+				realComponents.append(title.values.first!)
+			} else if let timer = try? c2.decode([String: CTimer].self) {
+				realComponents.append(timer.values.first!)
+			}
+			else if let c = try? c2.decode([String: CComponent].self){
+				if c.keys.first == "KeyValue" {
+					
+				}
+				realComponents.append(c.values.first!)
+			}
+		}
+		self.components = realComponents
+		self.timerFont = nil
+		self.timesFont = nil
+		self.textFont = nil
+	}
+	func encode(to encoder: Encoder) throws {
+		var container = encoder.container(keyedBy: CodingKeys.self)
+		try container.encode(direction, forKey: .direction)
+		try container.encode(background, forKey: .background)
+		try container.encode(thinSeparatorsColor, forKey: .thinSeparatorsColor)
+		try container.encode(separatorsColor, forKey: .separatorsColor)
+		try container.encode(textColor, forKey: .textColor)
+		
+		var componentContainer = container.nestedUnkeyedContainer(forKey: .components)
+		for c in components {
+			if let s = c as? CKeyValueComponent {
+				try componentContainer.encode(["KeyValue": s])
+			} else if let splits = c as? CSplits {
+				try componentContainer.encode(["Splits": splits])
+			} else if let comp = c as? CComponent {
+				try componentContainer.encode(comp)
+			} else if let title = c as? CTitle {
+				try componentContainer.encode(["Title": title])
+			} else if let timer = c as? CTimer {
+				try componentContainer.encode(["Timer": timer])
+			}
+		}
+	
+	}
 }
+protocol CComponentable: Codable {
+	
+}
+
+
 
 // MARK: - CLayoutBackground
 struct CLayoutBackground: Codable {
@@ -63,20 +129,24 @@ struct CLayoutBackground: Codable {
 }
 
 // MARK: - CComponent
-struct CComponent: Codable {
+struct CComponent: Codable, CComponentable {
 	let title: CTitle?
 	var splits: CSplits?
 	let timer: CTimer?
 	let keyValue: CKeyValue?
-	let sumOfBest: CSumOfBest?
 
 	enum CodingKeys: String, CodingKey {
 		case title = "Title"
 		case splits = "Splits"
 		case timer = "Timer"
 		case keyValue = "KeyValue"
-		case sumOfBest = "SumOfBest"
 	}
+}
+
+struct CKeyValueComponent: Codable, CComponentable {
+	let key: String
+	let background: CurrentSplitGradientClass
+	let value: String
 }
 
 // MARK: - CKeyValue
@@ -109,7 +179,7 @@ struct CurrentSplitGradientClass: Codable {
 }
 
 // MARK: - CSplits
-struct CSplits: Codable {
+struct CSplits: Codable, CComponentable {
 	let background: CLayoutBackground
 	let columnLabels: [String]?
 	var splits: [CSplit]
@@ -143,10 +213,6 @@ struct CIconChange: Codable {
 
 // MARK: - CSplit
 struct CSplit: Codable, Hashable {
-//	static func == (lhs: CSplit, rhs: CSplit) -> Bool {
-//		if lhs.name == rhs.name,
-//		   lhs.columns == rhs.columns
-//	}
 	
 	let name: String
 	var columns: [Column]
@@ -200,7 +266,7 @@ struct Column: Codable, Hashable {
 }
 
 // MARK: - CTimer
-struct CTimer: Codable {
+struct CTimer: Codable, CComponentable {
 	let background, time, fraction, semanticColor: String
 	let topColor: [Double]
 	let bottomColor: [Double]
@@ -219,7 +285,7 @@ struct CTimer: Codable {
 }
 
 // MARK: - CTitle
-struct CTitle: Codable {
+struct CTitle: Codable, CComponentable {
 	let background: CurrentSplitGradientClass
 	let textColor: JSONNull?
 	let iconChange: String?
@@ -237,15 +303,6 @@ struct CTitle: Codable {
 		case isCentered = "is_centered"
 		case finishedRuns = "finished_runs"
 		case attempts
-	}
-}
-
-//MARK: - CSumOfBest
-struct CSumOfBest: Codable {
-	let displayTwoRows: Bool?
-	
-	enum CodingKeys: String, CodingKey {
-		case displayTwoRows = "display_two_rows"
 	}
 }
 

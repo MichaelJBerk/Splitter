@@ -10,6 +10,8 @@ import Foundation
 
 extension Notification.Name {
 	static let splitChanged = Notification.Name("splitChanged")
+	///When this notification is posted, the ViewController will **manually** set `isDocumentEdited` on the window to `true`
+	static let updateIsEdited = Notification.Name("updateIsEdited")
 }
 
 ///States that the timer can be in
@@ -54,6 +56,7 @@ class SplitterTimer {
 		if newPhase == 1 && initialPhase != 1 {
 			NotificationCenter.default.post(.init(name: .phaseChanged, object: nil, userInfo: ["phase": newPhase, "oldPhase": initialPhase]))
 		}
+		NotificationCenter.default.post(name: .updateIsEdited, object: self, userInfo: nil)
 	}
 	func splitOrStart() {
 		/// - Note: If there's a negative offset, and the time < 0, then it won't be counted as having "ended" for some reason
