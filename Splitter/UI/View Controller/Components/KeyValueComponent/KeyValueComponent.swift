@@ -51,7 +51,6 @@ class KeyValueComponent: NSStackView, SplitterComponent, NibLoadable {
 	
 	var viewController: ViewController!
 	
-	var displayTitle: String = "Sum of Best"
 	var displayDescription: String = ""
 	
 	var isSelected: Bool = false {

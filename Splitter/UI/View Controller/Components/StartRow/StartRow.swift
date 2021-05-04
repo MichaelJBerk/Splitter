@@ -58,7 +58,6 @@ class StartRow: NSStackView, NibLoadable, SplitterComponent {
 		stopButton.isHidden = shouldStopButtonBeHidden
 	}
 	
-	var displayTitle: String = "Start Row"
 	var displayDescription: String = ""
 	
 	

@@ -10,7 +10,6 @@ import Foundation
 
 protocol SplitterComponent: NSView {
 	var viewController: ViewController! {get set}
-	var displayTitle: String { get }
 	var displayDescription: String { get }
 	var optionsView: NSView! { get }
 	var isSelected: Bool {get set}

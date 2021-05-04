@@ -52,8 +52,6 @@ class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent, LiveSplitSp
 	
 	var viewController: ViewController!
 	
-	var displayTitle: String = "Splits"
-	
 	var splitsTableView: SplitterTableView {
 		return documentView as! SplitterTableView
 	}

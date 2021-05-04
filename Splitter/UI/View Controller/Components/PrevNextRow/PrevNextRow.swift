@@ -15,7 +15,6 @@ class PrevNextRow: NSStackView, NibLoadable, SplitterComponent {
 	
 	var customSpacing: CGFloat? = nil
 	
-	var displayTitle: String = "Previous/Next Buttons"
 	var displayDescription: String = ""
 	
 	internal override func awakeAfter(using coder: NSCoder) -> Any? {

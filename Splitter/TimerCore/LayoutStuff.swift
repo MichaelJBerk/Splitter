@@ -46,7 +46,6 @@ struct CLayout: Codable {
 		var c2 = try container.nestedUnkeyedContainer(forKey: .components)
 		
 		while !c2.isAtEnd {
-			print(c2.codingPath)
 			if let keyValueComp = try? c2.decode([String: CKeyValueComponent].self) {
 				realComponents.append(keyValueComp.values.first!)
 			}

@@ -104,9 +104,6 @@ class TimeRow: NSStackView, NibLoadable, SplitterComponent, NSTextFieldDelegate 
 		return d
 	}
 	
-	
-	
-	var displayTitle: String = "Time"
 	var displayDescription: String = ""
 	@IBOutlet var contentView: NSView!
 	@IBOutlet var timeLabel: NSTextField!
