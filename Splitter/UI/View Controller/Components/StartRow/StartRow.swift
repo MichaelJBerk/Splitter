@@ -58,8 +58,6 @@ class StartRow: NSStackView, NibLoadable, SplitterComponent {
 		stopButton.isHidden = shouldStopButtonBeHidden
 	}
 	
-	var displayDescription: String = ""
-	
 	
 	@IBOutlet var trashCanPopupButton: ThemedPopUpButton!
 	@IBOutlet var startButton: ThemedButton!

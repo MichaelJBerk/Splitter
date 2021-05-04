@@ -70,8 +70,6 @@ class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent, LiveSplitSp
 		}
 	}
 	
-	var displayDescription: String = ""
-	
 	
 	var leadingConstraint: NSLayoutConstraint {
 		self.leadingAnchor.constraint(equalTo: viewController.view.leadingAnchor)

@@ -15,8 +15,6 @@ class PrevNextRow: NSStackView, NibLoadable, SplitterComponent {
 	
 	var customSpacing: CGFloat? = nil
 	
-	var displayDescription: String = ""
-	
 	internal override func awakeAfter(using coder: NSCoder) -> Any? {
 		return instantiateView() // You need to add this line to load view
 	}

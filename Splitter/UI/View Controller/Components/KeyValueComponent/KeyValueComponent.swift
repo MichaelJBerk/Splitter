@@ -51,8 +51,6 @@ class KeyValueComponent: NSStackView, SplitterComponent, NibLoadable {
 	
 	var viewController: ViewController!
 	
-	var displayDescription: String = ""
-	
 	var isSelected: Bool = false {
 		didSet {
 			didSetSelected()

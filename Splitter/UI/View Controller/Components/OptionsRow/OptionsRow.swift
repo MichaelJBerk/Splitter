@@ -44,8 +44,6 @@ class OptionsRow: NSStackView, NibLoadable, SplitterComponent {
 	
 	var viewController: ViewController!
 	
-	var displayDescription: String = "OR Desc"
-	
 	@IBOutlet var contentView: NSView!
 	
 	@IBOutlet var plusButton: ThemedButton!

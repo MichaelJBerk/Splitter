@@ -104,8 +104,6 @@ class TitleComponent: NSStackView, SplitterComponent, NibLoadable, LiveSplitSpli
 	
 	var viewController: ViewController!
 	
-	var displayDescription: String = ""
-	
 	var isSelected: Bool = false {
 		didSet {
 			didSetSelected()
