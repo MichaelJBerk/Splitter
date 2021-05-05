@@ -151,7 +151,7 @@ struct RecentsRow: View {
 				}
 				.allowsHitTesting(shouldHitTest)
 				
-				VStack(alignment: .leading) {
+				AdaptiveVStack(alignment: .leading) {
 					Spacer()
 					Text(fileName()).font(.subheadline)
 					Text(filePath()).truncationMode(.head)
@@ -159,7 +159,6 @@ struct RecentsRow: View {
 				}
 				.allowsHitTesting(shouldHitTest)
 			}
-			.padding([.top, .bottom], 5)
 			.frame(maxHeight: 50)
 			
 			.contentShape(Rectangle())
@@ -180,6 +179,23 @@ struct RecentsRow: View {
 		let u = url.deletingLastPathComponent().relativeString.replacingOccurrences(of: "file://", with: "").replacingOccurrences(of: "/Volumes/", with: "").removingPercentEncoding
 		
 		return u ?? ""
+	}
+}
+
+@available(macOS 10.15, *)
+struct AdaptiveVStack<Content: View>: View {
+	@State var alignment: HorizontalAlignment = .center
+	@State var spacing: CGFloat? = nil
+	@ViewBuilder var content: () -> Content
+
+	var body: some View {
+		Group {
+			if #available(macOS 11.0, *) {
+				LazyVStack(alignment: alignment, spacing: spacing, pinnedViews: .init(), content: content)
+			} else {
+				VStack(alignment: alignment, spacing: spacing, content: content)
+			}
+		}
 	}
 }
 
