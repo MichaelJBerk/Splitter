@@ -24,8 +24,6 @@ class AppearanceViewController: NSViewController, advancedTabDelegate {
 	
 	@IBOutlet weak var noteLabel: NSTextField!
 	
-	
-	
 	override func viewDidLoad() {
         super.viewDidLoad()
 		
@@ -137,6 +135,21 @@ class helpButton: NSButton {
 	var appVC: AppearanceViewController?
 	var helpString: String?
 	
+	override init(frame frameRect: NSRect) {
+		super.init(frame: frameRect)
+		setup()
+	}
+	
+	required init?(coder: NSCoder) {
+		super.init(coder: coder)
+		setup()
+	}
+	var trackingArea: NSTrackingArea!
+	func setup() {
+		trackingArea = NSTrackingArea(rect: self.bounds, options: [.mouseEnteredAndExited, .activeInActiveApp], owner: self, userInfo: nil)
+		addTrackingArea(trackingArea)
+	}
+	
 	override func draw(_ dirtyRect: NSRect) {
 		super.draw(dirtyRect)
 		
@@ -146,21 +159,46 @@ class helpButton: NSButton {
 		self.action = #selector(displayHelpPopover)
 		
 	}
+	var pop: NSPopover?
+	
+	override func mouseEntered(with event: NSEvent) {
+		super.mouseEntered(with: event)
+		displayHelpPopover()
+	}
+	
+	override func mouseExited(with event: NSEvent) {
+		super.mouseExited(with: event)
+		pop?.close()
+		pop = nil
+	}
+	
 	
 	@objc func displayHelpPopover() {
-		let pop = NSPopover()
-		let labelView = appearanceHelpLabel(string: helpString ?? "")
-		labelView.isEditable = false
-		labelView.isSelectable = false
-		labelView.cell?.wraps = true
+		pop = NSPopover()
+		let labelView = appearanceHelpLabel(labelWithString: helpString ?? "")
+		labelView.sizeToFit()
+		labelView.translatesAutoresizingMaskIntoConstraints = false
+		
 		
 		let contentVC = NSViewController()
-		contentVC.view = labelView
+		let innerView = NSView()
+		innerView.wantsLayer = true
+		innerView.layer?.isOpaque = false
+		innerView.layer?.backgroundColor = .clear
+		contentVC.view = innerView
+		contentVC.view.addSubview(labelView)
 		
-		pop.contentViewController = contentVC
-		pop.behavior = .transient
+		NSLayoutConstraint.activate([
+			labelView.centerXAnchor.constraint(equalTo: contentVC.view.centerXAnchor),
+			labelView.centerYAnchor.constraint(equalTo: contentVC.view.centerYAnchor),
+			contentVC.view.heightAnchor.constraint(equalTo: labelView.heightAnchor, constant: 30),
+			contentVC.view.widthAnchor.constraint(equalTo: labelView.widthAnchor, constant: 30),
+		])
 		
-		pop.show(relativeTo: appVC?.view.frame ?? CGRect.zero, of: self, preferredEdge: .maxY)
+		pop?.contentViewController = contentVC
+		pop?.behavior = .transient
+		
+		pop?.show(relativeTo: appVC?.view.frame ?? CGRect.zero, of: self, preferredEdge: .maxY)
 		
 	}
 	
