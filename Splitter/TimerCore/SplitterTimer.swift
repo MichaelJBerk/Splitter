@@ -10,7 +10,7 @@ import Foundation
 
 extension Notification.Name {
 	static let splitChanged = Notification.Name("splitChanged")
-	///When this notification is posted, the ViewController will **manually** set `isDocumentEdited` on the window to `true`
+	///When this notification is posted, the ViewController will set the document's `changeCount` to `changeDone`.
 	static let updateIsEdited = Notification.Name("updateIsEdited")
 }
 

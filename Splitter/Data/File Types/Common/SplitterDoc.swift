@@ -209,6 +209,7 @@ class SplitterDoc: NSDocument {
 		} else {
 		}
 		super.save(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: contextInfo)
+		windowControllers.forEach({$0.window?.isDocumentEdited = false})
 	}
 	
 	///Saves a `.lss` file

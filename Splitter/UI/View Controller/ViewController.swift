@@ -500,7 +500,7 @@ class ViewController: NSViewController {
 			self.splitsTableView.reloadData()
 		})
 		NotificationCenter.default.addObserver(forName: .updateIsEdited, object: self.run.timer, queue: nil, using: { notification in
-			self.view.window?.isDocumentEdited = true
+			self.document.updateChangeCount(.changeDone)
 		})
 		undoManager?.enableUndoRegistration()
 	}
