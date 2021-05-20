@@ -299,6 +299,8 @@ class ViewController: NSViewController {
 		(mainStackView.views.last as? SplitterComponent)?.isHidden = true
 		setupKeyValueComponent(key: .previousSegment)
 		(mainStackView.views.last as? SplitterComponent)?.isHidden = true
+		setupKeyValueComponent(key: .totalPlaytime)
+		(mainStackView.views.last as? SplitterComponent)?.isHidden = true
 	}
 	///Handles various window-related tasks
 	private func windowSetup() {
@@ -426,6 +428,8 @@ class ViewController: NSViewController {
 			setupKeyValueComponent(key: .sumOfBest)
 		case .previousSegment:
 			setupKeyValueComponent(key: .previousSegment)
+		case .totalPlaytime:
+			setupKeyValueComponent(key: .totalPlaytime)
 		}
 	}
 	

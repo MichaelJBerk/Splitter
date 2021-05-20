@@ -175,6 +175,9 @@ class SplitterRun: NSObject {
 		case .previousSegment:
 			compToAdd = PreviousSegmentComponent().intoGeneric()
 			stringToCheck = KeyValueComponentType.previousSegment.rawValue
+		case .totalPlaytime:
+			compToAdd = TotalPlaytimeComponent().intoGeneric()
+			stringToCheck = KeyValueComponentType.totalPlaytime.rawValue
 		default:
 			return nil
 		}
@@ -656,10 +659,14 @@ class SplitterRun: NSObject {
 	
 	func saveToLSS() -> String {
 		let comparison = self.getComparision()
-		editRun({ editor in
-			editor.addCustomVariable("currentComparison")
-			editor.setCustomVariable("currentComparison", comparison.rawValue)
-		})
+		
+		//Need to put it in a DispatchQueue, or it won't save the times properly for some reason
+		DispatchQueue.main.async {
+			self.editRun({ editor in
+				editor.addCustomVariable("currentComparison")
+				editor.setCustomVariable("currentComparison", comparison.rawValue)
+			})
+		}
 		return timer.lsTimer.saveAsLss()
 	}
 	func layoutToJSON() -> String {
