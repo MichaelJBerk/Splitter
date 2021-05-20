@@ -23,8 +23,6 @@ class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTable
 	@IBOutlet var tableView: NSTableView!
 	@IBOutlet var scrollView: NSScrollView!
 	@IBOutlet var optionsView: NSView!
-	@IBOutlet var plusButton: NSButton!
-	@IBOutlet var minusButton: NSButton!
 	var rows = ["Row 1", "Row 2", "Row 3"]
 	var dropType: NSPasteboard.PasteboardType = .init("public.data")
 	var runController: ViewController!
@@ -35,7 +33,6 @@ class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTable
 		tableView.delegate = self
 		tableView.dataSource = self
 		tableView.registerForDraggedTypes([dropType])
-		minusButton.isEnabled = false
     }
 	
 	var componentsPopUpMenu: NSMenu {
@@ -69,11 +66,6 @@ class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTable
 		}
 	}
 	
-	@IBAction func plusButtonClick(sender: Any?) {
-		if let event = NSApplication.shared.currentEvent {
-			NSMenu.popUpContextMenu(componentsPopUpMenu, with: event, for: plusButton)
-		}
-	}
 	func numberOfRows(in tableView: NSTableView) -> Int {
 		return runController.mainStackView.views.count
 	}
@@ -100,11 +92,6 @@ class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTable
 	}
 	func tableViewSelectionDidChange(_ notification: Notification) {
 		let selected = tableView.selectedRow
-		if selected >= 0 {
-			minusButton.isEnabled = true
-		} else {
-			minusButton.isEnabled = false
-		}
 		for i in 0..<runController.mainStackView.views.count {
 			if let selectedComponent = runController.mainStackView.views[i] as? SplitterComponent {
 				if i == selected {

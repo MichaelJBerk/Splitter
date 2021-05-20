@@ -183,7 +183,7 @@ enum SplitterComponentType: Int, Codable, CaseIterable {
 		case .splits:
 			return "Splits"
 		case .tableOptions:
-			return "Table Options Row"
+			return "Options Row"
 		case .time:
 			return "Time"
 		case .start:

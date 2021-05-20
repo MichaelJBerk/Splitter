@@ -295,6 +295,10 @@ class ViewController: NSViewController {
 		setupTimeRow()
 		setupStartRow()
 		setupPrevNextRow()
+		setupKeyValueComponent(key: .sumOfBest)
+		(mainStackView.views.last as? SplitterComponent)?.isHidden = true
+		setupKeyValueComponent(key: .previousSegment)
+		(mainStackView.views.last as? SplitterComponent)?.isHidden = true
 	}
 	///Handles various window-related tasks
 	private func windowSetup() {
