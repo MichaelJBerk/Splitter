@@ -1,5 +1,5 @@
 //
-//  commonPaths.swift
+//  CommonPaths.swift
 //  Splitter
 //
 //  Created by Michael Berk on 2/12/20.
@@ -9,7 +9,7 @@
 import Foundation
 import Cocoa
 
-enum commonPaths {
+enum CommonPaths {
 	static let appSupport = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first!.appendingPathComponent("/Splitter")
 	static let keybinds = appSupport.appendingPathComponent("/splitter.splitkeys")
 }

@@ -53,7 +53,7 @@
 		4A4D392323C4FAE500BF3FCD /* HotkeysViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A4D392123C4FAE500BF3FCD /* HotkeysViewController.xib */; };
 		4A561386262CFB7F00702B0E /* OptionsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A561385262CFB7F00702B0E /* OptionsRow.swift */; };
 		4A56138A262CFB8900702B0E /* OptionsRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A561389262CFB8900702B0E /* OptionsRow.xib */; };
-		4A5C1D1523F4AFB80014E8D3 /* commonPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5C1D1423F4AFB80014E8D3 /* commonPaths.swift */; };
+		4A5C1D1523F4AFB80014E8D3 /* CommonPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5C1D1423F4AFB80014E8D3 /* CommonPaths.swift */; };
 		4A5F10AE23CFAA1F00DA043B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A5F10AD23CFAA1F00DA043B /* Assets.xcassets */; };
 		4A61438424801A28007C38E0 /* ColorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A61438324801A28007C38E0 /* ColorsView.swift */; };
 		4A61438624801A37007C38E0 /* ColorsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A61438524801A37007C38E0 /* ColorsView.xib */; };
@@ -211,7 +211,7 @@
 		4A4D392123C4FAE500BF3FCD /* HotkeysViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HotkeysViewController.xib; sourceTree = "<group>"; };
 		4A561385262CFB7F00702B0E /* OptionsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsRow.swift; sourceTree = "<group>"; };
 		4A561389262CFB8900702B0E /* OptionsRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OptionsRow.xib; sourceTree = "<group>"; };
-		4A5C1D1423F4AFB80014E8D3 /* commonPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = commonPaths.swift; sourceTree = "<group>"; };
+		4A5C1D1423F4AFB80014E8D3 /* CommonPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonPaths.swift; sourceTree = "<group>"; };
 		4A5F10AD23CFAA1F00DA043B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4A61438324801A28007C38E0 /* ColorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsView.swift; sourceTree = "<group>"; };
 		4A61438524801A37007C38E0 /* ColorsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorsView.xib; sourceTree = "<group>"; };
@@ -635,7 +635,7 @@
 		4AD780C323D5065B0068CDE3 /* Data */ = {
 			isa = PBXGroup;
 			children = (
-				4A5C1D1423F4AFB80014E8D3 /* commonPaths.swift */,
+				4A5C1D1423F4AFB80014E8D3 /* CommonPaths.swift */,
 				4AEC4BFF240F564B00B01799 /* Time Conversion.swift */,
 				4ACCEA7723B02F520068F89E /* TimeSplit.swift */,
 				4A0F716523F4AA1500E5948E /* File Types */,
@@ -1055,7 +1055,7 @@
 				4AF953B723EB507800ED540C /* Splits.swift in Sources */,
 				4A44FF4F24E9A9E60083013A /* SplitsIOUpload.swift in Sources */,
 				4ACCEA7823B02F520068F89E /* TimeSplit.swift in Sources */,
-				4A5C1D1523F4AFB80014E8D3 /* commonPaths.swift in Sources */,
+				4A5C1D1523F4AFB80014E8D3 /* CommonPaths.swift in Sources */,
 				4AF953B523EB503100ED540C /* Timer Functions.swift in Sources */,
 				4A1657B523EA5C320008CB5F /* Icon Actions.swift in Sources */,
 				4AD77D16240ECA2800CD65AD /* ColumnOptionsViewController.swift in Sources */,

@@ -19,7 +19,7 @@ class SplitsIODoc: SplitterDoc {
 		let vc = load.vc
 		
 		if let si = splitsio {
-			let newRun = SplitterRun(run: Run(), segments: nil, isNewRun: true)
+			let newRun = SplitterRun(run: Run(), isNewRun: true)
 			vc.run = newRun
 			vc.run.document = self
 			vc.undoManager?.disableUndoRegistration()

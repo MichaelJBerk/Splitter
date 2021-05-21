@@ -31,17 +31,14 @@ class SplitterRun: NSObject {
 		return document!.undoManager
 	}
 	
-	var runThing: String?
-	
 	///Used to prevent crash with numberOfRowsInTableView
 	var hasSetLayout = false
 	
 	private var layoutSettings: CodableLayoutSettings!
-	init(run: Run, segments: [SplitTableRow]? = nil, isNewRun: Bool = false) {
-		
+	init(run: Run, isNewRun: Bool = false) {
 		var vRun: Run = run
+		//LiveSplit-Core runs need to have at least one segment, so if there's a new run, we need to add a blank segment.
 		if isNewRun == true || run.len() == 0 {
-			//LiveSplit-Core runs need to have at least one segment
 			vRun.pushSegment(Segment("1"))
 		}
 		
@@ -53,11 +50,10 @@ class SplitterRun: NSObject {
 			let comp = vRun.customComparison(i)
 			print(comp)
 		}
-		self.runPtr = vRun.ptr
-		self.timer = SplitterTimer(run: vRun)
+		timer = SplitterTimer(run: vRun)
 		timer.lsTimer.switchToNextComparison()
-		self.layout = .defaultLayout()
-		self.layout.updateState(self.layout.state(timer.lsTimer), timer.lsTimer)
+		layout = .defaultLayout()
+		layout.updateState(layout.state(timer.lsTimer), timer.lsTimer)
 		let settings = layout.settingsAsJson()
 		do {
 			self.layoutSettings = try JSONDecoder().decode(CodableLayoutSettings.self, from: settings.data(using: .utf8)!)
@@ -575,7 +571,7 @@ class SplitterRun: NSObject {
 			self.updateLayoutState()
 		}
 	}
-	
+	//NOTE: Colors don't support undo because there was a strange glitch where undoing colors takes a long time for whatever reason.
 	var longerColor: NSColor {
 		get {
 			let editor = LayoutEditor(layout)
