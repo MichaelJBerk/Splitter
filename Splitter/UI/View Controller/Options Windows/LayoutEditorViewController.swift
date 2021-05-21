@@ -7,17 +7,6 @@
 //
 
 import Cocoa
-extension NSGridView {
-	open override var isFlipped: Bool {
-		return true
-	}
-}
-extension NSMenuItem {
-	convenience init(title: String, action: Selector, keyEquivalent: String, representedObject: Any?) {
-		self.init(title: title, action: action, keyEquivalent: keyEquivalent)
-		self.representedObject = representedObject
-	}
-}
 
 class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
 	@IBOutlet var tableView: NSTableView!

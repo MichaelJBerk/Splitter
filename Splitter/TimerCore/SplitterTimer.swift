@@ -9,6 +9,7 @@
 import Foundation
 
 extension Notification.Name {
+	///This notification is posted when the current split has changed
 	static let splitChanged = Notification.Name("splitChanged")
 	///When this notification is posted, the ViewController will set the document's `changeCount` to `changeDone`.
 	static let updateIsEdited = Notification.Name("updateIsEdited")
