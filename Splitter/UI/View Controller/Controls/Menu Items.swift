@@ -58,6 +58,13 @@ extension ViewController {
 		displayColumnOptionsPopover(sender)
 	}
 	
+	@IBAction func addRowMenuItem(sender: Any) {
+		addButtonClick(sender)
+	}
+	@IBAction func removeRowMenuItem(sender: Any) {
+		removeButtonClick(sender)
+	}
+	
 	
 	//MARK: Appearance Menu
 	

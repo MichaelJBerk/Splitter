@@ -22,8 +22,13 @@ class RunOptionsViewController: NSViewController, advancedTabDelegate {
 		compareToPopUpButton.selectItem(at: delegateComparison)
 		roundDiffPopUpButton.selectItem(at: delegateRound)
 		
+		
         // Do view setup here.
     }
+	
+	
+	
+	
 	
 	
 	private var delegateComparison: Int {
@@ -60,7 +65,6 @@ class RunOptionsViewController: NSViewController, advancedTabDelegate {
 		}
 		delegate?.splitsTableView.reloadData()
 	}
-	
 }
 
 

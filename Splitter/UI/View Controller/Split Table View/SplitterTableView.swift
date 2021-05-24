@@ -120,25 +120,17 @@ class SplitterTableView: NSTableView {
 	
 }
 
-class SplitterTableHeader : NSTableHeaderView
-{
-    required init?(coder: NSCoder)
-    {
-
+class SplitterTableHeader: NSTableHeaderView {
+    required init?(coder: NSCoder) {
         super.init(coder: coder)
-		self.wantsLayer = true
-				
-
-		
+        self.wantsLayer = true
     }
 
-	override func draw(_ dirtyRect: NSRect) {
-
-		NSColor.blue.set()
-		dirtyRect.fill()
-		super.draw(dirtyRect)
-
-	}
+    override func draw(_ dirtyRect: NSRect) {
+        NSColor.blue.set()
+        dirtyRect.fill()
+        super.draw(dirtyRect)
+    }
 }
 
 
@@ -154,16 +146,14 @@ class SplitterTableHeaderCell: NSTableHeaderCell {
     override init(textCell: String) {
         super.init(textCell: textCell)
     }
-	
-	override func draw(withFrame cellFrame: NSRect, in controlView: NSView)
-	   {
-		self.drawsBackground = true
-		self.backgroundColor?.set()
-		cellFrame.fill()
 
-		super.draw(withFrame: cellFrame, in: controlView)//, since that is what draws borders
-		
-	   }
+    override func draw(withFrame cellFrame: NSRect, in controlView: NSView) {
+        self.drawsBackground = true
+        self.backgroundColor?.set()
+        cellFrame.fill()
+
+        super.draw(withFrame: cellFrame, in: controlView) //This is what draws borders
+    }
 	
 	override func highlight(_ flag: Bool, withFrame cellFrame: NSRect, in controlView: NSView) {
 		self.backgroundColor?.set()

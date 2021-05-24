@@ -1,6 +1,6 @@
 # Splitter
 
-![Splitter](https://mberk.com/splitter/splitter-smaller.png)
+![Splitter](https://splitter.mberk.com/splitter-smaller.png)
 
 A native Speedrunning timer for macOS
 

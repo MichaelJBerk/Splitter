@@ -46,7 +46,6 @@ class LiveSplit: NSObject {
 			parseBestSplits(run: run, template: template)
 			attempts = !template ? Int(run.attemptCount()) : 0
 			
-			
 			runTitle = run.gameName()
 			category = run.categoryName()
 			let iconPtr = run.gameIconPtr()
@@ -216,7 +215,6 @@ extension ViewController {
 		if let plat = ls.platform {
 			platform = plat
 		}
-		
 		
 		self.lsPointer = ls.lsPointer
 		self.gameIcon = ls.gameIcon

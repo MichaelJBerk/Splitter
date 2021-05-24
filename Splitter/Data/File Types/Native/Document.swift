@@ -60,7 +60,6 @@ class Document: SplitterDocBundle {
 	
 	
 	override func windowControllerDidLoadNib(_ windowController: NSWindowController) {
-//		super.windowControllerDidLoadNib(<#T##windowController: NSWindowController##NSWindowController#>)
 		
 		windowController.windowFrameAutosaveName = NSWindow.FrameAutosaveName(id!)
 	}

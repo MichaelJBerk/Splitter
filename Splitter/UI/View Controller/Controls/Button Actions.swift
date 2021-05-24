@@ -51,7 +51,7 @@ extension ViewController {
 			addSplit()
 		}
 	}
-	@IBAction func RemoveButtonClick(_ sender: Any) {
+	@IBAction func removeButtonClick(_ sender: Any) {
 		if timerState == .stopped {
 			removeSplits()
 			splitsTableView.reloadData()
