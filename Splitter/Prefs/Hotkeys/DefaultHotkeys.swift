@@ -121,10 +121,12 @@ extension AppDelegate {
 				MASShortcutBinder.shared()?.breakBinding(withDefaultsKey: appKeybinds[i]?.settings.rawValue)
 				MASShortcutMonitor.shared()?.unregisterShortcut(appKeybinds[i]?.keybind)
 				
-				
-				
 				appKeybinds[i]?.keybind = shortcut
-				let cKeybind = appKeybinds[i]
+				if Settings.enableGlobalHotkeys {
+					MASShortcutBinder.shared()?.bindShortcut(withDefaultsKey: appKeybinds[i]?.settings.rawValue, toAction: keybindAction(keybind: keybind))
+				} else {
+					MASShortcutBinder.shared()?.breakBinding(withDefaultsKey: appKeybinds[i]?.settings.rawValue)
+				}
 				break
 			}
 			i = i + 1

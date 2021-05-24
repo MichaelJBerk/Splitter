@@ -94,6 +94,7 @@ public struct Settings {
 		}
 		set {
 			UserDefaults.standard.set(newValue, forKey: SettingsKeys.globalHotkeys)
+			AppDelegate.shared?.setGlobalKeybindMonitor()
 		}
 	}
 	public static var showWelcomeWindow: Bool {
