@@ -108,6 +108,7 @@
 		4AD77D16240ECA2800CD65AD /* ColumnOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD77D15240ECA2800CD65AD /* ColumnOptionsViewController.swift */; };
 		4ADE9226240F1FB900E0D99E /* InfoPopoverTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADE9225240F1FB900E0D99E /* InfoPopoverTabViewController.swift */; };
 		4ADFAE4923E4A0760049F57A /* QuickAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADFAE4823E4A0760049F57A /* QuickAlert.swift */; };
+		4AE0237A265C028D007E4CEB /* LayoutDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE02379265C028D007E4CEB /* LayoutDelegate.swift */; };
 		4AE168A226091B2E00A6169B /* LayoutEditorTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE168A126091B2E00A6169B /* LayoutEditorTabViewController.swift */; };
 		4AE168A626091CA900A6169B /* LayoutEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE168A526091CA900A6169B /* LayoutEditorViewController.swift */; };
 		4AE2CF3B2631F43100CC6CF7 /* SplitsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE2CF3A2631F43100CC6CF7 /* SplitsComponent.swift */; };
@@ -264,6 +265,7 @@
 		4AD77D15240ECA2800CD65AD /* ColumnOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColumnOptionsViewController.swift; sourceTree = "<group>"; };
 		4ADE9225240F1FB900E0D99E /* InfoPopoverTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPopoverTabViewController.swift; sourceTree = "<group>"; };
 		4ADFAE4823E4A0760049F57A /* QuickAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickAlert.swift; sourceTree = "<group>"; };
+		4AE02379265C028D007E4CEB /* LayoutDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutDelegate.swift; sourceTree = "<group>"; };
 		4AE168A126091B2E00A6169B /* LayoutEditorTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutEditorTabViewController.swift; sourceTree = "<group>"; };
 		4AE168A526091CA900A6169B /* LayoutEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutEditorViewController.swift; sourceTree = "<group>"; };
 		4AE2CF3A2631F43100CC6CF7 /* SplitsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitsComponent.swift; sourceTree = "<group>"; };
@@ -460,6 +462,7 @@
 			isa = PBXGroup;
 			children = (
 				4A74D4EC25EE9DD700A3D9C7 /* SplitterRun.swift */,
+				4AE02379265C028D007E4CEB /* LayoutDelegate.swift */,
 				4A20C46626406D4800307993 /* SplitterTimer.swift */,
 				4A20C46826406D9500307993 /* TimeComparison.swift */,
 				4A3F989825EFDB0800B2B955 /* CodableLayout.swift */,
@@ -1029,6 +1032,7 @@
 				4A230E9523B00A1D00959C57 /* ViewController.swift in Sources */,
 				4A6A3BE623CD6463002C20AE /* BlankWindowController.swift in Sources */,
 				4AEC4C00240F564B00B01799 /* Time Conversion.swift in Sources */,
+				4AE0237A265C028D007E4CEB /* LayoutDelegate.swift in Sources */,
 				4AB92AC2261F69ED00E8B814 /* ThemedPopUpButton.swift in Sources */,
 				4AEC4C02240F5BA300B01799 /* RunOptionsViewController.swift in Sources */,
 				4A66A43223DE2C88005952FA /* SplitTableColumnIdentifiers.swift in Sources */,

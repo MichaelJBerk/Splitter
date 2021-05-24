@@ -211,7 +211,7 @@ extension InfoOptionsViewController {
 	
 	///Loads the popover with data from the main window
 	func getDataFromMain() {
-		//If the user types a title on the view controller, then shows the info panel (without pressing enter on the TF first), delegate is optional
+		//If the user types a title on the view controller, then shows the info panel (without pressing enter on the TF first), delegate is nil
 		if let delegate = self.delegate {
 			iconWell.run = delegate.run
 			runTitleField.stringValue = delegate.run.title

@@ -441,7 +441,6 @@ class ViewController: NSViewController {
 		super.viewWillAppear()
 		if run == nil {
 			run = SplitterRun(run: Run(), isNewRun: true)
-			let d = self.document
 			run.document = self.document
 		}
 		undoManager?.disableUndoRegistration()
@@ -459,6 +458,7 @@ class ViewController: NSViewController {
 		loadRunInfo()
 		keyAndMenuSetup()
 		run.document = document
+		run.layoutDelegate = self
 	
 		//Load the SplitterAppearance file if it exists. Otherwise, use the default appearance
 		if appearance != nil {

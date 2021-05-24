@@ -606,6 +606,10 @@ class SplitterRun: NSObject {
 		}
 		
 	}
+	var layoutDelegate: LayoutDelegate?
+	
+	//TODO: ColorsVC should only update the color that changed
+	//TODO: ColorsVC should update when undoin
 	
 	var backgroundColor: NSColor {
 		get {
@@ -615,11 +619,16 @@ class SplitterRun: NSObject {
 			return NSColor.splitterDefaultColor
 		}
 		set {
+			let setting = SettingValue.fromNSColor(newValue)
+			let oldSetting = self.backgroundColor
+			undoManager?.registerUndo(withTarget: self, handler: { r in
+				r.backgroundColor = oldSetting
+			})
+			undoManager?.setActionName("Set Background Color")
 			editLayout { editor in
-				let doubles = newValue.toDouble().map({Float($0)})
-				let setting = SettingValue.fromColor(doubles[0], doubles[1], doubles[2], doubles[3])
 				editor.setGeneralSettingsValue(4, setting)
 			}
+			layoutDelegate?.runBackgroundColorWasUpdated()
 		}
 	}
 	var tableColor: NSColor {
@@ -632,10 +641,17 @@ class SplitterRun: NSObject {
 			return .splitterTableViewColor
 		}
 		set {
+			let setting = SettingValue.fromAlternatingNSColor(newValue, newValue)
+			let oldSetting = self.tableColor
+			undoManager?.registerUndo(withTarget: self, handler: { r in
+				r.tableColor = oldSetting
+			})
+			undoManager?.setActionName("Set Table Color")
 			editLayout { editor in
 				editor.select(1)
-				editor.setComponentSettingsValue(0, .fromAlternatingNSColor(newValue, newValue))
+				editor.setComponentSettingsValue(0, setting)
 			}
+			layoutDelegate?.runTableColorWasUpdated()
 		}
 	}
 	
