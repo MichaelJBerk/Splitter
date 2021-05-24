@@ -71,9 +71,11 @@ final class HotkeysViewController: NSViewController, PreferencePane {
 		let colIndexes = IndexSet(arrayLiteral: 1)
 		hotkeysTableView.reloadData(forRowIndexes: rowIndexes, columnIndexes: colIndexes)
 	}
+	
 	@objc func openTellMeMore() {
-		NSWorkspace.shared.open(URL(string: "https://mberk.com/splitter/notAnotherTripToSystemPreferences.html")!)
+		NSWorkspace.shared.open(URL(string: "https://splitter.mberk.com/notAnotherTripToSystemPreferences.html")!)
 	}
+	
 	@IBAction func globalHelpClicked(_ sender: Any) {
 		let helpText = """
 When enabled, hotkeys will activate even when Splitter is not the currently active app
