@@ -615,11 +615,10 @@ class SplitterRun: NSObject {
 			return NSColor.splitterDefaultColor
 		}
 		set {
-			if let layoutEditor = LayoutEditor(layout) {
+			editLayout { editor in
 				let doubles = newValue.toDouble().map({Float($0)})
 				let setting = SettingValue.fromColor(doubles[0], doubles[1], doubles[2], doubles[3])
-				layoutEditor.setGeneralSettingsValue(4, setting)
-				self.layout = layoutEditor.close()
+				editor.setGeneralSettingsValue(4, setting)
 			}
 		}
 	}
