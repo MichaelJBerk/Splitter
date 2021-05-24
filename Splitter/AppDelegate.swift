@@ -89,21 +89,20 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 	}
 	///Takes the hotkeys set as SplitterKeybinds and registers them for global input monitoring.
 	///
-	///This method creates a global event monitor, watching for keypresses even when Splitter isn't the active app.
-	///When an event is triggered, if Global Hotkeys are enabled, then it will perform the keybind action associated with the key that was pressed.
-	///This does nothing if the app has not been granted Accessibility permissions in System Preferences
+	///
+	///This method binds each hotkey to their respective action, watching for keypresses even when Splitter isn't the active app.
+	///If global hotkeys are disabled, it unbinds each hotkey
+	///If the app has not been granted Accessibility permissions in System Preferences, it can't really do anything
 	func setGlobalKeybindMonitor() {
 		for k in self.appKeybinds {
 			if let k = k {
-				MASShortcutBinder.shared().bindShortcut(withDefaultsKey: k.settings.rawValue, toAction: keybindAction(keybind: k.title))
+				if Settings.enableGlobalHotkeys {
+					MASShortcutBinder.shared().bindShortcut(withDefaultsKey: k.settings.rawValue, toAction: keybindAction(keybind: k.title))
+				} else {
+					MASShortcutBinder.shared().breakBinding(withDefaultsKey: k.settings.rawValue)
+				}
 			}
 		}
-//		NSEvent.addGlobalMonitorForEvents(matching: [.keyDown], handler: { event in
-//			//If global keybinds are disabled, it won't perform the keybind action.
-//			if Settings.enableGlobalHotkeys {
-//				self.performGlobalKeybindAction(event: event)
-//			}
-//		})
 	}
 	
 	///Invoked immediately before opening an untitled file.
