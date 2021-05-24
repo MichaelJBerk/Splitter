@@ -211,24 +211,28 @@ extension InfoOptionsViewController {
 	
 	///Loads the popover with data from the main window
 	func getDataFromMain() {
-		iconWell.run = delegate!.run
-		runTitleField.stringValue = delegate!.run.title
-		categoryField.stringValue = delegate!.categoryField.stringValue
-		attemptField.stringValue = "\(delegate?.run.attempts ?? 0)"
-		platformField.stringValue = delegate?.platform ?? ""
-		versionField.stringValue = run.gameVersion ?? ""
-		regionField.stringValue = run.region
-		
-		if let st = delegate?.startTime {
-//			let sDate = dateToRFC339String(date: st)
-			let sDate = startEndDateFormatter.string(from: st)
+		//If the user types a title on the view controller, then shows the info panel (without pressing enter on the TF first), delegate is optional
+		if let delegate = self.delegate {
+			iconWell.run = delegate.run
+			runTitleField.stringValue = delegate.run.title
+			categoryField.stringValue = delegate.categoryField.stringValue
+			attemptField.stringValue = "\(delegate.run.attempts ?? 0)"
+			platformField.stringValue = delegate.platform ?? ""
+			versionField.stringValue = run.gameVersion ?? ""
+			regionField.stringValue = run.region
 			
-			startTimeLabel.stringValue = sDate
+			if let st = delegate.startTime {
+	//			let sDate = dateToRFC339String(date: st)
+				let sDate = startEndDateFormatter.string(from: st)
+				
+				startTimeLabel.stringValue = sDate
+			}
+			if let et = delegate.endTime {
+				let eDate = startEndDateFormatter.string(from: et)
+				endTimeLabel.stringValue = eDate
+			}
 		}
-		if let et = delegate?.endTime {
-			let eDate = startEndDateFormatter.string(from: et)
-			endTimeLabel.stringValue = eDate
-		}
+		
 	}
 	
 	///Sends data from the popover to the main window
