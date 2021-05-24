@@ -98,27 +98,26 @@ struct RecentsRow: View {
 			}
 			.allowsHitTesting(shouldHitTest)
 			
-			VStack(alignment: .leading) {
+			AdaptiveVStack(alignment: .leading) {
 				Spacer()
 				Text(fileName()).font(.subheadline)
 				Text(filePath()).truncationMode(.head)
 				Spacer()
 			}
 			.allowsHitTesting(shouldHitTest)
+			.simultaneousGesture(TapGesture().onEnded({
+				if self.selectedURL == self.url {
+					
+					NSDocumentController.shared.openDocument(withContentsOf: self.url, display: true, completionHandler: {_,_,_ in
+						(NSApp.delegate as? AppDelegate)?.welcomeWindow.close()
+					})
+				}
+			}), including: .gesture)
+			.padding([.top, .bottom], 5)
+			.frame(maxHeight: 50)
 			
+			.contentShape(Rectangle())
 		}
-		.simultaneousGesture(TapGesture().onEnded({
-			if self.selectedURL == self.url {
-				
-				NSDocumentController.shared.openDocument(withContentsOf: self.url, display: true, completionHandler: {_,_,_ in
-				(NSApp.delegate as? AppDelegate)?.welcomeWindow.close()
-			})
-			}
-		}), including: .gesture)
-		.padding([.top, .bottom], 5)
-		.frame(maxHeight: 50)
-		
-		.contentShape(Rectangle())
 	}
 	///Gets the file name used for the label
 	func fileName() -> String {
@@ -133,6 +132,23 @@ struct RecentsRow: View {
 		let u = url.deletingLastPathComponent().relativeString.replacingOccurrences(of: "file://", with: "").replacingOccurrences(of: "/Volumes/", with: "").removingPercentEncoding
 		
 		return u ?? ""
+	}
+}
+
+@available(macOS 10.15, *)
+struct AdaptiveVStack<Content: View>: View {
+	@State var alignment: HorizontalAlignment = .center
+	@State var spacing: CGFloat? = nil
+	@ViewBuilder var content: () -> Content
+
+	var body: some View {
+		Group {
+			if #available(macOS 11.0, *) {
+				LazyVStack(alignment: alignment, spacing: spacing, pinnedViews: .init(), content: content)
+			} else {
+				VStack(alignment: alignment, spacing: spacing, content: content)
+			}
+		}
 	}
 }
 
