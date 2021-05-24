@@ -129,8 +129,6 @@ extension HotkeysViewController: NSTableViewDelegate {
 		let app = NSApp.delegate as! AppDelegate
 		if tableColumn == tableView.tableColumns[0] {
 			cellIdentifier = "HotkeyNames"
-			
-			
 			if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: nil) as? NSTableCellView {
 				if let text = app.appKeybinds[row]?.title.rawValue {
 					cell.textField?.stringValue = text
@@ -142,8 +140,6 @@ extension HotkeysViewController: NSTableViewDelegate {
 			
 		} else {
 			cellIdentifier = "Hotkeys"
-			
-			
 			if let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: cellIdentifier), owner: nil) as? buttonCell {
 				
 				
