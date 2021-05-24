@@ -93,12 +93,17 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 	///When an event is triggered, if Global Hotkeys are enabled, then it will perform the keybind action associated with the key that was pressed.
 	///This does nothing if the app has not been granted Accessibility permissions in System Preferences
 	func setGlobalKeybindMonitor() {
-		NSEvent.addGlobalMonitorForEvents(matching: [.keyDown], handler: { event in
-			//If global keybinds are disabled, it won't perform the keybind action.
-			if Settings.enableGlobalHotkeys {
-				self.performGlobalKeybindAction(event: event)
+		for k in self.appKeybinds {
+			if let k = k {
+				MASShortcutBinder.shared().bindShortcut(withDefaultsKey: k.settings.rawValue, toAction: keybindAction(keybind: k.title))
 			}
-		})
+		}
+//		NSEvent.addGlobalMonitorForEvents(matching: [.keyDown], handler: { event in
+//			//If global keybinds are disabled, it won't perform the keybind action.
+//			if Settings.enableGlobalHotkeys {
+//				self.performGlobalKeybindAction(event: event)
+//			}
+//		})
 	}
 	
 	///Invoked immediately before opening an untitled file.
