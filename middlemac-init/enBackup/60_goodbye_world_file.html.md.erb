@@ -1,0 +1,203 @@
+---
+title:  Goodbye World
+blurb:  Discover your project saying “Goodbye, world!” 
+---
+<%= md_links %>
+<%= md_images %>
+
+This is another page that uses some of _Middlemac_’s helpers so that Cucumber
+testing can be performed. This sample project is also the fixture for testing;
+if you have this Gem’s source, you can
+
+~~~ bash
+rake test
+~~~
+
+…from the Gem’s directory to run the tests yourself.
+
+Note that this isn’t the only file tested, but it’s a nice place to capture
+some of the test output.
+{:.note}
+
+
+<% helpbook_task "css_image_sizes", "css_image_sizes", :markdown => true do %>
+~~~
+<%= css_image_sizes %>
+~~~
+<% end %>
+
+<% helpbook_task "md_images", "md_images", :markdown => true do %>
+~~~
+<%= md_images %>
+~~~
+<% end %>
+
+<% helpbook_task "md_links", "md_links", :markdown => true do %>
+~~~
+<%= md_links %>
+~~~
+<% end %>
+
+
+image_tag
+---------
+
+### Absolute
+Asked for `/Resources/SharedGlobalAssets/convention/icon_32x32`.
+This should have a srcset.
+
+<%= image_tag '/Resources/SharedGlobalAssets/convention/icon_32x32' %>
+~~~
+<%= image_tag '/Resources/SharedGlobalAssets/convention/icon_32x32' %>
+~~~
+
+
+### Located elsewhere in the project (SharedGlobalAssets/convention)
+Asked for `icon_256x256`.
+This should have a srcset.
+
+<%= image_tag 'icon_256x256' %>
+~~~
+<%= image_tag 'icon_256x256' %>
+~~~
+
+
+### Located in a subdirectory of `:images_dir`
+Asked for `logo_32x32`.
+
+<%= image_tag 'logo_32x32' %>
+~~~
+<%= image_tag 'logo_32x32' %>
+~~~
+
+
+### Located in a subdirectory of `:images_dir`, specifying extension.
+Asked for `logo_32x32.png`.
+
+<%= image_tag 'logo_32x32.png' %>
+~~~
+<%= image_tag 'logo_32x32.png' %>
+~~~
+
+
+### Located in a subdirectory of `:images_dir`
+Asked for `subdirectory/logo_32x32`.
+
+<%= image_tag 'subdirectory/logo_32x32' %>
+~~~
+<%= image_tag 'subdirectory/logo_32x32' %>
+~~~
+
+
+### Located in `:images_dir`
+Asked for `neat_thing_32x32`.
+
+<%= image_tag 'neat_thing_32x32' %>
+~~~
+<%= image_tag 'neat_thing_32x32' %>
+~~~
+
+
+### Target specific image, located in a subdirectory of `:images_dir`
+Asked for `all-image_32x32`.
+
+<%= image_tag 'all-image_32x32' %>
+~~~
+<%= image_tag 'all-image_32x32' %>
+~~~
+
+
+### No target specific image, located in `:images_dir`
+Asked for `all-graphic_32x32`.
+
+<%= image_tag 'all-graphic_32x32' %>
+~~~
+<%= image_tag 'all-graphic_32x32' %>
+~~~
+
+
+### Invalid or missing file.
+Asked for `myfile`.
+
+<%= image_tag 'myfile' %>
+~~~
+<%= image_tag 'myfile' %>
+~~~
+
+### Invalid or missing file.
+Asked for `myfile.png`.
+
+<%= image_tag 'myfile.png' %>
+~~~
+<%= image_tag 'myfile.png' %>
+~~~
+
+
+Link Tag
+--------
+
+### Link to `hello_world_file.html`
+Asked for `hello_world_file.html`. I expect an Apple HB link because the
+given HTML file appears in the sitemap.
+
+<%= link_to 'Hello World File', 'hello_world_file.html' %>
+
+~~~
+<%= link_to 'Hello World File', 'hello_world_file.html' %>
+~~~
+
+
+### Link to `page_one.html`
+Asked for `page_one.html`. I expect an Apple HB link because the given HTML
+file appears in the sitemap.
+
+<%= link_to 'Page One', 'page_one.html' %>
+
+~~~
+<%= link_to 'Page One', 'page_one.html' %>
+~~~
+
+
+### Link to `page_two.html`
+Asked for `page_two.html`. I expect an Apple HB link because the given HTML
+file appears in the sitemap. However I'm not specifying the path to the
+file, and there are multiple files with the same name, so which will I get?
+
+<%= link_to 'Page Two', 'page_two.html' %>
+
+~~~
+<%= link_to 'Page Two', 'page_two.html' %>
+~~~
+
+
+### Link to `page_two.html` again.
+Asked for `page_two.html`. I expect an Apple HB link because the given HTML
+file appears in the sitemap. This time I'm specifying a path to the page_two
+that I actually want.
+
+<%= link_to 'Page Two Again', 'sample_group_number_two/page_two.html' %>
+
+~~~
+<%= link_to 'Page Two Again', 'sample_group_number_two/page_two.html' %>
+~~~
+
+
+### Link to `doesnt_exist.html`
+Asked for `doesnt_exist.html`. Because the file doesn't exist in the sitemap,
+it will be handled as a normal link.
+
+<%= link_to 'Doesn’t exist', 'doesntexist.html' %>
+
+~~~
+<%= link_to 'Doesn’t exist', 'doesntexist.html' %>
+~~~
+
+
+### Link to `page_four.html`
+Asked for `page_four.html`.
+
+<%= link_to 'Page four', 'sample_group_number_two/page_four.html' %>
+
+~~~
+<%= link_to 'Page four', 'sample_group_number_two/page_four.html' %>
+~~~

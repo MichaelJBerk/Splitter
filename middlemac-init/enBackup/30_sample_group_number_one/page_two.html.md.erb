@@ -1,0 +1,36 @@
+---
+title:  Writers
+blurb:  Here are some writers, added using Middleman’s `data` system.
+order: 20
+---
+
+<%= current_page.data.blurb %>
+
+- Because this page is part of the “Sample Group Number One,” Apple’s help
+  system places this as a chapter heading at the top of this page.
+
+- Note that this page number is defined by frontmatter, and _not_ by prefixing
+  the file name.
+  
+Sample Works
+------------
+
+The table below is a nice markdown table with Apple’s CSS.
+
+
+
+<% data.globals.famous_writers.each do |writer| %>
+| <%= writer.author %> | <%= writer.sample_work %>
+<% end %>
+
+
+Sample Works as a `<DL>`
+---------------------------
+
+Here's the data again as a definition list. Apple’s default style is horribly
+broken, so _Middlemac_ reimplements it similar to Apple’s table style.
+
+<% data.globals.famous_writers.each do |writer| %>
+<%= writer.author %>
+: <%= writer.sample_work + "\n"  %>
+<% end %>

@@ -1,0 +1,8 @@
+// Contains project-wide defaults that are exposed to the environment during
+// builds, including to Info.plist files. All dependencies should refer to
+// these variables to avoid having to change them in every one of your
+// plists.
+
+MIDDLEMAC_CFBundleShortVersionString = 4.0
+MIDDLEMAC_CFBundleVersion = 202
+MIDDLEMAC_NSHumanReadableCopyright = Copyright ©2021 Michael Berk. All Rights Reserved.

@@ -1,0 +1,88 @@
+{
+    "birdseed_version": 5,
+    "build_id": "4.0",
+    "build_date": "2021.04.28-14:36:09",
+    "collect_feedback": false,
+    "copyright": "topic-en.lproj-copyright",
+    "copyright_text": "© 2021 Michael Berk. All rights reserved.",
+    "css": "",
+    "enable_tracking": false,
+    "framework": "middlemac-3.1.1",
+    "icon": "",
+    "landing": "topic-Resources-en.lproj",
+    "locale": "en",
+    "platform": "mac",
+    "printable_page": "",
+    "product": "Splitter",
+    "quick_links": [],
+    "sections": {
+        "section-en.lproj-Setting_up_a_run": {
+            "name": "Setting up a run",
+            "children": [
+                "topic-Setting_up_a_run-introthing",
+                "topic-Setting_up_a_run-metadata"
+            ]
+      }
+    },
+    "show_previous_next": false,
+    "source_schema": "apd-schema",
+    "title": "Splitter Help",
+    "toc": [
+        "section-en.lproj-Setting_up_a_run",
+        "topic-en.lproj-Performing_a_Run"
+    ],
+    "topics": {
+        "topic-Resources-en.lproj": {
+            "name": "Splitter",
+            "href": "index.html",
+            "categories": [
+              "landing"
+            ]
+        },
+        "topic-Setting_up_a_run-introthing": {
+            "name": "Introduction",
+            "summary": "How to set up a run",
+            "href": "Setting_up_a_run/introthing.html",
+            "categories": [
+            ]
+        },
+        "topic-Setting_up_a_run-metadata": {
+            "name": "Run Info",
+            "summary": "Edit basic information about your run",
+            "href": "Setting_up_a_run/metadata.html",
+            "categories": [
+            ]
+        },
+        "topic-asides-aside_description": {
+            "name": "What is an aside?",
+            "summary": "A short article describing what an “aside” is in a help file.",
+            "href": "asides/aside_description.html",
+            "categories": [
+              "aside"
+            ]
+        },
+        "topic-en.lproj-Performing_a_Run": {
+            "name": "Performing a Run",
+            "summary": "How to perform a Speedrun",
+            "href": "Performing_a_Run.html",
+            "categories": [
+            ]
+        },
+        "topic-en.lproj-copyright": {
+            "name": "License",
+            "summary": "License Page",
+            "href": "copyright.html",
+            "categories": [
+              "copyright"
+            ]
+        },
+        "topic-en.lproj-index_hpd": {
+            "name": "HPD redirector",
+            "href": "index_hpd.html",
+            "categories": [
+            ]
+        }
+    },
+    "urls": {},
+    "version": "4.0"
+}

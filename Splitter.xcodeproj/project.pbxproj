@@ -82,6 +82,8 @@
 		4A99813023F9ECE50037BF98 /* KeybindHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A99812F23F9ECE50037BF98 /* KeybindHandlers.swift */; };
 		4A9B9606261DF26D000FC89C /* TimeRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9B9605261DF26D000FC89C /* TimeRow.swift */; };
 		4A9CA2A7263A2D4C0054D624 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9CA2A6263A2D4C0054D624 /* Extensions.swift */; };
+		4A9CA2752639B8920054D624 /* Splitter_(splitter).help in Resources */ = {isa = PBXBuildFile; fileRef = 4A9CA2742639B8920054D624 /* Splitter_(splitter).help */; };
+		4A9CA2992639E1160054D624 /* versions.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4A9CA2982639E1160054D624 /* versions.xcconfig */; };
 		4A9D8BF6243A38C40048EA15 /* SplitterTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9D8BF5243A38C40048EA15 /* SplitterTableView.swift */; };
 		4A9DB792240847E40000D1B4 /* TimeSplitColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9DB791240847E40000D1B4 /* TimeSplitColumn.swift */; };
 		4A9FCC7C2411A0CE000937A2 /* TextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9FCC7B2411A0CE000937A2 /* TextFields.swift */; };
@@ -137,6 +139,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = 4A230E8E23B00A1D00959C57;
 			remoteInfo = Splitter;
+		};
+		4A9CA2922639DEB30054D624 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4A230E8723B00A1D00959C57 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 4A9CA28C2639DDAA0054D624;
+			remoteInfo = Help;
 		};
 		4AF9E8C424CE448B00DFD5BE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -240,6 +249,8 @@
 		4A99812F23F9ECE50037BF98 /* KeybindHandlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeybindHandlers.swift; sourceTree = "<group>"; };
 		4A9B9605261DF26D000FC89C /* TimeRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeRow.swift; sourceTree = "<group>"; };
 		4A9CA2A6263A2D4C0054D624 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		4A9CA2742639B8920054D624 /* Splitter_(splitter).help */ = {isa = PBXFileReference; lastKnownFileType = folder; path = "Splitter_(splitter).help"; sourceTree = "<group>"; };
+		4A9CA2982639E1160054D624 /* versions.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = versions.xcconfig; sourceTree = "<group>"; };
 		4A9D8BF5243A38C40048EA15 /* SplitterTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterTableView.swift; sourceTree = "<group>"; };
 		4A9DB791240847E40000D1B4 /* TimeSplitColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSplitColumn.swift; sourceTree = "<group>"; };
 		4A9FCC7B2411A0CE000937A2 /* TextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFields.swift; sourceTree = "<group>"; };
@@ -494,6 +505,7 @@
 		4A230E9123B00A1D00959C57 /* Splitter */ = {
 			isa = PBXGroup;
 			children = (
+				4A9CA1642639B7210054D624 /* Help */,
 				4AF9D76223ECD59A0019BC9A /* Splitter-Bridging-Header.h */,
 				4A20C46526406D0400307993 /* TimerCore */,
 				4AF9D75623ECD4790019BC9A /* LiveSplit Core */,
@@ -507,6 +519,7 @@
 				4A7DDCE123BBDD0900A36AD1 /* Credits.html */,
 				4A5F10AD23CFAA1F00DA043B /* Assets.xcassets */,
 				4A230E9D23B00A1E00959C57 /* Info.plist */,
+				4A9CA2982639E1160054D624 /* versions.xcconfig */,
 				4A230E9E23B00A1E00959C57 /* Splitter.entitlements */,
 			);
 			path = Splitter;
@@ -532,6 +545,14 @@
 				4A71054D24BE267300FA9127 /* Info.plist */,
 			);
 			path = SplitterTests;
+			sourceTree = "<group>";
+		};
+		4A9CA1642639B7210054D624 /* Help */ = {
+			isa = PBXGroup;
+			children = (
+				4A9CA2742639B8920054D624 /* Splitter_(splitter).help */,
+			);
+			path = Help;
 			sourceTree = "<group>";
 		};
 		4A9FCC782411A069000937A2 /* Controls */ = {
@@ -763,6 +784,23 @@
 		};
 /* End PBXGroup section */
 
+/* Begin PBXLegacyTarget section */
+		4A9CA28C2639DDAA0054D624 /* Help */ = {
+			isa = PBXLegacyTarget;
+			buildArgumentsString = "$(ACTION) TARGET=splitter";
+			buildConfigurationList = 4A9CA28F2639DDAA0054D624 /* Build configuration list for PBXLegacyTarget "Help" */;
+			buildPhases = (
+			);
+			buildToolPath = /usr/bin/make;
+			buildWorkingDirectory = "/Volumes/SharedStuff/Splitter/middlemac-init";
+			dependencies = (
+			);
+			name = Help;
+			passBuildSettingsInEnvironment = 1;
+			productName = Help;
+		};
+/* End PBXLegacyTarget section */
+
 /* Begin PBXNativeTarget section */
 		4A230E8E23B00A1D00959C57 /* Splitter */ = {
 			isa = PBXNativeTarget;
@@ -780,6 +818,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				4A9CA2932639DEB30054D624 /* PBXTargetDependency */,
 				4AFD0F9C25C390EF003D3171 /* PBXTargetDependency */,
 				4AFD0F9A25C390EC003D3171 /* PBXTargetDependency */,
 			);
@@ -852,6 +891,9 @@
 						CreatedOnToolsVersion = 12.0;
 						TestTargetID = 4A230E8E23B00A1D00959C57;
 					};
+					4A9CA28C2639DDAA0054D624 = {
+						CreatedOnToolsVersion = 12.4;
+					};
 					4AF9E8BE24CE448B00DFD5BE = {
 						CreatedOnToolsVersion = 11.5;
 						TestTargetID = 4A230E8E23B00A1D00959C57;
@@ -865,6 +907,7 @@
 			knownRegions = (
 				en,
 				Base,
+				es,
 			);
 			mainGroup = 4A230E8623B00A1D00959C57;
 			packageReferences = (
@@ -882,6 +925,7 @@
 				4A230E8E23B00A1D00959C57 /* Splitter */,
 				4A71054824BE267300FA9127 /* SplitterTests */,
 				4AF9E8BE24CE448B00DFD5BE /* SplitterUITests */,
+				4A9CA28C2639DDAA0054D624 /* Help */,
 			);
 		};
 /* End PBXProject section */
@@ -911,7 +955,9 @@
 				4A230E9C23B00A1E00959C57 /* Main.storyboard in Resources */,
 				4A56138A262CFB8900702B0E /* OptionsRow.xib in Resources */,
 				4A0981A024E3089B00E44792 /* LoginView.xib in Resources */,
+				4A9CA2992639E1160054D624 /* versions.xcconfig in Resources */,
 				4A61438624801A37007C38E0 /* ColorsView.xib in Resources */,
+				4A9CA2752639B8920054D624 /* Splitter_(splitter).help in Resources */,
 				4ACFB1BD262F4E9700EA79B6 /* TitleComponent.xib in Resources */,
 				4AEA331B2629F024001012BD /* TimeRow.xib in Resources */,
 			);
@@ -1127,6 +1173,11 @@
 			target = 4A230E8E23B00A1D00959C57 /* Splitter */;
 			targetProxy = 4A71054E24BE267300FA9127 /* PBXContainerItemProxy */;
 		};
+		4A9CA2932639DEB30054D624 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 4A9CA28C2639DDAA0054D624 /* Help */;
+			targetProxy = 4A9CA2922639DEB30054D624 /* PBXContainerItemProxy */;
+		};
 		4AF9E8C524CE448B00DFD5BE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 4A230E8E23B00A1D00959C57 /* Splitter */;
@@ -1156,6 +1207,7 @@
 /* Begin XCBuildConfiguration section */
 		4A230E9F23B00A1E00959C57 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4A9CA2982639E1160054D624 /* versions.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1217,6 +1269,7 @@
 		};
 		4A230EA023B00A1E00959C57 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4A9CA2982639E1160054D624 /* versions.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1281,6 +1334,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 239;
+				CURRENT_PROJECT_VERSION = 205;
+				CURRENT_PROJECT_VERSION = 203;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 39SZK2C73D;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1329,6 +1384,8 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 239;
+				CURRENT_PROJECT_VERSION = 205;
+				CURRENT_PROJECT_VERSION = 203;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 39SZK2C73D;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1406,6 +1463,33 @@
 			};
 			name = Release;
 		};
+		4A9CA28D2639DDAA0054D624 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEBUGGING_SYMBOLS = YES;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 39SZK2C73D;
+				GCC_GENERATE_DEBUGGING_SYMBOLS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		4A9CA28E2639DDAA0054D624 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 39SZK2C73D;
+				OTHER_CFLAGS = "";
+				OTHER_LDFLAGS = "";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		4AF9E8C724CE448B00DFD5BE /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1470,6 +1554,15 @@
 			buildConfigurations = (
 				4A71055124BE267300FA9127 /* Debug */,
 				4A71055224BE267300FA9127 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4A9CA28F2639DDAA0054D624 /* Build configuration list for PBXLegacyTarget "Help" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4A9CA28D2639DDAA0054D624 /* Debug */,
+				4A9CA28E2639DDAA0054D624 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

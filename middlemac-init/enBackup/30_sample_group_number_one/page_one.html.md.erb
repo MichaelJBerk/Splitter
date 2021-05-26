@@ -1,0 +1,108 @@
+---
+title:  Some Apple Features
+blurb:  Let’s demonstrate some of Apple’s built-in features.
+order: 10
+---
+<%= md_links %>
+<%= md_images %>
+
+<%= current_page.data.blurb %>
+
+- It looks like blurbs aren’t really user visible, but they are captured in the
+  `navigation.json` file, so should be provided nonetheless.
+
+- Because this page is part of the “Sample Group Number One” (having the title
+  “First Sample Group”), Apple’s help system places this as a chapter heading
+  at the top of this page.
+  
+- Note that this page number is defined by frontmatter, and _not_ by prefixing
+  the file name.
+
+
+Images
+------
+Apple’s images are always in a `figure` tag. Middlemac will automatically provide
+framesets for these.
+
+<%= image_tag 'icon_32x32' %>
+
+Asides
+------
+
+“Asides” are loaded via AJAX from another file into a popup element on the 
+current page. In this sample project any asides have been put into the `asides`
+directory, but that's just for organization and not a requirement.
+
+So, what is <%= link_to "an aside", "aside_description.html", :aside => true %>?
+Activate the specially decorated link to find out.
+
+
+Tasks
+-----
+
+Apple currently uses “tasks” in many of its modern Help Books, and these are
+relatively simply to implement with the `helpbook_task` helper.
+
+Single tasks are always displayed in the expanded state, but when multiple tasks
+are on the same page, like here, they have working disclosure triangles to 
+reveal them.
+
+Make sure you provide unique id’s to the tasks, because Apple’s help system
+keeps track of which one are revealed or hidden in between page visits.
+
+
+<% helpbook_task "task1", "Expand this task to see what content it contains", :markdown => true do %>
+<%= lorem.paragraphs 2 %>
+<% end %>
+
+
+<% helpbook_task "task2", "This task indicates the answer to the question of life" do %>
+
+The generally accepted answer to this query is **forty-two**.
+
+<%= lorem.paragraphs 2 %>
+<% end %>
+
+
+<% helpbook_task "task3", "Perform this third task" do %>
+<%= lorem.paragraphs 1 %>
+![Icon loaded with the Markdown reference format][icon_256x256]
+<%= lorem.paragraphs 1 %>
+<% end %>
+
+
+Tips
+----
+<div class="Alert">
+<p class="Tip">
+    <strong class="tip">Tip</strong> You can do lots of neat things like use 
+    Apple’s tip style, and it’s easy with the plethora of helpers. This tip
+    uses the official Apple way to make a tip, but you have to use HTML to
+    conform to Apple’s `&lt;div>` and `&lt;p>` structure.
+</p>
+</div>
+
+
+However that’s kind of pain to remember, so _Middlemac_ makes it really
+easy to add single-paragraph tips right in Markdown, by assigning a style.
+The appearance is a _little_ bit different than Apple’s way, but honors the
+look and feel.
+{: .tip}
+
+
+Although I couldn’t find any **warning** examples in Apple’s help, it’s
+something that’s sure to be needed by other developers, and so imitating
+Apple’s **Tip** style gives _Middlemac_ access to simple warnings, too.
+{: .warning}
+
+Can you guess that this is a note? It’s also a good place to point out that
+Apple-like “see also” sections are automatically included at the bottom of
+pages if you include a `content_for :seeAlso` block in your source code.
+{: .note}
+
+<% content_for :seeAlso do %>
+<%= link_to 'Hello World File', 'hello_world_file.html' %>
+<%= link_to 'Page Two', 'page_two.html' %>
+<%= link_to 'Goodbye World', 'goodbye_world_file.html' %>
+<% end %>
+

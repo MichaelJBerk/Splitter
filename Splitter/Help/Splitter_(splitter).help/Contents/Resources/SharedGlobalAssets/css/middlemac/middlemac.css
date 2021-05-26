@@ -1,0 +1,131 @@
+.middlemac-debug {
+  text-align: left;
+  font-size: 75%;
+  white-space: pre-wrap;
+}
+
+p.note, p.tip, p.warning {
+  background-repeat: no-repeat;
+  background-size: 1.4em;
+  background-position: top left;
+  text-indent: 2em;
+  display: block;
+}
+
+p.note::before, p.tip::before, p.warning::before {
+  font-weight: bold;
+}
+
+p.note.callout, p.tip.callout, p.warning.callout {
+  margin-left: 2em;
+  margin-right: 2em;
+}
+
+p.note {
+  background-image: url("note.svg");
+}
+
+p.tip {
+  background-image: url("tip.svg");
+}
+
+p.warning {
+  background-image: url("warning.svg");
+}
+
+p.note::before {
+  content: "Note ";
+}
+
+p.tip::before {
+  content: "Tip ";
+}
+
+p.warning::before {
+  content: "Warning ";
+}
+
+.apd-topic dl {
+  overflow: hidden;
+  position: relative;
+  border-top: 1px solid #e4e4e4;
+  border-bottom: 1px solid #e4e4e4;
+}
+
+.apd-topic dl dt {
+  float: left;
+  width: 33%;
+  clear: both;
+  position: relative;
+  font-weight: initial;
+  margin: initial;
+}
+
+.apd-topic dl dd {
+  float: right;
+  width: 62%;
+  margin: initial;
+}
+
+.apd-topic dl.width50 dt, .apd-topic dl.width50 dd {
+  width: 50%;
+}
+
+.apd-topic dl.width25 dt {
+  width: 25%;
+}
+
+.apd-topic dl.width25 dd {
+  width: 74%;
+}
+
+.apd-topic dl.nontabular dt, .apd-topic dl.nontabular dd {
+  position: initial;
+  float: none;
+  display: block;
+  width: initial;
+}
+
+.apd-topic dl.nontabular dt:first-child {
+  margin-top: 1.0em;
+}
+
+.apd-topic dl.nontabular dd {
+  margin-left: 2em;
+}
+
+.apd-topic div.ParaLines, .apd-topic p {
+  white-space: initial;
+}
+
+.apd-topic h2 code,
+.apd-topic h3 code {
+  font-size: 1em;
+}
+
+.method_details_list .inline,
+.method_details_list .inline p, .attr_details .inline,
+.attr_details .inline p {
+  display: inline;
+}
+
+.method_details_list span.name, .attr_details span.name {
+  font-weight: bold;
+}
+
+.method_details_list p.tag_title, .attr_details p.tag_title {
+  font-weight: bold;
+}
+
+.method_details_list .note, .attr_details .note {
+  background-image: url("note.svg");
+  background-repeat: no-repeat;
+  background-size: 1.4em;
+  background-position: top left;
+  text-indent: 2em;
+  display: block;
+}
+
+div.highlight pre.shrink_code code {
+  font-size: 8pt;
+}

@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleIdentifier</key>
+	<string>com.mibe.Splitter.help</string>
+	<key>CFBundleName</key>
+	<string>Splitter</string>
+	<key>HPDBookAccessPath</key>
+	<string>index_hpd.html</string>
+	<key>HPDBookIndexPath</key>
+	<string>Splitter.helpindex</string>
+	<key>HPDBookTitle</key>
+	<string>Splitter Help</string>
+	<key>CFBundleDevelopmentRegion</key>
+	<string>en-us</string>
+	<key>CFBundleShortVersionString</key>
+	<string>4.0</string>
+	<key>CFBundleVersion</key>
+	<string>4.0</string>
+	<key>HPDBookIconPath</key>
+	<string>SharedGlobalAssets/convention/icon_32x32@2x.png</string>
+	<key>HPDBookKBProduct</key>
+	<string></string>
+	<key>HPDBookKBURL</key>
+	<string>splitter.mberk.com</string>
+	<key>HPDBookRemoteURL</key>
+	<string></string>
+	<key>HPDBookTopicListCSSPath</key>
+	<string></string>
+	<key>HPDBookTopicListTemplatePath</key>
+	<string></string>
+	<key>CFBundleInfoDictionaryVersion</key>
+	<string>6.0</string>
+	<key>CFBundlePackageType</key>
+	<string>BNDL</string>
+	<key>CFBundleSignature</key>
+	<string>hbwr</string>
+	<key>HPDBookType</key>
+	<string>3</string>
+</dict>
+</plist>

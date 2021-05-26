@@ -468,25 +468,25 @@
                                     </items>
                                 </menu>
                             </menuItem>
-                            <menuItem title="Help" id="wpr-3q-Mcd">
+                            <menuItem title="Help" id="tJU-VV-J3y">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Help" systemMenu="help" id="F2S-fz-NVQ">
+                                <menu key="submenu" title="Help" systemMenu="help" id="YhO-sZ-vJW">
                                     <items>
-                                        <menuItem title="Splitter Help" keyEquivalent="?" id="FKE-Sm-Kum">
+                                        <menuItem title="Splitter Help" keyEquivalent="?" id="KCF-6n-eld">
                                             <connections>
-                                                <action selector="helpMenu:" target="Ady-hI-5gd" id="CmE-pH-FA3"/>
+                                                <action selector="showHelp:" target="Ady-hI-5gd" id="pAH-uq-ppv"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="Discord Server" identifier="DiscordMenuItem" id="yrH-Cb-n3S">
+                                        <menuItem title="Discord Server" identifier="DiscordMenuItem" id="kjf-FG-evv">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="discordMenuItemAction:" target="Ady-hI-5gd" id="WDD-fO-EGw"/>
+                                                <action selector="discordMenuItemAction:" target="Ady-hI-5gd" id="vu1-vJ-cMy"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem title="FAQ" identifier="FAQMenuItem" id="gar-lD-1BC">
+                                        <menuItem title="FAQ" identifier="FAQMenuItem" id="vvb-mG-g1X">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="faqMenuItemAction:" target="Ady-hI-5gd" id="qrI-TJ-sYv"/>
+                                                <action selector="faqMenuItemAction:" target="Ady-hI-5gd" id="T1o-ub-XDi"/>
                                             </connections>
                                         </menuItem>
                                     </items>

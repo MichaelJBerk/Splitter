@@ -1,0 +1,17 @@
+---
+title:  Hello World
+blurb:  Discover your project saying “Hello, world!” 
+---
+<%= md_links %>
+<%= md_images %>
+
+Because there's no chapter (this file is not in a group), there's no chapter
+heading.
+
+The item below represents the `helpbook_task` helper being used. Because there
+is only a single task on this page, it is present statically without a
+disclosure button to reveal and hide it.
+
+<% helpbook_task "hello_world_lorem", "Lorem", :markdown => true do %>
+<%= lorem.paragraphs 3 %>
+<% end %>

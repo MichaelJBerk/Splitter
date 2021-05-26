@@ -1,0 +1,58 @@
+---
+title:  Testing World
+blurb:  Another page that uses Middlemac’s helpers so that Cucumber
+        has something predictable to examine.
+---
+<%= md_links %>
+<%= md_images %>
+
+This is another page that uses some of _Middlemac_’s helpers so that Cucumber
+testing can be performed. This sample project is also the fixture for testing;
+if you have this Gem’s source, you can
+
+~~~ bash
+rake test
+~~~
+
+…from the Gem’s directory to run the tests yourself.
+
+Note that this isn’t the only file tested, but it’s a nice place to capture
+some of the test output.
+{:.note}
+
+
+Middlemac configuration information:
+------------------------------------
+
+partials_dir:       | <%= partials_dir %>
+
+cfBundleIdentifier: | <%= cfBundleIdentifier %>
+
+cfBundleName:       | <%= cfBundleName %>
+
+product_name:       | <%= product_name %>
+
+product_version:    | <%= product_version %>
+
+product_uri:        | <%= product_uri %>
+
+
+
+New Style Middleman Partial
+---------------------------
+
+~~~ html
+<%= partial 'new_style_partial' %>
+~~~
+
+## Partial from `partials_dir`
+
+~~~ html
+<%= partial 'partials_dir_partial' %>
+~~~
+
+## Partial from localized `partials_dir`
+
+~~~ html
+<%= partial 'localized_partials_dir_partial' %>
+~~~

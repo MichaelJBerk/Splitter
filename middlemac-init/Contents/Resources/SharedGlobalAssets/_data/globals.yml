@@ -1,0 +1,11 @@
+famous_writers:
+  -
+    author: Douglas Adams
+    sample_work: The Restaurant at the End of the Universe
+  -
+    author: Edward Bulwer-Lytton
+    sample_work: Paul Clifford
+  -
+    author: Daniel Defoe
+    sample_work: Robinson Crusoe
+

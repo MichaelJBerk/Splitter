@@ -1,0 +1,20 @@
+---
+title:     What is an aside?
+blurb:     A short article describing what an “aside” is in a help file.
+categories:
+ - aside
+---
+
+<%= current_page.data.title %>
+==============================
+
+Apple’s modern Help Books use a feature call an “aside” to show short bits of
+information that can be referenced in the current page without having to load
+a new page.
+
+Note that the source frontmatter for this page indicates a layout of
+`layout-apple-modern-aside`, which should be used for asides because they
+contain extra metadata need for this feature to work.
+
+Because these asides are separate HTML files, they can be re-used in multiple
+locations throughout your project.
