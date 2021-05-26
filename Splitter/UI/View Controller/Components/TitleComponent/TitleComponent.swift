@@ -37,7 +37,7 @@ class TitleComponent: NSStackView, SplitterComponent, NibLoadable, LiveSplitSpli
 	}
 	var optionsView: NSView! {
 		let d = defaultComponentOptions() as! ComponentOptionsVstack
-		let check = ComponentOptionsButton(checkboxWithTitle: "Show Options button", clickAction: {
+		let check = ComponentOptionsButton(checkboxWithTitle: "Show Options button", clickAction: {_ in 
 			self.showInfoButton.toggle()
 		})
 		check.state = .init(bool: showInfoButton)

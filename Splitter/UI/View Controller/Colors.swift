@@ -129,6 +129,7 @@ extension ViewController {
 		} else {
 			view.window?.appearance = NSAppearance(named: .darkAqua)
 		}
+		columnOptionsWindow?.appearance = view.effectiveAppearance
 		
 		NotificationCenter.default.post(.init(name: .updateComponentColors, userInfo: ["run": self.run as Any]))
 		splitsTableView.reloadData()

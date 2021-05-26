@@ -47,7 +47,8 @@ extension SplitterComponent {
 			self.wantsLayer = true
 			self.layer?.addSublayer(selectedLayer)
 		} else {
-			self.layer?.sublayers?.first(where: {$0.name == "borderLayer"})?.removeFromSuperlayer()
+			//If, for whatever reason, there's multiple "border" layers, we want to remove all of them
+			self.layer?.sublayers?.filter({$0.name == "borderLayer"}).forEach({$0.removeFromSuperlayer()})
 		}
 	}
 	func defaultComponentOptions() -> NSView {
@@ -65,7 +66,7 @@ extension SplitterComponent {
 		})
 		
 		let spacingLabel = NSTextField(labelWithString: "Spacing (After)")
-		let resetButton = ComponentOptionsButton(title: "Reset", clickAction: {
+		let resetButton = ComponentOptionsButton(title: "Reset", clickAction: { _ in
 			spacingSetting.stringValue = "\(self.defaultAfterSpacing)"
 			self.afterSpacing = self.defaultAfterSpacing
 		})
@@ -297,17 +298,17 @@ extension NSView {
 	}
 }
 class ComponentOptionsButton: NSButton {
-	var clickAction: () -> () = {}
+	var clickAction: (NSButton) -> () = {_ in}
 	override func mouseDown(with event: NSEvent) {
 		super.mouseDown(with: event)
-		clickAction()
+		clickAction(self)
 	}
 	
-	convenience init (checkboxWithTitle title: String, clickAction: @escaping () -> ()) {
+	convenience init (checkboxWithTitle title: String, clickAction: @escaping (NSButton) -> ()) {
 		self.init(checkboxWithTitle: title, target: nil, action: nil)
 		self.clickAction = clickAction
 	}
-	convenience init (title: String, clickAction: @escaping () -> ()) {
+	convenience init (title: String, clickAction: @escaping (NSButton) -> ()) {
 		self.init(title: title, target: nil, action: nil)
 		self.clickAction = clickAction
 	}

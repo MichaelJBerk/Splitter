@@ -9,9 +9,26 @@
 import Cocoa
 
 class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
-	@IBOutlet var tableView: NSTableView!
-	@IBOutlet var scrollView: NSScrollView!
-	@IBOutlet var optionsView: NSView!
+	
+	@IBOutlet var stack: NSStackView!
+	var tableView: NSTableView! {
+		let scroll = (stack.views[0].subviews[0] as! NSScrollView)
+		let table = scroll.documentView as! NSTableView
+		return table
+	}
+	var scrollView: NSScrollView! {
+		return (stack.views[1].subviews[0] as! NSScrollView)
+	}
+	
+	override func viewWillAppear() {
+		super.viewWillAppear()
+		var indexToSelect = tableView.selectedRow
+		highlightAndShowOptions()
+	}
+	
+	var optionsView: NSView! {
+		return scrollView.documentView!
+	}
 	var rows = ["Row 1", "Row 2", "Row 3"]
 	var dropType: NSPasteboard.PasteboardType = .init("public.data")
 	var runController: ViewController!
@@ -23,6 +40,7 @@ class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTable
 		tableView.dataSource = self
 		tableView.registerForDraggedTypes([dropType])
     }
+	
 	
 	var componentsPopUpMenu: NSMenu {
 		var items = [NSMenuItem]()
@@ -79,7 +97,8 @@ class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTable
 		// Dont' forget to update model
 		
 	}
-	func tableViewSelectionDidChange(_ notification: Notification) {
+	
+	func highlightAndShowOptions() {
 		let selected = tableView.selectedRow
 		for i in 0..<runController.mainStackView.views.count {
 			if let selectedComponent = runController.mainStackView.views[i] as? SplitterComponent {
@@ -98,6 +117,9 @@ class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTable
 				}
 			}
 		}
+	}
+	func tableViewSelectionDidChange(_ notification: Notification) {
+		highlightAndShowOptions()
 	}
 	override func viewWillDisappear() {
 		for v in runController.mainStackView.views {

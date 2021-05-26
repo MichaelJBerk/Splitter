@@ -23,6 +23,11 @@ extension NSGridView {
 		return true
 	}
 }
+extension NSVisualEffectView {
+	open override var isFlipped: Bool {
+		return true
+	}
+}
 extension NSMenuItem {
 	convenience init(title: String, action: Selector, keyEquivalent: String, representedObject: Any?) {
 		self.init(title: title, action: action, keyEquivalent: keyEquivalent)

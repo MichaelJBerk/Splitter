@@ -628,16 +628,11 @@ class ViewController: NSViewController {
 	///Displays the "column options" popover
 	@IBAction func displayColumnOptionsPopover(_ sender: Any) {
 		columnOptionsPopover?.contentViewController?.view.window?.close()
-		let tabView = NSStoryboard(name: "LayoutEditor", bundle: nil).instantiateInitialController() as? LayoutEditorTabViewController
-		tabView?.viewController = self
-		let layoutEditor = tabView?.tabViewItems[0].viewController as! LayoutEditorViewController
+		let layoutEditor = NSStoryboard(name: "LayoutEditor", bundle: nil).instantiateInitialController() as! LayoutEditorViewController
 		layoutEditor.runController = self
-		let destination = tabView?.tabViewItems[1].viewController as! ColumnOptionsViewController
-			//.instantiateController(withIdentifier: ColumnOptionsViewController.storyboardID) as! ColumnOptionsViewController
-		destination.delegate = self
 		let pop = NSPopover()
 		pop.delegate = self
-		pop.contentViewController = tabView
+		pop.contentViewController = layoutEditor
 		pop.appearance = NSAppearance(named: .vibrantDark)
 		pop.behavior = .semitransient
 		var columnOptionsFrame = columnOptionsPopoverButton.frame
@@ -655,16 +650,14 @@ class ViewController: NSViewController {
 		if let coWindow = columnOptionsWindow {
 			coWindow.makeKeyAndOrderFront(self)
 		} else {
-			let tabView = NSStoryboard(name: "LayoutEditor", bundle: nil).instantiateInitialController() as? LayoutEditorTabViewController
-			let layoutEditor = tabView?.tabViewItems[0].viewController as! LayoutEditorViewController
-			tabView?.viewController = self
+			let layoutEditor = NSStoryboard(name: "LayoutEditor", bundle: nil).instantiateInitialController() as! LayoutEditorViewController
 			layoutEditor.runController = self
-			let destination = tabView?.tabViewItems[1].viewController as! ColumnOptionsViewController
-			destination.delegate = self
 			
-			let coPanel = NSPanel(contentViewController: tabView!)
+			let coPanel = NSPanel(contentViewController: layoutEditor)
 			coPanel.titlebarAppearsTransparent = true
 			coPanel.styleMask.insert(.utilityWindow)
+			coPanel.styleMask.insert(.fullSizeContentView)
+			coPanel.titleVisibility = .hidden
 			coPanel.standardWindowButton(.miniaturizeButton)?.isHidden = true
 			coPanel.standardWindowButton(.zoomButton)?.isHidden = true
 			coPanel.isMovableByWindowBackground = true

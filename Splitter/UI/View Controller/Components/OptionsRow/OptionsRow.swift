@@ -96,7 +96,7 @@ class OptionsRow: NSStackView, NibLoadable, SplitterComponent {
 	
 	var optionsView: NSView! {
 		let defaultOptions = defaultComponentOptions() as! ComponentOptionsVstack
-		let showLabelButton = ComponentOptionsButton(checkboxWithTitle: "Show Label", clickAction: {
+		let showLabelButton = ComponentOptionsButton(checkboxWithTitle: "Show Label", clickAction: {_ in 
 			self.showLabel.toggle()			
 		})
 		
