@@ -71,7 +71,16 @@ class ViewController: NSViewController {
 	*/
 	
 	///
-	var selectedColor: NSColor = .splitterRowSelected
+	var selectedColor: NSColor = .splitterRowSelected {
+		willSet {
+			let oldColor = self.selectedColor
+			undoManager?.registerUndo(withTarget: self, handler: { r in
+				r.selectedColor = oldColor
+			})
+			undoManager?.setActionName("Set Color")
+			
+		}
+	}
 	
 	
 //MARK: - Other UI Elements
@@ -458,7 +467,6 @@ class ViewController: NSViewController {
 		loadRunInfo()
 		keyAndMenuSetup()
 		run.document = document
-		run.layoutDelegate = self
 	
 		//Load the SplitterAppearance file if it exists. Otherwise, use the default appearance
 		if appearance != nil {
@@ -501,6 +509,9 @@ class ViewController: NSViewController {
 		})
 		NotificationCenter.default.addObserver(forName: .updateIsEdited, object: self.run.timer, queue: nil, using: { notification in
 			self.document.updateChangeCount(.changeDone)
+		})
+		NotificationCenter.default.addObserver(forName: .runColorChanged, object: nil, queue: nil, using: { _ in
+			self.setColorForControls()
 		})
 		undoManager?.enableUndoRegistration()
 	}

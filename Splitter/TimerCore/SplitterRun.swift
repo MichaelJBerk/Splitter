@@ -17,6 +17,10 @@ extension Notification.Name {
 	static let gameIconEdited = Notification.Name("gameIconEdited")
 	static let segmentIconEdited = Notification.Name("segmentIconChanged")
 }
+///Layout notifications
+extension Notification.Name {
+	static let runColorChanged = Notification.Name("runColorChanged")
+}
 
 
 class SplitterRun: NSObject {
@@ -571,45 +575,8 @@ class SplitterRun: NSObject {
 			self.updateLayoutState()
 		}
 	}
-	//NOTE: Colors don't support undo because there was a strange glitch where undoing colors takes a long time for whatever reason.
-	var longerColor: NSColor {
-		get {
-			let editor = LayoutEditor(layout)
-			let color = editor!.state().fieldValue(false, 8).toColor()!
-			layout = editor!.close()
-			return color
-			
-		}
-		set {
-			let color = [Float(newValue.redComponent), Float(newValue.greenComponent), Float(newValue.blueComponent), Float(newValue.alphaComponent)]
-			if let editor = LayoutEditor(layout) {
-				editor.setGeneralSettingsValue(8, SettingValue.fromColor(color[0], color[1], color[2], color[3]))
-				editor.setGeneralSettingsValue(9, SettingValue.fromColor(color[0], color[1], color[2], color[3]))
-				self.layout = editor.close()
-			}
-		}
-	}
-	var shorterColor: NSColor {
-		get {
-			let editor = LayoutEditor(layout)
-			let color = editor!.state().fieldValue(false, 6).toColor()!
-			layout = editor!.close()
-			return color
-		}
-		set {
-			let color = [Float(newValue.redComponent), Float(newValue.greenComponent), Float(newValue.blueComponent), Float(newValue.alphaComponent)]
-			if let editor = LayoutEditor(layout) {
-				editor.setGeneralSettingsValue(6, SettingValue.fromColor(color[0], color[1], color[2], color[3]))
-				editor.setGeneralSettingsValue(7, SettingValue.fromColor(color[0], color[1], color[2], color[3]))
-				self.layout = editor.close()
-			}
-		}
-		
-	}
-	var layoutDelegate: LayoutDelegate?
 	
-	//TODO: ColorsVC should only update the color that changed
-	//TODO: ColorsVC should update when undoin
+	//NOTE: Because `backgroundColor` gets called every time the colors change, the action name for setting colors is always the same as the action name used for `backgroundColor`
 	
 	var backgroundColor: NSColor {
 		get {
@@ -624,11 +591,11 @@ class SplitterRun: NSObject {
 			undoManager?.registerUndo(withTarget: self, handler: { r in
 				r.backgroundColor = oldSetting
 			})
-			undoManager?.setActionName("Set Background Color")
+			undoManager?.setActionName("Set Color")
 			editLayout { editor in
 				editor.setGeneralSettingsValue(4, setting)
 			}
-			layoutDelegate?.runBackgroundColorWasUpdated()
+			NotificationCenter.default.post(name: .runColorChanged, object: nil)
 		}
 	}
 	var tableColor: NSColor {
@@ -646,12 +613,12 @@ class SplitterRun: NSObject {
 			undoManager?.registerUndo(withTarget: self, handler: { r in
 				r.tableColor = oldSetting
 			})
-			undoManager?.setActionName("Set Table Color")
+			undoManager?.setActionName("Set Color")
 			editLayout { editor in
 				editor.select(1)
 				editor.setComponentSettingsValue(0, setting)
 			}
-			layoutDelegate?.runTableColorWasUpdated()
+			NotificationCenter.default.post(name: .runColorChanged, object: nil)
 		}
 	}
 	
@@ -661,11 +628,60 @@ class SplitterRun: NSObject {
 			return NSColor(doubles)
 		}
 		set {
+			let setting = SettingValue.fromNSColor(newValue)
+			let oldSetting = self.textColor
+			undoManager?.registerUndo(withTarget: self, handler: { r in
+				r.textColor = oldSetting
+			})
+			undoManager?.setActionName("Set Color")
 			editLayout{ editor in
-				let setting = SettingValue.fromNSColor(newValue)
 				editor.setGeneralSettingsValue(15, setting)
 			}
+			NotificationCenter.default.post(name: .runColorChanged, object: nil)
 		}
+	}
+	
+	var longerColor: NSColor {
+		get {
+			let editor = LayoutEditor(layout)
+			let color = editor!.state().fieldValue(false, 8).toColor()!
+			layout = editor!.close()
+			return color
+			
+		}
+		set {
+			let oldSetting = longerColor
+			undoManager?.registerUndo(withTarget: self, handler: { r in
+				r.longerColor = oldSetting
+			})
+			let color = [Float(newValue.redComponent), Float(newValue.greenComponent), Float(newValue.blueComponent), Float(newValue.alphaComponent)]
+			if let editor = LayoutEditor(layout) {
+				editor.setGeneralSettingsValue(8, SettingValue.fromColor(color[0], color[1], color[2], color[3]))
+				editor.setGeneralSettingsValue(9, SettingValue.fromColor(color[0], color[1], color[2], color[3]))
+				self.layout = editor.close()
+			}
+		}
+	}
+	var shorterColor: NSColor {
+		get {
+			let editor = LayoutEditor(layout)
+			let color = editor!.state().fieldValue(false, 6).toColor()!
+			layout = editor!.close()
+			return color
+		}
+		set {
+			let oldSetting = shorterColor
+			undoManager?.registerUndo(withTarget: self, handler: { r in
+				r.shorterColor = oldSetting
+			})
+			let color = [Float(newValue.redComponent), Float(newValue.greenComponent), Float(newValue.blueComponent), Float(newValue.alphaComponent)]
+			if let editor = LayoutEditor(layout) {
+				editor.setGeneralSettingsValue(6, SettingValue.fromColor(color[0], color[1], color[2], color[3]))
+				editor.setGeneralSettingsValue(7, SettingValue.fromColor(color[0], color[1], color[2], color[3]))
+				self.layout = editor.close()
+			}
+		}
+		
 	}
 	
 	func saveToLSS() -> String {

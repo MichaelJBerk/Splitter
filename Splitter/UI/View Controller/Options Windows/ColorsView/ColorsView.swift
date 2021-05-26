@@ -27,6 +27,9 @@ class ColorsView: NSView, LoadableNib, advancedTabDelegate {
 	
 	@objc func sendSettings( _ sender: Any) {
 		if let d = delegate {
+			if run.undoManager?.isUndoing ?? false {
+				run.undoManager?.disableUndoRegistration()
+			}
 			d.run.backgroundColor = bgColorWell.color
 			d.run.tableColor = tableViewBGColorWell.color
 			d.run.textColor = textColorWell.color
@@ -36,9 +39,12 @@ class ColorsView: NSView, LoadableNib, advancedTabDelegate {
 			d.run.shorterColor = shorterDiffColorWell.color
 			//TODO: PB Color
 
-			d.setColorForControls()
+//			d.setColorForControls()
 			d.updateTextFields()
 			d.run.updateLayoutState()
+			if run.undoManager?.isUndoing ?? false {
+				run.undoManager?.enableUndoRegistration()
+			}
 		}
 	}
 	
@@ -71,7 +77,10 @@ class ColorsView: NSView, LoadableNib, advancedTabDelegate {
 		sendSettings(sender)
 	}
 	@IBAction func settingsSender(_ sender: Any) {
+//		run.undoManager?.beginUndoGrouping()
+//		undoManager?.registerUndo(withTarget: self, selector: #selector(settingsSender(_:)), object: sender)
 		sendSettings(sender)
+//		run.undoManager?.endUndoGrouping()
 	}
 	
 	override func viewDidMoveToSuperview() {
@@ -80,6 +89,7 @@ class ColorsView: NSView, LoadableNib, advancedTabDelegate {
 	
 	func loadFromDelegate() {
 		if let d = delegate {
+			
 			bgColorWell.color = d.run.backgroundColor//d.view.window!.backgroundColor
 			tableViewBGColorWell.color = d.run.tableColor
 			textColorWell.color = d.run.textColor
@@ -115,6 +125,11 @@ class ColorsView: NSView, LoadableNib, advancedTabDelegate {
 		super.init(coder: coder)
 		loadViewFromNib()
 		loadFromDelegate()
+		NotificationCenter.default.addObserver(forName: .runColorChanged, object: nil, queue: nil, using: { _ in
+			if self.run.undoManager?.isUndoing ?? false {
+				self.loadFromDelegate()
+			}
+		})
 	}
     
 }
