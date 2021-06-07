@@ -14,6 +14,7 @@ enum KeybindTitle: String {
 	case StartSplitTimer = "Start Timer/Split"
 	case PauseTimer = "Pause/Resume Timer"
 	case PrevSplit = "Previous Split"
+	case SkipSplit = "Skip Split"
 	case StopTimer = "Cancel Run"
 	case ClearTimer = "Reset Run"
 	case ResetCurrentSplit = "Reset Current Split"
@@ -29,6 +30,7 @@ enum KeybindSettingsKey: String {
 	case startSplitTimer = "startSplitTimer"
 	case pauseTimer = "pauseTimer"
 	case prevSplit = "prevSplit"
+	case skipSplit = "skipSplit"
 	case stopTimer = "stopTimer"
 	case clearTimer = "clearTimer"
 	case resetCurrentSplit = "ResetCurrentSplit"
@@ -76,6 +78,7 @@ extension AppDelegate {
 			SplitterKeybind(settings: .startSplitTimer, title: .StartSplitTimer, menuItemID: menuIdentifiers.runMenu.StartSplit),
 			SplitterKeybind(settings: .pauseTimer, title: .PauseTimer, menuItemID: menuIdentifiers.runMenu.pause),
 			SplitterKeybind(settings: .prevSplit, title: .PrevSplit, menuItemID: menuIdentifiers.runMenu.back),
+			SplitterKeybind(settings: .skipSplit, title: .SkipSplit, menuItemID: menuIdentifiers.runMenu.skipSplit),
 			SplitterKeybind(settings: .stopTimer, title: .StopTimer, menuItemID: menuIdentifiers.runMenu.stop),
 			SplitterKeybind(settings: .clearTimer, title: .ClearTimer, menuItemID: menuIdentifiers.runMenu.resetRun),
 			//TODO: See if it should be removed permanantly
@@ -157,6 +160,10 @@ extension AppDelegate {
 		case .PrevSplit:
 			return {
 				self.prevHandler()
+			}
+		case .SkipSplit:
+			return {
+				self.skipHandler()
 			}
 		case .StopTimer:
 			return {

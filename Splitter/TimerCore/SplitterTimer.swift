@@ -89,6 +89,14 @@ class SplitterTimer {
 		}
 		return index
 	}
+	
+	///
+	///- NOTE: If it's the last split, it can't be skipped
+	func skipSplit() {
+		lsTimer.skipSplit()
+		splitterRun.updateLayoutState()
+//		NotificationCenter.default.post(name: .splitChanged, object: nil, userInfo: ["current": currentSplit as Any])
+	}
 
 	
 	//TODO: Figure out how resetting run should behave

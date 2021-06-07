@@ -43,6 +43,10 @@ extension ViewController {
 		goToPrevSplit()
 	}
 	
+	@IBAction func skipSplitMenuItem(_ sender: Any?) {
+		skipSplit()
+	}
+	
 	@IBAction func resetRunMenuItem(_ sender: Any) {
 		resetRun()
 	}

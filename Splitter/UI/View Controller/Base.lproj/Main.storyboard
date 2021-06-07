@@ -388,6 +388,12 @@
                                                 <action selector="prevSplitMenuItem:" target="Ady-hI-5gd" id="vLH-ED-sfH"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Skip Split" identifier="skipSplit" id="Wzq-IR-mWj">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="skipSplitMenuItem:" target="Ady-hI-5gd" id="nbi-bz-SOp"/>
+                                            </connections>
+                                        </menuItem>
                                         <menuItem isSeparatorItem="YES" id="n5c-GI-xuS"/>
                                         <menuItem title="Reset Run" identifier="ResetRun" id="M2Y-AP-1Gh">
                                             <modifierMask key="keyEquivalentModifierMask"/>

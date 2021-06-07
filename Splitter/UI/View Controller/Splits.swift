@@ -31,6 +31,12 @@ extension ViewController {
 		splitsTableView.reloadData()
 	}
 	
+	///Skips the current split. Does nothing if it's the last split.
+	func skipSplit() {
+		run.timer.skipSplit()
+		splitsTableView.reloadData()
+	}
+	
 	//MARK: - Adding and Removing Splits
 	func removeSplits(at index: Int? = nil) {
 		if let index = index {

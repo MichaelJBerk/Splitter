@@ -39,6 +39,11 @@ extension AppDelegate {
 			vc.goToPrevSplit()
 		}
 	}
+	func skipHandler() {
+		if let vc = viewController {
+			vc.skipSplit()
+		}
+	}
 	func stopHandler() {
 		if let vc = viewController {
 			vc.stopTimer()
