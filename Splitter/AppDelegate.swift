@@ -85,23 +85,23 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			}
 		}
 	}
-	///Takes the hotkeys set as SplitterKeybinds and registers them for global input monitoring.
-	///
-	///
-	///This method binds each hotkey to their respective action, watching for keypresses even when Splitter isn't the active app.
-	///If global hotkeys are disabled, it unbinds each hotkey
-	///If the app has not been granted Accessibility permissions in System Preferences, it can't really do anything
-	func setGlobalKeybindMonitor() {
-		for k in self.appKeybinds {
-			if let k = k {
-				if Settings.enableGlobalHotkeys {
-					MASShortcutBinder.shared().bindShortcut(withDefaultsKey: k.settings.rawValue, toAction: keybindAction(keybind: k.title))
-				} else {
-					MASShortcutBinder.shared().breakBinding(withDefaultsKey: k.settings.rawValue)
-				}
-			}
-		}
-	}
+//	///Takes the hotkeys set as SplitterKeybinds and registers them for global input monitoring.
+//	///
+//	///
+//	///This method binds each hotkey to their respective action, watching for keypresses even when Splitter isn't the active app.
+//	///If global hotkeys are disabled, it unbinds each hotkey
+//	///If the app has not been granted Accessibility permissions in System Preferences, it can't really do anything
+//	func setGlobalKeybindMonitor() {
+//		for k in self.appKeybinds {
+//			if let k = k {
+//				if Settings.enableGlobalHotkeys {
+//					MASShortcutBinder.shared().bindShortcut(withDefaultsKey: k.settings.rawValue, toAction: keybindAction(keybind: k.title))
+//				} else {
+//					MASShortcutBinder.shared().breakBinding(withDefaultsKey: k.settings.rawValue)
+//				}
+//			}
+//		}
+//	}
 	
 	///Invoked immediately before opening an untitled file.
 	///
@@ -147,8 +147,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		
 		Settings.lastOpenedVersion = otherConstants.version
 		Settings.lastOpenedBuild = otherConstants.build
-		loadDefaultSplitterKeybinds()
-		setGlobalKeybindMonitor()
+		setupKeybinds()
 		
 		DistributedNotificationCenter.default().addObserver(forName: NSNotification.Name("com.apple.accessibility.api"), object: nil, queue: nil) { _ in
 		  DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
