@@ -24,7 +24,7 @@ enum KeybindTitle: String {
 }
 
 ///Keys used to store keybinds in UserDefaults
-enum KeybindSettingsKey: String {
+enum KeybindSettingsKey: String, CaseIterable {
 	
 	case bringToFront = "bringToFront"
 	case startSplitTimer = "startSplitTimer"
@@ -50,8 +50,6 @@ struct SplitterKeybind: Equatable {
 		return nil
 	}
 	
-	
-	
 	init(settings: KeybindSettingsKey, title: KeybindTitle, menuItemID: NSUserInterfaceItemIdentifier?) {
 		self.settings = settings
 		self.title = title
@@ -70,9 +68,7 @@ struct SplitterKeybind: Equatable {
 
 extension AppDelegate {
 	
-	func loadDefaultSplitterKeybinds() {
-		MASShortcutMonitor.shared()?.unregisterAllShortcuts()
-		
+	func makeSplitterKeybinds() {
 		appKeybinds = [
 			SplitterKeybind(settings: .bringToFront, title: .BringToFront, menuItemID: nil),
 			SplitterKeybind(settings: .startSplitTimer, title: .StartSplitTimer, menuItemID: menuIdentifiers.runMenu.StartSplit),
@@ -87,23 +83,29 @@ extension AppDelegate {
 			SplitterKeybind(settings: .showInfoPanel, title: .ShowInfoPanel, menuItemID: menuIdentifiers.runMenu.info),
 			SplitterKeybind(settings: .showColumnOptions, title: .ShowColumnOptions, menuItemID: menuIdentifiers.appearanceMenu.showColumnOptions)
 		]
-		
-		
+	}
+	
+	func setupKeybinds() {
+		makeSplitterKeybinds()
 		var i = 0
 		while i < appKeybinds.count {
-			if let k = appKeybinds[i] {
-				let sView = MASShortcutView()
-				sView.associatedUserDefaultsKey = k.settings.rawValue
-				//Need to edit the array directly, so can't use k
-				appKeybinds[i]!.keybind = sView.shortcutValue
-				let a = keybindAction(keybind: k.title)
-				if appKeybinds[i]?.keybind != nil {
-				}
+			let k = appKeybinds[i]!
+			let settings = k.settings.rawValue
+			if Settings.enableGlobalHotkeys {
+				MASShortcutBinder.shared().bindShortcut(withDefaultsKey: settings, toAction: self.keybindAction(keybind: k.title))
 			}
+			let sView = MASShortcutView()
+			sView.associatedUserDefaultsKey = settings
+			appKeybinds[i]!.keybind = sView.shortcutValue
 			i = i + 1
-			
 		}
 		updateKeyEquivs()
+	}
+	
+	func breakAllKeybinds() {
+		for k in appKeybinds {
+			MASShortcutBinder.shared().breakBinding(withDefaultsKey: k!.settings.rawValue)
+		}
 	}
 	
 	///Refreshes the "Key Equivalents" displayed in the Menu Bar to be the user's custom hotkeys
@@ -117,28 +119,6 @@ extension AppDelegate {
 				}
 			}
 		}
-	}
-	
-	func updateSplitterKeybind(keybind: KeybindTitle, shortcut: MASShortcut) {
-		var i = 0
-		while i < appKeybinds.count {
-			if appKeybinds[i]?.title == keybind {
-				MASShortcutBinder.shared()?.breakBinding(withDefaultsKey: appKeybinds[i]?.settings.rawValue)
-				MASShortcutMonitor.shared()?.unregisterShortcut(appKeybinds[i]?.keybind)
-				
-				appKeybinds[i]?.keybind = shortcut
-				if Settings.enableGlobalHotkeys {
-					MASShortcutBinder.shared()?.bindShortcut(withDefaultsKey: appKeybinds[i]?.settings.rawValue, toAction: keybindAction(keybind: keybind))
-				} else {
-					MASShortcutBinder.shared()?.breakBinding(withDefaultsKey: appKeybinds[i]?.settings.rawValue)
-				}
-				break
-			}
-			i = i + 1
-		}
-		
-		updateKeyEquivs()
-		
 	}
 	
 	
@@ -186,7 +166,6 @@ extension AppDelegate {
 			self.showColumnOptionsHandler()
 			}
 		}
-		return nil
 	}
 	
 	

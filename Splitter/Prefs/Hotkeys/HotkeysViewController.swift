@@ -35,7 +35,7 @@ final class HotkeysViewController: NSViewController, PreferencePane {
 	}
 	
 	override var nibName: NSNib.Name? { "HotkeysViewController" }
-
+	var context: UnsafeMutableRawPointer?
 	override func viewDidLoad() {
 		super.viewDidLoad()
 
@@ -47,7 +47,18 @@ final class HotkeysViewController: NSViewController, PreferencePane {
 		
 		hotkeysTableView.reloadData()
 		globalHotkeysCheck.state = .init(bool: Settings.enableGlobalHotkeys)
-		
+		context = UnsafeMutableRawPointer(observationInfo)
+		for key in KeybindSettingsKey.allCases {
+			
+			NSUserDefaultsController.shared.addObserver(self, forKeyPath: "@values.\(key.rawValue)", options: .new, context: context)
+		}
+	}
+	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
+		if context == self.context {
+//			let c = change[.newKey] as?
+			let setting = KeybindSettingsKey(rawValue: keyPath!)
+			
+		}
 	}
 	
 	override func viewWillDisappear() {
@@ -146,20 +157,12 @@ extension HotkeysViewController: NSTableViewDelegate {
 				let short = cell.cellShortcutView
 				let val = SplitterShortcutValdator()
 				short?.shortcutValidator = val
-				short?.associatedUserDefaultsKey = app.appKeybinds[row]?.settings.rawValue
+				
+				let set = app.appKeybinds[row]!.settings.rawValue
+				short?.associatedUserDefaultsKey = set
 				short?.shortcutValueChange = { (sender) in
-				if short?.shortcutValue != nil {
-					short?.associatedUserDefaultsKey = app.appKeybinds[row]?.settings.rawValue
-						app.updateSplitterKeybind(keybind: app.appKeybinds[row]!.title, shortcut: short!.shortcutValue)
-				}
-				if short?.shortcutValue == nil {
-					
-					let sc = app.appKeybinds[row]!
-					MASShortcutBinder.shared()?.breakBinding(withDefaultsKey: sc.settings.rawValue)
-					MASShortcutMonitor.shared()?.unregisterShortcut(sc.keybind)
-					app.appKeybinds[row]!.keybind = nil
+					app.appKeybinds[row]?.keybind = short?.shortcutValue
 					app.updateKeyEquivs()
-					}
 				}
 				if !(Settings.enableGlobalHotkeys) {
 					if let title = app.appKeybinds[row]?.title, title == .BringToFront {

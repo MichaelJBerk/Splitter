@@ -89,7 +89,10 @@ public struct Settings {
 		}
 		set {
 			UserDefaults.standard.set(newValue, forKey: SettingsKeys.globalHotkeys)
-			AppDelegate.shared?.setGlobalKeybindMonitor()
+			AppDelegate.shared?.setupKeybinds()
+			if !newValue {
+				AppDelegate.shared?.breakAllKeybinds()
+			}
 		}
 	}
 	public static var showWelcomeWindow: Bool {
