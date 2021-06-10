@@ -137,7 +137,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 		}
 		UserDefaults.standard.removeObject(forKey: SettingsKeys.hideTimerButtons)
 		
-		
 		let welcomeWindowItem = NSApp.mainMenu?.item(withIdentifier: menuIdentifiers.windowMenu.welcomeWindowItem)
 		if #available(macOS 10.15, *) {
 			welcomeWindowItem?.isHidden = false
@@ -200,7 +199,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 		}
 		#endif
 		
-//		openWelcomeWindow()
+		#if DEBUG
+		if CommandLine.arguments.contains("-newFile") {
+			Settings.showWelcomeWindow = false
+		}
+		#endif
 	}
 	
 	func addExtraMenuItems() {

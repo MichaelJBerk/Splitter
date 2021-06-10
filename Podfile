@@ -2,14 +2,22 @@
 platform :osx, '10.15'
   use_frameworks!
 
-
-
-target 'Splitter' do
-  # Comment the next line if you don't want to use dynamic frameworks
-#   	pod 'Preferences', '2.0' 
-#   	pod 'AppCenter'
+  def splitter_pods
   	pod 'Sparkle'
   	pod 'MASShortcut'
+  end
+  
+  target 'Splitter' do 
+    splitter_pods
+  end
+  target 'SplitterTests' do 
+    splitter_pods
+  end
+  	
+  
+  target 'SplitterUITests' do 
+    splitter_pods
+  end
   	
 # target 'SplitterTests' do
 # 	 inherit! :search_paths
@@ -17,7 +25,7 @@ target 'Splitter' do
 
 plugin 'cocoapods-keys', {
   :project => "Splitter",
-  :target => "Splitter",
+  :target => ["Splitter", "SplitterTests", "SplitterUITests"],
   :keys => [
     "AppCenter",
     "edKey",
@@ -25,4 +33,4 @@ plugin 'cocoapods-keys', {
     "splitsioclient"
   ]
 }
-end
+# end

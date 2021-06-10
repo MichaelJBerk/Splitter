@@ -1,0 +1,31 @@
+{
+  "configurations" : [
+    {
+      "id" : "D38F000E-4FF6-447B-8A7F-5935169DB9A5",
+      "name" : "Configuration 1",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+
+  },
+  "testTargets" : [
+    {
+      "target" : {
+        "containerPath" : "container:Splitter.xcodeproj",
+        "identifier" : "4A71054824BE267300FA9127",
+        "name" : "SplitterTests"
+      }
+    },
+    {
+      "target" : {
+        "containerPath" : "container:Splitter.xcodeproj",
+        "identifier" : "4AF9E8BE24CE448B00DFD5BE",
+        "name" : "SplitterUITests"
+      }
+    }
+  ],
+  "version" : 1
+}

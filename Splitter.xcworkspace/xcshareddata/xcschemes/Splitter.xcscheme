@@ -29,10 +29,7 @@
       shouldUseLaunchSchemeArgsEnv = "YES">
       <TestPlans>
          <TestPlanReference
-            reference = "container:SplitterTests/TestPlan.xctestplan">
-         </TestPlanReference>
-         <TestPlanReference
-            reference = "container:SplitterUITests/UITestPlan.xctestplan"
+            reference = "container:SplitterTests/TestPlan.xctestplan"
             default = "YES">
          </TestPlanReference>
       </TestPlans>

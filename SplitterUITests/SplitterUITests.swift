@@ -8,6 +8,9 @@
 
 import XCTest
 @testable import Splitter
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
 
 class SplitterUITests: XCTestCase {
 	
@@ -67,10 +70,7 @@ class SplitterUITests: XCTestCase {
 //
 //
 //	}
-	func testnew() {
-		
 	
-	}
 	
 	func testChangeTextColor() {
 		
@@ -97,5 +97,6 @@ class SplitterUITests: XCTestCase {
 		XCUIApplication().windows["Untitled"]/*@START_MENU_TOKEN@*/.tables.containing(.tableColumn, identifier:"ImageColumn").element/*[[".scrollViews",".tables.containing(.tableColumn, identifier:\"Difference\").element",".tables.containing(.tableColumn, identifier:\"CurrentSplit\").element",".tables.containing(.tableColumn, identifier:\"SplitTitle\").element",".tables.containing(.tableColumn, identifier:\"ImageColumn\").element"],[[[-1,4],[-1,3],[-1,2],[-1,1],[-1,0,1]],[[-1,4],[-1,3],[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.typeKey("!", modifierFlags:[.command, .shift])
 						
 	}
+	
 }
 
