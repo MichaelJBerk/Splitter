@@ -9,7 +9,7 @@
 import Foundation
 import Cocoa
 import SwiftyJSON
-
+import Codextended
 extension Notification.Name {
 	static let phaseChanged = Notification.Name("timerPhaseChanged")
 	static let runEdited = Notification.Name("runEdited")
@@ -549,6 +549,68 @@ class SplitterRun: NSObject {
 			editor.selectOnly(index)
 			_ = editor.activeParseAndSetSplitTime(time)
 		}
+		self.updateLayoutState()
+	}
+	
+	func splitToSegmentTime(editor: RunEditor, time: Double, index: Int) -> Double {
+		var newTime: Double = time
+		if index > 0 {
+			let editorStateData = editor.stateAsJson().data(using: .utf8)!
+			let editorState = try! editorStateData.decoded() as RunEditorState
+			let previousSegTime = editorState.segments?[index - 1].splitTime
+			let previousTS = TimeSplit(timeString: previousSegTime)!.totalSec
+			if previousTS > time {
+				newTime = previousTS - time
+			} else if time > previousTS {
+				newTime = time - previousTS
+			}
+//			let d = previousTS.totalSec - time
+//			newTime = abs(previousTS.totalSec - time)
+		}
+		return newTime
+	}
+	
+	func setBestTime(index: Int, time: String) {
+		editRun({ editor in
+			editor.selectOnly(index)
+			//NOTE: This is all assuming we're using split time to show times
+			let newTS = TimeSplit(timeString: time)!
+			let newTime = splitToSegmentTime(editor: editor, time: newTS.totalSec, index: index)
+//			let editorStateString = editor.stateAsJson().data(using: .utf8)!
+//			let editorState = try! editorStateString.decoded() as RunEditorState
+//			var newTS = TimeSplit(timeString: time) ?? TimeSplit()
+//			var timeToSet: Double = newTS.totalSec
+//			if index > 0 {
+//				let previousSeg = editorState.segments?[index - 1].splitTime
+//				let previousTS = TimeSplit(timeString: previousSeg) ?? TimeSplit()
+//				let difference = abs(previousTS.totalSec - newTS.totalSec)
+//				timeToSet = difference
+//			}
+			let hey = editor.activeParseAndSetBestSegmentTime(String(newTime))
+			
+//			print(timer.lsRun.segment(index).comparison(TimeComparison.bestSplitTimes.rawValue).realTime()?.totalSeconds())
+//			if index > 0 {
+//				let segBeforeTime = timer.lsRun.segment(index - 1)
+//				var iter = segBeforeTime.segmentHistory().iter()
+//				var h: SegmentHistoryElementRef?
+//				var n = iter.next()
+//				while n != nil {
+//					h = n
+//					n = iter.next()
+//				}
+//				let segBeforeSeconds = h?.time().realTime()?.totalSeconds()
+//
+//			}
+			
+//			let hey = editor.activeParseAndSetComparisonTime(TimeComparison.bestSplitTimes.rawValue, time)
+//			let hey = editor.activeParseAndSetComparisonTime("best_split_times", time)
+//			let t = TimeSplit(timeString: time)!
+//			let ts = String(t.totalSec)
+//			let hey = editor.activeParseAndSetBestSegmentTime(ts)
+			print("Status: ", hey)
+		})
+		print(timer.lsRun.segment(index).bestSegmentTime().realTime()?.totalSeconds())
+		print(timer.lsRun.segment(index).comparison(TimeComparison.bestSplitTimes.rawValue).realTime()?.totalSeconds())
 		self.updateLayoutState()
 	}
 	

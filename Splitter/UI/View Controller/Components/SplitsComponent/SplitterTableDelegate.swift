@@ -132,6 +132,7 @@ extension ViewController: NSTextFieldDelegate {
 			run.setSplitTime(index: r, time: cellText)
 			run.updateLayoutState()
 		case STVColumnID.bestSplitColumn:
+			run.setBestTime(index: r, time: cellText)
 			break
 		case STVColumnID.previousSplitColumn:
 			break

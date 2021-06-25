@@ -110,6 +110,7 @@
 		4AD44ADF262F4CFB003375C4 /* TitleComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD44ADE262F4CFB003375C4 /* TitleComponent.swift */; };
 		4AD7662E23DA5F9A0052409C /* Files in Frameworks */ = {isa = PBXBuildFile; productRef = 4AD7662D23DA5F9A0052409C /* Files */; };
 		4ADE9226240F1FB900E0D99E /* InfoPopoverTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADE9225240F1FB900E0D99E /* InfoPopoverTabViewController.swift */; };
+		4ADEE0AC267A4EA80028F142 /* RunEditorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADEE0AB267A4EA80028F142 /* RunEditorState.swift */; };
 		4ADFAE4923E4A0760049F57A /* QuickAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADFAE4823E4A0760049F57A /* QuickAlert.swift */; };
 		4AE168A626091CA900A6169B /* LayoutEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE168A526091CA900A6169B /* LayoutEditorViewController.swift */; };
 		4AE2CF3B2631F43100CC6CF7 /* SplitsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE2CF3A2631F43100CC6CF7 /* SplitsComponent.swift */; };
@@ -267,6 +268,7 @@
 		4AD44ADA262F463C003375C4 /* KeyValueComponent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KeyValueComponent.xib; sourceTree = "<group>"; };
 		4AD44ADE262F4CFB003375C4 /* TitleComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleComponent.swift; sourceTree = "<group>"; };
 		4ADE9225240F1FB900E0D99E /* InfoPopoverTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPopoverTabViewController.swift; sourceTree = "<group>"; };
+		4ADEE0AB267A4EA80028F142 /* RunEditorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunEditorState.swift; sourceTree = "<group>"; };
 		4ADFAE4823E4A0760049F57A /* QuickAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickAlert.swift; sourceTree = "<group>"; };
 		4AE168A526091CA900A6169B /* LayoutEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutEditorViewController.swift; sourceTree = "<group>"; };
 		4AE2CF3A2631F43100CC6CF7 /* SplitsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitsComponent.swift; sourceTree = "<group>"; };
@@ -705,6 +707,7 @@
 				4AF9D75B23ECD5110019BC9A /* livesplit_core.h */,
 				4A20C46A26406DB000307993 /* LiveSplitCore Extensions.swift */,
 				4AF9D76423ECD7520019BC9A /* LiveSplitCore.swift */,
+				4ADEE0AB267A4EA80028F142 /* RunEditorState.swift */,
 				4AF9D75D23ECD5110019BC9A /* module.map */,
 			);
 			path = "LiveSplit Core";
@@ -1182,6 +1185,7 @@
 				4AB92AC6261F6CD600E8B814 /* ThemedTextField.swift in Sources */,
 				4AB92ABE261F67B700E8B814 /* ThemedButton.swift in Sources */,
 				4A3BDFA123E4C3B6001EA7FF /* DefaultHotkeys.swift in Sources */,
+				4ADEE0AC267A4EA80028F142 /* RunEditorState.swift in Sources */,
 				4A9CA2A7263A2D4C0054D624 /* Extensions.swift in Sources */,
 				4A388FC525D4AF2B00A63C9E /* PrevNextRow.swift in Sources */,
 				4A45BCF724084B3800F1A223 /* TimeSplitCell.swift in Sources */,
