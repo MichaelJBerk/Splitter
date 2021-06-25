@@ -18,7 +18,7 @@
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" tableStyle="fullWidth" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="31" headerView="jQX-s5-Cwb" viewBased="YES" id="b0F-yO-Zdx" customClass="SplitterTableView" customModule="Splitter" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="494" height="4"/>
+                        <rect key="frame" x="0.0" y="0.0" width="494" height="32"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <size key="intercellSpacing" width="3" height="2"/>
                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>

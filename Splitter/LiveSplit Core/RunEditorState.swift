@@ -39,9 +39,11 @@ struct RunEditorState: Codable {
 	}
 }
 ///Describes the current state of a segment.
-struct RunEditorSegmentState: Codable {
+struct RunEditorSegmentState: Codable, Equatable {
+//	var id = UUID()
+	
 	///The segment's icon encoded as a Data URL. This value is only specified whenever the icon changes. The String itself may be empty. This indicates that there is no icon.
-	var iconChange: String
+	var iconChange: String?
 	///The name of the segment.
 	var name: String
 	///The segment's split time for the active timing method.
@@ -87,7 +89,7 @@ enum RunEditorSelectionState: String, Codable {
 	}
 }
 /// An arbitrary key value pair storing additional information about the category. An example of this may be whether Amiibos are used in this category.
-struct RunEditorCustomVariableState: Codable {
+struct RunEditorCustomVariableState: Codable, Hashable {
 	var value: String
 	var isPermanent: Bool
 	
@@ -116,4 +118,19 @@ struct RunEditorMetadataState: Codable {
 		case platformName = "platform_name"
 		case regionName = "region_name"
 	}
+}
+extension RunEditor {
+	
+	func getState() -> RunEditorState {
+		let jsonData = self.stateAsJson().data(using: .utf8)!
+		do {
+			let state = try jsonData.decoded() as RunEditorState
+			return state
+		} catch {
+			print(self.stateAsJson())
+			print(error)
+			fatalError(error.localizedDescription)
+		}
+	}
+	
 }

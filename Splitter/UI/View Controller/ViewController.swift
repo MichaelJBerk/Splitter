@@ -186,9 +186,18 @@ class ViewController: NSViewController {
 	var hotkeysController: HotkeysViewController?
 	
 	@objc func breakFunc() {
-		let pasteboard = NSPasteboard.general
-		pasteboard.declareTypes([.string], owner: nil)
-		pasteboard.setString(run.layout.stateAsJson(run.timer.lsTimer), forType: .string)
+//		let pasteboard = NSPasteboard.general
+//		pasteboard.declareTypes([.string], owner: nil)
+//		pasteboard.setString(run.layout.stateAsJson(run.timer.lsTimer), forType: .string)
+		let tvc = SplitsEditorViewController.instantiateView(with: run)
+		let win = NSPanel(contentViewController: tvc)
+		win.title = "Split Editor"
+		win.styleMask.insert(.utilityWindow)
+		win.styleMask.insert(.fullSizeContentView)
+		let winC = NSWindowController(window: win)
+		win.appearance = self.view.effectiveAppearance
+		winC.showWindow(nil)
+		
 	}
 	
 	var breakID = NSUserInterfaceItemIdentifier("break")
