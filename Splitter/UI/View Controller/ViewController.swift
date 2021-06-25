@@ -186,17 +186,6 @@ class ViewController: NSViewController {
 	var hotkeysController: HotkeysViewController?
 	
 	@objc func breakFunc() {
-//		let pasteboard = NSPasteboard.general
-//		pasteboard.declareTypes([.string], owner: nil)
-//		pasteboard.setString(run.layout.stateAsJson(run.timer.lsTimer), forType: .string)
-		let tvc = SplitsEditorViewController.instantiateView(with: run)
-		let win = NSPanel(contentViewController: tvc)
-		win.title = "Split Editor"
-		win.styleMask.insert(.utilityWindow)
-		win.styleMask.insert(.fullSizeContentView)
-		let winC = NSWindowController(window: win)
-		win.appearance = self.view.effectiveAppearance
-		winC.showWindow(nil)
 		
 	}
 	
@@ -685,6 +674,31 @@ class ViewController: NSViewController {
 			windowController.showWindow(nil)
 			
 		}
+	}
+	func openSplitsEditorWindow() {
+		let tvc = SplitsEditorViewController.instantiateView(with: run)
+		let win = NSPanel(contentViewController: tvc)
+		win.title = "Split Editor"
+		win.styleMask.insert(.utilityWindow)
+		win.styleMask.insert(.fullSizeContentView)
+		let winC = NSWindowController(window: win)
+		win.appearance = self.view.effectiveAppearance
+		winC.showWindow(nil)
+	}
+	var splitsEditorPopover: NSPopover?
+	
+	func openSplitsEditorPopover() {
+		splitsEditorPopover?.close()
+		let tvc = SplitsEditorViewController.instantiateView(with: run)
+		let pop = NSPopover()
+		pop.delegate = self
+		pop.contentViewController = tvc
+		pop.behavior = .semitransient
+		var columnOptionsFrame = columnOptionsPopoverButton.frame
+		columnOptionsFrame = self.tableButtonsStack.convert(columnOptionsFrame, to: self.view)
+		pop.show(relativeTo: columnOptionsFrame, of: self.view, preferredEdge: .maxX)
+		splitsEditorPopover = pop
+		
 	}
 	
 	override var representedObject: Any? {

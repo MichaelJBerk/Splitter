@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -10,7 +10,6 @@
             <connections>
                 <outlet property="columnOptionsButton" destination="ypb-Uc-5tX" id="hZa-c4-FRe"/>
                 <outlet property="contentView" destination="QLr-sF-5L1" id="dan-F9-DJX"/>
-                <outlet property="minusButton" destination="a7B-XC-QeB" id="680-WC-CIo"/>
                 <outlet property="plusButton" destination="l5I-Qs-qXP" id="fhI-TK-PnZ"/>
             </connections>
         </customObject>
@@ -21,7 +20,7 @@
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ngc-Sv-8GD" customClass="ThemedTextField" customModule="Splitter" customModuleProvider="target">
-                    <rect key="frame" x="-2" y="4" width="299" height="16"/>
+                    <rect key="frame" x="-2" y="4" width="326" height="16"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="16" id="aYc-XY-WYM"/>
                     </constraints>
@@ -35,26 +34,15 @@
                     </connections>
                 </textField>
                 <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B89-EN-CgZ">
-                    <rect key="frame" x="402" y="0.0" width="79" height="20"/>
+                    <rect key="frame" x="429" y="0.0" width="52" height="20"/>
                     <subviews>
-                        <button toolTip="Remove Split" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a7B-XC-QeB" customClass="ThemedButton" customModule="Splitter" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="-1" width="25" height="22"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="25" id="ev0-Mx-eQE"/>
-                                <constraint firstAttribute="height" constant="20" id="iKR-jS-L06"/>
-                            </constraints>
-                            <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hZq-CX-HBX">
-                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                            <accessibility description="Remove Split" identifier="RemoveSplit"/>
-                            <connections>
-                                <action selector="minusButtonClick:" target="QLr-sF-5L1" id="Ik2-bT-Zk4"/>
-                            </connections>
-                        </button>
                         <button toolTip="Add Split" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="l5I-Qs-qXP" customClass="ThemedButton" customModule="Splitter" customModuleProvider="target">
-                            <rect key="frame" x="27" y="-1" width="25" height="22"/>
-                            <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jrP-7t-rkI">
+                            <rect key="frame" x="0.0" y="-1" width="25" height="24"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="22" id="0b5-pa-qSp"/>
+                                <constraint firstAttribute="width" constant="25" id="M1E-Bg-vod"/>
+                            </constraints>
+                            <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSActionTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jrP-7t-rkI">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
@@ -64,7 +52,11 @@
                             </connections>
                         </button>
                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ypb-Uc-5tX" customClass="ThemedButton" customModule="Splitter" customModuleProvider="target">
-                            <rect key="frame" x="54" y="-1" width="25" height="22"/>
+                            <rect key="frame" x="27" y="4" width="25" height="15"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="22" id="Cgj-2J-1MS"/>
+                                <constraint firstAttribute="width" constant="25" id="R9t-nR-Eac"/>
+                            </constraints>
                             <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSQuickLookTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="YuD-xH-Gdj">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
@@ -75,28 +67,19 @@
                         </button>
                     </subviews>
                     <constraints>
-                        <constraint firstItem="ypb-Uc-5tX" firstAttribute="height" secondItem="l5I-Qs-qXP" secondAttribute="height" id="NG7-JE-VFL"/>
-                        <constraint firstItem="ypb-Uc-5tX" firstAttribute="width" secondItem="l5I-Qs-qXP" secondAttribute="width" id="cj3-pI-4jW"/>
+                        <constraint firstItem="l5I-Qs-qXP" firstAttribute="centerY" secondItem="ypb-Uc-5tX" secondAttribute="centerY" id="dGW-Ww-M9u"/>
                         <constraint firstAttribute="height" constant="20" id="lzg-No-Y3D"/>
-                        <constraint firstAttribute="width" constant="79" id="q1f-dj-iJo"/>
-                        <constraint firstItem="l5I-Qs-qXP" firstAttribute="width" secondItem="a7B-XC-QeB" secondAttribute="width" id="qhk-uo-iDL"/>
-                        <constraint firstItem="l5I-Qs-qXP" firstAttribute="height" secondItem="a7B-XC-QeB" secondAttribute="height" id="yaA-8o-0U9"/>
                     </constraints>
                     <visibilityPriorities>
-                        <integer value="1000"/>
                         <integer value="1000"/>
                         <integer value="1000"/>
                     </visibilityPriorities>
                     <customSpacing>
                         <real value="3.4028234663852886e+38"/>
                         <real value="3.4028234663852886e+38"/>
-                        <real value="3.4028234663852886e+38"/>
                     </customSpacing>
                 </stackView>
             </subviews>
-            <constraints>
-                <constraint firstAttribute="height" secondItem="a7B-XC-QeB" secondAttribute="height" id="sRN-rA-gQF"/>
-            </constraints>
             <visibilityPriorities>
                 <integer value="1000"/>
                 <integer value="1000"/>
@@ -107,17 +90,15 @@
             </customSpacing>
             <connections>
                 <outlet property="columnOptionsButton" destination="ypb-Uc-5tX" id="2Pl-1p-6Hb"/>
-                <outlet property="minusButton" destination="a7B-XC-QeB" id="5FO-I5-xD5"/>
                 <outlet property="plusButton" destination="l5I-Qs-qXP" id="FPW-QU-Ibh"/>
                 <outlet property="tableButtonsStack" destination="B89-EN-CgZ" id="vEZ-7w-QNn"/>
                 <outlet property="timeLabel" destination="Ngc-Sv-8GD" id="lDr-Uk-jzV"/>
             </connections>
-            <point key="canvasLocation" x="-296" y="116"/>
+            <point key="canvasLocation" x="-296.5" y="116"/>
         </stackView>
     </objects>
     <resources>
-        <image name="NSAddTemplate" width="14" height="13"/>
-        <image name="NSQuickLookTemplate" width="21" height="13"/>
-        <image name="NSRemoveTemplate" width="14" height="4"/>
+        <image name="NSActionTemplate" width="15" height="15"/>
+        <image name="NSQuickLookTemplate" width="20" height="13"/>
     </resources>
 </document>

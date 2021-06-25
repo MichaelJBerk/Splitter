@@ -47,7 +47,7 @@ class OptionsRow: NSStackView, NibLoadable, SplitterComponent {
 	@IBOutlet var contentView: NSView!
 	
 	@IBOutlet var plusButton: ThemedButton!
-	@IBOutlet var minusButton: ThemedButton!
+//	@IBOutlet var minusButton: ThemedButton!
 	@IBOutlet var columnOptionsButton: ThemedButton!
 	@IBOutlet var tableButtonsStack: NSStackView!
 	@IBOutlet weak var timeLabel: ThemedTextField!
@@ -58,7 +58,7 @@ class OptionsRow: NSStackView, NibLoadable, SplitterComponent {
 		}
 	}
 	@IBAction func plusButtonClick(_ sender: Any) {
-		viewController!.addButtonClick(self)
+		viewController!.openSplitsEditorWindow()
 	}
 	@IBAction func minusButtonClick(_ sender: Any) {
 		viewController!.removeButtonClick(sender)
@@ -71,7 +71,7 @@ class OptionsRow: NSStackView, NibLoadable, SplitterComponent {
 	///Sets whethert the + and - buttons beneath the Table View are enabled or not
 	func addDeleteEnabled(_ enabled: Bool) {
 		plusButton.isEnabled = enabled
-		minusButton.isEnabled = enabled
+//		minusButton.isEnabled = enabled
 	}
 	
 	let showLabelKey = "showLabel"
