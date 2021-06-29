@@ -67,6 +67,26 @@ class SplitsEditorOutlineView: NSOutlineView {
 	override func isRowSelected(_ row: Int) -> Bool {
 		editorState.segments?[row].selected.bool() ?? false
 	}
+	
+	override func moveItem(at fromIndex: Int, inParent oldParent: Any?, to toIndex: Int, inParent newParent: Any?) {
+		var old = fromIndex
+		editor.selectOnly(old)
+		if old > toIndex {
+			while old > toIndex {
+				editor.moveSegmentsUp()
+				old-=1
+			}
+		} else {
+			while old < toIndex {
+				editor.moveSegmentsDown()
+				old+=1
+			}
+		}
+		
+		
+		super.moveItem(at: fromIndex, inParent: oldParent, to: toIndex, inParent: newParent)
+		
+	}
 }
 
 class LayoutEditorTextField: NSTextField {

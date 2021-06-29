@@ -132,11 +132,13 @@ class SplitsEditorViewController: NSViewController, NibLoadable {
 	}
 	#endif
 	
+	let segmentPasteboardType = NSPasteboard.PasteboardType(rawValue: "splitter.runSegment")
 
     override func viewDidLoad() {
 		#if DEBUG
 		addDebugMenu()
 		#endif
+		outlineView.draggingDestinationFeedbackStyle = .regular
 		outlineView.editor = editor
 		NotificationCenter.default.addObserver(forName: .splitsEdited, object: self.outlineView, queue: nil, using: { notification in
 			self.outlineView.reloadData()
@@ -147,6 +149,8 @@ class SplitsEditorViewController: NSViewController, NibLoadable {
 		addButton.menu = plusMenu
 		
         super.viewDidLoad()
+		outlineView.registerForDraggedTypes([segmentPasteboardType])
+		
 		var tableColumnsToAdd = [
 			(column: NSTableColumn(identifier: self.splitTimeColumnIdentifier), name: "Split Time"),
 			(column: NSTableColumn(identifier: segmentTimeColumnIdentifier), name: "Segment Time"),
@@ -210,6 +214,45 @@ extension SplitsEditorViewController: NSOutlineViewDataSource {
 	}
 	func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
 		return false
+	}
+	
+	func outlineView(_ outlineView: NSOutlineView, pasteboardWriterForItem item: Any) -> NSPasteboardWriting? {
+		let segment = item as! RunEditorSegmentState
+		let segs = editorState.segments!
+		guard let index = segs.firstIndex(of: segment) else {return nil}
+		let pasteboardItem = NSPasteboardItem()
+		pasteboardItem.setString("\(index.description)", forType: segmentPasteboardType)
+		return pasteboardItem
+	}
+	func outlineView(_ outlineView: NSOutlineView, validateDrop info: NSDraggingInfo, proposedItem item: Any?, proposedChildIndex index: Int) -> NSDragOperation {
+		let point = info.draggingLocation
+		guard let item = item else {return []}
+		let propSeg = item as! RunEditorSegmentState
+		let proposedIndex = editorState.segments!.firstIndex(of: propSeg)!
+//		if outlineView.isMousePoint(point, in: outlineView.frame) {
+//			outlineView.setDropRow(proposedIndex, dropOperation: .on) 
+			return .move
+//		} else {
+//			return []
+//		}
+	}
+	func outlineView(_ outlineView: NSOutlineView, acceptDrop info: NSDraggingInfo, item: Any?, childIndex index: Int) -> Bool {
+		guard
+			let pasteboardItem = info.draggingPasteboard.pasteboardItems?.first,
+			let pasteboardString = pasteboardItem.string(forType: segmentPasteboardType),
+			let segmentIndexToMove = Int(pasteboardString),
+			let segmentAtNewRow = item as? RunEditorSegmentState,
+			let newRow = editorState.segments?.firstIndex(of: segmentAtNewRow)
+			else {return false}
+		
+		outlineView.beginUpdates()
+		outlineView.moveItem(at: segmentIndexToMove, inParent: nil, to: newRow, inParent: nil)
+		processIconChanges()
+		outlineView.endUpdates()
+		outlineView.reloadData()
+		
+		return true
+		
 	}
 }
 extension SplitsEditorViewController: NSOutlineViewDelegate {
