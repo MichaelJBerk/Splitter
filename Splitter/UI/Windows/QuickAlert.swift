@@ -11,16 +11,19 @@ import Cocoa
 
 class QuickAlert {
 	
-	
+	let alert: NSAlert
 	
 	init(message: String, image: NSImage?) {
-		let alert = NSAlert()
+		alert = NSAlert()
 		alert.messageText = message
 		if let img = image {
 			alert.icon = img
 		}
 		alert.alertStyle = .informational
 		alert.addButton(withTitle: "OK")
+	}
+	
+	func show() {
 		alert.runModal()
 	}
 }

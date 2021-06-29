@@ -9,7 +9,12 @@
         <customObject id="-2" userLabel="File's Owner" customClass="SplitsEditorViewController" customModule="Splitter" customModuleProvider="target">
             <connections>
                 <outlet property="addButton" destination="P00-5O-iMW" id="fJv-dO-jQ0"/>
+                <outlet property="cancelButton" destination="a8q-Uj-3JJ" id="ddh-7o-jrF"/>
+                <outlet property="moveDownButton" destination="rkg-Y8-616" id="1Ps-Xc-cKr"/>
+                <outlet property="moveUpButton" destination="utD-YI-KVs" id="9W7-3j-qs0"/>
+                <outlet property="okButton" destination="WmS-DJ-piX" id="DNH-Th-fjF"/>
                 <outlet property="outlineView" destination="8LC-B2-7du" id="L29-4P-foy"/>
+                <outlet property="removeButton" destination="Y4c-Xh-vEL" id="E5U-tA-HRD"/>
                 <outlet property="view" destination="Hz6-mo-xeY" id="0bl-1N-x8E"/>
             </connections>
         </customObject>
@@ -24,7 +29,7 @@
                         <rect key="frame" x="1" y="1" width="567" height="183"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" tableStyle="inset" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="25" headerView="T8k-LS-CiD" viewBased="YES" indentationPerLevel="13" outlineTableColumn="IIU-D3-jD5" id="8LC-B2-7du">
+                            <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" tableStyle="inset" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="25" headerView="T8k-LS-CiD" viewBased="YES" indentationPerLevel="13" outlineTableColumn="IIU-D3-jD5" id="8LC-B2-7du" customClass="LayoutEditorOutlineView" customModule="Splitter" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="567" height="155"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <size key="intercellSpacing" width="17" height="0.0"/>
@@ -79,13 +84,13 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView identifier="outlineViewTextCell" id="Gj1-Kl-F8o">
-                                                <rect key="frame" x="68" y="0.0" width="85" height="24"/>
+                                                <rect key="frame" x="68" y="0.0" width="107" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZAq-m7-4nO">
-                                                        <rect key="frame" x="0.0" y="4" width="85" height="16"/>
+                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZAq-m7-4nO" customClass="LayoutEditorTextField" customModule="Splitter" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="4" width="107" height="16"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="HPR-Yl-5Rl">
+                                                        <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="HPR-Yl-5Rl">
                                                             <font key="font" usesAppearanceFont="YES"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -130,10 +135,11 @@
                                 <constraint firstAttribute="width" constant="15" id="A4x-PY-Ecn"/>
                                 <constraint firstAttribute="height" constant="15" id="qWZ-5h-cxp"/>
                             </constraints>
-                            <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="0xY-qg-brb">
+                            <buttonCell key="cell" type="smallSquare" title="Add Segment" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="0xY-qg-brb">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
+                            <accessibility description="Add Segment"/>
                             <connections>
                                 <action selector="addButtonAction:" target="-2" id="bFy-jB-rjO"/>
                             </connections>
@@ -144,10 +150,14 @@
                                 <constraint firstAttribute="height" constant="15" id="wCG-CP-C2a"/>
                                 <constraint firstAttribute="width" constant="15" id="yVy-EK-lC9"/>
                             </constraints>
-                            <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="overlaps" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="s2F-WS-Hwu">
+                            <buttonCell key="cell" type="smallSquare" title="Remove Segment" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="s2F-WS-Hwu">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
+                            <accessibility description="Remove Segment"/>
+                            <connections>
+                                <action selector="removeButtonAction:" target="-2" id="v15-Lx-AX9"/>
+                            </connections>
                         </button>
                     </subviews>
                     <visibilityPriorities>
@@ -159,6 +169,69 @@
                         <real value="3.4028234663852886e+38"/>
                     </customSpacing>
                 </stackView>
+                <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="12" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" id="0v7-f4-Ek7">
+                    <rect key="frame" x="435" y="6" width="114" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a8q-Uj-3JJ">
+                            <rect key="frame" x="-7" y="-7" width="76" height="32"/>
+                            <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nD4-Cg-jBG">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                                <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                            </buttonCell>
+                            <connections>
+                                <action selector="cancelButtonAction:" target="-2" id="RjY-iC-xwb"/>
+                            </connections>
+                        </button>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WmS-DJ-piX">
+                            <rect key="frame" x="67" y="-7" width="54" height="32"/>
+                            <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Bwx-o6-cYc">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                                <string key="keyEquivalent" base64-UTF8="YES">
+DQ
+</string>
+                                <modifierMask key="keyEquivalentModifierMask" command="YES"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="okButtonAction:" target="-2" id="XCX-tB-EFs"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="utD-YI-KVs">
+                    <rect key="frame" x="57" y="-1" width="88" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="Move Up" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xlQ-zb-lj9">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="moveUpButtonAction:" target="-2" id="3qY-wi-eOQ"/>
+                    </connections>
+                </button>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rkg-Y8-616">
+                    <rect key="frame" x="137" y="-1" width="106" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="Move Down" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4mD-Ft-l1J">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="moveDownButtonAction:" target="-2" id="nVE-Lt-GI7"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstItem="CZ1-er-cv8" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="5gv-m0-IBW"/>

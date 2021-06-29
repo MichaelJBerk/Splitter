@@ -677,13 +677,16 @@ class ViewController: NSViewController {
 	}
 	func openSplitsEditorWindow() {
 		let tvc = SplitsEditorViewController.instantiateView(with: run)
-		let win = NSPanel(contentViewController: tvc)
-		win.title = "Split Editor"
-		win.styleMask.insert(.utilityWindow)
-		win.styleMask.insert(.fullSizeContentView)
-		let winC = NSWindowController(window: win)
-		win.appearance = self.view.effectiveAppearance
-		winC.showWindow(nil)
+//		let win = NSPanel(contentViewController: tvc)
+//		win.title = "Split Editor"
+//		win.styleMask.insert(.utilityWindow)
+//		win.styleMask.insert(.fullSizeContentView)
+//		win.delegate = document
+//		let winC = NSWindowController(window: win)
+//		winC.document = document
+//		win.appearance = self.view.effectiveAppearance
+//		winC.showWindow(nil)
+		presentAsSheet(tvc)
 	}
 	var splitsEditorPopover: NSPopover?
 	

@@ -521,8 +521,6 @@ class SplitterRun: NSObject {
 	
 	///Set the title for a given segment
 	func setSegTitle(index: Int, title: String) {
-//		timer.resetRun(discardSplits: false)
-		
 		let timerRun = timer.lsTimer.getRun()
 		let oldName = timerRun.segment(index).name()
 		undoManager?.registerUndo(withTarget: self, handler: {$0.setSegTitle(index: index, title: oldName)

@@ -8,9 +8,12 @@
 
 import Foundation
 import Codextended
+
 struct RunEditorState: Codable {
-	///The game's icon encoded as a Data URL. This value is only specified whenever the icon changes. The String itself may be empty. This indicates that there is no icon.
-	var iconChange: String?
+	///The game's icon. This value is only specified whenever the icon has been changed. If it's `nil`, it indicates that no change has been made to the icon.
+	///
+	///The raw data for the icon is acessible via the `rawValue` property
+	var iconChange: IconChangeState?
 	///The number of times this Run has been attempted by the runner. This is mostly just a visual number and has no effect on any history.
 	var attempts: Int?
 	///The name of the game the Run is for.
@@ -35,15 +38,34 @@ struct RunEditorState: Codable {
 		case segments
 		case timingMethod = "timing_method"
 		case comparisonNames = "comparison_names"
-		
+		case metadata
 	}
+	
+	init(from decoder: Decoder) throws {
+//		let container = try decoder.container(keyedBy: CodingKeys.self)
+		
+//		if let ic: IconChangeState = try decoder.decode("icon_change"), ic.rawValue.count > 0 {
+		iconChange = try decoder.decode("icon_change")
+//		}
+
+		attempts = try decoder.decode("attempts")
+		game = try decoder.decode("game")
+		offset = try decoder.decode("offset")
+		category = try decoder.decode("category")
+		timingMethod = try decoder.decode("timing_method")
+		segments = try decoder.decode("segments")
+		comparisonNames = try decoder.decode("comparison_names")
+		metadata = try decoder.decode("metadata")
+	}
+	
 }
 ///Describes the current state of a segment.
 struct RunEditorSegmentState: Codable, Equatable {
-//	var id = UUID()
 	
-	///The segment's icon encoded as a Data URL. This value is only specified whenever the icon changes. The String itself may be empty. This indicates that there is no icon.
-	var iconChange: String?
+	///The game's icon. This value is only specified whenever the icon has been changed. If it's `nil`, it indicates that no change has been made to the icon.
+	///
+	///The raw data for the icon is acessible via the `rawValue` property
+	var iconChange: IconChangeState?
 	///The name of the segment.
 	var name: String
 	///The segment's split time for the active timing method.
@@ -64,6 +86,17 @@ struct RunEditorSegmentState: Codable, Equatable {
 		case bestSegmentTime = "best_segment_time"
 		case comparisonTimes = "comparison_times"
 		case selected, name
+	}
+	
+	init(from decoder: Decoder) throws {
+		
+		iconChange = try decoder.decode("icon_change")
+		splitTime = try decoder.decode("split_time")
+		segmentTime = try decoder.decode("segment_time")
+		bestSegmentTime = try decoder.decode("best_segment_time")
+		comparisonTimes = try decoder.decode("comparison_times")
+		name = try decoder.decode("name")
+		selected = try decoder.decode("selected")
 	}
 }
 ///Describes the segment's selection state.
@@ -112,17 +145,65 @@ struct RunEditorMetadataState: Codable {
 	var usesEmulator: Bool
 	
 	enum CodingKeys: String, CodingKey {
-		case variables
+		case variables = "custom_variables"
 		case usesEmulator = "uses_emulator"
 		case runId = "run_id"
 		case platformName = "platform_name"
 		case regionName = "region_name"
 	}
+	
+	init(from decoder: Decoder) throws {
+		let container = try decoder.container(keyedBy: CodingKeys.self)
+		usesEmulator = try container.decode(Bool.self, forKey: .usesEmulator)
+		runId = try container.decode(String.self, forKey: .runId)
+		platformName = try container.decode(String.self, forKey: .platformName)
+		regionName = try container.decode(String.self, forKey: .regionName)
+		variables = try container.decode([String: RunEditorCustomVariableState].self, forKey: .variables)
+	}
 }
+
+///Type containing the data for a new icon in a RunEditor
+struct IconChangeState: Codable, Equatable, RawRepresentable {
+	init?(rawValue: Data) {
+		self.rawValue = rawValue
+	}
+	
+	let rawValue: Data
+	
+	init(from decoder: Decoder) throws {
+		let container = try decoder.singleValueContainer()
+		var decodeError = DecodingError.valueNotFound(Data.self, .init(codingPath: decoder.codingPath, debugDescription: "HEY, it's an error! "))
+		if var icString = try container.decode(String?.self) {
+			icString = icString.replacingOccurrences(of: "data:;base64,", with: "")
+			let d = Data(base64Encoded: icString)!
+//			if d.count == 0 {
+//				throw decodeError
+////				DecodingError.valueNotFound(Any.self, decoder.codingPath)
+////				let d2 = try container.decode(Int.self)
+////				rawValue = Data()
+//			} else {
+//				rawValue = d
+//
+//			}
+			rawValue = d
+		} else {
+			throw decodeError
+//			rawValue = try container.decode(Data.self)
+		}
+//			container.decodeNil()
+	}
+	func encode(to encoder: Encoder) throws {
+		let b64 = "data:;base64," + rawValue.base64EncodedString()
+		try encoder.encodeSingleValue(b64)
+	}
+}
+
+
 extension RunEditor {
 	
 	func getState() -> RunEditorState {
-		let jsonData = self.stateAsJson().data(using: .utf8)!
+		let jStr = self.stateAsJson()
+		let jsonData = jStr.data(using: .utf8)!
 		do {
 			let state = try jsonData.decoded() as RunEditorState
 			return state
@@ -134,3 +215,4 @@ extension RunEditor {
 	}
 	
 }
+

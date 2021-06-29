@@ -66,6 +66,7 @@ class SplitterDoc: NSDocument {
 	func loadViewController() -> (windowController: NSWindowController, vc: ViewController){
 		let storyboard = NSStoryboard(name: NSStoryboard.Name("Main"), bundle: nil)
 		let windowController = storyboard.instantiateController(withIdentifier: NSStoryboard.SceneIdentifier("Document Window Controller")) as! NSWindowController
+		windowController.window?.delegate = self
 		self.addWindowController(windowController)
 		let vc = windowController.contentViewController as! ViewController
 		vc.document = self
@@ -253,5 +254,11 @@ class SplitterDoc: NSDocument {
 			break
 		}
 		
+	}
+}
+
+extension SplitterDoc: NSWindowDelegate {
+	func windowWillReturnUndoManager(_ window: NSWindow) -> UndoManager? {
+		return undoManager
 	}
 }
