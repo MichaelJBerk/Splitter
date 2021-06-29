@@ -25,19 +25,6 @@ class SplitsEditorViewController: NSViewController, NibLoadable {
 	@IBOutlet weak var removeButton: NSButton!
 	@IBOutlet weak var cancelButton: NSButton!
 	@IBOutlet weak var okButton: NSButton!
-	@IBOutlet var moveUpButton: NSButton!
-	@IBOutlet var moveDownButton: NSButton!
-	
-	@IBAction func moveUpButtonAction(_ sender: NSButton?) {
-		editor.moveSegmentsUp()
-		processIconChanges()
-		outlineView.reloadData()
-	}
-	@IBAction func moveDownButtonAction(_ sender: NSButton?) {
-		editor.moveSegmentsDown()
-		processIconChanges()
-		outlineView.reloadData()
-	}
 	
 	@IBAction func cancelButtonAction(_ sender: NSButton?) {
 		editor.dispose()
@@ -228,13 +215,11 @@ extension SplitsEditorViewController: NSOutlineViewDataSource {
 		let point = info.draggingLocation
 		guard let item = item else {return []}
 		let propSeg = item as! RunEditorSegmentState
-		let proposedIndex = editorState.segments!.firstIndex(of: propSeg)!
-//		if outlineView.isMousePoint(point, in: outlineView.frame) {
-//			outlineView.setDropRow(proposedIndex, dropOperation: .on) 
+		if outlineView.isMousePoint(point, in: outlineView.frame) {
 			return .move
-//		} else {
-//			return []
-//		}
+		} else {
+			return []
+		}
 	}
 	func outlineView(_ outlineView: NSOutlineView, acceptDrop info: NSDraggingInfo, item: Any?, childIndex index: Int) -> Bool {
 		guard

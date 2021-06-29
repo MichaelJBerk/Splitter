@@ -10,8 +10,6 @@
             <connections>
                 <outlet property="addButton" destination="P00-5O-iMW" id="fJv-dO-jQ0"/>
                 <outlet property="cancelButton" destination="a8q-Uj-3JJ" id="ddh-7o-jrF"/>
-                <outlet property="moveDownButton" destination="rkg-Y8-616" id="1Ps-Xc-cKr"/>
-                <outlet property="moveUpButton" destination="utD-YI-KVs" id="9W7-3j-qs0"/>
                 <outlet property="okButton" destination="WmS-DJ-piX" id="DNH-Th-fjF"/>
                 <outlet property="outlineView" destination="8LC-B2-7du" id="L29-4P-foy"/>
                 <outlet property="removeButton" destination="Y4c-Xh-vEL" id="E5U-tA-HRD"/>
@@ -210,28 +208,6 @@ DQ
                         <real value="3.4028234663852886e+38"/>
                     </customSpacing>
                 </stackView>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="utD-YI-KVs">
-                    <rect key="frame" x="57" y="-1" width="88" height="32"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="push" title="Move Up" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xlQ-zb-lj9">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="moveUpButtonAction:" target="-2" id="3qY-wi-eOQ"/>
-                    </connections>
-                </button>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rkg-Y8-616">
-                    <rect key="frame" x="137" y="-1" width="106" height="32"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="push" title="Move Down" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="4mD-Ft-l1J">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="moveDownButtonAction:" target="-2" id="nVE-Lt-GI7"/>
-                    </connections>
-                </button>
             </subviews>
             <constraints>
                 <constraint firstItem="CZ1-er-cv8" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="5gv-m0-IBW"/>
