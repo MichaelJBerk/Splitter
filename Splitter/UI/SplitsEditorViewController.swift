@@ -20,7 +20,7 @@ class SplitsEditorViewController: NSViewController, NibLoadable {
 	var segmentIcons: [NSImage?] = []
 	
 	var editorSelected: Int? = nil
-	@IBOutlet weak var outlineView: LayoutEditorOutlineView!
+	@IBOutlet weak var outlineView: SplitsEditorOutlineView!
 	@IBOutlet weak var addButton: NSButton!
 	@IBOutlet weak var removeButton: NSButton!
 	@IBOutlet weak var cancelButton: NSButton!
@@ -141,7 +141,7 @@ class SplitsEditorViewController: NSViewController, NibLoadable {
 		NotificationCenter.default.addObserver(forName: .splitsEdited, object: self.outlineView, queue: nil, using: { notification in
 			self.outlineView.reloadData()
 		})
-		var plusMenu = NSMenu(title: "")
+		let plusMenu = NSMenu(title: "")
 		plusMenu.addItem(withTitle: "Add Segment Below", action: #selector(addSegmentBelow), keyEquivalent: "")
 		plusMenu.addItem(withTitle: "Add Segment Above", action: #selector(addSegmentAbove), keyEquivalent: "")
 		addButton.menu = plusMenu
@@ -248,16 +248,6 @@ extension SplitsEditorViewController: NSOutlineViewDelegate {
 					}
 				}
 				cell.imageView?.image = image
-				/* TODO: Implement temporary icon storage
-					- Currently, we access the run's icon
-					- However, if a segment is added, or the icon changed, it won't be in the run!
-				*/
-
-//				if let segIcon = run.icon(for: index) {
-//					cell.imageView?.image = segIcon
-//				} else {
-//					cell.imageView?.image = .gameControllerIcon
-//				}
 				return cell
 			}
 			
@@ -293,117 +283,26 @@ extension SplitsEditorViewController: NSOutlineViewDelegate {
 			editorSelected = selection
 		}
 	}
-//	func outlineViewSelectionIsChanging(_ notification: Notification) {
-//		let selection = outlineView.selectedRow
-//		if selection < 0 {
-//			editor.unselect(selection)
-//		}
-//	}
-	
 }
 
 extension SplitsEditorViewController: NSTextFieldDelegate {
 	public func controlTextDidEndEditing(_ obj: Notification) {
 		if let textfield = obj.object as? LayoutEditorTextField {
-			let row = outlineView.row(for: textfield)
-			
+			let text = textfield.stringValue
 			let id = textfield.column!
-			set(textfield.stringValue, for: id, row: row)
-		}
-	}
-	func set(_ string: String, for column: NSUserInterfaceItemIdentifier, row: Int) {
-		let colIndex = outlineView.column(withIdentifier: column)
-		var setFunc: (SplitterRun, String) -> () = {_, _ in}
-		var oldString: String = ""
-		let segments = editorState.segments!
-		let segmentRow = segments[row]
-		var actionTitle: String = ""
-		switch column {
-		case self.nameColumnIdentifier:
-			oldString = segmentRow.name
-			setFunc = {self.editor.activeSetName($1)}
-			actionTitle = "Set Segment Name"
-		case self.splitTimeColumnIdentifier:
-			oldString = segmentRow.splitTime
-			setFunc = {_ = self.editor.activeParseAndSetSplitTime($1)}
-			actionTitle = "Set Split Time"
-		case self.segmentTimeColumnIdentifier:
-			oldString = segmentRow.segmentTime
-			setFunc = {_ = self.editor.activeParseAndSetSegmentTime($1)}
-			actionTitle = "Set Segment Time"
-		case self.bestSegmentTimeColumnIdentifier:
-			oldString = segmentRow.bestSegmentTime
-			setFunc = {_ = self.editor.activeParseAndSetBestSegmentTime($1)}
-			actionTitle = "Set Best Segment Time"
-		default:
-			break
-		}
-		setFunc(run, string)
-		NotificationCenter.default.post(name: .splitsEdited, object: outlineView)
-	}
-}
-
-class LayoutEditorTextField: NSTextField {
-	var column: NSUserInterfaceItemIdentifier!
-}
-
-class LayoutEditorOutlineView: NSOutlineView {
-	var editor: RunEditor!
-	var editorState: RunEditorState {
-		editor.getState()
-	}
-	
-	override func selectRowIndexes(_ indexes: IndexSet, byExtendingSelection extend: Bool) {
-		for row in 0..<numberOfRows {
-			let rowView = rowView(atRow: row, makeIfNecessary: false)
-			if indexes.contains(row) {
-				if extend {
-					editor.selectAdditionally(row)
-				} else {
-					editor.selectOnly(row)
-				}
-				rowView?.isSelected = true
-			} else {
-				editor.unselect(row)
-				rowView?.isSelected = false
+			switch id {
+			case self.nameColumnIdentifier:
+				self.editor.activeSetName(text)
+			case self.splitTimeColumnIdentifier:
+				_ = self.editor.activeParseAndSetSplitTime(text)
+			case self.segmentTimeColumnIdentifier:
+				_ = self.editor.activeParseAndSetSegmentTime(text)
+			case self.bestSegmentTimeColumnIdentifier:
+				_ = self.editor.activeParseAndSetBestSegmentTime(text)
+			default:
+				break
 			}
+			NotificationCenter.default.post(name: .splitsEdited, object: outlineView)
 		}
-	}
-	override var selectedRowIndexes: IndexSet {
-		var indices = IndexSet()
-		if let segments = editorState.segments {
-			for i in 0..<segments.count {
-				if segments[i].selected.bool() {
-					indices.insert(i)
-				}
-			}
-		}
-		return indices
-	}
-	override var numberOfSelectedRows: Int {
-		return selectedRowIndexes.count
-	}
-	
-	override func deselectRow(_ row: Int) {
-		editor.unselect(row)
-	}
-	var fullIndexSet: IndexSet {
-		let array = Array(0...numberOfRows-1)
-		let iSet = IndexSet(array)
-		return iSet
-	}
-	
-	override func selectAll(_ sender: Any?) {
-		selectRowIndexes(fullIndexSet, byExtendingSelection: false)
-	}
-	override func deselectAll(_ sender: Any?) {
-		selectRowIndexes(IndexSet(), byExtendingSelection: false)
-	}
-	
-	override var selectedRow: Int {
-		editorState.segments?.firstIndex(where:{$0.selected.bool()}) ?? -1
-	}
-	override func isRowSelected(_ row: Int) -> Bool {
-		editorState.segments?[row].selected.bool() ?? false
 	}
 }

@@ -29,7 +29,7 @@
                         <rect key="frame" x="1" y="1" width="567" height="183"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" tableStyle="inset" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="25" headerView="T8k-LS-CiD" viewBased="YES" indentationPerLevel="13" outlineTableColumn="IIU-D3-jD5" id="8LC-B2-7du" customClass="LayoutEditorOutlineView" customModule="Splitter" customModuleProvider="target">
+                            <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" tableStyle="inset" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="25" headerView="T8k-LS-CiD" viewBased="YES" indentationPerLevel="13" outlineTableColumn="IIU-D3-jD5" id="8LC-B2-7du" customClass="SplitsEditorOutlineView" customModule="Splitter" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="567" height="155"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <size key="intercellSpacing" width="17" height="0.0"/>

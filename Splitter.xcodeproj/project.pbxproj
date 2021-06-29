@@ -64,6 +64,7 @@
 		4A5F10AE23CFAA1F00DA043B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A5F10AD23CFAA1F00DA043B /* Assets.xcassets */; };
 		4A61438424801A28007C38E0 /* ColorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A61438324801A28007C38E0 /* ColorsView.swift */; };
 		4A61438624801A37007C38E0 /* ColorsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A61438524801A37007C38E0 /* ColorsView.xib */; };
+		4A669373268BBB4400FEF745 /* SplitsEditorOutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A669372268BBB4400FEF745 /* SplitsEditorOutlineView.swift */; };
 		4A66A43023DE2682005952FA /* ImageButtonCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A66A42F23DE2682005952FA /* ImageButtonCellView.swift */; };
 		4A66A43223DE2C88005952FA /* SplitTableColumnIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A66A43123DE2C88005952FA /* SplitTableColumnIdentifiers.swift */; };
 		4A6726EA23F05D17006F4BC4 /* LiveSplit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A617EBD23EBC65C0005D60E /* LiveSplit.swift */; };
@@ -228,6 +229,7 @@
 		4A61438324801A28007C38E0 /* ColorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsView.swift; sourceTree = "<group>"; };
 		4A61438524801A37007C38E0 /* ColorsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorsView.xib; sourceTree = "<group>"; };
 		4A617EBD23EBC65C0005D60E /* LiveSplit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveSplit.swift; sourceTree = "<group>"; };
+		4A669372268BBB4400FEF745 /* SplitsEditorOutlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitsEditorOutlineView.swift; sourceTree = "<group>"; };
 		4A66A42F23DE2682005952FA /* ImageButtonCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButtonCellView.swift; sourceTree = "<group>"; };
 		4A66A43123DE2C88005952FA /* SplitTableColumnIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitTableColumnIdentifiers.swift; sourceTree = "<group>"; };
 		4A6A3BDF23CD1C39002C20AE /* GlobalKeybindPrefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalKeybindPrefs.swift; sourceTree = "<group>"; };
@@ -747,6 +749,7 @@
 		4AFCC52423C63F3E002216F1 /* UI */ = {
 			isa = PBXGroup;
 			children = (
+				4A669372268BBB4400FEF745 /* SplitsEditorOutlineView.swift */,
 				4A01B800268631FC00F15A50 /* SplitsEditorViewController.swift */,
 				4A01B801268631FC00F15A50 /* SplitsEditorViewController.xib */,
 				4A0981B024E484BE00E44792 /* Splits.ioAccount */,
@@ -1159,6 +1162,7 @@
 				4A01B805268632D400F15A50 /* NibLoadable.swift in Sources */,
 				4A18662E23C51D2800FEEE54 /* UISettings.swift in Sources */,
 				4AD44ADF262F4CFB003375C4 /* TitleComponent.swift in Sources */,
+				4A669373268BBB4400FEF745 /* SplitsEditorOutlineView.swift in Sources */,
 				4AA3DAB423E23DA900ADFA4A /* IconButton.swift in Sources */,
 				4A18663023C5257800FEEE54 /* MenuItemConstants.swift in Sources */,
 				4A09E2A824D75D6B0013D7BC /* CategoryViewController.swift in Sources */,
