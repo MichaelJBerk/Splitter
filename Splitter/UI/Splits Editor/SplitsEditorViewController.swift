@@ -10,21 +10,15 @@ import Cocoa
 
 class SplitsEditorViewController: NSViewController, NibLoadable {
 	
-	var run: SplitterRun!
-	var editor: RunEditor!
-	var editorState: RunEditorState {
-		editor.getState()
-	}
-	
-	
-	var segmentIcons: [NSImage?] = []
-	
-	var editorSelected: Int? = nil
+	//MARK: - Controls
 	@IBOutlet weak var outlineView: SplitsEditorOutlineView!
 	@IBOutlet weak var addButton: NSButton!
 	@IBOutlet weak var removeButton: NSButton!
 	@IBOutlet weak var cancelButton: NSButton!
 	@IBOutlet weak var okButton: NSButton!
+	
+	
+	//MARK: Control Actions
 	
 	@IBAction func cancelButtonAction(_ sender: NSButton?) {
 		editor.dispose()
@@ -42,20 +36,22 @@ class SplitsEditorViewController: NSViewController, NibLoadable {
 		removeSegments()
 	}
 	
-	
 	@IBAction func addButtonAction(_ sender: NSButton?) {
 		addSegmentBelow()
 	}
 	
-	static func instantiateView(with run: SplitterRun) -> SplitsEditorViewController {
-		let vc: SplitsEditorViewController = SplitsEditorViewController(nibName: self.nibName, bundle: nil)
-		vc.run = run
-		let editor = RunEditor(run.timer.lsTimer.getRun().clone())
-		vc.editor = editor
-		vc.processIconChanges()
-		return vc
-	}
+	//MARK: - State
 	
+	var run: SplitterRun!
+	var editor: RunEditor!
+	var editorState: RunEditorState {
+		editor.getState()
+	}
+	var segmentIcons: [NSImage?] = []
+	var editorSelected: Int? = nil
+	
+	//MARK: - Columns/Segments
+	//MARK: Columns
 	var imageColumnIdentifier = NSUserInterfaceItemIdentifier("imageColumn")
 	var nameColumnIdentifier = NSUserInterfaceItemIdentifier("nameColumn")
 	var splitTimeColumnIdentifier = NSUserInterfaceItemIdentifier("splitTimeColumn")
@@ -66,6 +62,30 @@ class SplitsEditorViewController: NSViewController, NibLoadable {
 		return NSUserInterfaceItemIdentifier(comparison + "Column")
 	}
 	
+	//MARK: Segment Icons
+	func processIconChanges(completion: () -> () = {}) {
+		let state = editorState
+		let segments = state.segments!
+		for i in 0..<segments.count {
+			while i >= segmentIcons.count {
+				segmentIcons.append(nil)
+			}
+			if let iconChange = segments[i].iconChange {
+				let newImage = NSImage(data: iconChange.rawValue)
+				segmentIcons[i] = newImage
+			}
+		}
+		completion()
+	}
+	@objc func iconChanged(_ sender: EditableSegmentIconView) {
+		let image = sender.image
+		iconPicked(image, for: sender.row)
+	}
+	//MARK: Segments
+	
+	///Pasteboard type for segments in the outline view
+	let segmentPasteboardType = NSPasteboard.PasteboardType(rawValue: "splitter.runSegment")
+	
 	func getSegment(_ index: Int) -> RunEditorSegmentState {
 		let segments = editorState.segments!
 		return segments[index]
@@ -73,26 +93,78 @@ class SplitsEditorViewController: NSViewController, NibLoadable {
 	
 	@objc func addSegmentBelow() {
 		editor.insertSegmentBelow()
-		didAddSegment()
+		processIconChanges()
+		outlineView.reloadData()
 	}
 	@objc func addSegmentAbove() {
 		editor.insertSegmentAbove()
-		didAddSegment()
+		processIconChanges()
+		outlineView.reloadData()
 	}
 	func removeSegments() {
 		editor.removeSegments()
-		didAddSegment()
-	}
-	func didAddSegment() {
 		processIconChanges()
-			outlineView.reloadData()
+		outlineView.reloadData()
 	}
+	//MARK: - Instantiation
+	
+	static func instantiateView(with run: SplitterRun) -> SplitsEditorViewController {
+		let vc: SplitsEditorViewController = SplitsEditorViewController(nibName: self.nibName, bundle: nil)
+		vc.run = run
+		let editor = RunEditor(run.timer.lsTimer.getRun().clone())
+		vc.editor = editor
+		vc.processIconChanges()
+		return vc
+	}
+	
+	override func viewDidLoad() {
+		#if DEBUG
+		addDebugMenu()
+		#endif
+		outlineView.draggingDestinationFeedbackStyle = .regular
+		outlineView.editor = editor
+		NotificationCenter.default.addObserver(forName: .splitsEdited, object: self.outlineView, queue: nil, using: { notification in
+			self.outlineView.reloadData()
+		})
+		let plusMenu = NSMenu(title: "")
+		plusMenu.addItem(withTitle: "Add Segment Below", action: #selector(addSegmentBelow), keyEquivalent: "")
+		plusMenu.addItem(withTitle: "Add Segment Above", action: #selector(addSegmentAbove), keyEquivalent: "")
+		addButton.menu = plusMenu
+		
+		super.viewDidLoad()
+		outlineView.registerForDraggedTypes([segmentPasteboardType])
+		
+		var tableColumnsToAdd = [
+			(column: NSTableColumn(identifier: self.splitTimeColumnIdentifier), name: "Split Time"),
+			(column: NSTableColumn(identifier: segmentTimeColumnIdentifier), name: "Segment Time"),
+			(column: NSTableColumn(identifier: bestSegmentTimeColumnIdentifier), name: "Best Segment Time")
+		]
+		editorState.comparisonNames?.forEach({ name in
+			tableColumnsToAdd.append((column: NSTableColumn(identifier: columnIdentifierFor(comparison: name)), name: name))
+		})
+		for column in tableColumnsToAdd {
+			column.column.title = column.name
+			outlineView.addTableColumn(column.column)
+		}
+		let bestIndex = outlineView.column(withIdentifier: bestSegmentTimeColumnIdentifier)
+		outlineView.tableColumns[bestIndex].width = 110
+		
+		// Do view setup here.
+	}
+	
+	//MARK: - Debug Stuff
 	#if DEBUG
 	func addDebugMenu() {
 		let debugMenu = NSMenu(title: "Debug")
 		debugMenu.addItem(withTitle: "Copy Editor State", action: #selector(copyEditorState), keyEquivalent: "")
 		debugMenu.addItem(withTitle: "Icon Set", action: #selector(debugIconSet), keyEquivalent: "")
+		debugMenu.addItem(withTitle: "Print Width", action: #selector(printWidths), keyEquivalent: "")
 		view.menu = debugMenu
+	}
+	@objc func printWidths() {
+		for column in outlineView.tableColumns {
+			print(column.title, ":", column.width.description)
+		}
 	}
 	
 	@objc func copyEditorState() {
@@ -118,72 +190,16 @@ class SplitsEditorViewController: NSViewController, NibLoadable {
 		
 	}
 	#endif
-	
-	let segmentPasteboardType = NSPasteboard.PasteboardType(rawValue: "splitter.runSegment")
-
-    override func viewDidLoad() {
-		#if DEBUG
-		addDebugMenu()
-		#endif
-		outlineView.draggingDestinationFeedbackStyle = .regular
-		outlineView.editor = editor
-		NotificationCenter.default.addObserver(forName: .splitsEdited, object: self.outlineView, queue: nil, using: { notification in
-			self.outlineView.reloadData()
-		})
-		let plusMenu = NSMenu(title: "")
-		plusMenu.addItem(withTitle: "Add Segment Below", action: #selector(addSegmentBelow), keyEquivalent: "")
-		plusMenu.addItem(withTitle: "Add Segment Above", action: #selector(addSegmentAbove), keyEquivalent: "")
-		addButton.menu = plusMenu
-		
-        super.viewDidLoad()
-		outlineView.registerForDraggedTypes([segmentPasteboardType])
-		
-		var tableColumnsToAdd = [
-			(column: NSTableColumn(identifier: self.splitTimeColumnIdentifier), name: "Split Time"),
-			(column: NSTableColumn(identifier: segmentTimeColumnIdentifier), name: "Segment Time"),
-			(column: NSTableColumn(identifier: bestSegmentTimeColumnIdentifier), name: "Best Segment Time")
-		]
-		editorState.comparisonNames?.forEach({ name in
-			tableColumnsToAdd.append((column: NSTableColumn(identifier: columnIdentifierFor(comparison: name)), name: name))
-		})
-		for column in tableColumnsToAdd {
-			column.column.title = column.name
-			outlineView.addTableColumn(column.column)
-		}
-		let bestIndex = outlineView.column(withIdentifier: bestSegmentTimeColumnIdentifier)
-		outlineView.tableColumns[bestIndex].width = 110
-		
-        // Do view setup here.
-    }
-	
-	override func viewWillDisappear() {
-		super.viewWillDisappear()
-	}
-	
-	let dataValues = [
-		["V1", "V2"],
-		["V1", "V2"],
-		["V1", "V2"]
-	]
-	let dataKeys = [
-		"Key1",
-		"Key2",
-		"Key3",
-	]
 }
 
-extension NSTableColumn {
-	convenience init(rawIdentifier: String) {
-		self.init(identifier: NSUserInterfaceItemIdentifier(rawIdentifier))
-	}
-}
-
+//MARK: - Data Source
 extension SplitsEditorViewController: NSOutlineViewDataSource {
 	
-	
-	// You must give each row a unique identifier, referred to as `item` by the outline view
-	// item == nil means it's the "root" row of the outline view, which is not visible
+	//Tell how many children a given item has
+	//Since splits can't have any children yet, it just returns the total number of items
 	func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
+		// Each row has a unique identifier, referred to as `item` by the outline view
+		// item == nil means it's the "root" row of the outline view, which is not visible
 		if item == nil {
 			let segment = getSegment(index)
 			return segment
@@ -191,7 +207,8 @@ extension SplitsEditorViewController: NSOutlineViewDataSource {
 			return -1
 		}
 	}
-	// Tell how many children each row has
+	//Tell how many children each row has
+	//In this case, it's always zero, since we don't support subsplits yet
 	func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
 		if item == nil {
 			return editorState.segments?.count ?? 0
@@ -199,10 +216,13 @@ extension SplitsEditorViewController: NSOutlineViewDataSource {
 			return 0
 		}
 	}
+	
+	//Since we don't support subsplits yet, no items are expandable
 	func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
 		return false
 	}
 	
+	//MARK: Dragging
 	func outlineView(_ outlineView: NSOutlineView, pasteboardWriterForItem item: Any) -> NSPasteboardWriting? {
 		let segment = item as! RunEditorSegmentState
 		let segs = editorState.segments!
@@ -213,8 +233,7 @@ extension SplitsEditorViewController: NSOutlineViewDataSource {
 	}
 	func outlineView(_ outlineView: NSOutlineView, validateDrop info: NSDraggingInfo, proposedItem item: Any?, proposedChildIndex index: Int) -> NSDragOperation {
 		let point = info.draggingLocation
-		guard let item = item else {return []}
-		let propSeg = item as! RunEditorSegmentState
+		guard item != nil else {return []}
 		if outlineView.isMousePoint(point, in: outlineView.frame) {
 			return .move
 		} else {
@@ -229,38 +248,16 @@ extension SplitsEditorViewController: NSOutlineViewDataSource {
 			let segmentAtNewRow = item as? RunEditorSegmentState,
 			let newRow = editorState.segments?.firstIndex(of: segmentAtNewRow)
 			else {return false}
-		
 		outlineView.beginUpdates()
 		outlineView.moveItem(at: segmentIndexToMove, inParent: nil, to: newRow, inParent: nil)
 		processIconChanges()
 		outlineView.endUpdates()
 		outlineView.reloadData()
-		
 		return true
-		
 	}
 }
+//MARK: - Outline View Delegate
 extension SplitsEditorViewController: SplitsEditorOutlineViewDelegate {
-	
-	func processIconChanges(completion: () -> () = {}) {
-		let state = editorState
-		let segments = state.segments!
-		for i in 0..<segments.count {
-			while i >= segmentIcons.count {
-				segmentIcons.append(nil)
-			}
-			if let iconChange = segments[i].iconChange {
-				let newImage = NSImage(data: iconChange.rawValue)
-				segmentIcons[i] = newImage
-			}
-		}
-		completion()
-		//gameicon change...
-	}
-	@objc func iconChanged(_ sender: CellImageWell) {
-		let image = sender.image
-		iconPicked(image, for: sender.row)
-	}
 	
 	func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
 		if let item = item as? RunEditorSegmentState {
@@ -282,7 +279,7 @@ extension SplitsEditorViewController: SplitsEditorOutlineViewDelegate {
 				cell.imageView?.image = image
 				cell.imageView?.target = self
 				cell.imageView?.action = #selector(iconChanged(_:))
-				let imageView = cell.imageView as! CellImageWell
+				let imageView = cell.imageView as! EditableSegmentIconView
 				imageView.run = self.run
 				imageView.row = index
 				imageView.delegate = self
@@ -304,7 +301,7 @@ extension SplitsEditorViewController: SplitsEditorOutlineViewDelegate {
 			default:
 				return nil
 			}
-			let tf = cell.textField as! LayoutEditorTextField
+			let tf = cell.textField as! SplitsEditorTextField
 			tf.column = tableColumn!.identifier
 			tf.delegate = self
 			tf.stringValue = cellText
@@ -322,7 +319,9 @@ extension SplitsEditorViewController: SplitsEditorOutlineViewDelegate {
 		}
 	}
 }
-extension SplitsEditorViewController: SplitsEditorSegmentIconDelegate {
+
+//MARK: - Segment Icon Delegate
+extension SplitsEditorViewController: EditableSegmentIconViewDelegate {
 	func iconPicked(_ icon: NSImage?, for row: Int) {
 		if let image = icon {
 			image.toLSImage({ptr, len in
@@ -334,13 +333,11 @@ extension SplitsEditorViewController: SplitsEditorSegmentIconDelegate {
 		processIconChanges()
 		outlineView.reloadData()
 	}
-	
-	
 }
-
+//MARK: - Text Field Delegate
 extension SplitsEditorViewController: NSTextFieldDelegate {
 	public func controlTextDidEndEditing(_ obj: Notification) {
-		if let textfield = obj.object as? LayoutEditorTextField {
+		if let textfield = obj.object as? SplitsEditorTextField {
 			let text = textfield.stringValue
 			let id = textfield.column!
 			switch id {
@@ -360,17 +357,3 @@ extension SplitsEditorViewController: NSTextFieldDelegate {
 	}
 }
 
-//class SegmentIconImageVew: ThemedImage {
-//	var row: Int!
-//	var delegate: SplitsEditorSegmentIconDelegate!
-//	override var themeable: Bool {
-//		get {
-//			return false
-//		} set {}
-//	}
-//}
-//
-
-protocol SplitsEditorSegmentIconDelegate {
-	func iconPicked(_ icon: NSImage?, for row: Int)
-}

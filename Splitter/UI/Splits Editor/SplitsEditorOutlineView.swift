@@ -83,14 +83,12 @@ class SplitsEditorOutlineView: NSOutlineView {
 			}
 		}
 		
-		
 		super.moveItem(at: fromIndex, inParent: oldParent, to: toIndex, inParent: newParent)
 		
 	}
 	var splitsDelegate: SplitsEditorOutlineViewDelegate {
 		delegate as! SplitsEditorOutlineViewDelegate
 	}
-	
 	
 	///Used to make the segment icons selectable
 	override func validateProposedFirstResponder(_ responder: NSResponder, for event: NSEvent?) -> Bool {
@@ -105,10 +103,6 @@ class SplitsEditorOutlineView: NSOutlineView {
 	}
 }
 
-class LayoutEditorTextField: NSTextField {
-	var column: NSUserInterfaceItemIdentifier!
-}
+///This protocol doesn't do anything special right now, but I made it at one point, and it could save time in the future, so it's here.
 @objc
-protocol SplitsEditorOutlineViewDelegate: NSOutlineViewDelegate {
-	@objc optional func editorOutlineView(_ editorOutlineView: SplitsEditorOutlineView, didClick item: Any?, at column: NSTableColumn)
-}
+protocol SplitsEditorOutlineViewDelegate: NSOutlineViewDelegate {}

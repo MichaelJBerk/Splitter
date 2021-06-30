@@ -8,10 +8,8 @@
 
 import Cocoa
 
-class CellImageWell: ThemedImage {
-	var delegate: SplitsEditorSegmentIconDelegate!
-	
-	@IBOutlet var splitController: ViewController!
+class EditableSegmentIconView: ThemedImage {
+	var delegate: EditableSegmentIconViewDelegate!
 	var row: Int!
 	
 	required init?(coder: NSCoder) {
@@ -34,12 +32,10 @@ class CellImageWell: ThemedImage {
 		}
 	}
 	
-	@objc func imageChanged(_ sender: CellImageWell) {
+	@objc func imageChanged(_ sender: EditableSegmentIconView) {
 		let image = sender.image
 		delegate.iconPicked(image, for: row)
 		setPlaceholderImage()
-//		run.setIcon(for: row, image: self.image)
-//		setPlaceholderImage()
 	}
 	
 	///Used in right-click menu
@@ -51,15 +47,12 @@ class CellImageWell: ThemedImage {
 		setImage()
 	}
 }
-extension CellImageWell {
+extension EditableSegmentIconView {
 	
 	override func mouseDown(with event: NSEvent) {
 		if event.type == .leftMouseDown, event.clickCount > 1 {
 			setImage()
 		}
-		
-//		let indexSet = IndexSet(arrayLiteral: row)
-//		splitController.splitsTableView.selectRowIndexes(indexSet, byExtendingSelection: false)
 	}
 	func pictureFileDialog() -> NSOpenPanel{
 		let dialog = NSOpenPanel();
@@ -72,24 +65,23 @@ extension CellImageWell {
 		dialog.allowedFileTypes        = ["png"]
 		return dialog
 	}
-
+	
 	/// Prompts the user to select an image for the split icon
 	func setImage() {
 		let dialog = pictureFileDialog()
-
+		
 		let response = dialog.runModal()
-			if response == .OK {
-				let result = dialog.url
-
-				if (result != nil) {
-					let imageFile = try? Data(contentsOf: result!)
-					let myImage = NSImage(data: imageFile!)
-					delegate.iconPicked(myImage, for: row)
-//					run.setIcon(for: row, image: myImage)
-//					splitController.splitsTableView.reloadData(forRowIndexes: .init(arrayLiteral: row), columnIndexes: .init(arrayLiteral: 0))
+		if response == .OK {
+			let result = dialog.url
+			
+			if (result != nil) {
+				let imageFile = try? Data(contentsOf: result!)
+				let myImage = NSImage(data: imageFile!)
+				delegate.iconPicked(myImage, for: row)
 			}
 		}
 	}
-
-	
+}
+protocol EditableSegmentIconViewDelegate {
+	func iconPicked(_ icon: NSImage?, for row: Int)
 }

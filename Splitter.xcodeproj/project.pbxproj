@@ -85,6 +85,7 @@
 		4A87265523BD53F8003A14AF /* runInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87265423BD53F8003A14AF /* runInfo.swift */; };
 		4A87265723BD5423003A14AF /* PrefPanes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87265623BD5423003A14AF /* PrefPanes.swift */; };
 		4A894B1C249ABA71004FEEB3 /* LoadableNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A894B1B249ABA71004FEEB3 /* LoadableNib.swift */; };
+		4A9423CA268D3A6C0033A62F /* SplitsEditorTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9423C9268D3A6C0033A62F /* SplitsEditorTextField.swift */; };
 		4A9621F624C62401003CF23C /* ActivityIndicatorRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9621F524C62401003CF23C /* ActivityIndicatorRepresentable.swift */; };
 		4A968C7C23F1F5FE001B74E8 /* lss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A968C7B23F1F5FE001B74E8 /* lss.swift */; };
 		4A99813023F9ECE50037BF98 /* KeybindHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A99812F23F9ECE50037BF98 /* KeybindHandlers.swift */; };
@@ -94,7 +95,6 @@
 		4A9DB792240847E40000D1B4 /* TimeSplitColumn.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9DB791240847E40000D1B4 /* TimeSplitColumn.swift */; };
 		4A9FCC7C2411A0CE000937A2 /* TextFields.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9FCC7B2411A0CE000937A2 /* TextFields.swift */; };
 		4AA357B52416F79900219E65 /* liblivesplit_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AA357B42416F79900219E65 /* liblivesplit_core.a */; };
-		4AA3DAB423E23DA900ADFA4A /* IconButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA3DAB323E23DA900ADFA4A /* IconButton.swift */; };
 		4AA9ADBB2608F02D009B77B5 /* StartRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AA9ADBA2608F02D009B77B5 /* StartRow.xib */; };
 		4AA9ADBF2608F035009B77B5 /* StartRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA9ADBE2608F035009B77B5 /* StartRow.swift */; };
 		4AAD470A248432540094A31F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAD4709248432540094A31F /* Colors.swift */; };
@@ -250,6 +250,7 @@
 		4A87265423BD53F8003A14AF /* runInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = runInfo.swift; sourceTree = "<group>"; };
 		4A87265623BD5423003A14AF /* PrefPanes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefPanes.swift; sourceTree = "<group>"; };
 		4A894B1B249ABA71004FEEB3 /* LoadableNib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableNib.swift; sourceTree = "<group>"; };
+		4A9423C9268D3A6C0033A62F /* SplitsEditorTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitsEditorTextField.swift; sourceTree = "<group>"; };
 		4A9621F524C62401003CF23C /* ActivityIndicatorRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ActivityIndicatorRepresentable.swift; path = Splitter/UI/ActivityIndicatorRepresentable.swift; sourceTree = SOURCE_ROOT; };
 		4A968C7B23F1F5FE001B74E8 /* lss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lss.swift; sourceTree = "<group>"; };
 		4A99812F23F9ECE50037BF98 /* KeybindHandlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeybindHandlers.swift; sourceTree = "<group>"; };
@@ -259,7 +260,6 @@
 		4A9DB791240847E40000D1B4 /* TimeSplitColumn.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSplitColumn.swift; sourceTree = "<group>"; };
 		4A9FCC7B2411A0CE000937A2 /* TextFields.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextFields.swift; sourceTree = "<group>"; };
 		4AA357B42416F79900219E65 /* liblivesplit_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblivesplit_core.a; path = "livesplit-core/target/release/liblivesplit_core.a"; sourceTree = "<group>"; };
-		4AA3DAB323E23DA900ADFA4A /* IconButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconButton.swift; sourceTree = "<group>"; };
 		4AA9ADBA2608F02D009B77B5 /* StartRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartRow.xib; sourceTree = "<group>"; };
 		4AA9ADBE2608F035009B77B5 /* StartRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRow.swift; sourceTree = "<group>"; };
 		4AAD4709248432540094A31F /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -559,6 +559,17 @@
 			path = SplitterTests;
 			sourceTree = "<group>";
 		};
+		4A9423C8268D39ED0033A62F /* Splits Editor */ = {
+			isa = PBXGroup;
+			children = (
+				4A669372268BBB4400FEF745 /* SplitsEditorOutlineView.swift */,
+				4A9423C9268D3A6C0033A62F /* SplitsEditorTextField.swift */,
+				4A01B800268631FC00F15A50 /* SplitsEditorViewController.swift */,
+				4A01B801268631FC00F15A50 /* SplitsEditorViewController.xib */,
+			);
+			path = "Splits Editor";
+			sourceTree = "<group>";
+		};
 		4A9FCC782411A069000937A2 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
@@ -587,7 +598,6 @@
 			children = (
 				4A66A42F23DE2682005952FA /* ImageButtonCellView.swift */,
 				4AE7437D268CF2AC003629B4 /* SplitterColorWell.swift */,
-				4AA3DAB323E23DA900ADFA4A /* IconButton.swift */,
 			);
 			path = Controls;
 			sourceTree = "<group>";
@@ -752,9 +762,7 @@
 		4AFCC52423C63F3E002216F1 /* UI */ = {
 			isa = PBXGroup;
 			children = (
-				4A669372268BBB4400FEF745 /* SplitsEditorOutlineView.swift */,
-				4A01B800268631FC00F15A50 /* SplitsEditorViewController.swift */,
-				4A01B801268631FC00F15A50 /* SplitsEditorViewController.xib */,
+				4A9423C8268D39ED0033A62F /* Splits Editor */,
 				4A0981B024E484BE00E44792 /* Splits.ioAccount */,
 				4AFAD84424CF2CF8006FC480 /* WelcomeWindowController.swift */,
 				4AE82A1524BFD4400044B6D3 /* WelcomeView.swift */,
@@ -1167,7 +1175,6 @@
 				4AD44ADF262F4CFB003375C4 /* TitleComponent.swift in Sources */,
 				4AE7437E268CF2AC003629B4 /* SplitterColorWell.swift in Sources */,
 				4A669373268BBB4400FEF745 /* SplitsEditorOutlineView.swift in Sources */,
-				4AA3DAB423E23DA900ADFA4A /* IconButton.swift in Sources */,
 				4A18663023C5257800FEEE54 /* MenuItemConstants.swift in Sources */,
 				4A09E2A824D75D6B0013D7BC /* CategoryViewController.swift in Sources */,
 				4A0F716323F4A9E400E5948E /* SplitterDocBundle.swift in Sources */,
@@ -1199,6 +1206,7 @@
 				4A09E29C24D754520013D7BC /* DownloadWindowController.swift in Sources */,
 				4ADE9226240F1FB900E0D99E /* InfoPopoverTabViewController.swift in Sources */,
 				4A0F715F23F4A0A500E5948E /* SplitterDoc.swift in Sources */,
+				4A9423CA268D3A6C0033A62F /* SplitsEditorTextField.swift in Sources */,
 				4A66A43023DE2682005952FA /* ImageButtonCellView.swift in Sources */,
 				4A0981A624E34DE400E44792 /* AccountButtonView.swift in Sources */,
 				4A894B1C249ABA71004FEEB3 /* LoadableNib.swift in Sources */,

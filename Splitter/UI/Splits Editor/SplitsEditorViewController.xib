@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
-        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -19,16 +18,17 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="569" height="213"/>
+            <rect key="frame" x="0.0" y="28" width="569" height="185"/>
             <subviews>
-                <scrollView misplaced="YES" autohidesScrollers="YES" horizontalLineScroll="25" horizontalPageScroll="10" verticalLineScroll="25" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZ1-er-cv8">
-                    <rect key="frame" x="0.0" y="28" width="569" height="185"/>
-                    <clipView key="contentView" drawsBackground="NO" id="9q7-7o-5Pl">
-                        <rect key="frame" x="1" y="1" width="567" height="183"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="25" horizontalPageScroll="10" verticalLineScroll="25" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZ1-er-cv8">
+                    <rect key="frame" x="0.0" y="28" width="569" height="157"/>
+                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                    <clipView key="contentView" drawsBackground="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9q7-7o-5Pl">
+                        <rect key="frame" x="1" y="1" width="567" height="155"/>
+                        <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" tableStyle="inset" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="25" headerView="T8k-LS-CiD" viewBased="YES" indentationPerLevel="13" outlineTableColumn="IIU-D3-jD5" id="8LC-B2-7du" customClass="SplitsEditorOutlineView" customModule="Splitter" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="567" height="155"/>
+                                <rect key="frame" x="0.0" y="0.0" width="567" height="127"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <size key="intercellSpacing" width="17" height="0.0"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -50,7 +50,7 @@
                                                 <rect key="frame" x="18" y="0.0" width="33" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <imageView wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5cl-Wx-7rq" customClass="CellImageWell" customModule="Splitter" customModuleProvider="target">
+                                                    <imageView wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5cl-Wx-7rq" customClass="EditableSegmentIconView" customModule="Splitter" customModuleProvider="target">
                                                         <rect key="frame" x="10" y="0.0" width="13" height="17"/>
                                                         <imageCell key="cell" selectable="YES" editable="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" id="aOg-NL-Fz4"/>
                                                     </imageView>
@@ -85,7 +85,7 @@
                                                 <rect key="frame" x="68" y="0.0" width="85" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZAq-m7-4nO" customClass="LayoutEditorTextField" customModule="Splitter" customModuleProvider="target">
+                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZAq-m7-4nO" customClass="SplitsEditorTextField" customModule="Splitter" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="4" width="85" height="16"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="HPR-Yl-5Rl">
@@ -171,8 +171,11 @@
                     <rect key="frame" x="435" y="6" width="114" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a8q-Uj-3JJ">
+                        <button horizontalHuggingPriority="1000" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a8q-Uj-3JJ">
                             <rect key="frame" x="-7" y="-7" width="83" height="32"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="69" id="VeK-tb-awK"/>
+                            </constraints>
                             <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nD4-Cg-jBG">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
@@ -184,8 +187,11 @@ Gw
                                 <action selector="cancelButtonAction:" target="-2" id="RjY-iC-xwb"/>
                             </connections>
                         </button>
-                        <button verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WmS-DJ-piX">
+                        <button horizontalHuggingPriority="1000" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WmS-DJ-piX">
                             <rect key="frame" x="67" y="-7" width="54" height="32"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="40" id="TdL-ys-Flp"/>
+                            </constraints>
                             <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Bwx-o6-cYc">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
@@ -209,12 +215,6 @@ DQ
                     </customSpacing>
                 </stackView>
             </subviews>
-            <constraints>
-                <constraint firstItem="CZ1-er-cv8" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="5gv-m0-IBW"/>
-                <constraint firstAttribute="bottom" secondItem="CZ1-er-cv8" secondAttribute="bottom" constant="28" id="WXL-Cu-2Si"/>
-                <constraint firstAttribute="trailing" secondItem="CZ1-er-cv8" secondAttribute="trailing" id="nEM-hr-umD"/>
-                <constraint firstItem="CZ1-er-cv8" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="r3T-hf-5di"/>
-            </constraints>
             <point key="canvasLocation" x="184.5" y="104.5"/>
         </customView>
     </objects>

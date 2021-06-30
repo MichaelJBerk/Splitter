@@ -24,8 +24,6 @@ class SplitterRowView: NSTableRowView {
 	override func draw(_ dirtyRect: NSRect) {
 		super.draw(dirtyRect)
 		
-		
-
 		if isSelected == true || isCurrentSegment {
 			selectedColor.set()
 			dirtyRect.fill()
@@ -40,7 +38,6 @@ extension ViewController: NSTableViewDelegate {
 		
 		let cRow = SplitterRowView()
 		cRow.selectedColor = self.selectedColor
-		let l = run.layoutSplits
 		cRow.isCurrentSegment = (run.layoutSplits.splits[row].isCurrentSplit && timerState != .stopped)
 		return cRow
 	}
@@ -57,8 +54,6 @@ extension ViewController: NSTableViewDelegate {
 		cellIdentifier = tableColumn?.identifier
 		
 		if let cell = tableView.makeView(withIdentifier: cellIdentifier!, owner: nil) as? NSTableCellView {
-			cell.textField?.delegate = self
-			
 			
 			//Highlight the current row if the user is in the middle of a run
 			let isCurrentSplit = run.layoutSplits.splits[row].isCurrentSplit
@@ -99,7 +94,7 @@ extension ViewController: NSTableViewDelegate {
 				cell.textField?.stringValue = v
 				setThemeColor(cell.textField!)
 			default:
-					break
+				break
 			}
 			if let tf = cell.textField as? ThemedTextField {
 				tf.run = run
@@ -111,43 +106,4 @@ extension ViewController: NSTableViewDelegate {
 		}
 		return nil
 	}
-
-}
-
-extension ViewController: NSTextFieldDelegate {
-	func controlTextDidEndEditing(_ obj: Notification) {
-		
-		splitsTableView.reloadData()
-	}
-	
-	///Function called after editing the text field in a row
-	func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
-		//Get the column, row, and cell from the control
-		let colIndex = splitsTableView.column(for: control)
-		let colID = splitsTableView.tableColumns[colIndex].identifier
-		let r = splitsTableView.row(for: control)
-		let cellrow = splitsTableView.rowView(atRow: r, makeIfNecessary: false)
-		let cell = cellrow?.view(atColumn: colIndex) as! NSTableCellView
-		
-		
-		guard let cellText = cell.textField?.stringValue else {return false}
-		switch colID {
-		case STVColumnID.splitTitleColumn:
-			run.setSegTitle(index: r, title: cellText)
-		case STVColumnID.currentSplitColumn:
-			run.setSplitTime(index: r, time: cellText)
-			run.updateLayoutState()
-		case STVColumnID.bestSplitColumn:
-			run.setBestTime(index: r, time: cellText)
-			break
-		case STVColumnID.previousSplitColumn:
-			break
-		default:
-			break
-		}
-		return true
-	}
-
-	
-
 }
