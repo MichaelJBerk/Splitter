@@ -53,7 +53,6 @@
 		4A3F989925EFDB0800B2B955 /* CodableLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3F989825EFDB0800B2B955 /* CodableLayout.swift */; };
 		4A4070E1241AE2E0000927A5 /* AppearanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4070E0241AE2E0000927A5 /* AppearanceViewController.swift */; };
 		4A44FF4F24E9A9E60083013A /* SplitsIOUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A44FF4E24E9A9E60083013A /* SplitsIOUpload.swift */; };
-		4A45BCF724084B3800F1A223 /* TimeSplitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A45BCF624084B3800F1A223 /* TimeSplitCell.swift */; };
 		4A4ACF7C2609185C00C04DD6 /* LayoutEditor.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A4ACF7B2609185C00C04DD6 /* LayoutEditor.storyboard */; };
 		4A4D391F23C4F29C00BF3FCD /* blankWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A4D391E23C4F29C00BF3FCD /* blankWindow.xib */; };
 		4A4D392223C4FAE500BF3FCD /* HotkeysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4D392023C4FAE500BF3FCD /* HotkeysViewController.swift */; };
@@ -218,7 +217,6 @@
 		4A3F989825EFDB0800B2B955 /* CodableLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableLayout.swift; sourceTree = "<group>"; };
 		4A4070E0241AE2E0000927A5 /* AppearanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceViewController.swift; sourceTree = "<group>"; };
 		4A44FF4E24E9A9E60083013A /* SplitsIOUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitsIOUpload.swift; sourceTree = "<group>"; };
-		4A45BCF624084B3800F1A223 /* TimeSplitCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSplitCell.swift; sourceTree = "<group>"; };
 		4A4ACF7B2609185C00C04DD6 /* LayoutEditor.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LayoutEditor.storyboard; sourceTree = "<group>"; };
 		4A4D391E23C4F29C00BF3FCD /* blankWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = blankWindow.xib; sourceTree = "<group>"; };
 		4A4D392023C4FAE500BF3FCD /* HotkeysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotkeysViewController.swift; sourceTree = "<group>"; };
@@ -636,7 +634,6 @@
 				4A9D8BF5243A38C40048EA15 /* SplitterTableView.swift */,
 				4AC24DBB23EB4F17003008BF /* SplitterTableDelegate.swift */,
 				4A66A43123DE2C88005952FA /* SplitTableColumnIdentifiers.swift */,
-				4A45BCF624084B3800F1A223 /* TimeSplitCell.swift */,
 			);
 			path = SplitsComponent;
 			sourceTree = "<group>";
@@ -1216,7 +1213,6 @@
 				4ADEE0AC267A4EA80028F142 /* RunEditorState.swift in Sources */,
 				4A9CA2A7263A2D4C0054D624 /* Extensions.swift in Sources */,
 				4A388FC525D4AF2B00A63C9E /* PrevNextRow.swift in Sources */,
-				4A45BCF724084B3800F1A223 /* TimeSplitCell.swift in Sources */,
 				4A20C46B26406DB000307993 /* LiveSplitCore Extensions.swift in Sources */,
 				4A87265723BD5423003A14AF /* PrefPanes.swift in Sources */,
 				4A3F989925EFDB0800B2B955 /* CodableLayout.swift in Sources */,

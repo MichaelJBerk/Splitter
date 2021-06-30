@@ -110,7 +110,7 @@
                                 </textFieldCell>
                                 <tableColumnResizingMask key="resizingMask" userResizable="YES"/>
                                 <prototypeCellViews>
-                                    <tableCellView id="XFe-d1-5By" customClass="TimeSplitCell" customModule="Splitter" customModuleProvider="target">
+                                    <tableCellView id="XFe-d1-5By">
                                         <rect key="frame" x="124" y="1" width="90" height="30"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
@@ -149,7 +149,7 @@
                                 </textFieldCell>
                                 <tableColumnResizingMask key="resizingMask" userResizable="YES"/>
                                 <prototypeCellViews>
-                                    <tableCellView id="atH-rr-tx3" customClass="TimeSplitCell" customModule="Splitter" customModuleProvider="target">
+                                    <tableCellView id="atH-rr-tx3">
                                         <rect key="frame" x="217" y="1" width="64" height="30"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
@@ -191,7 +191,7 @@
                                 </textFieldCell>
                                 <tableColumnResizingMask key="resizingMask" userResizable="YES"/>
                                 <prototypeCellViews>
-                                    <tableCellView id="ZFb-Iv-xTD" customClass="TimeSplitCell" customModule="Splitter" customModuleProvider="target">
+                                    <tableCellView id="ZFb-Iv-xTD">
                                         <rect key="frame" x="1" y="1" width="0.0" height="30"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
@@ -230,7 +230,7 @@
                                 </textFieldCell>
                                 <tableColumnResizingMask key="resizingMask" userResizable="YES"/>
                                 <prototypeCellViews>
-                                    <tableCellView id="AeP-mg-VnP" customClass="TimeSplitCell" customModule="Splitter" customModuleProvider="target">
+                                    <tableCellView id="AeP-mg-VnP">
                                         <rect key="frame" x="284" y="1" width="89" height="30"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>

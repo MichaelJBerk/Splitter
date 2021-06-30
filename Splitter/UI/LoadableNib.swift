@@ -35,3 +35,54 @@ extension LoadableNib where Self: NSViewController {
 		self.viewDidLoad()
 	}
 }
+extension NSView {
+	///Instantiates the given view from its `xib`
+	///The trick with this is to use the root view of the XIB as the custom class - NOT file's owner
+	public static func instantiateView<View: NSView>(for type: View.Type = View.self) -> View {
+		let bundle = Bundle(for: type)
+		let nibName = String(describing: type)
+
+		guard bundle.path(forResource: nibName, ofType: "nib") != nil else {
+			return View(frame: .zero)
+		}
+
+		var topLevelArray: NSArray?
+		bundle.loadNibNamed(NSNib.Name(nibName), owner: nil, topLevelObjects: &topLevelArray)
+		guard let results = topLevelArray as? [Any],
+			let foundedView = results.last(where: {$0 is Self}),
+			let view = foundedView as? View else {
+				fatalError("NIB with name \"\(nibName)\" does not exist.")
+		}
+		return view
+	}
+	public func instantiateView() -> NSView {
+		guard subviews.isEmpty else {
+			return self
+		}
+
+		let loadedView = NSView.instantiateView(for: type(of: self))
+		loadedView.frame = frame
+		loadedView.autoresizingMask = autoresizingMask
+		loadedView.translatesAutoresizingMaskIntoConstraints = translatesAutoresizingMaskIntoConstraints
+
+		loadedView.addConstraints(constraints.compactMap { ctr -> NSLayoutConstraint? in
+			guard let srcFirstItem = ctr.firstItem as? NSView else {
+				return nil
+			}
+
+			let dstFirstItem = srcFirstItem == self ? loadedView : srcFirstItem
+			let srcSecondItem = ctr.secondItem as? NSView
+			let dstSecondItem = srcSecondItem == self ? loadedView : srcSecondItem
+
+			return NSLayoutConstraint(item: dstFirstItem,
+									  attribute: ctr.firstAttribute,
+									  relatedBy: ctr.relation,
+									  toItem: dstSecondItem,
+									  attribute: ctr.secondAttribute,
+									  multiplier: ctr.multiplier,
+									  constant: ctr.constant)
+		})
+
+		return loadedView
+	}
+}
