@@ -283,6 +283,7 @@ extension SplitsEditorViewController: SplitsEditorOutlineViewDelegate {
 				cell.imageView?.target = self
 				cell.imageView?.action = #selector(iconChanged(_:))
 				let imageView = cell.imageView as! CellImageWell
+				imageView.run = self.run
 				imageView.row = index
 				imageView.delegate = self
 				return cell

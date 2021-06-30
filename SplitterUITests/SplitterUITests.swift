@@ -97,6 +97,29 @@ class SplitterUITests: XCTestCase {
 		XCUIApplication().windows["Untitled"]/*@START_MENU_TOKEN@*/.tables.containing(.tableColumn, identifier:"ImageColumn").element/*[[".scrollViews",".tables.containing(.tableColumn, identifier:\"Difference\").element",".tables.containing(.tableColumn, identifier:\"CurrentSplit\").element",".tables.containing(.tableColumn, identifier:\"SplitTitle\").element",".tables.containing(.tableColumn, identifier:\"ImageColumn\").element"],[[[-1,4],[-1,3],[-1,2],[-1,1],[-1,0,1]],[[-1,4],[-1,3],[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.typeKey("!", modifierFlags:[.command, .shift])
 						
 	}
+	func testSetTextColors() {
+		XCUIApplication().activate()
+		let untitledWindow = XCUIApplication().windows["Untitled"]
+		untitledWindow/*@START_MENU_TOKEN@*/.buttons["Edit Segments"]/*[[".buttons[\"Edit Segments\"]",".buttons[\"AddSplit\"]"],[[[-1,1],[-1,0]]],[1]]@END_MENU_TOKEN@*/.click()
+		
+		let untitledWindow2 = untitledWindow
+		untitledWindow2/*@START_MENU_TOKEN@*/.tables.cells.containing(.image, identifier:"Game Controller").element/*[[".scrollViews.tables",".tableRows.cells.containing(.image, identifier:\"Game Controller\").element",".cells.containing(.image, identifier:\"Game Controller\").element",".tables"],[[[-1,3,1],[-1,0,1]],[[-1,2],[-1,1]]],[0,0]]@END_MENU_TOKEN@*/.typeKey(.escape, modifierFlags:[])
+		untitledWindow.children(matching: .button).element(boundBy: 0).click()
+		
+		let popoversQuery = untitledWindow2.popovers
+		popoversQuery/*@START_MENU_TOKEN@*/.radioButtons["Colors"]/*[[".radioGroups.radioButtons[\"Colors\"]",".radioButtons[\"Colors\"]"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.click()
+		popoversQuery/*@START_MENU_TOKEN@*/.scrollViews/*[[".groups.scrollViews",".scrollViews"],[[[-1,1],[-1,0]]],[0]]@END_MENU_TOKEN@*/.children(matching: .colorWell).element(boundBy: 2).click()
+		
+		let colorsWindow = XCUIApplication().windows["Colors"]
+		colorsWindow/*@START_MENU_TOKEN@*/.radioButtons["Orchid"]/*[[".splitGroups",".radioGroups[\"Pencils\"].radioButtons[\"Orchid\"]",".radioButtons[\"Orchid\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.click()
+		colorsWindow/*@START_MENU_TOKEN@*/.radioButtons["Teal"]/*[[".splitGroups",".radioGroups[\"Pencils\"].radioButtons[\"Teal\"]",".radioButtons[\"Teal\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.click()
+		colorsWindow/*@START_MENU_TOKEN@*/.radioButtons["Turquoise"]/*[[".splitGroups",".radioGroups[\"Pencils\"].radioButtons[\"Turquoise\"]",".radioButtons[\"Turquoise\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.click()
+		colorsWindow/*@START_MENU_TOKEN@*/.radioButtons["Ice"]/*[[".splitGroups",".radioGroups[\"Pencils\"].radioButtons[\"Ice\"]",".radioButtons[\"Ice\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.click()
+		colorsWindow/*@START_MENU_TOKEN@*/.radioButtons["Bubblegum"]/*[[".splitGroups",".radioGroups[\"Pencils\"].radioButtons[\"Bubblegum\"]",".radioButtons[\"Bubblegum\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.click()
+		colorsWindow/*@START_MENU_TOKEN@*/.radioButtons["Magenta"]/*[[".splitGroups",".radioGroups[\"Pencils\"].radioButtons[\"Magenta\"]",".radioButtons[\"Magenta\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.click()
+		colorsWindow/*@START_MENU_TOKEN@*/.radioButtons["Clover"]/*[[".splitGroups",".radioGroups[\"Pencils\"].radioButtons[\"Clover\"]",".radioButtons[\"Clover\"]"],[[[-1,2],[-1,1],[-1,0,1]],[[-1,2],[-1,1]]],[0]]@END_MENU_TOKEN@*/.click()
+		
+	}
 	
 }
 
