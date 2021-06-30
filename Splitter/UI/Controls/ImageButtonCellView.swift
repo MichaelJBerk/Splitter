@@ -8,20 +8,8 @@
 
 import Cocoa
 
-
-class ImageButtonCellView: NSTableCellView {
-	
-	var image: NSImage = .gameControllerIcon
-	@IBOutlet var imageWell: CellImageWell!
-
-	var cellNumber: Int! {
-		didSet {
-			imageWell.row = cellNumber
-		}
-	}
-}
-
 class CellImageWell: ThemedImage {
+	var delegate: SplitsEditorSegmentIconDelegate!
 	
 	@IBOutlet var splitController: ViewController!
 	var row: Int!
@@ -46,9 +34,12 @@ class CellImageWell: ThemedImage {
 		}
 	}
 	
-	@objc func imageChanged(_ sender: Any?) {
-		run.setIcon(for: row, image: self.image)
+	@objc func imageChanged(_ sender: CellImageWell) {
+		let image = sender.image
+		delegate.iconPicked(image, for: row)
 		setPlaceholderImage()
+//		run.setIcon(for: row, image: self.image)
+//		setPlaceholderImage()
 	}
 	
 	///Used in right-click menu
@@ -67,23 +58,35 @@ extension CellImageWell {
 			setImage()
 		}
 		
-		let indexSet = IndexSet(arrayLiteral: row)
-		splitController.splitsTableView.selectRowIndexes(indexSet, byExtendingSelection: false)
+//		let indexSet = IndexSet(arrayLiteral: row)
+//		splitController.splitsTableView.selectRowIndexes(indexSet, byExtendingSelection: false)
+	}
+	func pictureFileDialog() -> NSOpenPanel{
+		let dialog = NSOpenPanel();
+		dialog.title                   = "Choose an image file"
+		dialog.showsResizeIndicator    = true
+		dialog.showsHiddenFiles        = false
+		dialog.canChooseDirectories    = false
+		dialog.canCreateDirectories    = false
+		dialog.allowsMultipleSelection = false
+		dialog.allowedFileTypes        = ["png"]
+		return dialog
 	}
 
 	/// Prompts the user to select an image for the split icon
 	func setImage() {
-		let dialog = splitController.pictureFileDialog()
-		
+		let dialog = pictureFileDialog()
+
 		let response = dialog.runModal()
 			if response == .OK {
 				let result = dialog.url
-				
+
 				if (result != nil) {
 					let imageFile = try? Data(contentsOf: result!)
 					let myImage = NSImage(data: imageFile!)
-					run.setIcon(for: row, image: myImage)
-					splitController.splitsTableView.reloadData(forRowIndexes: .init(arrayLiteral: row), columnIndexes: .init(arrayLiteral: 0))
+					delegate.iconPicked(myImage, for: row)
+//					run.setIcon(for: row, image: myImage)
+//					splitController.splitsTableView.reloadData(forRowIndexes: .init(arrayLiteral: row), columnIndexes: .init(arrayLiteral: 0))
 			}
 		}
 	}

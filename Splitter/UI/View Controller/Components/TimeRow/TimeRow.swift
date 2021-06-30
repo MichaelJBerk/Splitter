@@ -12,21 +12,31 @@ class TimeRow: NSStackView, NibLoadable, SplitterComponent, NSTextFieldDelegate 
 	var customSpacing: CGFloat? = nil
 	var refreshUITimer = Timer()
 	
+	static func instantiateView(run: SplitterRun, viewController: ViewController) -> TimeRow {
+		let row: TimeRow = TimeRow.instantiateView()
+		row.viewController = viewController
+		row.run = run
+		row.setup()
+		return row
+	}
+	
 	override func awakeFromNib() {
 		super.awakeFromNib()
-		setup()
 	}
 	func setup() {
+		attemptsLabel.run = self.run
+		timeLabel.run = run
+		attemptsField.run = run
 		attemptsField.formatter = OnlyIntegerValueFormatter()
 		detachesHiddenViews = false
 		attemptsStackView.detachesHiddenViews = false
 		attemptsField.delegate = self
-		NotificationCenter.default.addObserver(forName: .startTimer, object: nil, queue: nil, using: { _ in 
+		NotificationCenter.default.addObserver(forName: .startTimer, object: self.run, queue: nil, using: { _ in
 			self.refreshUITimer = Cocoa.Timer.scheduledTimer(withTimeInterval: 0.001, repeats: true, block: { timer in
 				self.viewController.updateTimer()
 			})
 		})
-		NotificationCenter.default.addObserver(forName: .stopTimer, object: nil, queue: nil, using: { _ in
+		NotificationCenter.default.addObserver(forName: .stopTimer, object: self.run, queue: nil, using: { _ in
 			self.refreshUITimer.invalidate()
 		})
 	}
@@ -105,8 +115,8 @@ class TimeRow: NSStackView, NibLoadable, SplitterComponent, NSTextFieldDelegate 
 	}
 	
 	@IBOutlet var contentView: NSView!
-	@IBOutlet var timeLabel: NSTextField!
-	@IBOutlet var attemptsField: NSTextField!
+	@IBOutlet var timeLabel: ThemedTextField!
+	@IBOutlet var attemptsField: ThemedTextField!
 	var viewController: ViewController!
 	var isSelected = false {
 		didSet {

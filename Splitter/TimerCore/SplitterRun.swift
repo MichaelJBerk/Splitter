@@ -213,7 +213,7 @@ class SplitterRun: NSObject {
 	}
 	
 	private func setObservers() {
-		NotificationCenter.default.addObserver(forName: .phaseChanged, object: nil, queue: nil, using: { [weak self] notification in
+		NotificationCenter.default.addObserver(forName: .phaseChanged, object: self.timer, queue: nil, using: { [weak self] notification in
 			let old: Int = Int(notification.userInfo!["oldPhase"] as! UInt8)
 			let phase: Int = Int(notification.userInfo!["phase"] as! UInt8)
 			if phase == 2, old == 1 {

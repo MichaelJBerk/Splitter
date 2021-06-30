@@ -31,6 +31,9 @@ class OptionsRow: NSStackView, NibLoadable, SplitterComponent {
 //		initialization()
 //	}
 	private func initialization() {
+		plusButton.run = run
+		timeLabel.run = run
+		columnOptionsButton.run = run
 		detachesHiddenViews = false
 		NotificationCenter.default.addObserver(forName: .timerStateChanged, object: self.run.timer, queue: nil, using: { notification in
 			guard let timerState = notification.userInfo?["timerState"] as? TimerState else {return}
@@ -47,7 +50,6 @@ class OptionsRow: NSStackView, NibLoadable, SplitterComponent {
 	@IBOutlet var contentView: NSView!
 	
 	@IBOutlet var plusButton: ThemedButton!
-//	@IBOutlet var minusButton: ThemedButton!
 	@IBOutlet var columnOptionsButton: ThemedButton!
 	@IBOutlet var tableButtonsStack: NSStackView!
 	@IBOutlet weak var timeLabel: ThemedTextField!

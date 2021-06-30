@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="17701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="17701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -42,7 +42,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <gridView fixedFrame="YES" xPlacement="leading" yPlacement="center" rowAlignment="none" translatesAutoresizingMaskIntoConstraints="NO" id="XuZ-AQ-qiC">
-                                <rect key="frame" x="0.0" y="2" width="426" height="269"/>
+                                <rect key="frame" x="0.0" y="2" width="427" height="269"/>
                                 <rows>
                                     <gridRow yPlacement="center" height="35" id="FJH-fH-jWf"/>
                                     <gridRow yPlacement="center" height="35" id="Hi4-bM-D41"/>
@@ -72,7 +72,7 @@
                                         </textField>
                                     </gridCell>
                                     <gridCell row="FJH-fH-jWf" column="zL2-t1-iP8" id="5Ye-In-wwd">
-                                        <colorWell key="contentView" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gRR-Pz-aQy">
+                                        <colorWell key="contentView" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="gRR-Pz-aQy" customClass="SplitterColorWell" customModule="Splitter" customModuleProvider="target">
                                             <rect key="frame" x="175" y="237" width="190" height="30"/>
                                             <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
@@ -82,7 +82,7 @@
                                     </gridCell>
                                     <gridCell row="FJH-fH-jWf" column="YAY-9z-6lZ" id="l4M-YS-RoS">
                                         <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="b7A-vt-K2U">
-                                            <rect key="frame" x="364" y="235" width="69" height="32"/>
+                                            <rect key="frame" x="364" y="235" width="70" height="32"/>
                                             <buttonCell key="cell" type="push" title="Reset" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="UaL-e4-1CL">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -104,7 +104,7 @@
                                         </textField>
                                     </gridCell>
                                     <gridCell row="Hi4-bM-D41" column="zL2-t1-iP8" id="aKz-Re-r2G">
-                                        <colorWell key="contentView" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Vn-i9-46F">
+                                        <colorWell key="contentView" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3Vn-i9-46F" customClass="SplitterColorWell" customModule="Splitter" customModuleProvider="target">
                                             <rect key="frame" x="175" y="196" width="190" height="30"/>
                                             <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
@@ -114,7 +114,7 @@
                                     </gridCell>
                                     <gridCell row="Hi4-bM-D41" column="YAY-9z-6lZ" id="Eu1-MU-IeB">
                                         <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="udO-YW-8Ff">
-                                            <rect key="frame" x="364" y="194" width="69" height="32"/>
+                                            <rect key="frame" x="364" y="194" width="70" height="32"/>
                                             <buttonCell key="cell" type="push" title="Reset" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Ssy-AJ-AzM">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -136,17 +136,20 @@
                                         </textField>
                                     </gridCell>
                                     <gridCell row="zS5-qb-LD3" column="zL2-t1-iP8" id="FhA-5S-zzj">
-                                        <colorWell key="contentView" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VeL-b2-1lA">
+                                        <colorWell key="contentView" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VeL-b2-1lA" customClass="SplitterColorWell" customModule="Splitter" customModuleProvider="target">
                                             <rect key="frame" x="175" y="155" width="190" height="30"/>
                                             <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="allowsOpacity" value="NO"/>
+                                            </userDefinedRuntimeAttributes>
                                             <connections>
-                                                <action selector="settingsSender:" target="-2" id="xrh-t3-hTR"/>
+                                                <action selector="settingsSender:" target="-2" id="Mqm-2I-cKq"/>
                                             </connections>
                                         </colorWell>
                                     </gridCell>
                                     <gridCell row="zS5-qb-LD3" column="YAY-9z-6lZ" id="2wT-pB-pry">
                                         <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wzO-Mq-bjV">
-                                            <rect key="frame" x="364" y="153" width="69" height="32"/>
+                                            <rect key="frame" x="364" y="153" width="70" height="32"/>
                                             <buttonCell key="cell" type="push" title="Reset" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xqH-ZY-YmO">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -168,7 +171,7 @@
                                         </textField>
                                     </gridCell>
                                     <gridCell row="rDp-Dw-Alq" column="zL2-t1-iP8" id="atv-eg-KnR">
-                                        <colorWell key="contentView" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qRq-bM-Tcd">
+                                        <colorWell key="contentView" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qRq-bM-Tcd" customClass="SplitterColorWell" customModule="Splitter" customModuleProvider="target">
                                             <rect key="frame" x="175" y="114" width="190" height="30"/>
                                             <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
@@ -178,7 +181,7 @@
                                     </gridCell>
                                     <gridCell row="rDp-Dw-Alq" column="YAY-9z-6lZ" id="kGh-RC-Gsp">
                                         <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Hy4-vn-vyE">
-                                            <rect key="frame" x="364" y="112" width="69" height="32"/>
+                                            <rect key="frame" x="364" y="112" width="70" height="32"/>
                                             <buttonCell key="cell" type="push" title="Reset" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GWb-BW-mff">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -221,7 +224,7 @@
                                         </textField>
                                     </gridCell>
                                     <gridCell row="ijS-Cn-eua" column="zL2-t1-iP8" id="J5V-HY-U1c">
-                                        <colorWell key="contentView" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zbb-iw-zu3">
+                                        <colorWell key="contentView" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="zbb-iw-zu3" customClass="SplitterColorWell" customModule="Splitter" customModuleProvider="target">
                                             <rect key="frame" x="175" y="44" width="190" height="30"/>
                                             <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
@@ -231,7 +234,7 @@
                                     </gridCell>
                                     <gridCell row="ijS-Cn-eua" column="YAY-9z-6lZ" id="XFM-v2-ulB">
                                         <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="M8u-0D-SvN">
-                                            <rect key="frame" x="364" y="42" width="69" height="32"/>
+                                            <rect key="frame" x="364" y="42" width="70" height="32"/>
                                             <buttonCell key="cell" type="push" title="Reset" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Twq-QR-Xc2">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
@@ -253,7 +256,7 @@
                                         </textField>
                                     </gridCell>
                                     <gridCell row="YTb-Ke-d6g" column="zL2-t1-iP8" id="qbm-QQ-857">
-                                        <colorWell key="contentView" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qDy-fI-cVC">
+                                        <colorWell key="contentView" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qDy-fI-cVC" customClass="SplitterColorWell" customModule="Splitter" customModuleProvider="target">
                                             <rect key="frame" x="175" y="3" width="190" height="30"/>
                                             <color key="color" red="0.05813049898" green="0.055541899059999997" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                             <connections>
@@ -263,7 +266,7 @@
                                     </gridCell>
                                     <gridCell row="YTb-Ke-d6g" column="YAY-9z-6lZ" id="ERv-Us-97F">
                                         <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Rzl-ac-kPo">
-                                            <rect key="frame" x="364" y="1" width="69" height="32"/>
+                                            <rect key="frame" x="364" y="1" width="70" height="32"/>
                                             <buttonCell key="cell" type="push" title="Reset" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="JBT-qW-dVz">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>

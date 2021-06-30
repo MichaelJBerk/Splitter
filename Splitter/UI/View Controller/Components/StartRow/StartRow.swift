@@ -15,15 +15,26 @@ class StartRow: NSStackView, NibLoadable, SplitterComponent {
 	
 	var customSpacing: CGFloat? = nil
 	
+	static func instantiateView(run: SplitterRun, viewController: ViewController) -> StartRow {
+		let startRow: StartRow = StartRow.instantiateView()
+		startRow.run = run
+		startRow.viewController = viewController
+		startRow.initialization()
+		return startRow
+	}
+	
 	internal override func awakeAfter(using coder: NSCoder) -> Any? {
 		return instantiateView() // You need to add this line to load view
 	}
 	
 	internal override func awakeFromNib() {
 		super.awakeFromNib()
-		initialization()
 	}
+	
 	func initialization() {
+		startButton.run = run
+		stopButton.run = run
+		trashCanPopupButton.run = run
 		stopButton.image = nil
 		let tsItem = trashCanPopupButton.menu?.items[0]
 		tsItem?.image = nil
@@ -38,7 +49,7 @@ class StartRow: NSStackView, NibLoadable, SplitterComponent {
 		if startButton.acceptsFirstResponder {
 			startButton.window?.makeFirstResponder(startButton)
 		}
-		NotificationCenter.default.addObserver(forName: .timerStateChanged, object: nil, queue: nil, using: { notification in
+		NotificationCenter.default.addObserver(forName: .timerStateChanged, object: run.timer, queue: nil, using: { notification in
 			guard let timerState = notification.userInfo?["timerState"] as? TimerState else {return}
 			switch timerState {
 			case .paused:

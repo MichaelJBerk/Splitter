@@ -84,11 +84,11 @@ class ViewController: NSViewController {
 	
 	
 //MARK: - Other UI Elements
-	@IBOutlet weak var runTitleField: NSTextField!
-	@IBOutlet weak var categoryField: NSTextField!
-	@IBOutlet weak var timerLabel: NSTextField!
-	@IBOutlet weak var currentTimeLabel: NSTextField!
-	var attemptField: NSTextField!
+	@IBOutlet weak var runTitleField: ThemedTextField!
+	@IBOutlet weak var categoryField: ThemedTextField!
+	@IBOutlet weak var timerLabel: ThemedTextField!
+	@IBOutlet weak var currentTimeLabel: ThemedTextField!
+	var attemptField: ThemedTextField!
 	@IBOutlet weak var splitsTableView: SplitterTableView!
 	
 	var cellIdentifier: NSUserInterfaceItemIdentifier?
@@ -216,9 +216,8 @@ class ViewController: NSViewController {
 		mainStackView.setCustomSpacing(view.afterSpacing, after: view)
 	}
 	func setupTitleRow() {
-		titleRow = TitleComponent.instantiateView()
+		titleRow = TitleComponent.instantiateView(run: self.run)
 		titleRow.viewController = self
-		titleRow.run = self.run
 		titleRow.setupDefaultGameIcon()
 		addToStack(view: titleRow)
 		runTitleField = titleRow.gameTitleField
@@ -251,23 +250,16 @@ class ViewController: NSViewController {
 	}
 	
 	func setupPrevNextRow() {
-		prevNextRow = PrevNextRow.instantiateView()
-		prevNextRow.viewController = self
-		prevNextRow.run = self.run
+		prevNextRow = PrevNextRow.instantiateView(run: run, viewController: self)
 		
 		addToStack(view: prevNextRow)
 	}
 	func setupStartRow() {
-		startRow = StartRow.instantiateView()
-		startRow.viewController = self
-		startRow.run = self.run
-		
+		startRow = StartRow.instantiateView(run: run, viewController: self)
 		addToStack(view: startRow)
 	}
 	func setupTimeRow() {
-		timeRow = TimeRow.instantiateView()
-		timeRow.viewController = self
-		timeRow.run = self.run
+		timeRow = TimeRow.instantiateView(run: run, viewController: self)
 		addToStack(view: timeRow)
 		
 		timerLabel = timeRow.timeLabel
@@ -302,12 +294,12 @@ class ViewController: NSViewController {
 		setupTimeRow()
 		setupStartRow()
 		setupPrevNextRow()
-		setupKeyValueComponent(key: .sumOfBest)
-		(mainStackView.views.last as? SplitterComponent)?.isHidden = true
-		setupKeyValueComponent(key: .previousSegment)
-		(mainStackView.views.last as? SplitterComponent)?.isHidden = true
-		setupKeyValueComponent(key: .totalPlaytime)
-		(mainStackView.views.last as? SplitterComponent)?.isHidden = true
+//		setupKeyValueComponent(key: .sumOfBest)
+//		(mainStackView.views.last as? SplitterComponent)?.isHidden = true
+//		setupKeyValueComponent(key: .previousSegment)
+//		(mainStackView.views.last as? SplitterComponent)?.isHidden = true
+//		setupKeyValueComponent(key: .totalPlaytime)
+//		(mainStackView.views.last as? SplitterComponent)?.isHidden = true
 	}
 	///Handles various window-related tasks
 	private func windowSetup() {
@@ -496,6 +488,7 @@ class ViewController: NSViewController {
 		updateTextFields()
 		
 		print("VWA Done!")
+		splitsTableView.reloadData()
 		setColorForControls()
 		
 		NotificationCenter.default.addObserver(forName: .runEdited, object: nil, queue: nil, using: { notification in

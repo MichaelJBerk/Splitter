@@ -104,7 +104,7 @@
         </stackView>
     </objects>
     <resources>
-        <image name="stop" width="12" height="12"/>
+        <image name="stop" width="19" height="19"/>
         <image name="trash" width="19" height="19"/>
     </resources>
 </document>

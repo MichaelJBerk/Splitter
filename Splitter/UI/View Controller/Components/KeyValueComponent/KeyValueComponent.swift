@@ -32,12 +32,14 @@ class KeyValueComponent: NSStackView, SplitterComponent, NibLoadable {
 	}
 	
 	private func initialization() {
-		NotificationCenter.default.addObserver(forName: .startTimer, object: nil, queue: nil, using: { _ in
+		textField.run = run
+		keyField.run = run
+		NotificationCenter.default.addObserver(forName: .startTimer, object: self.run, queue: nil, using: { _ in
 			self.refreshUITimer = Cocoa.Timer.scheduledTimer(withTimeInterval: 0.001, repeats: true, block: { timer in
 				self.updateFields()
 			})
 		})
-		NotificationCenter.default.addObserver(forName: .stopTimer, object: nil, queue: nil, using: { _ in
+		NotificationCenter.default.addObserver(forName: .stopTimer, object: self.run, queue: nil, using: { _ in
 			self.refreshUITimer.invalidate()
 		})
 		self.updateFields()

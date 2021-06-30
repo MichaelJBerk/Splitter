@@ -20,8 +20,9 @@ extension NSView {
 	}
 }
 protocol Themeable {
-	func setColor(run: SplitterRun)
+	func setColor()
 	func setColorObserver()
+	var run: SplitterRun! {get}
 	var themeable: Bool {get set}
 }
 extension Themeable {
@@ -29,60 +30,16 @@ extension Themeable {
 		return "run"
 	}
 	func setColorObserver() {
-		NotificationCenter.default.addObserver(forName: .updateComponentColors, object: nil, queue: nil, using: { notification in
-			if themeable, let run = (notification.userInfo?[Self.runKey])! as? SplitterRun {
-				setColor(run: run)
+		NotificationCenter.default.addObserver(forName: .updateComponentColors, object: run, queue: nil, using: { notification in
+			if themeable {
+				setColor()
 			}
 		})
 	}
 }
 
-class MetadataField: ThemedTextField  {
-	
-	private var observerSet = false
-	
-	override func setColor(run: SplitterRun) {
-		//Fields not in VC won't be colored
-		if self.controller == .mainViewController {
-			let vc = self.findVC() as! ViewController
-			self.textColor = vc.run.textColor
-		}
-	}
-	
-	override func textDidChange(_ notification: Notification) {
-		super.textDidChange(notification)
-		loadData()
-		
-	}
-	var controller: metaController? {
-		if (findVC() as? ViewController) != nil {
-			return .mainViewController
-		} else if (findVC() as? InfoOptionsViewController) != nil {
-			return .infoViewController
-		} else if let _ = findVC() as? RunOptionsViewController {
-			return .runOptionsViewController
-		}
-		return nil
-	}
-	
-	func loadData() {
-		switch controller {
-		case .mainViewController:
-			let c = findVC() as! ViewController
-			c.updateRun()
-			if let tabVC = c.infoPanelPopover?.contentViewController as? InfoPopoverTabViewController {
-				if let infoVC = tabVC.tabView.selectedTabViewItem?.viewController as? InfoOptionsViewController {
-					infoVC.getDataFromMain()
-				}
-			}
-		default:
-			let c = findVC() as! InfoOptionsViewController
-			c.sendDataToMain()
-		}
-	}
-}
 class ThemedImage: NSImageView, Themeable {
-	var themeable: Bool = true
+	@IBInspectable var themeable: Bool = true
 	var run: SplitterRun!
 	override init(frame frameRect: NSRect) {
 		super.init(frame: frameRect)
@@ -93,7 +50,7 @@ class ThemedImage: NSImageView, Themeable {
 		super.init(coder: coder)
 		setColorObserver()
 	}
-	func setColor(run: SplitterRun) {
+	func setColor() {
 		if let image = self.image, image.isTemplate {
 			self.contentTintColor = run.textColor
 		}
@@ -127,10 +84,10 @@ class MetadataImage: ThemedImage {
 		NotificationCenter.default.addObserver(forName: .gameIconEdited, object: nil, queue: nil, using: { notification in
 			self.image = self.run.gameIcon
 			self.setPlaceholderImage()
-			self.setColor(run: self.run)
+			self.setColor()
 		})
 	}
-	override func setColor(run: SplitterRun) {
+	override func setColor() {
 		if themeable {
 			self.contentTintColor = run.textColor
 		}

@@ -9,6 +9,7 @@
 import Cocoa
 
 class ThemedPopUpButton: NSPopUpButton, Themeable {
+	var run: SplitterRun!
 	var themeable: Bool = true
 	
 	override init(frame frameRect: NSRect) {
@@ -21,7 +22,7 @@ class ThemedPopUpButton: NSPopUpButton, Themeable {
 		setColorObserver()
 	}
 	
-	func setColor(run: SplitterRun) {
+	func setColor() {
 		
 		self.contentTintColor = run.textColor
 		//not used now, but could be useful in the future for popup buttons with titles instead of images

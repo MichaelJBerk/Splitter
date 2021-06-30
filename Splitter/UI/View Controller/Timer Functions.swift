@@ -63,7 +63,7 @@ extension ViewController {
 			backupSplits.append(currentSplits[i].copy() as! SplitTableRow)
 			i = i + 1
 		}
-		NotificationCenter.default.post(.init(name: .startTimer))
+		NotificationCenter.default.post(name: .startTimer, object: self.run)
 		run.timer.start()
 
 		
@@ -105,7 +105,7 @@ extension ViewController {
 	///Deletes all of the segments in the table view, leaving just one with a time of 00:00:00. Shouldn't be directly triggered by the user; use `askToClearTimer()` for that instead.
 	func clearTimer() {
 		milHundrethTimer.invalidate()
-		NotificationCenter.default.post(.init(name: .stopTimer))
+		NotificationCenter.default.post(.init(name: .stopTimer, object: self.run))
 		
 		currentSplit = TimeSplit(mil: 0,sec: 0,min: 0,hour: 0)
 		currentSplits = []
@@ -116,7 +116,7 @@ extension ViewController {
 	///Resets the timer to 00:00:00.
 	func resetTimer() {
 		milHundrethTimer.invalidate()
-		NotificationCenter.default.post(.init(name: .stopTimer))
+		NotificationCenter.default.post(.init(name: .stopTimer, object: self.run))
 		updateTimer()
 	}
 	

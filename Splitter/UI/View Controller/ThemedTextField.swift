@@ -9,6 +9,7 @@
 import Cocoa
 
 class ThemedTextField: NSTextField, Themeable {
+	var run: SplitterRun!
 	
 	@IBInspectable var themeable: Bool = true
 	
@@ -21,7 +22,7 @@ class ThemedTextField: NSTextField, Themeable {
 		super.init(coder: coder)
 		setColorObserver()
 	}
-	func setColor(run: SplitterRun) {
+	func setColor() {
 		self.textColor = run.textColor
 	}
     

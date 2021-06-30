@@ -45,27 +45,27 @@ class TitleComponent: NSStackView, SplitterComponent, NibLoadable, LiveSplitSpli
 		return d
 	}
 	
+	static func instantiateView(run: SplitterRun) -> TitleComponent {
+		let tc: TitleComponent = TitleComponent.instantiateView()
+		tc.run = run
+		tc.setup()
+		return tc
+	}
+	
 	override func awakeFromNib() {
 		super.awakeFromNib()
-		setup()
 	 }
 	func setup() {
 		gameTitleField.delegate = self
 		gameSubtitleField.delegate = self
-//		gameTitleField.target = self
-//		gameTitleField.cell?.sendsActionOnEndEditing = true
-//		gameTitleField.cell?.target = self
-//		gameTitleField.cell?.action = #selector(runTitleFieldUpdated(_:))
-//		gameTitleField.action = #selector(runTitleFieldUpdated(_:))
-//		gameSubtitleField.target = self
-//		gameTitleField.action = #selector(subtitleFieldUpdated(_:))
-//		gameTitleField.stringValue = "hey"
-//
+		gameTitleField.run = run
+		gameIconButton.run = run
+		gameSubtitleField.run = run
+		infoButton.run = run
 		infoButton.image = nil
 		if #available(macOS 11.0, *) {
 			infoButton.image = NSImage(systemSymbolName: "gearshape.fill", accessibilityDescription: nil)
 		} else {
-			
 			infoButton.image = NSImage(named: "gearshape")
 		}
 	}
@@ -85,20 +85,6 @@ class TitleComponent: NSStackView, SplitterComponent, NibLoadable, LiveSplitSpli
 			gameIconButton.image = .gameControllerIcon
 		}
 	}
-	var hey: String = ""
-	
-	func runDidChange(previousRun: SplitterRun) {
-		
-	}
-	/**
-	How to handle undoing/state
-	- Have popover, etc. modify the run directly, instead of through the VC
-	- Run should have the document attached to it
-	- Changes should work with the undomanager on the document
-	
-	*/
-	
-	
 	
 	var customSpacing: CGFloat? = nil
 	

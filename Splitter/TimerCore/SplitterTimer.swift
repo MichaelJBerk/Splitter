@@ -55,7 +55,7 @@ class SplitterTimer {
 		let newPhase = lsTimer.currentPhase()
 		splitterRun.updateLayoutState()
 		if newPhase == 1 && initialPhase != 1 {
-			NotificationCenter.default.post(.init(name: .phaseChanged, object: nil, userInfo: ["phase": newPhase, "oldPhase": initialPhase]))
+			NotificationCenter.default.post(.init(name: .phaseChanged, object: self, userInfo: ["phase": newPhase, "oldPhase": initialPhase]))
 		}
 		NotificationCenter.default.post(name: .updateIsEdited, object: self, userInfo: nil)
 	}
@@ -66,7 +66,7 @@ class SplitterTimer {
 		lsTimer.splitOrStart()
 		splitterRun.updateLayoutState()
 		let newPhase = lsTimer.currentPhase()
-		NotificationCenter.default.post(.init(name: .phaseChanged, object: nil, userInfo: ["phase": newPhase, "oldPhase": initialPhase]))
+		NotificationCenter.default.post(.init(name: .phaseChanged, object: self, userInfo: ["phase": newPhase, "oldPhase": initialPhase]))
 		NotificationCenter.default.post(name: .splitChanged, object: nil, userInfo: ["current": currentSplit as Any])
 	}
 	func togglePause() {
@@ -74,7 +74,7 @@ class SplitterTimer {
 		lsTimer.togglePause()
 		splitterRun.updateLayoutState()
 		let newPhase = lsTimer.currentPhase()
-		NotificationCenter.default.post(.init(name: .phaseChanged, object: nil, userInfo: ["phase": newPhase, "oldPhase": initialPhase]))
+		NotificationCenter.default.post(.init(name: .phaseChanged, object: self, userInfo: ["phase": newPhase, "oldPhase": initialPhase]))
 	}
 	func previousSplit() {
 		lsTimer.undoSplit()
@@ -125,7 +125,7 @@ class SplitterTimer {
 	}
 	
 	private func addPhaseChangedObserver() {
-		NotificationCenter.default.addObserver(forName: .phaseChanged, object: nil, queue: nil, using: { notification in
+		NotificationCenter.default.addObserver(forName: .phaseChanged, object: self, queue: nil, using: { notification in
 			let old: Int = Int(notification.userInfo!["oldPhase"] as! UInt8)
 			let phase: Int = Int(notification.userInfo!["phase"] as! UInt8)
 			if phase == 2 {

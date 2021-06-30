@@ -106,7 +106,7 @@ class ColorsView: NSView, LoadableNib, advancedTabDelegate {
 			}
 			
 		}
-		NSColorPanel.shared.showsAlpha = true
+		
 		NSColorPanel.shared.showsToolbarButton = true
 	}
 	

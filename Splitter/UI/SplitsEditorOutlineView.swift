@@ -87,8 +87,28 @@ class SplitsEditorOutlineView: NSOutlineView {
 		super.moveItem(at: fromIndex, inParent: oldParent, to: toIndex, inParent: newParent)
 		
 	}
+	var splitsDelegate: SplitsEditorOutlineViewDelegate {
+		delegate as! SplitsEditorOutlineViewDelegate
+	}
+	
+	
+	///Used to make the segment icons selectable
+	override func validateProposedFirstResponder(_ responder: NSResponder, for event: NSEvent?) -> Bool {
+		if let imageView = responder as? NSImageView,
+		   let sup = imageView.superview {
+			let row = self.row(for: sup)
+			if selectedRowIndexes.contains(row) {
+				return true
+			}
+		}
+		return super.validateProposedFirstResponder(responder, for: event)
+	}
 }
 
 class LayoutEditorTextField: NSTextField {
 	var column: NSUserInterfaceItemIdentifier!
+}
+@objc
+protocol SplitsEditorOutlineViewDelegate: NSOutlineViewDelegate {
+	@objc optional func editorOutlineView(_ editorOutlineView: SplitsEditorOutlineView, didClick item: Any?, at column: NSTableColumn)
 }

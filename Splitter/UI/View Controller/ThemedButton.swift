@@ -9,6 +9,7 @@
 import Cocoa
 
 class ThemedButton: NSButton, Themeable {
+	var run: SplitterRun!
 	override init(frame frameRect: NSRect) {
 		super.init(frame: frameRect)
 		setColorObserver()
@@ -17,7 +18,7 @@ class ThemedButton: NSButton, Themeable {
 		super.init(coder: coder)
 		setColorObserver()
 	}
-	func setColor(run: SplitterRun) {
+	func setColor() {
 		var newImage = self.image
 		newImage?.isTemplate = true
 		newImage = newImage?.image(with: run.textColor)

@@ -67,38 +67,44 @@ extension ViewController: NSTableViewDelegate {
 			}
 			
 			let currentLayoutSegment = run.layoutSplits.splits[row]
+			let setThemeColor = { (textField: NSTextField) in
+				textField.textColor = self.run.textColor
+			}
 			switch tableColumn?.identifier {
 			case STVColumnID.imageColumn:
-				let cell = cell as! ImageButtonCellView
-				cell.cellNumber = row
-				cell.imageWell.run = self.run
-				cell.imageWell.splitController = self
+				let imageView = cell.imageView as! ThemedImage
+				imageView.run = self.run
 				if let image = run.icon(for: row) {
-					cell.imageWell!.image = image
+					imageView.image = image
 				} else {
-					cell.imageWell.image = .gameControllerIcon
-					cell.imageWell.image?.isTemplate = true
+					imageView.image = .gameControllerIcon
+					imageView.image?.isTemplate = true
 				}
-				cell.imageWell.setColor(run: run)
+				imageView.setColor()
 			case STVColumnID.splitTitleColumn:
 				cell.textField?.stringValue = currentLayoutSegment.name
+				setThemeColor(cell.textField!)
 			case STVColumnID.currentSplitColumn:
 				cell.textField?.stringValue = currentLayoutSegment.columns[0].value
+				setThemeColor(cell.textField!)
 			case STVColumnID.differenceColumn:
 				let color = NSColor(currentLayoutSegment.columns[1].visualColor)
 				cell.textField?.textColor = color
 				cell.textField?.stringValue = currentLayoutSegment.columns[1].value
 			case STVColumnID.bestSplitColumn:
 				cell.textField?.stringValue = currentLayoutSegment.columns[2].value
+				setThemeColor(cell.textField!)
 			case STVColumnID.previousSplitColumn:
 				let v = currentLayoutSegment.columns[3].value
 				cell.textField?.stringValue = v
+				setThemeColor(cell.textField!)
 			default:
 					break
 			}
 			if let tf = cell.textField as? ThemedTextField {
+				tf.run = run
 				if tf.themeable {
-					tf.setColor(run: run)
+					tf.setColor()
 				}
 			}
 			return cell

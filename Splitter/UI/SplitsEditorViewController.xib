@@ -50,17 +50,17 @@
                                                 <rect key="frame" x="18" y="0.0" width="33" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <imageView wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5cl-Wx-7rq">
-                                                        <rect key="frame" x="10" y="3" width="13" height="11"/>
-                                                        <imageCell key="cell" selectable="YES" editable="YES" alignment="left" imageScaling="proportionallyDown" id="aOg-NL-Fz4"/>
+                                                    <imageView wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5cl-Wx-7rq" customClass="CellImageWell" customModule="Splitter" customModuleProvider="target">
+                                                        <rect key="frame" x="10" y="0.0" width="13" height="17"/>
+                                                        <imageCell key="cell" selectable="YES" editable="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" id="aOg-NL-Fz4"/>
                                                     </imageView>
                                                 </subviews>
                                                 <constraints>
-                                                    <constraint firstAttribute="bottom" secondItem="5cl-Wx-7rq" secondAttribute="bottom" constant="3" id="6WH-pg-tGi"/>
+                                                    <constraint firstAttribute="bottom" secondItem="5cl-Wx-7rq" secondAttribute="bottom" id="6WH-pg-tGi"/>
                                                     <constraint firstItem="5cl-Wx-7rq" firstAttribute="leading" secondItem="jZj-eW-wju" secondAttribute="leading" constant="10" id="6c8-vP-moP"/>
                                                     <constraint firstItem="5cl-Wx-7rq" firstAttribute="centerX" secondItem="jZj-eW-wju" secondAttribute="centerX" id="GHU-e4-Un5"/>
                                                     <constraint firstItem="5cl-Wx-7rq" firstAttribute="centerY" secondItem="jZj-eW-wju" secondAttribute="centerY" id="Mok-h7-3gw"/>
-                                                    <constraint firstItem="5cl-Wx-7rq" firstAttribute="top" secondItem="jZj-eW-wju" secondAttribute="top" constant="3" id="QLj-XL-Mdp"/>
+                                                    <constraint firstItem="5cl-Wx-7rq" firstAttribute="top" secondItem="jZj-eW-wju" secondAttribute="top" id="QLj-XL-Mdp"/>
                                                     <constraint firstAttribute="trailing" secondItem="5cl-Wx-7rq" secondAttribute="trailing" constant="10" id="ck9-GE-hYL"/>
                                                 </constraints>
                                                 <connections>
@@ -82,11 +82,11 @@
                                         <tableColumnResizingMask key="resizingMask" resizeWithTable="YES" userResizable="YES"/>
                                         <prototypeCellViews>
                                             <tableCellView identifier="outlineViewTextCell" id="Gj1-Kl-F8o">
-                                                <rect key="frame" x="68" y="0.0" width="107" height="24"/>
+                                                <rect key="frame" x="68" y="0.0" width="85" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZAq-m7-4nO" customClass="LayoutEditorTextField" customModule="Splitter" customModuleProvider="target">
-                                                        <rect key="frame" x="0.0" y="4" width="107" height="16"/>
+                                                        <rect key="frame" x="0.0" y="4" width="85" height="16"/>
                                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="HPR-Yl-5Rl">
                                                             <font key="font" usesAppearanceFont="YES"/>

@@ -240,7 +240,7 @@ extension SplitsEditorViewController: NSOutlineViewDataSource {
 		
 	}
 }
-extension SplitsEditorViewController: NSOutlineViewDelegate {
+extension SplitsEditorViewController: SplitsEditorOutlineViewDelegate {
 	
 	func processIconChanges(completion: () -> () = {}) {
 		let state = editorState
@@ -256,6 +256,10 @@ extension SplitsEditorViewController: NSOutlineViewDelegate {
 		}
 		completion()
 		//gameicon change...
+	}
+	@objc func iconChanged(_ sender: CellImageWell) {
+		let image = sender.image
+		iconPicked(image, for: sender.row)
 	}
 	
 	func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
@@ -276,6 +280,11 @@ extension SplitsEditorViewController: NSOutlineViewDelegate {
 					}
 				}
 				cell.imageView?.image = image
+				cell.imageView?.target = self
+				cell.imageView?.action = #selector(iconChanged(_:))
+				let imageView = cell.imageView as! CellImageWell
+				imageView.row = index
+				imageView.delegate = self
 				return cell
 			}
 			
@@ -312,6 +321,21 @@ extension SplitsEditorViewController: NSOutlineViewDelegate {
 		}
 	}
 }
+extension SplitsEditorViewController: SplitsEditorSegmentIconDelegate {
+	func iconPicked(_ icon: NSImage?, for row: Int) {
+		if let image = icon {
+			image.toLSImage({ptr, len in
+				editor.activeSetIcon(ptr, len)
+			})
+		} else {
+			editor.activeRemoveIcon()
+		}
+		processIconChanges()
+		outlineView.reloadData()
+	}
+	
+	
+}
 
 extension SplitsEditorViewController: NSTextFieldDelegate {
 	public func controlTextDidEndEditing(_ obj: Notification) {
@@ -333,4 +357,19 @@ extension SplitsEditorViewController: NSTextFieldDelegate {
 			NotificationCenter.default.post(name: .splitsEdited, object: outlineView)
 		}
 	}
+}
+
+//class SegmentIconImageVew: ThemedImage {
+//	var row: Int!
+//	var delegate: SplitsEditorSegmentIconDelegate!
+//	override var themeable: Bool {
+//		get {
+//			return false
+//		} set {}
+//	}
+//}
+//
+
+protocol SplitsEditorSegmentIconDelegate {
+	func iconPicked(_ icon: NSImage?, for row: Int)
 }
