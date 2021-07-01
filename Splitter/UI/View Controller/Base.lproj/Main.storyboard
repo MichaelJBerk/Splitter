@@ -408,17 +408,6 @@
                                                 <action selector="showInfoPanelMenuItem:" target="Ady-hI-5gd" id="7GL-xb-iAU"/>
                                             </connections>
                                         </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="sOX-Mk-8XP"/>
-                                        <menuItem title="Add Row" keyEquivalent="=" identifier="AddRowMenuItem" id="tzZ-yU-YSP">
-                                            <connections>
-                                                <action selector="addRowMenuItemWithSender:" target="Ady-hI-5gd" id="tJ8-ry-4fk"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem title="Remove Row" keyEquivalent="-" identifier="RemoveRowMenuItem" id="2Vl-sX-Vm6">
-                                            <connections>
-                                                <action selector="removeRowMenuItemWithSender:" target="Ady-hI-5gd" id="r6q-Kg-DTU"/>
-                                            </connections>
-                                        </menuItem>
                                     </items>
                                 </menu>
                             </menuItem>
