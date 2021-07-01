@@ -92,10 +92,10 @@ class SplitsEditorOutlineView: NSOutlineView {
 	
 	///Used to make the segment icons selectable
 	override func validateProposedFirstResponder(_ responder: NSResponder, for event: NSEvent?) -> Bool {
-		if let imageView = responder as? NSImageView,
-		   let sup = imageView.superview {
+		if let view = responder as? NSView,
+		   let sup = view.superview {
 			let row = self.row(for: sup)
-			if selectedRowIndexes.contains(row) {
+			if row > -1, selectedRowIndexes.contains(row) {
 				return true
 			}
 		}
