@@ -10,15 +10,15 @@
         <customObject id="-2" userLabel="File's Owner"/>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <scrollView appearanceType="darkAqua" misplaced="YES" borderType="none" autohidesScrollers="YES" horizontalLineScroll="33" horizontalPageScroll="10" verticalLineScroll="33" verticalPageScroll="10" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="allowed" scrollerKnobStyle="dark" id="EDO-sj-syL" customClass="SplitsComponent" customModule="Splitter" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="494" height="230"/>
+        <scrollView appearanceType="darkAqua" borderType="none" autohidesScrollers="YES" horizontalLineScroll="33" horizontalPageScroll="10" verticalLineScroll="33" verticalPageScroll="10" usesPredominantAxisScrolling="NO" horizontalScrollElasticity="allowed" scrollerKnobStyle="dark" id="EDO-sj-syL" customClass="SplitsComponent" customModule="Splitter" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="494" height="202"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <clipView key="contentView" copiesOnScroll="NO" id="DaF-Ib-nce">
-                <rect key="frame" x="0.0" y="0.0" width="494" height="230"/>
+                <rect key="frame" x="0.0" y="0.0" width="494" height="202"/>
                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                 <subviews>
                     <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" tableStyle="fullWidth" columnSelection="YES" multipleSelection="NO" autosaveColumns="NO" rowHeight="31" headerView="jQX-s5-Cwb" viewBased="YES" id="b0F-yO-Zdx" customClass="SplitterTableView" customModule="Splitter" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="494" height="202"/>
+                        <rect key="frame" x="0.0" y="0.0" width="494" height="174"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <size key="intercellSpacing" width="3" height="2"/>
                         <color key="backgroundColor" white="1" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -36,22 +36,16 @@
                                 </textFieldCell>
                                 <tableColumnResizingMask key="resizingMask" userResizable="YES"/>
                                 <prototypeCellViews>
-                                    <tableCellView id="9Rq-f5-EFc" customClass="ImageButtonCellView" customModule="Splitter" customModuleProvider="target">
+                                    <tableCellView translatesAutoresizingMaskIntoConstraints="NO" id="9Rq-f5-EFc" customClass="ImageButtonCellView" customModule="Splitter" customModuleProvider="target">
                                         <rect key="frame" x="1" y="1" width="37" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="qAU-Ku-8Mr" customClass="ThemedImage" customModule="Splitter" customModuleProvider="target">
+                                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qAU-Ku-8Mr" customClass="ThemedImage" customModule="Splitter" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="3" width="37" height="25"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <imageCell key="cell" selectable="YES" editable="YES" alignment="left" imageScaling="proportionallyDown" id="LZY-ob-thb"/>
                                             </imageView>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="qAU-Ku-8Mr" secondAttribute="trailing" id="Dzl-He-fjE"/>
-                                            <constraint firstItem="qAU-Ku-8Mr" firstAttribute="centerX" secondItem="9Rq-f5-EFc" secondAttribute="centerX" id="RXz-1f-lVJ"/>
-                                            <constraint firstItem="qAU-Ku-8Mr" firstAttribute="leading" secondItem="9Rq-f5-EFc" secondAttribute="leading" id="c0x-yA-Zbx"/>
-                                            <constraint firstItem="qAU-Ku-8Mr" firstAttribute="top" secondItem="9Rq-f5-EFc" secondAttribute="top" constant="3" id="fcv-22-rVm"/>
-                                            <constraint firstAttribute="bottom" secondItem="qAU-Ku-8Mr" secondAttribute="bottom" constant="3" id="s7f-Y6-Eqa"/>
-                                        </constraints>
                                         <connections>
                                             <outlet property="imageView" destination="qAU-Ku-8Mr" id="noF-0n-ONW"/>
                                         </connections>
@@ -70,12 +64,13 @@
                                 </textFieldCell>
                                 <tableColumnResizingMask key="resizingMask" userResizable="YES"/>
                                 <prototypeCellViews>
-                                    <tableCellView id="TPX-zO-CHD">
+                                    <tableCellView translatesAutoresizingMaskIntoConstraints="NO" id="TPX-zO-CHD">
                                         <rect key="frame" x="41" y="1" width="80" height="31"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="mRa-k1-Pu9">
+                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="mRa-k1-Pu9">
                                                 <rect key="frame" x="-2" y="9" width="84" height="14"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" alignment="left" title="Split Title" id="5HN-nt-iR3">
                                                     <font key="font" metaFont="message" size="11"/>
                                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -87,11 +82,6 @@
                                                 <accessibility identifier="SplitTitleCell"/>
                                             </textField>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstItem="mRa-k1-Pu9" firstAttribute="leading" secondItem="TPX-zO-CHD" secondAttribute="leading" id="BbH-az-H2U"/>
-                                            <constraint firstItem="mRa-k1-Pu9" firstAttribute="centerY" secondItem="TPX-zO-CHD" secondAttribute="centerY" id="ZLw-VH-RSq"/>
-                                            <constraint firstAttribute="trailing" secondItem="mRa-k1-Pu9" secondAttribute="trailing" id="faN-Vn-s6l"/>
-                                        </constraints>
                                         <connections>
                                             <outlet property="textField" destination="mRa-k1-Pu9" id="P5y-OL-MBk"/>
                                         </connections>
@@ -110,15 +100,13 @@
                                 </textFieldCell>
                                 <tableColumnResizingMask key="resizingMask" userResizable="YES"/>
                                 <prototypeCellViews>
-                                    <tableCellView id="XFe-d1-5By">
+                                    <tableCellView translatesAutoresizingMaskIntoConstraints="NO" id="XFe-d1-5By">
                                         <rect key="frame" x="124" y="1" width="90" height="30"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCI-ne-qwR">
+                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aCI-ne-qwR">
                                                 <rect key="frame" x="-2" y="7" width="94" height="16"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="16" id="m9b-Wg-Jxv"/>
-                                                </constraints>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="00:00:00.00" id="c1Q-Gr-3Zf">
                                                     <font key="font" metaFont="systemBold"/>
                                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -126,11 +114,6 @@
                                                 </textFieldCell>
                                             </textField>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstItem="aCI-ne-qwR" firstAttribute="leading" secondItem="XFe-d1-5By" secondAttribute="leading" id="CGY-Nx-aBT"/>
-                                            <constraint firstItem="aCI-ne-qwR" firstAttribute="centerY" secondItem="XFe-d1-5By" secondAttribute="centerY" id="Pbu-Ne-wOl"/>
-                                            <constraint firstItem="aCI-ne-qwR" firstAttribute="centerX" secondItem="XFe-d1-5By" secondAttribute="centerX" id="vcf-cZ-Jom"/>
-                                        </constraints>
                                         <connections>
                                             <outlet property="textField" destination="aCI-ne-qwR" id="d2M-Ad-sjG"/>
                                         </connections>
@@ -149,15 +132,13 @@
                                 </textFieldCell>
                                 <tableColumnResizingMask key="resizingMask" userResizable="YES"/>
                                 <prototypeCellViews>
-                                    <tableCellView id="atH-rr-tx3">
+                                    <tableCellView translatesAutoresizingMaskIntoConstraints="NO" id="atH-rr-tx3">
                                         <rect key="frame" x="217" y="1" width="64" height="30"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KZI-dP-P4v">
-                                                <rect key="frame" x="0.0" y="5" width="183" height="18"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="18" id="XyB-vA-zfy"/>
-                                                </constraints>
+                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KZI-dP-P4v">
+                                                <rect key="frame" x="0.0" y="5" width="64" height="18"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="00:00.00" id="dvB-qm-Cte">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -168,11 +149,6 @@
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstItem="KZI-dP-P4v" firstAttribute="leading" secondItem="atH-rr-tx3" secondAttribute="leading" id="e7D-PK-WSi"/>
-                                            <constraint firstItem="KZI-dP-P4v" firstAttribute="centerY" secondItem="atH-rr-tx3" secondAttribute="centerY" id="sKC-4A-jEd"/>
-                                            <constraint firstItem="KZI-dP-P4v" firstAttribute="centerX" secondItem="atH-rr-tx3" secondAttribute="centerX" id="tO9-TE-IT4"/>
-                                        </constraints>
                                         <connections>
                                             <outlet property="textField" destination="KZI-dP-P4v" id="wGR-D6-w20"/>
                                         </connections>
@@ -191,15 +167,13 @@
                                 </textFieldCell>
                                 <tableColumnResizingMask key="resizingMask" userResizable="YES"/>
                                 <prototypeCellViews>
-                                    <tableCellView id="ZFb-Iv-xTD">
+                                    <tableCellView translatesAutoresizingMaskIntoConstraints="NO" id="ZFb-Iv-xTD">
                                         <rect key="frame" x="1" y="1" width="0.0" height="30"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="uIZ-JI-vAx">
+                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uIZ-JI-vAx">
                                                 <rect key="frame" x="-2" y="6" width="4" height="18"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="18" id="V5T-it-GNd"/>
-                                                </constraints>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="00:00:00.00" id="MEG-NU-sDe">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -207,11 +181,6 @@
                                                 </textFieldCell>
                                             </textField>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="uIZ-JI-vAx" secondAttribute="trailing" id="49p-3q-DBT"/>
-                                            <constraint firstItem="uIZ-JI-vAx" firstAttribute="centerY" secondItem="ZFb-Iv-xTD" secondAttribute="centerY" id="lch-dw-klK"/>
-                                            <constraint firstItem="uIZ-JI-vAx" firstAttribute="leading" secondItem="ZFb-Iv-xTD" secondAttribute="leading" id="wta-qQ-Ymc"/>
-                                        </constraints>
                                         <connections>
                                             <outlet property="textField" destination="uIZ-JI-vAx" id="hbZ-TR-95n"/>
                                         </connections>
@@ -230,12 +199,13 @@
                                 </textFieldCell>
                                 <tableColumnResizingMask key="resizingMask" userResizable="YES"/>
                                 <prototypeCellViews>
-                                    <tableCellView id="AeP-mg-VnP">
+                                    <tableCellView translatesAutoresizingMaskIntoConstraints="NO" id="AeP-mg-VnP">
                                         <rect key="frame" x="284" y="1" width="89" height="30"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                         <subviews>
-                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="lgc-zC-tzO">
-                                                <rect key="frame" x="-2" y="7" width="93" height="16"/>
+                                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="lgc-zC-tzO">
+                                                <rect key="frame" x="-2" y="7" width="80" height="16"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                 <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="00:00:00.00" id="7d7-UO-RxE">
                                                     <font key="font" metaFont="system"/>
                                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -243,11 +213,6 @@
                                                 </textFieldCell>
                                             </textField>
                                         </subviews>
-                                        <constraints>
-                                            <constraint firstAttribute="trailing" secondItem="lgc-zC-tzO" secondAttribute="trailing" id="VIE-tZ-xdy"/>
-                                            <constraint firstItem="lgc-zC-tzO" firstAttribute="centerY" secondItem="AeP-mg-VnP" secondAttribute="centerY" id="i0x-I5-qO0"/>
-                                            <constraint firstItem="lgc-zC-tzO" firstAttribute="leading" secondItem="AeP-mg-VnP" secondAttribute="leading" id="nIc-zn-vg6"/>
-                                        </constraints>
                                         <connections>
                                             <outlet property="textField" destination="lgc-zC-tzO" id="1EV-1i-Fn5"/>
                                         </connections>
