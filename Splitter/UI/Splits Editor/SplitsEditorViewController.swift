@@ -21,20 +21,33 @@ class SplitsEditorViewController: NSViewController, NibLoadable {
 	//MARK: Control Actions
 	
 	@IBAction func cancelButtonAction(_ sender: NSButton?) {
-		editor.dispose()
+		onDismiss = {
+			self.editor.dispose()
+		}
 		self.dismiss(nil)
 	}
 	@IBAction func okButtonAction(_ sender: NSButton?) {
-//		DispatchQueue.main.async {
-//			self.view.window?.makeFirstResponder(nil)
-			
+			view.window?.makeFirstResponder(nil)
+		
+		onDismiss = {
 			let newRun = self.editor.close()
 			self.run.setRun(newRun)
 			self.run.updateLayoutState()
-			NotificationCenter.default.post(.init(name: .splitsEdited))
-			self.dismiss(nil)
-			
-//		}
+			NotificationCenter.default.post(.init(name: .splitsEdited, object: self.run))
+		}
+		self.dismiss(nil)
+		
+	}
+	///Called when the view is dimissed, after removing the outline view.
+	///
+	///If we don't remove the outline view, it will reload when closing the RunEditor, causing the app to crash.
+	///As such, the code to close the RunEditor is in `onDismiss`.
+	private var onDismiss = {}
+	override func viewDidDisappear() {
+		
+		outlineView.removeFromSuperview()
+		onDismiss()
+		super.viewDidDisappear()
 	}
 	
 	@IBAction func removeButtonAction(_ sender: NSButton?) {
@@ -366,5 +379,6 @@ extension SplitsEditorViewController: NSTextFieldDelegate {
 		}
 		return true
 	}
+	
 }
 

@@ -503,7 +503,7 @@ class ViewController: NSViewController {
 			self.updateTextFields()
 			self.updateTimer()
 		})
-		NotificationCenter.default.addObserver(forName: .splitsEdited, object: nil, queue: nil, using: { notification in
+		NotificationCenter.default.addObserver(forName: .splitsEdited, object: self.run, queue: nil, using: { notification in
 			self.splitsTableView.reloadData()
 		})
 		NotificationCenter.default.addObserver(forName: .updateIsEdited, object: self.run.timer, queue: nil, using: { notification in
