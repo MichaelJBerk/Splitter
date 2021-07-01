@@ -19,6 +19,18 @@ extension ViewController {
 		splitsTableView.scrollRowToVisible(run.currentSplit ?? 0)
 	}
 	
+	///Updates the "Skip Split" menu item
+	func updateSkipItem() {
+		if let currentSplit = self.run.timer.currentSplit {
+			var enabled = true
+			if currentSplit >= self.run.segmentCount - 1 {
+				enabled = false
+			}
+			setMenuItemEnabled(item: skipSplitMenuitem, enabled: enabled)
+		}
+	}
+	
+	
 	//MARK: - Split Navigation
 	///Moves the timer to the next split, or finishes the run if the current split is the last.
 	func goToNextSplit() {

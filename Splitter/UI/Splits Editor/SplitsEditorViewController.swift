@@ -25,11 +25,16 @@ class SplitsEditorViewController: NSViewController, NibLoadable {
 		self.dismiss(nil)
 	}
 	@IBAction func okButtonAction(_ sender: NSButton?) {
-		let newRun = editor.close()
-		run.setRun(newRun)
-		run.updateLayoutState()
-		NotificationCenter.default.post(.init(name: .splitsEdited))
-		self.dismiss(nil)
+//		DispatchQueue.main.async {
+//			self.view.window?.makeFirstResponder(nil)
+			
+			let newRun = self.editor.close()
+			self.run.setRun(newRun)
+			self.run.updateLayoutState()
+			NotificationCenter.default.post(.init(name: .splitsEdited))
+			self.dismiss(nil)
+			
+//		}
 	}
 	
 	@IBAction func removeButtonAction(_ sender: NSButton?) {
@@ -354,6 +359,12 @@ extension SplitsEditorViewController: NSTextFieldDelegate {
 			}
 			NotificationCenter.default.post(name: .splitsEdited, object: outlineView)
 		}
+	}
+	func control(_ control: NSControl, textShouldEndEditing fieldEditor: NSText) -> Bool {
+		DispatchQueue.main.async {
+			control.window?.makeFirstResponder(nil)
+		}
+		return true
 	}
 }
 

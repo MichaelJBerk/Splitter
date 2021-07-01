@@ -57,6 +57,9 @@ class ViewController: NSViewController {
 		}
 		return nil
 	}
+	var skipSplitMenuitem: NSMenuItem? {
+		return view.window?.menu?.item(withIdentifier: menuIdentifiers.runMenu.skipSplit)
+	}
 	var addRowMenuItem: NSMenuItem? {
 		return view.window?.menu?.item(withIdentifier: menuIdentifiers.runMenu.addRow)
 	}
@@ -334,11 +337,13 @@ class ViewController: NSViewController {
 		}
 	}
 	private func addSplitChangedObserver() {
-		NotificationCenter.default.addObserver(forName: .splitChanged, object: nil, queue: nil, using: { notification in
+		NotificationCenter.default.addObserver(forName: .splitChanged, object: run.timer, queue: nil, using: { notification in
+			self.updateSkipItem()
 			self.updateButtonTitles()
 		})
 	}
 	private func timerStateChanged(timerState: TimerState) {
+		updateSkipItem()
 		let prevSplitItem = view.window?.menu?.item(withIdentifier: menuIdentifiers.runMenu.back)
 		if timerState == .stopped {
 			setMenuItemEnabled(item: timerStopItem, enabled: false)
@@ -347,6 +352,7 @@ class ViewController: NSViewController {
 			
 			setMenuItemEnabled(item: startSplitItem, enabled: true)
 			setMenuItemEnabled(item: prevSplitItem, enabled: false)
+			setMenuItemEnabled(item: skipSplitMenuitem, enabled: false)
 			setMenuItemEnabled(item: pauseMenuItem, enabled: false)
 			
 			setMenuItemEnabled(item: addRowMenuItem, enabled: true)
@@ -360,7 +366,11 @@ class ViewController: NSViewController {
 			startSplitItem?.title = "Split"
 			setMenuItemEnabled(item: startSplitItem, enabled: true)
 			setMenuItemEnabled(item: prevSplitItem, enabled: true)
-			
+			if let cs = run.currentSplit, cs < run.segmentCount - 1, run.segmentCount > 1 {
+				setMenuItemEnabled(item: skipSplitMenuitem, enabled: true)
+			} else {
+				setMenuItemEnabled(item: skipSplitMenuitem, enabled: false)
+			}
 			setMenuItemEnabled(item: pauseMenuItem, enabled: true)
 			pauseMenuItem?.title = "Pause Timer"
 			
@@ -372,6 +382,7 @@ class ViewController: NSViewController {
 			setMenuItemEnabled(item: timerStopItem, enabled: true)
 			timerStopItem?.title = "Cancel Run"
 			setMenuItemEnabled(item: prevSplitItem, enabled: false)
+			setMenuItemEnabled(item: skipSplitMenuitem, enabled: false)
 			setMenuItemEnabled(item: pauseMenuItem, enabled: true)
 			
 			pauseMenuItem?.title = "Resume Timer"

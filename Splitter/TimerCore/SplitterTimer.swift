@@ -34,6 +34,10 @@ class SplitterTimer {
 	var lsRun: RunRef {
 		return lsTimer.getRun()
 	}
+	
+	func postSplitChange() {
+		NotificationCenter.default.post(name: .splitChanged, object: self, userInfo: ["current": currentSplit as Any])
+	}
 	init(run: Run) {
 		lsTimer = LSTimer(run)!
 		let ts = timerState
@@ -67,7 +71,7 @@ class SplitterTimer {
 		splitterRun.updateLayoutState()
 		let newPhase = lsTimer.currentPhase()
 		NotificationCenter.default.post(.init(name: .phaseChanged, object: self, userInfo: ["phase": newPhase, "oldPhase": initialPhase]))
-		NotificationCenter.default.post(name: .splitChanged, object: nil, userInfo: ["current": currentSplit as Any])
+		postSplitChange()
 	}
 	func togglePause() {
 		let initialPhase = lsTimer.currentPhase()
@@ -78,6 +82,7 @@ class SplitterTimer {
 	}
 	func previousSplit() {
 		lsTimer.undoSplit()
+		postSplitChange()
 		splitterRun.updateLayoutState()
 	}
 	
@@ -95,7 +100,7 @@ class SplitterTimer {
 	func skipSplit() {
 		lsTimer.skipSplit()
 		splitterRun.updateLayoutState()
-//		NotificationCenter.default.post(name: .splitChanged, object: nil, userInfo: ["current": currentSplit as Any])
+		postSplitChange()
 	}
 
 	
@@ -105,7 +110,7 @@ class SplitterTimer {
 	func resetRun(discardSplits: Bool = false) {
 		lsTimer.reset(!discardSplits)
 		splitterRun.updateLayoutState()
-		NotificationCenter.default.post(name: .splitChanged, object: nil, userInfo: ["current": currentSplit as Any])
+		postSplitChange()
 	}
 	
 	func resetHistories() {
