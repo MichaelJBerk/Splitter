@@ -433,7 +433,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="R9V-ak-ekV"/>
-                                        <menuItem title="Show/Hide Columns..." identifier="showColumnOptions" id="lgA-J9-tIc">
+                                        <menuItem title="Edit Layout..." identifier="showColumnOptions" id="lgA-J9-tIc">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="showColumnOptionsMenuItem:" target="Ady-hI-5gd" id="SsK-Kp-MGm"/>
@@ -558,7 +558,7 @@
                                 <action selector="showInfoPanelMenuItem:" target="2Tp-Fl-jBw" id="yJV-Hg-F3U"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Show/Hide Columns..." id="oCR-LY-QIt">
+                        <menuItem title="Edit Layout..." id="oCR-LY-QIt">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="showColumnOptionsMenuItem:" target="2Tp-Fl-jBw" id="ykm-uD-h6o"/>

@@ -19,7 +19,7 @@ enum KeybindTitle: String {
 	case ClearTimer = "Reset Run"
 	case ResetCurrentSplit = "Reset Current Split"
 	case ShowInfoPanel = "Get Info..."
-	case ShowColumnOptions = "Show/Hide Columns..."
+	case ShowColumnOptions = "Edit Layout..."
 	
 }
 
