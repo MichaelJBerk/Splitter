@@ -27,8 +27,8 @@ class SplitterRowView: NSTableRowView {
 		if isSelected == true || isCurrentSegment {
 			selectedColor.set()
 			dirtyRect.fill()
-		   }
-	   }
+		}
+	}
 }
 
 
@@ -43,11 +43,7 @@ extension ViewController: NSTableViewDelegate {
 	}
 	
 	func tableView(_ tableView: NSTableView, shouldSelectRow row: Int) -> Bool {
-		if timerState == .running {
-			return false
-		} else {
-			return true
-		}
+		return false
 	}
 	
 	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {

@@ -135,11 +135,29 @@ class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent, LiveSplitSp
 		///This works even if viewController hasn't been initalized yet, since `delegate` and `dataSource` are optional properties
 		splitsTableView.delegate = viewController
 		splitsTableView.dataSource = viewController
+		
+		//Get rows past the header to be hidden
+		NotificationCenter.default.addObserver(forName: NSScrollView.didLiveScrollNotification, object: self, queue: nil, using: { notification in
+			let scrollView = notification.object as! SplitsComponent
+
+			let range = scrollView.splitsTableView.rows(in: scrollView.splitsTableView.visibleRect)
+			for i  in range.lowerBound..<range.upperBound  {
+				let rowView = scrollView.splitsTableView.rowView(atRow: i, makeIfNecessary: false) as! SplitterRowView
+				
+				let header = scrollView.splitsTableView.headerView
+				let p = header!.convert(NSPoint(x: 0, y: header!.frame.minY), to: rowView)
+
+				if p.y >= 0 {
+					rowView.isHidden = true
+				} else {
+					rowView.isHidden = false
+				}
+			}
+		})
 		if #available(macOS 11.0, *) {
 			splitsTableView.style = .fullWidth
 		}
 	}
-	
 	
 	var leadingConstraint: NSLayoutConstraint {
 		self.leadingAnchor.constraint(equalTo: viewController.view.leadingAnchor)
@@ -176,5 +194,33 @@ class SplitterScroller: NSScroller {
 	var bgColor: NSColor?
 	
 	override func drawKnobSlot(in slotRect: NSRect, highlight flag: Bool) {
+		if let bgColor = self.bgColor {
+			let alpha = bgColor.alphaComponent * 0.6
+			var effect = NSColor.SystemEffect.none
+			if flag {
+				effect = .pressed
+			}
+			bgColor.withAlphaComponent(alpha).withSystemEffect(effect).set()
+			var fillStyle: NSCompositingOperation
+			
+			if bgColor.isLight() ?? false {
+				fillStyle = .hardLight
+			} else {
+				fillStyle = .softLight
+			}
+			if alpha == 0 {
+				fillStyle = .clear
+			}
+			slotRect.fill(using: fillStyle)
+		}
+	}
+}
+
+extension NSAppearance {
+	var isDark: Bool {
+		if name.rawValue.contains("Dark") {
+			return true
+		}
+		return false
 	}
 }

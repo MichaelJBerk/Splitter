@@ -113,10 +113,6 @@ extension ViewController {
 		splitsTableView.layer?.isOpaque = false
 		splitsTableView.layer?.backgroundColor = .clear
 		
-		splitsTableView.headerView?.wantsLayer = true
-		splitsTableView.headerView?.layer?.isOpaque = false
-		splitsTableView.headerView?.layer?.backgroundColor = NSColor.red.cgColor
-		
 		
 		splitsTableView.viewController = self
 		

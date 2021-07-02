@@ -574,6 +574,11 @@
                         <rect key="frame" x="0.0" y="0.0" width="260" height="378"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="nQn-tP-SqQ">
+                                <rect key="frame" x="0.0" y="0.0" width="260" height="378"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" id="9YI-R2-vAq"/>
+                            </imageView>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kx4-q1-74E" customClass="DraggingStackView" customModule="Splitter" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="10" width="260" height="368"/>
                             </stackView>

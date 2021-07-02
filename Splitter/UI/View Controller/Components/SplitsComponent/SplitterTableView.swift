@@ -11,6 +11,25 @@ import Cocoa
 class SplitterTableView: NSTableView {
 	var viewController: ViewController!
 	
+	override func adjustScroll(_ newVisible: NSRect) -> NSRect {
+		var adjRect = newVisible
+		var h = adjRect.origin.y
+		let amount: CGFloat = 31
+		
+		if (h+28).truncatingRemainder(dividingBy: amount) != 0 {
+			let mul = CGFloat(Int((h) / amount))
+			let lower = abs(mul * amount)
+			let higher = abs(mul + 1) * amount
+			if lower < higher {
+				h = lower
+			} else {
+				h = higher
+			}
+		}
+		adjRect.origin.y = h
+		return super.adjustScroll(adjRect)
+	}
+	
 	
     override func draw(_ dirtyRect: NSRect) {}
 	
@@ -28,11 +47,14 @@ class SplitterTableView: NSTableView {
 		
 		enclosingScrollView?.verticalScroller?.wantsLayer = true
 		enclosingScrollView?.verticalScroller?.layer?.isOpaque = false
-		enclosingScrollView?.horizontalScroller?.wantsLayer = true
+		enclosingScrollView?.horizontalScroller?.wantsLayer = false
 		enclosingScrollView?.horizontalScroller?.layer?.isOpaque = false
-		
-		enclosingScrollView?.verticalScroller?.layer?.backgroundColor = cornerColor.cgColor
-		enclosingScrollView?.horizontalScroller?.layer?.backgroundColor = cornerColor.cgColor
+		if let hScroller = enclosingScrollView?.horizontalScroller as? SplitterScroller, let vScroller = enclosingScrollView?.verticalScroller as? SplitterScroller {
+			hScroller.layer?.backgroundColor = .clear
+			vScroller.layer?.backgroundColor = .clear
+			hScroller.bgColor = cornerColor
+			vScroller.bgColor = cornerColor
+		}
 		
 		self.cornerView = cornerV
 		
@@ -51,10 +73,11 @@ class SplitterTableView: NSTableView {
 				let headerStr = c.headerCell.stringValue
 				let head = SplitterTableHeaderCell(textCell: headerStr)
 				head.drawsBackground = true
+				head.backgroundColor = .clear
+				head.backgroundStyle = .raised
+				head.tintColor = viewController.run.tableColor
 				head.textColor = textColor
-				head.backgroundColor = viewController.run.tableColor
 				head.attributedStringValue = NSAttributedString(string: headerStr, attributes: [.foregroundColor: textColor])
-				head.isBordered = true
 				c.headerCell = head
 			}
 		}
@@ -97,6 +120,8 @@ class SplitterTableHeader: NSTableHeaderView {
 ///Automatically draws the background with the current `backgroundColor` of the `SplitterTableHeaderCell`
 class SplitterTableHeaderCell: NSTableHeaderCell {
 	
+	var tintColor: NSColor? = .controlBackgroundColor
+	
 	required init(coder: NSCoder) {
 		super.init(coder: coder)
 	}
@@ -104,22 +129,58 @@ class SplitterTableHeaderCell: NSTableHeaderCell {
     override init(textCell: String) {
         super.init(textCell: textCell)
     }
+	
+	func colorfulDraw(withFrame cellFrame: NSRect, in controlView: NSView, systemEffect: NSColor.SystemEffect) {
+		if let tintColor = self.tintColor {
+			let alpha = tintColor.alphaComponent * 0.6
+			tintColor.withAlphaComponent(alpha).withSystemEffect(systemEffect).set()
+			var fillStyle: NSCompositingOperation
+			if controlView.effectiveAppearance.name.rawValue.contains("Dark") {
+				fillStyle = .softLight
+			} else {
+				fillStyle = .hardLight
+			}
+			if alpha == 0 {
+				fillStyle = .clear
+			}
+			cellFrame.fill(using: fillStyle)
+		}
+		
+		//Several calculations used to draw the border and text
+		let offset = floor((cellFrame.height - (font!.ascender - font!.descender))/2)// - 3
+		let topOffset = cellFrame.maxY - offset
+		
+		//Draw the border
+		let fromPoint = NSPoint(x: cellFrame.maxX + 1.5, y: offset)
+		let toPoint = NSPoint(x: cellFrame.maxX + 1.5, y: topOffset)
+		let sep = NSColor(red: 0.3, green: 0.3, blue: 0.3, alpha: 1)
+		sep.setStroke()
+		let path = NSBezierPath.init()
+		path.lineWidth = 0
+		path.move(to: fromPoint)
+		path.line(to: toPoint)
+		path.stroke()
+		
+		//Without this custom inset, the header text will appear at the top of the cell, instead of the center.
+		let inset = cellFrame.insetBy(dx: 5, dy: offset)
+		drawInterior(withFrame: inset, in: controlView)
+	}
 
     override func draw(withFrame cellFrame: NSRect, in controlView: NSView) {
-        self.drawsBackground = true
-        self.backgroundColor?.set()
-        cellFrame.fill()
-
-        super.draw(withFrame: cellFrame, in: controlView) //This is what draws borders
+		colorfulDraw(withFrame: cellFrame, in: controlView, systemEffect: .none)
     }
 	
 	override func highlight(_ flag: Bool, withFrame cellFrame: NSRect, in controlView: NSView) {
-		self.backgroundColor?.set()
-		cellFrame.fill()
-		
-		
-		
-		super.highlight(flag, withFrame: cellFrame, in: controlView)
-		
+		colorfulDraw(withFrame: cellFrame, in: controlView, systemEffect: .pressed)
+	}
+	
+	//Used to fix crash - Apple's reccomended approach
+	override func copy(with zone: NSZone? = nil) -> Any {
+		let stashedTintColor = tintColor
+		tintColor = nil
+		let copy = super.copy(with: zone)
+		tintColor = stashedTintColor
+		(copy as? SplitterTableHeaderCell)?.tintColor = stashedTintColor
+		return copy
 	}
 }
