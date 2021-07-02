@@ -408,6 +408,12 @@
                                                 <action selector="showInfoPanelMenuItem:" target="Ady-hI-5gd" id="7GL-xb-iAU"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem title="Edit Segments..." identifier="editSegmentsMenuItem" id="EEm-gN-BPZ">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="editSegmentsMenuItem:" target="Ady-hI-5gd" id="Yu7-SL-l0e"/>
+                                            </connections>
+                                        </menuItem>
                                     </items>
                                 </menu>
                             </menuItem>
@@ -547,6 +553,12 @@
                                 <action selector="showInfoPanelMenuItem:" target="2Tp-Fl-jBw" id="yJV-Hg-F3U"/>
                             </connections>
                         </menuItem>
+                        <menuItem title="Edit Segments..." identifier="editSegmentsMenuItem" id="8E0-UY-10U">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="editSegmentsMenuItem:" target="2Tp-Fl-jBw" id="R8S-jD-jQW"/>
+                            </connections>
+                        </menuItem>
                         <menuItem title="Edit Layout..." id="oCR-LY-QIt">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
@@ -594,6 +606,7 @@
                         </connections>
                     </view>
                     <connections>
+                        <outlet property="backgroundImageView" destination="nQn-tP-SqQ" id="Ghk-z6-u7e"/>
                         <outlet property="mainStackView" destination="Kx4-q1-74E" id="3Wt-La-UfN"/>
                     </connections>
                 </viewController>
@@ -608,7 +621,7 @@
                     </items>
                 </menu>
             </objects>
-            <point key="canvasLocation" x="147" y="915"/>
+            <point key="canvasLocation" x="153" y="926"/>
         </scene>
         <!--Info Popover Tab View Controller-->
         <scene sceneID="ahx-t2-V9E">
@@ -997,14 +1010,14 @@ To remove, click and press backspace. </string>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <box fixedFrame="YES" title="Window" translatesAutoresizingMaskIntoConstraints="NO" id="a8f-fc-z2B">
-                                <rect key="frame" x="17" y="56" width="416" height="195"/>
+                                <rect key="frame" x="17" y="106" width="416" height="145"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                 <view key="contentView" id="fGq-yW-bDj">
-                                    <rect key="frame" x="3" y="3" width="410" height="177"/>
+                                    <rect key="frame" x="3" y="3" width="410" height="127"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <gridView xPlacement="leading" yPlacement="bottom" rowAlignment="none" translatesAutoresizingMaskIntoConstraints="NO" id="yti-1B-Vv4">
-                                            <rect key="frame" x="0.0" y="60" width="410" height="117"/>
+                                            <rect key="frame" x="0.0" y="10" width="410" height="117"/>
                                             <rows>
                                                 <gridRow yPlacement="center" height="35" id="AMM-IJ-WjW"/>
                                                 <gridRow yPlacement="center" height="35" id="DHP-S5-sT1"/>
@@ -1085,13 +1098,35 @@ To remove, click and press backspace. </string>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xgc-sy-Abq">
+                                <rect key="frame" x="73" y="78" width="118" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Background Image" id="HUW-6X-Yq9">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kDC-Ak-fDS">
+                                <rect key="frame" x="220" y="57" width="47" height="47"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="41" id="dKA-ag-eFO"/>
+                                    <constraint firstAttribute="width" constant="41" id="okM-ha-nvi"/>
+                                </constraints>
+                                <imageCell key="cell" selectable="YES" editable="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" id="0e5-Md-1dR"/>
+                            </imageView>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="xgc-sy-Abq" firstAttribute="leading" secondItem="qfc-N7-4eh" secondAttribute="leading" constant="75" id="9f8-KC-572"/>
                             <constraint firstItem="1X5-Na-Ivc" firstAttribute="centerX" secondItem="qfc-N7-4eh" secondAttribute="centerX" id="IyY-5e-oam"/>
+                            <constraint firstItem="kDC-Ak-fDS" firstAttribute="top" secondItem="fGq-yW-bDj" secondAttribute="bottom" constant="8" symbolic="YES" id="MA6-cy-2L2"/>
+                            <constraint firstAttribute="trailing" secondItem="kDC-Ak-fDS" secondAttribute="trailing" constant="186" id="Nqp-8U-tIA"/>
+                            <constraint firstItem="xgc-sy-Abq" firstAttribute="top" secondItem="fGq-yW-bDj" secondAttribute="bottom" constant="15" id="Wct-cE-HSw"/>
+                            <constraint firstItem="kDC-Ak-fDS" firstAttribute="leading" secondItem="xgc-sy-Abq" secondAttribute="trailing" constant="34" id="hX2-IF-fsa"/>
                             <constraint firstAttribute="bottom" secondItem="1X5-Na-Ivc" secondAttribute="bottom" constant="20" id="znh-7h-s45"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="backgroundImageWell" destination="kDC-Ak-fDS" id="fNa-1c-6Ln"/>
                         <outlet property="gridView" destination="yti-1B-Vv4" id="lrc-cx-Tdc"/>
                         <outlet property="hideTitleBarCheck" destination="KdL-ri-VdY" id="23i-J6-H3k"/>
                         <outlet property="hideTitleCheck" destination="afc-on-JTN" id="wKQ-Gu-jfT"/>

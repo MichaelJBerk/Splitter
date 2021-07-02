@@ -16,6 +16,7 @@ extension Notification.Name {
 	static let splitsEdited = Notification.Name("splitsEdited")
 	static let gameIconEdited = Notification.Name("gameIconEdited")
 	static let segmentIconEdited = Notification.Name("segmentIconChanged")
+	static let backgroundImageEdited = Notification.Name("backgroundImageEdited")
 }
 ///Layout notifications
 extension Notification.Name {
@@ -31,6 +32,7 @@ class SplitterRun: NSObject {
 	var runString: String?
 	var refreshTimer: Timer?
 	var document: SplitterDoc!
+	
 	var undoManager: UndoManager? {
 		return document!.undoManager
 	}
@@ -427,6 +429,18 @@ class SplitterRun: NSObject {
 				}
 				undoManager?.setActionName("Set Game Icon")
 				NotificationCenter.default.post(.init(name: .gameIconEdited, object: newValue))
+			}
+		}
+	}
+	var backgroundImage: NSImage? {
+		willSet {
+			if NSImage.isDiff(newValue, backgroundImage) {
+				let oldValue = backgroundImage?.copy() as? NSImage
+				undoManager?.registerUndo(withTarget: self, handler: { r in
+					r.backgroundImage = oldValue
+				})
+				undoManager?.setActionName("Set Background Image")
+				NotificationCenter.default.post(.init(name: .backgroundImageEdited, object: self, userInfo: ["image": newValue as Any? as Any]))
 			}
 		}
 	}

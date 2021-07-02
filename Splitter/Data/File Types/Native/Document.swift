@@ -83,6 +83,12 @@ class Document: SplitterDocBundle {
 			   let json = try? layoutFile.readAsString() {
 				run?.layout = Layout.parseJson(json)!
 			}
+			if let bgImageFile = try? bundleFolder?.file(named: "bgImage.png"),
+			   let imgData = try? bgImageFile.read() {
+				undoManager?.disableUndoRegistration()
+				run?.backgroundImage = NSImage(data: imgData)
+				undoManager?.enableUndoRegistration()
+			}
 		}
 	}
 	

@@ -23,6 +23,7 @@ class AppearanceViewController: NSViewController, advancedTabDelegate {
 	@IBOutlet weak var topHelp: helpButton!
 	
 	@IBOutlet weak var noteLabel: NSTextField!
+	@IBOutlet weak var backgroundImageWell: NSImageView!
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -84,6 +85,9 @@ You can still close the window either with ⌘W or from the "Window" menu.
 	
 	///Sends settings back to the original view controller
 	@objc func sendSettings(_ sender: Any) {
+		if run.undoManager?.isUndoing ?? false {
+			run.undoManager?.disableUndoRegistration()
+		}
 		if let d = delegate {
 			d.titleBarHidden = hideTitleBar
 			d.windowFloat = keepOnTop
@@ -94,6 +98,10 @@ You can still close the window either with ⌘W or from the "Window" menu.
 			d.setColorForControls()
 			d.showHideTitle()
 		}
+		run.backgroundImage = self.backgroundImageWell.image
+		if run.undoManager?.isUndoing ?? false {
+			run.undoManager?.enableUndoRegistration()
+		}
 	}
 	
 	///This doesn't do anything; it's just needed to conform to the protocol
@@ -102,6 +110,22 @@ You can still close the window either with ⌘W or from the "Window" menu.
 	}
 	
 	override func viewDidAppear() {
+		addBackgroundImageObserver()
+		loadFromDelegate()
+	}
+	func addBackgroundImageObserver() {
+		NotificationCenter.default.addObserver(forName: .backgroundImageEdited, object: self.run, queue: nil, using: { notification in
+			if self.run.undoManager?.isUndoing ?? false || self.undoManager?.isRedoing ?? false {
+				if let image = notification.userInfo?["image"] as? NSImage {
+					self.backgroundImageWell.image = image
+				} else {
+					self.backgroundImageWell.image = nil
+				}
+			}
+		})
+	}
+	
+	func loadFromDelegate() {
 		if let d = delegate {
 
 			hideTitleBar = d.titleBarHidden
@@ -111,19 +135,21 @@ You can still close the window either with ⌘W or from the "Window" menu.
 			hideTitleBarCheck.target = self
 			keepOnTopCheck.target = self
 			hideTitleCheck.target = self
+			backgroundImageWell.target = self
 			
 			hideTitleBarCheck.action = #selector(sendSettings(_:))
 			keepOnTopCheck.action = #selector(sendSettings(_:))
 			hideTitleCheck.action = #selector(sendSettings(_:))
+			backgroundImageWell.action = #selector(sendSettings(_:))
 			
-			if let doc = delegate?.view.window?.windowController?.document as? NSDocument {
-				if doc.fileType != "Split File" {
-					noteLabel.stringValue = notSplitNoteText
-				} else {
-					noteLabel.stringValue = splitNoteText
-				}
+			if let doc = run.document, doc is Document {
+				noteLabel.stringValue = splitNoteText
+			} else {
+				noteLabel.stringValue = notSplitNoteText
 			}
 		}
+		
+		backgroundImageWell.image = run.backgroundImage
 		
 		setHelpButtons()
 	}

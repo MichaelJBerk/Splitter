@@ -42,8 +42,7 @@ enum menuIdentifiers {
 		
 		static let info = NSUserInterfaceItemIdentifier("InfoMenuBarItem")
 		
-		static let addRow = NSUserInterfaceItemIdentifier("AddRowMenuItem")
-		static let removeRow = NSUserInterfaceItemIdentifier("RemoveRowMenuItem")
+		static let editSegments = NSUserInterfaceItemIdentifier("editSegmentsMenuItem")
 	}
 	
 	//MARK: -  Appearance Menu

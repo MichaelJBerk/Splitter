@@ -62,11 +62,8 @@ extension ViewController {
 		displayColumnOptionsAsWindow(sender: sender)
 	}
 	
-	@IBAction func addRowMenuItem(sender: Any) {
-		addButtonClick(sender)
-	}
-	@IBAction func removeRowMenuItem(sender: Any) {
-		removeButtonClick(sender)
+	@IBAction func editSegmentsMenuItem(_ sender: Any) {
+		displaySegmentEditor()
 	}
 	
 	

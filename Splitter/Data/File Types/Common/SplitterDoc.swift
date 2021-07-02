@@ -35,7 +35,7 @@ enum DocFileType: String {
 ///A filetype supported by Splitter
 /**
 - Note:
-This class contains the logic for saving each supoorted file type, since otherwise, it wouldn't be eaisliy possible to save each file from the same Save panel.
+This class contains the logic for saving each supported file type, since otherwise, it wouldn't be eaisliy possible to save each file from the same Save panel.
 */
 class SplitterDoc: NSDocument {
 	
@@ -98,7 +98,6 @@ class SplitterDoc: NSDocument {
 	
 	var fileWrapperURL: String?
 	var wrapper:FileWrapper?
-
 	
 	///Converts a Folder, with all its subfolders, to a FIleWrapper
 	func folderToFileWrapper(folder: Folder) -> FileWrapper {
@@ -187,10 +186,20 @@ class SplitterDoc: NSDocument {
 				try? runInfoFile?.write(dataToSave)
 			}
 			
-			///Encode Appearance
+			//Encode Appearance
 			if let splitterAppData = encodeSplitterAppearance() {
 				let splitterAppFile = try? currentBundleFolder?.createFileIfNeeded(withName: "appearance.json")
 				try? splitterAppFile?.write(splitterAppData)
+			}
+			
+			//Save Background Image
+			if let backgroundImage = vc.run.backgroundImage, let imageData = backgroundImage.tiffRepresentation {
+				let backgroundImageFile = try? currentBundleFolder?.createFileIfNeeded(at: "bgImage.png")
+				try? backgroundImageFile?.write(imageData)
+			} else {
+				if let bgImageFile = try? currentBundleFolder?.file(named: "bgImage.png") {
+					try? bgImageFile.delete()
+				}
 			}
 			
 			let lssString = vc.run.saveToLSS()

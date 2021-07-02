@@ -126,7 +126,7 @@ class ColorsView: NSView, LoadableNib, advancedTabDelegate {
 		loadViewFromNib()
 		loadFromDelegate()
 		NotificationCenter.default.addObserver(forName: .runColorChanged, object: nil, queue: nil, using: { _ in
-			if self.run.undoManager?.isUndoing ?? false {
+			if self.run.undoManager?.isUndoing ?? false || self.undoManager?.isRedoing ?? false {
 				self.loadFromDelegate()
 			}
 		})

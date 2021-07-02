@@ -60,12 +60,6 @@ class ViewController: NSViewController {
 	var skipSplitMenuitem: NSMenuItem? {
 		return view.window?.menu?.item(withIdentifier: menuIdentifiers.runMenu.skipSplit)
 	}
-	var addRowMenuItem: NSMenuItem? {
-		return view.window?.menu?.item(withIdentifier: menuIdentifiers.runMenu.addRow)
-	}
-	var removeRowMenuItem: NSMenuItem? {
-		return view.window?.menu?.item(withIdentifier: menuIdentifiers.runMenu.removeRow)
-	}
 	
 //MARK: - Colors
 	/**
@@ -93,6 +87,8 @@ class ViewController: NSViewController {
 	@IBOutlet weak var currentTimeLabel: ThemedTextField!
 	var attemptField: ThemedTextField!
 	@IBOutlet weak var splitsTableView: SplitterTableView!
+	
+	@IBOutlet weak var backgroundImageView: NSImageView!
 	
 	var cellIdentifier: NSUserInterfaceItemIdentifier?
 	
@@ -294,12 +290,12 @@ class ViewController: NSViewController {
 		setupTimeRow()
 		setupStartRow()
 		setupPrevNextRow()
-//		setupKeyValueComponent(key: .sumOfBest)
-//		(mainStackView.views.last as? SplitterComponent)?.isHidden = true
-//		setupKeyValueComponent(key: .previousSegment)
-//		(mainStackView.views.last as? SplitterComponent)?.isHidden = true
-//		setupKeyValueComponent(key: .totalPlaytime)
-//		(mainStackView.views.last as? SplitterComponent)?.isHidden = true
+		setupKeyValueComponent(key: .sumOfBest)
+		(mainStackView.views.last as? SplitterComponent)?.isHidden = true
+		setupKeyValueComponent(key: .previousSegment)
+		(mainStackView.views.last as? SplitterComponent)?.isHidden = true
+		setupKeyValueComponent(key: .totalPlaytime)
+		(mainStackView.views.last as? SplitterComponent)?.isHidden = true
 	}
 	///Handles various window-related tasks
 	private func windowSetup() {
@@ -342,6 +338,15 @@ class ViewController: NSViewController {
 			self.updateButtonTitles()
 		})
 	}
+	private func addBackgroundImageChangedObserver() {
+		NotificationCenter.default.addObserver(forName: .backgroundImageEdited, object: run, queue: nil, using: {notification in
+			if let newValue = notification.userInfo?["image"] as? NSImage {
+				self.backgroundImageView!.image = newValue
+			} else {
+				self.backgroundImageView.image = nil
+			}
+		})
+	}
 	private func timerStateChanged(timerState: TimerState) {
 		updateSkipItem()
 		let prevSplitItem = view.window?.menu?.item(withIdentifier: menuIdentifiers.runMenu.back)
@@ -355,8 +360,6 @@ class ViewController: NSViewController {
 			setMenuItemEnabled(item: skipSplitMenuitem, enabled: false)
 			setMenuItemEnabled(item: pauseMenuItem, enabled: false)
 			
-			setMenuItemEnabled(item: addRowMenuItem, enabled: true)
-			setMenuItemEnabled(item: removeRowMenuItem, enabled: true)
 			stopTimer()
 			self.splitsTableView.reloadData(forRowIndexes: IndexSet(arrayLiteral: 0), columnIndexes: IndexSet(arrayLiteral: 0,1,2,3,4,5))
 		} else if timerState == .running {
@@ -374,8 +377,6 @@ class ViewController: NSViewController {
 			setMenuItemEnabled(item: pauseMenuItem, enabled: true)
 			pauseMenuItem?.title = "Pause Timer"
 			
-			setMenuItemEnabled(item: addRowMenuItem, enabled: false)
-			setMenuItemEnabled(item: removeRowMenuItem, enabled: false)
 			touchBarDelegate.startSplitTitle = run.nextButtonTitle
 			
 		} else if timerState == .paused {
@@ -413,6 +414,7 @@ class ViewController: NSViewController {
 					self.run.gameIcon = gameIcon
 					self.run.updateLayoutState()
 				}
+				self.backgroundImageView!.image = run.backgroundImage
 			}
 		}
 	}
@@ -492,6 +494,7 @@ class ViewController: NSViewController {
 		//This line of code looks redundant, but it's here in order to make the timerState's notification trigger
 		self.timerState = .stopped
 		self.addSplitChangedObserver()
+		self.addBackgroundImageChangedObserver()
 		
 		updateTextFields()
 		
@@ -676,33 +679,9 @@ class ViewController: NSViewController {
 			
 		}
 	}
-	func openSplitsEditorWindow() {
+	func displaySegmentEditor() {
 		let tvc = SplitsEditorViewController.instantiateView(with: run)
-//		let win = NSPanel(contentViewController: tvc)
-//		win.title = "Split Editor"
-//		win.styleMask.insert(.utilityWindow)
-//		win.styleMask.insert(.fullSizeContentView)
-//		win.delegate = document
-//		let winC = NSWindowController(window: win)
-//		winC.document = document
-//		win.appearance = self.view.effectiveAppearance
-//		winC.showWindow(nil)
 		presentAsSheet(tvc)
-	}
-	var splitsEditorPopover: NSPopover?
-	
-	func openSplitsEditorPopover() {
-		splitsEditorPopover?.close()
-		let tvc = SplitsEditorViewController.instantiateView(with: run)
-		let pop = NSPopover()
-		pop.delegate = self
-		pop.contentViewController = tvc
-		pop.behavior = .semitransient
-		var columnOptionsFrame = columnOptionsPopoverButton.frame
-		columnOptionsFrame = self.tableButtonsStack.convert(columnOptionsFrame, to: self.view)
-		pop.show(relativeTo: columnOptionsFrame, of: self.view, preferredEdge: .maxX)
-		splitsEditorPopover = pop
-		
 	}
 	
 	override var representedObject: Any? {
