@@ -7,7 +7,7 @@
 //
 
 import Cocoa
-class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent, LiveSplitSplitterComponent {
+class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent {
 	var run: SplitterRun!
 	var state: SplitterComponentState!
 	

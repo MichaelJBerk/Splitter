@@ -34,3 +34,9 @@ extension NSMenuItem {
 		self.representedObject = representedObject
 	}
 }
+extension NSView {
+	///Used mostly for Splitter Components
+	@objc func hide(_ sender: Any?) {
+		self.isHidden.toggle()
+	}
+}

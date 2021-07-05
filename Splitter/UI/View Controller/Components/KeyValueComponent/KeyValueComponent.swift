@@ -64,3 +64,34 @@ class KeyValueComponent: NSStackView, SplitterComponent, NibLoadable {
 	
     
 }
+
+enum KeyValueComponentType: String, Codable, CaseIterable {
+	case sumOfBest = "Sum of Best Segments"
+	case previousSegment = "Previous Segment"
+	case totalPlaytime = "Total Playtime"
+	
+	var componentType: SplitterComponentType{
+		switch self {
+		case .sumOfBest:
+			return .sumOfBest
+		case .previousSegment:
+			return .previousSegment
+		case .totalPlaytime:
+			return .totalPlaytime
+		}
+	}
+	
+	init(from decoder: Decoder) throws {
+		let str: String = try decoder.decodeSingleValue()
+		if str == "Sum of Best Segments" {
+			self = .sumOfBest
+			return
+		}
+		if str == "Previous Segment" || str == "Live Segment" {
+			self = .previousSegment
+			return
+		}
+		throw DecodingError.typeMismatch(Self.Type.self, .init(codingPath: decoder.codingPath, debugDescription: "Can't decode"))
+		
+	}
+}

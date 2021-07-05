@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class TitleComponent: NSStackView, SplitterComponent, NibLoadable, LiveSplitSplitterComponent {
+class TitleComponent: NSStackView, SplitterComponent, NibLoadable {
 	var run: SplitterRun!
 	
 	
