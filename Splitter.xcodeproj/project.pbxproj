@@ -60,6 +60,7 @@
 		4A520E2B2693735C00F463B3 /* ComponentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A520E2A2693735C00F463B3 /* ComponentState.swift */; };
 		4A520E2D2693737800F463B3 /* SplitterComponentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A520E2C2693737800F463B3 /* SplitterComponentType.swift */; };
 		4A520E2F269373D100F463B3 /* ComponentOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A520E2E269373D100F463B3 /* ComponentOptions.swift */; };
+		4A520E312693744D00F463B3 /* DraggingStackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A520E302693744D00F463B3 /* DraggingStackView.swift */; };
 		4A561386262CFB7F00702B0E /* OptionsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A561385262CFB7F00702B0E /* OptionsRow.swift */; };
 		4A56138A262CFB8900702B0E /* OptionsRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A561389262CFB8900702B0E /* OptionsRow.xib */; };
 		4A5C1D1523F4AFB80014E8D3 /* CommonPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5C1D1423F4AFB80014E8D3 /* CommonPaths.swift */; };
@@ -88,7 +89,6 @@
 		4A87265723BD5423003A14AF /* PrefPanes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87265623BD5423003A14AF /* PrefPanes.swift */; };
 		4A894B1C249ABA71004FEEB3 /* LoadableNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A894B1B249ABA71004FEEB3 /* LoadableNib.swift */; };
 		4A9423CA268D3A6C0033A62F /* SplitsEditorTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9423C9268D3A6C0033A62F /* SplitsEditorTextField.swift */; };
-		4A9621F624C62401003CF23C /* ActivityIndicatorRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9621F524C62401003CF23C /* ActivityIndicatorRepresentable.swift */; };
 		4A968C7C23F1F5FE001B74E8 /* lss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A968C7B23F1F5FE001B74E8 /* lss.swift */; };
 		4A99813023F9ECE50037BF98 /* KeybindHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A99812F23F9ECE50037BF98 /* KeybindHandlers.swift */; };
 		4A9B9606261DF26D000FC89C /* TimeRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9B9605261DF26D000FC89C /* TimeRow.swift */; };
@@ -122,7 +122,6 @@
 		4AE2CF3B2631F43100CC6CF7 /* SplitsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE2CF3A2631F43100CC6CF7 /* SplitsComponent.swift */; };
 		4AE7437E268CF2AC003629B4 /* SplitterColorWell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE7437D268CF2AC003629B4 /* SplitterColorWell.swift */; };
 		4AE82A1624BFD4400044B6D3 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE82A1524BFD4400044B6D3 /* WelcomeView.swift */; };
-		4AE82A1C24BFD6060044B6D3 /* VisualEffectViewRepresentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE82A1B24BFD6060044B6D3 /* VisualEffectViewRepresentable.swift */; };
 		4AEA331B2629F024001012BD /* TimeRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AEA331A2629F023001012BD /* TimeRow.xib */; };
 		4AEA927E23C4EF32004F6CF9 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEA927D23C4EF32004F6CF9 /* MainWindowController.swift */; };
 		4AEA928323C4F140004F6CF9 /* DefaultPreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEA928123C4F140004F6CF9 /* DefaultPreferenceViewController.swift */; };
@@ -227,6 +226,7 @@
 		4A520E2A2693735C00F463B3 /* ComponentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentState.swift; sourceTree = "<group>"; };
 		4A520E2C2693737800F463B3 /* SplitterComponentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterComponentType.swift; sourceTree = "<group>"; };
 		4A520E2E269373D100F463B3 /* ComponentOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentOptions.swift; sourceTree = "<group>"; };
+		4A520E302693744D00F463B3 /* DraggingStackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DraggingStackView.swift; sourceTree = "<group>"; };
 		4A561385262CFB7F00702B0E /* OptionsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsRow.swift; sourceTree = "<group>"; };
 		4A561389262CFB8900702B0E /* OptionsRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OptionsRow.xib; sourceTree = "<group>"; };
 		4A5C1D1423F4AFB80014E8D3 /* CommonPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonPaths.swift; sourceTree = "<group>"; };
@@ -255,7 +255,6 @@
 		4A87265623BD5423003A14AF /* PrefPanes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefPanes.swift; sourceTree = "<group>"; };
 		4A894B1B249ABA71004FEEB3 /* LoadableNib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableNib.swift; sourceTree = "<group>"; };
 		4A9423C9268D3A6C0033A62F /* SplitsEditorTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitsEditorTextField.swift; sourceTree = "<group>"; };
-		4A9621F524C62401003CF23C /* ActivityIndicatorRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ActivityIndicatorRepresentable.swift; path = Splitter/UI/ActivityIndicatorRepresentable.swift; sourceTree = SOURCE_ROOT; };
 		4A968C7B23F1F5FE001B74E8 /* lss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lss.swift; sourceTree = "<group>"; };
 		4A99812F23F9ECE50037BF98 /* KeybindHandlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeybindHandlers.swift; sourceTree = "<group>"; };
 		4A9B9605261DF26D000FC89C /* TimeRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeRow.swift; sourceTree = "<group>"; };
@@ -287,7 +286,6 @@
 		4AE2CF3A2631F43100CC6CF7 /* SplitsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitsComponent.swift; sourceTree = "<group>"; };
 		4AE7437D268CF2AC003629B4 /* SplitterColorWell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterColorWell.swift; sourceTree = "<group>"; };
 		4AE82A1524BFD4400044B6D3 /* WelcomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
-		4AE82A1B24BFD6060044B6D3 /* VisualEffectViewRepresentable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisualEffectViewRepresentable.swift; sourceTree = "<group>"; };
 		4AEA331A2629F023001012BD /* TimeRow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeRow.xib; sourceTree = "<group>"; };
 		4AEA927D23C4EF32004F6CF9 /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		4AEA928123C4F140004F6CF9 /* DefaultPreferenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPreferenceViewController.swift; sourceTree = "<group>"; };
@@ -463,7 +461,8 @@
 				4AF953B423EB503100ED540C /* Timer Functions.swift */,
 				4A230E9A23B00A1E00959C57 /* Main.storyboard */,
 				4AAD4709248432540094A31F /* Colors.swift */,
-				4A01B804268632D400F15A50 /* NibLoadable.swift */,
+				4A520E302693744D00F463B3 /* DraggingStackView.swift */,
+				4A9FCC792411A093000937A2 /* Windows */,
 				4AA9ADB92608EFD3009B77B5 /* Components */,
 				4A1C1466240ED2F00056B104 /* Options Windows */,
 				4A9FCC782411A069000937A2 /* Controls */,
@@ -785,12 +784,10 @@
 				4A6A965724EC3516008EFD2B /* LoadingViewController.xib */,
 				4A18662F23C5257800FEEE54 /* MenuItemConstants.swift */,
 				4A894B1B249ABA71004FEEB3 /* LoadableNib.swift */,
-				4A9621F524C62401003CF23C /* ActivityIndicatorRepresentable.swift */,
-				4AE82A1B24BFD6060044B6D3 /* VisualEffectViewRepresentable.swift */,
 				4A24F20224F6E0B100278EB7 /* TouchBarDelegate.swift */,
 				4A44FF4E24E9A9E60083013A /* SplitsIOUpload.swift */,
+				4A01B804268632D400F15A50 /* NibLoadable.swift */,
 				4A1657AF23EA4EE20008CB5F /* View Controller */,
-				4A9FCC792411A093000937A2 /* Windows */,
 				4A9FCC7A2411A0A2000937A2 /* Controls */,
 			);
 			path = UI;
@@ -1178,7 +1175,6 @@
 				4A66A43223DE2C88005952FA /* SplitTableColumnIdentifiers.swift in Sources */,
 				4A230E9323B00A1D00959C57 /* AppDelegate.swift in Sources */,
 				4AAD470A248432540094A31F /* Colors.swift in Sources */,
-				4A9621F624C62401003CF23C /* ActivityIndicatorRepresentable.swift in Sources */,
 				4AC24DBC23EB4F17003008BF /* SplitterTableDelegate.swift in Sources */,
 				4A18663223C5376900FEEE54 /* SettingsKeys.swift in Sources */,
 				4A1657B123EA4EF60008CB5F /* Menu Items.swift in Sources */,
@@ -1222,6 +1218,7 @@
 				4A0F715F23F4A0A500E5948E /* SplitterDoc.swift in Sources */,
 				4A9423CA268D3A6C0033A62F /* SplitsEditorTextField.swift in Sources */,
 				4A66A43023DE2682005952FA /* ImageButtonCellView.swift in Sources */,
+				4A520E312693744D00F463B3 /* DraggingStackView.swift in Sources */,
 				4A0981A624E34DE400E44792 /* AccountButtonView.swift in Sources */,
 				4A520E2D2693737800F463B3 /* SplitterComponentType.swift in Sources */,
 				4A894B1C249ABA71004FEEB3 /* LoadableNib.swift in Sources */,
@@ -1241,7 +1238,6 @@
 				4A230E9723B00A1D00959C57 /* Document.swift in Sources */,
 				4AC401F324BE145F005180F1 /* (null) in Sources */,
 				4AE82A1624BFD4400044B6D3 /* WelcomeView.swift in Sources */,
-				4AE82A1C24BFD6060044B6D3 /* VisualEffectViewRepresentable.swift in Sources */,
 				4A6A3BE223CD1C7A002C20AE /* Storage.swift in Sources */,
 				4AE2CF3B2631F43100CC6CF7 /* SplitsComponent.swift in Sources */,
 				4A99813023F9ECE50037BF98 /* KeybindHandlers.swift in Sources */,
