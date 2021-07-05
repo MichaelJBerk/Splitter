@@ -122,8 +122,6 @@ class ViewController: NSViewController {
 	//MARK: - Split Data/Properties
 	
 	var currentSplit: TimeSplit? = nil
-	var currentSplits: [SplitTableRow] = []
-	var backupSplits: [SplitTableRow] = []
 	var loadedFilePath: String = ""
 
 	var compareTo: TimeComparison {
@@ -482,9 +480,6 @@ class ViewController: NSViewController {
 		view.window?.setFrameAutosaveName(fileID!)
 		
 		//Need to add a blank split b/c of how LiveSplit-Core works
-		if currentSplits.count == 0 {
-			addBlankSplit()
-		}
 		
 		view.window?.makeFirstResponder(splitsTableView)
 		

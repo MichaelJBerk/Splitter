@@ -57,18 +57,8 @@ extension ViewController {
 	///
 	/// This function does the grunt work of refreshing the UI timer, setting up LiveSplitCore to to time the run, etc. If all you need to do is start the timer, call `startTimer()` instead.
 	private func setupTimer() {
-		var i = 0
-		backupSplits = []
-		while i < currentSplits.count {
-			backupSplits.append(currentSplits[i].copy() as! SplitTableRow)
-			i = i + 1
-		}
 		NotificationCenter.default.post(name: .startTimer, object: self.run)
 		run.timer.start()
-
-		
-		currentSplit = TimeSplit()
-		currentSplits[0].currentSplit = self.currentSplit!
 		
 		self.startTime = Date()
 		
@@ -76,18 +66,7 @@ extension ViewController {
 		//Using reloadData to update the highlighted row in the tableview
 		splitsTableView.reloadData()
 	}
-	
-	///Clears out the current time field on all segments in the Table View
-	func resetAllCurrentSplitsToZero() {
-		var i = 0
-		while i < currentSplits.count {
-			currentSplits[i].currentSplit = TimeSplit()
-			splitsTableView.reloadData()
-			i = i + 1
-		}
-	}
-	
-	
+	//TODO: Figure out how to handle resetting
 	///Prompts the user if they're *sure* they want to remove all the currently loaded segements, then calls `clearTimer()` to do so, should they choose "Yes"
 	func askToClearTimer() {
 		let alert = NSAlert()
@@ -99,18 +78,8 @@ extension ViewController {
 		alert.buttons[0].highlight(true)
 		let res = alert.runModal()
 		if res == NSApplication.ModalResponse.alertSecondButtonReturn {
-			clearTimer()
+			//TODO: Something...
 		}
-	}
-	///Deletes all of the segments in the table view, leaving just one with a time of 00:00:00. Shouldn't be directly triggered by the user; use `askToClearTimer()` for that instead.
-	func clearTimer() {
-		milHundrethTimer.invalidate()
-		NotificationCenter.default.post(.init(name: .stopTimer, object: self.run))
-		
-		currentSplit = TimeSplit(mil: 0,sec: 0,min: 0,hour: 0)
-		currentSplits = []
-		loadedFilePath = ""
-		addSplit()
 	}
 	
 	///Resets the timer to 00:00:00.

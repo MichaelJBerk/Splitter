@@ -29,22 +29,9 @@ extension ViewController {
 				if id == buttonIdentifiers.TrashCanClearAllSplits {
 					askToClearTimer()
 				} else if id == buttonIdentifiers.TrashCanClearCurrentTime {
-					resetAllCurrentSplitsToZero()
+					//TODO: Something...
 				}
 			}
-		}
-	}
-
-	
-	@IBAction func addButtonClick(_ sender: Any) {
-		if timerState == .stopped {
-			addSplit()
-		}
-	}
-	@IBAction func removeButtonClick(_ sender: Any) {
-		if timerState == .stopped {
-			removeSplits()
-			splitsTableView.reloadData()
 		}
 	}
 	
