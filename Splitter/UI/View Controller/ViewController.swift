@@ -133,8 +133,6 @@ class ViewController: NSViewController {
 		}
 	}
 	
-	var roundTo: SplitRounding = .tenths
-	
 	
 
 	//MARK: - Other Split Metadata

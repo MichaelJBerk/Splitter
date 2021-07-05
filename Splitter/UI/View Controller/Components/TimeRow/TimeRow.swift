@@ -62,14 +62,6 @@ class TimeRow: NSStackView, NibLoadable, SplitterComponent, NSTextFieldDelegate 
 			attemptsLabel.isHidden = !newValue
 		}
 	}
-	var roundTo: SplitRounding {
-		get {
-			viewController.roundTo
-		}
-		set {
-			viewController.roundTo = newValue
-		}
-	}
 	
 	func saveState() throws -> ComponentState {
 		var state = saveBasicState()

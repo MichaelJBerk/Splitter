@@ -50,15 +50,6 @@ class RunOptionsViewController: NSViewController, advancedTabDelegate {
 		}
 	}
 	
-	private var delegateRound: Int {
-		switch delegate?.roundTo {
-		case .hundredths:
-			return 1
-		default:
-			return 0
-		}
-	}
-	
 	
 	@IBAction func changeCompareToPopUpButton(_ sender: Any) {
 		if compareToPopUpButton.selectedItem?.identifier == .personalBest {
@@ -66,14 +57,6 @@ class RunOptionsViewController: NSViewController, advancedTabDelegate {
 		} else {
 			delegate?.compareTo = .latest
 		}
-	}
-	@IBAction func changeRoundDiffPopupButton(_ sender: Any) {
-		if roundDiffPopUpButton.selectedItem?.identifier == .hundredths {
-			delegate?.roundTo = .hundredths
-		} else {
-			delegate?.roundTo = .tenths
-		}
-		delegate?.splitsTableView.reloadData()
 	}
 }
 

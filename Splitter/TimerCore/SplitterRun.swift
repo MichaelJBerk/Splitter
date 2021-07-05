@@ -375,7 +375,7 @@ class SplitterRun: NSObject {
 	func icon(for segment: Int) -> NSImage? {
 		let run = timer.lsTimer.getRun()
 		let seg = run.segment(segment)
-		let image = LiveSplit.parseImageFromLiveSplit(ptr: seg.iconPtr(), len: seg.iconLen())
+		let image = NSImage.parseImageFromLiveSplit(ptr: seg.iconPtr(), len: seg.iconLen())
 		return image
 	}
 	func setIcon(for segment: Int, image: NSImage?) {
@@ -405,7 +405,7 @@ class SplitterRun: NSObject {
 			let run = timer.lsTimer.getRun()
 			let ptr = run.gameIconPtr()
 			let len = run.gameIconLen()
-			return LiveSplit.parseImageFromLiveSplit(ptr: ptr, len: len)
+			return NSImage.parseImageFromLiveSplit(ptr: ptr, len: len)
 		}
 		set {
 			let oldValue = self.gameIcon?.copy() as? NSImage

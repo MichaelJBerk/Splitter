@@ -187,7 +187,6 @@ struct SplitterAppearance: Codable {
 			self.components = components
 			print("")
 		}
-//		self.roundTo = json.dictionary?["roundTo"]?.int
 		
 		
 	}

@@ -65,14 +65,7 @@ class SplitterTests: XCTestCase {
 	
 
 	func testImportLiveSplit() {
-		let ls = LiveSplit()
-
-//		ls.path = String(testPath + "/Super Mario Odyssey.lss")
-		ls.path = String(testPath + "/Yoshi's Island.lss")
-		ls.parseLivesplit()
-		
-		ls.path = String(testPath + "/Super Mario Odyssey.lss")
-		ls.parseLivesplit()
+		//TODO: New LiveSplit import test
 	}
 	
 	
