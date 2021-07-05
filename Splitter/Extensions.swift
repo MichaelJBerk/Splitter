@@ -40,3 +40,11 @@ extension NSView {
 		self.isHidden.toggle()
 	}
 }
+extension NSAppearance {
+	var isDark: Bool {
+		if name.rawValue.contains("Dark") {
+			return true
+		}
+		return false
+	}
+}

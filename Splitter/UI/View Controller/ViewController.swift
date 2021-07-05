@@ -132,8 +132,6 @@ class ViewController: NSViewController {
 			run.setComparison(to: newValue)
 		}
 	}
-	
-	
 
 	//MARK: - Other Split Metadata
 	
