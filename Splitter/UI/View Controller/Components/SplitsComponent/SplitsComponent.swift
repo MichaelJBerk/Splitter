@@ -84,7 +84,7 @@ class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent, LiveSplitSp
 	
 	}
 	
-	var coView: NSView {
+	var columnOptionsView: NSView {
 		var views = [NSView]()
 		for c in splitsTableView.tableColumns {
 			let cName = colIds.first(where: {$1 == c.identifier})?.key ?? "nil"
@@ -92,6 +92,11 @@ class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent, LiveSplitSp
 				let colID = self.splitsTableView.column(withIdentifier: c.identifier)
 				let col = self.splitsTableView.tableColumns[colID]
 				col.isHidden.toggle()
+				self.splitsTableView.setHeaderColor(textColor: self.run.textColor, bgColor: self.run.backgroundColor)
+//				self.isSelected = false
+//				self.didSetSelected()
+				self.isSelected = true
+				self.didSetSelected()
 			})
 			checkButton.state = .init(bool: !c.isHidden)
 			views.append(checkButton)
@@ -109,7 +114,7 @@ class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent, LiveSplitSp
 		showHeaderButton.state = .init(bool: showHeader)
 		d.addArrangedSubview(showHeaderButton)
 
-		let co = coView
+		let co = columnOptionsView
 		let superStack = SplitsOptionsView.makeView(tabs: [(d, "Options"), (co, "Columns")])
 		NSLayoutConstraint.activate([
 			superStack.widthAnchor.constraint(equalTo: d.widthAnchor),
