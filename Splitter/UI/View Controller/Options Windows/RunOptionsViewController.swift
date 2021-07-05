@@ -18,9 +18,7 @@ class RunOptionsViewController: NSViewController, advancedTabDelegate {
 	@IBOutlet weak var offsetTextField: NSTextField!
 	
 	@IBAction func offsetTextFieldEdited(_ sender: Any?) {
-//		delegate?.run.editRun { editor in
 		run.offset = Double(self.offsetTextField.stringValue) ?? 0
-//		}
 		run.updateLayoutState()
 		let offset = run.offset
 		offsetTextField.stringValue = "\(offset)"
@@ -46,9 +44,9 @@ class RunOptionsViewController: NSViewController, advancedTabDelegate {
 	private var delegateComparison: Int {
 		switch delegate?.compareTo {
 		case .personalBest:
-			return 1
-		default:
 			return 0
+		default:
+			return 1
 		}
 	}
 	

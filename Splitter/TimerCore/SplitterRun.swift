@@ -52,12 +52,7 @@ class SplitterRun: NSObject {
 			_ = editor.addComparison(TimeComparison.latest.rawValue)
 			vRun = editor.close()
 		}
-		for i in 0..<vRun.customComparisonsLen() {
-			let comp = vRun.customComparison(i)
-			print(comp)
-		}
 		timer = SplitterTimer(run: vRun)
-		timer.lsTimer.switchToNextComparison()
 		layout = .defaultLayout()
 		layout.updateState(layout.state(timer.lsTimer), timer.lsTimer)
 		let settings = layout.settingsAsJson()
@@ -161,7 +156,7 @@ class SplitterRun: NSObject {
 		if let comp = getCustomVariable(name: "currentComparison") {
 			setComparison(comp)
 		} else {
-			setComparison(to: .latest, disableUndo: true)
+			setComparison(to: .personalBest, disableUndo: true)
 		}
 	}
 	

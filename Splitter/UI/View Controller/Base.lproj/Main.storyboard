@@ -929,13 +929,13 @@ To remove, click and press backspace. </string>
                                     <gridCell row="Kxe-KU-ILE" column="SdJ-WM-ZCg" id="Uw9-JA-0Wd">
                                         <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eQv-aA-TVK">
                                             <rect key="frame" x="108" y="110" width="144" height="25"/>
-                                            <popUpButtonCell key="cell" type="push" title="Previous Attempt" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" autoenablesItems="NO" selectedItem="PXQ-9Z-K1b" id="xtb-He-QHy">
+                                            <popUpButtonCell key="cell" type="push" title="Personal Best" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" autoenablesItems="NO" selectedItem="3jX-54-ZE9" id="xtb-He-QHy">
                                                 <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="menu"/>
                                                 <menu key="menu" autoenablesItems="NO" id="Yks-AJ-xS2">
                                                     <items>
-                                                        <menuItem title="Previous Attempt" state="on" identifier="previousSplit" id="PXQ-9Z-K1b"/>
-                                                        <menuItem title="Personal Best" identifier="personalBest" id="3jX-54-ZE9"/>
+                                                        <menuItem title="Personal Best" state="on" identifier="personalBest" id="3jX-54-ZE9"/>
+                                                        <menuItem title="Previous Attempt" identifier="previousSplit" id="PXQ-9Z-K1b"/>
                                                     </items>
                                                 </menu>
                                             </popUpButtonCell>
