@@ -124,6 +124,16 @@ extension SplitsComponent {
 		
 		let valueLabel = NSTextField(labelWithString: "Value")
 		let valueStack = NSStackView(views: [valueLabel, timeOptionButton])
+		
+		let helpButton = helpButton()
+		let helpText = """
+		Split Time: Total time since the beginning of the run, at the time of the split
+		
+		Segment Time: The duration of the segment
+		"""
+		helpButton.helpString = helpText
+		valueStack.addArrangedSubview(helpButton)
+		
 		valueStack.orientation = .horizontal
 		return valueStack
 	}

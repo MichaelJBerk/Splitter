@@ -160,6 +160,12 @@ class helpButton: NSButton {
 	
 	var appVC: AppearanceViewController?
 	var helpString: String?
+	var popView: NSView?
+	
+	init() {
+		super.init(frame: NSRect(x: 0, y: 0, width: 30, height: 30))
+		setup()
+	}
 	
 	override init(frame frameRect: NSRect) {
 		super.init(frame: frameRect)
@@ -174,15 +180,16 @@ class helpButton: NSButton {
 	func setup() {
 		trackingArea = NSTrackingArea(rect: self.bounds, options: [.mouseEnteredAndExited, .activeInActiveApp], owner: self, userInfo: nil)
 		addTrackingArea(trackingArea)
+		self.bezelStyle = .helpButton
+		self.title = ""
+		self.target = self
+		self.action = #selector(displayHelpPopover)
+		
 	}
 	
 	override func draw(_ dirtyRect: NSRect) {
 		super.draw(dirtyRect)
 		
-		self.bezelStyle = .helpButton
-		self.title = ""
-		self.target = self
-		self.action = #selector(displayHelpPopover)
 		
 	}
 	var pop: NSPopover?
@@ -236,8 +243,6 @@ class helpButton: NSButton {
 class appearanceCheckButton: NSButton {
 	override func draw(_ dirtyRect: NSRect) {
 		super.draw(dirtyRect)
-		
-		
 	}
 }
 
