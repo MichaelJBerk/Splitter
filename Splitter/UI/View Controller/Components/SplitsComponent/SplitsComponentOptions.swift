@@ -52,7 +52,45 @@ extension SplitsComponent {
 		}
 	
 	}
+	func differenceOptions() -> NSView {
+		
+		let pbMenuItem = NSMenuItem(title: "Personal Best", action: nil, keyEquivalent: "")
+		let prevMenuItem = NSMenuItem(title: "Previous Attempt", action: nil, keyEquivalent: "")
+		
+		let popupButton = ComponentPopUpButton(title: "", selectAction: { button in
+			switch button.indexOfSelectedItem {
+			case button.index(of: pbMenuItem):
+				self.run.setComparison(to: .personalBest)
+			case button.index(of: prevMenuItem):
+				self.run.setComparison(to: .latest)
+			default:
+				break
+			}
+		})
+		let menu = NSMenu()
+		menu.addItem(pbMenuItem)
+		menu.addItem(prevMenuItem)
+		popupButton.menu = menu
+		
+		switch run.getComparision() {
+		case .personalBest:
+			popupButton.select(pbMenuItem)
+		case .latest:
+			popupButton.select(prevMenuItem)
+		default:
+			break
+		}
+		let compareLabel = NSTextField(labelWithString: "Compare To:")
+		let stack = NSStackView(views: [compareLabel, popupButton])
+		stack.orientation = .horizontal
+		return stack
+		
+	}
+	
 	func options(for column: NSTableColumn) -> NSView {
+		if column.identifier == STVColumnID.differenceColumn {
+			return differenceOptions()
+		}
 		let timeOptionMenu = NSMenu()
 		let segmentTimeOption = NSMenuItem(title: "Segment Time", action: nil, keyEquivalent: "")
 		let splitTimeOption = NSMenuItem(title: "Split Time", action: nil, keyEquivalent: "")
@@ -157,9 +195,7 @@ extension SplitsComponent {
 			
 			let columnStack  = NSStackView(views: [])
 			var discloseView: NSView
-			if c.identifier != STVColumnID.imageColumn
-				&& c.identifier != STVColumnID.splitTitleColumn
-				&& c.identifier != STVColumnID.differenceColumn {
+			if c.identifier != STVColumnID.imageColumn && c.identifier != STVColumnID.splitTitleColumn {
 				let discloseButton = ComponentOptionsButton(title: "", clickAction: { button in
 					NSAnimationContext.runAnimationGroup({ context in
 						context.duration = 0.25

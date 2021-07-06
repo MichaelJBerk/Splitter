@@ -905,10 +905,8 @@ To remove, click and press backspace. </string>
                                 </textFieldCell>
                             </textField>
                             <gridView xPlacement="leading" yPlacement="bottom" rowAlignment="none" translatesAutoresizingMaskIntoConstraints="NO" id="1WJ-LN-qqE">
-                                <rect key="frame" x="20" y="144" width="408" height="134"/>
+                                <rect key="frame" x="20" y="257" width="210" height="21"/>
                                 <rows>
-                                    <gridRow id="Kxe-KU-ILE"/>
-                                    <gridRow id="Ls0-A2-qsU"/>
                                     <gridRow id="Iod-SA-wsZ"/>
                                 </rows>
                                 <columns>
@@ -916,53 +914,9 @@ To remove, click and press backspace. </string>
                                     <gridColumn id="SdJ-WM-ZCg"/>
                                 </columns>
                                 <gridCells>
-                                    <gridCell row="Kxe-KU-ILE" column="Vbu-Go-lnq" xPlacement="trailing" id="XJt-C5-VJr">
-                                        <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gCf-4R-9aQ">
-                                            <rect key="frame" x="-2" y="114" width="109" height="16"/>
-                                            <textFieldCell key="cell" lineBreakMode="clipping" title="Compare Time to" id="Rac-Ff-dLM">
-                                                <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                    </gridCell>
-                                    <gridCell row="Kxe-KU-ILE" column="SdJ-WM-ZCg" id="Uw9-JA-0Wd">
-                                        <popUpButton key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="eQv-aA-TVK">
-                                            <rect key="frame" x="108" y="110" width="144" height="25"/>
-                                            <popUpButtonCell key="cell" type="push" title="Personal Best" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" arrowPosition="arrowAtCenter" autoenablesItems="NO" selectedItem="3jX-54-ZE9" id="xtb-He-QHy">
-                                                <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" metaFont="menu"/>
-                                                <menu key="menu" autoenablesItems="NO" id="Yks-AJ-xS2">
-                                                    <items>
-                                                        <menuItem title="Personal Best" state="on" identifier="personalBest" id="3jX-54-ZE9"/>
-                                                        <menuItem title="Previous Attempt" identifier="previousSplit" id="PXQ-9Z-K1b"/>
-                                                    </items>
-                                                </menu>
-                                            </popUpButtonCell>
-                                            <connections>
-                                                <action selector="changeCompareToPopUpButton:" target="aIO-Eg-hvI" id="CZD-rm-1DB"/>
-                                            </connections>
-                                        </popUpButton>
-                                    </gridCell>
-                                    <gridCell row="Ls0-A2-qsU" column="Vbu-Go-lnq" xPlacement="trailing" id="ezQ-jo-StM"/>
-                                    <gridCell row="Ls0-A2-qsU" column="SdJ-WM-ZCg" id="yyv-MF-ioh">
-                                        <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="w7L-YK-RyY">
-                                            <rect key="frame" x="109" y="27" width="301" height="81"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="81" id="MjM-gA-KdR"/>
-                                                <constraint firstAttribute="width" constant="297" id="oXR-JX-QFK"/>
-                                            </constraints>
-                                            <textFieldCell key="cell" id="64q-iX-QRY">
-                                                <font key="font" metaFont="system"/>
-                                                <string key="title">This setting changes what the current time is compared to in the "Diff" column - either your last attempt at this run or your personal best. </string>
-                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
-                                    </gridCell>
                                     <gridCell row="Iod-SA-wsZ" column="Vbu-Go-lnq" xPlacement="trailing" id="rPL-mX-khL">
                                         <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="c1I-nd-vZM">
-                                            <rect key="frame" x="-1" y="0.0" width="108" height="16"/>
+                                            <rect key="frame" x="-2" y="0.0" width="108" height="16"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" title="Offset (Seconds)" id="FmD-xz-5Mf">
                                                 <font key="font" usesAppearanceFont="YES"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -971,8 +925,8 @@ To remove, click and press backspace. </string>
                                         </textField>
                                     </gridCell>
                                     <gridCell row="Iod-SA-wsZ" column="SdJ-WM-ZCg" id="t4A-KS-poq">
-                                        <textField key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dhP-h7-t16">
-                                            <rect key="frame" x="111" y="0.0" width="100" height="21"/>
+                                        <textField key="contentView" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="dhP-h7-t16">
+                                            <rect key="frame" x="110" y="0.0" width="100" height="21"/>
                                             <textFieldCell key="cell" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" id="EV8-dn-lFt">
                                                 <font key="font" usesAppearanceFont="YES"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -992,7 +946,6 @@ To remove, click and press backspace. </string>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="compareToPopUpButton" destination="eQv-aA-TVK" id="rQP-ji-3P6"/>
                         <outlet property="offsetTextField" destination="dhP-h7-t16" id="Pfn-TU-S4N"/>
                     </connections>
                 </viewController>

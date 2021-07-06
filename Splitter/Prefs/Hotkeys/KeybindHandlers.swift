@@ -67,7 +67,7 @@ extension AppDelegate {
 	}
 	func showColumnOptionsHandler() {
 		if let vc = viewController {
-			vc.displayColumnOptionsPopover(self)
+			vc.showLayoutEditor()
 		}
 	}
 }

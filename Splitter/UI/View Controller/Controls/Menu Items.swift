@@ -59,7 +59,7 @@ extension ViewController {
 		displayInfoPopover(sender)
 	}
 	@IBAction func showColumnOptionsMenuItem(_ sender: Any) {
-		displayColumnOptionsAsWindow(sender: sender)
+		showLayoutEditor()
 	}
 	
 	@IBAction func editSegmentsMenuItem(_ sender: Any) {

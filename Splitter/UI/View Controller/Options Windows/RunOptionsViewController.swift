@@ -14,7 +14,6 @@ class RunOptionsViewController: NSViewController, advancedTabDelegate {
 	func setupDelegate() {
 		
 	}
-	@IBOutlet weak var compareToPopUpButton: NSPopUpButton!
 	@IBOutlet weak var offsetTextField: NSTextField!
 	
 	@IBAction func offsetTextFieldEdited(_ sender: Any?) {
@@ -28,7 +27,6 @@ class RunOptionsViewController: NSViewController, advancedTabDelegate {
 	@IBOutlet weak var roundDiffPopUpButton: NSPopUpButton!
 	override func viewDidLoad() {
         super.viewDidLoad()
-		compareToPopUpButton.selectItem(at: delegateComparison)
 		let offset = run.offset
 		offsetTextField.stringValue = "\(offset)"
 		
@@ -40,31 +38,4 @@ class RunOptionsViewController: NSViewController, advancedTabDelegate {
 			tf.stringValue = chars.joined()
 		})
     }
-	
-	private var delegateComparison: Int {
-		switch delegate?.compareTo {
-		case .personalBest:
-			return 0
-		default:
-			return 1
-		}
-	}
-	
-	
-	@IBAction func changeCompareToPopUpButton(_ sender: Any) {
-		if compareToPopUpButton.selectedItem?.identifier == .personalBest {
-			delegate?.compareTo = .personalBest
-		} else {
-			delegate?.compareTo = .latest
-		}
-	}
-}
-
-
-fileprivate extension NSUserInterfaceItemIdentifier {
-	static let tenths = NSUserInterfaceItemIdentifier("tenths")
-	static let hundredths = NSUserInterfaceItemIdentifier("hundredths")
-	
-	static let personalBest = NSUserInterfaceItemIdentifier("personalBest")
-	static let previousSplit = NSUserInterfaceItemIdentifier("previousSplit")
 }

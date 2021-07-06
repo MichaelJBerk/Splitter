@@ -628,7 +628,7 @@ class ViewController: NSViewController {
 	}
 	
 	///Displays the "column options" popover
-	@IBAction func displayColumnOptionsPopover(_ sender: Any) {
+	@IBAction func displayLayoutEditorPopover(_ sender: Any?) {
 		columnOptionsPopover?.contentViewController?.view.window?.close()
 		let layoutEditor = NSStoryboard(name: "LayoutEditor", bundle: nil).instantiateInitialController() as! LayoutEditorViewController
 		layoutEditor.runController = self
@@ -637,18 +637,16 @@ class ViewController: NSViewController {
 		pop.contentViewController = layoutEditor
 		pop.appearance = NSAppearance(named: .vibrantDark)
 		pop.behavior = .semitransient
-		var columnOptionsFrame = columnOptionsPopoverButton.frame
-		columnOptionsFrame = self.tableButtonsStack.convert(columnOptionsFrame, to: self.view)
-		let redView = NSView(frame: columnOptionsFrame)
-		redView.wantsLayer = true
-		redView.layer?.backgroundColor = NSColor.red.cgColor
-		self.view.addSubview(redView)
+		let columnOptionsFrame = NSRect(x: self.view.frame.maxX - 10, y: self.view.frame.midY, width: 10, height: 10)
 		pop.show(relativeTo: columnOptionsFrame, of: self.view, preferredEdge: .maxX)
-//		pop.show(relativeTo: columnOptionsPopoverButton.frame, of: tableButtonsStack, preferredEdge: .maxX)
 		columnOptionsPopover = pop
 	}
+	func showLayoutEditor() {
+		displayLayoutEditorPopover(nil)
+	}
 	
-	func displayColumnOptionsAsWindow(sender: Any?) {
+	
+	func displayLayoutEditorWindow(sender: Any?) {
 		if let coWindow = columnOptionsWindow {
 			coWindow.makeKeyAndOrderFront(self)
 		} else {
@@ -674,6 +672,7 @@ class ViewController: NSViewController {
 			coPanel.collectionBehavior = .transient
 			coPanel.appearance = self.view.effectiveAppearance
 			let windowController = NSWindowController(window: coPanel)
+			view.window?.addChildWindow(coPanel, ordered: .above)
 			columnOptionsWindow = coPanel
 			windowController.showWindow(nil)
 			

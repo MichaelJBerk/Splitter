@@ -57,7 +57,7 @@ class OptionsRow: NSStackView, NibLoadable, SplitterComponent {
 	}
 	
 	@IBAction func columnOptionsButtonClick(_ sender: Any) {
-		viewController!.displayColumnOptionsAsWindow(sender: sender)
+		viewController!.showLayoutEditor()
 	}
 	
 	//TODO: see if I should just have a var "addDeleteEnabled" and set both equal to it instead of having a function for it
