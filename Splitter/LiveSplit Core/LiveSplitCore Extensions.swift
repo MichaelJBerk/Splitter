@@ -74,7 +74,7 @@ enum TimingMethod: String {
 	case realTime = "RealTime"
 }
 ///Specifies the value a segment starts out with before it gets replaced with the current attempt's information when splitting.
-enum ColumnStartWith: String {
+enum ColumnStartWith: String, CaseIterable {
 	///The column starts out with an empty value.
 	case empty = "Empty"
 	///The column starts out with the times stored in the comparison that is being compared against.
@@ -83,9 +83,22 @@ enum ColumnStartWith: String {
 	case comparsionSegmentTime = "ComparisonSegmentTime"
 	///The column starts out with the time that can be saved on each individual segment stored in the comparison that is being compared against.
 	case possibleTimeSave = "PossibleTimeSave"
+	
+	var displayText: String {
+		switch self {
+		case .empty:
+			return "Empty"
+		case .comparisonTime:
+			return "Comparison"
+		case .comparsionSegmentTime:
+			return "Comparison Segment Time"
+		case .possibleTimeSave:
+			return "Possible Time Save"
+		}
+	}
 }
 ///Once a certain condition is met, which is usually being on the split or already having completed the split, the time gets updated with the value specified here.
-enum ColumnUpdateWith: String {
+enum ColumnUpdateWith: String, CaseIterable {
 	///The value doesn't get updated and stays on the value it started out with
 	case dontUpdate = "DontUpdate"
 	

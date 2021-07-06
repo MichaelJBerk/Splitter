@@ -22,6 +22,24 @@ class ComponentOptionsButton: NSButton {
 		self.init(title: title, target: nil, action: nil)
 		self.clickAction = clickAction
 	}
+	convenience init(image: NSImage, clickAction: @escaping (NSButton) -> ()) {
+		self.init(image: image, target: nil, action: nil)
+		self.clickAction = clickAction
+	}
+}
+
+class ComponentPopUpButton: NSPopUpButton {
+	var customAction: (NSPopUpButton) -> () = {_ in}
+	@objc func selectAction(_ sender: NSPopUpButton) {
+		customAction(sender)
+	}
+	
+	convenience init(title: String, selectAction: @escaping (NSPopUpButton) -> ()) {
+		self.init(title: title, target: nil, action: #selector(selectAction(_:)))
+		self.target = self
+		self.customAction = selectAction
+	}
+	
 }
 
 class ComponentOptionsVstack: NSStackView {
