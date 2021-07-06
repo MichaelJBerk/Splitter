@@ -621,6 +621,69 @@ class SplitterRun: NSObject {
 		self.updateLayoutState()
 	}
 	
+	enum TimeOption {
+		case splitTime
+		case segmentTime
+	}
+	enum TimeColumn {
+		case time
+		case pb
+		case previous
+		
+		var lsColumn: Int {
+			switch self {
+			case .time:
+				return 0
+			case .pb:
+				return 2
+			case .previous:
+				return 3
+			}
+		}
+	}
+	
+	func getUpdateWith(for column: TimeColumn) -> ColumnUpdateWith {
+		let editor = LayoutEditor(layout)!
+		editor.select(1)
+		let update = editor.getUpdateWith(for: column.lsColumn)
+		layout = editor.close()
+		return update
+	}
+	func getStartWith(for column: TimeColumn) -> ColumnStartWith {
+		let editor = LayoutEditor(layout)!
+		editor.select(1)
+		let update = editor.getStartWith(for: column.lsColumn)
+		layout = editor.close()
+		return update
+	}
+	
+	
+	func setUpdateWith(_ updateWith: ColumnUpdateWith, for column: TimeColumn) {
+		let oldValue = getUpdateWith(for: column)
+		undoManager?.registerUndo(withTarget: self, handler: { r in
+			r.setUpdateWith(oldValue, for: column)
+		})
+		editLayout{ editor in
+			editor.select(1)
+			editor.setColumn(column.lsColumn, updateWith: updateWith)
+		}
+		undoManager?.setActionName("Set Column Value")
+		NotificationCenter.default.post(.init(name: .splitsEdited, object: self))
+	}
+	func setStartWith(_ startWith: ColumnStartWith, for column: TimeColumn) {
+		let oldValue = getStartWith(for: column)
+		undoManager?.registerUndo(withTarget: self, handler: { r in
+			r.setStartWith(oldValue, for: column)
+		})
+		editLayout { editor in
+			editor.select(1)
+			editor.setColumn(column.lsColumn, startWith: startWith)
+		}
+		undoManager?.setActionName("Set Column Value")
+		NotificationCenter.default.post(.init(name: .splitsEdited, object: self))
+	}
+	
+	
 	var layoutSplits: CSplits {
 		codableLayout.components[1] as! CSplits
 	}

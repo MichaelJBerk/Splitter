@@ -179,7 +179,15 @@ class ViewController: NSViewController {
 	var hotkeysController: HotkeysViewController?
 	
 	@objc func breakFunc() {
+		let editor = LayoutEditor(run.layout)!
+		editor.select(1)
+		let state = editor.stateAsJson()
 		
+		
+		let pasteboard = NSPasteboard.general
+		pasteboard.declareTypes([.string], owner: nil)
+		pasteboard.setString(state, forType: .string)
+		run.layout = editor.close()
 	}
 	
 	var breakID = NSUserInterfaceItemIdentifier("break")
@@ -229,6 +237,7 @@ class ViewController: NSViewController {
 		splitsTableView.viewController = self
 		splitsTableView.delegate = self
 		splitsTableView.dataSource = self
+		scrollViewComponent.setup()
 	}
 	
 	

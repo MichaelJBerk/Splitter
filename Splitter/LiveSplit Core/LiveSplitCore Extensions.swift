@@ -42,12 +42,29 @@ extension LayoutEditor {
 			self.setComponentSettingsValue(settingIndex, startWith)
 		}
 	}
+	func getStartWith(for index: Int) -> ColumnStartWith {
+		let settingIndex = settingsStartIndex(for: index) + 1
+		let jsonString = self.state().fieldValue(true, settingIndex).asJson()
+		let jd = try? JSONSerialization.jsonObject(with: jsonString.data(using: .utf8)!, options: .allowFragments) as? [String: String]
+		let rawValue = jd?["ColumnStartWith"]
+		return .init(rawValue: rawValue!)!
+	}
+	
 	func setColumn(_ index: Int, updateWith: ColumnUpdateWith) {
 		let settingIndex = settingsStartIndex(for: index) + 2
 		if let setting = SettingValue.fromColumnUpdateWith(updateWith.rawValue) {
 			self.setComponentSettingsValue(settingIndex, setting)
 		}
 	}
+	
+	func getUpdateWith(for index: Int) -> ColumnUpdateWith {
+		let settingIndex = settingsStartIndex(for: index) + 2
+		let jsonString = self.state().fieldValue(true, settingIndex).asJson()
+		let jd = try? JSONSerialization.jsonObject(with: jsonString.data(using: .utf8)!, options: .allowFragments) as? [String: String]
+		let rawValue = jd?["ColumnUpdateWith"]
+		return .init(rawValue: rawValue!)!
+	}
+	
 	func setColumn(_ index: Int, updateTrigger: ColumnUpdateTrigger) {
 		let settingIndex = settingsStartIndex(for: index) + 3
 		if let updateTrigger = SettingValue.fromColumnUpdateTrigger(updateTrigger.rawValue) {

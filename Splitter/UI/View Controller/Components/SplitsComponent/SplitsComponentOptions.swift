@@ -68,28 +68,82 @@ extension SplitsComponent {
 		
 		
 		let timeOptionMenu = NSMenu()
-		let splitTimeOption = NSMenuItem(title: "Split Time", action: nil, keyEquivalent: "")
 		let segmentTimeOption = NSMenuItem(title: "Segment Time", action: nil, keyEquivalent: "")
-		let deltaOption = NSMenuItem(title: "Delta (Split Time)", action: nil, keyEquivalent: "")
-		let segmentDeltaOption = NSMenuItem(title: "Delta (Segment Time)", action: nil, keyEquivalent: "")
-		let emptyOption = NSMenuItem(title: "Nothing", action: nil, keyEquivalent: "")
-		timeOptionMenu.addItem(splitTimeOption)
+		let splitTimeOption = NSMenuItem(title: "Split Time", action: nil, keyEquivalent: "")
+//		let deltaOption = NSMenuItem(title: "Delta (Split Time)", action: nil, keyEquivalent: "")
+//		let segmentDeltaOption = NSMenuItem(title: "Delta (Segment Time)", action: nil, keyEquivalent: "")
+//		let emptyOption = NSMenuItem(title: "Nothing", action: nil, keyEquivalent: "")
 		timeOptionMenu.addItem(segmentTimeOption)
-		timeOptionMenu.addItem(deltaOption)
-		timeOptionMenu.addItem(segmentDeltaOption)
-		timeOptionMenu.addItem(emptyOption)
+		timeOptionMenu.addItem(splitTimeOption)
+//		timeOptionMenu.addItem(deltaOption)
+//		timeOptionMenu.addItem(segmentDeltaOption)
+//		timeOptionMenu.addItem(emptyOption)
+		var runColumn: SplitterRun.TimeColumn?
+		switch column.identifier {
+		case STVColumnID.currentSplitColumn:
+			runColumn = .time
+		case STVColumnID.bestSplitColumn:
+			runColumn = .pb
+		case STVColumnID.previousSplitColumn:
+			runColumn = .previous
+		default:
+			break
+		}
+		
+		
 		let timeOptionButton = ComponentPopUpButton(title: "", selectAction: { button in
 			let h = button.indexOfSelectedItem
-			if let menuItem = button.menu?.items[h] {
-				if menuItem == deltaOption || menuItem == segmentDeltaOption {
-					fallbackCheck.isHidden = false
-				} else {
-					fallbackCheck.isHidden = true
+			if let menuItem = button.menu?.items[h], let runColumn = runColumn {
+				switch menuItem {
+				case segmentTimeOption:
+					if runColumn == .time {
+						self.run.undoManager?.beginUndoGrouping()
+						self.run.setUpdateWith(.segmentTime, for: runColumn)
+						self.run.setStartWith(.comparsionSegmentTime, for: runColumn)
+						self.run.undoManager?.endUndoGrouping()
+					} else {
+						self.run.setStartWith(.comparsionSegmentTime, for: runColumn)
+					}
+				case splitTimeOption:
+					if runColumn == .time {
+						self.run.undoManager?.beginUndoGrouping()
+						self.run.setUpdateWith(.splitTime, for: runColumn)
+						self.run.setStartWith(.comparisonTime, for: runColumn)
+						self.run.undoManager?.endUndoGrouping()
+					} else {
+						self.run.setStartWith(.comparisonTime, for: runColumn)
+					}
+				default:
+					break
 				}
 			}
 		})
-		
 		timeOptionButton.menu = timeOptionMenu
+		if let runColumn = runColumn {
+			if runColumn == .time {
+				let currentOption = run.getUpdateWith(for: runColumn)
+				switch currentOption {
+				case .segmentTime:
+					timeOptionButton.select(segmentTimeOption)
+				case .splitTime:
+					timeOptionButton.select(splitTimeOption)
+				default:
+					break
+				}
+			} else {
+				let currentOption = run.getStartWith(for: runColumn)
+				switch currentOption {
+				case .comparsionSegmentTime:
+					timeOptionButton.select(segmentTimeOption)
+				case .comparisonTime:
+					timeOptionButton.select(splitTimeOption)
+				default:
+					break
+				}
+			}
+		}
+		
+		
 		let startLabel = NSTextField(labelWithString: "Value")
 		let startStack = NSStackView(views: [startLabel, timeOptionButton])
 		startStack.orientation = .horizontal
@@ -113,30 +167,6 @@ extension SplitsComponent {
 		return stack
 	}
 	
-	enum TimeOption {
-		
-		case splitTime
-		case segmentTime
-		case delta(fallback: Bool)
-		case segmentDelta(fallback: Bool)
-		case empty
-		
-		var displayTitle: String {
-			switch self {
-			case .splitTime:
-				return "Split Time"
-			case .segmentTime:
-				return "Segment Time"
-			case .delta(fallback: _):
-				return "Delta (Split Time)"
-			case .segmentDelta(fallback: _):
-				return "Delta (Segment Time)"
-			case .empty:
-				return "Nothing"
-			}
-		}
-	}
-	
 	var columnOptionsView: NSView {
 		let stack = ComponentOptionsVstack(views: [])
 		stack.wantsLayer = true
@@ -156,7 +186,9 @@ extension SplitsComponent {
 			
 			let columnStack  = NSStackView(views: [])
 			var discloseView: NSView
-			if c.identifier != STVColumnID.imageColumn && c.identifier != STVColumnID.splitTitleColumn {
+			if c.identifier != STVColumnID.imageColumn
+				&& c.identifier != STVColumnID.splitTitleColumn
+				&& c.identifier != STVColumnID.differenceColumn {
 				let discloseButton = ComponentOptionsButton(title: "", clickAction: { button in
 					NSAnimationContext.runAnimationGroup({ context in
 						context.duration = 0.25

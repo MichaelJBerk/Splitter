@@ -53,7 +53,6 @@ class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent {
 	
 	override func awakeFromNib() {
 		super.awakeFromNib()
-		setup()
 	}
 	
 	func setup() {
