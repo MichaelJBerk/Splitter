@@ -616,6 +616,7 @@ class ViewController: NSViewController {
 		let destination = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: InfoPopoverTabViewController.storyboardID) as! InfoPopoverTabViewController
 		destination.delegate = self
 		destination.run = self.run
+		destination.setupTabViews()
 		let pop = NSPopover()
 		pop.delegate = self
 		pop.contentViewController = destination
@@ -624,7 +625,6 @@ class ViewController: NSViewController {
 		pop.appearance = NSAppearance(named: .vibrantDark)
 		pop.show(relativeTo: infoPanelPopoverButton.frame, of: titleRow, preferredEdge: .maxX)
 		infoPanelPopover = pop
-		destination.setupTabViews()
 	}
 	
 	///Displays the "column options" popover

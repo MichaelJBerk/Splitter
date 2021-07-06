@@ -26,21 +26,40 @@ class InfoOptionsViewController: NSViewController, NSPopoverDelegate, advancedTa
 	
 	@IBOutlet weak var iconWell: MetadataImage!
 	
+	@IBOutlet weak var offsetField: NSTextField!
+	
 	override func viewDidLoad() {
         super.viewDidLoad()
+		getDataFromMain()
+		getImageFromMain()
+		attemptField.formatter = OnlyIntegerValueFormatter()
+		
 		runTitleField.delegate = self
 		categoryField.delegate = self
 		attemptField.delegate = self
 		platformField.delegate = self
 		versionField.delegate = self
 		regionField.delegate = self
+		
 		NotificationCenter.default.addObserver(forName: .runEdited, object: nil, queue: nil, using: { _ in
 			self.getDataFromMain()
 		})
 		NotificationCenter.default.addObserver(forName: .gameIconEdited, object: nil, queue: nil, using: { notification in
 			
 		})
+		
+		
     }
+	
+	@IBAction func offsetTextFieldEdited(_ sender: Any?) {
+		run.offset = Double(offsetField.stringValue) ?? 0
+		run.updateLayoutState()
+		let offset = run.offset
+		offsetField.stringValue = "\(offset)"
+		delegate?.updateTimer()
+	}
+	
+	
 	
 	@IBOutlet weak var startEndDateFormatter: DateFormatter!
 	
@@ -51,9 +70,7 @@ class InfoOptionsViewController: NSViewController, NSPopoverDelegate, advancedTa
 	}
 	
 	func setupDelegate() {
-		getDataFromMain()
-		getImageFromMain()
-		attemptField.formatter = OnlyIntegerValueFormatter()
+		
 	}
 	func controlTextDidEndEditing(_ obj: Notification) {
 		sendDataToMain()

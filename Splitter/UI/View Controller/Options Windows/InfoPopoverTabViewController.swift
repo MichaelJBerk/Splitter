@@ -28,7 +28,7 @@ extension advancedTabDelegate {
 ///ViewController that manages the "Get Info" popover
 class InfoPopoverTabViewController: NSTabViewController {
 	static var storyboardID = "Advanced"
-	var delegate: ViewController?
+	var delegate: ViewController!
 	var run: SplitterRun!
 
     override func viewDidLoad() {
