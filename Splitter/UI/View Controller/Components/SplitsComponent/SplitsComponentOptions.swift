@@ -53,31 +53,11 @@ extension SplitsComponent {
 	
 	}
 	func options(for column: NSTableColumn) -> NSView {
-		var views = [NSView]()
-		let nameLabel = NSTextField(labelWithString: "Name")
-		let nameField = NSTextField(string: column.title)
-		let nameStack = NSStackView(views: [nameLabel, nameField])
-		var fallback: Bool = false
-		views.append(nameStack)
-		
-		let fallbackCheck = ComponentOptionsButton(checkboxWithTitle: "Fallback", clickAction: { _ in
-			fallback.toggle()
-		})
-		fallbackCheck.state = .init(bool: fallback)
-		fallbackCheck.isHidden = true
-		
-		
 		let timeOptionMenu = NSMenu()
 		let segmentTimeOption = NSMenuItem(title: "Segment Time", action: nil, keyEquivalent: "")
 		let splitTimeOption = NSMenuItem(title: "Split Time", action: nil, keyEquivalent: "")
-//		let deltaOption = NSMenuItem(title: "Delta (Split Time)", action: nil, keyEquivalent: "")
-//		let segmentDeltaOption = NSMenuItem(title: "Delta (Segment Time)", action: nil, keyEquivalent: "")
-//		let emptyOption = NSMenuItem(title: "Nothing", action: nil, keyEquivalent: "")
 		timeOptionMenu.addItem(segmentTimeOption)
 		timeOptionMenu.addItem(splitTimeOption)
-//		timeOptionMenu.addItem(deltaOption)
-//		timeOptionMenu.addItem(segmentDeltaOption)
-//		timeOptionMenu.addItem(emptyOption)
 		var runColumn: SplitterRun.TimeColumn?
 		switch column.identifier {
 		case STVColumnID.currentSplitColumn:
@@ -89,7 +69,6 @@ extension SplitsComponent {
 		default:
 			break
 		}
-		
 		
 		let timeOptionButton = ComponentPopUpButton(title: "", selectAction: { button in
 			let h = button.indexOfSelectedItem
@@ -143,28 +122,10 @@ extension SplitsComponent {
 			}
 		}
 		
-		
-		let startLabel = NSTextField(labelWithString: "Value")
-		let startStack = NSStackView(views: [startLabel, timeOptionButton])
-		startStack.orientation = .horizontal
-		let startVStack = NSStackView(views: [startStack, fallbackCheck])
-		startVStack.orientation = .vertical
-		startVStack.alignment = .leading
-		views.append(startVStack)
-		
-		let deleteButton = ComponentOptionsButton(title: "Delete Column", clickAction: { _ in
-			
-		})
-		if #available(macOS 11.0, *) {
-			deleteButton.hasDestructiveAction = true
-		}
-		views.append(deleteButton)
-		
-		
-		let stack = NSStackView(views: views)
-		stack.orientation = .vertical
-		stack.alignment = .leading
-		return stack
+		let valueLabel = NSTextField(labelWithString: "Value")
+		let valueStack = NSStackView(views: [valueLabel, timeOptionButton])
+		valueStack.orientation = .horizontal
+		return valueStack
 	}
 	
 	var columnOptionsView: NSView {
@@ -221,32 +182,6 @@ extension SplitsComponent {
 				columnOptions.leadingAnchor.constraint(equalTo: checkButton.leadingAnchor)
 			])
 		}
-		let plusButton = ComponentOptionsButton(image: NSImage(named: NSImage.addTemplateName)!, clickAction: {_ in})
-		plusButton.setButtonType(.momentaryPushIn)
-		plusButton.bezelStyle = .regularSquare
-		plusButton.isBordered = false
-		let minusButton = ComponentOptionsButton(image: NSImage(named: NSImage.removeTemplateName)!, clickAction: {_ in})
-		minusButton.setButtonType(.momentaryPushIn)
-		minusButton.bezelStyle = .regularSquare
-		minusButton.isBordered = false
-		let ph = plusButton.frame.height
-		minusButton.frame.size.height = ph
-		NSLayoutConstraint.activate([
-			minusButton.heightAnchor.constraint(equalToConstant: 15),
-			minusButton.widthAnchor.constraint(equalToConstant: 15),
-			plusButton.heightAnchor.constraint(equalToConstant: 15),
-			plusButton.widthAnchor.constraint(equalToConstant: 15)
-		])
-		
-		let helpButton = ComponentOptionsButton(title: "", clickAction: {_ in})
-		helpButton.bezelStyle = .helpButton
-		
-		
-		let pmStack = NSStackView(views: [plusButton, minusButton, helpButton])
-		stack.addArrangedSubview(pmStack)
-		NSLayoutConstraint.activate([pmStack.widthAnchor.constraint(equalTo: stack.widthAnchor),
-									 helpButton.trailingAnchor.constraint(equalTo: pmStack.trailingAnchor)])
-		pmStack.orientation = .horizontal
 		
 		return stack
 	}

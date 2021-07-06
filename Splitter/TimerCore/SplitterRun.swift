@@ -119,21 +119,20 @@ class SplitterRun: NSObject {
 			editor.setComponentSettingsValue(9, .fromBool(true))
 			
 			//Setup Diffs Column
-			
 			editor.setColumn(1, updateWith: ColumnUpdateWith.segmentDelta)
 			editor.setColumn(1, updateTrigger: ColumnUpdateTrigger.onStartingSegment)
 			
 			//Setup PB column
 			editor.setColumn(2, name: "PB")
 			editor.setColumn(2, comparison: "Personal Best")
-			editor.setColumn(2, startWith: .comparisonTime)
+			editor.setColumn(2, startWith: .comparsionSegmentTime)
 			editor.setColumn(2, updateWith: ColumnUpdateWith.dontUpdate)
 			editor.setColumn(2, updateTrigger: ColumnUpdateTrigger.onEndingSegment)
 			
 			//Setup Previous column
 			editor.setColumn(3, name: "previous")
 			editor.setColumn(3, comparison: "Latest Run")
-			editor.setColumn(3, startWith: ColumnStartWith.comparisonTime)
+			editor.setColumn(3, startWith: ColumnStartWith.comparsionSegmentTime)
 			editor.setColumn(3, updateWith: ColumnUpdateWith.dontUpdate)
 			editor.setColumn(3, updateTrigger: ColumnUpdateTrigger.onStartingSegment)
 			//TODO: Set rounding
@@ -577,54 +576,6 @@ class SplitterRun: NSObject {
 		return newTime
 	}
 	
-	func setBestTime(index: Int, time: String) {
-		editRun({ editor in
-			editor.selectOnly(index)
-			//NOTE: This is all assuming we're using split time to show times
-			let newTS = TimeSplit(timeString: time)!
-			let newTime = splitToSegmentTime(editor: editor, time: newTS.totalSec, index: index)
-//			let editorStateString = editor.stateAsJson().data(using: .utf8)!
-//			let editorState = try! editorStateString.decoded() as RunEditorState
-//			var newTS = TimeSplit(timeString: time) ?? TimeSplit()
-//			var timeToSet: Double = newTS.totalSec
-//			if index > 0 {
-//				let previousSeg = editorState.segments?[index - 1].splitTime
-//				let previousTS = TimeSplit(timeString: previousSeg) ?? TimeSplit()
-//				let difference = abs(previousTS.totalSec - newTS.totalSec)
-//				timeToSet = difference
-//			}
-			let hey = editor.activeParseAndSetBestSegmentTime(String(newTime))
-			
-//			print(timer.lsRun.segment(index).comparison(TimeComparison.bestSplitTimes.rawValue).realTime()?.totalSeconds())
-//			if index > 0 {
-//				let segBeforeTime = timer.lsRun.segment(index - 1)
-//				var iter = segBeforeTime.segmentHistory().iter()
-//				var h: SegmentHistoryElementRef?
-//				var n = iter.next()
-//				while n != nil {
-//					h = n
-//					n = iter.next()
-//				}
-//				let segBeforeSeconds = h?.time().realTime()?.totalSeconds()
-//
-//			}
-			
-//			let hey = editor.activeParseAndSetComparisonTime(TimeComparison.bestSplitTimes.rawValue, time)
-//			let hey = editor.activeParseAndSetComparisonTime("best_split_times", time)
-//			let t = TimeSplit(timeString: time)!
-//			let ts = String(t.totalSec)
-//			let hey = editor.activeParseAndSetBestSegmentTime(ts)
-			print("Status: ", hey)
-		})
-		print(timer.lsRun.segment(index).bestSegmentTime().realTime()?.totalSeconds())
-		print(timer.lsRun.segment(index).comparison(TimeComparison.bestSplitTimes.rawValue).realTime()?.totalSeconds())
-		self.updateLayoutState()
-	}
-	
-	enum TimeOption {
-		case splitTime
-		case segmentTime
-	}
 	enum TimeColumn {
 		case time
 		case pb
@@ -657,7 +608,6 @@ class SplitterRun: NSObject {
 		return update
 	}
 	
-	
 	func setUpdateWith(_ updateWith: ColumnUpdateWith, for column: TimeColumn) {
 		let oldValue = getUpdateWith(for: column)
 		undoManager?.registerUndo(withTarget: self, handler: { r in
@@ -682,7 +632,6 @@ class SplitterRun: NSObject {
 		undoManager?.setActionName("Set Column Value")
 		NotificationCenter.default.post(.init(name: .splitsEdited, object: self))
 	}
-	
 	
 	var layoutSplits: CSplits {
 		codableLayout.components[1] as! CSplits
