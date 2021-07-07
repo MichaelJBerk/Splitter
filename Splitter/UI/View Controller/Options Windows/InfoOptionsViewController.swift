@@ -31,7 +31,11 @@ class InfoOptionsViewController: NSViewController, NSPopoverDelegate, advancedTa
 	override func viewDidLoad() {
         super.viewDidLoad()
 		getDataFromMain()
-		getImageFromMain()
+		
+		iconWell.allowsUpdate = false
+		iconWell.image = run.gameIcon
+		iconWell.allowsUpdate = true
+		
 		attemptField.formatter = OnlyIntegerValueFormatter()
 		
 		runTitleField.delegate = self

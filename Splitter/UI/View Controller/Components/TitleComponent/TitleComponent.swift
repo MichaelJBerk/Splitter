@@ -45,9 +45,10 @@ class TitleComponent: NSStackView, SplitterComponent, NibLoadable {
 		return d
 	}
 	
-	static func instantiateView(run: SplitterRun) -> TitleComponent {
+	static func instantiateView(run: SplitterRun, viewController: ViewController) -> TitleComponent {
 		let tc: TitleComponent = TitleComponent.instantiateView()
 		tc.run = run
+		tc.viewController = viewController
 		tc.setup()
 		return tc
 	}
@@ -60,6 +61,7 @@ class TitleComponent: NSStackView, SplitterComponent, NibLoadable {
 		gameSubtitleField.delegate = self
 		gameTitleField.run = run
 		gameIconButton.run = run
+		setupDefaultGameIcon()
 		gameSubtitleField.run = run
 		infoButton.run = run
 		infoButton.image = nil
@@ -76,10 +78,7 @@ class TitleComponent: NSStackView, SplitterComponent, NibLoadable {
 	
 	///Sets up the placeholder icon.
 	func setupDefaultGameIcon() {
-		
-		///Can't do this in `setup` because viewController hasn't been initalized yet.
-		gameIconButton.run = viewController.run
-		if let gi = viewController.run.gameIcon {
+		if let gi = run.gameIcon {
 			gameIconButton.image = gi
 		} else {
 			gameIconButton.image = .gameControllerIcon
@@ -88,6 +87,8 @@ class TitleComponent: NSStackView, SplitterComponent, NibLoadable {
 	
 	var customSpacing: CGFloat? = nil
 	
+	///
+	/// Only used for showing the Info popover
 	var viewController: ViewController!
 	
 	var isSelected: Bool = false {
@@ -107,29 +108,9 @@ class TitleComponent: NSStackView, SplitterComponent, NibLoadable {
 }
 extension TitleComponent: NSTextFieldDelegate {
 	@objc func controlTextDidEndEditing(_ obj: Notification) {
-//		if (oldTitle != gameTitleField.stringValue || oldSubtitle != gameSubtitleField.stringValue) {
-		viewController.run.title = self.gameTitleField.stringValue
-		viewController.run.subtitle = self.gameSubtitleField.stringValue
-//
-//			viewController.undoManager?.registerUndo(withTarget: self, selector: #selector(controlTextDidEndEditing(_:)), object: run.title)
-//			viewController.run.title = gameTitleField.stringValue
-//			viewController.run.subtitle = gameSubtitleField.stringValue
-//		}
+		run.title = self.gameTitleField.stringValue
+		run.subtitle = self.gameSubtitleField.stringValue
 	}
-//	@objc func setRunTitle(_ title: String) {
-//		if title != run.title {
-//			viewController.undoManager?.registerUndo(withTarget: self, selector: #selector(setRunTitle(_:)), object: viewController.run.title)
-//			viewController.run.title = title
-//			gameTitleField.stringValue = run.title
-//		}
-//	}
-//	@objc func setRunSubtitle(_ subtitle: String) {
-//		if subtitle != run.subtitle {
-//			viewController.undoManager?.registerUndo(withTarget: self, selector: #selector(setRunSubtitle(_:)), object: viewController.run.subtitle)
-//			viewController.run.subtitle = subtitle
-//			gameTitleField.stringValue = run.subtitle
-//		}
-//	}
 	
 	func updateTextFields() {
 		let t = run.title

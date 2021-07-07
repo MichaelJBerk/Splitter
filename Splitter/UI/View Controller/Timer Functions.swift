@@ -124,7 +124,6 @@ extension ViewController {
 		if timerState == .stopped {
 			startTimer()
 		} else if timerState == .paused {
-			//resumeTimer()
 			pauseResumeTimer()
 		} else if timerState == .running {
 			pauseResumeTimer()

@@ -83,14 +83,20 @@ class StartRow: NSStackView, NibLoadable, SplitterComponent {
 		}
 	}
 	
-	@IBAction func trashCanPopupClick(_ sender: Any) {
-		viewController?.trashCanPopupClick(sender)
+	@IBAction func trashCanPopupClick(_ sender: NSPopUpButton) {
+		if let id = sender.selectedItem?.identifier {
+			if id == buttonIdentifiers.TrashCanClearAllSplits {
+				viewController.askToClearTimer()
+			} else if id == buttonIdentifiers.TrashCanClearCurrentTime {
+				//TODO: Something...
+			}
+		}
 	}
 	@IBAction func startButtonClick(_ sender: Any) {
-		viewController?.timerButtonClick(sender)
+		viewController?.toggleTimer()
 	}
 	@IBAction func stopButtonClick(_ sender: Any) {
-		viewController?.stopButtonClick(sender)
+		viewController?.cancelRun()
 	}
 	
 	var shouldTrashCanBeHidden: Bool {

@@ -48,3 +48,10 @@ extension NSAppearance {
 		return false
 	}
 }
+extension NSImage {
+	static var gameControllerIcon: NSImage {
+		let icon = #imageLiteral(resourceName: "Game Controller")
+		icon.isTemplate = true
+		return icon
+	}
+}

@@ -217,9 +217,7 @@ class ViewController: NSViewController {
 		mainStackView.setCustomSpacing(view.afterSpacing, after: view)
 	}
 	func setupTitleRow() {
-		titleRow = TitleComponent.instantiateView(run: self.run)
-		titleRow.viewController = self
-		titleRow.setupDefaultGameIcon()
+		titleRow = TitleComponent.instantiateView(run: self.run, viewController: self)
 		addToStack(view: titleRow)
 		runTitleField = titleRow.gameTitleField
 		categoryField = titleRow.gameSubtitleField
@@ -409,7 +407,9 @@ class ViewController: NSViewController {
 						self.run = run
 						self.run.updateLayoutState()
 						undoManager?.disableUndoRegistration()
-						titleRow.setupDefaultGameIcon()
+						if let icon = run.gameIcon {
+							titleRow.gameIconButton.image = icon
+						}
 						undoManager?.enableUndoRegistration()
 					}
 				}
@@ -735,5 +735,11 @@ extension ViewController: NSPopoverDelegate {
 	override func present(_ viewController: NSViewController, asPopoverRelativeTo positioningRect: NSRect, of positioningView: NSView, preferredEdge: NSRectEdge, behavior: NSPopover.Behavior) {
 		
 		super.present(viewController, asPopoverRelativeTo: positioningRect, of: positioningView, preferredEdge: preferredEdge, behavior: behavior)
+	}
+}
+
+extension ViewController: NSTextViewDelegate {
+	func textView(_ view: NSTextView, menu: NSMenu, for event: NSEvent, at charIndex: Int) -> NSMenu? {
+		return nil
 	}
 }
