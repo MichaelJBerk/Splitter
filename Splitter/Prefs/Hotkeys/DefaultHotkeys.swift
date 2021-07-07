@@ -17,7 +17,6 @@ enum KeybindTitle: String {
 	case SkipSplit = "Skip Split"
 	case StopTimer = "Cancel Run"
 	case ClearTimer = "Reset Run"
-	case ResetCurrentSplit = "Reset Current Split"
 	case ShowInfoPanel = "Get Info..."
 	case ShowColumnOptions = "Edit Layout..."
 	
@@ -76,7 +75,6 @@ extension AppDelegate {
 			SplitterKeybind(settings: .prevSplit, title: .PrevSplit, menuItemID: menuIdentifiers.runMenu.back),
 			SplitterKeybind(settings: .skipSplit, title: .SkipSplit, menuItemID: menuIdentifiers.runMenu.skipSplit),
 			SplitterKeybind(settings: .stopTimer, title: .StopTimer, menuItemID: menuIdentifiers.runMenu.stop),
-			SplitterKeybind(settings: .clearTimer, title: .ClearTimer, menuItemID: menuIdentifiers.runMenu.resetRun),
 			//TODO: See if it should be removed permanantly
 			//Removing this for now, because LiveSplit doesn't seem to have this as a feature
 //			SplitterKeybind(settings: .resetCurrentSplit, title: .ResetCurrentSplit, menuItemID: menuIdentifiers.runMenu.reset),
@@ -151,11 +149,7 @@ extension AppDelegate {
 			}
 		case .ClearTimer:
 			return {
-				self.clearHandler()
-			}
-		case .ResetCurrentSplit:
-			return {
-				self.resetCurrentSplitHandler()
+				self.cancelRunHandler()
 			}
 		case .ShowInfoPanel:
 			return {

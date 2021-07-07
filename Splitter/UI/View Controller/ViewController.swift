@@ -313,7 +313,7 @@ class ViewController: NSViewController {
 	}
 	///Handles various tasks to set up certain keyboard commands, as well as the Touch Bar
 	private func keyAndMenuSetup() {
-		touchBarDelegate = RunTouchBarDelegate(splitFunc: startSplitTimer, pauseFunc: pauseResumeTimer, prevFunc: goToPrevSplit, stopFunc: stopTimer, sourceVC: self)
+		touchBarDelegate = RunTouchBarDelegate(splitFunc: startSplitTimer, pauseFunc: pauseResumeTimer, prevFunc: run.timer.previousSplit, stopFunc: stopTimer, sourceVC: self)
 		
 		#if DEBUG
 		let breakMI = NSMenuItem(title: "Break", action: #selector(breakFunc), keyEquivalent: "b")
@@ -402,7 +402,9 @@ class ViewController: NSViewController {
 				if v < 4 {
 					loadFromOldRunInfo(icons: doc.iconArray)
 				} else {
-					loadFromRunInfo()
+					if let ri = runInfoData {
+						self.fileID = ri.id
+					}
 					if let run = doc.run {
 						self.run = run
 						self.run.updateLayoutState()
@@ -449,6 +451,16 @@ class ViewController: NSViewController {
 	var document: SplitterDoc!
 	
 	//MARK: - Main Functions
+	
+	///Updates the button titles when splitting
+	func updateButtonTitles() {
+		touchBarDelegate.startSplitTitle = run.nextButtonTitle
+		touchBarDelegate.enableDisableButtons()
+		splitsTableView.reloadData()
+		splitsTableView.scrollRowToVisible(run.currentSplit ?? 0)
+	}
+	
+	
 	override func viewWillAppear() {
 		super.viewWillAppear()
 		if run == nil {
@@ -456,7 +468,6 @@ class ViewController: NSViewController {
 			run.document = self.document
 		}
 		undoManager?.disableUndoRegistration()
-		print(run.segmentCount)
 		if let components = appearance?.components {
 			for component in components {
 				addComponent(component.type)

@@ -75,11 +75,6 @@ class splitToJSON {
 
 
 extension ViewController {
-	func loadFromRunInfo() {
-		if let ri = runInfoData {
-			self.fileID = ri.id
-		}
-	}
 	
 	func loadFromOldRunInfo(icons: [NSImage?]) {
 		if let ri = runInfoData {

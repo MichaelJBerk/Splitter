@@ -56,10 +56,10 @@ class PrevNextRow: NSStackView, NibLoadable, SplitterComponent {
 	var viewController: ViewController!
 	
 	@IBAction func prevButtonClick(_ sender: NSButton?) {
-		viewController?.goToPrevSplit()
+		run.timer.previousSplit()
 	}
 	@IBAction func nextButtonClick(_ sender: NSButton?) {
-		viewController?.goToNextSplit()
+		run.timer.splitOrStart()
 	}
 	var isSelected = false {
 		didSet {

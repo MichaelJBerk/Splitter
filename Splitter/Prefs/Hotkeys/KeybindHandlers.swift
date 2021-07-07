@@ -36,12 +36,12 @@ extension AppDelegate {
 	
 	func prevHandler() {
 		if let vc = viewController {
-			vc.goToPrevSplit()
+			vc.run.timer.previousSplit()
 		}
 	}
 	func skipHandler() {
 		if let vc = viewController {
-			vc.skipSplit()
+			vc.run.timer.skipSplit()
 		}
 	}
 	func stopHandler() {
@@ -49,14 +49,9 @@ extension AppDelegate {
 			vc.stopTimer()
 		}
 	}
-	func clearHandler() {
+	func cancelRunHandler() {
 		if let vc = viewController {
-			vc.resetRun()
-		}
-	}
-	func resetCurrentSplitHandler() {
-		if let vc = viewController {
-			vc.resetCurrentSplit()
+			vc.cancelRun()
 		}
 	}
 	

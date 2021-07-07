@@ -40,19 +40,11 @@ extension ViewController {
 	}
 
 	@IBAction func prevSplitMenuItem(_ sender: Any?) {
-		goToPrevSplit()
+		run.timer.previousSplit()
 	}
 	
 	@IBAction func skipSplitMenuItem(_ sender: Any?) {
-		skipSplit()
-	}
-	
-	@IBAction func resetRunMenuItem(_ sender: Any) {
-		resetRun()
-	}
-	
-	@IBAction func resetCurrentSplitMenuItem(_ sender: Any) {
-		resetCurrentSplit()
+		run.timer.skipSplit()
 	}
 	
 	@IBAction func showInfoPanelMenuItem(_ sender: Any) {
@@ -96,6 +88,20 @@ extension ViewController {
 	@IBAction func discordMenuItemAction(_ sender: Any?) {
 		let url = URL(string: "https://mberk.com/splitter/discord")!
 		NSWorkspace.shared.open(url)
+	}
+	
+	
+	//MARK: - Other Menu Item Stuff
+	
+	///Updates the "Skip Split" menu item
+	func updateSkipItem() {
+		if let currentSplit = self.run.timer.currentSplit {
+			var enabled = true
+			if currentSplit >= self.run.segmentCount - 1 {
+				enabled = false
+			}
+			setMenuItemEnabled(item: skipSplitMenuitem, enabled: enabled)
+		}
 	}
 }
 

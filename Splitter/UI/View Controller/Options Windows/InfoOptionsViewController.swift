@@ -30,7 +30,7 @@ class InfoOptionsViewController: NSViewController, NSPopoverDelegate, advancedTa
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
-		getDataFromMain()
+		getDataFromRun()
 		
 		iconWell.allowsUpdate = false
 		iconWell.image = run.gameIcon
@@ -46,7 +46,7 @@ class InfoOptionsViewController: NSViewController, NSPopoverDelegate, advancedTa
 		regionField.delegate = self
 		
 		NotificationCenter.default.addObserver(forName: .runEdited, object: nil, queue: nil, using: { _ in
-			self.getDataFromMain()
+			self.getDataFromRun()
 		})
 		NotificationCenter.default.addObserver(forName: .gameIconEdited, object: nil, queue: nil, using: { notification in
 			
@@ -63,8 +63,6 @@ class InfoOptionsViewController: NSViewController, NSPopoverDelegate, advancedTa
 		delegate?.updateTimer()
 	}
 	
-	
-	
 	@IBOutlet weak var startEndDateFormatter: DateFormatter!
 	
 	func popoverShouldDetach(_ popover: NSPopover) -> Bool {
@@ -77,7 +75,41 @@ class InfoOptionsViewController: NSViewController, NSPopoverDelegate, advancedTa
 		
 	}
 	func controlTextDidEndEditing(_ obj: Notification) {
-		sendDataToMain()
+		updateRun()
+	}
+	
+	///Loads the popover with data from the main window
+	func getDataFromRun() {
+		//If the user types a title on the view controller, then shows the info panel (without pressing enter on the TF first), delegate is nil
+		if let delegate = self.delegate {
+			iconWell.run = delegate.run
+			runTitleField.stringValue = run.title
+			categoryField.stringValue = run.subtitle
+			attemptField.stringValue = "\(delegate.run.attempts)"
+			platformField.stringValue = run.platform
+			versionField.stringValue = run.gameVersion
+			regionField.stringValue = run.region
+			
+			if let st = delegate.startTime {
+				let sDate = startEndDateFormatter.string(from: st)
+				
+				startTimeLabel.stringValue = sDate
+			}
+			if let et = delegate.endTime {
+				let eDate = startEndDateFormatter.string(from: et)
+				endTimeLabel.stringValue = eDate
+			}
+		}
+	}
+	
+	///Sends data from the popover to the main window
+	func updateRun() {
+		run.title = runTitleField.stringValue
+		run.subtitle = categoryField.stringValue
+		run.attempts = Int(attemptField.stringValue) ?? 0
+		run.platform = platformField.stringValue
+		run.gameVersion = versionField.stringValue
+		run.region = regionField.stringValue
 	}
 	
 }

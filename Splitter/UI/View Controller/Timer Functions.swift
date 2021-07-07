@@ -141,7 +141,7 @@ extension ViewController {
 		if timerState == .stopped {
 			startTimer()
 		} else if timerState == .running {
-			goToNextSplit()
+			run.timer.splitOrStart()
 		}
 	}
 	

@@ -395,13 +395,6 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="n5c-GI-xuS"/>
-                                        <menuItem title="Reset Run" identifier="ResetRun" id="M2Y-AP-1Gh">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                            <connections>
-                                                <action selector="resetRunMenuItem:" target="Ady-hI-5gd" id="5nP-JD-CFt"/>
-                                            </connections>
-                                        </menuItem>
-                                        <menuItem isSeparatorItem="YES" id="6w8-fo-YRD"/>
                                         <menuItem title="Get Info..." identifier="InfoMenuBarItem" id="5s9-6C-CWW">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
