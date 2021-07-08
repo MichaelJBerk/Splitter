@@ -27,6 +27,10 @@ enum menuIdentifiers {
 		
 		static let newFromSplitsIO = NSUserInterfaceItemIdentifier("newFromSplitsIO")
 		static let uploadToSplitsIO = NSUserInterfaceItemIdentifier("uploadToSplitsIO")
+		
+		static let useAsDefault = NSUserInterfaceItemIdentifier("useAsDefault")
+		static let resetDefaultRun = NSUserInterfaceItemIdentifier("resetDefaultRun")
+		
 	}
 	
 	//MARK: - Timer Menu

@@ -25,6 +25,14 @@ extension ViewController {
 	@IBAction func uploadToSplitsIOMenuItem(_ sender: Any?) {
 		splitsIOUploader.uploadToSplitsIO()
 	}
+	
+	@IBAction func useRunAsDefaultMenuItem(_ sender: Any?) {
+		SplitterDocumentController.sShared.useAsTemplate(doc: document)
+	}
+	
+	@IBAction func resetDefaultRunMenuItem(_ sender: Any?) {
+		SplitterDocumentController.sShared.resetTemplate()
+	}
 	//MARK: Run Menu
 	///Action for Menu Bar that starts/pauses the timer
 	@IBAction func startSplitMenuItem(_ sender: Any?) {
@@ -109,8 +117,16 @@ extension ViewController: NSMenuItemValidation {
 	///Sets which menu items should be enabled
 	func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
 		
-		if let id = menuItem.identifier, let enabled = enabledMenuItems[id] {
-			return enabled
+		if let id = menuItem.identifier {
+			if id == menuIdentifiers.fileMenu.resetDefaultRun {
+				if SplitterDocumentController.sShared.templateFileExists {
+					return true
+				}
+				return false
+			}
+			if let enabled = enabledMenuItems[id] {
+				return enabled
+			}
 		}
 		return true
 	}

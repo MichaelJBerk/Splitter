@@ -138,6 +138,19 @@
                                                 <action selector="uploadToSplitsIOMenuItem:" target="Ady-hI-5gd" id="j37-Bs-A5P"/>
                                             </connections>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="q6a-2t-LVd"/>
+                                        <menuItem title="Use Run as Template..." identifier="useAsDefault" id="B5T-Oo-Hho">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="useRunAsDefaultMenuItem:" target="Ady-hI-5gd" id="374-G0-ltM"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Reset Template Run..." identifier="resetDefaultRun" id="Gie-ds-VZX">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="resetDefaultRunMenuItem:" target="Ady-hI-5gd" id="Pk0-MH-zE4"/>
+                                            </connections>
+                                        </menuItem>
                                     </items>
                                 </menu>
                             </menuItem>
@@ -494,6 +507,7 @@
                 </application>
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Splitter" customModuleProvider="target"/>
                 <customObject id="1Jn-Zc-U5S" customClass="SUUpdater"/>
+                <customObject id="tug-9B-nUX" customClass="SplitterDocumentController" customModule="Splitter" customModuleProvider="target"/>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

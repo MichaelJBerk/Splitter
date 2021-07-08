@@ -30,14 +30,19 @@ enum DocFileType: String {
 	}
 }
 
-
-
 ///A filetype supported by Splitter
 /**
 - Note:
 This class contains the logic for saving each supported file type, since otherwise, it wouldn't be eaisliy possible to save each file from the same Save panel.
 */
 class SplitterDoc: NSDocument {
+	
+//
+//	convenience override init() {
+//		if TemplateFileController.shared.templateFileExists {
+//
+//		}
+//	}
 	
 	///Writes the textual representations of the given items into the standard output.
 	///

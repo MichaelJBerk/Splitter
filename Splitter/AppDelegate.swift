@@ -29,7 +29,7 @@ public static let build = Bundle.main.infoDictionary?["CFBundleVersion"] as! Str
 class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 	@IBOutlet private var window: NSWindow!
 	
-	static var splitsIOAuth = SplitsIOAuth(client: SplitterKeys().splitsioclient, secret: SplitterKeys().splitsiosecret, redirects: "splitter://login")
+	static var splitsIOAuth = SplitsIOAuth(client: SplitterKeys().splitsioclient, secret: SplitterKeys().splitsiosecret, redirects: "splitter://login", url: Settings.splitsIOURL.absoluteString)
 	public static var splitsIOKit = SplitsIOKit(auth: splitsIOAuth, url: Settings.splitsIOURL)
 	
 	public var hotkeyController: HotkeysViewController?

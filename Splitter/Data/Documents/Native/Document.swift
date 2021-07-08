@@ -15,9 +15,12 @@ import SwiftyJSON
 
 class Document: SplitterDocBundle {
 
-	var infoFileName = "runInfo.json"
-	var otherFileName = "otherthing.json"
-	var gameIconFileName = "gameIcon.png"
+	let infoFileName = "runInfo.json"
+	let splitsFileName = "splits.lss"
+	let gameIconFileName = "gameIcon.png"
+	let appearanceFileName = "appearance.json"
+	let layoutFileName = "layout.lsl"
+	let bgImageName = "bgImage.png"
 	
 	var runInfoData: runInfo?
 	var appearance: SplitterAppearance?
@@ -28,7 +31,8 @@ class Document: SplitterDocBundle {
 	var id: String? = nil
 	var versionUsed: Double?
 	var run: SplitterRun?
-	
+	var splitsData: Data!
+
 	override init() {
 	    super.init()
 		wrapper = try? fileWrapper(ofType: ".split")
@@ -49,44 +53,54 @@ class Document: SplitterDocBundle {
 	*/
 	
 	override func read(from fileWrapper: FileWrapper, ofType typeName: String) throws {
-		let appearanceFile = try? bundleFolder?.file(named: "appearance.json")
-		if appearanceFile != nil {
-			if let data = try? appearanceFile?.read(), let json = try? JSON(data: data) {
-				let newAppearance = SplitterAppearance(json: json)
-				self.appearance = newAppearance
-			}
+		if let appearanceFile = fileWrapper.fileWrappers?[self.appearanceFileName],
+		   let data = appearanceFile.regularFileContents,
+		   let json = try? JSON(data: data){
+			let newAppearance = SplitterAppearance(json: json)
+			self.appearance = newAppearance
 		}
 		
 		var beforeSplitter4 = false
-		if let runInfoFile = try? bundleFolder?.file(named: "runInfo.json") {
-			if let data = try? runInfoFile.read(), let json = try? JSON(data: data) {
-				//Check which version of Splitter saved the file
-				let verString = json["version"].stringValue
-				let verSplit = verString.split(separator: ".")
-				versionUsed = Double(verSplit[0])
-				self.runInfoData = splitToJSON().runInfoFromJSON(json: json)
-				if versionUsed! < 4 {
-					beforeSplitter4 = true
-				}
+		if let runInfoFile = fileWrapper.fileWrappers?[infoFileName],
+		   let data = runInfoFile.regularFileContents,
+		   let json = try? JSON(data: data) {
+			let verString = json["version"].stringValue
+			let verSplit = verString.split(separator: ".")
+			versionUsed = Double(verSplit[0])
+			self.runInfoData = splitToJSON().runInfoFromJSON(json: json)
+			if versionUsed! < 4 {
+				beforeSplitter4 = true
 			}
 		}
-		
+			
 		if beforeSplitter4 {
 			readOlderThanSplitter4(from: fileWrapper)
 		} else {
-			if let splitsFile = try? bundleFolder?.file(named: "splits.lss") {
-				let lsRun = Run.parseFile(path: splitsFile.path, loadFiles: true)!
-				run = SplitterRun(run: lsRun)
-				run?.document = self
+			if let splitsFile = fileWrapper.fileWrappers?[splitsFileName],
+			   let data = splitsFile.regularFileContents {
+				self.splitsData = data
+				splitsData.withUnsafeMutableBytes({ (ptr: UnsafeMutableRawBufferPointer) in
+					
+					let lsRun = Run.parse(ptr.baseAddress, ptr.count, "", true)
+					if lsRun.parsedSuccessfully() {
+						run = SplitterRun(run: lsRun.unwrap())
+						run?.document = self
+					} else {
+						fatalError()
+					}
+				})
 			}
-			if let layoutFile = try? bundleFolder?.file(named: "layout.lsl"),
-			   let json = try? layoutFile.readAsString() {
+			
+			if let layoutFile = fileWrapper.fileWrappers?[layoutFileName],
+			   let layoutData = layoutFile.regularFileContents,
+			   let json = String(data: layoutData, encoding: .utf8) {
 				run?.layout = Layout.parseJson(json)!
 			}
-			if let bgImageFile = try? bundleFolder?.file(named: "bgImage.png"),
-			   let imgData = try? bgImageFile.read() {
+
+			if let bgImage = fileWrapper.fileWrappers?[bgImageName],
+			   let data = bgImage.regularFileContents {
 				undoManager?.disableUndoRegistration()
-				run?.backgroundImage = NSImage(data: imgData)
+				run?.backgroundImage = NSImage(data: data)
 				undoManager?.enableUndoRegistration()
 			}
 		}
@@ -116,8 +130,6 @@ class Document: SplitterDocBundle {
 				}
 			}
 		}
-		
-		
 		wrapper =  fileWrapper
 	}
 	
@@ -150,7 +162,6 @@ class Document: SplitterDocBundle {
 			}
 		}
 		determineSave(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: contextInfo)
-		
 	}
 
 	override func read(from data: Data, ofType typeName: String) throws {
@@ -159,6 +170,5 @@ class Document: SplitterDocBundle {
 		// If you do, you should also override isEntireFileLoaded to return false if the contents are lazily loaded.
 		throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
 	}
-
-
+	
 }

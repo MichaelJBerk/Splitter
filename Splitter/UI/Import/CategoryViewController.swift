@@ -116,24 +116,30 @@ class CategoryViewController: NSViewController {
 		loadingView.loadViewFromNib()
 		loadingView.labelView.stringValue = "Downloading..."
 		self.presentAsSheet(loadingView)
-		
+		func showErrorAlert() {
+			let alert = NSAlert()
+			alert.messageText = "Splitter was unable to download the file"
+			alert.runModal()
+			self.dismiss(loadingView)
+		}
 		splitsIO.getRunFromCat(categoryID: cat.id, completion: { run in
 			if let run = run {
-				let d = lss()
-				d.template = true
-				let url = URL(string: run)!
-				d.tempURL = url
-				NSDocumentController.shared.addDocument(d)
-				d.makeWindowControllers()
-				if let vc =  d.windowControllers.first?.window?.contentViewController as? ViewController {
-					self.dismiss(loadingView)
-					vc.view.window?.makeKeyAndOrderFront(nil)
+				do {
+					let d: lss = try (SplitterDocumentController.shared as! SplitterDocumentController).makeBlankUntitledDocument(ofType: DocFileType.liveSplit.rawValue) as! lss
+					d.template = true
+					let url = URL(string: run)!
+					d.tempURL = url
+					NSDocumentController.shared.addDocument(d)
+					d.makeWindowControllers()
+					if let vc =  d.windowControllers.first?.window?.contentViewController as? ViewController {
+						self.dismiss(loadingView)
+						vc.view.window?.makeKeyAndOrderFront(nil)
+					}
+				} catch {
+					showErrorAlert()
 				}
 			} else {
-                let alert = NSAlert()
-                alert.messageText = "Splitter was unable to download the file"
-                alert.runModal()
-                self.dismiss(loadingView)
+				showErrorAlert()
 			}
 		})
 	}

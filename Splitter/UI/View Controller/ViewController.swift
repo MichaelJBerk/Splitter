@@ -90,8 +90,6 @@ class ViewController: NSViewController {
 	
 	@IBOutlet weak var backgroundImageView: NSImageView!
 	
-	var cellIdentifier: NSUserInterfaceItemIdentifier?
-	
 	//MARK: - Touch Bar Controls
 	var touchBarTotalTimeLabel: NSTextField = NSTextField(labelWithString: "00:00:00.00")
 	var touchBarDelegate: RunTouchBarDelegate!
@@ -233,8 +231,6 @@ class ViewController: NSViewController {
 		let splitTable = scrollViewComponent.documentView as! SplitterTableView
 		splitsTableView = splitTable
 		splitsTableView.viewController = self
-		splitsTableView.delegate = self
-		splitsTableView.dataSource = self
 		scrollViewComponent.setup()
 	}
 	

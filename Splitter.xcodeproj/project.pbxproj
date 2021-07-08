@@ -22,6 +22,7 @@
 		4A09E29C24D754520013D7BC /* DownloadWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09E29B24D754520013D7BC /* DownloadWindowController.swift */; };
 		4A09E29E24D7555E0013D7BC /* DownloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09E29D24D7555E0013D7BC /* DownloadView.swift */; };
 		4A09E2A824D75D6B0013D7BC /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09E2A624D75D6B0013D7BC /* CategoryViewController.swift */; };
+		4A0D10DE269790F6003A5E04 /* SplitterDocumentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0D10DD269790F6003A5E04 /* SplitterDocumentController.swift */; };
 		4A0DC28624186C6200FC959A /* SplitsIODoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0DC28524186C6200FC959A /* SplitsIODoc.swift */; };
 		4A0F715F23F4A0A500E5948E /* SplitterDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0F715E23F4A0A500E5948E /* SplitterDoc.swift */; };
 		4A0F716323F4A9E400E5948E /* SplitterDocBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0F716223F4A9E400E5948E /* SplitterDocBundle.swift */; };
@@ -188,6 +189,7 @@
 		4A09E29B24D754520013D7BC /* DownloadWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadWindowController.swift; sourceTree = "<group>"; };
 		4A09E29D24D7555E0013D7BC /* DownloadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadView.swift; sourceTree = "<group>"; };
 		4A09E2A624D75D6B0013D7BC /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		4A0D10DD269790F6003A5E04 /* SplitterDocumentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterDocumentController.swift; sourceTree = "<group>"; };
 		4A0DC28524186C6200FC959A /* SplitsIODoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitsIODoc.swift; sourceTree = "<group>"; };
 		4A0F715E23F4A0A500E5948E /* SplitterDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterDoc.swift; sourceTree = "<group>"; };
 		4A0F716223F4A9E400E5948E /* SplitterDocBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterDocBundle.swift; sourceTree = "<group>"; };
@@ -437,14 +439,15 @@
 			path = Common;
 			sourceTree = "<group>";
 		};
-		4A0F716523F4AA1500E5948E /* File Types */ = {
+		4A0F716523F4AA1500E5948E /* Documents */ = {
 			isa = PBXGroup;
 			children = (
 				4A0F716423F4A9F500E5948E /* Common */,
 				4AFCC52523C63F4E002216F1 /* Other Formats */,
 				4AD780C423D506710068CDE3 /* Native */,
+				4A0D10DD269790F6003A5E04 /* SplitterDocumentController.swift */,
 			);
-			path = "File Types";
+			path = Documents;
 			sourceTree = "<group>";
 		};
 		4A1657AF23EA4EE20008CB5F /* View Controller */ = {
@@ -692,7 +695,7 @@
 				4A5C1D1423F4AFB80014E8D3 /* CommonPaths.swift */,
 				4AEC4BFF240F564B00B01799 /* Time Conversion.swift */,
 				4ACCEA7723B02F520068F89E /* TimeSplit.swift */,
-				4A0F716523F4AA1500E5948E /* File Types */,
+				4A0F716523F4AA1500E5948E /* Documents */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -1186,6 +1189,7 @@
 				4A1657B123EA4EF60008CB5F /* Menu Items.swift in Sources */,
 				4ADFAE4923E4A0760049F57A /* QuickAlert.swift in Sources */,
 				4A561386262CFB7F00702B0E /* OptionsRow.swift in Sources */,
+				4A0D10DE269790F6003A5E04 /* SplitterDocumentController.swift in Sources */,
 				4A01B805268632D400F15A50 /* NibLoadable.swift in Sources */,
 				4A18662E23C51D2800FEEE54 /* UISettings.swift in Sources */,
 				4AD44ADF262F4CFB003375C4 /* TitleComponent.swift in Sources */,

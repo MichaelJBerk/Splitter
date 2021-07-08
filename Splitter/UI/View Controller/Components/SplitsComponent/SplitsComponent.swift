@@ -10,6 +10,7 @@ import Cocoa
 class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent {
 	
 	var run: SplitterRun!
+	var delegate: SplitsComponentDelegate!
 	//MARK: - State
 	var state: SplitterComponentState!
 	
@@ -46,6 +47,7 @@ class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent {
 	var customSpacing: CGFloat? = nil
 	
 	var viewController: ViewController!
+	var useViewController = true
 	
 	var splitsTableView: SplitterTableView {
 		return documentView as! SplitterTableView
@@ -57,8 +59,12 @@ class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent {
 	
 	func setup() {
 		///This works even if viewController hasn't been initalized yet, since `delegate` and `dataSource` are optional properties
-		splitsTableView.delegate = viewController
-		splitsTableView.dataSource = viewController
+		delegate = SplitsComponentDelegate(run: run, component: self)
+		if useViewController  {
+			delegate.selectedColor = viewController.selectedColor
+		}
+		splitsTableView.delegate = delegate
+		splitsTableView.dataSource = delegate
 		
 		//Get rows past the header to be hidden
 		NotificationCenter.default.addObserver(forName: NSScrollView.didLiveScrollNotification, object: self, queue: nil, using: { notification in
@@ -84,10 +90,18 @@ class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent {
 	}
 	
 	var leadingConstraint: NSLayoutConstraint {
-		self.leadingAnchor.constraint(equalTo: viewController.view.leadingAnchor)
+		if useViewController {
+			return self.leadingAnchor.constraint(equalTo: viewController.view.leadingAnchor)
+		} else {
+			return NSLayoutConstraint()
+		}
 	}
 	var trailingConstraint: NSLayoutConstraint {
-		self.trailingAnchor.constraint(equalTo: viewController.view.trailingAnchor)
+		if useViewController {
+			return self.trailingAnchor.constraint(equalTo: viewController.view.trailingAnchor)
+		} else {
+			return NSLayoutConstraint()
+		}
 	}
 	
 	var isSelected: Bool = false {

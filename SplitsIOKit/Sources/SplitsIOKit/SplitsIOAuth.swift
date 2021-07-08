@@ -16,15 +16,16 @@ public class SplitsIOAuth {
 	
 	/// Initalize SplitsIOAuth. Requires developer setup from Splits.io
 	/// - Parameters:
-	///   - client: Cleint ID
+	///   - client: Client ID
 	///   - secret: Secret ID
 	///   - redirects: Array of URI redirects for the application
-	public init(client: String, secret: String, redirects: String) {
+	///	  - url: Requires https
+	public init(client: String, secret: String, redirects: String, url: String) {
 		oAuth2 = OAuth2CodeGrant(settings: [
 		 "client_id": "\(client)",
 			"client_secret": "\(secret)",
-			"authorize_uri": "https://splits.io/oauth/authorize",
-			"token_uri": "https://splits.io/oauth/token",
+			"authorize_uri": "\(url)/oauth/authorize",
+			"token_uri": "\(url)/oauth/token",
 			"redirect_uris": [redirects],
 			"scope": "upload_run delete_run manage_race",
 			"keychain": "true",
@@ -37,7 +38,6 @@ public class SplitsIOAuth {
 			let url = try oAuth2.authorizeURL()
 			try oAuth2.authorizer.openAuthorizeURLInBrowser(url)
 			oAuth2.didAuthorizeOrFail = { authParams, error in
-				print(self.oAuth2.accessToken)
 				NotificationCenter.default.post(name: .splitsIOLogin, object: nil)
 				completion()
 				

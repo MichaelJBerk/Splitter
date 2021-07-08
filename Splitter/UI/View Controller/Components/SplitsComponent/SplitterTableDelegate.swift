@@ -9,17 +9,9 @@
 import Foundation
 import Cocoa
 
-
-//MARK - Number of Rows
-extension ViewController: NSTableViewDataSource {
-	func numberOfRows(in tableView: NSTableView) -> Int {
-		return run.layoutSplits.splits.count
-	}
-}
-
 class SplitterRowView: NSTableRowView {
 	var selectedColor: NSColor = .splitterRowSelected
-    var isCurrentSegment: Bool = false
+	var isCurrentSegment: Bool = false
 	
 	override func draw(_ dirtyRect: NSRect) {
 		super.draw(dirtyRect)
@@ -32,7 +24,27 @@ class SplitterRowView: NSTableRowView {
 }
 
 
-extension ViewController: NSTableViewDelegate {
+class SplitsComponentDelegate: NSObject, NSTableViewDelegate, NSTableViewDataSource {
+	var run: SplitterRun
+	var selectedColor = NSColor.splitterRowSelected
+	var splitsComponent: SplitsComponent
+	var timerState: TimerState {
+		get {
+			run.timer.timerState
+		}
+		set {
+			run.timer.timerState = newValue
+		}
+	}
+	
+	init(run: SplitterRun, component: SplitsComponent) {
+		self.run = run
+		self.splitsComponent = component
+	}
+	
+	func numberOfRows(in tableView: NSTableView) -> Int {
+		return run.layoutSplits.splits.count
+	}
 	
 	func tableView(_ tableView: NSTableView, rowViewForRow row: Int) -> NSTableRowView? {
 		
@@ -47,9 +59,8 @@ extension ViewController: NSTableViewDelegate {
 	}
 	
 	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-		cellIdentifier = tableColumn?.identifier
-		
-		if let cell = tableView.makeView(withIdentifier: cellIdentifier!, owner: nil) as? NSTableCellView {
+
+		if let id = tableColumn?.identifier, let cell = tableView.makeView(withIdentifier: id, owner: nil) as? NSTableCellView {
 			
 			//Highlight the current row if the user is in the middle of a run
 			let isCurrentSplit = run.layoutSplits.splits[row].isCurrentSplit
