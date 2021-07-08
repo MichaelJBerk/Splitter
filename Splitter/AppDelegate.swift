@@ -87,23 +87,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 			}
 		}
 	}
-//	///Takes the hotkeys set as SplitterKeybinds and registers them for global input monitoring.
-//	///
-//	///
-//	///This method binds each hotkey to their respective action, watching for keypresses even when Splitter isn't the active app.
-//	///If global hotkeys are disabled, it unbinds each hotkey
-//	///If the app has not been granted Accessibility permissions in System Preferences, it can't really do anything
-//	func setGlobalKeybindMonitor() {
-//		for k in self.appKeybinds {
-//			if let k = k {
-//				if Settings.enableGlobalHotkeys {
-//					MASShortcutBinder.shared().bindShortcut(withDefaultsKey: k.settings.rawValue, toAction: keybindAction(keybind: k.title))
-//				} else {
-//					MASShortcutBinder.shared().breakBinding(withDefaultsKey: k.settings.rawValue)
-//				}
-//			}
-//		}
-//	}
 	
 	///Invoked immediately before opening an untitled file.
 	///
@@ -158,7 +141,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 		
 		//MSAppCenter stuff
 		NSApp.mainMenu?.item(withIdentifier: menuIdentifiers.appMenu.updatesMenuItem)?.isHidden = false
-		addExtraMenuItems()
 		#if !DEBUG
 		
 		Crashes.delegate = self
@@ -206,20 +188,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 		#endif
 	}
 	
-	func addExtraMenuItems() {
-		let testMenuItem = NSMenuItem(title: "TestView", action: #selector(testViewItemAction(_:)), keyEquivalent: "")
-		print(NSApp.mainMenu?.item(at: 1)?.title)
-		let splitterMenu = NSApp.mainMenu?.item(at: 1)?.submenu
-		testMenuItem.identifier = menuIdentifiers.windowMenu.welcomeWindowItem
-		testMenuItem.target = self
-		splitterMenu?.insertItem(testMenuItem, at: splitterMenu!.items.count)
-//
-//		splitterMenu?.insertItem(withTitle: "TestView", action: #selector(testViewItemAction(_:)), keyEquivalent: "", at: 2)//splitterMenu!.items.count)
-	}
-	@objc func testViewItemAction(_ sender: Any?) {
-		
-	}
-	
 	//Need to store this as a var on the class or the app will crash when closing the welcome window
 	var welcomeWindow: KeyDownWindow!
 	var searchWindow: NSWindow!
@@ -251,8 +219,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 	}
 	
 	func openSearchWindow() {
-        
-        
 		let board = NSStoryboard(name: "DownloadWindow", bundle: nil).instantiateController(withIdentifier: "windowController") as? DownloadWindowController
         if self.searchWindow == nil, let win = board?.window {
             self.searchWindow = win
@@ -261,19 +227,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
             self.searchWindow.makeKeyAndOrderFront(nil)
         }
 	}
-	
-//	func crashes(_ crashes: MSCrashes!, shouldProcessErrorReport errorReport: MSErrorReport!) -> Bool {
-//
-//	  return true; // return true if the crash report should be processed, otherwise false.
-//	}
-	func applicationWillTerminate(_ aNotification: Notification) {
-		// Insert code here to tear down your application
-	}
 
 	#if DEBUG
 	lazy var preferencesWindowController = PreferencesWindowController(
 		preferencePanes: [
-			DefaultPreferenceViewController(),
 			HotkeysViewController(),
 			AccountViewController(),
 			DebugPrefsViewController()
@@ -283,7 +240,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 	#else
 	lazy var preferencesWindowController = PreferencesWindowController(
 		preferencePanes: [
-			DefaultPreferenceViewController(),
 			HotkeysViewController(),
 			AccountViewController()
 			]

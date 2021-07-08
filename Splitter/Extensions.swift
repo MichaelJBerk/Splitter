@@ -55,3 +55,24 @@ extension NSImage {
 		return icon
 	}
 }
+
+extension NSControl.StateValue {
+	
+	func toBool() -> Bool {
+		if self == .on {
+			return true
+		} else if self == .off {
+			return false
+		}
+		return false
+	}
+	
+	init (bool: Bool) {
+		if bool {
+			self = .on
+		} else {
+			self = .off
+		}
+	}
+	
+}

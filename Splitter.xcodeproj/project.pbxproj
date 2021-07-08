@@ -125,8 +125,6 @@
 		4AE82A1624BFD4400044B6D3 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE82A1524BFD4400044B6D3 /* WelcomeView.swift */; };
 		4AEA331B2629F024001012BD /* TimeRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AEA331A2629F023001012BD /* TimeRow.xib */; };
 		4AEA927E23C4EF32004F6CF9 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEA927D23C4EF32004F6CF9 /* MainWindowController.swift */; };
-		4AEA928323C4F140004F6CF9 /* DefaultPreferenceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEA928123C4F140004F6CF9 /* DefaultPreferenceViewController.swift */; };
-		4AEA928423C4F140004F6CF9 /* DefaultPreferenceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AEA928223C4F140004F6CF9 /* DefaultPreferenceViewController.xib */; };
 		4AEC4C00240F564B00B01799 /* Time Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEC4BFF240F564B00B01799 /* Time Conversion.swift */; };
 		4AEC4C02240F5BA300B01799 /* RunOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEC4C01240F5BA300B01799 /* RunOptionsViewController.swift */; };
 		4AF953B523EB503100ED540C /* Timer Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF953B423EB503100ED540C /* Timer Functions.swift */; };
@@ -289,8 +287,6 @@
 		4AE82A1524BFD4400044B6D3 /* WelcomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		4AEA331A2629F023001012BD /* TimeRow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeRow.xib; sourceTree = "<group>"; };
 		4AEA927D23C4EF32004F6CF9 /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
-		4AEA928123C4F140004F6CF9 /* DefaultPreferenceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultPreferenceViewController.swift; sourceTree = "<group>"; };
-		4AEA928223C4F140004F6CF9 /* DefaultPreferenceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DefaultPreferenceViewController.xib; sourceTree = "<group>"; };
 		4AEC4BFF240F564B00B01799 /* Time Conversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Time Conversion.swift"; sourceTree = "<group>"; };
 		4AEC4C01240F5BA300B01799 /* RunOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunOptionsViewController.swift; sourceTree = "<group>"; };
 		4AF953B423EB503100ED540C /* Timer Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timer Functions.swift"; sourceTree = "<group>"; };
@@ -769,10 +765,8 @@
 		4AFCC52323C63F1E002216F1 /* Prefs */ = {
 			isa = PBXGroup;
 			children = (
-				4AEA928123C4F140004F6CF9 /* DefaultPreferenceViewController.swift */,
 				4AF9E8A924CE31CA00DFD5BE /* DebugPrefsViewController.swift */,
 				4AF9E8AA24CE31CA00DFD5BE /* DebugPrefsViewController.xib */,
-				4AEA928223C4F140004F6CF9 /* DefaultPreferenceViewController.xib */,
 				4A18663123C5376900FEEE54 /* SettingsKeys.swift */,
 				4A87265623BD5423003A14AF /* PrefPanes.swift */,
 				4A5F10AC23CF754E00DA043B /* Hotkeys */,
@@ -962,7 +956,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A4D392323C4FAE500BF3FCD /* HotkeysViewController.xib in Resources */,
-				4AEA928423C4F140004F6CF9 /* DefaultPreferenceViewController.xib in Resources */,
 				4AD44ADB262F463C003375C4 /* KeyValueComponent.xib in Resources */,
 				4A7DDCE223BBDD0900A36AD1 /* Credits.html in Resources */,
 				4A4ACF7C2609185C00C04DD6 /* LayoutEditor.storyboard in Resources */,
@@ -1216,7 +1209,6 @@
 				4AF9E8AB24CE31CA00DFD5BE /* DebugPrefsViewController.swift in Sources */,
 				4A968C7C23F1F5FE001B74E8 /* lss.swift in Sources */,
 				4A6A3BE023CD1C39002C20AE /* GlobalKeybindPrefs.swift in Sources */,
-				4AEA928323C4F140004F6CF9 /* DefaultPreferenceViewController.swift in Sources */,
 				4A1C1469240ED30C0056B104 /* InfoOptionsViewController.swift in Sources */,
 				4A01B802268631FC00F15A50 /* SplitsEditorViewController.swift in Sources */,
 				4A09819F24E3089B00E44792 /* LoginView.swift in Sources */,
