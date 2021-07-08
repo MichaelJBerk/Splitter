@@ -109,8 +109,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 	
 	func applicationDidFinishLaunching(_ notification: Notification) {
 		if !Settings.notFirstUse {
-			Settings.hideTitleBar = false
-			Settings.showBestSplits = false
 			Settings.enableGlobalHotkeys = false
 			Settings.notFirstUse = true
 			keybindAlert()
@@ -118,7 +116,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 			if Settings.lastOpenedBuild != otherConstants.build {
 			}
 		}
-		UserDefaults.standard.removeObject(forKey: SettingsKeys.hideTimerButtons)
 		
 		let welcomeWindowItem = NSApp.mainMenu?.item(withIdentifier: menuIdentifiers.windowMenu.welcomeWindowItem)
 		if #available(macOS 10.15, *) {

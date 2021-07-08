@@ -589,10 +589,7 @@ class ViewController: NSViewController {
 	
 	///Sets up default appearance. Used when opening a new file, or any other case where there's no `splitterAppearance` file
 	func setUpDefaults() {
-		titleBarHidden = Settings.hideTitleBar
 		showHideTitleBar()
-		
-		windowFloat = Settings.floatWindow
 		setFloatingWindow()
 		
 		for c in splitsTableView.tableColumns {

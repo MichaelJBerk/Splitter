@@ -202,9 +202,9 @@ enum SplitterAppearanceError: Error {
 extension ViewController {
 	///Sets the appearance of the VC to the contents of a SplitterAppearance object
 	func setSplitterAppearance(appearance: SplitterAppearance) {
-		titleBarHidden = appearance.hideTitlebar ?? Settings.hideTitleBar
+		titleBarHidden = appearance.hideTitlebar ?? false
 		buttonHidden = appearance.hideButtons ?? false
-		windowFloat = appearance.keepOnTop ?? Settings.floatWindow
+		windowFloat = appearance.keepOnTop ?? false
 		hideTitle = appearance.hideTitle ?? false
 		
 		//Backwards Compatbility
