@@ -8,12 +8,12 @@
 
 import Cocoa
 
-class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTableViewDataSource {
+class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOutlineViewDataSource {
 	
 	@IBOutlet var stack: NSStackView!
-	var tableView: NSTableView! {
+	var outlineView: NSOutlineView! {
 		let scroll = (stack.views[0].subviews[0] as! NSScrollView)
-		let table = scroll.documentView as! NSTableView
+		let table = scroll.documentView as! NSOutlineView
 		return table
 	}
 	var scrollView: NSScrollView! {
@@ -22,7 +22,7 @@ class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTable
 	
 	override func viewWillAppear() {
 		super.viewWillAppear()
-		var indexToSelect = tableView.selectedRow
+		outlineView.selectRowIndexes(IndexSet([0]), byExtendingSelection: false)
 		highlightAndShowOptions()
 	}
 	
@@ -36,9 +36,9 @@ class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTable
     override func viewDidLoad() {
         super.viewDidLoad()
 		self.preferredContentSize = view.frame.size
-		tableView.delegate = self
-		tableView.dataSource = self
-		tableView.registerForDraggedTypes([dropType])
+		outlineView.delegate = self
+		outlineView.dataSource = self
+		outlineView.registerForDraggedTypes([dropType])
     }
 	
 	
@@ -61,45 +61,62 @@ class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTable
 		   let type = sender.representedObject as? SplitterComponentType {
 			runController.addComponent(type)
 			runController.setColorForControls()
-			tableView.reloadData()
+			outlineView.reloadData()
 		}
 	}
 	
 	@IBAction func minusButtonClick(sender: Any?) {
-		let sr = tableView.selectedRow
+		let sr = outlineView.selectedRow
 		if sr >= 0 {
 			let viewToRemove = runController.mainStackView.views[sr]
 			runController.removeView(view: viewToRemove as! SplitterComponent)
 		}
 	}
 	
-	func numberOfRows(in tableView: NSTableView) -> Int {
-		return runController.mainStackView.views.count
+	func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
+		if item == nil {
+			return runController.mainStackView.views.count
+		}
+		return 0
+	}
+	func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
+		return false
 	}
 	
-	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-		let cell = tableView.makeView(withIdentifier: tableColumn!.identifier, owner: self) as! NSTableCellView
-		if let component = runController.mainStackView.views[row] as? SplitterComponent, let type = SplitterComponentType.FromType(component) {
-			cell.textField?.stringValue = type.displayTitle
+	func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
+		if item == nil {
+			return runController.mainStackView.views[index]
 		}
-		return cell
+		return ""
 	}
-	func tableView(_ tableView: NSTableView, acceptDrop info: NSDraggingInfo, row: Int, dropOperation: NSTableView.DropOperation) -> Bool {
-		let pastboard = info.draggingPasteboard
-		if let data = pastboard.string(forType: dropType), let oldRow = Int(data) {
+	func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
+		if let cell = outlineView.makeView(withIdentifier: .init("textCell"), owner: self) as? NSTableCellView,
+		   let component = item as? SplitterComponent,
+		   let type = SplitterComponentType.FromType(component){
+			cell.textField?.stringValue = type.displayTitle
+			return cell
+		}
+		return nil
+	}
+	
+	func outlineView(_ outlineView: NSOutlineView, acceptDrop info: NSDraggingInfo, item: Any?, childIndex index: Int) -> Bool {
+		let pasteboard = info.draggingPasteboard
+		if let data = pasteboard.string(forType: dropType),
+		   let oldRow = Int(data),
+		   let itemToMove = outlineView.item(atRow: oldRow) {
 			var views = runController.mainStackView.views
-			views.move(fromOffsets: IndexSet([oldRow]), toOffset: row)
+			views.move(fromOffsets: IndexSet([oldRow]), toOffset: index)
 			runController.mainStackView.update(runController.mainStackView, views)
-			tableView.reloadData()
+			outlineView.reloadData()
+			let indexToSelect = outlineView.childIndex(forItem: itemToMove)
+			outlineView.selectRowIndexes(IndexSet([indexToSelect]), byExtendingSelection: false)
 			return true
 		}
 		return false
-		// Dont' forget to update model
-		
 	}
 	
 	func highlightAndShowOptions() {
-		let selected = tableView.selectedRow
+		let selected = outlineView.selectedRow
 		for i in 0..<runController.mainStackView.views.count {
 			if let selectedComponent = runController.mainStackView.views[i] as? SplitterComponent {
 				if i == selected {
@@ -118,9 +135,10 @@ class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTable
 			}
 		}
 	}
-	func tableViewSelectionDidChange(_ notification: Notification) {
+	func outlineViewSelectionDidChange(_ notification: Notification) {
 		highlightAndShowOptions()
 	}
+	
 	override func viewWillDisappear() {
 		for v in runController.mainStackView.views {
 			if let comp = v as? SplitterComponent {
@@ -130,19 +148,22 @@ class LayoutEditorViewController: NSViewController, NSTableViewDelegate, NSTable
 		
 		super.viewWillDisappear()
 	}
-	func tableView(_ tableView: NSTableView, pasteboardWriterForRow row: Int) -> NSPasteboardWriting? {
-		
-		let pasteBoard = NSPasteboardItem()
-			
-		pasteBoard.setString(String(row), forType: dropType)
-		return pasteBoard
+	
+	func outlineView(_ outlineView: NSOutlineView, pasteboardWriterForItem item: Any) -> NSPasteboardWriting? {
+		let row = outlineView.row(forItem: item)
+		let pbItem = NSPasteboardItem()
+		pbItem.setString(String(row), forType: dropType)
+		return pbItem
 	}
-	func tableView(_ tableView: NSTableView, validateDrop info: NSDraggingInfo, proposedRow row: Int, proposedDropOperation dropOperation: NSTableView.DropOperation) -> NSDragOperation {
-		if dropOperation == .above {
-			return .move
+	
+	func outlineView(_ outlineView: NSOutlineView, validateDrop info: NSDraggingInfo, proposedItem item: Any?, proposedChildIndex index: Int) -> NSDragOperation {
+		if index < 0 {
+			return .init()
 		}
-		return []
+		outlineView.setDropItem(nil, dropChildIndex: index)
+		return .generic
 	}
+	
 }
 
 extension Array {
