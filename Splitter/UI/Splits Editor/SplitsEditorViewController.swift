@@ -104,9 +104,10 @@ class SplitsEditorViewController: NSViewController, NibLoadable {
 	///Pasteboard type for segments in the outline view
 	let segmentPasteboardType = NSPasteboard.PasteboardType(rawValue: "splitter.runSegment")
 	
-	func getSegment(_ index: Int) -> RunEditorSegmentState {
+	func getSegment(_ index: Int) -> SplitsEditorRowContainer {
 		let segments = editorState.segments!
-		return segments[index]
+		let seg = segments[index]
+		return SplitsEditorRowContainer(seg)
 	}
 	
 	@objc func addSegmentBelow() {
@@ -139,7 +140,7 @@ class SplitsEditorViewController: NSViewController, NibLoadable {
 		#if DEBUG
 		addDebugMenu()
 		#endif
-		outlineView.draggingDestinationFeedbackStyle = .regular
+		outlineView.indentationMarkerFollowsCell = false
 		outlineView.editor = editor
 		NotificationCenter.default.addObserver(forName: .splitsEdited, object: self.outlineView, queue: nil, using: { notification in
 			self.outlineView.reloadData()
@@ -242,7 +243,8 @@ extension SplitsEditorViewController: NSOutlineViewDataSource {
 	
 	//MARK: Dragging
 	func outlineView(_ outlineView: NSOutlineView, pasteboardWriterForItem item: Any) -> NSPasteboardWriting? {
-		let segment = item as! RunEditorSegmentState
+		let item = item as! SplitsEditorRowContainer
+		let segment = item.segment
 		let segs = editorState.segments!
 		guard let index = segs.firstIndex(of: segment) else {return nil}
 		let pasteboardItem = NSPasteboardItem()
@@ -250,27 +252,48 @@ extension SplitsEditorViewController: NSOutlineViewDataSource {
 		return pasteboardItem
 	}
 	func outlineView(_ outlineView: NSOutlineView, validateDrop info: NSDraggingInfo, proposedItem item: Any?, proposedChildIndex index: Int) -> NSDragOperation {
-		let point = info.draggingLocation
-		guard item != nil else {return []}
-		if outlineView.isMousePoint(point, in: outlineView.frame) {
-			return .move
+		
+		//It shouldn't ever be > than the number of segments, but I once ran into a situation where somehow it was, so...
+		if index < 0 || index >= self.outlineView(outlineView, numberOfChildrenOfItem: item) {
+			return .init()
+		}
+		let i: Int = index < 0 ? 0 : index
+		outlineView.setDropItem(nil, dropChildIndex: i)
+		return .generic
+	}
+	
+	func moveItem(fromIndex: Int, toIndex: Int) {
+		var old = fromIndex
+		editor.selectOnly(old)
+		if old > toIndex {
+			while old > toIndex {
+				editor.moveSegmentsUp()
+				old-=1
+			}
 		} else {
-			return []
+			while old < toIndex {
+				editor.moveSegmentsDown()
+				old+=1
+			}
 		}
 	}
+	
 	func outlineView(_ outlineView: NSOutlineView, acceptDrop info: NSDraggingInfo, item: Any?, childIndex index: Int) -> Bool {
 		guard
 			let pasteboardItem = info.draggingPasteboard.pasteboardItems?.first,
 			let pasteboardString = pasteboardItem.string(forType: segmentPasteboardType),
-			let segmentIndexToMove = Int(pasteboardString),
-			let segmentAtNewRow = item as? RunEditorSegmentState,
-			let newRow = editorState.segments?.firstIndex(of: segmentAtNewRow)
+			let segmentIndexToMove = Int(pasteboardString)
 			else {return false}
+		var newRow = index
+		if newRow > segmentIndexToMove {
+			newRow -= 1
+		}
 		outlineView.beginUpdates()
-		outlineView.moveItem(at: segmentIndexToMove, inParent: nil, to: newRow, inParent: nil)
+		moveItem(fromIndex: segmentIndexToMove, toIndex: newRow)
 		processIconChanges()
-		outlineView.endUpdates()
+		outlineView.moveItem(at: segmentIndexToMove, inParent: nil, to: newRow, inParent: nil)
 		outlineView.reloadData()
+		outlineView.endUpdates()
 		return true
 	}
 }
@@ -278,7 +301,8 @@ extension SplitsEditorViewController: NSOutlineViewDataSource {
 extension SplitsEditorViewController: SplitsEditorOutlineViewDelegate {
 	
 	func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
-		if let item = item as? RunEditorSegmentState {
+		if let container = item as? SplitsEditorRowContainer {
+			let item = container.segment
 			if tableColumn?.identifier == self.imageColumnIdentifier {
 				let cellIdentifier = NSUserInterfaceItemIdentifier("outlineViewImageCell")
 				let cell = outlineView.makeView(withIdentifier: cellIdentifier, owner: self) as! NSTableCellView
@@ -382,3 +406,24 @@ extension SplitsEditorViewController: NSTextFieldDelegate {
 	
 }
 
+///Used to contain rows for segments
+///
+///You may be wondering why this is needed - why not just use `RunEditorSegmentState` in the `outlineView` directly?
+///As it turns out, `NSOutlineView` relies on the items being `NSObject`, and uses their `isEqual` function. Without it, it won't display the lines between rows when dragging.
+///Structs of course can't conform `NSObject`, thus leading to the workaround you see here.
+///
+///Also wanted to mention https://github.com/KinematicSystems/NSOutlineViewReorder which helped me out here
+class SplitsEditorRowContainer: NSObject {
+	init(_ segment: RunEditorSegmentState) {
+		self.segment = segment
+	}
+	var segment: RunEditorSegmentState
+	
+	override func isEqual(_ object: Any?) -> Bool {
+		if let object = object as? SplitsEditorRowContainer,
+		   object.segment == self.segment {
+			return true
+		}
+		return false
+	}
+}

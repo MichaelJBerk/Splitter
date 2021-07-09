@@ -68,24 +68,12 @@ class SplitsEditorOutlineView: NSOutlineView {
 		editorState.segments?[row].selected.bool() ?? false
 	}
 	
-	override func moveItem(at fromIndex: Int, inParent oldParent: Any?, to toIndex: Int, inParent newParent: Any?) {
-		var old = fromIndex
-		editor.selectOnly(old)
-		if old > toIndex {
-			while old > toIndex {
-				editor.moveSegmentsUp()
-				old-=1
-			}
-		} else {
-			while old < toIndex {
-				editor.moveSegmentsDown()
-				old+=1
-			}
-		}
+//	override func moveItem(at fromIndex: Int, inParent oldParent: Any?, to toIndex: Int, inParent newParent: Any?) {
 		
-		super.moveItem(at: fromIndex, inParent: oldParent, to: toIndex, inParent: newParent)
 		
-	}
+//		super.moveItem(at: fromIndex, inParent: oldParent, to: toIndex, inParent: newParent)
+		
+//	}
 	var splitsDelegate: SplitsEditorOutlineViewDelegate {
 		delegate as! SplitsEditorOutlineViewDelegate
 	}
