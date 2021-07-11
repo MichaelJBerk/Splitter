@@ -83,19 +83,39 @@ class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOut
 			let outlineRow = outlineView.row(forItem: component)
 			if outlineRow == outlineView.selectedRow {
 				component.isSelected = true
-				let ov = component.optionsView!
-				scrollView.documentView = ov
-				ov.translatesAutoresizingMaskIntoConstraints = false
-				NSLayoutConstraint.activate([
-					ov.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-					ov.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: -5),
-					ov.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -5)
-				])
+				let optionsView = component.optionsView!
+				setOptionsView(optionsView)
 			} else {
 				component.isSelected = false
 			}
-			
 		}
+		
+		if let selectedItem = outlineView.item(atRow: outlineView.selectedRow) as? RowObject {
+			if selectedItem == generalRowObject {
+				
+				let gsVC = GeneralLayoutSettingsViewController()
+				gsVC.run = runController.run
+				
+				setOptionsView(gsVC.view)
+				
+			} else {
+				let appVC = AppearanceViewController()
+				appVC.run = runController.run
+				appVC.delegate = runController
+				appVC.loadViewFromNib()
+				setOptionsView(appVC.view)
+			}
+		}
+		NSColorPanel.shared.close()
+	}
+	func setOptionsView(_ optionsView: NSView) {
+		scrollView.documentView = optionsView
+		optionsView.translatesAutoresizingMaskIntoConstraints = false
+		NSLayoutConstraint.activate([
+			optionsView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+			optionsView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: -5),
+			optionsView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -5)
+		])
 	}
 	func outlineViewSelectionDidChange(_ notification: Notification) {
 		highlightAndShowOptions()
@@ -110,10 +130,13 @@ class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOut
 		
 		super.viewWillDisappear()
 	}
+	let generalHeaderObject = HeaderObject("General")
 	let componentsHeaderObject = HeaderObject("Components")
+	let generalRowObject = RowObject("General")
+	let windowRowObject = RowObject("Window")
 }
 
-class HeaderObject: NSObject {
+class RowObject: NSObject {
 	var string: String
 	
 	init(_ string: String) {
@@ -121,7 +144,7 @@ class HeaderObject: NSObject {
 	}
 	
 	override func isEqual(_ object: Any?) -> Bool {
-		if let object = object as? HeaderObject,
+		if let object = object as? Self,
 		   object.string == self.string {
 			return true
 		}
@@ -129,41 +152,70 @@ class HeaderObject: NSObject {
 	}
 }
 
+class HeaderObject: RowObject {}
+
 //MARK: - Outline View Delegate/Data Source
 extension LayoutEditorViewController {
 	
 	
 	func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
 		if item == nil {
-			return 1
+			return 2
 		}
 		if let item = item as? HeaderObject {
 			if item == componentsHeaderObject {
 				return runController.mainStackView.views.count
 			}
+			if item == generalHeaderObject {
+				return 2
+			}
 		}
 		return 0
 	}
 	func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
-		if let item = item as? HeaderObject, item == componentsHeaderObject {
+		if item is HeaderObject {
 			return true
 		}
 		return false
 	}
 	func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
 		if item == nil {
-			return componentsHeaderObject
+			if index == 0 {
+				return generalHeaderObject
+			} else {
+				return componentsHeaderObject
+			}
 		}
-		if let item = item as? HeaderObject,
-		   item == componentsHeaderObject {
-			return runController.mainStackView.views[index]
+		if let item = item as? HeaderObject {
+			if item == componentsHeaderObject {
+				return runController.mainStackView.views[index]
+				
+			}
+			if item == generalHeaderObject {
+				if index == 0 {
+					return generalRowObject
+				}
+				return windowRowObject
+			}
 		}
 		return ""
 	}
 	func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
-		if let item = item as? HeaderObject, item == componentsHeaderObject,
-		   let cell = outlineView.makeView(withIdentifier: .init("headerCell"), owner: self) as? NSTableCellView {
-			cell.textField?.stringValue = "Components"
+		if let item = item as? HeaderObject {
+			if item == componentsHeaderObject {
+				let cell = outlineView.makeView(withIdentifier: .init("headerCell"), owner: self) as? NSTableCellView
+				cell?.textField?.stringValue = "Components"
+				return cell
+			}
+			if item == generalHeaderObject {
+				let cell = outlineView.makeView(withIdentifier: .init("headerCell"), owner: self) as? NSTableCellView
+				cell?.textField?.stringValue = "General"
+				return cell
+			}
+		}
+		if let item = item as? RowObject, !(item is HeaderObject) {
+			let cell = outlineView.makeView(withIdentifier: .init("textCell"), owner: self) as? NSTableCellView
+			cell?.textField?.stringValue = item.string
 			return cell
 		}
 		if let cell = outlineView.makeView(withIdentifier: .init("textCell"), owner: self) as? NSTableCellView,
@@ -176,13 +228,13 @@ extension LayoutEditorViewController {
 	}
 	
 	func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
-		if let item = item as? HeaderObject, item == componentsHeaderObject {
+		if item is HeaderObject {
 			return false
 		}
 		return true
 	}
 	func outlineView(_ outlineView: NSOutlineView, shouldCollapseItem item: Any) -> Bool {
-		if let item = item as? HeaderObject, item == componentsHeaderObject {
+		if item is RowObject {
 			return false
 		}
 		return true
@@ -212,7 +264,7 @@ extension LayoutEditorViewController {
 	}
 	
 	func outlineView(_ outlineView: NSOutlineView, pasteboardWriterForItem item: Any) -> NSPasteboardWriting? {
-		if let item = item as? HeaderObject, item == componentsHeaderObject {
+		if item is RowObject {
 			return nil
 		}
 		let pbItem = NSPasteboardItem()
@@ -228,7 +280,7 @@ extension LayoutEditorViewController {
 		if index < 0 {
 			return .init()
 		}
-		if let item = item as? HeaderObject {
+		if let item = item as? RowObject {
 			outlineView.setDropItem(item, dropChildIndex: index)
 		}
 		return .generic

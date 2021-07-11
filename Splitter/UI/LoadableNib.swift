@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+///USed for NSViewController
 protocol LoadableNib {
     var contentView: NSView! { get }
 }

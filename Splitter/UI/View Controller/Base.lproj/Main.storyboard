@@ -636,7 +636,6 @@
                 <tabViewController storyboardIdentifier="Advanced" showSeguePresentationStyle="single" selectedTabViewItemIndex="0" canPropagateSelectedChildViewControllerTitle="NO" id="hM2-dD-q3M" customClass="InfoPopoverTabViewController" customModule="Splitter" customModuleProvider="target" sceneMemberID="viewController">
                     <tabViewItems>
                         <tabViewItem identifier="" id="TDh-en-GtD"/>
-                        <tabViewItem id="Lt3-gV-8CP"/>
                         <tabViewItem id="LYO-zF-58m"/>
                     </tabViewItems>
                     <tabView key="tabView" appearanceType="darkAqua" drawsBackground="NO" type="noTabsNoBorder" id="sly-YZ-5yQ">
@@ -650,7 +649,6 @@
                     <connections>
                         <outlet property="tabView" destination="sly-YZ-5yQ" id="2kQ-UO-4ke"/>
                         <segue destination="9EP-rl-sc4" kind="relationship" relationship="tabItems" id="lXp-0c-RB5"/>
-                        <segue destination="RvU-oT-sfo" kind="relationship" relationship="tabItems" id="BM0-v5-KVQ"/>
                         <segue destination="kIc-i1-hon" kind="relationship" relationship="tabItems" id="MUO-Tb-gKT"/>
                     </connections>
                 </tabViewController>
@@ -923,145 +921,6 @@ To remove, click and press backspace. </string>
                 <customObject id="MnP-yl-mgH" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1683" y="988"/>
-        </scene>
-        <!--Appearance-->
-        <scene sceneID="hAL-Mc-wCT">
-            <objects>
-                <customObject id="3dh-TH-cbg" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-                <viewController title="Appearance" id="RvU-oT-sfo" customClass="AppearanceViewController" customModule="Splitter" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="qfc-N7-4eh">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="271"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                        <subviews>
-                            <box fixedFrame="YES" title="Window" translatesAutoresizingMaskIntoConstraints="NO" id="a8f-fc-z2B">
-                                <rect key="frame" x="17" y="106" width="416" height="145"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                <view key="contentView" id="fGq-yW-bDj">
-                                    <rect key="frame" x="3" y="3" width="410" height="127"/>
-                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                    <subviews>
-                                        <gridView xPlacement="leading" yPlacement="bottom" rowAlignment="none" translatesAutoresizingMaskIntoConstraints="NO" id="yti-1B-Vv4">
-                                            <rect key="frame" x="0.0" y="10" width="410" height="117"/>
-                                            <rows>
-                                                <gridRow yPlacement="center" height="35" id="AMM-IJ-WjW"/>
-                                                <gridRow yPlacement="center" height="35" id="DHP-S5-sT1"/>
-                                                <gridRow yPlacement="center" height="35" id="aIw-lL-hwA"/>
-                                            </rows>
-                                            <columns>
-                                                <gridColumn width="28" id="fm8-dP-Eb8"/>
-                                                <gridColumn width="333" id="gqm-xY-pbD"/>
-                                                <gridColumn width="37" id="sZ3-UK-dPQ"/>
-                                            </columns>
-                                            <gridCells>
-                                                <gridCell row="AMM-IJ-WjW" column="fm8-dP-Eb8" id="Hy4-K6-h0E"/>
-                                                <gridCell row="AMM-IJ-WjW" column="gqm-xY-pbD" id="NBK-Nr-InD">
-                                                    <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KdL-ri-VdY">
-                                                        <rect key="frame" x="32" y="91" width="108" height="18"/>
-                                                        <buttonCell key="cell" type="check" title="Hide Title Bar" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="H6d-Wj-qAk">
-                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                            <font key="font" metaFont="system"/>
-                                                        </buttonCell>
-                                                    </button>
-                                                </gridCell>
-                                                <gridCell row="AMM-IJ-WjW" column="sZ3-UK-dPQ" id="B07-c0-HC1">
-                                                    <button key="contentView" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="qCT-Wf-FTs" customClass="helpButton" customModule="Splitter" customModuleProvider="target">
-                                                        <rect key="frame" x="370" y="86" width="25" height="25"/>
-                                                        <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="5fB-Fb-LPg">
-                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" metaFont="system"/>
-                                                        </buttonCell>
-                                                    </button>
-                                                </gridCell>
-                                                <gridCell row="DHP-S5-sT1" column="fm8-dP-Eb8" id="GAr-RS-MD5"/>
-                                                <gridCell row="DHP-S5-sT1" column="gqm-xY-pbD" id="bbC-yj-jJl">
-                                                    <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="NX0-Jl-BA1">
-                                                        <rect key="frame" x="32" y="50" width="154" height="18"/>
-                                                        <buttonCell key="cell" type="check" title="Keep Window on Top" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="4Ih-uS-kPH">
-                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                            <font key="font" metaFont="system"/>
-                                                        </buttonCell>
-                                                    </button>
-                                                </gridCell>
-                                                <gridCell row="DHP-S5-sT1" column="sZ3-UK-dPQ" id="eRF-xd-Dvn">
-                                                    <button key="contentView" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="w7E-mT-aCX" customClass="helpButton" customModule="Splitter" customModuleProvider="target">
-                                                        <rect key="frame" x="370" y="45" width="25" height="25"/>
-                                                        <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="xIr-wb-AEK">
-                                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                            <font key="font" metaFont="system"/>
-                                                        </buttonCell>
-                                                    </button>
-                                                </gridCell>
-                                                <gridCell row="aIw-lL-hwA" column="fm8-dP-Eb8" id="mi7-2G-rSe"/>
-                                                <gridCell row="aIw-lL-hwA" column="gqm-xY-pbD" id="hc5-om-PzG">
-                                                    <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="afc-on-JTN">
-                                                        <rect key="frame" x="32" y="9" width="84" height="18"/>
-                                                        <buttonCell key="cell" type="check" title="Hide Title" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="RS2-Kn-JiR">
-                                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                            <font key="font" metaFont="system"/>
-                                                        </buttonCell>
-                                                    </button>
-                                                </gridCell>
-                                                <gridCell row="aIw-lL-hwA" column="sZ3-UK-dPQ" id="h4W-AM-q9c"/>
-                                            </gridCells>
-                                        </gridView>
-                                    </subviews>
-                                    <constraints>
-                                        <constraint firstItem="yti-1B-Vv4" firstAttribute="leading" secondItem="fGq-yW-bDj" secondAttribute="leading" id="GlZ-f9-zJ2"/>
-                                        <constraint firstItem="yti-1B-Vv4" firstAttribute="top" secondItem="fGq-yW-bDj" secondAttribute="top" id="QUU-Ym-wDV"/>
-                                    </constraints>
-                                </view>
-                            </box>
-                            <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="1X5-Na-Ivc">
-                                <rect key="frame" x="40" y="20" width="370" height="32"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="366" id="eXq-6I-d3i"/>
-                                </constraints>
-                                <textFieldCell key="cell" selectable="YES" title="Note: These settings will be saved to this file, and will take effect whenever the file is opened. " id="kq5-cD-qUw">
-                                    <font key="font" usesAppearanceFont="YES"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="xgc-sy-Abq">
-                                <rect key="frame" x="73" y="78" width="118" height="16"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Background Image" id="HUW-6X-Yq9">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="kDC-Ak-fDS">
-                                <rect key="frame" x="220" y="57" width="47" height="47"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="41" id="dKA-ag-eFO"/>
-                                    <constraint firstAttribute="width" constant="41" id="okM-ha-nvi"/>
-                                </constraints>
-                                <imageCell key="cell" selectable="YES" editable="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" id="0e5-Md-1dR"/>
-                            </imageView>
-                        </subviews>
-                        <constraints>
-                            <constraint firstItem="xgc-sy-Abq" firstAttribute="leading" secondItem="qfc-N7-4eh" secondAttribute="leading" constant="75" id="9f8-KC-572"/>
-                            <constraint firstItem="1X5-Na-Ivc" firstAttribute="centerX" secondItem="qfc-N7-4eh" secondAttribute="centerX" id="IyY-5e-oam"/>
-                            <constraint firstItem="kDC-Ak-fDS" firstAttribute="top" secondItem="fGq-yW-bDj" secondAttribute="bottom" constant="8" symbolic="YES" id="MA6-cy-2L2"/>
-                            <constraint firstAttribute="trailing" secondItem="kDC-Ak-fDS" secondAttribute="trailing" constant="186" id="Nqp-8U-tIA"/>
-                            <constraint firstItem="xgc-sy-Abq" firstAttribute="top" secondItem="fGq-yW-bDj" secondAttribute="bottom" constant="15" id="Wct-cE-HSw"/>
-                            <constraint firstItem="kDC-Ak-fDS" firstAttribute="leading" secondItem="xgc-sy-Abq" secondAttribute="trailing" constant="34" id="hX2-IF-fsa"/>
-                            <constraint firstAttribute="bottom" secondItem="1X5-Na-Ivc" secondAttribute="bottom" constant="20" id="znh-7h-s45"/>
-                        </constraints>
-                    </view>
-                    <connections>
-                        <outlet property="backgroundImageWell" destination="kDC-Ak-fDS" id="fNa-1c-6Ln"/>
-                        <outlet property="gridView" destination="yti-1B-Vv4" id="lrc-cx-Tdc"/>
-                        <outlet property="hideTitleBarCheck" destination="KdL-ri-VdY" id="23i-J6-H3k"/>
-                        <outlet property="hideTitleCheck" destination="afc-on-JTN" id="wKQ-Gu-jfT"/>
-                        <outlet property="keepOnTopCheck" destination="NX0-Jl-BA1" id="uyt-SX-5qf"/>
-                        <outlet property="noteLabel" destination="1X5-Na-Ivc" id="A0P-0Z-8mW"/>
-                        <outlet property="titleHelp" destination="qCT-Wf-FTs" id="7eU-H7-lyS"/>
-                        <outlet property="topHelp" destination="w7E-mT-aCX" id="Sc7-xJ-Mic"/>
-                    </connections>
-                </viewController>
-            </objects>
-            <point key="canvasLocation" x="1357" y="461.5"/>
         </scene>
         <!--Colors-->
         <scene sceneID="aUl-Ld-D5K">

@@ -33,6 +33,7 @@
 		4A18663023C5257800FEEE54 /* MenuItemConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A18662F23C5257800FEEE54 /* MenuItemConstants.swift */; };
 		4A18663223C5376900FEEE54 /* SettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A18663123C5376900FEEE54 /* SettingsKeys.swift */; };
 		4A1C1469240ED30C0056B104 /* InfoOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1C1467240ED30C0056B104 /* InfoOptionsViewController.swift */; };
+		4A1C23A2269917F5003A05D6 /* AppearanceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A1C23A0269917F5003A05D6 /* AppearanceViewController.xib */; };
 		4A20C46726406D4800307993 /* SplitterTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A20C46626406D4800307993 /* SplitterTimer.swift */; };
 		4A20C46926406D9500307993 /* TimeComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A20C46826406D9500307993 /* TimeComparison.swift */; };
 		4A20C46B26406DB000307993 /* LiveSplitCore Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A20C46A26406DB000307993 /* LiveSplitCore Extensions.swift */; };
@@ -107,6 +108,7 @@
 		4AB92AC6261F6CD600E8B814 /* ThemedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB92AC5261F6CD600E8B814 /* ThemedTextField.swift */; };
 		4ABB38A8255C79B00037536E /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 4ABB38A7255C79B00037536E /* SwiftyJSON */; };
 		4AC24DBC23EB4F17003008BF /* SplitterTableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC24DBB23EB4F17003008BF /* SplitterTableDelegate.swift */; };
+		4AC2745826990E04007ED8F5 /* GeneralLayoutSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC2745726990E04007ED8F5 /* GeneralLayoutSettingsViewController.swift */; };
 		4AC401F324BE145F005180F1 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		4ACCEA7823B02F520068F89E /* TimeSplit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACCEA7723B02F520068F89E /* TimeSplit.swift */; };
 		4ACFB1BD262F4E9700EA79B6 /* TitleComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ACFB1BC262F4E9700EA79B6 /* TitleComponent.xib */; };
@@ -197,6 +199,7 @@
 		4A18662F23C5257800FEEE54 /* MenuItemConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemConstants.swift; sourceTree = "<group>"; };
 		4A18663123C5376900FEEE54 /* SettingsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsKeys.swift; sourceTree = "<group>"; };
 		4A1C1467240ED30C0056B104 /* InfoOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoOptionsViewController.swift; sourceTree = "<group>"; };
+		4A1C23A0269917F5003A05D6 /* AppearanceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppearanceViewController.xib; sourceTree = "<group>"; };
 		4A20C46626406D4800307993 /* SplitterTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterTimer.swift; sourceTree = "<group>"; };
 		4A20C46826406D9500307993 /* TimeComparison.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeComparison.swift; sourceTree = "<group>"; };
 		4A20C46A26406DB000307993 /* LiveSplitCore Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LiveSplitCore Extensions.swift"; sourceTree = "<group>"; };
@@ -271,6 +274,7 @@
 		4AB92AC1261F69ED00E8B814 /* ThemedPopUpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedPopUpButton.swift; sourceTree = "<group>"; };
 		4AB92AC5261F6CD600E8B814 /* ThemedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedTextField.swift; sourceTree = "<group>"; };
 		4AC24DBB23EB4F17003008BF /* SplitterTableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterTableDelegate.swift; sourceTree = "<group>"; };
+		4AC2745726990E04007ED8F5 /* GeneralLayoutSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralLayoutSettingsViewController.swift; sourceTree = "<group>"; };
 		4ACCEA7723B02F520068F89E /* TimeSplit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSplit.swift; sourceTree = "<group>"; };
 		4ACFB1BC262F4E9700EA79B6 /* TitleComponent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleComponent.xib; sourceTree = "<group>"; };
 		4ACFB1E6262F53B100EA79B6 /* SplitsComponent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplitsComponent.xib; sourceTree = "<group>"; };
@@ -466,9 +470,7 @@
 		4A1C1466240ED2F00056B104 /* Options Windows */ = {
 			isa = PBXGroup;
 			children = (
-				4A4ACF7B2609185C00C04DD6 /* LayoutEditor.storyboard */,
-				4AE168A526091CA900A6169B /* LayoutEditorViewController.swift */,
-				4A4070E0241AE2E0000927A5 /* AppearanceViewController.swift */,
+				4AC2745926991624007ED8F5 /* Layout Editor */,
 				4AAD4708248432390094A31F /* ColorsView */,
 				4A1C1467240ED30C0056B104 /* InfoOptionsViewController.swift */,
 				4AEC4C01240F5BA300B01799 /* RunOptionsViewController.swift */,
@@ -656,6 +658,18 @@
 				4A66A43123DE2C88005952FA /* SplitTableColumnIdentifiers.swift */,
 			);
 			path = SplitsComponent;
+			sourceTree = "<group>";
+		};
+		4AC2745926991624007ED8F5 /* Layout Editor */ = {
+			isa = PBXGroup;
+			children = (
+				4A4ACF7B2609185C00C04DD6 /* LayoutEditor.storyboard */,
+				4AE168A526091CA900A6169B /* LayoutEditorViewController.swift */,
+				4AC2745726990E04007ED8F5 /* GeneralLayoutSettingsViewController.swift */,
+				4A1C23A0269917F5003A05D6 /* AppearanceViewController.xib */,
+				4A4070E0241AE2E0000927A5 /* AppearanceViewController.swift */,
+			);
+			path = "Layout Editor";
 			sourceTree = "<group>";
 		};
 		4ACFB1C4262F52BF00EA79B6 /* TitleComponent */ = {
@@ -967,6 +981,7 @@
 				4AA9ADBB2608F02D009B77B5 /* StartRow.xib in Resources */,
 				4A6A965924EC3516008EFD2B /* LoadingViewController.xib in Resources */,
 				4A5F10AE23CFAA1F00DA043B /* Assets.xcassets in Resources */,
+				4A1C23A2269917F5003A05D6 /* AppearanceViewController.xib in Resources */,
 				4A75578D255C426A00ACE826 /* SplitterDocLSS.icns in Resources */,
 				4ACFB1E7262F53B100EA79B6 /* SplitsComponent.xib in Resources */,
 				4A01B803268631FC00F15A50 /* SplitsEditorViewController.xib in Resources */,
@@ -1195,6 +1210,7 @@
 				4AD44AD7262F40E3003375C4 /* KeyValueComponent.swift in Sources */,
 				4A09E29E24D7555E0013D7BC /* DownloadView.swift in Sources */,
 				4A61438424801A28007C38E0 /* ColorsView.swift in Sources */,
+				4AC2745826990E04007ED8F5 /* GeneralLayoutSettingsViewController.swift in Sources */,
 				4AD026EB26090ED400F6CD0C /* SplitterComponent.swift in Sources */,
 				4A0DC28624186C6200FC959A /* SplitsIODoc.swift in Sources */,
 				4A44FF4F24E9A9E60083013A /* SplitsIOUpload.swift in Sources */,
