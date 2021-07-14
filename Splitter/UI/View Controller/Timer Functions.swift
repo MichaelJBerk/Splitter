@@ -26,7 +26,7 @@ extension ViewController {
 		splitsTableView.scrollRowToVisible(run.currentSplit ?? 0)
 	}
 	
-	///Stops/"Finshes" the timer
+	///Finshes the timer at the end of a run
 	func stopTimer() {
 		timerStarted = false
 		if timerState != .stopped {
@@ -145,11 +145,6 @@ extension ViewController {
 		}
 	}
 	
-	///Called when the user has finished the run.
-	func finishRun() {
-		///It may not look like there's a point  to this right now, but I may add other functionality when a run is finished, and it would go here in that casse
-		stopTimer()
-	}
 	func cancelRun() {
 		run.timer.resetRun(discardSplits: true)
 		run.attempts = run.attempts - 1

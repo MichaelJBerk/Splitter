@@ -16,7 +16,6 @@ enum KeybindTitle: String {
 	case PrevSplit = "Previous Split"
 	case SkipSplit = "Skip Split"
 	case StopTimer = "Cancel Run"
-	case ClearTimer = "Reset Run"
 	case ShowInfoPanel = "Get Info..."
 	case ShowColumnOptions = "Edit Layout..."
 	
@@ -144,10 +143,6 @@ extension AppDelegate {
 				self.skipHandler()
 			}
 		case .StopTimer:
-			return {
-				self.stopHandler()
-			}
-		case .ClearTimer:
 			return {
 				self.cancelRunHandler()
 			}

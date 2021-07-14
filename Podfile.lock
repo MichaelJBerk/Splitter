@@ -1,7 +1,7 @@
 PODS:
   - Keys (1.0.1)
   - MASShortcut (2.4.0)
-  - Sparkle (1.24.0)
+  - Sparkle (1.26.0)
 
 DEPENDENCIES:
   - Keys (from `Pods/CocoaPodsKeys`)
@@ -20,7 +20,7 @@ EXTERNAL SOURCES:
 SPEC CHECKSUMS:
   Keys: a576f4c9c1c641ca913a959a9c62ed3f215a8de9
   MASShortcut: d9e4909e878661cc42877cc9d6efbe638273ab57
-  Sparkle: 270cd27377bf04e9c128af06e3a22d0f572d6ee3
+  Sparkle: d56d028f4b0c123577825f5d1004f6140d77f90e
 
 PODFILE CHECKSUM: 4096b3ca70f91ca6a650e61229950e2e168c8353
 

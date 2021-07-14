@@ -46,7 +46,7 @@ extension AppDelegate {
 	}
 	func stopHandler() {
 		if let vc = viewController {
-			vc.stopTimer()
+			vc.cancelRun()
 		}
 	}
 	func cancelRunHandler() {
