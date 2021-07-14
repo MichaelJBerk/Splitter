@@ -110,12 +110,16 @@ class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOut
 	}
 	func setOptionsView(_ optionsView: NSView) {
 		scrollView.documentView = optionsView
+		scrollView.translatesAutoresizingMaskIntoConstraints = true
 		optionsView.translatesAutoresizingMaskIntoConstraints = false
-		NSLayoutConstraint.activate([
+		var constraintsToAdd = [
 			optionsView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-			optionsView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: -5),
 			optionsView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -5)
-		])
+		]
+		if optionsView is NSTabView {
+			constraintsToAdd.append(optionsView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: -5))
+		}
+		NSLayoutConstraint.activate(constraintsToAdd)
 	}
 	func outlineViewSelectionDidChange(_ notification: Notification) {
 		highlightAndShowOptions()

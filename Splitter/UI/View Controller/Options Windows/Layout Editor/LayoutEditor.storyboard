@@ -107,7 +107,7 @@
                                     <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" usesPredominantAxisScrolling="NO" id="m6c-OF-MrL">
                                         <rect key="frame" x="20" y="20" width="267" height="260"/>
                                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                                        <clipView key="contentView" drawsBackground="NO" id="xFb-vj-VLY">
+                                        <clipView key="contentView" drawsBackground="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xFb-vj-VLY">
                                             <rect key="frame" x="0.0" y="0.0" width="267" height="260"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <subviews>
@@ -118,7 +118,9 @@
                                                     <viewLayoutGuide key="layoutMargins" id="6BY-0L-erm"/>
                                                 </view>
                                             </subviews>
+                                            <edgeInsets key="contentInsets" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                                         </clipView>
+                                        <edgeInsets key="contentInsets" left="0.0" right="0.0" top="0.0" bottom="0.0"/>
                                         <scroller key="horizontalScroller" wantsLayer="YES" verticalHuggingPriority="750" horizontal="YES" id="mWA-FM-0lj">
                                             <rect key="frame" x="0.0" y="244" width="267" height="16"/>
                                             <autoresizingMask key="autoresizingMask"/>

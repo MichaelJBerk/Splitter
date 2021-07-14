@@ -630,53 +630,15 @@
             </objects>
             <point key="canvasLocation" x="153" y="926"/>
         </scene>
-        <!--Info Popover Tab View Controller-->
-        <scene sceneID="ahx-t2-V9E">
-            <objects>
-                <tabViewController storyboardIdentifier="Advanced" showSeguePresentationStyle="single" selectedTabViewItemIndex="0" canPropagateSelectedChildViewControllerTitle="NO" id="hM2-dD-q3M" customClass="InfoPopoverTabViewController" customModule="Splitter" customModuleProvider="target" sceneMemberID="viewController">
-                    <tabViewItems>
-                        <tabViewItem identifier="" id="TDh-en-GtD"/>
-                        <tabViewItem id="LYO-zF-58m"/>
-                    </tabViewItems>
-                    <tabView key="tabView" appearanceType="darkAqua" drawsBackground="NO" type="noTabsNoBorder" id="sly-YZ-5yQ">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="141"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <font key="font" metaFont="system"/>
-                        <connections>
-                            <outlet property="delegate" destination="hM2-dD-q3M" id="Eem-fL-bSr"/>
-                        </connections>
-                    </tabView>
-                    <connections>
-                        <outlet property="tabView" destination="sly-YZ-5yQ" id="2kQ-UO-4ke"/>
-                        <segue destination="9EP-rl-sc4" kind="relationship" relationship="tabItems" id="lXp-0c-RB5"/>
-                        <segue destination="kIc-i1-hon" kind="relationship" relationship="tabItems" id="MUO-Tb-gKT"/>
-                    </connections>
-                </tabViewController>
-                <customObject id="U0E-tn-Mm0" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="741" y="844.5"/>
-        </scene>
-        <!--Info-->
+        <!--Info Options View Controller-->
         <scene sceneID="oHx-Kg-fqF">
             <objects>
-                <viewController title="Info" storyboardIdentifier="infoTab" id="9EP-rl-sc4" customClass="InfoOptionsViewController" customModule="Splitter" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" appearanceType="darkAqua" id="cPU-ko-LXl">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="288"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                <viewController storyboardIdentifier="infoTab" id="9EP-rl-sc4" customClass="InfoOptionsViewController" customModule="Splitter" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" appearanceType="darkAqua" translatesAutoresizingMaskIntoConstraints="NO" id="cPU-ko-LXl">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="294"/>
                         <subviews>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="77n-qC-3Oq" customClass="MetadataImage" customModule="Splitter" customModuleProvider="target">
-                                <rect key="frame" x="17" y="167" width="104" height="104"/>
-                                <string key="toolTip">Icon for the game. Double-Click to browse for an icon, or just drag-and-drop. 
-
-To remove, click and press backspace. </string>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="98" id="OEI-tC-6jB"/>
-                                    <constraint firstAttribute="width" constant="98" id="sEt-4c-5W6"/>
-                                </constraints>
-                                <imageCell key="cell" selectable="YES" editable="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" id="sUd-0Q-URE"/>
-                            </imageView>
                             <gridView xPlacement="leading" yPlacement="bottom" rowAlignment="none" translatesAutoresizingMaskIntoConstraints="NO" id="mPv-4V-jBu">
-                                <rect key="frame" x="126" y="27" width="304" height="241"/>
+                                <rect key="frame" x="126" y="27" width="309" height="241"/>
                                 <rows>
                                     <gridRow yPlacement="center" id="L6o-JX-ii0"/>
                                     <gridRow yPlacement="center" id="m0S-8J-6Ce"/>
@@ -692,7 +654,7 @@ To remove, click and press backspace. </string>
                                 </rows>
                                 <columns>
                                     <gridColumn xPlacement="trailing" id="hFw-jj-DMe"/>
-                                    <gridColumn width="192" id="vxy-hV-tJz"/>
+                                    <gridColumn width="197" id="vxy-hV-tJz"/>
                                 </columns>
                                 <gridCells>
                                     <gridCell row="L6o-JX-ii0" column="hFw-jj-DMe" id="fji-mX-gQX">
@@ -706,8 +668,9 @@ To remove, click and press backspace. </string>
                                         </textField>
                                     </gridCell>
                                     <gridCell row="L6o-JX-ii0" column="vxy-hV-tJz" id="5p2-am-4Fp">
-                                        <textField key="contentView" toolTip="Game Title" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="UXc-S9-jFn">
+                                        <textField key="contentView" toolTip="Game Title" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" id="UXc-S9-jFn">
                                             <rect key="frame" x="112" y="220" width="100" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="GMu-GZ-I0O">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -726,8 +689,9 @@ To remove, click and press backspace. </string>
                                         </textField>
                                     </gridCell>
                                     <gridCell row="m0S-8J-6Ce" column="vxy-hV-tJz" id="8ay-bC-oS1">
-                                        <textField key="contentView" toolTip="Speedrun Category (i.e. Any %)" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="XqK-XY-ils">
+                                        <textField key="contentView" toolTip="Speedrun Category (i.e. Any %)" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" id="XqK-XY-ils">
                                             <rect key="frame" x="112" y="193" width="100" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" toolTip="Speedrun Category (i.e. Any %)" drawsBackground="YES" id="8xO-mB-dqj">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -746,8 +710,9 @@ To remove, click and press backspace. </string>
                                         </textField>
                                     </gridCell>
                                     <gridCell row="UbN-2k-LQs" column="vxy-hV-tJz" id="LWx-U4-bP7">
-                                        <textField key="contentView" toolTip="Number of times this run has been attempted " verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xtG-uJ-IZa">
+                                        <textField key="contentView" toolTip="Number of times this run has been attempted " verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" textCompletion="NO" id="xtG-uJ-IZa">
                                             <rect key="frame" x="112" y="166" width="100" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="zfc-Nr-qcx">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -769,8 +734,9 @@ To remove, click and press backspace. </string>
                                         </textField>
                                     </gridCell>
                                     <gridCell row="hsq-T1-mTZ" column="vxy-hV-tJz" id="e3T-nQ-owx">
-                                        <textField key="contentView" toolTip="Platform the game is being played on" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="26X-Fy-Txf">
+                                        <textField key="contentView" toolTip="Platform the game is being played on" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" id="26X-Fy-Txf">
                                             <rect key="frame" x="112" y="139" width="100" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="Pk3-fq-DK4">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -789,8 +755,9 @@ To remove, click and press backspace. </string>
                                         </textField>
                                     </gridCell>
                                     <gridCell row="xhD-Rb-aXY" column="vxy-hV-tJz" id="Rlq-mV-KZd">
-                                        <textField key="contentView" toolTip="Version of the game being played (i.e. 1.3.0)" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="WAV-8P-f9h">
+                                        <textField key="contentView" toolTip="Version of the game being played (i.e. 1.3.0)" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" id="WAV-8P-f9h">
                                             <rect key="frame" x="112" y="112" width="100" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="N7c-x2-gbT">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -809,8 +776,9 @@ To remove, click and press backspace. </string>
                                         </textField>
                                     </gridCell>
                                     <gridCell row="6g6-5p-fsl" column="vxy-hV-tJz" id="nuX-2A-7Ur">
-                                        <textField key="contentView" toolTip="Regional version of the game being played (i.e. &quot;USA&quot;)" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" translatesAutoresizingMaskIntoConstraints="NO" id="18O-lk-nAH">
+                                        <textField key="contentView" toolTip="Regional version of the game being played (i.e. &quot;USA&quot;)" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" id="18O-lk-nAH">
                                             <rect key="frame" x="112" y="85" width="100" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="oAh-Hl-ZOu">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -820,8 +788,9 @@ To remove, click and press backspace. </string>
                                     </gridCell>
                                     <gridCell row="7pq-Km-zS8" column="hFw-jj-DMe" id="FaO-3f-DSx"/>
                                     <gridCell row="7pq-Km-zS8" column="vxy-hV-tJz" id="c5i-Hg-qST">
-                                        <box key="contentView" verticalHuggingPriority="750" ambiguous="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="Ixm-Us-D9N">
+                                        <box key="contentView" verticalHuggingPriority="750" ambiguous="YES" boxType="separator" id="Ixm-Us-D9N">
                                             <rect key="frame" x="112" y="76" width="100" height="5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         </box>
                                     </gridCell>
                                     <gridCell row="NF6-Fy-klV" column="hFw-jj-DMe" id="XK8-XF-vwn">
@@ -835,8 +804,9 @@ To remove, click and press backspace. </string>
                                         </textField>
                                     </gridCell>
                                     <gridCell row="NF6-Fy-klV" column="vxy-hV-tJz" id="au1-Sq-P9B">
-                                        <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8i4-zA-aVA">
+                                        <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="8i4-zA-aVA">
                                             <rect key="frame" x="110" y="56" width="104" height="16"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" id="puV-5q-Mgh">
                                                 <dateFormatter key="formatter" dateStyle="short" timeStyle="medium" id="CwY-1r-5Ro"/>
                                                 <font key="font" usesAppearanceFont="YES"/>
@@ -856,8 +826,9 @@ To remove, click and press backspace. </string>
                                         </textField>
                                     </gridCell>
                                     <gridCell row="Ncu-aw-taH" column="vxy-hV-tJz" id="VIe-Aw-mEr">
-                                        <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="MRY-3e-3Z2">
+                                        <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="MRY-3e-3Z2">
                                             <rect key="frame" x="110" y="34" width="104" height="16"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" lineBreakMode="clipping" id="Pcy-0H-qvZ">
                                                 <font key="font" usesAppearanceFont="YES"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -867,8 +838,9 @@ To remove, click and press backspace. </string>
                                     </gridCell>
                                     <gridCell row="SqF-Cs-gOY" column="hFw-jj-DMe" id="8K8-PD-zix"/>
                                     <gridCell row="SqF-Cs-gOY" column="vxy-hV-tJz" id="oVc-on-1at">
-                                        <box key="contentView" verticalHuggingPriority="750" ambiguous="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="Efz-7h-PqV">
+                                        <box key="contentView" verticalHuggingPriority="750" ambiguous="YES" boxType="separator" id="Efz-7h-PqV">
                                             <rect key="frame" x="112" y="25" width="100" height="5"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         </box>
                                     </gridCell>
                                     <gridCell row="Im8-Kr-krE" column="hFw-jj-DMe" id="E9H-Gu-1aj">
@@ -882,8 +854,9 @@ To remove, click and press backspace. </string>
                                         </textField>
                                     </gridCell>
                                     <gridCell row="Im8-Kr-krE" column="vxy-hV-tJz" id="wRr-Zv-pgo">
-                                        <textField key="contentView" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZDM-Af-2gD">
+                                        <textField key="contentView" verticalHuggingPriority="750" ambiguous="YES" id="ZDM-Af-2gD">
                                             <rect key="frame" x="112" y="0.0" width="100" height="21"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" id="mGP-4l-MB3">
                                                 <font key="font" usesAppearanceFont="YES"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -896,12 +869,25 @@ To remove, click and press backspace. </string>
                                     </gridCell>
                                 </gridCells>
                             </gridView>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="77n-qC-3Oq" customClass="MetadataImage" customModule="Splitter" customModuleProvider="target">
+                                <rect key="frame" x="17" y="167" width="104" height="104"/>
+                                <string key="toolTip">Icon for the game. Double-Click to browse for an icon, or just drag-and-drop. 
+
+To remove, click and press backspace. </string>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="98" id="OEI-tC-6jB"/>
+                                    <constraint firstAttribute="width" constant="98" id="sEt-4c-5W6"/>
+                                </constraints>
+                                <imageCell key="cell" selectable="YES" editable="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" id="sUd-0Q-URE"/>
+                            </imageView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="mPv-4V-jBu" firstAttribute="top" secondItem="cPU-ko-LXl" secondAttribute="top" constant="20" id="dGE-7h-9Xo"/>
+                            <constraint firstAttribute="bottom" secondItem="mPv-4V-jBu" secondAttribute="bottom" constant="27" id="2D9-Jh-rxw"/>
+                            <constraint firstAttribute="height" constant="294" id="aYl-Mm-Wxb"/>
+                            <constraint firstItem="mPv-4V-jBu" firstAttribute="top" relation="greaterThanOrEqual" secondItem="cPU-ko-LXl" secondAttribute="top" constant="20" id="dGE-7h-9Xo"/>
                             <constraint firstItem="mPv-4V-jBu" firstAttribute="leading" secondItem="77n-qC-3Oq" secondAttribute="trailing" constant="8" id="hAV-Rf-vTc"/>
                             <constraint firstItem="77n-qC-3Oq" firstAttribute="leading" secondItem="cPU-ko-LXl" secondAttribute="leading" constant="20" id="hsv-f8-Cps"/>
-                            <constraint firstItem="77n-qC-3Oq" firstAttribute="top" secondItem="cPU-ko-LXl" secondAttribute="top" constant="20" id="knU-IH-2nN"/>
+                            <constraint firstItem="mPv-4V-jBu" firstAttribute="top" secondItem="77n-qC-3Oq" secondAttribute="bottom" constant="-98" id="uXf-Yg-o6p"/>
                         </constraints>
                     </view>
                     <connections>
@@ -920,20 +906,7 @@ To remove, click and press backspace. </string>
                 </viewController>
                 <customObject id="MnP-yl-mgH" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1683" y="988"/>
-        </scene>
-        <!--Colors-->
-        <scene sceneID="aUl-Ld-D5K">
-            <objects>
-                <viewController title="Colors" id="kIc-i1-hon" sceneMemberID="viewController">
-                    <customView key="view" id="w3D-cr-fxe" customClass="ColorsView" customModule="Splitter" customModuleProvider="target">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    </customView>
-                </viewController>
-                <customObject id="Mjx-aD-yW3" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="883" y="68"/>
+            <point key="canvasLocation" x="668" y="890"/>
         </scene>
     </scenes>
 </document>

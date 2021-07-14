@@ -68,14 +68,12 @@ class ViewController: NSViewController {
 	*/
 	
 	///
-	var selectedColor: NSColor = .splitterRowSelected {
-		willSet {
-			let oldColor = self.selectedColor
-			undoManager?.registerUndo(withTarget: self, handler: { r in
-				r.selectedColor = oldColor
-			})
-			undoManager?.setActionName("Set Color")
-			
+	var selectedColor: NSColor {
+		get {
+			run.selectedColor
+		}
+		set {
+			run.selectedColor = newValue
 		}
 	}
 	
@@ -287,12 +285,17 @@ class ViewController: NSViewController {
 		setupTimeRow()
 		setupStartRow()
 		setupPrevNextRow()
+		func hideComponent() {
+			(mainStackView.views.last as? SplitterComponent)?.isHidden = true
+		}
 		setupKeyValueComponent(key: .sumOfBest)
-		(mainStackView.views.last as? SplitterComponent)?.isHidden = true
+		hideComponent()
 		setupKeyValueComponent(key: .previousSegment)
-		(mainStackView.views.last as? SplitterComponent)?.isHidden = true
+		hideComponent()
 		setupKeyValueComponent(key: .totalPlaytime)
-		(mainStackView.views.last as? SplitterComponent)?.isHidden = true
+		hideComponent()
+		setupKeyValueComponent(key: .currentSegment)
+		hideComponent()
 	}
 	///Handles various window-related tasks
 	private func windowSetup() {
@@ -440,6 +443,8 @@ class ViewController: NSViewController {
 			setupKeyValueComponent(key: .previousSegment)
 		case .totalPlaytime:
 			setupKeyValueComponent(key: .totalPlaytime)
+		case .segment:
+			setupKeyValueComponent(key: .currentSegment)
 		}
 	}
 	
@@ -468,6 +473,13 @@ class ViewController: NSViewController {
 			for component in components {
 				addComponent(component.type)
 				try? (mainStackView.views.last as! SplitterComponent).loadState(from: component)
+			}
+			//Add components for types that didn't exist when the file was last saved
+			for type in SplitterComponentType.allCases {
+				if !components.contains(where: {$0.type == type}) {
+					addComponent(type)
+					(mainStackView.views.last as! SplitterComponent).isHidden = true
+				}
 			}
 		} else {
 			setupDefaultStack()
@@ -617,14 +629,14 @@ class ViewController: NSViewController {
 	///Displays the "get info" popover
 	@IBAction func displayInfoPopover(_ sender: Any) {
 		infoPanelPopover?.contentViewController?.view.window?.close()
-		let destination = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: InfoPopoverTabViewController.storyboardID) as! InfoPopoverTabViewController
+		let destination = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: InfoOptionsViewController.storyboardID) as! InfoOptionsViewController
 		destination.delegate = self
 		destination.run = self.run
-		destination.setupTabViews()
+//		destination.setupTabViews()
 		let pop = NSPopover()
 		pop.delegate = self
 		pop.contentViewController = destination
-		pop.contentSize = NSSize(width: 450, height: 325)
+//		pop.contentSize = NSSize(width: 450, height: 325)
 		pop.behavior = .semitransient
 		pop.appearance = NSAppearance(named: .vibrantDark)
 		pop.show(relativeTo: infoPanelPopoverButton.frame, of: titleRow, preferredEdge: .maxX)

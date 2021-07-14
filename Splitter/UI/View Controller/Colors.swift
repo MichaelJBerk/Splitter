@@ -77,6 +77,8 @@ extension NSImage {
 extension NSColor {
 	static let splitterDefaultColor = NSColor(red: 0.1, green: 0.1, blue: 0.1, alpha: 1.0)
 	static let splitterTableViewColor = NSColor(red: 0.2, green: 0.2, blue: 0.2, alpha: 1.0)
+	static let defaultLongerColor = NSColor(red: 0.82, green: 0.38, blue: 0.38, alpha: 1.00)
+	static let defaultShorterColor = NSColor(red: 0.01, green: 0.80, blue: 0.21, alpha: 1.00)
 	static let splitterRowSelected = NSColor(named: "CurrentSplitColor")!
 
     // Check if the color is light or dark, as defined by the injected lightness threshold.

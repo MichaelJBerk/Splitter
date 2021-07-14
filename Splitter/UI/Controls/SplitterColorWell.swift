@@ -10,6 +10,19 @@ import Cocoa
 @IBDesignable
 ///A control that displays a color value and lets the user change that color value.
 class SplitterColorWell: NSColorWell {
+	var customAction: (SplitterColorWell) -> () = {_ in}
+	
+	@objc func colorWellAction(_ sender: SplitterColorWell) {
+		customAction(sender)
+	}
+	
+	convenience init(action: @escaping (SplitterColorWell) -> ()) {
+		self.init()
+		self.target = self
+		self.action = #selector(colorWellAction(_:))
+		self.customAction = action
+	}
+	
 	@IBInspectable var allowsOpacity: Bool = true
 	
 	///Place to save the existing shared `showsAlpha` setting

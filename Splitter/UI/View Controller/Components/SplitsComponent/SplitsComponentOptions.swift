@@ -232,6 +232,28 @@ extension SplitsComponent {
 		return stack
 	}
 	
+	func colorStack(title: String, allowsOpacity: Bool = true, runProperty: WritableKeyPath<SplitterRun, NSColor>) -> (stack: NSStackView, well: SplitterColorWell) {
+		let label = NSTextField(labelWithString: title)
+		let well = SplitterColorWell(action: { well in
+			self.run[keyPath: runProperty] = well.color
+		})
+		well.allowsOpacity = allowsOpacity
+		let defaultColor = run![keyPath: runProperty]
+		well.color = defaultColor
+		let resetButton = ComponentOptionsButton(title: "Reset", clickAction: { _ in
+			well.color = defaultColor
+			well.colorWellAction(well)
+		})
+		let stack = NSStackView(views: [label, well, resetButton])
+		stack.orientation = .horizontal
+		NotificationCenter.default.addObserver(forName: .runColorChanged, object: run, queue: nil, using: { notification in
+			let run = notification.object as! SplitterRun
+			let color = run[keyPath: runProperty]
+			well.color = color
+		})
+		return (stack, well)
+	}
+	
 	var optionsView: NSView! {
 		let d = defaultComponentOptions() as! ComponentOptionsVstack
 		let showHeaderButton = ComponentOptionsButton(checkboxWithTitle: "Show Header") {_ in
@@ -239,12 +261,46 @@ extension SplitsComponent {
 		}
 		showHeaderButton.state = .init(bool: showHeader)
 		d.addArrangedSubview(showHeaderButton)
+		
+		let separatorView = NSView()
+		separatorView.wantsLayer = true
+		separatorView.layer?.backgroundColor = NSColor.separatorColor.cgColor
+		d.addArrangedSubview(separatorView)
+		NSLayoutConstraint.activate([
+			separatorView.heightAnchor.constraint(equalToConstant: 1)
+		])
+		
+		let tableColor = colorStack(title: "Background Color", runProperty: \.tableColor)
+		d.addArrangedSubview(tableColor.stack)
+		
+		let selectedColor = colorStack(title: "Selected Color", runProperty: \.selectedColor)
+		d.addArrangedSubview(selectedColor.stack)
+		
+		let diffsLabel = NSTextField(labelWithString: "Diffs")
+		d.addArrangedSubview(diffsLabel)
+		
+		
+		let longerColor = colorStack(title: "Longer Color", allowsOpacity: false, runProperty: \.longerColor)
+		d.addArrangedSubview(longerColor.stack)
+		
+		let shorterColor = colorStack(title: "Shorter Color", allowsOpacity: false, runProperty: \.shorterColor)
+		d.addArrangedSubview(shorterColor.stack)
 
 		let co = columnOptionsView
 		let superStack = SplitsOptionsView.makeView(tabs: [(d, "Options"), (co, "Columns")])
 		NSLayoutConstraint.activate([
 			superStack.widthAnchor.constraint(equalTo: d.widthAnchor),
 			co.widthAnchor.constraint(equalTo: superStack.widthAnchor),
+			tableColor.stack.heightAnchor.constraint(equalToConstant: 30),
+			selectedColor.stack.heightAnchor.constraint(equalToConstant: 30),
+			selectedColor.well.widthAnchor.constraint(equalTo: tableColor.well.widthAnchor),
+			selectedColor.well.leadingAnchor.constraint(equalTo: tableColor.well.leadingAnchor),
+			longerColor.stack.heightAnchor.constraint(equalToConstant: 30),
+			longerColor.well.widthAnchor.constraint(equalTo: tableColor.well.widthAnchor),
+			longerColor.well.leadingAnchor.constraint(equalTo: tableColor.well.leadingAnchor),
+			shorterColor.stack.heightAnchor.constraint(equalToConstant: 30),
+			shorterColor.well.widthAnchor.constraint(equalTo: tableColor.well.widthAnchor),
+			shorterColor.well.leadingAnchor.constraint(equalTo: tableColor.well.leadingAnchor),
 		])
 		return superStack
 	}

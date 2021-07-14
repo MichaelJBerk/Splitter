@@ -18,6 +18,7 @@ class GeneralLayoutSettingsViewController: NSViewController {
 	
 	func buildStack() {
 		buildColorsSection()
+		buildSeparator()
 		buildBGImageSection()
 	}
 	var backgroundImageWell: NSImageView!
@@ -61,13 +62,23 @@ class GeneralLayoutSettingsViewController: NSViewController {
 			textColorWell.widthAnchor.constraint(equalTo: bgColorWell.widthAnchor),
 			textColorWell.leadingAnchor.constraint(equalTo: bgColorWell.leadingAnchor)
 		])
+		NotificationCenter.default.addObserver(forName: .runColorChanged, object: run, queue: nil, using: { notification in
+			let run = notification.object as! SplitterRun
+			bgColorWell.color = run.backgroundColor
+			textColorWell.color = run.textColor
+		})
 	}
-	
-	func buildBGImageSection() {
+	func buildSeparator() {
 		let separatorView = NSView()
 		separatorView.wantsLayer = true
 		separatorView.layer?.backgroundColor = NSColor.separatorColor.cgColor
 		stackView.addArrangedSubview(separatorView)
+		NSLayoutConstraint.activate([
+			separatorView.heightAnchor.constraint(equalToConstant: 1)
+		])
+	}
+	
+	func buildBGImageSection() {
 		let imageLabel = NSTextField(labelWithString: "Background Image")
 		backgroundImageWell = NSImageView(image: #imageLiteral(resourceName: "Hotkeys"))
 		backgroundImageWell.isEditable = true
@@ -80,7 +91,6 @@ class GeneralLayoutSettingsViewController: NSViewController {
 		imageStack.orientation = .horizontal
 		stackView.addArrangedSubview(imageStack)
 		NSLayoutConstraint.activate([
-			separatorView.heightAnchor.constraint(equalToConstant: 1),
 			backgroundImageWell.heightAnchor.constraint(equalToConstant: 64)
 		])
 		NotificationCenter.default.addObserver(forName: .backgroundImageEdited, object: self.run, queue: nil, using: { notification in

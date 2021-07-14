@@ -1,5 +1,5 @@
 //
-//  ImageButtonCellView.swift
+//  EditableSegmentIconView.swift
 //  Splitter
 //
 //  Created by Michael Berk on 1/26/20.

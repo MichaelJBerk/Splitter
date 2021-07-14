@@ -10,8 +10,8 @@ import Cocoa
 
 
 
-class InfoOptionsViewController: NSViewController, NSPopoverDelegate, advancedTabDelegate, NSTextFieldDelegate {
-
+class InfoOptionsViewController: NSViewController, NSPopoverDelegate, NSTextFieldDelegate {
+	static var storyboardID = "infoTab"
 	var run: SplitterRun!
 	var delegate: ViewController?
 	@IBOutlet weak var runTitleField: NSTextField!
@@ -71,9 +71,6 @@ class InfoOptionsViewController: NSViewController, NSPopoverDelegate, advancedTa
 		return true
 	}
 	
-	func setupDelegate() {
-		
-	}
 	func controlTextDidEndEditing(_ obj: Notification) {
 		updateRun()
 	}

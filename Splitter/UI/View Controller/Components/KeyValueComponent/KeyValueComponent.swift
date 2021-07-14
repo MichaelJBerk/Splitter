@@ -69,6 +69,7 @@ enum KeyValueComponentType: String, Codable, CaseIterable {
 	case sumOfBest = "Sum of Best Segments"
 	case previousSegment = "Previous Segment"
 	case totalPlaytime = "Total Playtime"
+	case currentSegment = "Segment Time"
 	
 	var componentType: SplitterComponentType{
 		switch self {
@@ -78,6 +79,8 @@ enum KeyValueComponentType: String, Codable, CaseIterable {
 			return .previousSegment
 		case .totalPlaytime:
 			return .totalPlaytime
+		case .currentSegment:
+			return .segment
 		}
 	}
 	
@@ -89,6 +92,10 @@ enum KeyValueComponentType: String, Codable, CaseIterable {
 		}
 		if str == "Previous Segment" || str == "Live Segment" {
 			self = .previousSegment
+			return
+		}
+		if str == "Current Segment" {
+			self = .currentSegment
 			return
 		}
 		throw DecodingError.typeMismatch(Self.Type.self, .init(codingPath: decoder.codingPath, debugDescription: "Can't decode"))

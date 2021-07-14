@@ -174,6 +174,9 @@ class SplitterRun: NSObject {
 		case .totalPlaytime:
 			compToAdd = TotalPlaytimeComponent().intoGeneric()
 			stringToCheck = KeyValueComponentType.totalPlaytime.rawValue
+		case .segment:
+			compToAdd = SegmentTimeComponent().intoGeneric()
+			stringToCheck = KeyValueComponentType.currentSegment.rawValue
 		default:
 			return nil
 		}
@@ -672,11 +675,11 @@ class SplitterRun: NSObject {
 			undoManager?.registerUndo(withTarget: self, handler: { r in
 				r.backgroundColor = oldSetting
 			})
-			undoManager?.setActionName("Set Color")
+			undoManager?.setActionName("Set Background Color")
 			editLayout { editor in
 				editor.setGeneralSettingsValue(4, setting)
 			}
-			NotificationCenter.default.post(name: .runColorChanged, object: nil)
+			NotificationCenter.default.post(name: .runColorChanged, object: self)
 		}
 	}
 	var tableColor: NSColor {
@@ -694,12 +697,12 @@ class SplitterRun: NSObject {
 			undoManager?.registerUndo(withTarget: self, handler: { r in
 				r.tableColor = oldSetting
 			})
-			undoManager?.setActionName("Set Color")
+			undoManager?.setActionName("Set Splits Background Color")
 			editLayout { editor in
 				editor.select(1)
 				editor.setComponentSettingsValue(0, setting)
 			}
-			NotificationCenter.default.post(name: .runColorChanged, object: nil)
+			NotificationCenter.default.post(name: .runColorChanged, object: self)
 		}
 	}
 	
@@ -714,11 +717,23 @@ class SplitterRun: NSObject {
 			undoManager?.registerUndo(withTarget: self, handler: { r in
 				r.textColor = oldSetting
 			})
-			undoManager?.setActionName("Set Color")
+			undoManager?.setActionName("Set Text Color")
 			editLayout{ editor in
 				editor.setGeneralSettingsValue(15, setting)
 			}
-			NotificationCenter.default.post(name: .runColorChanged, object: nil)
+			NotificationCenter.default.post(name: .runColorChanged, object: self)
+		}
+	}
+	var selectedColor: NSColor = .splitterRowSelected {
+		willSet {
+			let oldColor = self.selectedColor
+			undoManager?.registerUndo(withTarget: self, handler: { r in
+				r.selectedColor = oldColor
+			})
+			undoManager?.setActionName("Set Selected Color")
+		}
+		didSet {
+			NotificationCenter.default.post(.init(name: .runColorChanged, object: self))
 		}
 	}
 	
@@ -741,6 +756,7 @@ class SplitterRun: NSObject {
 				editor.setGeneralSettingsValue(9, SettingValue.fromColor(color[0], color[1], color[2], color[3]))
 				self.layout = editor.close()
 			}
+			undoManager?.setActionName("Set Longer Color")
 		}
 	}
 	var shorterColor: NSColor {
@@ -761,6 +777,7 @@ class SplitterRun: NSObject {
 				editor.setGeneralSettingsValue(7, SettingValue.fromColor(color[0], color[1], color[2], color[3]))
 				self.layout = editor.close()
 			}
+			undoManager?.setActionName("Set Shorter Color")
 		}
 		
 	}

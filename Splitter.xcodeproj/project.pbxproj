@@ -73,7 +73,7 @@
 		4A61438424801A28007C38E0 /* ColorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A61438324801A28007C38E0 /* ColorsView.swift */; };
 		4A61438624801A37007C38E0 /* ColorsView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A61438524801A37007C38E0 /* ColorsView.xib */; };
 		4A669373268BBB4400FEF745 /* SplitsEditorOutlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A669372268BBB4400FEF745 /* SplitsEditorOutlineView.swift */; };
-		4A66A43023DE2682005952FA /* ImageButtonCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A66A42F23DE2682005952FA /* ImageButtonCellView.swift */; };
+		4A66A43023DE2682005952FA /* EditableSegmentIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A66A42F23DE2682005952FA /* EditableSegmentIconView.swift */; };
 		4A66A43223DE2C88005952FA /* SplitTableColumnIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A66A43123DE2C88005952FA /* SplitTableColumnIdentifiers.swift */; };
 		4A6726EA23F05D17006F4BC4 /* LiveSplit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A617EBD23EBC65C0005D60E /* LiveSplit.swift */; };
 		4A6A3BE023CD1C39002C20AE /* GlobalKeybindPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6A3BDF23CD1C39002C20AE /* GlobalKeybindPrefs.swift */; };
@@ -93,6 +93,7 @@
 		4A87265523BD53F8003A14AF /* runInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87265423BD53F8003A14AF /* runInfo.swift */; };
 		4A87265723BD5423003A14AF /* PrefPanes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87265623BD5423003A14AF /* PrefPanes.swift */; };
 		4A894B1C249ABA71004FEEB3 /* LoadableNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A894B1B249ABA71004FEEB3 /* LoadableNib.swift */; };
+		4A8C96CB269F579200AF372A /* SegmentComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8C96CA269F579200AF372A /* SegmentComponent.swift */; };
 		4A9423CA268D3A6C0033A62F /* SplitsEditorTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9423C9268D3A6C0033A62F /* SplitsEditorTextField.swift */; };
 		4A968C7C23F1F5FE001B74E8 /* lss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A968C7B23F1F5FE001B74E8 /* lss.swift */; };
 		4A99813023F9ECE50037BF98 /* KeybindHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A99812F23F9ECE50037BF98 /* KeybindHandlers.swift */; };
@@ -240,7 +241,7 @@
 		4A61438524801A37007C38E0 /* ColorsView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ColorsView.xib; sourceTree = "<group>"; };
 		4A617EBD23EBC65C0005D60E /* LiveSplit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveSplit.swift; sourceTree = "<group>"; };
 		4A669372268BBB4400FEF745 /* SplitsEditorOutlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitsEditorOutlineView.swift; sourceTree = "<group>"; };
-		4A66A42F23DE2682005952FA /* ImageButtonCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageButtonCellView.swift; sourceTree = "<group>"; };
+		4A66A42F23DE2682005952FA /* EditableSegmentIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableSegmentIconView.swift; sourceTree = "<group>"; };
 		4A66A43123DE2C88005952FA /* SplitTableColumnIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitTableColumnIdentifiers.swift; sourceTree = "<group>"; };
 		4A6A3BDF23CD1C39002C20AE /* GlobalKeybindPrefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalKeybindPrefs.swift; sourceTree = "<group>"; };
 		4A6A3BE123CD1C7A002C20AE /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
@@ -259,6 +260,7 @@
 		4A87265423BD53F8003A14AF /* runInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = runInfo.swift; sourceTree = "<group>"; };
 		4A87265623BD5423003A14AF /* PrefPanes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefPanes.swift; sourceTree = "<group>"; };
 		4A894B1B249ABA71004FEEB3 /* LoadableNib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableNib.swift; sourceTree = "<group>"; };
+		4A8C96CA269F579200AF372A /* SegmentComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentComponent.swift; sourceTree = "<group>"; };
 		4A9423C9268D3A6C0033A62F /* SplitsEditorTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitsEditorTextField.swift; sourceTree = "<group>"; };
 		4A968C7B23F1F5FE001B74E8 /* lss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lss.swift; sourceTree = "<group>"; };
 		4A99812F23F9ECE50037BF98 /* KeybindHandlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeybindHandlers.swift; sourceTree = "<group>"; };
@@ -581,6 +583,14 @@
 			path = SplitterTests;
 			sourceTree = "<group>";
 		};
+		4A8C96C9269F577100AF372A /* SegmentComponent */ = {
+			isa = PBXGroup;
+			children = (
+				4A8C96CA269F579200AF372A /* SegmentComponent.swift */,
+			);
+			path = SegmentComponent;
+			sourceTree = "<group>";
+		};
 		4A9423C8268D39ED0033A62F /* Splits Editor */ = {
 			isa = PBXGroup;
 			children = (
@@ -617,7 +627,7 @@
 		4A9FCC7A2411A0A2000937A2 /* Controls */ = {
 			isa = PBXGroup;
 			children = (
-				4A66A42F23DE2682005952FA /* ImageButtonCellView.swift */,
+				4A66A42F23DE2682005952FA /* EditableSegmentIconView.swift */,
 				4AE7437D268CF2AC003629B4 /* SplitterColorWell.swift */,
 			);
 			path = Controls;
@@ -626,6 +636,7 @@
 		4AA9ADB92608EFD3009B77B5 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				4A8C96C9269F577100AF372A /* SegmentComponent */,
 				4AC24DBD23EB4F73003008BF /* SplitsComponent */,
 				4ACFB1C4262F52BF00EA79B6 /* TitleComponent */,
 				4AEA33132629EFC4001012BD /* TimeRow */,
@@ -1233,7 +1244,7 @@
 				4ADE9226240F1FB900E0D99E /* InfoPopoverTabViewController.swift in Sources */,
 				4A0F715F23F4A0A500E5948E /* SplitterDoc.swift in Sources */,
 				4A9423CA268D3A6C0033A62F /* SplitsEditorTextField.swift in Sources */,
-				4A66A43023DE2682005952FA /* ImageButtonCellView.swift in Sources */,
+				4A66A43023DE2682005952FA /* EditableSegmentIconView.swift in Sources */,
 				4A520E312693744D00F463B3 /* DraggingStackView.swift in Sources */,
 				4A0981A624E34DE400E44792 /* AccountButtonView.swift in Sources */,
 				4A520E2D2693737800F463B3 /* SplitterComponentType.swift in Sources */,
@@ -1241,6 +1252,7 @@
 				4AB92AC6261F6CD600E8B814 /* ThemedTextField.swift in Sources */,
 				4AB92ABE261F67B700E8B814 /* ThemedButton.swift in Sources */,
 				4A3BDFA123E4C3B6001EA7FF /* DefaultHotkeys.swift in Sources */,
+				4A8C96CB269F579200AF372A /* SegmentComponent.swift in Sources */,
 				4ADEE0AC267A4EA80028F142 /* RunEditorState.swift in Sources */,
 				4A9CA2A7263A2D4C0054D624 /* Extensions.swift in Sources */,
 				4A388FC525D4AF2B00A63C9E /* PrevNextRow.swift in Sources */,
