@@ -3,73 +3,29 @@
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
-        <capability name="Image references" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner"/>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" id="6Py-N8-LIW" customClass="StartRow" customModule="Splitter" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="276" height="20"/>
+        <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="4" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" id="6Py-N8-LIW" customClass="StartRow" customModule="Splitter" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="278" height="20"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
             <subviews>
-                <customView translatesAutoresizingMaskIntoConstraints="NO" id="uAx-Eg-8ek">
-                    <rect key="frame" x="0.0" y="0.0" width="43" height="20"/>
-                    <subviews>
-                        <popUpButton hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="IUl-pl-z0H" customClass="ThemedPopUpButton" customModule="Splitter" customModuleProvider="target">
-                            <rect key="frame" x="-3" y="-4" width="50" height="25"/>
-                            <popUpButtonCell key="cell" type="roundTextured" bezelStyle="texturedRounded" alignment="center" lineBreakMode="truncatingTail" borderStyle="border" imageScaling="proportionallyDown" inset="2" pullsDown="YES" autoenablesItems="NO" selectedItem="FTf-tR-crx" id="aMc-37-t3D">
-                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="menu"/>
-                                <menu key="menu" showsStateColumn="NO" autoenablesItems="NO" id="wzd-vu-Kdc">
-                                    <items>
-                                        <menuItem hidden="YES" id="FTf-tR-crx">
-                                            <imageReference key="image" image="trash" symbolScale="large" renderingMode="template"/>
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
-                                        <menuItem title="Clear Current Time" identifier="ClearCurrentTimeMenuItem" id="1XA-fC-OE1">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
-                                        <menuItem title="Delete All Segments" identifier="ClearAllSplitsMenuItem" id="bDQ-Xc-v1w">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
-                                    </items>
-                                </menu>
-                            </popUpButtonCell>
-                            <color key="contentTintColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                            <connections>
-                                <action selector="trashCanPopupClick:" target="6Py-N8-LIW" id="nVV-dd-zNT"/>
-                            </connections>
-                        </popUpButton>
-                        <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fSb-HD-vOl" customClass="ThemedButton" customModule="Splitter" customModuleProvider="target">
-                            <rect key="frame" x="-7" y="-7" width="57" height="32"/>
-                            <buttonCell key="cell" type="push" bezelStyle="rounded" image="stop" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="eJw-aw-aNI">
-                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                            <color key="contentTintColor" name="textColor" catalog="System" colorSpace="catalog"/>
-                            <connections>
-                                <action selector="stopButtonClick:" target="6Py-N8-LIW" id="5oF-ag-MP6"/>
-                            </connections>
-                        </button>
-                    </subviews>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="43" id="IB5-Jb-mxb"/>
-                        <constraint firstItem="IUl-pl-z0H" firstAttribute="height" secondItem="uAx-Eg-8ek" secondAttribute="height" id="K0n-Mg-rJm"/>
-                        <constraint firstItem="IUl-pl-z0H" firstAttribute="width" secondItem="uAx-Eg-8ek" secondAttribute="width" id="QyF-VZ-hId"/>
-                        <constraint firstItem="IUl-pl-z0H" firstAttribute="centerX" secondItem="uAx-Eg-8ek" secondAttribute="centerX" id="Weg-mb-w0A"/>
-                        <constraint firstItem="IUl-pl-z0H" firstAttribute="width" secondItem="fSb-HD-vOl" secondAttribute="width" id="clq-e0-6uo"/>
-                        <constraint firstItem="IUl-pl-z0H" firstAttribute="height" secondItem="fSb-HD-vOl" secondAttribute="height" id="hvG-Zx-2i2"/>
-                        <constraint firstItem="fSb-HD-vOl" firstAttribute="centerX" secondItem="uAx-Eg-8ek" secondAttribute="centerX" id="tLW-g6-sFd"/>
-                        <constraint firstAttribute="height" constant="20" id="wp4-Lc-fDe"/>
-                        <constraint firstItem="fSb-HD-vOl" firstAttribute="centerY" secondItem="uAx-Eg-8ek" secondAttribute="centerY" id="yFM-Fz-7vl"/>
-                        <constraint firstItem="IUl-pl-z0H" firstAttribute="centerY" secondItem="uAx-Eg-8ek" secondAttribute="centerY" id="yuW-d1-e0B"/>
-                        <constraint firstItem="fSb-HD-vOl" firstAttribute="height" secondItem="uAx-Eg-8ek" secondAttribute="height" id="zhs-sh-zaW"/>
-                    </constraints>
-                </customView>
+                <button hidden="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="fSb-HD-vOl" customClass="ThemedButton" customModule="Splitter" customModuleProvider="target">
+                    <rect key="frame" x="-7" y="-7" width="48" height="32"/>
+                    <buttonCell key="cell" type="push" bezelStyle="rounded" image="stop" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="eJw-aw-aNI">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <color key="contentTintColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                    <connections>
+                        <action selector="stopButtonClick:" target="6Py-N8-LIW" id="5oF-ag-MP6"/>
+                    </connections>
+                </button>
                 <button toolTip="Start Timer" horizontalHuggingPriority="249" verticalHuggingPriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="UnZ-zU-O1x" customClass="ThemedButton" customModule="Splitter" customModuleProvider="target">
-                    <rect key="frame" x="219" y="-7" width="64" height="32"/>
+                    <rect key="frame" x="-7" y="-7" width="292" height="32"/>
                     <buttonCell key="cell" type="push" title="Start" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="t71-Ja-BuN">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="system"/>
@@ -81,12 +37,6 @@
                     </connections>
                 </button>
             </subviews>
-            <constraints>
-                <constraint firstItem="uAx-Eg-8ek" firstAttribute="leading" secondItem="6Py-N8-LIW" secondAttribute="leading" id="QQh-TR-w1K"/>
-                <constraint firstAttribute="trailing" secondItem="UnZ-zU-O1x" secondAttribute="trailing" id="Uxf-UE-0RE"/>
-                <constraint firstItem="UnZ-zU-O1x" firstAttribute="leading" secondItem="uAx-Eg-8ek" secondAttribute="trailing" constant="3" id="l6p-LA-0rt"/>
-                <constraint firstItem="uAx-Eg-8ek" firstAttribute="height" secondItem="6Py-N8-LIW" secondAttribute="height" id="lCl-8r-2kJ"/>
-            </constraints>
             <visibilityPriorities>
                 <integer value="1000"/>
                 <integer value="1000"/>
@@ -98,13 +48,11 @@
             <connections>
                 <outlet property="startButton" destination="UnZ-zU-O1x" id="Tqj-Jf-d4X"/>
                 <outlet property="stopButton" destination="fSb-HD-vOl" id="YK6-EK-Lad"/>
-                <outlet property="trashCanPopupButton" destination="IUl-pl-z0H" id="Twe-FA-Yh3"/>
             </connections>
-            <point key="canvasLocation" x="-214" y="-86"/>
+            <point key="canvasLocation" x="-213" y="-86"/>
         </stackView>
     </objects>
     <resources>
         <image name="stop" width="19" height="19"/>
-        <image name="trash" width="19" height="19"/>
     </resources>
 </document>

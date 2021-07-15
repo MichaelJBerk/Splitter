@@ -34,16 +34,11 @@ class StartRow: NSStackView, NibLoadable, SplitterComponent {
 	func initialization() {
 		startButton.run = run
 		stopButton.run = run
-		trashCanPopupButton.run = run
 		stopButton.image = nil
-		let tsItem = trashCanPopupButton.menu?.items[0]
-		tsItem?.image = nil
 		if #available(macOS 11.0, *) {
 			stopButton.image = NSImage(systemSymbolName: "stop.circle.fill", accessibilityDescription: nil)
-			tsItem?.image = NSImage(systemSymbolName: "trash", accessibilityDescription: nil)
 		} else {
 			stopButton.image = NSImage(named: "stop")
-			tsItem?.image = NSImage(named: "trash")
 		}
 		
 		if startButton.acceptsFirstResponder {
@@ -61,16 +56,13 @@ class StartRow: NSStackView, NibLoadable, SplitterComponent {
 			}
 			self.setVisibleButtons()
 		})
-//		setVisibleButtons()
 	}
 	
 	func setVisibleButtons() {
-		trashCanPopupButton.isHidden = shouldTrashCanBeHidden
 		stopButton.isHidden = shouldStopButtonBeHidden
 	}
 	
 	
-	@IBOutlet var trashCanPopupButton: ThemedPopUpButton!
 	@IBOutlet var startButton: ThemedButton!
 	@IBOutlet var stopButton: ThemedButton!
 	
@@ -83,15 +75,6 @@ class StartRow: NSStackView, NibLoadable, SplitterComponent {
 		}
 	}
 	
-	@IBAction func trashCanPopupClick(_ sender: NSPopUpButton) {
-		if let id = sender.selectedItem?.identifier {
-			if id == buttonIdentifiers.TrashCanClearAllSplits {
-				viewController.askToClearTimer()
-			} else if id == buttonIdentifiers.TrashCanClearCurrentTime {
-				//TODO: Something...
-			}
-		}
-	}
 	@IBAction func startButtonClick(_ sender: Any) {
 		viewController?.toggleTimer()
 	}
