@@ -158,11 +158,7 @@ You can still close the window either with ⌘W or from the "Window" menu.
 class helpButton: NSButton {
 	
 	var sourceView: NSView?
-	var helpString: String? {
-		didSet {
-			print("a")
-		}
-	}
+	var helpString: String?
 	var popView: NSView?
 	
 	init() {
