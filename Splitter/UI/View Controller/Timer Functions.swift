@@ -35,11 +35,6 @@ extension ViewController {
 			timerState = .stopped
 		}
 		resetTimer()
-		//Don't set the end time if the run hasn't started yet
-		//This is necessary because this function gets called when the run first loads
-		if startTime != nil {
-			endTime = Date()
-		}
 		run.updateLayoutState()
 		splitsTableView.reloadData()
 	}
@@ -65,8 +60,6 @@ extension ViewController {
 	private func setupTimer() {
 		NotificationCenter.default.post(name: .startTimer, object: self.run)
 		run.timer.start()
-		
-		self.startTime = Date()
 		
 		self.updateButtonTitles()
 		//Using reloadData to update the highlighted row in the tableview

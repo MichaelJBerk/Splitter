@@ -85,12 +85,6 @@ extension ViewController {
 			run.attempts = ri.attempts ?? 0
 			gameRegion = ri.gameRegion ?? ""
 			fileID = ri.id
-			if let st = ri.startTime {
-				self.startTime = dateForRFC3339DateTimeString(rfc3339DateTimeString: st)
-			}
-			if let et = ri.endTime {
-				self.endTime = dateForRFC3339DateTimeString(rfc3339DateTimeString: et)
-			}
 			if let segments = ri.segments {
 				let compare = ri.compareTo
 				switch compare {

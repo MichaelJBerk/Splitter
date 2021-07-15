@@ -148,8 +148,6 @@ class ViewController: NSViewController {
 			run.region = newValue
 		}
 	}
-	var startTime: Date?
-	var endTime: Date?
 	var fileID: String?
 
 	//MARK: - External File Split Data
