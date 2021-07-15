@@ -469,7 +469,6 @@
 			isa = PBXGroup;
 			children = (
 				4AC2745926991624007ED8F5 /* Layout Editor */,
-				4AAD4708248432390094A31F /* ColorsView */,
 				4A1C1467240ED30C0056B104 /* InfoOptionsViewController.swift */,
 			);
 			path = "Options Windows";
@@ -529,6 +528,15 @@
 				4A230E9E23B00A1E00959C57 /* Splitter.entitlements */,
 			);
 			path = Splitter;
+			sourceTree = "<group>";
+		};
+		4A355DE526A09C150066F744 /* AppearanceViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4A1C23A0269917F5003A05D6 /* AppearanceViewController.xib */,
+				4A4070E0241AE2E0000927A5 /* AppearanceViewController.swift */,
+			);
+			path = AppearanceViewController;
 			sourceTree = "<group>";
 		};
 		4A470BB52695FED7001F0081 /* Themeing */ = {
@@ -668,11 +676,11 @@
 		4AC2745926991624007ED8F5 /* Layout Editor */ = {
 			isa = PBXGroup;
 			children = (
+				4AAD4708248432390094A31F /* ColorsView */,
 				4A4ACF7B2609185C00C04DD6 /* LayoutEditor.storyboard */,
 				4AE168A526091CA900A6169B /* LayoutEditorViewController.swift */,
 				4AC2745726990E04007ED8F5 /* GeneralLayoutSettingsViewController.swift */,
-				4A1C23A0269917F5003A05D6 /* AppearanceViewController.xib */,
-				4A4070E0241AE2E0000927A5 /* AppearanceViewController.swift */,
+				4A355DE526A09C150066F744 /* AppearanceViewController */,
 			);
 			path = "Layout Editor";
 			sourceTree = "<group>";
