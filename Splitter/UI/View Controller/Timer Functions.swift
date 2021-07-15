@@ -27,13 +27,19 @@ extension ViewController {
 	}
 	
 	///Finshes the timer at the end of a run
+	///
+	///- NOTE: This method is also called when the run is first loaded
 	func stopTimer() {
 		timerStarted = false
 		if timerState != .stopped {
 			timerState = .stopped
 		}
 		resetTimer()
-		endTime = Date()
+		//Don't set the end time if the run hasn't started yet
+		//This is necessary because this function gets called when the run first loads
+		if startTime != nil {
+			endTime = Date()
+		}
 		run.updateLayoutState()
 		splitsTableView.reloadData()
 	}

@@ -21,9 +21,6 @@ class InfoOptionsViewController: NSViewController, NSPopoverDelegate, NSTextFiel
 	@IBOutlet weak var versionField: NSTextField!
 	@IBOutlet weak var regionField: NSTextField!
 	
-	@IBOutlet weak var startTimeLabel: NSTextField!
-	@IBOutlet weak var endTimeLabel: NSTextField!
-	
 	@IBOutlet weak var iconWell: MetadataImage!
 	
 	@IBOutlet weak var offsetField: NSTextField!
@@ -48,7 +45,6 @@ class InfoOptionsViewController: NSViewController, NSPopoverDelegate, NSTextFiel
 		NotificationCenter.default.addObserver(forName: .runEdited, object: run, queue: nil, using: { _ in
 			self.getDataFromRun()
 		})
-		
 		
     }
 	
@@ -83,16 +79,6 @@ class InfoOptionsViewController: NSViewController, NSPopoverDelegate, NSTextFiel
 			platformField.stringValue = run.platform
 			versionField.stringValue = run.gameVersion
 			regionField.stringValue = run.region
-			
-			if let st = delegate.startTime {
-				let sDate = startEndDateFormatter.string(from: st)
-				
-				startTimeLabel.stringValue = sDate
-			}
-			if let et = delegate.endTime {
-				let eDate = startEndDateFormatter.string(from: et)
-				endTimeLabel.stringValue = eDate
-			}
 		}
 	}
 	
