@@ -119,7 +119,6 @@
 		4AD44ADB262F463C003375C4 /* KeyValueComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AD44ADA262F463C003375C4 /* KeyValueComponent.xib */; };
 		4AD44ADF262F4CFB003375C4 /* TitleComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD44ADE262F4CFB003375C4 /* TitleComponent.swift */; };
 		4AD7662E23DA5F9A0052409C /* Files in Frameworks */ = {isa = PBXBuildFile; productRef = 4AD7662D23DA5F9A0052409C /* Files */; };
-		4ADE9226240F1FB900E0D99E /* InfoPopoverTabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADE9225240F1FB900E0D99E /* InfoPopoverTabViewController.swift */; };
 		4ADEE0AC267A4EA80028F142 /* RunEditorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADEE0AB267A4EA80028F142 /* RunEditorState.swift */; };
 		4ADFAE4923E4A0760049F57A /* QuickAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADFAE4823E4A0760049F57A /* QuickAlert.swift */; };
 		4AE168A626091CA900A6169B /* LayoutEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE168A526091CA900A6169B /* LayoutEditorViewController.swift */; };
@@ -129,7 +128,6 @@
 		4AEA331B2629F024001012BD /* TimeRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AEA331A2629F023001012BD /* TimeRow.xib */; };
 		4AEA927E23C4EF32004F6CF9 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEA927D23C4EF32004F6CF9 /* MainWindowController.swift */; };
 		4AEC4C00240F564B00B01799 /* Time Conversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEC4BFF240F564B00B01799 /* Time Conversion.swift */; };
-		4AEC4C02240F5BA300B01799 /* RunOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEC4C01240F5BA300B01799 /* RunOptionsViewController.swift */; };
 		4AF953B523EB503100ED540C /* Timer Functions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF953B423EB503100ED540C /* Timer Functions.swift */; };
 		4AF9E8AB24CE31CA00DFD5BE /* DebugPrefsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF9E8A924CE31CA00DFD5BE /* DebugPrefsViewController.swift */; };
 		4AF9E8AC24CE31CA00DFD5BE /* DebugPrefsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AF9E8AA24CE31CA00DFD5BE /* DebugPrefsViewController.xib */; };
@@ -284,7 +282,6 @@
 		4AD44AD6262F40E3003375C4 /* KeyValueComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyValueComponent.swift; sourceTree = "<group>"; };
 		4AD44ADA262F463C003375C4 /* KeyValueComponent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KeyValueComponent.xib; sourceTree = "<group>"; };
 		4AD44ADE262F4CFB003375C4 /* TitleComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleComponent.swift; sourceTree = "<group>"; };
-		4ADE9225240F1FB900E0D99E /* InfoPopoverTabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPopoverTabViewController.swift; sourceTree = "<group>"; };
 		4ADEE0AB267A4EA80028F142 /* RunEditorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunEditorState.swift; sourceTree = "<group>"; };
 		4ADFAE4823E4A0760049F57A /* QuickAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickAlert.swift; sourceTree = "<group>"; };
 		4AE168A526091CA900A6169B /* LayoutEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutEditorViewController.swift; sourceTree = "<group>"; };
@@ -294,7 +291,6 @@
 		4AEA331A2629F023001012BD /* TimeRow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeRow.xib; sourceTree = "<group>"; };
 		4AEA927D23C4EF32004F6CF9 /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		4AEC4BFF240F564B00B01799 /* Time Conversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Time Conversion.swift"; sourceTree = "<group>"; };
-		4AEC4C01240F5BA300B01799 /* RunOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunOptionsViewController.swift; sourceTree = "<group>"; };
 		4AF953B423EB503100ED540C /* Timer Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timer Functions.swift"; sourceTree = "<group>"; };
 		4AF9D75B23ECD5110019BC9A /* livesplit_core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = livesplit_core.h; sourceTree = "<group>"; };
 		4AF9D75D23ECD5110019BC9A /* module.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.map; sourceTree = "<group>"; };
@@ -475,8 +471,6 @@
 				4AC2745926991624007ED8F5 /* Layout Editor */,
 				4AAD4708248432390094A31F /* ColorsView */,
 				4A1C1467240ED30C0056B104 /* InfoOptionsViewController.swift */,
-				4AEC4C01240F5BA300B01799 /* RunOptionsViewController.swift */,
-				4ADE9225240F1FB900E0D99E /* InfoPopoverTabViewController.swift */,
 			);
 			path = "Options Windows";
 			sourceTree = "<group>";
@@ -1197,7 +1191,6 @@
 				4A6A3BE623CD6463002C20AE /* BlankWindowController.swift in Sources */,
 				4AEC4C00240F564B00B01799 /* Time Conversion.swift in Sources */,
 				4AB92AC2261F69ED00E8B814 /* ThemedPopUpButton.swift in Sources */,
-				4AEC4C02240F5BA300B01799 /* RunOptionsViewController.swift in Sources */,
 				4A66A43223DE2C88005952FA /* SplitTableColumnIdentifiers.swift in Sources */,
 				4A230E9323B00A1D00959C57 /* AppDelegate.swift in Sources */,
 				4A470BB02695FABA001F0081 /* Themeable.swift in Sources */,
@@ -1241,7 +1234,6 @@
 				4A09819F24E3089B00E44792 /* LoginView.swift in Sources */,
 				4A0981AF24E4844300E44792 /* AccountProfileView.swift in Sources */,
 				4A09E29C24D754520013D7BC /* DownloadWindowController.swift in Sources */,
-				4ADE9226240F1FB900E0D99E /* InfoPopoverTabViewController.swift in Sources */,
 				4A0F715F23F4A0A500E5948E /* SplitterDoc.swift in Sources */,
 				4A9423CA268D3A6C0033A62F /* SplitsEditorTextField.swift in Sources */,
 				4A66A43023DE2682005952FA /* EditableSegmentIconView.swift in Sources */,

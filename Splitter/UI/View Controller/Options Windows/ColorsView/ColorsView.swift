@@ -8,7 +8,10 @@
 
 import Cocoa
 
-class ColorsView: NSView, LoadableNib, advancedTabDelegate {
+var splitNoteText = "Note: These settings will be saved to this file, and will take effect whenever the file is opened. "
+var notSplitNoteText = "Note: These settings will not be saved to this file unless it is saved in the .split format"
+
+class ColorsView: NSView, LoadableNib {
 	var delegate: ViewController?
 	var run: SplitterRun!
 	
@@ -26,25 +29,22 @@ class ColorsView: NSView, LoadableNib, advancedTabDelegate {
 	}
 	
 	@objc func sendSettings( _ sender: Any) {
+		if run.undoManager?.isUndoing ?? false {
+			run.undoManager?.disableUndoRegistration()
+		}
+		run.backgroundColor = bgColorWell.color
+		run.tableColor = tableViewBGColorWell.color
+		run.textColor = textColorWell.color
+		run.selectedColor = selectedColorWell.color
+		
+		run.longerColor = longerDiffColorWell.color
+		run.shorterColor = shorterDiffColorWell.color
 		if let d = delegate {
-			if run.undoManager?.isUndoing ?? false {
-				run.undoManager?.disableUndoRegistration()
-			}
-			d.run.backgroundColor = bgColorWell.color
-			d.run.tableColor = tableViewBGColorWell.color
-			d.run.textColor = textColorWell.color
-			d.selectedColor = selectedColorWell.color
-			
-			d.run.longerColor = longerDiffColorWell.color
-			d.run.shorterColor = shorterDiffColorWell.color
-			//TODO: PB Color
-
-//			d.setColorForControls()
 			d.updateTextFields()
 			d.run.updateLayoutState()
-			if run.undoManager?.isUndoing ?? false {
-				run.undoManager?.enableUndoRegistration()
-			}
+		}
+		if run.undoManager?.isUndoing ?? false {
+			run.undoManager?.enableUndoRegistration()
 		}
 	}
 	
@@ -77,10 +77,7 @@ class ColorsView: NSView, LoadableNib, advancedTabDelegate {
 		sendSettings(sender)
 	}
 	@IBAction func settingsSender(_ sender: Any) {
-//		run.undoManager?.beginUndoGrouping()
-//		undoManager?.registerUndo(withTarget: self, selector: #selector(settingsSender(_:)), object: sender)
 		sendSettings(sender)
-//		run.undoManager?.endUndoGrouping()
 	}
 	
 	override func viewDidMoveToSuperview() {
@@ -88,25 +85,19 @@ class ColorsView: NSView, LoadableNib, advancedTabDelegate {
 	}
 	
 	func loadFromDelegate() {
-		if let d = delegate {
-			
-			bgColorWell.color = d.run.backgroundColor//d.view.window!.backgroundColor
-			tableViewBGColorWell.color = d.run.tableColor
-			textColorWell.color = d.run.textColor
-			selectedColorWell.color = d.selectedColor
-			longerDiffColorWell.color = d.run.longerColor
-			shorterDiffColorWell.color = d.run.shorterColor
-			
-			if let doc = delegate?.view.window?.windowController?.document as? NSDocument {
-				if doc.fileType != "Split File" {
-					noteLabel.stringValue = notSplitNoteText
-				} else {
-					noteLabel.stringValue = splitNoteText
-				}
+		bgColorWell.color = run.backgroundColor
+		tableViewBGColorWell.color = run.tableColor
+		textColorWell.color = run.textColor
+		selectedColorWell.color = run.selectedColor
+		longerDiffColorWell.color = run.longerColor
+		shorterDiffColorWell.color = run.shorterColor
+		if let doc = delegate?.view.window?.windowController?.document as? NSDocument {
+			if doc.fileType != "Split File" {
+				noteLabel.stringValue = notSplitNoteText
+			} else {
+				noteLabel.stringValue = splitNoteText
 			}
-			
 		}
-		
 		NSColorPanel.shared.showsToolbarButton = true
 	}
 	

@@ -9,7 +9,7 @@
 import Cocoa
 import Preferences
 
-class AppearanceViewController: NSViewController, advancedTabDelegate, LoadableNib {
+class AppearanceViewController: NSViewController, LoadableNib {
 	var delegate: ViewController?
 	var run: SplitterRun!
 	@IBOutlet var contentView: NSView!
@@ -30,7 +30,6 @@ class AppearanceViewController: NSViewController, advancedTabDelegate, LoadableN
 	@IBOutlet weak var topHelp: helpButton!
 	
 	@IBOutlet weak var noteLabel: NSTextField!
-//	@IBOutlet weak var backgroundImageWell: NSImageView?
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,7 +49,6 @@ Note: These settings will be saved to this file, and will take effect whenever t
 	
 	///Sets the help buttons next to each option, as well as their popovers
 	func setHelpButtons() {
-//		titleHelp.sourceView = self.view.superview!
 		titleHelp.helpString = """
 Hide the Title Bar for a more compact appearance.
 You can still close the window either with ⌘W or from the "Window" menu.
@@ -123,7 +121,6 @@ You can still close the window either with ⌘W or from the "Window" menu.
 	func addBackgroundImageObserver() {
 		NotificationCenter.default.addObserver(forName: .backgroundImageEdited, object: self.run, queue: nil, using: { notification in
 			if self.run.undoManager?.isUndoing ?? false || self.undoManager?.isRedoing ?? false {
-//
 			}
 		})
 	}
@@ -138,7 +135,6 @@ You can still close the window either with ⌘W or from the "Window" menu.
 			hideTitleBarCheck.target = self
 			keepOnTopCheck.target = self
 			hideTitleCheck.target = self
-//			backgroundImageWell.target = self
 			
 			hideTitleBarCheck.action = #selector(sendSettings(_:))
 			keepOnTopCheck.action = #selector(sendSettings(_:))
