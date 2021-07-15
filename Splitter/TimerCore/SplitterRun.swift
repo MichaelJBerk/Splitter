@@ -45,7 +45,7 @@ class SplitterRun: NSObject {
 		var vRun: Run = run
 		//LiveSplit-Core runs need to have at least one segment, so if there's a new run, we need to add a blank segment.
 		if isNewRun == true || run.len() == 0 {
-			vRun.pushSegment(Segment("1"))
+			vRun.pushSegment(Segment(""))
 		}
 		
 		if let editor = RunEditor(vRun) {
