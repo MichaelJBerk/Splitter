@@ -283,6 +283,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 	@IBAction func preferencesMenuItemActionHandler(_ sender: NSMenuItem) {
 		preferencesWindowController.show()
 	}
+	
+	func applicationWillTerminate(_ notification: Notification) {
+		NSColorPanel.shared.close()
+	}
 }
 	
 
