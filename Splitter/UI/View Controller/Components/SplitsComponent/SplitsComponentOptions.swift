@@ -285,6 +285,9 @@ extension SplitsComponent {
 		
 		let shorterColor = colorStack(title: "Shorter Color", allowsOpacity: false, runProperty: \.shorterColor)
 		d.addArrangedSubview(shorterColor.stack)
+		
+		let bestColor = colorStack(title: "Best Color", allowsOpacity: false, runProperty: \.bestColor)
+		d.addArrangedSubview(bestColor.stack)
 
 		let co = columnOptionsView
 		let superStack = SplitsOptionsView.makeView(tabs: [(d, "Options"), (co, "Columns")])
@@ -301,6 +304,9 @@ extension SplitsComponent {
 			shorterColor.stack.heightAnchor.constraint(equalToConstant: 30),
 			shorterColor.well.widthAnchor.constraint(equalTo: tableColor.well.widthAnchor),
 			shorterColor.well.leadingAnchor.constraint(equalTo: tableColor.well.leadingAnchor),
+			bestColor.stack.heightAnchor.constraint(equalToConstant: 30),
+			bestColor.well.widthAnchor.constraint(equalTo: tableColor.well.widthAnchor),
+			bestColor.well.leadingAnchor.constraint(equalTo: tableColor.well.leadingAnchor)
 		])
 		return superStack
 	}

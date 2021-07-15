@@ -782,6 +782,27 @@ class SplitterRun: NSObject {
 		
 	}
 	
+	var bestColor: NSColor {
+		get {
+			let editor = LayoutEditor(layout)
+			let color = editor!.state().fieldValue(false, 5).toColor()!
+			layout = editor!.close()
+			return color
+		}
+		set {
+			let oldSetting = bestColor
+			undoManager?.registerUndo(withTarget: self, handler: { r  in
+				r.bestColor = oldSetting
+			})
+			let newColor = SettingValue.fromNSColor(newValue)
+			if let editor = LayoutEditor(layout) {
+				editor.setGeneralSettingsValue(5, newColor)
+				self.layout = editor.close()
+			}
+			undoManager?.setActionName("Set Best Color")
+		}
+	}
+	
 	func saveToLSS() -> String {
 		let comparison = self.getComparision()
 		
