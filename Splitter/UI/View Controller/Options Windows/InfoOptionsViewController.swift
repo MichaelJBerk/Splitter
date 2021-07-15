@@ -45,11 +45,8 @@ class InfoOptionsViewController: NSViewController, NSPopoverDelegate, NSTextFiel
 		versionField.delegate = self
 		regionField.delegate = self
 		
-		NotificationCenter.default.addObserver(forName: .runEdited, object: nil, queue: nil, using: { _ in
+		NotificationCenter.default.addObserver(forName: .runEdited, object: run, queue: nil, using: { _ in
 			self.getDataFromRun()
-		})
-		NotificationCenter.default.addObserver(forName: .gameIconEdited, object: nil, queue: nil, using: { notification in
-			
 		})
 		
 		

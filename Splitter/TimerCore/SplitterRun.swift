@@ -250,7 +250,7 @@ class SplitterRun: NSObject {
 				undoManager?.setActionName(actionName)
 			}
 			editRun({edit($0, newValue)})
-			NotificationCenter.default.post(.init(name: .runEdited))
+			NotificationCenter.default.post(.init(name: .runEdited, object: self))
 		}
 	}
 

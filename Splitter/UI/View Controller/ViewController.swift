@@ -521,7 +521,7 @@ class ViewController: NSViewController {
 		splitsTableView.reloadData()
 		setColorForControls()
 		
-		NotificationCenter.default.addObserver(forName: .runEdited, object: nil, queue: nil, using: { notification in
+		NotificationCenter.default.addObserver(forName: .runEdited, object: self.run, queue: nil, using: { notification in
 			self.updateTextFields()
 			self.updateTimer()
 		})
@@ -531,7 +531,7 @@ class ViewController: NSViewController {
 		NotificationCenter.default.addObserver(forName: .updateIsEdited, object: self.run.timer, queue: nil, using: { notification in
 			self.document.updateChangeCount(.changeDone)
 		})
-		NotificationCenter.default.addObserver(forName: .runColorChanged, object: nil, queue: nil, using: { _ in
+		NotificationCenter.default.addObserver(forName: .runColorChanged, object: self.run, queue: nil, using: { _ in
 			self.setColorForControls()
 		})
 		undoManager?.enableUndoRegistration()
