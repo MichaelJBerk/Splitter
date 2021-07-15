@@ -66,9 +66,9 @@ class TitleComponent: NSStackView, SplitterComponent, NibLoadable {
 		infoButton.run = run
 		infoButton.image = nil
 		if #available(macOS 11.0, *) {
-			infoButton.image = NSImage(systemSymbolName: "gearshape.fill", accessibilityDescription: nil)
+			infoButton.image = NSImage(systemSymbolName: "info.circle.fill", accessibilityDescription: nil)
 		} else {
-			infoButton.image = NSImage(named: "gearshape")
+			infoButton.image = NSImage(named: "info")
 		}
 	}
 	

@@ -35,7 +35,7 @@
                     </connections>
                 </imageView>
                 <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D88-SL-Ta7">
-                    <rect key="frame" x="57" y="6" width="187" height="38"/>
+                    <rect key="frame" x="57" y="6" width="188" height="38"/>
                     <subviews>
                         <textField toolTip="Game/Run Title" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="749" translatesAutoresizingMaskIntoConstraints="NO" id="ltk-7Y-NIh" customClass="ThemedTextField" customModule="Splitter" customModuleProvider="target">
                             <rect key="frame" x="-2" y="19" width="191" height="19"/>
@@ -64,8 +64,8 @@
                     </customSpacing>
                 </stackView>
                 <button toolTip="Get Info" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="OYL-sj-m2h" customClass="ThemedButton" customModule="Splitter" customModuleProvider="target">
-                    <rect key="frame" x="253" y="10" width="38" height="27"/>
-                    <buttonCell key="cell" type="push" bezelStyle="rounded" image="gearshape" imagePosition="only" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GMt-cR-whp">
+                    <rect key="frame" x="254" y="10" width="37" height="27"/>
+                    <buttonCell key="cell" type="push" bezelStyle="rounded" image="info.circle.fill" catalog="system" imagePosition="only" alignment="center" controlSize="small" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="GMt-cR-whp">
                         <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                         <font key="font" metaFont="smallSystem"/>
                     </buttonCell>
@@ -99,6 +99,6 @@
         </stackView>
     </objects>
     <resources>
-        <image name="gearshape" width="107" height="107"/>
+        <image name="info.circle.fill" catalog="system" width="15" height="15"/>
     </resources>
 </document>
