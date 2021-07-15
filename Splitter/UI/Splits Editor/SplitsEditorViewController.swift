@@ -16,9 +16,14 @@ class SplitsEditorViewController: NSViewController, NibLoadable {
 	@IBOutlet weak var removeButton: NSButton!
 	@IBOutlet weak var cancelButton: NSButton!
 	@IBOutlet weak var okButton: NSButton!
-	
+	@IBOutlet weak var clearButton: NSButton!
 	
 	//MARK: Control Actions
+	
+	@IBAction func clearButtonAction(_ sender: NSButton) {
+		editor.clearTimes()
+		outlineView.reloadData()
+	}
 	
 	@IBAction func cancelButtonAction(_ sender: NSButton?) {
 		onDismiss = {
