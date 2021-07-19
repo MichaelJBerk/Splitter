@@ -78,7 +78,7 @@ extension AppDelegate {
 			//Removing this for now, because LiveSplit doesn't seem to have this as a feature
 //			SplitterKeybind(settings: .resetCurrentSplit, title: .ResetCurrentSplit, menuItemID: menuIdentifiers.runMenu.reset),
 			SplitterKeybind(settings: .showInfoPanel, title: .ShowInfoPanel, menuItemID: menuIdentifiers.runMenu.info),
-			SplitterKeybind(settings: .showColumnOptions, title: .ShowColumnOptions, menuItemID: menuIdentifiers.appearanceMenu.showColumnOptions)
+			SplitterKeybind(settings: .showColumnOptions, title: .ShowColumnOptions, menuItemID: menuIdentifiers.appearanceMenu.showLayoutEditor)
 		]
 	}
 	

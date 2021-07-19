@@ -70,6 +70,18 @@ class TitleComponent: NSStackView, SplitterComponent, NibLoadable {
 		} else {
 			infoButton.image = NSImage(named: "info")
 		}
+		NotificationCenter.default.addObserver(forName: .timerStateChanged, object: self.run.timer, queue: nil, using: { notification in
+			guard let timerState = notification.userInfo?["timerState"] as? TimerState else {return}
+			if timerState == .stopped {
+				self.editingEnabled(true)
+			} else {
+				self.editingEnabled(false)
+			}
+		})
+	}
+	
+	func editingEnabled(_ enabled: Bool) {
+		infoButton.isEnabled = enabled
 	}
 	
 	@objc func iconChanged() {

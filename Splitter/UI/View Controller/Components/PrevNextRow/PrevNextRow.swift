@@ -52,6 +52,7 @@ class PrevNextRow: NSStackView, NibLoadable, SplitterComponent {
 
 	@IBOutlet var prevButton: ThemedButton!
 	@IBOutlet var nextButton: ThemedButton!
+	@IBOutlet var contentView: NSView!
 	
 	var viewController: ViewController!
 	

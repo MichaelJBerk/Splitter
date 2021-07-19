@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
+        <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -36,9 +37,9 @@
                     <rect key="frame" x="429" y="0.0" width="52" height="20"/>
                     <subviews>
                         <button toolTip="Edit Segments" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="l5I-Qs-qXP" customClass="ThemedButton" customModule="Splitter" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="-3" width="25" height="24"/>
+                            <rect key="frame" x="0.0" y="-1" width="25" height="22"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="22" id="0b5-pa-qSp"/>
+                                <constraint firstAttribute="height" constant="20" id="0b5-pa-qSp"/>
                                 <constraint firstAttribute="width" constant="25" id="M1E-Bg-vod"/>
                             </constraints>
                             <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="pencil" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jrP-7t-rkI">
@@ -51,9 +52,9 @@
                             </connections>
                         </button>
                         <button toolTip="Edit Layout" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ypb-Uc-5tX" customClass="ThemedButton" customModule="Splitter" customModuleProvider="target">
-                            <rect key="frame" x="27" y="2" width="25" height="15"/>
+                            <rect key="frame" x="27" y="-1" width="25" height="22"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="22" id="Cgj-2J-1MS"/>
+                                <constraint firstAttribute="height" constant="20" id="Cgj-2J-1MS"/>
                                 <constraint firstAttribute="width" constant="25" id="R9t-nR-Eac"/>
                             </constraints>
                             <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSQuickLookTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="YuD-xH-Gdj">

@@ -53,13 +53,6 @@ final class HotkeysViewController: NSViewController, PreferencePane {
 			NSUserDefaultsController.shared.addObserver(self, forKeyPath: "@values.\(key.rawValue)", options: .new, context: context)
 		}
 	}
-	override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey : Any]?, context: UnsafeMutableRawPointer?) {
-		if context == self.context {
-//			let c = change[.newKey] as?
-			let setting = KeybindSettingsKey(rawValue: keyPath!)
-			
-		}
-	}
 	
 	override func viewWillDisappear() {
 		let app = NSApplication.shared.delegate as! AppDelegate

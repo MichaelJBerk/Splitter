@@ -724,6 +724,7 @@ class SplitterRun: NSObject {
 			NotificationCenter.default.post(name: .runColorChanged, object: self)
 		}
 	}
+	
 	var selectedColor: NSColor = .splitterRowSelected {
 		willSet {
 			let oldColor = self.selectedColor

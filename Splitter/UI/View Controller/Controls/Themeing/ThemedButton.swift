@@ -37,5 +37,8 @@ class ThemedButton: NSButton, Themeable {
 
         // Drawing code here.
     }
-    
+	override func mouseDown(with event: NSEvent) {
+		window?.makeFirstResponder(nil)
+		super.mouseDown(with: event)
+	}
 }

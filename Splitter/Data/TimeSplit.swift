@@ -128,7 +128,6 @@ class TimeSplit: NSObject, NSCopying, Comparable {
 	
 	///Returns the `TimeSplit` as a `String`, but only includes the first significant field
 	var shortTimeString: String {
-		let m = self.mil
 		if hour == 0 {
 			if min == 0 {
 				return String(format: "%.2d.%.2d", abs(sec), abs(mil))
@@ -140,8 +139,6 @@ class TimeSplit: NSObject, NSCopying, Comparable {
 	
 	///Returns a `shortTimeString`, but is rounded to the tenths instead of hundredths
 	var shortTimeStringTenths: String {
-		
-		let m = self.mil
 		let milRounded = Int((Double(mil)/10.00).rounded())
 		if hour == 0 {
 			if min == 0 {

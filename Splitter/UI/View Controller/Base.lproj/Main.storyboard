@@ -408,7 +408,7 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="n5c-GI-xuS"/>
-                                        <menuItem title="Get Info..." identifier="InfoMenuBarItem" id="5s9-6C-CWW">
+                                        <menuItem title="Get Info..." identifier="infoMenuItem" id="5s9-6C-CWW">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
                                                 <action selector="showInfoPanelMenuItem:" target="Ady-hI-5gd" id="7GL-xb-iAU"/>
@@ -434,10 +434,10 @@
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="R9V-ak-ekV"/>
-                                        <menuItem title="Edit Layout..." identifier="showColumnOptions" id="lgA-J9-tIc">
+                                        <menuItem title="Edit Layout..." identifier="showLayoutEditor" id="lgA-J9-tIc">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="showColumnOptionsMenuItem:" target="Ady-hI-5gd" id="SsK-Kp-MGm"/>
+                                                <action selector="showLayoutEditorMenuItem:" target="Ady-hI-5gd" id="SsK-Kp-MGm"/>
                                             </connections>
                                         </menuItem>
                                     </items>
@@ -554,7 +554,7 @@
                 <customObject id="2Tp-Fl-jBw" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <menu id="4TY-Vv-7Ay">
                     <items>
-                        <menuItem title="Get Info..." identifier="InfoMenuItem" id="o65-Ub-RLZ">
+                        <menuItem title="Get Info..." identifier="infoMenuItem" id="o65-Ub-RLZ">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
                                 <action selector="showInfoPanelMenuItem:" target="2Tp-Fl-jBw" id="yJV-Hg-F3U"/>
@@ -566,10 +566,10 @@
                                 <action selector="editSegmentsMenuItem:" target="2Tp-Fl-jBw" id="R8S-jD-jQW"/>
                             </connections>
                         </menuItem>
-                        <menuItem title="Edit Layout..." id="oCR-LY-QIt">
+                        <menuItem title="Edit Layout..." identifier="showLayoutEditor" id="oCR-LY-QIt">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
-                                <action selector="showColumnOptionsMenuItem:" target="2Tp-Fl-jBw" id="ykm-uD-h6o"/>
+                                <action selector="showLayoutEditorMenuItem:" target="2Tp-Fl-jBw" id="ykm-uD-h6o"/>
                             </connections>
                         </menuItem>
                         <menuItem isSeparatorItem="YES" id="k9c-W2-Zgm"/>
@@ -779,9 +779,8 @@
                                     </gridCell>
                                     <gridCell row="SqF-Cs-gOY" column="hFw-jj-DMe" id="8K8-PD-zix"/>
                                     <gridCell row="SqF-Cs-gOY" column="vxy-hV-tJz" id="oVc-on-1at">
-                                        <box key="contentView" horizontalHuggingPriority="246" verticalHuggingPriority="750" ambiguous="YES" boxType="separator" id="Efz-7h-PqV">
+                                        <box key="contentView" horizontalHuggingPriority="246" verticalHuggingPriority="750" ambiguous="YES" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="Efz-7h-PqV">
                                             <rect key="frame" x="112" y="25" width="100" height="5"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         </box>
                                     </gridCell>
                                     <gridCell row="Im8-Kr-krE" column="hFw-jj-DMe" id="E9H-Gu-1aj">

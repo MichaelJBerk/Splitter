@@ -58,6 +58,7 @@ extension ViewController {
 	///
 	/// This function does the grunt work of refreshing the UI timer, setting up LiveSplitCore to to time the run, etc. If all you need to do is start the timer, call `startTimer()` instead.
 	private func setupTimer() {
+		undoManager?.disableUndoRegistration()
 		NotificationCenter.default.post(name: .startTimer, object: self.run)
 		run.timer.start()
 		
@@ -147,6 +148,8 @@ extension ViewController {
 	func cancelRun() {
 		run.timer.resetRun(discardSplits: true)
 		run.attempts = run.attempts - 1
+		//Prevent run from appearing "Edited" if it wasn't edited before being cancelled
+		self.document.updateChangeCount(.changeUndone)
 		stopTimer()
 	}
 }

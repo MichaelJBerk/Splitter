@@ -8,7 +8,7 @@
 
 import Foundation
 
-///Touch bar delegate for the
+///Object managing the Touch Bar for the Run Window
 class RunTouchBarDelegate: NSObject, NSTouchBarDelegate {
 	
 	init(splitFunc: @escaping () -> (), pauseFunc: @escaping () -> (),
@@ -129,7 +129,7 @@ class RunTouchBarDelegate: NSObject, NSTouchBarDelegate {
 		let item = NSCustomTouchBarItem(identifier: .stopButton)
 		stopButton.isEnabled = !(sourceVC.timerState == .stopped)
 		item.view = stopButton
-		item.customizationLabel = "Stop Run"
+		item.customizationLabel = "Cancel Run"
 		return item
 	}
 	@objc func pauseButtonAction (_ sender: Any?) {
@@ -192,7 +192,6 @@ extension ViewController {
 		let items: [NSTouchBarItem.Identifier] =  [.prevButton, .startSplitButton, .pauseButton, .stopButton, .flexibleSpace, .currentTimeLabel]
 		touchBar.defaultItemIdentifiers = items
 		touchBar.customizationAllowedItemIdentifiers = items //+ [.fixedSpaceLarge, .fixedSpaceSmall]
-		let i = touchBar.itemIdentifiers
 		return touchBar
 	}
 	

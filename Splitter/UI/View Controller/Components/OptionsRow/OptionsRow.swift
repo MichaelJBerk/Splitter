@@ -31,9 +31,9 @@ class OptionsRow: NSStackView, NibLoadable, SplitterComponent {
 		NotificationCenter.default.addObserver(forName: .timerStateChanged, object: self.run.timer, queue: nil, using: { notification in
 			guard let timerState = notification.userInfo?["timerState"] as? TimerState else {return}
 			if timerState == .stopped {
-				self.addDeleteEnabled(true)
+				self.editingEnabled(true)
 			} else {
-				self.addDeleteEnabled(false)
+				self.editingEnabled(false)
 			}
 		})
 	}
@@ -60,10 +60,10 @@ class OptionsRow: NSStackView, NibLoadable, SplitterComponent {
 		viewController!.showLayoutEditor()
 	}
 	
-	//TODO: see if I should just have a var "addDeleteEnabled" and set both equal to it instead of having a function for it
 	///Sets whether the + and - buttons beneath the Table View are enabled or not
-	func addDeleteEnabled(_ enabled: Bool) {
+	func editingEnabled(_ enabled: Bool) {
 		plusButton.isEnabled = enabled
+		columnOptionsButton.isEnabled = enabled
 	}
 	
 	let showLabelKey = "showLabel"

@@ -58,7 +58,7 @@ extension ViewController {
 	@IBAction func showInfoPanelMenuItem(_ sender: Any) {
 		displayInfoPopover(sender)
 	}
-	@IBAction func showColumnOptionsMenuItem(_ sender: Any) {
+	@IBAction func showLayoutEditorMenuItem(_ sender: Any) {
 		showLayoutEditor()
 	}
 	
@@ -118,16 +118,27 @@ extension ViewController: NSMenuItemValidation {
 	func validateMenuItem(_ menuItem: NSMenuItem) -> Bool {
 		
 		if let id = menuItem.identifier {
-			if id == menuIdentifiers.fileMenu.resetDefaultRun {
+			switch id {
+			case menuIdentifiers.fileMenu.resetDefaultRun:
 				if SplitterDocumentController.sShared.templateFileExists {
 					return true
 				}
 				return false
+			case menuIdentifiers.runMenu.info,
+				 menuIdentifiers.runMenu.editSegments,
+				 menuIdentifiers.appearanceMenu.showLayoutEditor:
+				if self.timerState == .stopped {
+					return true
+				}
+				return false
+			default:
+				break
 			}
 			if let enabled = enabledMenuItems[id] {
 				return enabled
 			}
 		}
+		
 		return true
 	}
 	

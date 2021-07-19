@@ -310,7 +310,7 @@ class ViewController: NSViewController {
 	}
 	///Handles various tasks to set up certain keyboard commands, as well as the Touch Bar
 	private func keyAndMenuSetup() {
-		touchBarDelegate = RunTouchBarDelegate(splitFunc: startSplitTimer, pauseFunc: pauseResumeTimer, prevFunc: run.timer.previousSplit, stopFunc: stopTimer, sourceVC: self)
+		touchBarDelegate = RunTouchBarDelegate(splitFunc: startSplitTimer, pauseFunc: pauseResumeTimer, prevFunc: run.timer.previousSplit, stopFunc: cancelRun, sourceVC: self)
 		
 		#if DEBUG
 		let breakMI = NSMenuItem(title: "Break", action: #selector(breakFunc), keyEquivalent: "b")
@@ -360,10 +360,12 @@ class ViewController: NSViewController {
 			
 			stopTimer()
 			self.splitsTableView.reloadData(forRowIndexes: IndexSet(arrayLiteral: 0), columnIndexes: IndexSet(arrayLiteral: 0,1,2,3,4,5))
+			if !(undoManager?.isUndoRegistrationEnabled ?? true) {
+				undoManager?.enableUndoRegistration()
+			}
 		} else if timerState == .running {
 			timerStopItem?.title = "Cancel Run"
 			setMenuItemEnabled(item: timerStopItem, enabled: true)
-			
 			startSplitItem?.title = "Split"
 			setMenuItemEnabled(item: startSplitItem, enabled: true)
 			setMenuItemEnabled(item: prevSplitItem, enabled: true)
@@ -510,12 +512,13 @@ class ViewController: NSViewController {
 		self.addTimerStateChangedObserver()
 		//This line of code looks redundant, but it's here in order to make the timerState's notification trigger
 		self.timerState = .stopped
+		//Need to disable undo registration again now, since it gets enabled when setting timerState to `stopped`
+		undoManager?.disableUndoRegistration()
 		self.addSplitChangedObserver()
 		self.addBackgroundImageChangedObserver()
 		
 		updateTextFields()
 		
-		print("VWA Done!")
 		splitsTableView.reloadData()
 		setColorForControls()
 		
@@ -626,6 +629,10 @@ class ViewController: NSViewController {
 	
 	///Displays the "get info" popover
 	@IBAction func displayInfoPopover(_ sender: Any) {
+		if timerState != .stopped {
+			NSSound.beep()
+			return
+		}
 		infoPanelPopover?.contentViewController?.view.window?.close()
 		let destination = NSStoryboard(name: "Main", bundle: nil).instantiateController(withIdentifier: InfoOptionsViewController.storyboardID) as! InfoOptionsViewController
 		destination.delegate = self
@@ -656,42 +663,13 @@ class ViewController: NSViewController {
 		columnOptionsPopover = pop
 	}
 	func showLayoutEditor() {
+		if timerState != .stopped {
+			NSSound.beep()
+			return
+		}
 		displayLayoutEditorPopover(nil)
 	}
 	
-	
-	func displayLayoutEditorWindow(sender: Any?) {
-		if let coWindow = columnOptionsWindow {
-			coWindow.makeKeyAndOrderFront(self)
-		} else {
-			let layoutEditor = NSStoryboard(name: "LayoutEditor", bundle: nil).instantiateInitialController() as! LayoutEditorViewController
-			layoutEditor.runController = self
-			
-			let coPanel = NSPanel(contentViewController: layoutEditor)
-			coPanel.titlebarAppearsTransparent = true
-			coPanel.styleMask.insert(.utilityWindow)
-			coPanel.styleMask.insert(.fullSizeContentView)
-			coPanel.titleVisibility = .hidden
-			coPanel.standardWindowButton(.miniaturizeButton)?.isHidden = true
-			coPanel.standardWindowButton(.zoomButton)?.isHidden = true
-			coPanel.isMovableByWindowBackground = true
-			
-			coPanel.animationBehavior = .utilityWindow
-			
-			var coButtonPoint = CGPoint(x: columnOptionsPopoverButton.frame.maxX, y: 0)
-			coButtonPoint = columnOptionsPopoverButton.convert(coButtonPoint, to: view)
-			coButtonPoint = view.window!.convertPoint(toScreen: coButtonPoint)
-			coButtonPoint.x += 10
-			coPanel.setFrameTopLeftPoint(coButtonPoint)
-			coPanel.collectionBehavior = .transient
-			coPanel.appearance = self.view.effectiveAppearance
-			let windowController = NSWindowController(window: coPanel)
-			view.window?.addChildWindow(coPanel, ordered: .above)
-			columnOptionsWindow = coPanel
-			windowController.showWindow(nil)
-			
-		}
-	}
 	func displaySegmentEditor() {
 		let tvc = SplitsEditorViewController.instantiateView(with: run)
 		presentAsSheet(tvc)

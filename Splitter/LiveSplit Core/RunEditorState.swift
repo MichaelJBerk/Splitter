@@ -172,25 +172,14 @@ struct IconChangeState: Codable, Equatable, RawRepresentable {
 	
 	init(from decoder: Decoder) throws {
 		let container = try decoder.singleValueContainer()
-		var decodeError = DecodingError.valueNotFound(Data.self, .init(codingPath: decoder.codingPath, debugDescription: "HEY, it's an error! "))
+		let decodeError = DecodingError.valueNotFound(Data.self, .init(codingPath: decoder.codingPath, debugDescription: "Icon Change State not found"))
 		if var icString = try container.decode(String?.self) {
 			icString = icString.replacingOccurrences(of: "data:;base64,", with: "")
 			let d = Data(base64Encoded: icString)!
-//			if d.count == 0 {
-//				throw decodeError
-////				DecodingError.valueNotFound(Any.self, decoder.codingPath)
-////				let d2 = try container.decode(Int.self)
-////				rawValue = Data()
-//			} else {
-//				rawValue = d
-//
-//			}
 			rawValue = d
 		} else {
 			throw decodeError
-//			rawValue = try container.decode(Data.self)
 		}
-//			container.decodeNil()
 	}
 	func encode(to encoder: Encoder) throws {
 		let b64 = "data:;base64," + rawValue.base64EncodedString()

@@ -232,14 +232,13 @@ extension SplitsComponent {
 		return stack
 	}
 	
-	func colorStack(title: String, allowsOpacity: Bool = true, runProperty: WritableKeyPath<SplitterRun, NSColor>) -> (stack: NSStackView, well: SplitterColorWell) {
+	func colorStack(title: String, allowsOpacity: Bool = true, runProperty: WritableKeyPath<SplitterRun, NSColor>, defaultColor: NSColor) -> (stack: NSStackView, well: SplitterColorWell) {
 		let label = NSTextField(labelWithString: title)
 		let well = SplitterColorWell(action: { well in
 			self.run[keyPath: runProperty] = well.color
 		})
 		well.allowsOpacity = allowsOpacity
-		let defaultColor = run![keyPath: runProperty]
-		well.color = defaultColor
+		well.color = self.run[keyPath: runProperty]
 		let resetButton = ComponentOptionsButton(title: "Reset", clickAction: { _ in
 			well.color = defaultColor
 			well.colorWellAction(well)
@@ -270,23 +269,23 @@ extension SplitsComponent {
 			separatorView.heightAnchor.constraint(equalToConstant: 1)
 		])
 		
-		let tableColor = colorStack(title: "Background Color", runProperty: \.tableColor)
+		let tableColor = colorStack(title: "Background Color", runProperty: \.tableColor, defaultColor: .splitterTableViewColor)
 		d.addArrangedSubview(tableColor.stack)
 		
-		let selectedColor = colorStack(title: "Selected Color", runProperty: \.selectedColor)
+		let selectedColor = colorStack(title: "Selected Color", runProperty: \.selectedColor, defaultColor: .splitterRowSelected)
 		d.addArrangedSubview(selectedColor.stack)
 		
 		let diffsLabel = NSTextField(labelWithString: "Diffs")
 		d.addArrangedSubview(diffsLabel)
 		
 		
-		let longerColor = colorStack(title: "Longer Color", allowsOpacity: false, runProperty: \.longerColor)
+		let longerColor = colorStack(title: "Longer Color", allowsOpacity: false, runProperty: \.longerColor, defaultColor: .defaultLongerColor)
 		d.addArrangedSubview(longerColor.stack)
 		
-		let shorterColor = colorStack(title: "Shorter Color", allowsOpacity: false, runProperty: \.shorterColor)
+		let shorterColor = colorStack(title: "Shorter Color", allowsOpacity: false, runProperty: \.shorterColor, defaultColor: .defaultShorterColor)
 		d.addArrangedSubview(shorterColor.stack)
 		
-		let bestColor = colorStack(title: "Best Color", allowsOpacity: false, runProperty: \.bestColor)
+		let bestColor = colorStack(title: "Best Color", allowsOpacity: false, runProperty: \.bestColor, defaultColor: .defaultBestColor)
 		d.addArrangedSubview(bestColor.stack)
 
 		let co = columnOptionsView

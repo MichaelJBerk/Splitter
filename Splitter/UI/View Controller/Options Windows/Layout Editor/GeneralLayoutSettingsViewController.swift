@@ -48,7 +48,7 @@ class GeneralLayoutSettingsViewController: NSViewController {
 		textColorWell.target = self
 		textColorWell.action = #selector(textColorWellAction(_:))
 		let textResetButton = ComponentOptionsButton(title: "Reset", clickAction: { _ in
-			textColorWell.color = .white
+			textColorWell.color = .splitterDefaultTextColor
 			self.textColorWellAction(textColorWell)
 		})
 		

@@ -103,12 +103,6 @@ class SplitsComponentDelegate: NSObject, NSTableViewDelegate, NSTableViewDataSou
 			default:
 				break
 			}
-			if let tf = cell.textField as? ThemedTextField {
-				tf.run = run
-				if tf.themeable {
-					tf.setColor()
-				}
-			}
 			return cell
 		}
 		return nil

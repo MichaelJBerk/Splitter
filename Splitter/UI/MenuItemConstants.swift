@@ -42,7 +42,7 @@ enum menuIdentifiers {
 		static let back = NSUserInterfaceItemIdentifier("timerBack")
 		static let skipSplit = NSUserInterfaceItemIdentifier("skipSplit")
 		
-		static let info = NSUserInterfaceItemIdentifier("InfoMenuBarItem")
+		static let info = NSUserInterfaceItemIdentifier("infoMenuItem")
 		
 		static let editSegments = NSUserInterfaceItemIdentifier("editSegmentsMenuItem")
 	}
@@ -53,7 +53,7 @@ enum menuIdentifiers {
 		static let hideTitleBar = NSUserInterfaceItemIdentifier("HideStoplightsItem")
 		static let hideButtons = NSUserInterfaceItemIdentifier("HideButtonsItem")
 		
-		static let showColumnOptions = NSUserInterfaceItemIdentifier("showColumnOptions")
+		static let showLayoutEditor = NSUserInterfaceItemIdentifier("showLayoutEditor")
 	}
 	
 	//MARK: - Window Menu
@@ -64,11 +64,6 @@ enum menuIdentifiers {
 		static let welcomeWindowItem = NSUserInterfaceItemIdentifier("welcomeWindowMenuItem")
 	}
 	
-	//MARK: Right-Click Menu
-	///Menu items for the main View Controller
-	enum runVCMenu {
-		static let infoPanel = NSUserInterfaceItemIdentifier("InfoMenuItem")
-	}
 }
 
 //MARK: ButtonIdentifiers
