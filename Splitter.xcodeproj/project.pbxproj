@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		48062F3E1BDE42F355A78B7C /* Pods_SplitterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A14888F3F2AB0DB353778B8C /* Pods_SplitterTests.framework */; };
+		071F8D0A9AB0317E095AA9EA /* Pods_Splitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D71AF7430571AF37A188FFE /* Pods_Splitter.framework */; };
 		4A01B802268631FC00F15A50 /* SplitsEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A01B800268631FC00F15A50 /* SplitsEditorViewController.swift */; };
 		4A01B803268631FC00F15A50 /* SplitsEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A01B801268631FC00F15A50 /* SplitsEditorViewController.xib */; };
 		4A01B805268632D400F15A50 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A01B804268632D400F15A50 /* NibLoadable.swift */; };
@@ -112,6 +112,7 @@
 		4AC2745826990E04007ED8F5 /* GeneralLayoutSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC2745726990E04007ED8F5 /* GeneralLayoutSettingsViewController.swift */; };
 		4AC401F324BE145F005180F1 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		4ACCEA7823B02F520068F89E /* TimeSplit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACCEA7723B02F520068F89E /* TimeSplit.swift */; };
+		4ACF41B626B3166E006DF2C8 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ACF41B526B3166E006DF2C8 /* SwiftUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		4ACFB1BD262F4E9700EA79B6 /* TitleComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ACFB1BC262F4E9700EA79B6 /* TitleComponent.xib */; };
 		4ACFB1E7262F53B100EA79B6 /* SplitsComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ACFB1E6262F53B100EA79B6 /* SplitsComponent.xib */; };
 		4AD026EB26090ED400F6CD0C /* SplitterComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD026EA26090ED300F6CD0C /* SplitterComponent.swift */; };
@@ -135,8 +136,8 @@
 		4AFAD84524CF2CF8006FC480 /* WelcomeWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFAD84424CF2CF8006FC480 /* WelcomeWindowController.swift */; };
 		4AFD0F8B25C38F4C003D3171 /* AppCenterCrashes in Frameworks */ = {isa = PBXBuildFile; productRef = 4AFD0F8A25C38F4C003D3171 /* AppCenterCrashes */; };
 		4AFD0F8D25C38F4C003D3171 /* AppCenterAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4AFD0F8C25C38F4C003D3171 /* AppCenterAnalytics */; };
-		A1CC024AF66A703778CD1370 /* Pods_SplitterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C0DE81AC7E6573AA2121A206 /* Pods_SplitterUITests.framework */; };
-		CA8419FF140C00045EBA5B68 /* Pods_Splitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 34AD6C2466B7A595C7B6C1B0 /* Pods_Splitter.framework */; };
+		8804F3EC8981B4A4FF1AB102 /* Pods_SplitterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E128E02F492B64176861511 /* Pods_SplitterTests.framework */; };
+		CE3CEB918F0A74684203013F /* Pods_SplitterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2184CE06522900A3336AB98 /* Pods_SplitterUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -170,10 +171,8 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		224FCB634535455ECB8CA680 /* Pods-Splitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitter.release.xcconfig"; path = "Target Support Files/Pods-Splitter/Pods-Splitter.release.xcconfig"; sourceTree = "<group>"; };
-		34AD6C2466B7A595C7B6C1B0 /* Pods_Splitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Splitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		37DDA047522F91A8BC338042 /* Pods-SplitterUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SplitterUITests.release.xcconfig"; path = "Target Support Files/Pods-SplitterUITests/Pods-SplitterUITests.release.xcconfig"; sourceTree = "<group>"; };
-		3BC3162DD6894F9DE2C6229A /* Pods-Splitter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitter.debug.xcconfig"; path = "Target Support Files/Pods-Splitter/Pods-Splitter.debug.xcconfig"; sourceTree = "<group>"; };
+		066C91AF0C3A6BFBCF13D462 /* Pods-SplitterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SplitterTests.debug.xcconfig"; path = "Target Support Files/Pods-SplitterTests/Pods-SplitterTests.debug.xcconfig"; sourceTree = "<group>"; };
+		3D71AF7430571AF37A188FFE /* Pods_Splitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Splitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A01B800268631FC00F15A50 /* SplitsEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitsEditorViewController.swift; sourceTree = "<group>"; };
 		4A01B801268631FC00F15A50 /* SplitsEditorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplitsEditorViewController.xib; sourceTree = "<group>"; };
 		4A01B804268632D400F15A50 /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
@@ -276,6 +275,7 @@
 		4AC24DBB23EB4F17003008BF /* SplitterTableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterTableDelegate.swift; sourceTree = "<group>"; };
 		4AC2745726990E04007ED8F5 /* GeneralLayoutSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralLayoutSettingsViewController.swift; sourceTree = "<group>"; };
 		4ACCEA7723B02F520068F89E /* TimeSplit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSplit.swift; sourceTree = "<group>"; };
+		4ACF41B526B3166E006DF2C8 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		4ACFB1BC262F4E9700EA79B6 /* TitleComponent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleComponent.xib; sourceTree = "<group>"; };
 		4ACFB1E6262F53B100EA79B6 /* SplitsComponent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplitsComponent.xib; sourceTree = "<group>"; };
 		4AD026EA26090ED300F6CD0C /* SplitterComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterComponent.swift; sourceTree = "<group>"; };
@@ -302,11 +302,13 @@
 		4AF9E8C124CE448B00DFD5BE /* SplitterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterUITests.swift; sourceTree = "<group>"; };
 		4AF9E8C324CE448B00DFD5BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4AFAD84424CF2CF8006FC480 /* WelcomeWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WelcomeWindowController.swift; path = "View Controller/WelcomeWindowController.swift"; sourceTree = "<group>"; };
-		6FD7A038B3DC1F64A19E62D1 /* Pods-SplitterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SplitterTests.debug.xcconfig"; path = "Target Support Files/Pods-SplitterTests/Pods-SplitterTests.debug.xcconfig"; sourceTree = "<group>"; };
-		A14888F3F2AB0DB353778B8C /* Pods_SplitterTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SplitterTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		C0DE81AC7E6573AA2121A206 /* Pods_SplitterUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SplitterUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F0374B19CA89485AD130F7DE /* Pods-SplitterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SplitterTests.release.xcconfig"; path = "Target Support Files/Pods-SplitterTests/Pods-SplitterTests.release.xcconfig"; sourceTree = "<group>"; };
-		F504C78BD9776D4EA5C114C9 /* Pods-SplitterUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SplitterUITests.debug.xcconfig"; path = "Target Support Files/Pods-SplitterUITests/Pods-SplitterUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		6761EE8748C7A21FE9D7C3A3 /* Pods-Splitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitter.release.xcconfig"; path = "Target Support Files/Pods-Splitter/Pods-Splitter.release.xcconfig"; sourceTree = "<group>"; };
+		6E128E02F492B64176861511 /* Pods_SplitterTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SplitterTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6F3DBFB45CA433BA0B73792A /* Pods-SplitterUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SplitterUITests.debug.xcconfig"; path = "Target Support Files/Pods-SplitterUITests/Pods-SplitterUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		854963043C5D93DC7DF61ABB /* Pods-Splitter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitter.debug.xcconfig"; path = "Target Support Files/Pods-Splitter/Pods-Splitter.debug.xcconfig"; sourceTree = "<group>"; };
+		B0DC1FCA7DE270DBAC506EF5 /* Pods-SplitterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SplitterTests.release.xcconfig"; path = "Target Support Files/Pods-SplitterTests/Pods-SplitterTests.release.xcconfig"; sourceTree = "<group>"; };
+		C2184CE06522900A3336AB98 /* Pods_SplitterUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SplitterUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D269489EC44490F22172292B /* Pods-SplitterUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SplitterUITests.release.xcconfig"; path = "Target Support Files/Pods-SplitterUITests/Pods-SplitterUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -314,6 +316,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4ACF41B626B3166E006DF2C8 /* SwiftUI.framework in Frameworks */,
 				4AD7662E23DA5F9A0052409C /* Files in Frameworks */,
 				4AFD0F8B25C38F4C003D3171 /* AppCenterCrashes in Frameworks */,
 				4ABB38A8255C79B00037536E /* SwiftyJSON in Frameworks */,
@@ -324,7 +327,7 @@
 				4A7F94AA26332DBE002861E3 /* Codextended in Frameworks */,
 				4A6B4F7423F07C3900CB781F /* libresolv.tbd in Frameworks */,
 				4AFD0F8D25C38F4C003D3171 /* AppCenterAnalytics in Frameworks */,
-				CA8419FF140C00045EBA5B68 /* Pods_Splitter.framework in Frameworks */,
+				071F8D0A9AB0317E095AA9EA /* Pods_Splitter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -332,7 +335,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48062F3E1BDE42F355A78B7C /* Pods_SplitterTests.framework in Frameworks */,
+				8804F3EC8981B4A4FF1AB102 /* Pods_SplitterTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -342,7 +345,7 @@
 			files = (
 				4A3A082226727B5F00F3EB05 /* AppCenterAnalytics in Frameworks */,
 				4A3A082426727B5F00F3EB05 /* AppCenterCrashes in Frameworks */,
-				A1CC024AF66A703778CD1370 /* Pods_SplitterUITests.framework in Frameworks */,
+				CE3CEB918F0A74684203013F /* Pods_SplitterUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -352,12 +355,13 @@
 		0721BB701FB4FFBBA3F65AE9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4ACF41B526B3166E006DF2C8 /* SwiftUI.framework */,
 				4A73B75023F0722800010F30 /* libresolv.tbd */,
 				4AA357B42416F79900219E65 /* liblivesplit_core.a */,
 				4AB3B93D23D96C10009C6AA6 /* Quartz.framework */,
-				34AD6C2466B7A595C7B6C1B0 /* Pods_Splitter.framework */,
-				C0DE81AC7E6573AA2121A206 /* Pods_SplitterUITests.framework */,
-				A14888F3F2AB0DB353778B8C /* Pods_SplitterTests.framework */,
+				3D71AF7430571AF37A188FFE /* Pods_Splitter.framework */,
+				6E128E02F492B64176861511 /* Pods_SplitterTests.framework */,
+				C2184CE06522900A3336AB98 /* Pods_SplitterUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -834,12 +838,12 @@
 		D37BEB9F742A1CC70715DDD3 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				3BC3162DD6894F9DE2C6229A /* Pods-Splitter.debug.xcconfig */,
-				224FCB634535455ECB8CA680 /* Pods-Splitter.release.xcconfig */,
-				F504C78BD9776D4EA5C114C9 /* Pods-SplitterUITests.debug.xcconfig */,
-				37DDA047522F91A8BC338042 /* Pods-SplitterUITests.release.xcconfig */,
-				6FD7A038B3DC1F64A19E62D1 /* Pods-SplitterTests.debug.xcconfig */,
-				F0374B19CA89485AD130F7DE /* Pods-SplitterTests.release.xcconfig */,
+				854963043C5D93DC7DF61ABB /* Pods-Splitter.debug.xcconfig */,
+				6761EE8748C7A21FE9D7C3A3 /* Pods-Splitter.release.xcconfig */,
+				066C91AF0C3A6BFBCF13D462 /* Pods-SplitterTests.debug.xcconfig */,
+				B0DC1FCA7DE270DBAC506EF5 /* Pods-SplitterTests.release.xcconfig */,
+				6F3DBFB45CA433BA0B73792A /* Pods-SplitterUITests.debug.xcconfig */,
+				D269489EC44490F22172292B /* Pods-SplitterUITests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -851,14 +855,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4A230EA123B00A1E00959C57 /* Build configuration list for PBXNativeTarget "Splitter" */;
 			buildPhases = (
-				E0FBD6246C45D51D0E7201A8 /* [CP] Check Pods Manifest.lock */,
+				3F959CA5F8D8667C869A9E69 /* [CP] Check Pods Manifest.lock */,
 				4A66573423E3E0CE00D14A67 /* Run Script */,
 				4A230E8B23B00A1D00959C57 /* Sources */,
 				4A230E8C23B00A1D00959C57 /* Frameworks */,
 				4A230E8D23B00A1D00959C57 /* Resources */,
 				4AD7665C23DB5CFC0052409C /* Embed Frameworks */,
 				4A66573523E3E0D900D14A67 /* ShellScript */,
-				70A3E5EE96DC2FEC5CBCD380 /* [CP] Embed Pods Frameworks */,
+				0B8E043ACE44C9951BB8C2E3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -886,11 +890,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4A71055024BE267300FA9127 /* Build configuration list for PBXNativeTarget "SplitterTests" */;
 			buildPhases = (
-				EADAE0B5E89E0899B6485BB0 /* [CP] Check Pods Manifest.lock */,
+				79E596C692C72203D439FAFF /* [CP] Check Pods Manifest.lock */,
 				4A71054524BE267300FA9127 /* Sources */,
 				4A71054624BE267300FA9127 /* Frameworks */,
 				4A71054724BE267300FA9127 /* Resources */,
-				659FC24F9C3D464FB72555C2 /* [CP] Embed Pods Frameworks */,
+				663369104CAE1CBF1648D0F0 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -906,11 +910,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4AF9E8C624CE448B00DFD5BE /* Build configuration list for PBXNativeTarget "SplitterUITests" */;
 			buildPhases = (
-				FD56E299F09D714FBF7E820B /* [CP] Check Pods Manifest.lock */,
+				D58613973404DB8B66588FFB /* [CP] Check Pods Manifest.lock */,
 				4AF9E8BB24CE448B00DFD5BE /* Sources */,
 				4AF9E8BC24CE448B00DFD5BE /* Frameworks */,
 				4AF9E8BD24CE448B00DFD5BE /* Resources */,
-				0EC5D3E4AE498A5A83934458 /* [CP] Embed Pods Frameworks */,
+				5C74E688F4239AE0D1302A28 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1026,21 +1030,43 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		0EC5D3E4AE498A5A83934458 /* [CP] Embed Pods Frameworks */ = {
+		0B8E043ACE44C9951BB8C2E3 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SplitterUITests/Pods-SplitterUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Splitter/Pods-Splitter-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SplitterUITests/Pods-SplitterUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Splitter/Pods-Splitter-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SplitterUITests/Pods-SplitterUITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Splitter/Pods-Splitter-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3F959CA5F8D8667C869A9E69 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Splitter-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
 		4A66573423E3E0CE00D14A67 /* Run Script */ = {
@@ -1078,7 +1104,24 @@
 			shellPath = /bin/sh;
 			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n#if [ $CONFIGURATION == Release ]; then\n#    echo \"Bumping build number...\"\n#    plist=${PROJECT_DIR}/${INFOPLIST_FILE}\n\n# increment the build number (ie 115 to 116)\n #   buildnum=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${plist}\")\n  #  if [[ \"${buildnum}\" == \"\" ]]; then\n   #     echo \"No build number in $plist\"\n    #    exit 2\n    #fi\n\n    #buildnum=$(expr $buildnum + 1)\n    #/usr/libexec/Plistbuddy -c \"Set CFBundleVersion $buildnum\" \"${plist}\"\n    #echo \"Bumped build number to $buildnum\"\n\n#else\n #   echo $CONFIGURATION \" build - Not bumping build number.\"\n#fi\n";
 		};
-		659FC24F9C3D464FB72555C2 /* [CP] Embed Pods Frameworks */ = {
+		5C74E688F4239AE0D1302A28 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SplitterUITests/Pods-SplitterUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-SplitterUITests/Pods-SplitterUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SplitterUITests/Pods-SplitterUITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		663369104CAE1CBF1648D0F0 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1095,46 +1138,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SplitterTests/Pods-SplitterTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		70A3E5EE96DC2FEC5CBCD380 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Splitter/Pods-Splitter-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Splitter/Pods-Splitter-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Splitter/Pods-Splitter-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E0FBD6246C45D51D0E7201A8 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-Splitter-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EADAE0B5E89E0899B6485BB0 /* [CP] Check Pods Manifest.lock */ = {
+		79E596C692C72203D439FAFF /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1156,7 +1160,7 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		FD56E299F09D714FBF7E820B /* [CP] Check Pods Manifest.lock */ = {
+		D58613973404DB8B66588FFB /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -1443,55 +1447,7 @@
 		};
 		4A230EA223B00A1E00959C57 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 3BC3162DD6894F9DE2C6229A /* Pods-Splitter.debug.xcconfig */;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
-				CODE_SIGN_ENTITLEMENTS = Splitter/Splitter.entitlements;
-				CODE_SIGN_IDENTITY = "Apple Development";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 261;
-				DEFINES_MODULE = YES;
-				DEVELOPMENT_TEAM = 39SZK2C73D;
-				ENABLE_HARDENED_RUNTIME = YES;
-				HEADER_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Keys/Keys.framework/Headers\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/Preferences/Preferences.framework/Headers\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SWXMLHash/SWXMLHash.framework/Headers\"",
-					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftyXMLParser/SwiftyXMLParser.framework/Headers\"",
-					"\"$(PROJECT_DIR)/Splitter/LiveSplit Core/\"",
-				);
-				INFOPLIST_FILE = Splitter/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = (
-					"$(inherited)",
-					"\"@executable_path/\"",
-					"@executable_path/../Frameworks",
-					"$(BUILT_PRODUCTS_DIR)",
-				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/livesplit-core/target/release",
-				);
-				MACOSX_DEPLOYMENT_TARGET = 10.14;
-				MARKETING_VERSION = 4.0;
-				MODULEMAP_FILE = "\"$(PROJECT_DIR)/Splitter/LiveSplit Core/module.map\"";
-				OTHER_CODE_SIGN_FLAGS = "";
-				PRODUCT_BUNDLE_IDENTIFIER = com.mibe.Splitter;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE_SPECIFIER = "";
-				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Splitter/Splitter-Bridging-Header.h";
-				SWIFT_VERSION = 5.0;
-				VERSIONING_SYSTEM = "apple-generic";
-			};
-			name = Debug;
-		};
-		4A230EA323B00A1E00959C57 /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 224FCB634535455ECB8CA680 /* Pods-Splitter.release.xcconfig */;
+			baseConfigurationReference = 854963043C5D93DC7DF61ABB /* Pods-Splitter.debug.xcconfig */;
 			buildSettings = {
 				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
@@ -1534,13 +1490,64 @@
 				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Splitter/Splitter-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
+				USER_HEADER_SEARCH_PATHS = "${PODS_ROOT}/**";
+				VERSIONING_SYSTEM = "apple-generic";
+			};
+			name = Debug;
+		};
+		4A230EA323B00A1E00959C57 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6761EE8748C7A21FE9D7C3A3 /* Pods-Splitter.release.xcconfig */;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD)";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
+				CODE_SIGN_ENTITLEMENTS = Splitter/Splitter.entitlements;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 261;
+				DEFINES_MODULE = YES;
+				DEVELOPMENT_TEAM = 39SZK2C73D;
+				ENABLE_HARDENED_RUNTIME = YES;
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Keys/Keys.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/Preferences/Preferences.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SWXMLHash/SWXMLHash.framework/Headers\"",
+					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftyXMLParser/SwiftyXMLParser.framework/Headers\"",
+					"\"$(PROJECT_DIR)/Splitter/LiveSplit Core/\"",
+				);
+				INFOPLIST_FILE = Splitter/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"@executable_path/\"",
+					"@executable_path/../Frameworks",
+					"$(BUILT_PRODUCTS_DIR)",
+				);
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+					"$(PROJECT_DIR)/livesplit-core/target/release",
+				);
+				MACOSX_DEPLOYMENT_TARGET = 10.14;
+				MARKETING_VERSION = 4.0;
+				MODULEMAP_FILE = "\"$(PROJECT_DIR)/Splitter/LiveSplit Core/module.map\"";
+				ONLY_ACTIVE_ARCH = YES;
+				OTHER_CODE_SIGN_FLAGS = "";
+				PRODUCT_BUNDLE_IDENTIFIER = com.mibe.Splitter;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Splitter/Splitter-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				USER_HEADER_SEARCH_PATHS = "${PODS_ROOT}/**";
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;
 		};
 		4A71055124BE267300FA9127 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6FD7A038B3DC1F64A19E62D1 /* Pods-SplitterTests.debug.xcconfig */;
+			baseConfigurationReference = 066C91AF0C3A6BFBCF13D462 /* Pods-SplitterTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1561,7 +1568,7 @@
 		};
 		4A71055224BE267300FA9127 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F0374B19CA89485AD130F7DE /* Pods-SplitterTests.release.xcconfig */;
+			baseConfigurationReference = B0DC1FCA7DE270DBAC506EF5 /* Pods-SplitterTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1582,7 +1589,7 @@
 		};
 		4AF9E8C724CE448B00DFD5BE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = F504C78BD9776D4EA5C114C9 /* Pods-SplitterUITests.debug.xcconfig */;
+			baseConfigurationReference = 6F3DBFB45CA433BA0B73792A /* Pods-SplitterUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1602,7 +1609,7 @@
 		};
 		4AF9E8C824CE448B00DFD5BE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 37DDA047522F91A8BC338042 /* Pods-SplitterUITests.release.xcconfig */;
+			baseConfigurationReference = D269489EC44490F22172292B /* Pods-SplitterUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;

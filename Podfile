@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :osx, '10.15'
+platform :osx, '10.14'
   use_frameworks!
 
   def splitter_pods
