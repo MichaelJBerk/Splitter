@@ -31,14 +31,10 @@ class TimeRow: NSStackView, NibLoadable, SplitterComponent, NSTextFieldDelegate 
 		detachesHiddenViews = false
 		attemptsStackView.detachesHiddenViews = false
 		attemptsField.delegate = self
-		NotificationCenter.default.addObserver(forName: .startTimer, object: self.run, queue: nil, using: { _ in
-			self.refreshUITimer = Cocoa.Timer.scheduledTimer(withTimeInterval: 0.001, repeats: true, block: { timer in
-				self.viewController.updateTimer()
-			})
-		})
-		NotificationCenter.default.addObserver(forName: .stopTimer, object: self.run, queue: nil, using: { _ in
-			self.refreshUITimer.invalidate()
-		})
+		run.updateFunctions.append(updateUI)
+	}
+	func updateUI() {
+		self.viewController.updateTimer()
 	}
 	
 	let showAttemptsKey = "showAttempts"

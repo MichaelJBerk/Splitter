@@ -94,7 +94,10 @@ extension ViewController {
 		var cols: [Int] = []
 		var i = 0
 		while i < splitsTableView.tableColumns.count {
-			cols.append(i)
+			let id = splitsTableView.tableColumns[i].identifier
+			if !(id == STVColumnID.imageColumn || id == STVColumnID.splitTitleColumn) {
+				cols.append(i)
+			}
 			i = i + 1
 		}
 		return cols
@@ -110,7 +113,6 @@ extension ViewController {
 		if let index = run.currentSplit {
 			splitsTableView.reloadData(forRowIndexes: IndexSet(arrayLiteral: index), columnIndexes: IndexSet(columnArray()))
 		}
-		
 	}
 	/**
 	Starts, stops, or pauses the timer, depending on the current `timerState`.

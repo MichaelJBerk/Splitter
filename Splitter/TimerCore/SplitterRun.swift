@@ -224,11 +224,29 @@ class SplitterRun: NSObject {
 		})
 	}
 
+	///Interval that determines the frequency that the UI updates at
+	let fpsInterval: Double = 1 / 30
+	var previousTime: Double = 0
 	private func startTimer() {
+		previousTime = Date().timeIntervalSinceReferenceDate
+		
 		refreshTimer = Timer.scheduledTimer(withTimeInterval: 0.01, repeats: true, block: { timer in
-			self.updateLayoutState()
+			
+			//All this code is used to limit the speed that the UI updates at
+			let currentTime = Date().timeIntervalSinceReferenceDate
+			let elapsed: Double = currentTime - self.previousTime
+			if elapsed > self.fpsInterval {
+				self.previousTime = currentTime - (elapsed.truncatingRemainder(dividingBy: self.fpsInterval))
+				self.updateLayoutState()
+				for i in self.updateFunctions {
+					i()
+				}
+			}
 		})
 	}
+	///Stores functions to be called when updating the UI when running
+	var updateFunctions: [() -> ()] = []
+	
 	private func endTimer() {
 		refreshTimer?.invalidate()
 		refreshTimer = nil

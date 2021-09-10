@@ -22,9 +22,13 @@ protocol SplitterComponent: NSView {
 	func didSetSelected()
 	func saveState() throws -> ComponentState
 	func loadState(from state: ComponentState) throws
+	
+	func updateUI()
 }
 
 extension SplitterComponent {
+	func updateUI() { }
+	
 	var leadingConstraint: NSLayoutConstraint {
 		self.leadingAnchor.constraint(equalTo: viewController.view.leadingAnchor, constant: 7)
 	}
