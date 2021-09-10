@@ -89,7 +89,7 @@ extension ViewController {
 				let compare = ri.compareTo
 				switch compare {
 				case 0:
-					run.setComparison(to: TimeComparison.personalBest)
+					run.setComparison(to: TimeComparison.bestSegments)
 				default:
 					run.setComparison(to: TimeComparison.latest)
 				}

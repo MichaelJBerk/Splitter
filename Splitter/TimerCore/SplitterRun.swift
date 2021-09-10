@@ -155,7 +155,7 @@ class SplitterRun: NSObject {
 		if let comp = getCustomVariable(name: "currentComparison") {
 			setComparison(comp)
 		} else {
-			setComparison(to: .personalBest, disableUndo: true)
+			setComparison(to: .bestSegments, disableUndo: true)
 		}
 	}
 	
