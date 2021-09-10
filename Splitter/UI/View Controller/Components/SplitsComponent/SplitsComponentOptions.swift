@@ -56,27 +56,37 @@ extension SplitsComponent {
 		
 		let pbMenuItem = NSMenuItem(title: "Personal Best", action: nil, keyEquivalent: "")
 		let prevMenuItem = NSMenuItem(title: "Previous Attempt", action: nil, keyEquivalent: "")
+		let bestSplitItem = NSMenuItem(title: "Best Split Time", action: nil, keyEquivalent: "")
 		
 		let popupButton = ComponentPopUpButton(title: "", selectAction: { button in
 			switch button.indexOfSelectedItem {
 			case button.index(of: pbMenuItem):
-				self.run.setComparison(to: .personalBest)
+				self.run.setComparison(to: .bestSegments)
 			case button.index(of: prevMenuItem):
 				self.run.setComparison(to: .latest)
+			case button.index(of: bestSplitItem):
+				self.run.setComparison(to: .bestSplitTimes)
 			default:
 				break
 			}
+			self.run.updateLayoutState()
+			let index = self.splitsTableView.column(withIdentifier: STVColumnID.differenceColumn)
+			self.splitsTableView.reloadData(forRowIndexes: .init(0...self.splitsTableView.numberOfRows), columnIndexes: .init(integer: index))
 		})
+		
 		let menu = NSMenu()
 		menu.addItem(pbMenuItem)
 		menu.addItem(prevMenuItem)
+		menu.addItem(bestSplitItem)
 		popupButton.menu = menu
 		
 		switch run.getComparision() {
-		case .personalBest:
+		case .bestSegments:
 			popupButton.select(pbMenuItem)
 		case .latest:
 			popupButton.select(prevMenuItem)
+		case .bestSplitTimes:
+			popupButton.select(bestSplitItem)
 		default:
 			break
 		}

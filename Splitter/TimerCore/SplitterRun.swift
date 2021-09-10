@@ -498,8 +498,7 @@ class SplitterRun: NSObject {
 		}
 	}
 	
-	//TODO: Set current comparison
-	func setComparison(_ comparison: String) {
+	private func setComparison(_ comparison: String) {
 		if !comparisons.contains(comparison) {
 			editRun { editor in
 				_ = editor.addComparison(comparison)

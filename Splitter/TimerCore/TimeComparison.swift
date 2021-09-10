@@ -12,7 +12,7 @@ enum TimeComparison: String, CaseIterable {
 	case averageSegments = "Average Segments"
 	///Defines the Comparison Generator for calculating the Latest Run. Using the Segment History, this comparison reconstructs the splits of the furthest, most recent attempt. If at least one attempt has been finished, this comparison will show the most recent finished attempt. If no attempts have been finished yet, this comparison will show the attempt that got the furthest.
 	case latest = "Latest Run"
-	///Defines the Personal Best comparison.
+	///Defines the Personal Best comparison. This doesn't actually generate times for comparisons. If you want that, use "Best Segments"
 	case personalBest = "Personal Best"
 	///Defines the Comparison Generator for calculating a comparison which has the same final time as the runner's Personal Best. Unlike the Personal Best however, all the other split times are automatically balanced by the runner's history in order to balance out the mistakes present in the Personal Best throughout the comparison. Running against an unbalanced Personal Best can cause frustrations. A Personal Best with a mediocre early game and a really good end game has a high chance of the runner losing a lot of time compared to the Personal Best towards the end of a run. This may discourage the runner, which may lead them to reset the attempt. That's the perfect situation to compare against the Balanced Personal Best comparison instead, as all of the mistakes of the early game in such a situation would be smoothed out throughout the whole comparison.
 	case balancedPB = "Balanced PB"
