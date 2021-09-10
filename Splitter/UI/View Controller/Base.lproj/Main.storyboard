@@ -518,7 +518,7 @@
             <objects>
                 <windowController storyboardIdentifier="Document Window Controller" id="jGA-0Y-lOj" customClass="MainWindowController" customModule="Splitter" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Window" allowsToolTipsWhenApplicationIsInactive="NO" hasShadow="NO" releasedWhenClosed="NO" animationBehavior="utilityWindow" frameAutosaveName="" tabbingMode="disallowed" titlebarAppearsTransparent="YES" id="Ckk-yw-fiv" customClass="MainWindow" customModule="Splitter" customModuleProvider="target">
-                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
+                        <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES" fullSizeContentView="YES"/>
                         <windowCollectionBehavior key="collectionBehavior" fullScreenAuxiliary="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="458" y="290" width="480" height="270"/>
@@ -599,11 +599,11 @@
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" id="9YI-R2-vAq"/>
                             </imageView>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kx4-q1-74E" customClass="DraggingStackView" customModule="Splitter" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="10" width="260" height="368"/>
+                                <rect key="frame" x="0.0" y="10" width="260" height="358"/>
                             </stackView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="Kx4-q1-74E" firstAttribute="top" secondItem="nLC-ev-0ZO" secondAttribute="top" id="UCK-07-jA6"/>
+                            <constraint firstItem="Kx4-q1-74E" firstAttribute="top" secondItem="nLC-ev-0ZO" secondAttribute="top" constant="10" id="UCK-07-jA6"/>
                             <constraint firstAttribute="bottom" secondItem="Kx4-q1-74E" secondAttribute="bottom" constant="10" id="WnI-LX-92U"/>
                             <constraint firstItem="Kx4-q1-74E" firstAttribute="leading" secondItem="nLC-ev-0ZO" secondAttribute="leading" id="Zze-Kw-HKy"/>
                             <constraint firstAttribute="trailing" secondItem="Kx4-q1-74E" secondAttribute="trailing" id="kEx-wO-ewG"/>
@@ -615,6 +615,7 @@
                     <connections>
                         <outlet property="backgroundImageView" destination="nQn-tP-SqQ" id="Ghk-z6-u7e"/>
                         <outlet property="mainStackView" destination="Kx4-q1-74E" id="3Wt-La-UfN"/>
+                        <outlet property="topConstraint" destination="UCK-07-jA6" id="Ek9-vf-QfC"/>
                     </connections>
                 </viewController>
                 <menu title="IconMenu" autoenablesItems="NO" id="wTE-Xp-5dN">
