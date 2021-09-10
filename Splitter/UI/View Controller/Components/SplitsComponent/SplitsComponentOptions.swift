@@ -54,7 +54,7 @@ extension SplitsComponent {
 	}
 	func differenceOptions() -> NSView {
 		
-		let pbMenuItem = NSMenuItem(title: "Personal Best", action: nil, keyEquivalent: "")
+		let pbMenuItem = NSMenuItem(title: "Best Segment Time", action: nil, keyEquivalent: "")
 		let prevMenuItem = NSMenuItem(title: "Previous Attempt", action: nil, keyEquivalent: "")
 		let bestSplitItem = NSMenuItem(title: "Best Split Time", action: nil, keyEquivalent: "")
 		
