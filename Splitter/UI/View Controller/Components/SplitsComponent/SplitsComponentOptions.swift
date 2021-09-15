@@ -54,9 +54,9 @@ extension SplitsComponent {
 	}
 	func differenceOptions() -> NSView {
 		
-		let pbMenuItem = NSMenuItem(title: "Best Segment Time", action: nil, keyEquivalent: "")
+        let diffColumnIndex = self.splitsTableView.column(withIdentifier: STVColumnID.differenceColumn)
+		let pbMenuItem = NSMenuItem(title: "Best Time", action: nil, keyEquivalent: "")
 		let prevMenuItem = NSMenuItem(title: "Previous Attempt", action: nil, keyEquivalent: "")
-		let bestSplitItem = NSMenuItem(title: "Best Split Time", action: nil, keyEquivalent: "")
 		
 		let popupButton = ComponentPopUpButton(title: "", selectAction: { button in
 			switch button.indexOfSelectedItem {
@@ -64,20 +64,17 @@ extension SplitsComponent {
 				self.run.setComparison(to: .bestSegments)
 			case button.index(of: prevMenuItem):
 				self.run.setComparison(to: .latest)
-			case button.index(of: bestSplitItem):
-				self.run.setComparison(to: .bestSplitTimes)
 			default:
 				break
 			}
 			self.run.updateLayoutState()
-			let index = self.splitsTableView.column(withIdentifier: STVColumnID.differenceColumn)
-			self.splitsTableView.reloadData(forRowIndexes: .init(0...self.splitsTableView.numberOfRows), columnIndexes: .init(integer: index))
+			
+			self.splitsTableView.reloadData(forRowIndexes: .init(0...self.splitsTableView.numberOfRows), columnIndexes: .init(integer: diffColumnIndex))
 		})
 		
 		let menu = NSMenu()
 		menu.addItem(pbMenuItem)
 		menu.addItem(prevMenuItem)
-		menu.addItem(bestSplitItem)
 		popupButton.menu = menu
 		
 		switch run.getComparision() {
@@ -85,105 +82,122 @@ extension SplitsComponent {
 			popupButton.select(pbMenuItem)
 		case .latest:
 			popupButton.select(prevMenuItem)
-		case .bestSplitTimes:
-			popupButton.select(bestSplitItem)
 		default:
 			break
 		}
-		let compareLabel = NSTextField(labelWithString: "Compare To:")
-		let stack = NSStackView(views: [compareLabel, popupButton])
-		stack.orientation = .horizontal
+    
+		let compareLabel = NSTextField(labelWithString: "Compare To")
+		let compareStack = NSStackView(views: [compareLabel, popupButton])
+        compareStack.orientation = .horizontal
+        print(diffColumnIndex)
+        let timeOptions = segmentSplitOptions(for: splitsTableView.tableColumns[diffColumnIndex]) as! NSStackView
+        let stack = NSStackView(views: [compareStack, timeOptions])
+        NSLayoutConstraint.activate([
+            timeOptions.views[1].leadingAnchor.constraint(equalTo: popupButton.leadingAnchor)
+        ])
+        stack.orientation = .vertical
+        stack.alignment = .leading
+        
 		return stack
 		
 	}
+    func segmentSplitOptions(for column: NSTableColumn) -> NSView {
+        let timeOptionMenu = NSMenu()
+        let segmentTimeOption = NSMenuItem(title: "Segment Time", action: nil, keyEquivalent: "")
+        let splitTimeOption = NSMenuItem(title: "Split Time", action: nil, keyEquivalent: "")
+        timeOptionMenu.addItem(segmentTimeOption)
+        timeOptionMenu.addItem(splitTimeOption)
+        var runColumn: SplitterRun.TimeColumn?
+        switch column.identifier {
+        case STVColumnID.differenceColumn:
+            runColumn = .diff
+        case STVColumnID.currentSplitColumn:
+            runColumn = .time
+        case STVColumnID.bestSplitColumn:
+            runColumn = .pb
+        case STVColumnID.previousSplitColumn:
+            runColumn = .previous
+        default:
+            break
+        }
+        
+        let timeOptionButton = ComponentPopUpButton(title: "", selectAction: { button in
+            let h = button.indexOfSelectedItem
+            if let menuItem = button.menu?.items[h], let runColumn = runColumn {
+                switch menuItem {
+                case segmentTimeOption:
+                    if runColumn == .time {
+                        self.run.undoManager?.beginUndoGrouping()
+                        self.run.setUpdateWith(.segmentTime, for: runColumn)
+                        self.run.setStartWith(.comparsionSegmentTime, for: runColumn)
+                        self.run.undoManager?.endUndoGrouping()
+                    } else if runColumn == .diff {
+                        self.run.setUpdateWith(.segmentDelta, for: runColumn)
+                    } else {
+                        self.run.setStartWith(.comparsionSegmentTime, for: runColumn)
+                    }
+                case splitTimeOption:
+                    if runColumn == .time {
+                        self.run.undoManager?.beginUndoGrouping()
+                        self.run.setUpdateWith(.splitTime, for: runColumn)
+                        self.run.setStartWith(.comparisonTime, for: runColumn)
+                        self.run.undoManager?.endUndoGrouping()
+                    } else if runColumn == .diff {
+                        self.run.setUpdateWith(.delta, for: runColumn)
+                    } else {
+                        self.run.setStartWith(.comparisonTime, for: runColumn)
+                    }
+                default:
+                    break
+                }
+            }
+        })
+        timeOptionButton.menu = timeOptionMenu
+        if let runColumn = runColumn {
+            if runColumn == .time || runColumn == .diff {
+                let currentOption = run.getUpdateWith(for: runColumn)
+                switch currentOption {
+                case .segmentTime, .segmentDelta, .segmentDeltaWithFallback:
+                    timeOptionButton.select(segmentTimeOption)
+                case .splitTime, .delta, .deltaWithFallback:
+                    timeOptionButton.select(splitTimeOption)
+                default:
+                    break
+                }
+            } else {
+                let currentOption = run.getStartWith(for: runColumn)
+                switch currentOption {
+                case .comparsionSegmentTime:
+                    timeOptionButton.select(segmentTimeOption)
+                case .comparisonTime:
+                    timeOptionButton.select(splitTimeOption)
+                default:
+                    break
+                }
+            }
+        }
+        
+        let valueLabel = NSTextField(labelWithString: "Value")
+        let valueStack = NSStackView(views: [valueLabel, timeOptionButton])
+        
+        let helpButton = helpButton()
+        let helpText = """
+        Split Time: Total time since the beginning of the run, at the time of the split
+        
+        Segment Time: The duration of the segment
+        """
+        helpButton.helpString = helpText
+        valueStack.addArrangedSubview(helpButton)
+        
+        valueStack.orientation = .horizontal
+        return valueStack
+    }
 	
 	func options(for column: NSTableColumn) -> NSView {
 		if column.identifier == STVColumnID.differenceColumn {
 			return differenceOptions()
 		}
-		let timeOptionMenu = NSMenu()
-		let segmentTimeOption = NSMenuItem(title: "Segment Time", action: nil, keyEquivalent: "")
-		let splitTimeOption = NSMenuItem(title: "Split Time", action: nil, keyEquivalent: "")
-		timeOptionMenu.addItem(segmentTimeOption)
-		timeOptionMenu.addItem(splitTimeOption)
-		var runColumn: SplitterRun.TimeColumn?
-		switch column.identifier {
-		case STVColumnID.currentSplitColumn:
-			runColumn = .time
-		case STVColumnID.bestSplitColumn:
-			runColumn = .pb
-		case STVColumnID.previousSplitColumn:
-			runColumn = .previous
-		default:
-			break
-		}
-		
-		let timeOptionButton = ComponentPopUpButton(title: "", selectAction: { button in
-			let h = button.indexOfSelectedItem
-			if let menuItem = button.menu?.items[h], let runColumn = runColumn {
-				switch menuItem {
-				case segmentTimeOption:
-					if runColumn == .time {
-						self.run.undoManager?.beginUndoGrouping()
-						self.run.setUpdateWith(.segmentTime, for: runColumn)
-						self.run.setStartWith(.comparsionSegmentTime, for: runColumn)
-						self.run.undoManager?.endUndoGrouping()
-					} else {
-						self.run.setStartWith(.comparsionSegmentTime, for: runColumn)
-					}
-				case splitTimeOption:
-					if runColumn == .time {
-						self.run.undoManager?.beginUndoGrouping()
-						self.run.setUpdateWith(.splitTime, for: runColumn)
-						self.run.setStartWith(.comparisonTime, for: runColumn)
-						self.run.undoManager?.endUndoGrouping()
-					} else {
-						self.run.setStartWith(.comparisonTime, for: runColumn)
-					}
-				default:
-					break
-				}
-			}
-		})
-		timeOptionButton.menu = timeOptionMenu
-		if let runColumn = runColumn {
-			if runColumn == .time {
-				let currentOption = run.getUpdateWith(for: runColumn)
-				switch currentOption {
-				case .segmentTime:
-					timeOptionButton.select(segmentTimeOption)
-				case .splitTime:
-					timeOptionButton.select(splitTimeOption)
-				default:
-					break
-				}
-			} else {
-				let currentOption = run.getStartWith(for: runColumn)
-				switch currentOption {
-				case .comparsionSegmentTime:
-					timeOptionButton.select(segmentTimeOption)
-				case .comparisonTime:
-					timeOptionButton.select(splitTimeOption)
-				default:
-					break
-				}
-			}
-		}
-		
-		let valueLabel = NSTextField(labelWithString: "Value")
-		let valueStack = NSStackView(views: [valueLabel, timeOptionButton])
-		
-		let helpButton = helpButton()
-		let helpText = """
-		Split Time: Total time since the beginning of the run, at the time of the split
-		
-		Segment Time: The duration of the segment
-		"""
-		helpButton.helpString = helpText
-		valueStack.addArrangedSubview(helpButton)
-		
-		valueStack.orientation = .horizontal
-		return valueStack
+		return segmentSplitOptions(for: column)
 	}
 	
 	var columnOptionsView: NSView {

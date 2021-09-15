@@ -198,8 +198,8 @@
 		4A18663123C5376900FEEE54 /* SettingsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsKeys.swift; sourceTree = "<group>"; };
 		4A1C1467240ED30C0056B104 /* InfoOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoOptionsViewController.swift; sourceTree = "<group>"; };
 		4A1C23A0269917F5003A05D6 /* AppearanceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppearanceViewController.xib; sourceTree = "<group>"; };
-		4A20C46626406D4800307993 /* SplitterTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterTimer.swift; sourceTree = "<group>"; };
-		4A20C46826406D9500307993 /* TimeComparison.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeComparison.swift; sourceTree = "<group>"; };
+		4A20C46626406D4800307993 /* SplitterTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterTimer.swift; sourceTree = "<group>"; usesTabs = 1; };
+		4A20C46826406D9500307993 /* TimeComparison.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeComparison.swift; sourceTree = "<group>"; usesTabs = 1; };
 		4A20C46A26406DB000307993 /* LiveSplitCore Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LiveSplitCore Extensions.swift"; sourceTree = "<group>"; };
 		4A214A64255C8FB30006FD9F /* SplitsIOKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SplitsIOKit; sourceTree = "<group>"; };
 		4A230E8F23B00A1D00959C57 /* Splitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Splitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -250,7 +250,7 @@
 		4A71054B24BE267300FA9127 /* SplitterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterTests.swift; sourceTree = "<group>"; };
 		4A71054D24BE267300FA9127 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4A73B75023F0722800010F30 /* libresolv.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libresolv.tbd; path = usr/lib/libresolv.tbd; sourceTree = SDKROOT; };
-		4A74D4EC25EE9DD700A3D9C7 /* SplitterRun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterRun.swift; sourceTree = "<group>"; };
+		4A74D4EC25EE9DD700A3D9C7 /* SplitterRun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterRun.swift; sourceTree = "<group>"; usesTabs = 1; };
 		4A75578C255C426A00ACE826 /* SplitterDocLSS.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = SplitterDocLSS.icns; sourceTree = "<group>"; };
 		4A75579C255C47F300ACE826 /* SplitterDocSplitsio.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = SplitterDocSplitsio.icns; sourceTree = "<group>"; };
 		4A7DDCE123BBDD0900A36AD1 /* Credits.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
@@ -1449,7 +1449,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 854963043C5D93DC7DF61ABB /* Pods-Splitter.debug.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CODE_SIGN_ENTITLEMENTS = Splitter/Splitter.entitlements;
@@ -1483,7 +1482,7 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.14;
 				MARKETING_VERSION = 4.1;
 				MODULEMAP_FILE = "\"$(PROJECT_DIR)/Splitter/LiveSplit Core/module.map\"";
-				ONLY_ACTIVE_ARCH = NO;
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mibe.Splitter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1499,7 +1498,6 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6761EE8748C7A21FE9D7C3A3 /* Pods-Splitter.release.xcconfig */;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CODE_SIGN_ENTITLEMENTS = Splitter/Splitter.entitlements;

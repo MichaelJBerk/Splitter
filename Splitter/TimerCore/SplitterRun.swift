@@ -502,6 +502,8 @@ class SplitterRun: NSObject {
 		if !comparisons.contains(comparison) {
 			editRun { editor in
 				_ = editor.addComparison(comparison)
+                editor.addCustomVariable("currentComparison")
+                editor.setCustomVariable("currentComparison", comparison)
 			}
 		}
 		while timer.lsTimer.currentComparison() != comparison {
@@ -598,6 +600,7 @@ class SplitterRun: NSObject {
 	
 	enum TimeColumn {
 		case time
+        case diff
 		case pb
 		case previous
 		
@@ -605,6 +608,8 @@ class SplitterRun: NSObject {
 			switch self {
 			case .time:
 				return 0
+            case .diff:
+                return 1
 			case .pb:
 				return 2
 			case .previous:
