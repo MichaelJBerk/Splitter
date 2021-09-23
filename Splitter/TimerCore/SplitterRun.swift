@@ -124,7 +124,7 @@ class SplitterRun: NSObject {
 			
 			//Setup PB column
 			editor.setColumn(2, name: "PB")
-			editor.setColumn(2, comparison: "Personal Best")
+			editor.setColumn(2, comparison: "Best Segments")
 			editor.setColumn(2, startWith: .comparsionSegmentTime)
 			editor.setColumn(2, updateWith: ColumnUpdateWith.dontUpdate)
 			editor.setColumn(2, updateTrigger: ColumnUpdateTrigger.onEndingSegment)
