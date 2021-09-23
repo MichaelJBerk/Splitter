@@ -38,7 +38,9 @@ class SplitsEditorViewController: NSViewController, NibLoadable {
 			let newRun = self.editor.close()
 			self.run.setRun(newRun)
 			self.run.updateLayoutState()
-			NotificationCenter.default.post(.init(name: .splitsEdited, object: self.run))
+			//can't use the run's `hasBeenModified` because it's always true, since Splitter always makes certain changes to the run. 
+			NotificationCenter.default.post(.init(name: .updateIsEdited, object: self.run))
+			NotificationCenter.default.post(name: .splitsEdited, object: self.run)
 		}
 		self.dismiss(nil)
 		
