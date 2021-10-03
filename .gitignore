@@ -103,3 +103,4 @@ iOSInjectionProject/
 /.gitignore
 /NotarizationUUIDs.log
 /archive.xcarchive/
+Package.resolved
