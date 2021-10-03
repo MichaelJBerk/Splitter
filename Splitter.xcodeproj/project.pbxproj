@@ -76,6 +76,8 @@
 		4A66A43023DE2682005952FA /* EditableSegmentIconView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A66A42F23DE2682005952FA /* EditableSegmentIconView.swift */; };
 		4A66A43223DE2C88005952FA /* SplitTableColumnIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A66A43123DE2C88005952FA /* SplitTableColumnIdentifiers.swift */; };
 		4A6726EA23F05D17006F4BC4 /* LiveSplit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A617EBD23EBC65C0005D60E /* LiveSplit.swift */; };
+		4A68FCFF270A4518009A12B7 /* Intents.intentdefinition in Sources */ = {isa = PBXBuildFile; fileRef = 4A68FCFE270A4518009A12B7 /* Intents.intentdefinition */; };
+		4A68FD01270A45E8009A12B7 /* IntentHandling.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A68FD00270A45E8009A12B7 /* IntentHandling.swift */; };
 		4A6A3BE023CD1C39002C20AE /* GlobalKeybindPrefs.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6A3BDF23CD1C39002C20AE /* GlobalKeybindPrefs.swift */; };
 		4A6A3BE223CD1C7A002C20AE /* Storage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6A3BE123CD1C7A002C20AE /* Storage.swift */; };
 		4A6A3BE423CD621A002C20AE /* MainWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6A3BE323CD621A002C20AE /* MainWindow.swift */; };
@@ -240,6 +242,8 @@
 		4A669372268BBB4400FEF745 /* SplitsEditorOutlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitsEditorOutlineView.swift; sourceTree = "<group>"; };
 		4A66A42F23DE2682005952FA /* EditableSegmentIconView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableSegmentIconView.swift; sourceTree = "<group>"; };
 		4A66A43123DE2C88005952FA /* SplitTableColumnIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitTableColumnIdentifiers.swift; sourceTree = "<group>"; };
+		4A68FCFE270A4518009A12B7 /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
+		4A68FD00270A45E8009A12B7 /* IntentHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandling.swift; sourceTree = "<group>"; };
 		4A6A3BDF23CD1C39002C20AE /* GlobalKeybindPrefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalKeybindPrefs.swift; sourceTree = "<group>"; };
 		4A6A3BE123CD1C7A002C20AE /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		4A6A3BE323CD621A002C20AE /* MainWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindow.swift; sourceTree = "<group>"; };
@@ -529,6 +533,8 @@
 				4A7DDCE123BBDD0900A36AD1 /* Credits.html */,
 				4A5F10AD23CFAA1F00DA043B /* Assets.xcassets */,
 				4A230E9D23B00A1E00959C57 /* Info.plist */,
+				4A68FCFE270A4518009A12B7 /* Intents.intentdefinition */,
+				4A68FD00270A45E8009A12B7 /* IntentHandling.swift */,
 				4A230E9E23B00A1E00959C57 /* Splitter.entitlements */,
 			);
 			path = Splitter;
@@ -1255,6 +1261,7 @@
 				4A894B1C249ABA71004FEEB3 /* LoadableNib.swift in Sources */,
 				4AB92AC6261F6CD600E8B814 /* ThemedTextField.swift in Sources */,
 				4AB92ABE261F67B700E8B814 /* ThemedButton.swift in Sources */,
+				4A68FD01270A45E8009A12B7 /* IntentHandling.swift in Sources */,
 				4A3BDFA123E4C3B6001EA7FF /* DefaultHotkeys.swift in Sources */,
 				4A8C96CB269F579200AF372A /* SegmentComponent.swift in Sources */,
 				4ADEE0AC267A4EA80028F142 /* RunEditorState.swift in Sources */,
@@ -1271,6 +1278,7 @@
 				4AC401F324BE145F005180F1 /* (null) in Sources */,
 				4AE82A1624BFD4400044B6D3 /* WelcomeView.swift in Sources */,
 				4A6A3BE223CD1C7A002C20AE /* Storage.swift in Sources */,
+				4A68FCFF270A4518009A12B7 /* Intents.intentdefinition in Sources */,
 				4AE2CF3B2631F43100CC6CF7 /* SplitsComponent.swift in Sources */,
 				4A99813023F9ECE50037BF98 /* KeybindHandlers.swift in Sources */,
 				4A520E2F269373D100F463B3 /* ComponentOptions.swift in Sources */,
