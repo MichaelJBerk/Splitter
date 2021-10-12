@@ -414,6 +414,8 @@ NOTE: This action can only get files that have been saved. Files that have not b
 						<string>failure</string>
 					</dict>
 				</array>
+				<key>INIntentResponseLastParameterTag</key>
+				<integer>2</integer>
 			</dict>
 			<key>INIntentTitle</key>
 			<string>Undo Split</string>
@@ -435,7 +437,7 @@ NOTE: This action can only get files that have been saved. Files that have not b
 			<key>INTypeDisplayNameID</key>
 			<string>A8cfC3</string>
 			<key>INTypeLastPropertyTag</key>
-			<integer>101</integer>
+			<integer>106</integer>
 			<key>INTypeName</key>
 			<string>Run</string>
 			<key>INTypeProperties</key>
@@ -503,6 +505,145 @@ NOTE: This action can only get files that have been saved. Files that have not b
 					<integer>101</integer>
 					<key>INTypePropertyType</key>
 					<string>URL</string>
+				</dict>
+				<dict>
+					<key>INTypePropertyDisplayName</key>
+					<string>Splits</string>
+					<key>INTypePropertyDisplayNameID</key>
+					<string>IrWGz1</string>
+					<key>INTypePropertyDisplayPriority</key>
+					<integer>6</integer>
+					<key>INTypePropertyName</key>
+					<string>splits</string>
+					<key>INTypePropertyObjectType</key>
+					<string>ISplit</string>
+					<key>INTypePropertyObjectTypeNamespace</key>
+					<string>PcGFgk</string>
+					<key>INTypePropertySupportsMultipleValues</key>
+					<true/>
+					<key>INTypePropertyTag</key>
+					<integer>105</integer>
+					<key>INTypePropertyType</key>
+					<string>Object</string>
+				</dict>
+				<dict>
+					<key>INTypePropertyDisplayName</key>
+					<string>Title</string>
+					<key>INTypePropertyDisplayNameID</key>
+					<string>BHXsYk</string>
+					<key>INTypePropertyDisplayPriority</key>
+					<integer>7</integer>
+					<key>INTypePropertyName</key>
+					<string>title</string>
+					<key>INTypePropertyTag</key>
+					<integer>106</integer>
+					<key>INTypePropertyType</key>
+					<string>String</string>
+				</dict>
+			</array>
+		</dict>
+		<dict>
+			<key>INTypeDisplayName</key>
+			<string>Split</string>
+			<key>INTypeDisplayNameID</key>
+			<string>FssXEj</string>
+			<key>INTypeLastPropertyTag</key>
+			<integer>105</integer>
+			<key>INTypeName</key>
+			<string>ISplit</string>
+			<key>INTypeProperties</key>
+			<array>
+				<dict>
+					<key>INTypePropertyDefault</key>
+					<true/>
+					<key>INTypePropertyDisplayPriority</key>
+					<integer>1</integer>
+					<key>INTypePropertyName</key>
+					<string>identifier</string>
+					<key>INTypePropertyTag</key>
+					<integer>1</integer>
+					<key>INTypePropertyType</key>
+					<string>String</string>
+				</dict>
+				<dict>
+					<key>INTypePropertyDefault</key>
+					<true/>
+					<key>INTypePropertyDisplayPriority</key>
+					<integer>2</integer>
+					<key>INTypePropertyName</key>
+					<string>displayString</string>
+					<key>INTypePropertyTag</key>
+					<integer>2</integer>
+					<key>INTypePropertyType</key>
+					<string>String</string>
+				</dict>
+				<dict>
+					<key>INTypePropertyDefault</key>
+					<true/>
+					<key>INTypePropertyDisplayPriority</key>
+					<integer>3</integer>
+					<key>INTypePropertyName</key>
+					<string>pronunciationHint</string>
+					<key>INTypePropertyTag</key>
+					<integer>3</integer>
+					<key>INTypePropertyType</key>
+					<string>String</string>
+				</dict>
+				<dict>
+					<key>INTypePropertyDefault</key>
+					<true/>
+					<key>INTypePropertyDisplayPriority</key>
+					<integer>4</integer>
+					<key>INTypePropertyName</key>
+					<string>alternativeSpeakableMatches</string>
+					<key>INTypePropertySupportsMultipleValues</key>
+					<true/>
+					<key>INTypePropertyTag</key>
+					<integer>4</integer>
+					<key>INTypePropertyType</key>
+					<string>SpeakableString</string>
+				</dict>
+				<dict>
+					<key>INTypePropertyDisplayName</key>
+					<string>Title</string>
+					<key>INTypePropertyDisplayNameID</key>
+					<string>9qfmbL</string>
+					<key>INTypePropertyDisplayPriority</key>
+					<integer>5</integer>
+					<key>INTypePropertyName</key>
+					<string>title</string>
+					<key>INTypePropertyTag</key>
+					<integer>100</integer>
+					<key>INTypePropertyType</key>
+					<string>String</string>
+				</dict>
+				<dict>
+					<key>INTypePropertyDisplayName</key>
+					<string>Time</string>
+					<key>INTypePropertyDisplayNameID</key>
+					<string>qK7ZvO</string>
+					<key>INTypePropertyDisplayPriority</key>
+					<integer>6</integer>
+					<key>INTypePropertyName</key>
+					<string>time</string>
+					<key>INTypePropertyTag</key>
+					<integer>102</integer>
+					<key>INTypePropertyType</key>
+					<string>TimeInterval</string>
+				</dict>
+				<dict>
+					<key>INTypePropertyDisplayName</key>
+					<string>Diff</string>
+					<key>INTypePropertyDisplayNameID</key>
+					<string>xEIUJh</string>
+					<key>INTypePropertyDisplayPriority</key>
+					<integer>7</integer>
+					<key>INTypePropertyName</key>
+					<string>diff</string>
+					<key>INTypePropertyTag</key>
+					<integer>105</integer>
+					<key>INTypePropertyType</key>
+					<string>TimeInterval</string>
 				</dict>
 			</array>
 		</dict>
