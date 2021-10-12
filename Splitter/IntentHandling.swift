@@ -12,7 +12,7 @@ import Intents
 @available(macOS 12.0, *)
 extension AppDelegate {
     func application(_ application: NSApplication, handlerFor intent: INIntent) -> Any? {
-        if intent is StartRunIntent || intent is OpenRunIntent {
+        if intent is SplitRunIntent || intent is OpenRunIntent || intent is UndoSplitIntent {
             return RunIntentHandler()
         }
         if intent is GetOpenRunsIntent {
@@ -45,14 +45,21 @@ class RunIntentHandler: NSObject {
                 }
                 
                 //Start the run, if it's the "Start Run" intent
-                if intent is StartRunIntent {
+                if !(intent is OpenRunIntent) {
                     if let splitterDoc = document as? SplitterDoc, let vc = splitterDoc.viewController {
-                        vc.run.timer.start()
+                        switch intent {
+                        case is SplitRunIntent:
+                            vc.run.timer.splitOrStart()
+                        case is UndoSplitIntent:
+                            vc.run.timer.previousSplit()
+                        default:
+                            break
+                        }
                     } else {
                         completion(RunIntentError.fileError)
-                        return
                     }
                 }
+                
                 completion(nil)
                
             })
@@ -62,8 +69,23 @@ class RunIntentHandler: NSObject {
     }
 }
 @available(macOS 12.0, *)
-extension RunIntentHandler: StartRunIntentHandling {
-    func handle(intent: StartRunIntent, completion: @escaping (StartRunIntentResponse) -> Void) {
+extension RunIntentHandler: SplitRunIntentHandling {
+    func handle(intent: SplitRunIntent, completion: @escaping (SplitRunIntentResponse) -> Void) {
+        handleIntent(intent: intent, completion: { error in
+            if let error = error {
+                let alert = NSAlert(error: error)
+                NSApp.beginModalSession(for: alert.window)
+                completion(.init(code: .failure, userActivity: nil))
+            } else {
+                completion(.init(code: .success, userActivity: nil))
+            }
+        })
+    }
+}
+
+@available(macOS 12.0, *)
+extension RunIntentHandler: UndoSplitIntentHandling {
+    func handle(intent: UndoSplitIntent, completion: @escaping (UndoSplitIntentResponse) -> Void) {
         handleIntent(intent: intent, completion: { error in
             if let error = error {
                 let alert = NSAlert(error: error)
@@ -99,10 +121,13 @@ protocol RunIntent {
 }
 
 @available(macOS 12.0, *)
-extension StartRunIntent: RunIntent {}
+extension SplitRunIntent: RunIntent {}
 
 @available(macOS 12.0, *)
 extension OpenRunIntent: RunIntent {}
+
+@available(macOS 12.0, *)
+extension  UndoSplitIntent: RunIntent {}
 
 @available (macOS 12.0, *)
 class GetOpenRunsIntentHandler: NSObject, GetOpenRunsIntentHandling {

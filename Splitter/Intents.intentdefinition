@@ -9,7 +9,7 @@
 	<key>INIntentDefinitionNamespace</key>
 	<string>PcGFgk</string>
 	<key>INIntentDefinitionSystemVersion</key>
-	<string>21A5522h</string>
+	<string>21A5543b</string>
 	<key>INIntentDefinitionToolsBuildVersion</key>
 	<string>13A5212g</string>
 	<key>INIntentDefinitionToolsVersion</key>
@@ -22,7 +22,7 @@
 			<key>INIntentConfigurable</key>
 			<true/>
 			<key>INIntentDescription</key>
-			<string>Open the selected file and begin the timer</string>
+			<string>Open the selected file and begin the timer. If the run is already in progress, it will split instead.</string>
 			<key>INIntentDescriptionID</key>
 			<string>UnG8km</string>
 			<key>INIntentIneligibleForSuggestions</key>
@@ -40,7 +40,7 @@
 					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
 					<true/>
 					<key>INIntentParameterCombinationTitle</key>
-					<string>Start ${file}</string>
+					<string>Start/Split ${file}</string>
 					<key>INIntentParameterCombinationTitleID</key>
 					<string>tbPOcL</string>
 					<key>INIntentParameterCombinationUpdatesLinked</key>
@@ -48,7 +48,7 @@
 				</dict>
 			</dict>
 			<key>INIntentName</key>
-			<string>StartRun</string>
+			<string>SplitRun</string>
 			<key>INIntentParameters</key>
 			<array>
 				<dict>
@@ -120,7 +120,7 @@
 				</array>
 			</dict>
 			<key>INIntentTitle</key>
-			<string>Start Run</string>
+			<string>Start/Split Run</string>
 			<key>INIntentTitleID</key>
 			<string>pKHnXy</string>
 			<key>INIntentType</key>
@@ -313,6 +313,116 @@ NOTE: This action can only get files that have been saved. Files that have not b
 			<string>Custom</string>
 			<key>INIntentVerb</key>
 			<string>View</string>
+		</dict>
+		<dict>
+			<key>INIntentCategory</key>
+			<string>generic</string>
+			<key>INIntentConfigurable</key>
+			<true/>
+			<key>INIntentDescriptionID</key>
+			<string>bQeRS2</string>
+			<key>INIntentIneligibleForSuggestions</key>
+			<true/>
+			<key>INIntentInput</key>
+			<string>file</string>
+			<key>INIntentKeyParameter</key>
+			<string>file</string>
+			<key>INIntentLastParameterTag</key>
+			<integer>1</integer>
+			<key>INIntentManagedParameterCombinations</key>
+			<dict>
+				<key>file</key>
+				<dict>
+					<key>INIntentParameterCombinationSupportsBackgroundExecution</key>
+					<true/>
+					<key>INIntentParameterCombinationTitle</key>
+					<string>Undo Previous Split in ${file}</string>
+					<key>INIntentParameterCombinationTitleID</key>
+					<string>3uLWRg</string>
+					<key>INIntentParameterCombinationUpdatesLinked</key>
+					<true/>
+				</dict>
+			</dict>
+			<key>INIntentName</key>
+			<string>UndoSplit</string>
+			<key>INIntentParameters</key>
+			<array>
+				<dict>
+					<key>INIntentParameterConfigurable</key>
+					<true/>
+					<key>INIntentParameterDisplayName</key>
+					<string>File</string>
+					<key>INIntentParameterDisplayNameID</key>
+					<string>4dP1kr</string>
+					<key>INIntentParameterDisplayPriority</key>
+					<integer>1</integer>
+					<key>INIntentParameterMetadata</key>
+					<dict>
+						<key>INIntentParameterMetadataCustomUTIs</key>
+						<array>
+							<dict>
+								<key>UTI</key>
+								<string>mibe.split</string>
+							</dict>
+							<dict>
+								<key>UTI</key>
+								<string>mibe.liveSplit</string>
+							</dict>
+							<dict>
+								<key>UTI</key>
+								<string>public.json</string>
+							</dict>
+						</array>
+						<key>INIntentParameterMetadataType</key>
+						<string>Custom</string>
+					</dict>
+					<key>INIntentParameterName</key>
+					<string>file</string>
+					<key>INIntentParameterPromptDialogs</key>
+					<array>
+						<dict>
+							<key>INIntentParameterPromptDialogCustom</key>
+							<true/>
+							<key>INIntentParameterPromptDialogType</key>
+							<string>Configuration</string>
+						</dict>
+						<dict>
+							<key>INIntentParameterPromptDialogCustom</key>
+							<true/>
+							<key>INIntentParameterPromptDialogType</key>
+							<string>Primary</string>
+						</dict>
+					</array>
+					<key>INIntentParameterTag</key>
+					<integer>1</integer>
+					<key>INIntentParameterType</key>
+					<string>File</string>
+				</dict>
+			</array>
+			<key>INIntentResponse</key>
+			<dict>
+				<key>INIntentResponseCodes</key>
+				<array>
+					<dict>
+						<key>INIntentResponseCodeName</key>
+						<string>success</string>
+						<key>INIntentResponseCodeSuccess</key>
+						<true/>
+					</dict>
+					<dict>
+						<key>INIntentResponseCodeName</key>
+						<string>failure</string>
+					</dict>
+				</array>
+			</dict>
+			<key>INIntentTitle</key>
+			<string>Undo Split</string>
+			<key>INIntentTitleID</key>
+			<string>TWqaPz</string>
+			<key>INIntentType</key>
+			<string>Custom</string>
+			<key>INIntentVerb</key>
+			<string>Do</string>
 		</dict>
 	</array>
 	<key>INTypes</key>

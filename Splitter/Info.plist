@@ -98,9 +98,10 @@
 	<string>272</string>
 	<key>INIntentsSupported</key>
 	<array>
-		<string>StartRunIntent</string>
+		<string>SplitRunIntent</string>
 		<string>OpenRunIntent</string>
 		<string>GetOpenRunsIntent</string>
+		<string>UndoSplitIntent</string>
 	</array>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.utilities</string>
@@ -125,7 +126,7 @@
 	<array>
 		<string>GetOpenRunsIntent</string>
 		<string>OpenRunIntent</string>
-		<string>StartRunIntent</string>
+		<string>UndoSplitIntent</string>
 	</array>
 	<key>SUFeedURL</key>
 	<string>https://api.appcenter.ms/v0.1/public/sparkle/apps/4c70aada-2995-4f98-9cf3-5b87d595ee01</string>
