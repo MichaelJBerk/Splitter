@@ -100,7 +100,6 @@ iOSInjectionProject/
 /Pods/CocoaPodsKeys/SplitterKeys.h
 /Pods/CocoaPodsKeys/SplitterKeys.m
 /ExportOptions.plist
-/.gitignore
 /NotarizationUUIDs.log
 /archive.xcarchive/
 Package.resolved
