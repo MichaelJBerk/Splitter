@@ -81,9 +81,15 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 	///
 	/// When run, this method will take find the key that triggered `event` and perform its associated keybind action
 	func performGlobalKeybindAction(event: NSEvent) {
-		for k in self.appKeybinds {
-			if let k = k, k == event, let action = keybindAction(keybind: k.title) {
-				action()
+		//This line prevents event from being blocked
+		//Without it, other applications wouldn't be able to get the event
+		//This is why I'm not using MASHotkey's shortcut binding features.
+		NSApp.sendEvent(event)
+		if Settings.enableGlobalHotkeys {
+			for k in self.appKeybinds {
+				if let k = k, k == event, let action = keybindAction(keybind: k.title) {
+					action()
+				}
 			}
 		}
 	}
@@ -135,6 +141,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 		  }
 		}
 		print("Auth Enabled: ", SplitsIOKit.shared.hasAuth)
+		
+		//Add the hotkey event monitor
+		NSEvent.addGlobalMonitorForEvents(matching: .keyUp, handler: performGlobalKeybindAction(event:))
 		
 		//MSAppCenter stuff
 		NSApp.mainMenu?.item(withIdentifier: menuIdentifiers.appMenu.updatesMenuItem)?.isHidden = false

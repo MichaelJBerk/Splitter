@@ -83,14 +83,13 @@ extension AppDelegate {
 	}
 	
 	func setupKeybinds() {
+		//NOTE: Keybinds are monitored using an NSEvent Monitor in the AppDelegate.
+		//I'm not using MASHotkey's way of binding hotkeys to events since MASHotkey prevents other applications from "seeing" the event
 		makeSplitterKeybinds()
 		var i = 0
 		while i < appKeybinds.count {
 			let k = appKeybinds[i]!
 			let settings = k.settings.rawValue
-			if Settings.enableGlobalHotkeys {
-				MASShortcutBinder.shared().bindShortcut(withDefaultsKey: settings, toAction: self.keybindAction(keybind: k.title))
-			}
 			let sView = MASShortcutView()
 			sView.associatedUserDefaultsKey = settings
 			appKeybinds[i]!.keybind = sView.shortcutValue
