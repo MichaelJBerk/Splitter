@@ -89,9 +89,9 @@ extension ViewController {
 				let compare = ri.compareTo
 				switch compare {
 				case 0:
-					run.setComparison(to: TimeComparison.bestSegments)
+					run.setColumnComparison(TimeComparison.bestSegments, for: .diff)
 				default:
-					run.setComparison(to: TimeComparison.latest)
+					run.setColumnComparison(TimeComparison.latest, for: .diff)
 				}
 				run.editRun { editor in
 					for s in 0..<segments.count {

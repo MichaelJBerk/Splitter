@@ -56,6 +56,19 @@ extension LayoutEditor {
 			self.setComponentSettingsValue(settingIndex, setting)
 		}
 	}
+	func getColumnComparison(for index: Int) -> TimeComparison? {
+		let settingIndex = settingsStartIndex(for: index) + 4
+		let jsonState = self.stateAsJson()
+		//For whatever reason, LiveSplitCore won't output the correct value if I get the field and to `asJSON` on it, like the other properties, so I have to do this instead.
+		if let state = try? JSON(data: jsonState.data(using: .utf8)!) {
+			let s = state["component_settings"]["fields"].arrayValue[settingIndex]
+			if let v = s["value"]["OptionalString"].string, let comparison = TimeComparison(rawValue: v) {
+				return comparison
+			}
+			
+		}
+		return nil
+	}
 	
 	func getUpdateWith(for index: Int) -> ColumnUpdateWith {
 		let settingIndex = settingsStartIndex(for: index) + 2

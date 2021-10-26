@@ -55,15 +55,18 @@ extension SplitsComponent {
 	func differenceOptions() -> NSView {
 		
         let diffColumnIndex = self.splitsTableView.column(withIdentifier: STVColumnID.differenceColumn)
-		let pbMenuItem = NSMenuItem(title: "Best Time", action: nil, keyEquivalent: "")
+		let sumOfBestMenuItem = NSMenuItem(title: "Sum of Best Time", action: nil, keyEquivalent: "")
 		let prevMenuItem = NSMenuItem(title: "Previous Attempt", action: nil, keyEquivalent: "")
+		let pbMenuItem = NSMenuItem(title:"Personal Best Time", action: nil, keyEquivalent: "")
 		
 		let popupButton = ComponentPopUpButton(title: "", selectAction: { button in
 			switch button.indexOfSelectedItem {
-			case button.index(of: pbMenuItem):
-				self.run.setComparison(to: .bestSegments)
+			case button.index(of: sumOfBestMenuItem):
+				self.run.setColumnComparison(.bestSegments, for: .diff)
 			case button.index(of: prevMenuItem):
-				self.run.setComparison(to: .latest)
+				self.run.setColumnComparison(.latest, for: .diff)
+			case button.index(of: pbMenuItem):
+				self.run.setColumnComparison(.personalBest, for: .diff)
 			default:
 				break
 			}
@@ -74,14 +77,17 @@ extension SplitsComponent {
 		
 		let menu = NSMenu()
 		menu.addItem(pbMenuItem)
+		menu.addItem(sumOfBestMenuItem)
 		menu.addItem(prevMenuItem)
 		popupButton.menu = menu
 		
-		switch run.getComparision() {
+		switch run.getColumnComparison(for: .diff) {
 		case .bestSegments:
-			popupButton.select(pbMenuItem)
+			popupButton.select(sumOfBestMenuItem)
 		case .latest:
 			popupButton.select(prevMenuItem)
+		case .personalBest:
+			popupButton.select(pbMenuItem)
 		default:
 			break
 		}
@@ -89,7 +95,6 @@ extension SplitsComponent {
 		let compareLabel = NSTextField(labelWithString: "Compare To")
 		let compareStack = NSStackView(views: [compareLabel, popupButton])
         compareStack.orientation = .horizontal
-        print(diffColumnIndex)
         let timeOptions = segmentSplitOptions(for: splitsTableView.tableColumns[diffColumnIndex]) as! NSStackView
         let stack = NSStackView(views: [compareStack, timeOptions])
         NSLayoutConstraint.activate([

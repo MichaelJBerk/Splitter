@@ -119,9 +119,11 @@ class SplitterRun: NSObject {
 			editor.setComponentSettingsValue(9, .fromBool(true))
 			
 			//Setup Diffs Column
+//			editor.setColumn(1, name: <#T##String#>)Fcomp
 			editor.setColumn(1, updateWith: ColumnUpdateWith.segmentDelta)
 			editor.setColumn(1, updateTrigger: ColumnUpdateTrigger.onStartingSegment)
-			
+			editor.setColumn(1, comparison: "Best Segments")
+			//todo: if before fix and diff column comparison is empty, replace diff column compariosn with run comparison, and set run comparison to default
 			//Setup PB column
 			editor.setColumn(2, name: "PB")
 			editor.setColumn(2, comparison: "Best Segments")
@@ -150,13 +152,11 @@ class SplitterRun: NSObject {
 		self.timer.splitterRun = self
 		setObservers()
 		
-		//Comparisons aren't saved in LiveSplit,, so we need a custom variable.
-		//We load it here, and set it. Before saving the file, we set the custom variable.
+		//If there's a "currentComparison" variable here, it's a pre-4.3 Splitter file, and thus we need to update it using `fixRunAndDiffsComparison`
 		if let comp = getCustomVariable(name: "currentComparison") {
-			setComparison(comp)
-		} else {
-			setComparison(to: .bestSegments, disableUndo: true)
+			fixRunAndDiffsComparison(comp)
 		}
+		setRunComparison(to: .personalBest, disableUndo: true)
 	}
 	
 	
@@ -510,21 +510,24 @@ class SplitterRun: NSObject {
 			timer.lsTimer.switchToNextComparison()
 		}
 	}
-	private func setComparison(to comparison: TimeComparison, disableUndo: Bool = false) {
-		let oldValue = self.getComparision()
+	private func setRunComparison(to comparison: TimeComparison, disableUndo: Bool = false) {
+		let oldValue = self.getRunComparision()
 		if !disableUndo {
 			undoManager?.registerUndo(withTarget: self, handler: { r in
-				r.setComparison(to: oldValue)
+				r.setRunComparison(to: oldValue)
 			})
 			undoManager?.setActionName("Set Comparison")
 		}
 		setComparison(comparison.rawValue)
 	}
-	func setComparison(to comparison: TimeComparison) {
-		self.setComparison(to: comparison, disableUndo: false)
+	///Sets the comparison for the run
+	///
+	///If you need to set the comparison for a single column, use `setColumnComparison(_:for:)` instead
+	func setRunComparison(to comparison: TimeComparison) {
+		self.setRunComparison(to: comparison, disableUndo: false)
 	}
 	
-	func getComparision() -> TimeComparison {
+	func getRunComparision() -> TimeComparison {
 		//TODO: Handle if custom comparison?
 		return TimeComparison(rawValue: timer.lsTimer.currentComparison())!
 	}
@@ -631,6 +634,26 @@ class SplitterRun: NSObject {
 		let update = editor.getStartWith(for: column.lsColumn)
 		layout = editor.close()
 		return update
+	}
+	func getColumnComparison(for column: TimeColumn) -> TimeComparison? {
+		let editor = LayoutEditor(layout)!
+		editor.select(1)
+		let comparison = editor.getColumnComparison(for: column.lsColumn)
+		layout = editor.close()
+		return comparison
+	}
+	
+	func setColumnComparison(_ comparison: TimeComparison?, for column: TimeColumn) {
+		let oldValue = getColumnComparison(for: column)
+		undoManager?.registerUndo(withTarget: self, handler: { r in
+			r.setColumnComparison(oldValue, for: column)
+		})
+		editLayout { editor in
+			editor.select(1)
+			editor.setColumn(column.lsColumn, comparison: comparison?.rawValue ?? nil)
+		}
+		undoManager?.setActionName("Set Column Comparison")
+		NotificationCenter.default.post(name: .splitsEdited, object: self)
 	}
 	
 	func setUpdateWith(_ updateWith: ColumnUpdateWith, for column: TimeColumn) {
@@ -827,7 +850,7 @@ class SplitterRun: NSObject {
 	}
 	
 	func saveToLSS() -> String {
-		let comparison = self.getComparision()
+		let comparison = self.getRunComparision()
 		
 		//Need to put it in a DispatchQueue, or it won't save the times properly for some reason
 		DispatchQueue.main.async {
@@ -843,5 +866,16 @@ class SplitterRun: NSObject {
 	}
 	func setRun(_ run: Run) {
 		_ = timer.lsTimer.setRun(run)
+	}
+	
+	//MARK: Backwards Compatibility
+	///Replaces the diffs comparison with the run's comparison
+	///
+	///Before Splitter 4.3, the diffs column didn't have a comparison, and so when the user would change its comparison in the Layout Editor, it would change the run's comparison instead. This creates a bunch of weirdness, so in 4.3, I switched to giving the diffs column a comparison override instead. This method takes the existing run comparison, and sets the diffs comparison to it.
+	private func fixRunAndDiffsComparison(_ runComparison: String) {
+		editLayout { editor in
+			editor.select(1)
+			editor.setColumn(1, comparison: runComparison)
+		}
 	}
 }

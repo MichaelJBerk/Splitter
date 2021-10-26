@@ -120,15 +120,6 @@ class ViewController: NSViewController {
 	var currentSplit: TimeSplit? = nil
 	var loadedFilePath: String = ""
 
-	var compareTo: TimeComparison {
-		get {
-			return run.getComparision()
-		}
-		set {
-			run.setComparison(to: newValue)
-		}
-	}
-
 	//MARK: - Other Split Metadata
 	
 	var platform: String {
@@ -177,15 +168,24 @@ class ViewController: NSViewController {
 //        print("Comparisons:")
 //        print(run.timer.lsRun.customComparisonsLen())
 //        print(run.comparisons)
+//		let editor = LayoutEditor(run.layout)!
+//		editor.select(1)
+//		let state = editor.stateAsJson()
+//
+//
+//		let pasteboard = NSPasteboard.general
+//		pasteboard.declareTypes([.string], owner: nil)
+//		pasteboard.setString(state, forType: .string)
+//		run.layout = editor.close()
 		let editor = LayoutEditor(run.layout)!
 		editor.select(1)
-		let state = editor.stateAsJson()
-
-
+//		editor.setColumn(1, comparison: "Best Segments")
+		_ = editor.getColumnComparison(for: 1)
+		let es = editor.stateAsJson()
 		let pasteboard = NSPasteboard.general
 		pasteboard.declareTypes([.string], owner: nil)
-		pasteboard.setString(state, forType: .string)
-		run.layout = editor.close()
+		pasteboard.setString(es, forType: .string)
+		editor.close()
 	}
 	
 	var breakID = NSUserInterfaceItemIdentifier("break")
