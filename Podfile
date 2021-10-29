@@ -5,6 +5,7 @@ platform :osx, '10.14'
   def splitter_pods
   	pod 'Sparkle'
   	pod 'MASShortcut'
+    pod 'ZippyJSON'
   end
   
   target 'Splitter' do 

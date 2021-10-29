@@ -1,27 +1,39 @@
 PODS:
+  - JJLISO8601DateFormatter (0.1.4)
   - Keys (1.0.1)
   - MASShortcut (2.4.0)
   - Sparkle (1.26.0)
+  - ZippyJSON (1.2.4):
+    - JJLISO8601DateFormatter (= 0.1.4)
+    - ZippyJSONCFamily (= 1.2.4)
+  - ZippyJSONCFamily (1.2.4)
 
 DEPENDENCIES:
   - Keys (from `Pods/CocoaPodsKeys`)
   - MASShortcut
   - Sparkle
+  - ZippyJSON
 
 SPEC REPOS:
   trunk:
+    - JJLISO8601DateFormatter
     - MASShortcut
     - Sparkle
+    - ZippyJSON
+    - ZippyJSONCFamily
 
 EXTERNAL SOURCES:
   Keys:
     :path: Pods/CocoaPodsKeys
 
 SPEC CHECKSUMS:
+  JJLISO8601DateFormatter: 9a5cb2f717c6a4f6a36f50b9015813b67f9f38f0
   Keys: a576f4c9c1c641ca913a959a9c62ed3f215a8de9
   MASShortcut: d9e4909e878661cc42877cc9d6efbe638273ab57
   Sparkle: d56d028f4b0c123577825f5d1004f6140d77f90e
+  ZippyJSON: fd3ee54ad169ba2d3c2d9216222dab8c12de6ff5
+  ZippyJSONCFamily: 23021697519e64bef73263c4d4108c6811dab6e8
 
-PODFILE CHECKSUM: 173117bec125f51b868cdffa5bb7115e5e41b6e6
+PODFILE CHECKSUM: 940256304d4e272d22ba1901df6c0a883a683f6b
 
 COCOAPODS: 1.11.2

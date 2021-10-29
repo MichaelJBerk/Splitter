@@ -10,6 +10,7 @@ import Foundation
 import Cocoa
 import SwiftyJSON
 import Codextended
+import ZippyJSON
 extension Notification.Name {
 	static let phaseChanged = Notification.Name("timerPhaseChanged")
 	static let runEdited = Notification.Name("runEdited")
@@ -478,7 +479,7 @@ class SplitterRun: NSObject {
 		let json = layout.updateStateAsJson(refMutState, timer.lsTimer)
 		let jData = json.data(using: .utf8)
 		do {
-			codableLayout = try JSONDecoder().decode(CLayout.self, from: jData!)
+			codableLayout = try ZippyJSONDecoder().decode(CLayout.self, from: jData!)
 		} catch {
 			print("Decode Error:\n \(error)")
 		}
