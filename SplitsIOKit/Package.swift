@@ -15,6 +15,7 @@ let package = Package(
     dependencies: [
 		.package(url: "https://github.com/SwiftyJSON/SwiftyJSON.git", .upToNextMajor(from: "5.0.0")),
 		.package(url: "https://github.com/Alamofire/Alamofire.git", .upToNextMajor(from: "5.2.0")),
+		.package(url: "https://github.com/pitiphong-p/URLQueryItemEncoder.git", .upToNextMajor(from: "0.2.0")),
 		.package(name: "Files", url: "https://github.com/JohnSundell/Files", from: "4.0.0"),
 		.package(name: "OAuth2", url: "https://github.com/p2/OAuth2.git", .upToNextMajor(from: "5.2.0"))
 		
@@ -26,7 +27,7 @@ let package = Package(
         // Targets can depend on other targets in this package, and on products in packages this package depends on.
         .target(
             name: "SplitsIOKit",
-			dependencies: ["SwiftyJSON", "Alamofire", "Files", "OAuth2"]),
+			dependencies: ["SwiftyJSON", "Alamofire", "Files", "OAuth2", "URLQueryItemEncoder"]),
         .testTarget(
             name: "SplitsIOKitTests",
 			dependencies: ["SplitsIOKit", "Files"]),

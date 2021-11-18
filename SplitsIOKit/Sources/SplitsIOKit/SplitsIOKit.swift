@@ -67,6 +67,16 @@ public class SplitsIOKit {
 		}
 	}
 	
+	@available(macOS 12.0, iOS 15.0, tvOS 15.0, watchOS 8.0, *)
+	public func searchSplitsIO(for game: String) async -> [SplitsIOGame]? {
+		return await withCheckedContinuation { continuation in
+			searchSplitsIO(for: game) { result in
+				continuation.resume(returning: result)
+			}
+		}
+	}
+	
+	
 	///Indicates whether or not this instance of SplitsIOKit has an authManager
 	public var hasAuth: Bool {
 		return (authManager != nil && authManager?.oAuth2.accessToken != nil)
