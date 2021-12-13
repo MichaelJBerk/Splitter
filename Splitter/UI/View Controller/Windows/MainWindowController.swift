@@ -12,9 +12,23 @@ class MainWindowController: NSWindowController {
 
 	override func windowDidLoad() {
         super.windowDidLoad()
-		DispatchQueue.main.async {
-		}
-        // Implement this method to handle any initialization after your window controller's window has been loaded from its nib file.
+		NotificationCenter.default.addObserver(forName: .menuBarModeChanged, object: nil, queue: nil, using: { _ in
+			self.updateFromMenuBarMode()
+		})
+		updateFromMenuBarMode()
     }
+	
+	func updateFromMenuBarMode() {
+		if Settings.menuBarMode {
+			window?.level = .statusBar
+			window?.collectionBehavior = .canJoinAllSpaces
+		} else {
+			window?.collectionBehavior = .fullScreenAuxiliary
+		}
+		
+		
+	}
+	
+	
 
 }

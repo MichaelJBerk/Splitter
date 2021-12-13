@@ -22,14 +22,16 @@ extension ViewController {
 	}
 	///Sets the window to stay on top, depending on the current setting
 	func setFloatingWindow() {
-		let id = menuIdentifiers.windowMenu.windowFloat
-		if let menuItem = NSApp.mainMenu?.item(withIdentifier: id) {
-			if windowFloat {
-				view.window?.level = .floating
-				menuItem.state = .on
-			} else {
-				view.window?.level = .normal
-				menuItem.state = .off
+		if !Settings.menuBarMode {
+			let id = menuIdentifiers.windowMenu.windowFloat
+			if let menuItem = NSApp.mainMenu?.item(withIdentifier: id) {
+				if windowFloat {
+					view.window?.level = .floating
+					menuItem.state = .on
+				} else {
+					view.window?.level = .normal
+					menuItem.state = .off
+				}
 			}
 		}
 	}

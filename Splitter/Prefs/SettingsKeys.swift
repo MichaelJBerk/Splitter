@@ -17,6 +17,10 @@ enum SettingsKeys {
 	public static let globalHotkeys = "enableGlobalHotkeys"
 	public static let showWelcomeWindow = "showWelcomeWindow"
 	public static let splitsIOURL = "splitsIOURL"
+	public static let menuBarMode = "menuBarMode"
+}
+extension Notification.Name {
+	static let menuBarModeChanged = Notification.Name("menuBarModeChanged")
 }
 
 public enum Warning: String {
@@ -53,6 +57,8 @@ public struct Settings {
 			UserDefaults.standard.set(newValue, forKey: SettingsKeys.notFirstUse)
 		}
 	}
+	
+	//MARK: - Settings
 	public static var enableGlobalHotkeys: Bool {
 		
 		get {
@@ -66,6 +72,17 @@ public struct Settings {
 			}
 		}
 	}
+	
+	public static var menuBarMode:Bool {
+		get {
+			UserDefaults.standard.bool(forKey: SettingsKeys.menuBarMode)
+		}
+		set {
+			UserDefaults.standard.set(newValue, forKey: SettingsKeys.menuBarMode)
+			NotificationCenter.default.post(name: .menuBarModeChanged, object: nil)
+		}
+	}
+	
 	public static var showWelcomeWindow: Bool {
 		set {
 			UserDefaults.standard.set(newValue, forKey: SettingsKeys.showWelcomeWindow)

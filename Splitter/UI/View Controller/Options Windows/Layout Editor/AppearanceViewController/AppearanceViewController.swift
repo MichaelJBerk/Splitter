@@ -34,8 +34,16 @@ class AppearanceViewController: NSViewController, LoadableNib {
 	override func viewDidLoad() {
         super.viewDidLoad()
 		viewDidAppear()
+		NotificationCenter.default.addObserver(forName: .menuBarModeChanged, object: nil, queue: nil, using: { _ in
+			self.toggleTopCheckDisable()
+		})
+		toggleTopCheckDisable()
         // Do view setup here.
     }
+	
+	func toggleTopCheckDisable() {
+		keepOnTopCheck.isEnabled = !Settings.menuBarMode
+	}
 	
 	@IBAction func settingsSender(_ sender: Any) {
 		sendSettings(sender)
@@ -57,8 +65,9 @@ You can still close the window either with ⌘W or from the "Window" menu.
 //		topHelp.sourceView = self.view.superview!
 //		topHelp.target = self
 		topHelp.helpString = """
-		Enabling this will make the window "float" above any other windows you have open.
-		"""
+  Enabling this will make the window "float" above any other windows you have open.
+  This is separate from Overlay Mode in Preferences.
+"""
 	}
 	
 	

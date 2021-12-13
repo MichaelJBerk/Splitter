@@ -14,9 +14,11 @@ extension AppDelegate {
 	func frontHandler()  {
 		NSApplication.shared.orderedWindows.forEach({ (window) in
 			if let mainWindow = window as? MainWindow {
+				mainWindow.hidesOnDeactivate = false
 				NSApplication.shared.activate(ignoringOtherApps: true)
 				mainWindow.makeKeyAndOrderFront(nil)
 				mainWindow.makeKey()
+				
 			}
 		})
 	}

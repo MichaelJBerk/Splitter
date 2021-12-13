@@ -607,6 +607,10 @@ class ViewController: NSViewController {
 	
 	///Sets up default appearance. Used when opening a new file, or any other case where there's no `splitterAppearance` file
 	func setUpDefaults() {
+		//Set back to floating if menu bar mode turned off
+		NotificationCenter.default.addObserver(forName: .menuBarModeChanged, object: nil, queue: nil, using: { _ in
+			self.setFloatingWindow()
+		})
 		showHideTitleBar()
 		setFloatingWindow()
 		

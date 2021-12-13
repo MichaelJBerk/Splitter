@@ -110,6 +110,9 @@
 		4AB92AC2261F69ED00E8B814 /* ThemedPopUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB92AC1261F69ED00E8B814 /* ThemedPopUpButton.swift */; };
 		4AB92AC6261F6CD600E8B814 /* ThemedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB92AC5261F6CD600E8B814 /* ThemedTextField.swift */; };
 		4ABB38A8255C79B00037536E /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 4ABB38A7255C79B00037536E /* SwiftyJSON */; };
+		4ABC0C702767E09900BF5747 /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABC0C6F2767E09900BF5747 /* StatusBarController.swift */; };
+		4AC0E3A52767B3F3004D71D6 /* GeneralPrefsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC0E3A32767B3F3004D71D6 /* GeneralPrefsViewController.swift */; };
+		4AC0E3A62767B3F3004D71D6 /* GeneralPrefsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AC0E3A42767B3F3004D71D6 /* GeneralPrefsViewController.xib */; };
 		4AC24DBC23EB4F17003008BF /* SplitterTableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC24DBB23EB4F17003008BF /* SplitterTableDelegate.swift */; };
 		4AC2745826990E04007ED8F5 /* GeneralLayoutSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC2745726990E04007ED8F5 /* GeneralLayoutSettingsViewController.swift */; };
 		4AC401F324BE145F005180F1 /* (null) in Sources */ = {isa = PBXBuildFile; };
@@ -276,6 +279,9 @@
 		4AB92ABD261F67B700E8B814 /* ThemedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedButton.swift; sourceTree = "<group>"; };
 		4AB92AC1261F69ED00E8B814 /* ThemedPopUpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedPopUpButton.swift; sourceTree = "<group>"; };
 		4AB92AC5261F6CD600E8B814 /* ThemedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedTextField.swift; sourceTree = "<group>"; };
+		4ABC0C6F2767E09900BF5747 /* StatusBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusBarController.swift; sourceTree = "<group>"; };
+		4AC0E3A32767B3F3004D71D6 /* GeneralPrefsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralPrefsViewController.swift; sourceTree = "<group>"; };
+		4AC0E3A42767B3F3004D71D6 /* GeneralPrefsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GeneralPrefsViewController.xib; sourceTree = "<group>"; };
 		4AC24DBB23EB4F17003008BF /* SplitterTableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterTableDelegate.swift; sourceTree = "<group>"; };
 		4AC2745726990E04007ED8F5 /* GeneralLayoutSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralLayoutSettingsViewController.swift; sourceTree = "<group>"; };
 		4ACCEA7723B02F520068F89E /* TimeSplit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSplit.swift; sourceTree = "<group>"; };
@@ -529,6 +535,7 @@
 				4A75579C255C47F300ACE826 /* SplitterDocSplitsio.icns */,
 				4A9CA2A6263A2D4C0054D624 /* Extensions.swift */,
 				4A230E9223B00A1D00959C57 /* AppDelegate.swift */,
+				4ABC0C6F2767E09900BF5747 /* StatusBarController.swift */,
 				4AFCC52423C63F3E002216F1 /* UI */,
 				4A7DDCE123BBDD0900A36AD1 /* Credits.html */,
 				4A5F10AD23CFAA1F00DA043B /* Assets.xcassets */,
@@ -806,6 +813,8 @@
 				4AF9E8AA24CE31CA00DFD5BE /* DebugPrefsViewController.xib */,
 				4A18663123C5376900FEEE54 /* SettingsKeys.swift */,
 				4A87265623BD5423003A14AF /* PrefPanes.swift */,
+				4AC0E3A32767B3F3004D71D6 /* GeneralPrefsViewController.swift */,
+				4AC0E3A42767B3F3004D71D6 /* GeneralPrefsViewController.xib */,
 				4A5F10AC23CF754E00DA043B /* Hotkeys */,
 			);
 			path = Prefs;
@@ -1008,6 +1017,7 @@
 				4A75578D255C426A00ACE826 /* SplitterDocLSS.icns in Resources */,
 				4ACFB1E7262F53B100EA79B6 /* SplitsComponent.xib in Resources */,
 				4A01B803268631FC00F15A50 /* SplitsEditorViewController.xib in Resources */,
+				4AC0E3A62767B3F3004D71D6 /* GeneralPrefsViewController.xib in Resources */,
 				4A0981A724E34DE400E44792 /* AccountButtonView.xib in Resources */,
 				4A05EEFD24D762E200873D07 /* DownloadWindow.storyboard in Resources */,
 				4A230E9C23B00A1E00959C57 /* Main.storyboard in Resources */,
@@ -1241,11 +1251,13 @@
 				4AF953B523EB503100ED540C /* Timer Functions.swift in Sources */,
 				4A1657B523EA5C320008CB5F /* Icon Actions.swift in Sources */,
 				4A74D4ED25EE9DD700A3D9C7 /* SplitterRun.swift in Sources */,
+				4ABC0C702767E09900BF5747 /* StatusBarController.swift in Sources */,
 				4AA9ADBF2608F035009B77B5 /* StartRow.swift in Sources */,
 				4A6A3BE423CD621A002C20AE /* MainWindow.swift in Sources */,
 				4A520E332693774500F463B3 /* SplitsComponentOptions.swift in Sources */,
 				4AF9E8AB24CE31CA00DFD5BE /* DebugPrefsViewController.swift in Sources */,
 				4A968C7C23F1F5FE001B74E8 /* lss.swift in Sources */,
+				4AC0E3A52767B3F3004D71D6 /* GeneralPrefsViewController.swift in Sources */,
 				4A6A3BE023CD1C39002C20AE /* GlobalKeybindPrefs.swift in Sources */,
 				4A1C1469240ED30C0056B104 /* InfoOptionsViewController.swift in Sources */,
 				4A01B802268631FC00F15A50 /* SplitsEditorViewController.swift in Sources */,

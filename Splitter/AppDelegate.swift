@@ -35,6 +35,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 	public var hotkeyController: HotkeysViewController?
 	public static var shared: AppDelegate? = NSApplication.shared.delegate as? AppDelegate
 	var appKeybinds: [SplitterKeybind?] = []
+	let statusBarController = StatusBarController()
 	
 	///Displays a dialog box informing the user to give Splitter the requisite permissions for Global Hotkeys to work.
 	func keybindAlert() {
@@ -145,6 +146,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 		//Add the hotkey event monitor
 		NSEvent.addGlobalMonitorForEvents(matching: .keyUp, handler: performGlobalKeybindAction(event:))
 		
+		if Settings.menuBarMode {
+			NSApp.activate(ignoringOtherApps: true)
+			newWindowIfNone()
+		}
+		
 		//MSAppCenter stuff
 		NSApp.mainMenu?.item(withIdentifier: menuIdentifiers.appMenu.updatesMenuItem)?.isHidden = false
 		#if !DEBUG
@@ -237,15 +243,16 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 	#if DEBUG
 	lazy var preferencesWindowController = PreferencesWindowController(
 		preferencePanes: [
+			GeneralPrefsViewController(),
 			HotkeysViewController(),
 			AccountViewController(),
 			DebugPrefsViewController()
 			]
-		
 	)
 	#else
 	lazy var preferencesWindowController = PreferencesWindowController(
 		preferencePanes: [
+			GeneralPrefsViewController(),
 			HotkeysViewController(),
 			AccountViewController()
 			]
@@ -295,6 +302,15 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 	
 	func applicationWillTerminate(_ notification: Notification) {
 		NSColorPanel.shared.close()
+	}
+	
+	func newWindowIfNone() {
+		let windows = NSApp.windows.filter({$0.isVisible})
+		if windows.count <= 1 {
+			if AppDelegate.shared?.applicationShouldOpenUntitledFile(NSApp) == true {
+				NSDocumentController.shared.newDocument(nil)
+			}
+		}
 	}
 }
 	
