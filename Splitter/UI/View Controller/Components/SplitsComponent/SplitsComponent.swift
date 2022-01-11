@@ -60,9 +60,6 @@ class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent {
 	func setup() {
 		///This works even if viewController hasn't been initalized yet, since `delegate` and `dataSource` are optional properties
 		delegate = SplitsComponentDelegate(run: run, component: self)
-		if useViewController  {
-			delegate.selectedColor = viewController.selectedColor
-		}
 		splitsTableView.delegate = delegate
 		splitsTableView.dataSource = delegate
 		

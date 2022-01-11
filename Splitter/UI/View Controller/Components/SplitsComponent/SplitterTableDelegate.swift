@@ -26,7 +26,10 @@ class SplitterRowView: NSTableRowView {
 
 class SplitsComponentDelegate: NSObject, NSTableViewDelegate, NSTableViewDataSource {
 	var run: SplitterRun
-	var selectedColor = NSColor.splitterRowSelected
+
+	var selectedColor: NSColor {
+		run.selectedColor
+	}
 	var splitsComponent: SplitsComponent
 	var timerState: TimerState {
 		get {
