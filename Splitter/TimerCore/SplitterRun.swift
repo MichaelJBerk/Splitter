@@ -85,45 +85,53 @@ class SplitterRun: NSObject {
 			editor.setGeneralSettingsValue(4, .fromNSColor(.splitterDefaultColor))
 			
 			/**
-			- NOTE: Settings for Splits component:
-			0 :  Background
-			1 :  Total Splits
-			2 :  Upcoming Splits
-			3 :  Show Thin Separators
-			4 :  Show Separator Before Last Split
-			5 :  Always Show Last Split
-			6 :  Fill with Blank Space if Not Enough Splits
-			7 :  Display 2 Rows
-			8 :  Current Split Gradient
-			9 :  Show Column Labels
-			10:  Columns
-			- Indices from 11 onwards are each column's settings.
-				- The next column's settings are right after the previous one - i.e. column 2 starts at 17.
-			
-			#Column Settings
-			11:  Column Name
-			12:  Start With
-			13:  Update With
-			14:  Update Trigger
-			15:  Comparison
-			16:  Timing Method
+			 - NOTE: Settings for Splits component:
+			 0 :  Background (LSC Crashes when trying to get it via editor)
+			 1 :  Total Splits
+			 2 :  Upcoming Splits
+			 3 :  Show Thin Separators
+			 4 :  Show Separator Before Last Split
+			 5 :  Always Show Last Split
+			 6 :  Fill with Blank Space if Not Enough Splits
+			 7 :  Display 2 Rows
+			 8 :  Current Split Gradient
+			 9 :  Split Time Accuracy
+			 10:  Segment Time Accuracy
+			 11:  Delta Time Accuracy
+			 12:  Drop Delta Decimals When Showing Minutes
+			 9 :  Show Column Labels
+			 14:  Columns
+			- Indices from 15 onwards are each column's settings.
+				- The next column's settings are right after the previous one - i.e. column 2 starts at 21.
 			 
-			
-			
-			- NOTE: Must have column labels on to set column names
+			 Column Settings
+			 15:  Column Name
+			 16:  Start With
+			 17:  Update With
+			 18:  Update Trigger
+			 19:  Comparison
+			 20:  Timing Method
+			 
+			 - NOTE: Must have column labels on to set column names
 			**/
 			
+			
 			editor.select(1)
+			
+			let len = editor.state().fieldLen(true)
+			print("Components:")
+			for i in 1..<len {
+				let fieldName = editor.state().fieldText(true, i)
+				let fieldValue = editor.state().fieldValue(true, i)
+				print("\(i) - \(fieldName): \n\(fieldValue.asJson())")
+			}
 			//Include all splits in layout
 			editor.setComponentSettingsValue(1, .fromUint(0))
 			editor.setComponentSettingsValue(0, .fromAlternatingNSColor(.splitterTableViewColor, .splitterTableViewColor))
-			let colName = editor.state().fieldText(true, 10)
-			print(colName)
-			editor.setComponentSettingsValue(10, .fromUint(4))
-			editor.setComponentSettingsValue(9, .fromBool(true))
+			editor.setComponentSettingsValue(14, .fromUint(4))
+			editor.setComponentSettingsValue(13, .fromBool(true))
 			
 			//Setup Diffs Column
-//			editor.setColumn(1, name: <#T##String#>)Fcomp
 			editor.setColumn(1, updateWith: ColumnUpdateWith.segmentDelta)
 			editor.setColumn(1, updateTrigger: ColumnUpdateTrigger.onStartingSegment)
 			editor.setColumn(1, comparison: "Best Segments")

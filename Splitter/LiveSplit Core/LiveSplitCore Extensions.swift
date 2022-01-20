@@ -41,7 +41,7 @@ extension LayoutEditor {
 	/// - NOTE: Must have splits as the currently selected segment
 	
 	func settingsStartIndex(for column: Int) -> Int {
-		let value = 11 + (column * 6)
+		let value = 15 + (column * 6)
 		return value
 	}
 	func setNumberOfColumns(_ index: Int, count: Int) {
