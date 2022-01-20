@@ -618,7 +618,6 @@
                     <connections>
                         <outlet property="backgroundImageView" destination="nQn-tP-SqQ" id="Ghk-z6-u7e"/>
                         <outlet property="mainStackView" destination="Kx4-q1-74E" id="3Wt-La-UfN"/>
-                        <outlet property="topConstraint" destination="UCK-07-jA6" id="Ek9-vf-QfC"/>
                     </connections>
                 </viewController>
                 <menu title="IconMenu" autoenablesItems="NO" id="wTE-Xp-5dN">
