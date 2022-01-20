@@ -107,15 +107,18 @@ class SplitterRun: NSObject {
 			14:  Update Trigger
 			15:  Comparison
 			16:  Timing Method
+			 
 			
 			
 			- NOTE: Must have column labels on to set column names
 			**/
+			
 			editor.select(1)
 			//Include all splits in layout
 			editor.setComponentSettingsValue(1, .fromUint(0))
 			editor.setComponentSettingsValue(0, .fromAlternatingNSColor(.splitterTableViewColor, .splitterTableViewColor))
-			
+			let colName = editor.state().fieldText(true, 10)
+			print(colName)
 			editor.setComponentSettingsValue(10, .fromUint(4))
 			editor.setComponentSettingsValue(9, .fromBool(true))
 			

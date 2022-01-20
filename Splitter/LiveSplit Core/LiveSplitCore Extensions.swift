@@ -8,6 +8,22 @@
 
 import Foundation
 import SwiftyJSON
+extension Run {
+	///  Attempts to parse a splits file from a file by invoking the corresponding parser for the file format detected.
+	/// - Parameters:
+	///   - path: Path to the file to be parsed
+	///   - loadFiles: Should external files - such as images - be loaded
+	/// - Returns: The parsed run if successful, `nil` if not
+	/// - NOTE: File does not get closed
+	public static func parseFile(path: String, loadFiles: Bool) -> Run? {
+		if let handle = FileHandle(forReadingAtPath: path) {
+			let fd = Int64(handle.fileDescriptor)
+			return parseFileHandle(fd, path, loadFiles).unwrap()
+		}
+		return nil
+		
+	}
+}
 extension SettingValueRef {
 	func toColor() -> NSColor? {
 
