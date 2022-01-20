@@ -2,7 +2,8 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19455"/>
+        <capability name="NSView safe area layout guides" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -599,15 +600,17 @@
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyUpOrDown" id="9YI-R2-vAq"/>
                             </imageView>
                             <stackView distribution="fill" orientation="vertical" alignment="leading" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Kx4-q1-74E" customClass="DraggingStackView" customModule="Splitter" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="10" width="260" height="358"/>
+                                <rect key="frame" x="0.0" y="10" width="260" height="316"/>
                             </stackView>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="Kx4-q1-74E" firstAttribute="top" secondItem="nLC-ev-0ZO" secondAttribute="top" constant="10" id="UCK-07-jA6"/>
-                            <constraint firstAttribute="bottom" secondItem="Kx4-q1-74E" secondAttribute="bottom" constant="10" id="WnI-LX-92U"/>
-                            <constraint firstItem="Kx4-q1-74E" firstAttribute="leading" secondItem="nLC-ev-0ZO" secondAttribute="leading" id="Zze-Kw-HKy"/>
-                            <constraint firstAttribute="trailing" secondItem="Kx4-q1-74E" secondAttribute="trailing" id="kEx-wO-ewG"/>
+                            <constraint firstItem="7Ye-QZ-p1Q" firstAttribute="trailing" secondItem="Kx4-q1-74E" secondAttribute="trailing" id="B7m-z5-nN8"/>
+                            <constraint firstItem="7Ye-QZ-p1Q" firstAttribute="bottom" secondItem="Kx4-q1-74E" secondAttribute="bottom" constant="10" id="BHg-wn-Jfc"/>
+                            <constraint firstItem="Kx4-q1-74E" firstAttribute="top" secondItem="7Ye-QZ-p1Q" secondAttribute="top" id="Pe7-4w-s8j"/>
+                            <constraint firstItem="Kx4-q1-74E" firstAttribute="leading" secondItem="7Ye-QZ-p1Q" secondAttribute="leading" id="jWA-IF-8lV"/>
                         </constraints>
+                        <viewLayoutGuide key="safeArea" id="7Ye-QZ-p1Q"/>
+                        <viewLayoutGuide key="layoutMargins" id="mpg-fM-Vqj"/>
                         <connections>
                             <outlet property="menu" destination="4TY-Vv-7Ay" id="Zab-qA-NeN"/>
                         </connections>

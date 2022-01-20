@@ -41,7 +41,6 @@ extension ViewController {
 		if titleBarHidden {
 			
 			view.window?.styleMask.insert(.fullSizeContentView)
-			topConstraint.constant = view.window!.titlebarHeight/2
 			view.window?.standardWindowButton(.closeButton)?.isHidden = true
 			view.window?.standardWindowButton(.documentIconButton)?.isHidden = true
 			view.window?.titleVisibility = .hidden
@@ -49,7 +48,6 @@ extension ViewController {
 			view.window?.standardWindowButton(.closeButton)?.isHidden = false
 			view.window?.standardWindowButton(.documentIconButton)?.isHidden = false
 			view.window?.titleVisibility = .visible
-			topConstraint.constant = 0
 			view.window?.styleMask.remove(.fullSizeContentView)
 		}
 		let showHideTitleBarItem = NSApp.mainMenu?.item(withIdentifier: menuIdentifiers.appearanceMenu.hideTitleBar)

@@ -566,7 +566,6 @@ class ViewController: NSViewController {
 	
 	var gameToViewEdgeConstraint: NSLayoutConstraint?
 	var categoryToViewEdgeConstraint: NSLayoutConstraint?
-	@IBOutlet var topConstraint: NSLayoutConstraint!
 	
 	func setRightClickMenus() {
 		let standardMenu = view.menu
