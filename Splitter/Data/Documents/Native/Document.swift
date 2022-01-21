@@ -12,6 +12,7 @@ import Cocoa
 import AppKit
 import Files
 import SwiftyJSON
+import LiveSplitKit
 
 class Document: SplitterDocBundle {
 

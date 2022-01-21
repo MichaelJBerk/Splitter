@@ -424,6 +424,7 @@
 					"$(PROJECT_DIR)/LiveSplitKit/LiveSplit\\ Core",
 				);
 				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 1.0;
 				MODULEMAP_FILE = "$(PROJECT_DIR)/LiveSplitKit/module.map";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mibe.LiveSplitKit;
@@ -458,6 +459,7 @@
 					"$(PROJECT_DIR)/LiveSplitKit/LiveSplit\\ Core",
 				);
 				MACH_O_TYPE = staticlib;
+				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 1.0;
 				MODULEMAP_FILE = "$(PROJECT_DIR)/LiveSplitKit/module.map";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mibe.LiveSplitKit;

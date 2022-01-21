@@ -9,27 +9,27 @@
 import Foundation
 import Codextended
 
-struct RunEditorState: Codable {
+public struct RunEditorState: Codable {
 	///The game's icon. This value is only specified whenever the icon has been changed. If it's `nil`, it indicates that no change has been made to the icon.
 	///
 	///The raw data for the icon is acessible via the `rawValue` property
-	var iconChange: IconChangeState?
+	public var iconChange: IconChangeState?
 	///The number of times this Run has been attempted by the runner. This is mostly just a visual number and has no effect on any history.
-	var attempts: Int?
+	public var attempts: Int?
 	///The name of the game the Run is for.
-	var game: String?
+	public var game: String?
 	///The timer offset specifies the time that the timer starts at when starting a new attempt.
-	var offset: String?
+	public var offset: String?
 	///The name of the category the Run is for.
-	var category: String?
+	public var category: String?
 	///The timing method that is currently selected to be visualized and edited.
-	var timingMethod: String?
+	public var timingMethod: String?
 	///The state of all the segments.
-	var segments: [RunEditorSegmentState]?
+	public var segments: [RunEditorSegmentState]?
 	///The names of all the custom comparisons that exist for this Run.
-	var comparisonNames: [String]?
+	public var comparisonNames: [String]?
 	///Additional metadata of this Run, like the platform and region of the game.
-	var metadata: RunEditorMetadataState?
+	public var metadata: RunEditorMetadataState?
 	
 	enum CodingKeys: String, CodingKey {
 		case iconChange = "icon_change"
@@ -41,7 +41,7 @@ struct RunEditorState: Codable {
 		case metadata
 	}
 	
-	init(from decoder: Decoder) throws {
+	public init(from decoder: Decoder) throws {
 //		let container = try decoder.container(keyedBy: CodingKeys.self)
 		
 //		if let ic: IconChangeState = try decoder.decode("icon_change"), ic.rawValue.count > 0 {
@@ -60,24 +60,24 @@ struct RunEditorState: Codable {
 	
 }
 ///Describes the current state of a segment.
-struct RunEditorSegmentState: Codable, Equatable {
+public struct RunEditorSegmentState: Codable, Equatable {
 	
 	///The game's icon. This value is only specified whenever the icon has been changed. If it's `nil`, it indicates that no change has been made to the icon.
 	///
 	///The raw data for the icon is acessible via the `rawValue` property
-	var iconChange: IconChangeState?
+	public var iconChange: IconChangeState?
 	///The name of the segment.
-	var name: String
+	public var name: String
 	///The segment's split time for the active timing method.
-	var splitTime: String
+	public var splitTime: String
 	///The segment time for the active timing method.
-	var segmentTime: String
+	public var segmentTime: String
 	///The best segment time for the active timing method.
-	var bestSegmentTime: String
+	public var bestSegmentTime: String
 	///All of the times of the custom comparison for the active timing method. The order of these matches up with the order of the custom comparisons provided by the Run Editor's State object.
-	var comparisonTimes: [String]
+	public var comparisonTimes: [String]
 	///Describes the segment's selection state.
-	var selected: RunEditorSelectionState
+	public var selected: RunEditorSelectionState
 	
 	enum CodingKeys: String, CodingKey {
 		case iconChange = "icon_change"
@@ -88,7 +88,7 @@ struct RunEditorSegmentState: Codable, Equatable {
 		case selected, name
 	}
 	
-	init(from decoder: Decoder) throws {
+	public init(from decoder: Decoder) throws {
 		
 		iconChange = try decoder.decode("icon_change")
 		splitTime = try decoder.decode("split_time")
@@ -100,7 +100,7 @@ struct RunEditorSegmentState: Codable, Equatable {
 	}
 }
 ///Describes the segment's selection state.
-enum RunEditorSelectionState: String, Codable {
+public enum RunEditorSelectionState: String, Codable {
 	case active = "Active"
 	case notSelected = "NotSelected"
 	
@@ -112,7 +112,7 @@ enum RunEditorSelectionState: String, Codable {
 		}
 	}
 	
-	func bool() -> Bool {
+	public func bool() -> Bool {
 		switch self {
 		case .active:
 			return true
@@ -122,9 +122,9 @@ enum RunEditorSelectionState: String, Codable {
 	}
 }
 /// An arbitrary key value pair storing additional information about the category. An example of this may be whether Amiibos are used in this category.
-struct RunEditorCustomVariableState: Codable, Hashable {
-	var value: String
-	var isPermanent: Bool
+public struct RunEditorCustomVariableState: Codable, Hashable {
+	public var value: String
+	public var isPermanent: Bool
 	
 	enum CodingKeys: String, CodingKey {
 		case value
@@ -132,17 +132,17 @@ struct RunEditorCustomVariableState: Codable, Hashable {
 	}
 }
 ///The Run Metadata stores additional information about a run, like the platform and region of the game. All of this information is optional.
-struct RunEditorMetadataState: Codable {
+public struct RunEditorMetadataState: Codable {
 	///The speedrun.com Run ID of the run. You need to ensure that the record on speedrun.com matches up with the Personal Best of this run. This may be empty if there's no association
-	var runId: String
+	public var runId: String
 	///The name of the platform this game is run on. This may be empty if it's not specified.
-	var platformName: String
+	public var platformName: String
 	///The name of the region this game is from. This may be empty if it's not specified.
-	var regionName: String
+	public var regionName: String
 	///Stores all the variables. A variable is an arbitrary key value pair storing additional information about the category. An example of this may be whether Amiibos are used in this category.
-	var variables: [String: RunEditorCustomVariableState]
+	public var variables: [String: RunEditorCustomVariableState]
 	///Specifies whether this speedrun is done on an emulator. Keep in mind that false may also mean that this information is simply not known.
-	var usesEmulator: Bool
+	public var usesEmulator: Bool
 	
 	enum CodingKeys: String, CodingKey {
 		case variables = "custom_variables"
@@ -152,7 +152,7 @@ struct RunEditorMetadataState: Codable {
 		case regionName = "region_name"
 	}
 	
-	init(from decoder: Decoder) throws {
+	public init(from decoder: Decoder) throws {
 		let container = try decoder.container(keyedBy: CodingKeys.self)
 		usesEmulator = try container.decode(Bool.self, forKey: .usesEmulator)
 		runId = try container.decode(String.self, forKey: .runId)
@@ -163,14 +163,14 @@ struct RunEditorMetadataState: Codable {
 }
 
 ///Type containing the data for a new icon in a RunEditor
-struct IconChangeState: Codable, Equatable, RawRepresentable {
-	init?(rawValue: Data) {
+public struct IconChangeState: Codable, Equatable, RawRepresentable {
+	public init?(rawValue: Data) {
 		self.rawValue = rawValue
 	}
 	
-	let rawValue: Data
+	public let rawValue: Data
 	
-	init(from decoder: Decoder) throws {
+	public init(from decoder: Decoder) throws {
 		let container = try decoder.singleValueContainer()
 		let decodeError = DecodingError.valueNotFound(Data.self, .init(codingPath: decoder.codingPath, debugDescription: "Icon Change State not found"))
 		if var icString = try container.decode(String?.self) {
@@ -181,14 +181,14 @@ struct IconChangeState: Codable, Equatable, RawRepresentable {
 			throw decodeError
 		}
 	}
-	func encode(to encoder: Encoder) throws {
+	public func encode(to encoder: Encoder) throws {
 		let b64 = "data:;base64," + rawValue.base64EncodedString()
 		try encoder.encodeSingleValue(b64)
 	}
 }
 
 
-extension RunEditor {
+public extension RunEditor {
 	
 	func getState() -> RunEditorState {
 		let jStr = self.stateAsJson()

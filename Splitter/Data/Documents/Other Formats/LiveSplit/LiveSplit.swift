@@ -9,6 +9,7 @@
 import Foundation
 import Cocoa
 import Files
+import LiveSplitKit
 
 extension ViewController {
 	func loadLS(url: URL, asTemplate: Bool = false) {

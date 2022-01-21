@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import LiveSplitKit
 extension SplitsComponent {
 	class SplitsOptionsView: ComponentOptionsVstack {
 		typealias OptionsTab =  (view: NSView, title: String)

@@ -11,7 +11,7 @@ import Preferences
 import AppCenter
 import AppCenterCrashes
 import SplitsIOKit
-
+import LiveSplitKit
 extension Notification.Name {
 	static let timerStateChanged = Notification.Name("timerStateChanged")
 }

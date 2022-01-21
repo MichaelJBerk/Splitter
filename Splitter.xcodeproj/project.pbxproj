@@ -35,7 +35,6 @@
 		4A1C1469240ED30C0056B104 /* InfoOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1C1467240ED30C0056B104 /* InfoOptionsViewController.swift */; };
 		4A1C23A2269917F5003A05D6 /* AppearanceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A1C23A0269917F5003A05D6 /* AppearanceViewController.xib */; };
 		4A20C46726406D4800307993 /* SplitterTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A20C46626406D4800307993 /* SplitterTimer.swift */; };
-		4A20C46B26406DB000307993 /* LiveSplitCore Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A20C46A26406DB000307993 /* LiveSplitCore Extensions.swift */; };
 		4A20C46E2640BDB600307993 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 4A20C46D2640BDB600307993 /* Introspect */; };
 		4A214A70255C90720006FD9F /* SplitsIOKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4A214A6F255C90720006FD9F /* SplitsIOKit */; };
 		4A230E9323B00A1D00959C57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A230E9223B00A1D00959C57 /* AppDelegate.swift */; };
@@ -85,14 +84,12 @@
 		4A6A965824EC3516008EFD2B /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6A965624EC3516008EFD2B /* LoadingViewController.swift */; };
 		4A6A965924EC3516008EFD2B /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6A965724EC3516008EFD2B /* LoadingViewController.xib */; };
 		4A6B4F7423F07C3900CB781F /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A73B75023F0722800010F30 /* libresolv.tbd */; };
-		4A6C4D50279B31DA004D818C /* TimeComparison.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C4D4F279B31DA004D818C /* TimeComparison.swift */; };
 		4A6C4D55279B331C004D818C /* LiveSplitKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A6C4D54279B331C004D818C /* LiveSplitKit.framework */; };
 		4A6C4D56279B331C004D818C /* LiveSplitKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4A6C4D54279B331C004D818C /* LiveSplitKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4A71054C24BE267300FA9127 /* SplitterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A71054B24BE267300FA9127 /* SplitterTests.swift */; };
 		4A74D4ED25EE9DD700A3D9C7 /* SplitterRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A74D4EC25EE9DD700A3D9C7 /* SplitterRun.swift */; };
 		4A75578D255C426A00ACE826 /* SplitterDocLSS.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4A75578C255C426A00ACE826 /* SplitterDocLSS.icns */; };
 		4A75579D255C47F400ACE826 /* SplitterDocSplitsio.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4A75579C255C47F300ACE826 /* SplitterDocSplitsio.icns */; };
-		4A7C648823F05FCF008C15EF /* LiveSplitCore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF9D76423ECD7520019BC9A /* LiveSplitCore.swift */; };
 		4A7DDCE223BBDD0900A36AD1 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 4A7DDCE123BBDD0900A36AD1 /* Credits.html */; };
 		4A7F94AA26332DBE002861E3 /* Codextended in Frameworks */ = {isa = PBXBuildFile; productRef = 4A7F94A926332DBE002861E3 /* Codextended */; };
 		4A87265523BD53F8003A14AF /* runInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87265423BD53F8003A14AF /* runInfo.swift */; };
@@ -127,7 +124,6 @@
 		4AD44ADB262F463C003375C4 /* KeyValueComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AD44ADA262F463C003375C4 /* KeyValueComponent.xib */; };
 		4AD44ADF262F4CFB003375C4 /* TitleComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD44ADE262F4CFB003375C4 /* TitleComponent.swift */; };
 		4AD7662E23DA5F9A0052409C /* Files in Frameworks */ = {isa = PBXBuildFile; productRef = 4AD7662D23DA5F9A0052409C /* Files */; };
-		4ADEE0AC267A4EA80028F142 /* RunEditorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADEE0AB267A4EA80028F142 /* RunEditorState.swift */; };
 		4ADFAE4923E4A0760049F57A /* QuickAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADFAE4823E4A0760049F57A /* QuickAlert.swift */; };
 		4AE168A626091CA900A6169B /* LayoutEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE168A526091CA900A6169B /* LayoutEditorViewController.swift */; };
 		4AE2CF3B2631F43100CC6CF7 /* SplitsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE2CF3A2631F43100CC6CF7 /* SplitsComponent.swift */; };
@@ -207,7 +203,6 @@
 		4A1C1467240ED30C0056B104 /* InfoOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoOptionsViewController.swift; sourceTree = "<group>"; };
 		4A1C23A0269917F5003A05D6 /* AppearanceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppearanceViewController.xib; sourceTree = "<group>"; };
 		4A20C46626406D4800307993 /* SplitterTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterTimer.swift; sourceTree = "<group>"; usesTabs = 1; };
-		4A20C46A26406DB000307993 /* LiveSplitCore Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LiveSplitCore Extensions.swift"; sourceTree = "<group>"; };
 		4A214A64255C8FB30006FD9F /* SplitsIOKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SplitsIOKit; sourceTree = "<group>"; };
 		4A230E8F23B00A1D00959C57 /* Splitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Splitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A230E9223B00A1D00959C57 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -256,7 +251,6 @@
 		4A6A3BE523CD6463002C20AE /* BlankWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BlankWindowController.swift; sourceTree = "<group>"; };
 		4A6A965624EC3516008EFD2B /* LoadingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingViewController.swift; sourceTree = "<group>"; };
 		4A6A965724EC3516008EFD2B /* LoadingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoadingViewController.xib; sourceTree = "<group>"; };
-		4A6C4D4F279B31DA004D818C /* TimeComparison.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeComparison.swift; sourceTree = "<group>"; };
 		4A6C4D54279B331C004D818C /* LiveSplitKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = LiveSplitKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A71054924BE267300FA9127 /* SplitterTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SplitterTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A71054B24BE267300FA9127 /* SplitterTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterTests.swift; sourceTree = "<group>"; };
@@ -297,7 +291,6 @@
 		4AD44AD6262F40E3003375C4 /* KeyValueComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyValueComponent.swift; sourceTree = "<group>"; };
 		4AD44ADA262F463C003375C4 /* KeyValueComponent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KeyValueComponent.xib; sourceTree = "<group>"; };
 		4AD44ADE262F4CFB003375C4 /* TitleComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleComponent.swift; sourceTree = "<group>"; };
-		4ADEE0AB267A4EA80028F142 /* RunEditorState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunEditorState.swift; sourceTree = "<group>"; };
 		4ADFAE4823E4A0760049F57A /* QuickAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickAlert.swift; sourceTree = "<group>"; };
 		4AE168A526091CA900A6169B /* LayoutEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutEditorViewController.swift; sourceTree = "<group>"; };
 		4AE2CF3A2631F43100CC6CF7 /* SplitsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitsComponent.swift; sourceTree = "<group>"; };
@@ -307,10 +300,7 @@
 		4AEA927D23C4EF32004F6CF9 /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
 		4AEC4BFF240F564B00B01799 /* Time Conversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Time Conversion.swift"; sourceTree = "<group>"; };
 		4AF953B423EB503100ED540C /* Timer Functions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Timer Functions.swift"; sourceTree = "<group>"; };
-		4AF9D75B23ECD5110019BC9A /* livesplit_core.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = livesplit_core.h; sourceTree = "<group>"; };
-		4AF9D75D23ECD5110019BC9A /* module.map */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.module-map"; path = module.map; sourceTree = "<group>"; };
 		4AF9D76223ECD59A0019BC9A /* Splitter-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Splitter-Bridging-Header.h"; sourceTree = "<group>"; };
-		4AF9D76423ECD7520019BC9A /* LiveSplitCore.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LiveSplitCore.swift; sourceTree = "<group>"; };
 		4AF9E8A924CE31CA00DFD5BE /* DebugPrefsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugPrefsViewController.swift; sourceTree = "<group>"; };
 		4AF9E8AA24CE31CA00DFD5BE /* DebugPrefsViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DebugPrefsViewController.xib; sourceTree = "<group>"; };
 		4AF9E8BF24CE448B00DFD5BE /* SplitterUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SplitterUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -501,7 +491,6 @@
 			children = (
 				4A74D4EC25EE9DD700A3D9C7 /* SplitterRun.swift */,
 				4A20C46626406D4800307993 /* SplitterTimer.swift */,
-				4A6C4D4F279B31DA004D818C /* TimeComparison.swift */,
 				4A3F989825EFDB0800B2B955 /* CodableLayout.swift */,
 			);
 			path = TimerCore;
@@ -536,7 +525,6 @@
 			children = (
 				4AF9D76223ECD59A0019BC9A /* Splitter-Bridging-Header.h */,
 				4A20C46526406D0400307993 /* TimerCore */,
-				4AF9D75623ECD4790019BC9A /* LiveSplit Core */,
 				4AD780C323D5065B0068CDE3 /* Data */,
 				4AFCC52323C63F1E002216F1 /* Prefs */,
 				4A75578C255C426A00ACE826 /* SplitterDocLSS.icns */,
@@ -790,18 +778,6 @@
 			children = (
 			);
 			name = "Recovered References";
-			sourceTree = "<group>";
-		};
-		4AF9D75623ECD4790019BC9A /* LiveSplit Core */ = {
-			isa = PBXGroup;
-			children = (
-				4AF9D75B23ECD5110019BC9A /* livesplit_core.h */,
-				4A20C46A26406DB000307993 /* LiveSplitCore Extensions.swift */,
-				4AF9D76423ECD7520019BC9A /* LiveSplitCore.swift */,
-				4ADEE0AB267A4EA80028F142 /* RunEditorState.swift */,
-				4AF9D75D23ECD5110019BC9A /* module.map */,
-			);
-			path = "LiveSplit Core";
 			sourceTree = "<group>";
 		};
 		4AF9E8C024CE448B00DFD5BE /* SplitterUITests */ = {
@@ -1214,7 +1190,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A470BB42695FB06001F0081 /* MetadataImage.swift in Sources */,
-				4A7C648823F05FCF008C15EF /* LiveSplitCore.swift in Sources */,
 				4A6726EA23F05D17006F4BC4 /* LiveSplit.swift in Sources */,
 				4A0981B224E4853A00E44792 /* AccountViewController.swift in Sources */,
 				4A9B9606261DF26D000FC89C /* TimeRow.swift in Sources */,
@@ -1223,7 +1198,6 @@
 				4A87265523BD53F8003A14AF /* runInfo.swift in Sources */,
 				4A327B0D23F491FB00A5CBFF /* SplitterAppearance.swift in Sources */,
 				4A230E9523B00A1D00959C57 /* ViewController.swift in Sources */,
-				4A6C4D50279B31DA004D818C /* TimeComparison.swift in Sources */,
 				4A6A3BE623CD6463002C20AE /* BlankWindowController.swift in Sources */,
 				4AEC4C00240F564B00B01799 /* Time Conversion.swift in Sources */,
 				4AB92AC2261F69ED00E8B814 /* ThemedPopUpButton.swift in Sources */,
@@ -1284,10 +1258,8 @@
 				4A68FD01270A45E8009A12B7 /* IntentHandling.swift in Sources */,
 				4A3BDFA123E4C3B6001EA7FF /* DefaultHotkeys.swift in Sources */,
 				4A8C96CB269F579200AF372A /* SegmentComponent.swift in Sources */,
-				4ADEE0AC267A4EA80028F142 /* RunEditorState.swift in Sources */,
 				4A9CA2A7263A2D4C0054D624 /* Extensions.swift in Sources */,
 				4A388FC525D4AF2B00A63C9E /* PrevNextRow.swift in Sources */,
-				4A20C46B26406DB000307993 /* LiveSplitCore Extensions.swift in Sources */,
 				4A87265723BD5423003A14AF /* PrefPanes.swift in Sources */,
 				4A3F989925EFDB0800B2B955 /* CodableLayout.swift in Sources */,
 				4AFAD84524CF2CF8006FC480 /* WelcomeWindowController.swift in Sources */,

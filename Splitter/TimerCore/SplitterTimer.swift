@@ -7,7 +7,7 @@
 //
 
 import Foundation
-
+import LiveSplitKit
 extension Notification.Name {
 	///This notification is posted when the current split has changed
 	static let splitChanged = Notification.Name("splitChanged")

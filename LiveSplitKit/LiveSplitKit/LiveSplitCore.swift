@@ -3303,6 +3303,7 @@ public class SettingValueRef {
     /// Encodes this Setting Value's state as JSON.
     public func asJson() -> String {
         assert(self.ptr != nil)
+		//FIXME: sometimes fails when iterating through Splits component settings
         let result = CLiveSplitCore.SettingValue_as_json(self.ptr)
         return String(cString: result!)
     }

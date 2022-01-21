@@ -13,6 +13,7 @@
 
 import Foundation
 import Codextended
+import LiveSplitKit
 
 // MARK: - CLayout
 /// Wrapper for JSON from LiveSplit-Core JSON

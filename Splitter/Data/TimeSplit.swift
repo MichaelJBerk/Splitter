@@ -8,6 +8,7 @@
 
 import Foundation
 import Cocoa
+import LiveSplitKit
 
 ///An object that holds a value of time for a segment.
 class TimeSplit: NSObject, NSCopying, Comparable {

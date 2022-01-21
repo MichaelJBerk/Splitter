@@ -7,7 +7,7 @@
 //
 
 import Cocoa
-
+import LiveSplitKit
 class SplitsEditorViewController: NSViewController, NibLoadable {
 	
 	//MARK: - Controls

@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import LiveSplitKit
 
 class SplitsEditorOutlineView: NSOutlineView {
 	var editor: RunEditor!

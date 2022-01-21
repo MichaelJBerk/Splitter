@@ -11,6 +11,7 @@ import Cocoa
 import SwiftyJSON
 import Codextended
 import ZippyJSON
+import LiveSplitKit
 extension Notification.Name {
 	static let phaseChanged = Notification.Name("timerPhaseChanged")
 	static let runEdited = Notification.Name("runEdited")
@@ -118,18 +119,12 @@ class SplitterRun: NSObject {
 			
 			editor.select(1)
 			
-			let len = editor.state().fieldLen(true)
-			print("Components:")
-			for i in 1..<len {
-				let fieldName = editor.state().fieldText(true, i)
-				let fieldValue = editor.state().fieldValue(true, i)
-				print("\(i) - \(fieldName): \n\(fieldValue.asJson())")
-			}
 			//Include all splits in layout
 			editor.setComponentSettingsValue(1, .fromUint(0))
 			editor.setComponentSettingsValue(0, .fromAlternatingNSColor(.splitterTableViewColor, .splitterTableViewColor))
 			editor.setComponentSettingsValue(14, .fromUint(4))
 			editor.setComponentSettingsValue(13, .fromBool(true))
+			
 			
 			//Setup Diffs Column
 			editor.setColumn(1, updateWith: ColumnUpdateWith.segmentDelta)
@@ -485,9 +480,10 @@ class SplitterRun: NSObject {
 	
 	///Updates CodableLayout to be
 	func updateLayoutState() {
-		let state = layout.state(timer.lsTimer)
-		let refMutState = LayoutStateRefMut(ptr: state.ptr)
-		let json = layout.updateStateAsJson(refMutState, timer.lsTimer)
+//		let state = layout.state(timer.lsTimer)
+//		let refMutState = LayoutStateRefMut(ptr: state.ptr)
+//		let json = layout.updateStateAsJson(refMutState, timer.lsTimer)
+		let json = LiveSplitKit.updateLayoutState(layout, timer: timer.lsTimer)
 		let jData = json.data(using: .utf8)
 		do {
 			codableLayout = try ZippyJSONDecoder().decode(CLayout.self, from: jData!)

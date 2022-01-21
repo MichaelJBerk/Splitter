@@ -8,7 +8,7 @@
 
 import Cocoa
 import SplitsIOKit
-
+import LiveSplitKit
 class SplitsIODoc: SplitterDoc {
 	
 	var splitsio: SplitsIOExchangeFormat?

@@ -8,7 +8,7 @@
 import Foundation
 import Cocoa
 import SwiftyJSON
-
+import LiveSplitKit
 
 //You may wonder why I don't just save Split Table rows directly to the file (since they're structs already anyway). I'm not doing that because I don't want to save the images to runInfo.json
 
