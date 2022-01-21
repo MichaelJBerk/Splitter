@@ -2,6 +2,9 @@
 <Workspace
    version = "1.0">
    <FileRef
+      location = "group:LiveSplitKit/LiveSplitKit.xcodeproj">
+   </FileRef>
+   <FileRef
       location = "group:Splitter.xcodeproj">
    </FileRef>
    <FileRef

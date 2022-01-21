@@ -224,7 +224,7 @@ struct CSplit: Codable, Hashable {
 		case index
 	}
 }
-
+//TODO: remove
 extension NSColor {
 	convenience init(_ color: [Double]) {
 		let floats = color.map({CGFloat($0)})
