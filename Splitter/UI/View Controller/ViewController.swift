@@ -164,22 +164,12 @@ class ViewController: NSViewController {
 	var hotkeysController: HotkeysViewController?
 	
 	@objc func breakFunc() {
-//        print(run.timer.lsTimer.currentComparison())
-//        print("Comparisons:")
-//        print(run.timer.lsRun.customComparisonsLen())
-//        print(run.comparisons)
-//		let editor = LayoutEditor(run.layout)!
-//		editor.select(1)
-//		let state = editor.stateAsJson()
-//
-//
-//		let pasteboard = NSPasteboard.general
-//		pasteboard.declareTypes([.string], owner: nil)
-//		pasteboard.setString(state, forType: .string)
-//		run.layout = editor.close()
+		
+	}
+	
+	func debugPrintSplitsEditor() {
 		let editor = LayoutEditor(run.layout)!
 		editor.select(1)
-//		editor.setColumn(1, comparison: "Best Segments")
 		_ = editor.getColumnComparison(for: 1)
 		let es = editor.stateAsJson()
 		let pasteboard = NSPasteboard.general
