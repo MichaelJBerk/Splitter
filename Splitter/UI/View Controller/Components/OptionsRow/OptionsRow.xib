@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="OptionsRow" customModule="Splitter" customModuleProvider="target">
             <connections>
-                <outlet property="columnOptionsButton" destination="ypb-Uc-5tX" id="hZa-c4-FRe"/>
                 <outlet property="contentView" destination="QLr-sF-5L1" id="dan-F9-DJX"/>
-                <outlet property="plusButton" destination="l5I-Qs-qXP" id="fhI-TK-PnZ"/>
+                <outlet property="editLayoutButton" destination="ypb-Uc-5tX" id="hZa-c4-FRe"/>
+                <outlet property="editSplitsButton" destination="l5I-Qs-qXP" id="fhI-TK-PnZ"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
@@ -29,9 +29,6 @@
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
-                    <connections>
-                        <action selector="timeLabel:" target="QLr-sF-5L1" id="WGE-A6-pgI"/>
-                    </connections>
                 </textField>
                 <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B89-EN-CgZ">
                     <rect key="frame" x="429" y="0.0" width="52" height="20"/>
@@ -90,8 +87,8 @@
                 <real value="3.4028234663852886e+38"/>
             </customSpacing>
             <connections>
-                <outlet property="columnOptionsButton" destination="ypb-Uc-5tX" id="2Pl-1p-6Hb"/>
-                <outlet property="plusButton" destination="l5I-Qs-qXP" id="FPW-QU-Ibh"/>
+                <outlet property="editLayoutButton" destination="ypb-Uc-5tX" id="2Pl-1p-6Hb"/>
+                <outlet property="editSplitsButton" destination="l5I-Qs-qXP" id="FPW-QU-Ibh"/>
                 <outlet property="tableButtonsStack" destination="B89-EN-CgZ" id="vEZ-7w-QNn"/>
                 <outlet property="timeLabel" destination="Ngc-Sv-8GD" id="lDr-Uk-jzV"/>
             </connections>

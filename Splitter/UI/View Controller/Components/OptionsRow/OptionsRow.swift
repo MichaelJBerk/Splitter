@@ -24,9 +24,9 @@ class OptionsRow: NSStackView, NibLoadable, SplitterComponent {
 	var customSpacing: CGFloat? = nil
 	
 	private func initialization() {
-		plusButton.run = run
+		editSplitsButton.run = run
 		timeLabel.run = run
-		columnOptionsButton.run = run
+		editLayoutButton.run = run
 		detachesHiddenViews = false
 		NotificationCenter.default.addObserver(forName: .timerStateChanged, object: self.run.timer, queue: nil, using: { notification in
 			guard let timerState = notification.userInfo?["timerState"] as? TimerState else {return}
@@ -42,8 +42,8 @@ class OptionsRow: NSStackView, NibLoadable, SplitterComponent {
 	
 	@IBOutlet var contentView: NSView!
 	
-	@IBOutlet var plusButton: ThemedButton!
-	@IBOutlet var columnOptionsButton: ThemedButton!
+	@IBOutlet var editSplitsButton: ThemedButton!
+	@IBOutlet var editLayoutButton: ThemedButton!
 	@IBOutlet var tableButtonsStack: NSStackView!
 	@IBOutlet weak var timeLabel: ThemedTextField!
 	
@@ -62,8 +62,8 @@ class OptionsRow: NSStackView, NibLoadable, SplitterComponent {
 	
 	///Sets whether the + and - buttons beneath the Table View are enabled or not
 	func editingEnabled(_ enabled: Bool) {
-		plusButton.isEnabled = enabled
-		columnOptionsButton.isEnabled = enabled
+		editSplitsButton.isEnabled = enabled
+		editLayoutButton.isEnabled = enabled
 	}
 	
 	let showLabelKey = "showLabel"

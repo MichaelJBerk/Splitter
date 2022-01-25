@@ -228,7 +228,7 @@ class ViewController: NSViewController {
 	func setupOptionsRow() {
 		optionsRow = OptionsRow.instantiateView(with: self.run, self)
 		addToStack(view: optionsRow)
-		columnOptionsPopoverButton = optionsRow.columnOptionsButton
+		columnOptionsPopoverButton = optionsRow.editLayoutButton
 		tableButtonsStack = optionsRow.tableButtonsStack
 	}
 	
