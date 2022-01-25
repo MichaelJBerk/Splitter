@@ -10,6 +10,9 @@ import Foundation
 
 protocol SplitterComponent: NSView {
 	var viewController: ViewController! {get set}
+	///View used to configure settings for this component
+	///
+	///This view is displayed when the component is selected in the Layout Editor
 	var optionsView: NSView! { get }
 	var isSelected: Bool {get set}
 	var leadingConstraint: NSLayoutConstraint {get}

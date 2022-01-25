@@ -646,7 +646,7 @@ class ViewController: NSViewController {
 		infoPanelPopover = pop
 	}
 	
-	///Displays the "column options" popover
+	///Displays the Layout Editor as a popover
 	@IBAction func displayLayoutEditorPopover(_ sender: Any?) {
 		columnOptionsPopover?.contentViewController?.view.window?.close()
 		let layoutEditor = NSStoryboard(name: "LayoutEditor", bundle: nil).instantiateInitialController() as! LayoutEditorViewController
