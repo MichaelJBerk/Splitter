@@ -492,20 +492,6 @@ class SplitterRun: NSObject {
 		}
 	}
 	
-	///Updates layout from codableLayout
-	func updateFromCodableLayout() {
-		let encoder = JSONEncoder()
-		do {
-			let jData = try encoder.encode(codableLayout)
-			let jString = String(data: jData, encoding: .utf8)
-			if let newLayout = Layout.parseJson(jString!) {
-				self.layout = newLayout
-			}
-		} catch {
-			print("Encode Error:\n \(error)")
-		}
-	}
-	
 	private func setComparison(_ comparison: String) {
 		if !comparisons.contains(comparison) {
 			editRun { editor in
