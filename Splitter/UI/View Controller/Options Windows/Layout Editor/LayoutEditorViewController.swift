@@ -204,27 +204,28 @@ extension LayoutEditorViewController {
 		}
 		return ""
 	}
+	
 	func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
 		if let item = item as? HeaderObject {
 			if item == componentsHeaderObject {
-				let cell = outlineView.makeView(withIdentifier: .init("headerCell"), owner: self) as? NSTableCellView
-				cell?.textField?.stringValue = "Components"
+				let cell = makeHeaderCell()
+				cell.textField?.stringValue = "Components"
 				return cell
 			}
 			if item == generalHeaderObject {
-				let cell = outlineView.makeView(withIdentifier: .init("headerCell"), owner: self) as? NSTableCellView
-				cell?.textField?.stringValue = "General"
+				let cell = makeHeaderCell()
+				cell.textField?.stringValue = "General"
 				return cell
 			}
 		}
 		if let item = item as? RowObject, !(item is HeaderObject) {
-			let cell = outlineView.makeView(withIdentifier: .init("textCell"), owner: self) as? NSTableCellView
-			cell?.textField?.stringValue = item.string
+			let cell = makeTextCell()
+			cell.textField?.stringValue = item.string
 			return cell
 		}
-		if let cell = outlineView.makeView(withIdentifier: .init("textCell"), owner: self) as? NSTableCellView,
-		   let component = item as? SplitterComponent,
+		if let component = item as? SplitterComponent,
 		   let type = SplitterComponentType.FromType(component){
+			let cell = makeTextCell()
 			cell.textField?.stringValue = type.displayTitle
 			return cell
 		}
@@ -304,5 +305,38 @@ extension Array {
 		arr.insert(element, at: toIndex)
 
 		return arr
+	}
+}
+//MARK: - Creating Cells
+extension LayoutEditorViewController {
+	func addTFToCell(cell: NSTableCellView) {
+		let tf = NSTextField(labelWithString: "")
+		cell.textField = tf
+		cell.addSubview(tf)
+		tf.translatesAutoresizingMaskIntoConstraints = false
+		NSLayoutConstraint.activate([
+			tf.widthAnchor.constraint(equalTo: cell.widthAnchor),
+			tf.centerYAnchor.constraint(equalTo: cell.centerYAnchor)
+		])
+	}
+	
+	func makeTextCell() -> NSTableCellView {
+		let cell = NSTableCellView()
+		addTFToCell(cell: cell)
+		return cell
+	}
+	
+	func makeHeaderCell() -> NSTableCellView {
+		let cell = NSTableCellView()
+		addTFToCell(cell: cell)
+		
+		let boldFont: NSFont
+		if #available(macOS 11.0, *) {
+			boldFont = NSFont.preferredFont(forTextStyle: .headline, options: [:])
+		} else {
+			boldFont = NSFont.boldSystemFont(ofSize: NSFont.systemFontSize)
+		}
+		cell.textField?.font = boldFont
+		return cell
 	}
 }
