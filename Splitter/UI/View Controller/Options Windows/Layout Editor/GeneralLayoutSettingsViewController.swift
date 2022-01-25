@@ -80,6 +80,7 @@ class GeneralLayoutSettingsViewController: NSViewController {
 	
 	func buildBGImageSection() {
 		let imageLabel = NSTextField(labelWithString: "Background Image")
+		imageLabel.alignment = .left
 		backgroundImageWell = NSImageView(image: #imageLiteral(resourceName: "Hotkeys"))
 		backgroundImageWell.isEditable = true
 		backgroundImageWell.animates = true
@@ -88,10 +89,13 @@ class GeneralLayoutSettingsViewController: NSViewController {
 		backgroundImageWell.image = run.backgroundImage
 		backgroundImageWell.imageFrameStyle = .grayBezel
 		let imageStack = NSStackView(views: [imageLabel, backgroundImageWell])
-		imageStack.orientation = .horizontal
+		imageStack.orientation = .vertical
 		stackView.addArrangedSubview(imageStack)
 		NSLayoutConstraint.activate([
-			backgroundImageWell.heightAnchor.constraint(equalToConstant: 64)
+			backgroundImageWell.heightAnchor.constraint(equalToConstant: 64),
+			backgroundImageWell.leadingAnchor.constraint(equalTo: imageStack.leadingAnchor, constant: 10),
+			backgroundImageWell.trailingAnchor.constraint(equalTo: stackView.trailingAnchor, constant: -10),
+			imageLabel.leadingAnchor.constraint(equalTo: imageStack.leadingAnchor, constant: 10)
 		])
 		NotificationCenter.default.addObserver(forName: .backgroundImageEdited, object: self.run, queue: nil, using: { notification in
 			if self.run.undoManager?.isUndoing ?? false ||

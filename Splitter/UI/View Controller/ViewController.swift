@@ -164,6 +164,8 @@ class ViewController: NSViewController {
 	var hotkeysController: HotkeysViewController?
 	
 	@objc func breakFunc() {
+		let layout = columnOptionsPopover?.contentViewController as! LayoutEditorViewController
+		print(layout.outlineView.tableColumns[0].width)
 		
 	}
 	
@@ -649,7 +651,8 @@ class ViewController: NSViewController {
 	///Displays the Layout Editor as a popover
 	@IBAction func displayLayoutEditorPopover(_ sender: Any?) {
 		columnOptionsPopover?.contentViewController?.view.window?.close()
-		let layoutEditor = NSStoryboard(name: "LayoutEditor", bundle: nil).instantiateInitialController() as! LayoutEditorViewController
+//		let layoutEditor = NSStoryboard(name: "LayoutEditor", bundle: nil).instantiateInitialController() as! LayoutEditorViewController
+		let layoutEditor = LayoutEditorViewController()
 		layoutEditor.runController = self
 		let pop = NSPopover()
 		pop.delegate = self
@@ -657,7 +660,10 @@ class ViewController: NSViewController {
 		pop.appearance = NSAppearance(named: .vibrantDark)
 		pop.behavior = .semitransient
 		let columnOptionsFrame = NSRect(x: self.view.frame.maxX - 10, y: self.view.frame.midY, width: 10, height: 10)
+		layoutEditor.preferredContentSize = .init(width: 532, height: 400)
 		pop.show(relativeTo: columnOptionsFrame, of: self.view, preferredEdge: .maxX)
+//		window.setContentSize(.init(width: 507, height: 300))
+//		window.makeKeyAndOrderFront(nil)
 		columnOptionsPopover = pop
 	}
 	func showLayoutEditor() {

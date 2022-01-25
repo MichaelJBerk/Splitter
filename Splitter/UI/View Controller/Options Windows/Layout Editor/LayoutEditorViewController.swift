@@ -10,15 +10,65 @@ import Cocoa
 
 class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOutlineViewDataSource {
 	
+	override func loadView() {
+		
+		outlineView = NSOutlineView()
+		outlineView.dataSource = self
+		outlineView.delegate = self
+		let column = NSTableColumn()
+		column.isEditable = false
+		outlineView.addTableColumn(column)
+		outlineView.columnAutoresizingStyle = .noColumnAutoresizing
+		outlineView.headerView = nil
+		outlineView.backgroundColor = .clear
+		column.width = 150
+		outlineView.frame = .init(x: 0, y: 0, width: 170, height: 200)
+		if #available(macOS 11.0, *) {
+			outlineView.style = .inset
+		}
+		
+		let sidebarVE = NSVisualEffectView()
+		sidebarVE.material = .sidebar
+		sidebarVE.blendingMode = .behindWindow
+		
+		let outlineScroll = NSScrollView()
+		outlineScroll.drawsBackground = false
+		outlineScroll.documentView = outlineView
+		sidebarVE.addSubview(outlineScroll)
+		
+		let popVE = NSVisualEffectView()
+		popVE.material = .popover
+		popVE.blendingMode = .behindWindow
+		
+		self.scrollView = NSScrollView()
+		scrollView.drawsBackground = false
+		popVE.addSubview(scrollView)
+		
+		
+		let view = NSView(frame: .init(x: 0, y: 0, width: 507, height: 400))
+		self.view = view
+		self.view.addSubview(sidebarVE)
+		self.view.addSubview(popVE)
+		sidebarVE.frame = .init(x: 0, y: 0, width: 225, height: 400)
+		popVE.frame = .init(x: 225, y: 0, width: 307, height: 400)
+		outlineScroll.frame = .init(x: 0, y: 10, width: 225, height: 390)
+		view.wantsLayer = true
+		view.layer?.backgroundColor = NSColor.red.cgColor
+		scrollView.translatesAutoresizingMaskIntoConstraints = false
+		NSLayoutConstraint.activate([
+			scrollView.leadingAnchor.constraint(equalTo: popVE.leadingAnchor, constant: 20),
+			scrollView.topAnchor.constraint(equalTo: popVE.topAnchor, constant: 20),
+			scrollView.bottomAnchor.constraint(equalTo: popVE.bottomAnchor),
+			scrollView.trailingAnchor.constraint(equalTo: popVE.trailingAnchor, constant: -20),
+		])
+		outlineScroll.hasVerticalScroller = true
+		scrollView.hasVerticalScroller = true
+	}
+	
 	@IBOutlet var stack: NSStackView!
-	var outlineView: NSOutlineView! {
-		let scroll = (stack.views[0].subviews[0] as! NSScrollView)
-		let table = scroll.documentView as! NSOutlineView
-		return table
-	}
-	var scrollView: NSScrollView! {
-		return (stack.views[1].subviews[0] as! NSScrollView)
-	}
+	var outlineView: NSOutlineView!
+	var scrollView: NSScrollView!
+	
 	
 	override func viewWillAppear() {
 		super.viewWillAppear()
@@ -38,9 +88,7 @@ class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOut
 
     override func viewDidLoad() {
         super.viewDidLoad()
-		self.preferredContentSize = view.frame.size
-		outlineView.delegate = self
-		outlineView.dataSource = self
+//		self.preferredContentSize = view.frame.size
 		outlineView.registerForDraggedTypes([dropType])
     }
 	
@@ -99,6 +147,7 @@ class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOut
 				setOptionsView(gsVC.view)
 				
 			} else {
+				//This causes constraint warnings, and I have no idea why
 				let appVC = AppearanceViewController()
 				appVC.run = runController.run
 				appVC.delegate = runController
@@ -110,14 +159,16 @@ class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOut
 	}
 	func setOptionsView(_ optionsView: NSView) {
 		scrollView.documentView = optionsView
-		scrollView.translatesAutoresizingMaskIntoConstraints = true
 		optionsView.translatesAutoresizingMaskIntoConstraints = false
+		scrollView.contentInsets.bottom = 20
 		var constraintsToAdd = [
-			optionsView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-			optionsView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: -5)
+			optionsView.leadingAnchor.constraint(equalTo: scrollView.contentView.leadingAnchor),
+			optionsView.trailingAnchor.constraint(equalTo: scrollView.contentView.trailingAnchor),
 		]
 		if optionsView is NSTabView {
-			constraintsToAdd.append(optionsView.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: -5))
+			constraintsToAdd.append(optionsView.topAnchor.constraint(equalTo: scrollView.contentView.topAnchor, constant: -5))
+		} else {
+			constraintsToAdd.append(optionsView.topAnchor.constraint(equalTo: scrollView.contentView.topAnchor))
 		}
 		NSLayoutConstraint.activate(constraintsToAdd)
 	}
