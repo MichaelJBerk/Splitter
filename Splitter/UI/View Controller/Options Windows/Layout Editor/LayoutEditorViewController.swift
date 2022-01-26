@@ -45,12 +45,12 @@ class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOut
 		popVE.addSubview(scrollView)
 		
 		
-		let view = NSView(frame: .init(x: 0, y: 0, width: 507, height: 400))
+		let view = NSView(frame: .init(x: 0, y: 0, width: 577, height: 400))
 		self.view = view
 		self.view.addSubview(sidebarVE)
 		self.view.addSubview(popVE)
 		sidebarVE.frame = .init(x: 0, y: 0, width: 225, height: 400)
-		popVE.frame = .init(x: 225, y: 0, width: 307, height: 400)
+		popVE.frame = .init(x: 225, y: 0, width: 377, height: 400)
 		outlineScroll.frame = .init(x: 0, y: 10, width: 225, height: 390)
 		view.wantsLayer = true
 		view.layer?.backgroundColor = NSColor.red.cgColor

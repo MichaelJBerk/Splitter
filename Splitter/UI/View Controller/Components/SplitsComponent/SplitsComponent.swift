@@ -31,15 +31,20 @@ class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent {
 		}
 	}
 	
+	var showAdvancedSettings: Bool = false
+	
 	let showHeaderKey = "showHeader"
+	let advancedSettingsKey = "showAdvancedSettings"
 	func saveState() throws -> ComponentState {
 		var state = saveBasicState()
 		state.properties[showHeaderKey] = showHeader
+		state.properties[advancedSettingsKey] = showAdvancedSettings
 		return state
 	}
 	func loadState(from state: ComponentState) throws {
 		loadBasicState(from: state.properties)
 		showHeader = (state.properties[showHeaderKey] as? JSONAny)?.value as? Bool ?? true
+		showAdvancedSettings = (state.properties[advancedSettingsKey] as? JSONAny)?.value as? Bool ?? true
 	}
 	
 	//MARK: -

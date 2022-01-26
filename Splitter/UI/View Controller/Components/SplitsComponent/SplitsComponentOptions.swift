@@ -70,6 +70,7 @@ extension SplitsComponent {
 		NSLayoutConstraint.activate([
 			separatorView.heightAnchor.constraint(equalToConstant: 1)
 		])
+		
 		colorOptions(stack: d)
 
 		let co = columnOptionsView
@@ -141,11 +142,38 @@ extension SplitsComponent {
 		return (stack, well)
 	}
 	
+	//Generates the constraints for a view on the leading edge of the stack, whether it's a spacer or disclosure button
+	func leadingConstraints(view: NSView) {
+		NSLayoutConstraint.activate([
+			view.widthAnchor.constraint(equalToConstant: 15),
+			view.heightAnchor.constraint(equalToConstant: 15)
+		])
+	}
+	
+	var spacerView: NSView {
+		let spacer = NSView(frame: NSRect(x: 0, y: 0, width: 15, height: 15))
+		leadingConstraints(view: spacer)
+		return spacer
+	}
+	
 	//MARK: - Column Options View
+	
 	var columnOptionsView: NSView {
 		let stack = ComponentOptionsVstack(views: [])
 		stack.wantsLayer = true
 		stack.alignment = .leading
+		
+		let advancedToggle = ComponentOptionsButton(checkboxWithTitle: "Advanced Settings", clickAction: {
+			self.showAdvancedSettings = $0.state.toBool()
+		})
+		advancedToggle.state = .init(bool: showAdvancedSettings)
+		let spacer = spacerView
+		let advancedToggleStack = NSStackView(views: [spacer, advancedToggle])
+		stack.addArrangedSubview(advancedToggleStack)
+			
+		let hSpacer = NSView(frame: .init(x: 0, y: 0, width: 100, height: 300))
+		stack.addArrangedSubview(hSpacer)
+		
 		for c in splitsTableView.tableColumns {
 			let cName = colIds.first(where: {$1 == c.identifier})?.key ?? "nil"
 			let checkButton = ComponentOptionsButton(checkboxWithTitle: cName, clickAction: {_ in
@@ -154,7 +182,8 @@ extension SplitsComponent {
 				col.isHidden.toggle()
 				self.splitsTableView.setHeaderColor(textColor: self.run.textColor, bgColor: self.run.backgroundColor)
 			})
-			///Options for the current column
+			
+			//Options for the current column
 			let columnOptions = options(for: c)
 			columnOptions.isHidden = true
 			columnOptions.wantsLayer = true
@@ -174,14 +203,11 @@ extension SplitsComponent {
 				discloseButton.bezelStyle = .disclosure
 				discloseButton.setButtonType(.pushOnPushOff)
 				discloseView = discloseButton
+				leadingConstraints(view: discloseView)
 			} else {
-				let spacerView = NSView(frame: NSRect(x: 0, y: 0, width: 15, height: 15))
 				discloseView = spacerView
 			}
-			NSLayoutConstraint.activate([
-				discloseView.widthAnchor.constraint(equalToConstant: 15),
-				discloseView.heightAnchor.constraint(equalToConstant: 15)
-			])
+			
 			let checkButtonStack = NSStackView(views: [discloseView, checkButton])
 			columnStack.addArrangedSubview(checkButtonStack)
 			columnStack.addArrangedSubview(columnOptions)
@@ -346,9 +372,171 @@ extension SplitsComponent {
 	}
 	
 	func options(for column: NSTableColumn) -> NSView {
+		if column.identifier != STVColumnID.imageColumn, column.identifier != STVColumnID.splitTitleColumn, showAdvancedSettings {
+			return advancedOptions(for: column)
+		}
 		if column.identifier == STVColumnID.differenceColumn {
 			return differenceOptions()
 		}
 		return segmentSplitOptions(for: column)
+	}
+	
+	//MARK: Advanced Column Options
+	func advancedOptions(for column: NSTableColumn) -> NSView {
+		
+		let optionsStack = NSStackView(views: [])
+		optionsStack.orientation = .vertical
+		
+		let startPop = startWithPopup(for: column)
+		let startPopLabel = NSTextField(labelWithString: "Start With")
+		let startStack = NSStackView(views: [startPopLabel, startPop])
+		startStack.orientation = .horizontal
+		
+		optionsStack.addArrangedSubview(startStack)
+		
+		let updatePop = updateWithPopup(column: column)
+		let updateWithLabel = NSTextField(labelWithString: "Update With")
+		let uwStack = NSStackView(views: [updateWithLabel, updatePop])
+		uwStack.orientation = .horizontal
+		optionsStack.addArrangedSubview(uwStack)
+		
+		let updateTriggerPop = updateTriggerPop(column: column)
+		let updateTriggerLabel = NSTextField(labelWithString: "Update Trigger")
+		let utStack = NSStackView(views: [updateTriggerLabel, updateTriggerPop])
+		utStack.orientation = .horizontal
+		
+		optionsStack.addArrangedSubview(utStack)
+		
+		NSLayoutConstraint.activate([
+			startPopLabel.leadingAnchor.constraint(equalTo: optionsStack.leadingAnchor),
+			updateWithLabel.leadingAnchor.constraint(equalTo: optionsStack.leadingAnchor),
+			updateTriggerLabel.leadingAnchor.constraint(equalTo: optionsStack.leadingAnchor),
+			
+			startPop.trailingAnchor.constraint(equalTo: optionsStack.trailingAnchor),
+			updatePop.trailingAnchor.constraint(equalTo: optionsStack.trailingAnchor),
+			updateTriggerPop.trailingAnchor.constraint(equalTo: optionsStack.trailingAnchor),
+			
+		])
+		
+		return optionsStack
+	}
+	
+	func startWithPopup(for column: NSTableColumn) -> ComponentPopUpButton {
+		let index = splitsTableView.column(withIdentifier: column.identifier) - 2
+		
+		let emptyItem = NSMenuItem(title: "Empty", action: nil, keyEquivalent: "")
+		let comparisonItem = NSMenuItem(title: "Comparison Time", action: nil, keyEquivalent: "")
+		let comparisonSegmentItem = NSMenuItem(title: "Comparison Segment Time", action: nil, keyEquivalent: "")
+		let timeSaveItem = NSMenuItem(title: "Possble Time Save", action: nil, keyEquivalent: "")
+		
+		let pop = ComponentPopUpButton(title: "", selectAction: { button in
+			var startWith: ColumnStartWith
+			switch button.selectedItem {
+			case emptyItem:
+				startWith = .empty
+			case comparisonItem:
+				startWith = .comparisonTime
+			case comparisonSegmentItem:
+				startWith = .comparsionSegmentTime
+			case timeSaveItem:
+				startWith = .possibleTimeSave
+			default:
+				return
+			}
+			self.run.setStartWith(startWith, for: index)
+			
+		})
+		let menu = NSMenu()
+		menu.addItem(emptyItem)
+		menu.addItem(comparisonItem)
+		menu.addItem(comparisonSegmentItem)
+		menu.addItem(timeSaveItem)
+		
+		pop.menu = menu
+		
+		let start = run.getStartWith(for: index)
+		switch start {
+		case .empty:
+			pop.select(emptyItem)
+		case .comparisonTime:
+			pop.select(comparisonItem)
+		case .comparsionSegmentTime:
+			pop.select(comparisonSegmentItem)
+		case .possibleTimeSave:
+			pop.select(timeSaveItem)
+		}
+		return pop
+	}
+	
+	func updateWithPopup(column: NSTableColumn) -> ComponentPopUpButton {
+		let index = splitsTableView.column(withIdentifier: column.identifier) - 2
+		let pop = ComponentPopUpButton(title: "", selectAction: {
+			for v in ColumnUpdateWith.allCases {
+				if v.menuItemTitle == $0.selectedItem?.title {
+					self.run.setUpdateWith(v, for: index)
+				}
+			}
+		})
+		let menu = NSMenu()
+		for i in ColumnUpdateWith.allCases {
+			menu.addItem(.init(title: i.menuItemTitle, action: nil, keyEquivalent: ""))
+		}
+		pop.menu = menu
+		pop.selectItem(withTitle: run.getUpdateWith(for: index).menuItemTitle)
+		return pop
+		
+	}
+	
+	func updateTriggerPop(column: NSTableColumn) -> ComponentPopUpButton {
+		let index = splitsTableView.column(withIdentifier: column.identifier) - 2
+		let pop = ComponentPopUpButton(title: "", selectAction: {
+			for v in ColumnUpdateTrigger.allCases {
+				if v.menuItemTitle == $0.selectedItem?.title {
+					self.run.setUpdateTrigger(v, for: index)
+				}
+			}
+		})
+		let menu = NSMenu()
+		for i in ColumnUpdateTrigger.allCases {
+			menu.addItem(.init(title: i.menuItemTitle, action: nil, keyEquivalent: ""))
+		}
+		pop.menu = menu
+		pop.selectItem(withTitle: run.getUpdateTrigger(for: index).menuItemTitle)
+		return pop
+		
+	}
+}
+
+extension ColumnUpdateWith {
+	var menuItemTitle: String {
+		switch self {
+		case .dontUpdate:
+			return "Don't Update"
+		case .splitTime:
+			return "Split Time"
+		case .delta:
+			return "Delta"
+		case .deltaWithFallback:
+			return "Delta with Fallback"
+		case .segmentTime:
+			return "Segment Time"
+		case .segmentDelta:
+			return "Segment Delta"
+		case .segmentDeltaWithFallback:
+			return "Segment Delta with Fallback"
+		}
+	}
+}
+
+extension ColumnUpdateTrigger {
+	var menuItemTitle: String {
+		switch self {
+		case .onStartingSegment:
+			return "On Starting Segment"
+		case .contextual:
+			return "Contextual"
+		case .onEndingSegment:
+			return "On Ending Segment"
+		}
 	}
 }

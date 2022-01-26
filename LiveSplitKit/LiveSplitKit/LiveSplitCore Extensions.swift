@@ -96,6 +96,14 @@ public extension LayoutEditor {
 		return .init(rawValue: rawValue!)!
 	}
 	
+	func getUpdateTrigger(for index: Int) -> ColumnUpdateTrigger {
+		let settingIndex = settingsStartIndex(for: index) + 3
+		let jsonString = self.state().fieldValue(true, settingIndex).asJson()
+		let jd = try? JSONSerialization.jsonObject(with: jsonString.data(using: .utf8)!, options: .allowFragments) as? [String: String]
+		let rawValue = jd?["ColumnUpdateTrigger"]
+		return .init(rawValue: rawValue!)!
+	}
+	
 	func setColumn(_ index: Int, updateTrigger: ColumnUpdateTrigger) {
 		let settingIndex = settingsStartIndex(for: index) + 3
 		if let updateTrigger = SettingValue.fromColumnUpdateTrigger(updateTrigger.rawValue) {
@@ -172,7 +180,7 @@ public enum ColumnUpdateWith: String, CaseIterable {
 
 }
 ///Specifies when a column's value gets updated.
-public enum ColumnUpdateTrigger: String {
+public enum ColumnUpdateTrigger: String, CaseIterable {
 	//"When segment begins"
 	///The value gets updated as soon as the segment is started. The value constantly updates until the segment ends.
 	case onStartingSegment = "OnStartingSegment"

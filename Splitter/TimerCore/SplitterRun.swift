@@ -146,6 +146,12 @@ class SplitterRun: NSObject {
 			editor.setColumn(3, updateTrigger: ColumnUpdateTrigger.onStartingSegment)
 			//TODO: Set rounding
 			
+			let len = editor.state().fieldLen(true)
+			for i in 1..<len {
+				
+				print("\(i): \(editor.state().fieldText(true, i))")
+			}
+			
 //			editor.addComponent(LSSumOfBestComponent().intoGeneric())
 			self.layout = editor.close()
 		}
@@ -317,6 +323,14 @@ class SplitterRun: NSObject {
 		set {
 			undoableEditRun(kp: \.platform, actionName: "Set Platform", newValue: newValue, edit: {$0.setPlatformName($1)})
 		}
+	}
+	
+	func getLayoutState() -> LayoutState {
+		layout.state(timer.lsTimer)
+	}
+	
+	func getSplitsLayout() -> SplitsComponentStateRef {
+		getLayoutState().componentAsSplits(1)
 	}
 	
 	func getCustomVariable(name: String) -> String? {
@@ -615,61 +629,110 @@ class SplitterRun: NSObject {
 		}
 	}
 	
-	func getUpdateWith(for column: TimeColumn) -> ColumnUpdateWith {
-		let editor = LayoutEditor(layout)!
-		editor.select(1)
-		let update = editor.getUpdateWith(for: column.lsColumn)
-		layout = editor.close()
-		return update
-	}
+	
 	func getStartWith(for column: TimeColumn) -> ColumnStartWith {
+		getStartWith(for: column.lsColumn)
+	}
+	
+	func getStartWith(for index: Int) -> ColumnStartWith {
 		let editor = LayoutEditor(layout)!
 		editor.select(1)
-		let update = editor.getStartWith(for: column.lsColumn)
+		let update = editor.getStartWith(for: index)
 		layout = editor.close()
 		return update
 	}
-	func getColumnComparison(for column: TimeColumn) -> TimeComparison? {
+	
+	
+	func getUpdateWith(for column: TimeColumn) -> ColumnUpdateWith {
+		getUpdateWith(for: column.lsColumn)
+	}
+	
+	func getUpdateWith(for index: Int) -> ColumnUpdateWith {
 		let editor = LayoutEditor(layout)!
 		editor.select(1)
-		let comparison = editor.getColumnComparison(for: column.lsColumn)
+		let update = editor.getUpdateWith(for: index)
+		layout = editor.close()
+		return update
+	}
+	
+	func getUpdateTrigger(for index: Int) -> ColumnUpdateTrigger {
+		let editor = LayoutEditor(layout)!
+		editor.select(1)
+		let update = editor.getUpdateTrigger(for: index)
+		layout = editor.close()
+		return update
+	}
+	
+	func getColumnComparison(for column: TimeColumn) -> TimeComparison? {
+		getColumnComparison(for: column.lsColumn)
+	}
+	
+	func getColumnComparison(for index: Int) -> TimeComparison? {
+		let editor = LayoutEditor(layout)!
+		editor.select(1)
+		let comparison = editor.getColumnComparison(for: index)
 		layout = editor.close()
 		return comparison
 	}
 	
 	func setColumnComparison(_ comparison: TimeComparison?, for column: TimeColumn) {
-		let oldValue = getColumnComparison(for: column)
+		setColumnComparison(comparison, for: column.lsColumn)
+	}
+	
+	func setColumnComparison(_ comparison: TimeComparison?, for index: Int) {
+		let oldValue = getColumnComparison(for: index)
 		undoManager?.registerUndo(withTarget: self, handler: { r in
-			r.setColumnComparison(oldValue, for: column)
+			r.setColumnComparison(oldValue, for: index)
 		})
 		editLayout { editor in
 			editor.select(1)
-			editor.setColumn(column.lsColumn, comparison: comparison?.rawValue ?? nil)
+			editor.setColumn(index, comparison: comparison?.rawValue ?? nil)
 		}
 		undoManager?.setActionName("Set Column Comparison")
 		NotificationCenter.default.post(name: .splitsEdited, object: self)
 	}
 	
-	func setUpdateWith(_ updateWith: ColumnUpdateWith, for column: TimeColumn) {
-		let oldValue = getUpdateWith(for: column)
+	func setStartWith(_ startWith: ColumnStartWith, for column: TimeColumn) {
+		setStartWith(startWith, for: column.lsColumn)
+	}
+	
+	func setStartWith(_ startWith: ColumnStartWith, for index: Int) {
+		let oldValue = getStartWith(for: index)
 		undoManager?.registerUndo(withTarget: self, handler: { r in
-			r.setUpdateWith(oldValue, for: column)
+			r.setStartWith(oldValue, for: index)
 		})
-		editLayout{ editor in
+		editLayout { editor in
 			editor.select(1)
-			editor.setColumn(column.lsColumn, updateWith: updateWith)
+			editor.setColumn(index, startWith: startWith)
 		}
 		undoManager?.setActionName("Set Column Value")
 		NotificationCenter.default.post(.init(name: .splitsEdited, object: self))
 	}
-	func setStartWith(_ startWith: ColumnStartWith, for column: TimeColumn) {
-		let oldValue = getStartWith(for: column)
+	
+	func setUpdateWith(_ updateWith: ColumnUpdateWith, for column: TimeColumn) {
+		setUpdateWith(updateWith, for: column.lsColumn)
+	}
+	func setUpdateWith(_ updateWith: ColumnUpdateWith, for index: Int) {
+		let oldValue = getUpdateWith(for: index)
 		undoManager?.registerUndo(withTarget: self, handler: { r in
-			r.setStartWith(oldValue, for: column)
+			r.setUpdateWith(oldValue, for: index)
 		})
-		editLayout { editor in
+		editLayout{ editor in
 			editor.select(1)
-			editor.setColumn(column.lsColumn, startWith: startWith)
+			editor.setColumn(index, updateWith: updateWith)
+		}
+		undoManager?.setActionName("Set Column Value")
+		NotificationCenter.default.post(.init(name: .splitsEdited, object: self))
+	}
+	
+	func setUpdateTrigger(_ updateTrigger: ColumnUpdateTrigger, for index: Int) {
+		let oldValue = getUpdateTrigger(for: index)
+		undoManager?.registerUndo(withTarget: self, handler: { r in
+			r.setUpdateTrigger(oldValue, for: index)
+		})
+		editLayout{ editor in
+			editor.select(1)
+			editor.setColumn(index, updateTrigger: updateTrigger)
 		}
 		undoManager?.setActionName("Set Column Value")
 		NotificationCenter.default.post(.init(name: .splitsEdited, object: self))

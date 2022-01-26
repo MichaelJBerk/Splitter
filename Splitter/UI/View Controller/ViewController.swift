@@ -660,7 +660,7 @@ class ViewController: NSViewController {
 		pop.appearance = NSAppearance(named: .vibrantDark)
 		pop.behavior = .semitransient
 		let columnOptionsFrame = NSRect(x: self.view.frame.maxX - 10, y: self.view.frame.midY, width: 10, height: 10)
-		layoutEditor.preferredContentSize = .init(width: 532, height: 400)
+		layoutEditor.preferredContentSize = .init(width: 602, height: 400)
 		pop.show(relativeTo: columnOptionsFrame, of: self.view, preferredEdge: .maxX)
 //		window.setContentSize(.init(width: 507, height: 300))
 //		window.makeKeyAndOrderFront(nil)
