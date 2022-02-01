@@ -43,7 +43,32 @@ class SplitterRun: NSObject {
 	var hasSetLayout = false
 	
 	private var layoutSettings: CodableLayoutSettings!
+	
+	static func heyF() {
+		var layout = Layout.defaultLayout()
+		let run = Run()
+		run.pushSegment(.init("hey"))
+		let timer = LSTimer(run)!
+		let editor = LayoutEditor(layout)!
+		let sv = SettingValue.fromBool(true)
+		editor.select(1)
+		editor.setComponentSettingsValue(13, sv)
+		layout = editor.close()
+		
+		let state = layout.state(timer)
+		layout.updateState(state, timer)
+		let state2 = layout.state(timer)
+		let splits = state2.componentAsSplits(1)
+		let name = splits.columnName(1)
+		print(name)
+		
+		let pasteboard = NSPasteboard.general
+		pasteboard.declareTypes([.string], owner: nil)
+		pasteboard.setString(layout.stateAsJson(timer), forType: .string)
+	}
+	
 	init(run: Run, isNewRun: Bool = false) {
+		Self.heyF()
 		var vRun: Run = run
 		//LiveSplit-Core runs need to have at least one segment, so if there's a new run, we need to add a blank segment.
 		if isNewRun == true || run.len() == 0 {
@@ -63,7 +88,7 @@ class SplitterRun: NSObject {
 		} catch {
 			print("Decode error: \(error)")
 		}
-		if let editor = LayoutEditor(layout) {
+		if var editor = LayoutEditor(layout) {
 			/**
 			# General Layout Settings
 			0: Layout Direction
@@ -100,7 +125,7 @@ class SplitterRun: NSObject {
 			 10:  Segment Time Accuracy
 			 11:  Delta Time Accuracy
 			 12:  Drop Delta Decimals When Showing Minutes
-			 9 :  Show Column Labels
+			 13:  Show Column Labels
 			 14:  Columns
 			- Indices from 15 onwards are each column's settings.
 				- The next column's settings are right after the previous one - i.e. column 2 starts at 21.
@@ -125,6 +150,10 @@ class SplitterRun: NSObject {
 			editor.setComponentSettingsValue(14, .fromUint(4))
 			editor.setComponentSettingsValue(13, .fromBool(true))
 			
+			/*
+			 IDEA: Handling column order with LiveSplitCore
+			 - if no icon/title columns exist(i.e. older splitter or livesplit), add title and icon columns at left, and hide them
+			 */
 			
 			//Setup Diffs Column
 			editor.setColumn(1, updateWith: ColumnUpdateWith.segmentDelta)
@@ -144,6 +173,12 @@ class SplitterRun: NSObject {
 			editor.setColumn(3, startWith: ColumnStartWith.comparsionSegmentTime)
 			editor.setColumn(3, updateWith: ColumnUpdateWith.dontUpdate)
 			editor.setColumn(3, updateTrigger: ColumnUpdateTrigger.onStartingSegment)
+			
+//			let state = layout.state(timer.lsTimer)
+//			print(state.componentAsSplits(1).name(1))
+			
+			Self.handleIconTitleColumns(editor: &editor)
+			
 			//TODO: Set rounding
 			
 			let len = editor.state().fieldLen(true)
@@ -172,6 +207,49 @@ class SplitterRun: NSObject {
 		setRunComparison(to: .personalBest, disableUndo: true)
 	}
 	
+	/// Adds the icon and title columns if they don't already exist.
+	///
+	/// - Parameter editor: editor for the run
+	/// - Returns: `true` if they already existed, `false` if the method had to add them
+	static func handleIconTitleColumns(editor: inout LayoutEditor) -> Bool {
+		
+		editor.select(1)
+		var titleIndex, iconIndex: Int?
+		var lastCol = editor.getNumberOfColumns()
+		for c in 0..<lastCol {
+			if iconIndex == nil, editor.getColumnName(c) == STVColumnID.iconColumnTitle {
+				iconIndex = c
+			}
+			if titleIndex == nil, editor.getColumnName(c) == STVColumnID.titleColumnTitle {
+				titleIndex = c
+			}
+		}
+		
+		if iconIndex == nil {
+			lastCol += 1
+			
+			editor.setNumberOfColumns(count: lastCol)
+			editor.setColumn(lastCol - 1, name: STVColumnID.iconColumnTitle)
+			var c = lastCol - 1
+			while c > 0 {
+				editor.moveColumn(c, to: c - 1)
+				c -= 1
+			}
+		}
+		
+		if titleIndex == nil {
+			lastCol += 1
+			editor.setNumberOfColumns(count: lastCol)
+			editor.setColumn(lastCol - 1, name: STVColumnID.titleColumnTitle)
+			var c = lastCol - 1
+			while c > 1 {
+				editor.moveColumn(c, to: c - 1)
+				c -= 1
+			}
+		}
+		if titleIndex == nil || iconIndex == nil {return false}
+		return true
+	}
 	
 	func addComponent(component: SplitterComponentType) -> Int? {
 		var index: Int? = nil

@@ -62,8 +62,25 @@ class SplitsComponentDelegate: NSObject, NSTableViewDelegate, NSTableViewDataSou
 	}
 	
 	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-
-		if let id = tableColumn?.identifier, let cell = tableView.makeView(withIdentifier: id, owner: nil) as? NSTableCellView {
+		guard let id = tableColumn?.identifier else {return nil}
+		let colIdx = tableView.column(withIdentifier: id)
+		let layoutState = run.layout.state(run.timer.lsTimer)
+		let splitsState = layoutState.componentAsSplits(1)
+		let lsColName = splitsState.columnName(colIdx)
+		
+		var colID: NSUserInterfaceItemIdentifier = id
+		tableView.tableColumns[colIdx].title = lsColName
+		
+		if lsColName == STVColumnID.iconColumnTitle {
+			colID = STVColumnID.imageColumn
+			tableView.tableColumns[colIdx].title = ""
+		}
+		if lsColName == STVColumnID.titleColumnTitle {
+			colID = STVColumnID.splitTitleColumn
+			tableView.tableColumns[colIdx].title = "Title"
+		}
+		
+		if let cell = tableView.makeView(withIdentifier: colID, owner: nil) as? NSTableCellView {
 			
 			//Highlight the current row if the user is in the middle of a run
 			let isCurrentSplit = run.layoutSplits.splits[row].isCurrentSplit
@@ -71,12 +88,11 @@ class SplitsComponentDelegate: NSObject, NSTableViewDelegate, NSTableViewDataSou
 				tableView.selectRowIndexes(IndexSet(arrayLiteral: row), byExtendingSelection: false)
 			}
 			
-			let currentLayoutSegment = run.layoutSplits.splits[row]
 			let setThemeColor = { (textField: NSTextField) in
 				textField.textColor = self.run.textColor
 			}
-			switch tableColumn?.identifier {
-			case STVColumnID.imageColumn:
+			
+			if colID == STVColumnID.imageColumn {
 				let imageView = cell.imageView as! ThemedImage
 				imageView.run = self.run
 				if let image = run.icon(for: row) {
@@ -86,26 +102,13 @@ class SplitsComponentDelegate: NSObject, NSTableViewDelegate, NSTableViewDataSou
 					imageView.image?.isTemplate = true
 				}
 				imageView.setColor()
-			case STVColumnID.splitTitleColumn:
-				cell.textField?.stringValue = currentLayoutSegment.name
-				setThemeColor(cell.textField!)
-			case STVColumnID.currentSplitColumn:
-				cell.textField?.stringValue = currentLayoutSegment.columns[0].value
-				setThemeColor(cell.textField!)
-			case STVColumnID.differenceColumn:
-				let color = NSColor(currentLayoutSegment.columns[1].visualColor)
-				cell.textField?.textColor = color
-				cell.textField?.stringValue = currentLayoutSegment.columns[1].value
-			case STVColumnID.bestSplitColumn:
-				cell.textField?.stringValue = currentLayoutSegment.columns[2].value
-				setThemeColor(cell.textField!)
-			case STVColumnID.previousSplitColumn:
-				let v = currentLayoutSegment.columns[3].value
-				cell.textField?.stringValue = v
-				setThemeColor(cell.textField!)
-			default:
-				break
+				return cell
 			}
+			
+			let ct = splitsState.columnValue(row, colIdx)
+			cell.textField?.stringValue = ct
+			setThemeColor(cell.textField!)
+			
 			return cell
 		}
 		return nil

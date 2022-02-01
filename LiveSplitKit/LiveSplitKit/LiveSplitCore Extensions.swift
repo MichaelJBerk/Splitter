@@ -35,6 +35,18 @@ public extension SettingValueRef {
 		}
 		return nil
 	}
+	
+	func toString() -> String? {
+		guard let jsonString = self.asJson().data(using: .utf8) else {return nil}
+		let json = JSON(jsonString)
+		return json["String"].string
+	}
+	
+	func toInt() -> Int {
+		let jsonString = self.asJson().data(using: .utf8)!
+		let json = JSON(jsonString)
+		return json["UInt"].intValue
+	}
 }
 
 typealias LSCColumn = (index: Int, name: String, updateWith: ColumnUpdateWith, startWith: ColumnStartWith, updateFrom: ColumnUpdateWith, comparison: String?, timingMethod: TimingMethod)
@@ -46,13 +58,70 @@ public extension LayoutEditor {
 		let value = 15 + (column * 6)
 		return value
 	}
-	func setNumberOfColumns(_ index: Int, count: Int) {
-		self.setComponentSettingsValue(10, .fromInt(Int32(count)))
+	func setNumberOfColumns(count: Int) {
+//		let sv = SettingValue.fromUInt(Int32(count))
+		let sv = SettingValue.fromUint(UInt32(count))
+		self.setComponentSettingsValue(14, sv)
+	}
+	
+	func getNumberOfColumns() -> Int {
+		let state = state()
+		let sv = state.fieldValue(true, 14)
+		return sv.toInt()
 	}
 	
 	func setColumn(_ index: Int, name: String) {
 		let settingIndex = settingsStartIndex(for: index)
 		self.setComponentSettingsValue(settingIndex, .fromString(name))
+	}
+	
+	func moveColumn(_ sourceIndex: Int, to destIndex: Int) {
+		let sourceStartIndex = settingsStartIndex(for: sourceIndex)
+		let destStartIndex = settingsStartIndex(for: destIndex)
+		
+		let sourceName = getColumnName(sourceIndex)
+		let sourceSw = getStartWith(for: sourceIndex)
+		let sourceUw = getUpdateWith(for: sourceIndex)
+		let sourceUt = getUpdateTrigger(for: sourceIndex)
+		let sourceComp = getColumnName(sourceIndex)
+		var sourceTM: SettingValue
+		let state = state()
+		if let sourceTMString = state.fieldValue(true, destStartIndex + 5).toString() {
+			sourceTM = SettingValue.fromOptionalTimingMethod(sourceTMString)!
+		} else {
+			sourceTM = SettingValue.fromOptionalEmptyTimingMethod()
+		}
+		let destName = getColumnName(destIndex)
+		let destSw = getStartWith(for: destIndex)
+		let destUw = getUpdateWith(for: destIndex)
+		let destUt = getUpdateTrigger(for: destIndex)
+		let destComp = getColumnName(destIndex)
+		var destTM: SettingValue
+		if let destTMString = state.fieldValue(true, destStartIndex + 5).toString() {
+			destTM = SettingValue.fromOptionalTimingMethod(destTMString)!
+		} else {
+			destTM = SettingValue.fromOptionalEmptyTimingMethod()
+		}
+		setColumn(destIndex, name: sourceName)
+		setColumn(destIndex, startWith: sourceSw)
+		setColumn(destIndex, updateWith: sourceUw)
+		setColumn(destIndex, updateTrigger: sourceUt)
+		setColumn(destIndex, comparison: sourceComp)
+		setComponentSettingsValue(destStartIndex + 5, sourceTM)
+		
+		setColumn(sourceIndex, name: destName)
+		setColumn(sourceIndex, startWith: destSw)
+		setColumn(sourceIndex, updateWith: destUw)
+		setColumn(sourceIndex, updateTrigger: destUt)
+		setColumn(sourceIndex, comparison: destComp)
+		setComponentSettingsValue(sourceStartIndex + 5, destTM)
+	}
+	
+	func getColumnName(_ index: Int) -> String {
+		let settingIndex = settingsStartIndex(for: index)
+		//We need to set state as a constant first; see the documentation on ``LayoutEditor.state()`` for more info
+		let state = self.state()
+		return state.fieldValue(true, settingIndex).toString()!
 	}
 	func setColumn(_ index: Int, startWith: ColumnStartWith) {
 		let settingIndex = settingsStartIndex(for: index) + 1

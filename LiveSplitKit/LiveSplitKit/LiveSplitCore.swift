@@ -1409,6 +1409,16 @@ public class LayoutEditorRef {
         return String(cString: result!)
     }
     /// Returns the state of the Layout Editor.
+	///
+	/// - NOTE: In order to avoid deallocation issues, it's best to create a constant equal to `state` on a separate line first. For example:
+	/// ```
+	/// let state = editor.state()
+	/// print(state.fieldValue(true, 15).asJson())
+	/// ```
+	/// instead of:
+	/// ```
+	/// print(editor.state().fieldValue(true, 15).asJson())
+	/// ```
     public func state() -> LayoutEditorState {
         assert(self.ptr != nil)
         let result = CLiveSplitCore.LayoutEditor_state(self.ptr)
@@ -3821,6 +3831,13 @@ public class SplitsComponentStateRef {
         let result = CLiveSplitCore.SplitsComponentState_is_current_split(self.ptr, index)
         return result
     }
+	
+	public func columnName(_ index: size_t) -> String {
+		assert(self.ptr != nil)
+		let result = CLiveSplitCore.SplitsComponentState_column_name(self.ptr, index)
+		return String(cString: result!)
+//		return ""
+	}
 }
 
 /// The state object that describes a single segment's information to visualize.

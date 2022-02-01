@@ -366,7 +366,7 @@ void* SettingValue_from_layout_direction(char const* value);
 void* SettingValue_from_font(char const* family, char const* style, char const* weight, char const* stretch);
 void* SettingValue_from_empty_font(void);
 void SettingValue_drop(void* self);
-char const* SettingValue_as_json(void* self);
+const char* SettingValue_as_json(void* self);
 
 void SharedTimer_drop(void* self);
 void* SharedTimer_share(void* self);
@@ -402,6 +402,7 @@ size_t SplitsComponentState_columns_len(void* self, size_t index);
 char const* SplitsComponentState_column_value(void* self, size_t index, size_t column_index);
 char const* SplitsComponentState_column_semantic_color(void* self, size_t index, size_t column_index);
 bool SplitsComponentState_is_current_split(void* self, size_t index);
+char const* SplitsComponentState_column_name(void* self, size_t index);
 
 void SumOfBestCleaner_drop(void* self);
 void* SumOfBestCleaner_next_potential_clean_up(void* self);

@@ -16,6 +16,9 @@ public enum STVColumnID {
 	static let currentSplitColumn = NSUserInterfaceItemIdentifier("CurrentSplit")
 	static let bestSplitColumn = NSUserInterfaceItemIdentifier("B")
 	static let previousSplitColumn = NSUserInterfaceItemIdentifier("PreviousSplit")
+	
+	static let iconColumnTitle = "\\icon"
+	static let titleColumnTitle = "\\title"
 }
 
 public var colIds: [String: NSUserInterfaceItemIdentifier] = [

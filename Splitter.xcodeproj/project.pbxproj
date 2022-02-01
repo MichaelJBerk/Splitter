@@ -42,7 +42,6 @@
 		4A230E9723B00A1D00959C57 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A230E9623B00A1D00959C57 /* Document.swift */; };
 		4A230E9C23B00A1E00959C57 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A230E9A23B00A1E00959C57 /* Main.storyboard */; };
 		4A24F20324F6E0B100278EB7 /* TouchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A24F20224F6E0B100278EB7 /* TouchBarDelegate.swift */; };
-		4A2E214C279A239700059EAC /* liblivesplit_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A2E214B279A239700059EAC /* liblivesplit_core.a */; };
 		4A327B0D23F491FB00A5CBFF /* SplitterAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A327B0C23F491FB00A5CBFF /* SplitterAppearance.swift */; };
 		4A388FC525D4AF2B00A63C9E /* PrevNextRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A388FC425D4AF2B00A63C9E /* PrevNextRow.swift */; };
 		4A388FCF25D4B00B00A63C9E /* PrevNextRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A388FCE25D4B00B00A63C9E /* PrevNextRow.xib */; };
@@ -319,7 +318,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A2E214C279A239700059EAC /* liblivesplit_core.a in Frameworks */,
 				4ACF41B626B3166E006DF2C8 /* SwiftUI.framework in Frameworks */,
 				4AD7662E23DA5F9A0052409C /* Files in Frameworks */,
 				4AFD0F8B25C38F4C003D3171 /* AppCenterCrashes in Frameworks */,
@@ -1473,12 +1471,9 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/livesplit-core/target/release",
-					"$(PROJECT_DIR)/Splitter/LiveSplit\\ Core",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 4.3.1;
-				MODULEMAP_FILE = "\"$(PROJECT_DIR)/Splitter/LiveSplit Core/module.map\"";
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mibe.Splitter;
@@ -1523,12 +1518,9 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
-					"$(PROJECT_DIR)/livesplit-core/target/release",
-					"$(PROJECT_DIR)/Splitter/LiveSplit\\ Core",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 4.3.1;
-				MODULEMAP_FILE = "\"$(PROJECT_DIR)/Splitter/LiveSplit Core/module.map\"";
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mibe.Splitter;
