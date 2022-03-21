@@ -11,8 +11,11 @@ class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent {
 	
 	var run: SplitterRun!
 	var delegate: SplitsComponentDelegate!
+	
 	//MARK: - State
 	var state: SplitterComponentState!
+	
+	var advancedVC: NSViewController!
 	
 	struct SplitterScrollViewState: SplitterComponentState {
 		var componentType: SplitterComponentType = .splits
@@ -45,6 +48,20 @@ class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent {
 		loadBasicState(from: state.properties)
 		showHeader = (state.properties[showHeaderKey] as? JSONAny)?.value as? Bool ?? true
 		showAdvancedSettings = (state.properties[advancedSettingsKey] as? JSONAny)?.value as? Bool ?? true
+	}
+	
+	//MARK: - LiveSplit Layout
+	
+	var componentIndex = 1
+	
+	///Returns the title for the column managed by LiveSplitCore
+	///
+	///This is typically used to check if a column is the Title or Icon column, which is managed by Splitter.
+	func nameInLayoutForColumn(at index: Int) -> String {
+		let timer = run.timer.lsTimer
+		let layout =  run.layout.state(timer)
+		let splits = layout.componentAsSplits(componentIndex)
+		return splits.columnName(index)
 	}
 	
 	//MARK: -

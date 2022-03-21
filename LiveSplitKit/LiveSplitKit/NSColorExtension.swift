@@ -27,3 +27,18 @@ extension NSColor {
 		return floats.map({Float($0)})
 	}
 }
+
+extension NSColor {
+	static func from(hex: String) -> NSColor {
+		let hexVal = hex.replacingOccurrences(of: "#", with: "")
+		let hex = UInt32(hexVal, radix: 16)!
+		let a = CGFloat((hex >> 24) & 0xFF) / 255.0
+		let r = CGFloat((hex >> 16) & 0xFF) / 255.0
+		let g = CGFloat((hex >> 8)  & 0xFF) / 255.0
+		let b = CGFloat((hex)       & 0xFF) / 255.0
+		
+		let color = NSColor(red: r, green: g, blue: b, alpha: a)
+		
+		return color
+	}
+}

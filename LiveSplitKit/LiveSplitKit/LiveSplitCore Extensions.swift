@@ -76,6 +76,22 @@ public extension LayoutEditor {
 	}
 	
 	func moveColumn(_ sourceIndex: Int, to destIndex: Int) {
+		var c = sourceIndex
+		
+		if sourceIndex > destIndex {
+			while c > destIndex {
+				swapColumn(c, to: c - 1)
+				c -= 1
+			}
+		} else if sourceIndex < destIndex {
+			while c < destIndex {
+				swapColumn(c, to: c + 1)
+				c += 1
+			}
+		}
+	}
+	
+	func swapColumn(_ sourceIndex: Int, to destIndex: Int) {
 		let sourceStartIndex = settingsStartIndex(for: sourceIndex)
 		let destStartIndex = settingsStartIndex(for: destIndex)
 		
@@ -191,6 +207,15 @@ public extension LayoutEditor {
 			self.setComponentSettingsValue(settingIndex, timingMethod)
 		}
 	}
+}
+
+public extension SplitsComponentStateRef {
+	
+	func textColor(for index: Int, column: Int) -> NSColor {
+		let hex = columnVisualColor(index, columnIndex: column)
+		return NSColor.from(hex: hex)
+	}
+	
 }
 
 

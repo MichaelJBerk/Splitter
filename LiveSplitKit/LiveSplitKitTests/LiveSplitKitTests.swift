@@ -32,5 +32,17 @@ class LiveSplitKitTests: XCTestCase {
             // Put the code you want to measure the time of here.
         }
     }
+	
+	func testColor() {
+//		let run = Run()
+//		run.pushSegment(.init("Hello"))
+//		let timer = LSTimer(run)!
+//		let layout = Layout.defaultLayout()
+//		let state = layout.state(timer)
+		let color = "#8000CC36"
+		let c = NSColor.from(hex: color)
+		
+		
+	}
 
 }

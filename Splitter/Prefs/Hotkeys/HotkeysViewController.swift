@@ -22,10 +22,7 @@ final class HotkeysViewController: NSViewController, PreferencePane {
     }
 	@IBOutlet weak var hotkeysTableView: NSTableView!
 	
-	@IBOutlet weak var globalHotkeysCheck: NSButton!
 	@IBOutlet weak var outOfTableButton: NSButton!
-	
-	@IBOutlet weak var globalKeybindsHelpButton: NSButton!
 	
 	var viewController: ViewController? {
 		if let vc =  NSApp.windows.first?.contentViewController as? ViewController {
@@ -46,10 +43,8 @@ final class HotkeysViewController: NSViewController, PreferencePane {
 		hotkeysTableView.reloadData()
 		
 		hotkeysTableView.reloadData()
-		globalHotkeysCheck.state = .init(bool: Settings.enableGlobalHotkeys)
 		context = UnsafeMutableRawPointer(observationInfo)
 		for key in KeybindSettingsKey.allCases {
-			
 			NSUserDefaultsController.shared.addObserver(self, forKeyPath: "@values.\(key.rawValue)", options: .new, context: context)
 		}
 	}
@@ -63,46 +58,10 @@ final class HotkeysViewController: NSViewController, PreferencePane {
 	override func viewWillAppear() {
 	}
 	
-	@IBAction func globalHotkeysToggle(_ sender: NSButton) {
-		guard let appDel = AppDelegate.shared else {return}
-		if appDel.accessibilityGranted() {
-			Settings.enableGlobalHotkeys = globalHotkeysCheck.state.toBool()
-		} else {
-			sender.state = .init(bool: false)
-			appDel.keybindAlert()
-		}
-		let rowIndexes = IndexSet(arrayLiteral: 0)
-		let colIndexes = IndexSet(arrayLiteral: 1)
-		hotkeysTableView.reloadData(forRowIndexes: rowIndexes, columnIndexes: colIndexes)
-	}
-	
-	@objc func openTellMeMore() {
-		NSWorkspace.shared.open(URL(string: "https://splitter.mberk.com/notAnotherTripToSystemPreferences.html")!)
-	}
-	
-	@IBAction func globalHelpClicked(_ sender: Any) {
-		let helpText = """
-When enabled, hotkeys will activate even when Splitter is not the currently active app
-"""
-		
-		let alert = NSAlert()
-		alert.messageText = helpText
-		alert.addButton(withTitle: "OK")
-		alert.addButton(withTitle: "Tell Me More")
-		alert.beginSheetModal(for: self.view.window!, completionHandler: { response in
-			switch response {
-			case .alertSecondButtonReturn:
-				self.openTellMeMore()
-			default:
-				return
-			}
-		})
-//		switch alert.runModal() {
-//		case .alertSecondButtonReturn:
-//			self.openTellMeMore()
-//
-//		default: return
-//		}
+	@IBAction func advancedButtonAction(_ sender: Any) {
+		let advanced = AdvancedHotkeyViewController(nibName: "AdvancedHotkeyViewController", bundle: nil)
+		advanced.hotkeyVC = self
+		self.presentAsSheet(advanced)
 	}
 	
 	@IBAction func clearHotkeyButtons(_ sender: Any) {

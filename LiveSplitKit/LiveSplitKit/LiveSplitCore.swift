@@ -1275,6 +1275,8 @@ public class LayoutRef {
 /// variety of information the runner is interested in.
 public class LayoutRefMut: LayoutRef {
     /// Calculates and returns the layout's state based on the timer provided.
+	///
+	///- WARNING: When accessing `state`, the app can crash unless you set a var equal to the `state`'s value and use that instead
     public func state(_ timer: TimerRef) -> LayoutState {
         assert(self.ptr != nil)
         assert(timer.ptr != nil)
@@ -3837,6 +3839,12 @@ public class SplitsComponentStateRef {
 		let result = CLiveSplitCore.SplitsComponentState_column_name(self.ptr, index)
 		return String(cString: result!)
 //		return ""
+	}
+	
+	public func columnVisualColor(_ index: size_t, columnIndex: size_t) -> String {
+		assert(self.ptr != nil)
+		let result = CLiveSplitCore.SplitsComponentState_column_visual_color(self.ptr, index, columnIndex)
+		return String(cString: result!)
 	}
 }
 

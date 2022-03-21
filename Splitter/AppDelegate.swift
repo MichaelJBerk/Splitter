@@ -35,7 +35,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 	public var hotkeyController: HotkeysViewController?
 	public static var shared: AppDelegate? = NSApplication.shared.delegate as? AppDelegate
 	var appKeybinds: [SplitterKeybind?] = []
-	let statusBarController = StatusBarController()
+
+	var statusBarController: StatusBarController!
 	
 	///Displays a dialog box informing the user to give Splitter the requisite permissions for Global Hotkeys to work.
 	func keybindAlert() {
@@ -82,10 +83,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 	///
 	/// When run, this method will take find the key that triggered `event` and perform its associated keybind action
 	func performGlobalKeybindAction(event: NSEvent) {
-		//This line prevents event from being blocked
-		//Without it, other applications wouldn't be able to get the event
-		//This is why I'm not using MASHotkey's shortcut binding features.
-		NSApp.sendEvent(event)
+		//I'm not using MASHotkey's shortcut binding features, because it blocked events from going to the underlying app
 		if Settings.enableGlobalHotkeys {
 			for k in self.appKeybinds {
 				if let k = k, k == event, let action = keybindAction(keybind: k.title) {
@@ -115,7 +113,10 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 	}
 	
 	func applicationDidFinishLaunching(_ notification: Notification) {
+		statusBarController = StatusBarController()
+		statusBarController.setupItem()
 		if !Settings.notFirstUse {
+			//Set default values for settings
 			Settings.enableGlobalHotkeys = false
 			Settings.notFirstUse = true
 			keybindAlert()
@@ -199,7 +200,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 		}
 		#endif
 	}
-	
+	//MARK: - Welcome window
 	//Need to store this as a var on the class or the app will crash when closing the welcome window
 	var welcomeWindow: KeyDownWindow!
 	var searchWindow: NSWindow!
@@ -220,6 +221,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 		let wc = WelcomeWindowController(window: welcomeWindow)
 		wc.showWindow(nil)
 	}
+	
+	// MARK: - Menu Items
 	@IBAction func welcomeWindowMenuItem(_ sender: Any) {
 		if #available(macOS 10.15, *) {
 			self.openWelcomeWindow()
@@ -230,6 +233,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 		self.openSearchWindow()
 	}
 	
+	//MARK: -
 	func openSearchWindow() {
 		let board = NSStoryboard(name: "DownloadWindow", bundle: nil).instantiateController(withIdentifier: "windowController") as? DownloadWindowController
         if self.searchWindow == nil, let win = board?.window {
@@ -282,6 +286,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 			return viewC
 		}
 	}
+	
+	//Handles the URL scheme for logging in to splits.io
 	func application(_ application: NSApplication, open urls: [URL]) {
 		if let authURL = urls.first(where: { url in
 			let comps = URLComponents(string: url.absoluteString)
@@ -305,7 +311,9 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 	}
 	
 	func newWindowIfNone() {
-		let windows = NSApp.windows.filter({$0.isVisible})
+		let windows = NSApp.windows
+			.filter{$0.isVisible}
+			.filter{$0.className != "NSStatusBarWindow"}
 		if windows.count <= 1 {
 			if AppDelegate.shared?.applicationShouldOpenUntitledFile(NSApp) == true {
 				NSDocumentController.shared.newDocument(nil)

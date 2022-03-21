@@ -10,32 +10,46 @@ import Cocoa
 
 class StatusBarController: NSObject {
 	
-	var statusItem: NSStatusItem
-	var statusMenu: NSMenu
+	var statusItem: NSStatusItem!
+	var statusMenu: NSMenu!
 	
-	var menuItems: [NSMenuItem] = [
-		NSMenuItem(title: "Quit", action: #selector(quitMenuItem(_:)), keyEquivalent: ""),
-		NSMenuItem(title: "Turn Off Overlay Mode", action: #selector(turnOffOverlayAction(_:)), keyEquivalent: "")
-	]
+	var quitItem: NSMenuItem {
+		let quit = NSMenuItem(title: "Quit", action: #selector(quitMenuItem(_:)), keyEquivalent: "q")
+		quit.keyEquivalentModifierMask = [.command]
+		return quit
+	}
 	
-	override init() {
-		statusItem = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
+	var turnOffOverlayItem = NSMenuItem(title: "Turn Off Overlay Mode", action: #selector(turnOffOverlayAction(_:)), keyEquivalent: "")
+	
+	var prefsItem: NSMenuItem {
+		let item = NSMenuItem(title: "Preferences", action: #selector(showPrefsMenuItem(_:)), keyEquivalent: ",")
+		item.keyEquivalentModifierMask = [.command]
+		item.target = self
+		return item
+	}
+	
+	func setupItem() {
+		let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
 		statusMenu = NSMenu(title: "PopMenu")
+		self.statusItem = item
+		if let button = item.button {
+			let img = NSImage(named: "menuBarIcon")
+			button.image = img!
+			button.imageScaling = .scaleProportionallyDown
+			button.target = self
+			button.action = #selector(clickItem(_:))
+			item.button?.sendAction(on: [.leftMouseUp, .rightMouseUp])
+		}
 		
-		super.init()
+		
 		statusMenu.delegate = self
+		let menuItems = [quitItem, .separator(), turnOffOverlayItem, prefsItem]
 		for item in menuItems {
 			item.target = self
 			statusMenu.addItem(item)
 		}
-		if let button = statusItem.button {
-			if #available(macOS 11.0, *) {
-				button.image = NSImage(systemSymbolName: "gamecontroller", accessibilityDescription: nil)!
-			}
-			button.target = self
-			button.action = #selector(clickItem(_:))
-			statusItem.button?.sendAction(on: [.leftMouseUp, .rightMouseUp])
-		}
+		
+		
 		
 		NotificationCenter.default.addObserver(forName: .menuBarModeChanged, object: nil, queue: nil, using: { _ in
 			self.toggleVisible()
@@ -56,6 +70,9 @@ class StatusBarController: NSObject {
 	}
 	@objc func turnOffOverlayAction(_ sender: Any?) {
 		Self.setMenuBarMode(false)
+	}
+	@objc func showPrefsMenuItem(_ sender: Any?) {
+		AppDelegate.shared?.preferencesMenuItemActionHandler(sender as! NSMenuItem)
 	}
 	
 	@objc func clickItem(_ sender: Any?) {

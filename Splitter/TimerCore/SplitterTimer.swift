@@ -64,7 +64,7 @@ class SplitterTimer {
 		NotificationCenter.default.post(name: .updateIsEdited, object: self, userInfo: nil)
 	}
 	func splitOrStart() {
-		/// - Note: If there's a negative offset, and the time < 0, then it won't be counted as having "ended" for some reason
+		// - Note: If there's a negative offset, and the time < 0, then it won't be counted as having "ended" for some reason
 		let initialPhase = lsTimer.currentPhase()
 		resetIfNeeded(update: true)
 		lsTimer.splitOrStart()

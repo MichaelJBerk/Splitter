@@ -341,6 +341,7 @@ class ViewController: NSViewController {
 			}
 		})
 	}
+	
 	private func timerStateChanged(timerState: TimerState) {
 		updateSkipItem()
 		let prevSplitItem = view.window?.menu?.item(withIdentifier: menuIdentifiers.runMenu.back)
@@ -353,9 +354,11 @@ class ViewController: NSViewController {
 			setMenuItemEnabled(item: prevSplitItem, enabled: false)
 			setMenuItemEnabled(item: skipSplitMenuitem, enabled: false)
 			setMenuItemEnabled(item: pauseMenuItem, enabled: false)
+			undoManager?.endUndoGrouping()
 			
 			stopTimer()
 			self.splitsTableView.reloadData(forRowIndexes: IndexSet(arrayLiteral: 0), columnIndexes: IndexSet(arrayLiteral: 0,1,2,3,4,5))
+			
 			if !(undoManager?.isUndoRegistrationEnabled ?? true) {
 				undoManager?.enableUndoRegistration()
 			}
@@ -389,6 +392,7 @@ class ViewController: NSViewController {
 		}
 		touchBarDelegate.enableDisableButtons()
 	}
+	
 	///Loads the data from the supplied `runInfo` file
 	private func loadRunInfo() {
 		if runInfoData != nil {

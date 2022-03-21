@@ -20,7 +20,7 @@ public enum STVColumnID {
 	static let iconColumnTitle = "\\icon"
 	static let titleColumnTitle = "\\title"
 }
-
+//TODO: Change how column width is saved. It's currently saved in runInfo, where it finds the column with the given ID and sets the width. Problem is, if the user has removed that column, it could crash.
 public var colIds: [String: NSUserInterfaceItemIdentifier] = [
 	"Icon": STVColumnID.imageColumn,
 	"Title": STVColumnID.splitTitleColumn,

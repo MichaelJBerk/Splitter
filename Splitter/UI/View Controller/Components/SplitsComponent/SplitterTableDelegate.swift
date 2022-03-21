@@ -8,6 +8,7 @@
 
 import Foundation
 import Cocoa
+import LiveSplitKit
 
 class SplitterRowView: NSTableRowView {
 	var selectedColor: NSColor = .splitterRowSelected
@@ -89,7 +90,8 @@ class SplitsComponentDelegate: NSObject, NSTableViewDelegate, NSTableViewDataSou
 			}
 			
 			let setThemeColor = { (textField: NSTextField) in
-				textField.textColor = self.run.textColor
+				let color = splitsState.textColor(for: row, column: colIdx)
+				textField.textColor = color
 			}
 			
 			if colID == STVColumnID.imageColumn {
@@ -105,12 +107,35 @@ class SplitsComponentDelegate: NSObject, NSTableViewDelegate, NSTableViewDataSou
 				return cell
 			}
 			
-			let ct = splitsState.columnValue(row, colIdx)
-			cell.textField?.stringValue = ct
-			setThemeColor(cell.textField!)
+			if colID == STVColumnID.splitTitleColumn {
+				let name = splitsState.name(row)
+				cell.textField?.stringValue = name
+				cell.textField?.textColor = run.textColor
+			} else {
+				let ct = splitsState.columnValue(row, colIdx)
+				cell.textField?.stringValue = ct
+				setThemeColor(cell.textField!)
+			}
 			
 			return cell
 		}
 		return nil
+	}
+	
+	func tableViewColumnDidMove(_ notification: Notification) {
+		let newIdx = (notification.userInfo!["NSNewColumn"] as! NSNumber).intValue
+		let oldIdx = (notification.userInfo!["NSOldColumn"] as! NSNumber).intValue
+		
+		//TODO: Move to `SplitterRun`?
+		run.undoManager?.registerUndo(withTarget: self, handler: { del in
+			del.splitsComponent.splitsTableView.moveColumn(newIdx, toColumn: oldIdx)
+		})
+		run.undoManager?.setActionName("Undo Move Column")
+		
+		let editor = LayoutEditor(run.layout)!
+		editor.select(splitsComponent.componentIndex)
+		editor.moveColumn(oldIdx, to: newIdx)
+		run.layout = editor.close()
+		NotificationCenter.default.post(name: .runEdited, object: run)
 	}
 }

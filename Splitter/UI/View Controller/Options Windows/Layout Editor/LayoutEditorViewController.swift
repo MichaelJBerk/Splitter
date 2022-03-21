@@ -68,6 +68,7 @@ class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOut
 	@IBOutlet var stack: NSStackView!
 	var outlineView: NSOutlineView!
 	var scrollView: NSScrollView!
+	var currentOptions: NSView?
 	
 	
 	override func viewWillAppear() {
@@ -157,21 +158,38 @@ class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOut
 		}
 		NSColorPanel.shared.close()
 	}
+	
 	func setOptionsView(_ optionsView: NSView) {
+		if let optionsView = optionsView as? SplitsComponent.SplitsOptionsView {
+			scrollView.documentView = nil
+			scrollView.superview!.addSubview(optionsView)
+			currentOptions = optionsView
+			let sv = scrollView.contentView
+			optionsView.translatesAutoresizingMaskIntoConstraints = false
+			
+			NSLayoutConstraint.activate([
+				optionsView.topAnchor.constraint(equalTo: sv.topAnchor),
+				optionsView.leadingAnchor.constraint(equalTo: sv.leadingAnchor),
+				optionsView.trailingAnchor.constraint(equalTo: sv.trailingAnchor),
+				optionsView.bottomAnchor.constraint(equalTo: sv.bottomAnchor)
+			])
+			return
+		}
+		if let oldOptions = currentOptions as? SplitsComponent.SplitsOptionsView {
+			oldOptions.removeFromSuperview()
+		}
 		scrollView.documentView = optionsView
+		currentOptions = optionsView
 		optionsView.translatesAutoresizingMaskIntoConstraints = false
 		scrollView.contentInsets.bottom = 20
 		var constraintsToAdd = [
 			optionsView.leadingAnchor.constraint(equalTo: scrollView.contentView.leadingAnchor),
 			optionsView.trailingAnchor.constraint(equalTo: scrollView.contentView.trailingAnchor),
 		]
-		if optionsView is NSTabView {
-			constraintsToAdd.append(optionsView.topAnchor.constraint(equalTo: scrollView.contentView.topAnchor, constant: -5))
-		} else {
-			constraintsToAdd.append(optionsView.topAnchor.constraint(equalTo: scrollView.contentView.topAnchor))
-		}
+		constraintsToAdd.append(optionsView.topAnchor.constraint(equalTo: scrollView.contentView.topAnchor))
 		NSLayoutConstraint.activate(constraintsToAdd)
 	}
+	
 	func outlineViewSelectionDidChange(_ notification: Notification) {
 		highlightAndShowOptions()
 	}
@@ -333,6 +351,7 @@ extension LayoutEditorViewController {
 	}
 	
 	func outlineView(_ outlineView: NSOutlineView, validateDrop info: NSDraggingInfo, proposedItem item: Any?, proposedChildIndex index: Int) -> NSDragOperation {
+		guard let ds = info.draggingSource as? NSOutlineView, ds == outlineView else {return []}
 		if index < 0 {
 			return .init()
 		}

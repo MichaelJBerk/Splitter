@@ -168,7 +168,7 @@ class SplitterRun: NSObject {
 			editor.setColumn(2, updateTrigger: ColumnUpdateTrigger.onEndingSegment)
 			
 			//Setup Previous column
-			editor.setColumn(3, name: "previous")
+			editor.setColumn(3, name: "Previous")
 			editor.setColumn(3, comparison: "Latest Run")
 			editor.setColumn(3, startWith: ColumnStartWith.comparsionSegmentTime)
 			editor.setColumn(3, updateWith: ColumnUpdateWith.dontUpdate)
@@ -177,7 +177,7 @@ class SplitterRun: NSObject {
 //			let state = layout.state(timer.lsTimer)
 //			print(state.componentAsSplits(1).name(1))
 			
-			Self.handleIconTitleColumns(editor: &editor)
+			_ = Self.handleIconTitleColumns(editor: &editor)
 			
 			//TODO: Set rounding
 			
@@ -198,6 +198,7 @@ class SplitterRun: NSObject {
 		}
 		super.init()
 		self.timer.splitterRun = self
+		
 		setObservers()
 		
 		//If there's a "currentComparison" variable here, it's a pre-4.3 Splitter file, and thus we need to update it using `fixRunAndDiffsComparison`
@@ -231,10 +232,7 @@ class SplitterRun: NSObject {
 			editor.setNumberOfColumns(count: lastCol)
 			editor.setColumn(lastCol - 1, name: STVColumnID.iconColumnTitle)
 			var c = lastCol - 1
-			while c > 0 {
-				editor.moveColumn(c, to: c - 1)
-				c -= 1
-			}
+			editor.moveColumn(c, to: 0)
 		}
 		
 		if titleIndex == nil {
@@ -242,10 +240,7 @@ class SplitterRun: NSObject {
 			editor.setNumberOfColumns(count: lastCol)
 			editor.setColumn(lastCol - 1, name: STVColumnID.titleColumnTitle)
 			var c = lastCol - 1
-			while c > 1 {
-				editor.moveColumn(c, to: c - 1)
-				c -= 1
-			}
+			editor.moveColumn(c, to: 1)
 		}
 		if titleIndex == nil || iconIndex == nil {return false}
 		return true

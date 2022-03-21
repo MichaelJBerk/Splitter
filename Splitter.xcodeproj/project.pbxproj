@@ -48,6 +48,8 @@
 		4A3A082226727B5F00F3EB05 /* AppCenterAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4A3A082126727B5F00F3EB05 /* AppCenterAnalytics */; };
 		4A3A082426727B5F00F3EB05 /* AppCenterCrashes in Frameworks */ = {isa = PBXBuildFile; productRef = 4A3A082326727B5F00F3EB05 /* AppCenterCrashes */; };
 		4A3A082626727DCB00F3EB05 /* FileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3A082526727DCB00F3EB05 /* FileTests.swift */; };
+		4A3BB54D27DA9322006C3256 /* AdvancedHotkeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3BB54B27DA9322006C3256 /* AdvancedHotkeyViewController.swift */; };
+		4A3BB54E27DA9322006C3256 /* AdvancedHotkeyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A3BB54C27DA9322006C3256 /* AdvancedHotkeyViewController.xib */; };
 		4A3BDFA123E4C3B6001EA7FF /* DefaultHotkeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3BDFA023E4C3B6001EA7FF /* DefaultHotkeys.swift */; };
 		4A3F989925EFDB0800B2B955 /* CodableLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3F989825EFDB0800B2B955 /* CodableLayout.swift */; };
 		4A4070E1241AE2E0000927A5 /* AppearanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4070E0241AE2E0000927A5 /* AppearanceViewController.swift */; };
@@ -58,6 +60,8 @@
 		4A4D391F23C4F29C00BF3FCD /* blankWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A4D391E23C4F29C00BF3FCD /* blankWindow.xib */; };
 		4A4D392223C4FAE500BF3FCD /* HotkeysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4D392023C4FAE500BF3FCD /* HotkeysViewController.swift */; };
 		4A4D392323C4FAE500BF3FCD /* HotkeysViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A4D392123C4FAE500BF3FCD /* HotkeysViewController.xib */; };
+		4A4F8F9B27A8C041008CA49E /* PossibleTimeSaveComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4F8F9927A8C041008CA49E /* PossibleTimeSaveComponent.swift */; };
+		4A4F8F9C27A8C041008CA49E /* PossibleTimeSaveComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A4F8F9A27A8C041008CA49E /* PossibleTimeSaveComponent.xib */; };
 		4A520E2B2693735C00F463B3 /* ComponentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A520E2A2693735C00F463B3 /* ComponentState.swift */; };
 		4A520E2D2693737800F463B3 /* SplitterComponentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A520E2C2693737800F463B3 /* SplitterComponentType.swift */; };
 		4A520E2F269373D100F463B3 /* ComponentOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A520E2E269373D100F463B3 /* ComponentOptions.swift */; };
@@ -93,6 +97,7 @@
 		4A87265523BD53F8003A14AF /* runInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87265423BD53F8003A14AF /* runInfo.swift */; };
 		4A87265723BD5423003A14AF /* PrefPanes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87265623BD5423003A14AF /* PrefPanes.swift */; };
 		4A894B1C249ABA71004FEEB3 /* LoadableNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A894B1B249ABA71004FEEB3 /* LoadableNib.swift */; };
+		4A8C644D27AC24AE0036095C /* SplitsComponentAdvancedOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8C644C27AC24AE0036095C /* SplitsComponentAdvancedOptions.swift */; };
 		4A8C96CB269F579200AF372A /* SegmentComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8C96CA269F579200AF372A /* SegmentComponent.swift */; };
 		4A9423CA268D3A6C0033A62F /* SplitsEditorTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9423C9268D3A6C0033A62F /* SplitsEditorTextField.swift */; };
 		4A968C7C23F1F5FE001B74E8 /* lss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A968C7B23F1F5FE001B74E8 /* lss.swift */; };
@@ -215,6 +220,8 @@
 		4A388FC425D4AF2B00A63C9E /* PrevNextRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrevNextRow.swift; sourceTree = "<group>"; };
 		4A388FCE25D4B00B00A63C9E /* PrevNextRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrevNextRow.xib; sourceTree = "<group>"; };
 		4A3A082526727DCB00F3EB05 /* FileTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileTests.swift; sourceTree = "<group>"; };
+		4A3BB54B27DA9322006C3256 /* AdvancedHotkeyViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedHotkeyViewController.swift; sourceTree = "<group>"; };
+		4A3BB54C27DA9322006C3256 /* AdvancedHotkeyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdvancedHotkeyViewController.xib; sourceTree = "<group>"; };
 		4A3BDFA023E4C3B6001EA7FF /* DefaultHotkeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultHotkeys.swift; sourceTree = "<group>"; };
 		4A3F989825EFDB0800B2B955 /* CodableLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableLayout.swift; sourceTree = "<group>"; };
 		4A4070E0241AE2E0000927A5 /* AppearanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceViewController.swift; sourceTree = "<group>"; };
@@ -225,6 +232,8 @@
 		4A4D391E23C4F29C00BF3FCD /* blankWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = blankWindow.xib; sourceTree = "<group>"; };
 		4A4D392023C4FAE500BF3FCD /* HotkeysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotkeysViewController.swift; sourceTree = "<group>"; };
 		4A4D392123C4FAE500BF3FCD /* HotkeysViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HotkeysViewController.xib; sourceTree = "<group>"; };
+		4A4F8F9927A8C041008CA49E /* PossibleTimeSaveComponent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PossibleTimeSaveComponent.swift; sourceTree = "<group>"; };
+		4A4F8F9A27A8C041008CA49E /* PossibleTimeSaveComponent.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = PossibleTimeSaveComponent.xib; sourceTree = "<group>"; };
 		4A520E2A2693735C00F463B3 /* ComponentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentState.swift; sourceTree = "<group>"; };
 		4A520E2C2693737800F463B3 /* SplitterComponentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterComponentType.swift; sourceTree = "<group>"; };
 		4A520E2E269373D100F463B3 /* ComponentOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentOptions.swift; sourceTree = "<group>"; };
@@ -260,6 +269,7 @@
 		4A87265423BD53F8003A14AF /* runInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = runInfo.swift; sourceTree = "<group>"; };
 		4A87265623BD5423003A14AF /* PrefPanes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefPanes.swift; sourceTree = "<group>"; };
 		4A894B1B249ABA71004FEEB3 /* LoadableNib.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadableNib.swift; sourceTree = "<group>"; };
+		4A8C644C27AC24AE0036095C /* SplitsComponentAdvancedOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitsComponentAdvancedOptions.swift; sourceTree = "<group>"; };
 		4A8C96CA269F579200AF372A /* SegmentComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegmentComponent.swift; sourceTree = "<group>"; };
 		4A9423C9268D3A6C0033A62F /* SplitsEditorTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitsEditorTextField.swift; sourceTree = "<group>"; };
 		4A968C7B23F1F5FE001B74E8 /* lss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lss.swift; sourceTree = "<group>"; };
@@ -561,6 +571,15 @@
 			path = Themeing;
 			sourceTree = "<group>";
 		};
+		4A4F8F9D27A8C048008CA49E /* PossibleTimeSaveComponent */ = {
+			isa = PBXGroup;
+			children = (
+				4A4F8F9927A8C041008CA49E /* PossibleTimeSaveComponent.swift */,
+				4A4F8F9A27A8C041008CA49E /* PossibleTimeSaveComponent.xib */,
+			);
+			path = PossibleTimeSaveComponent;
+			sourceTree = "<group>";
+		};
 		4A520E29269372EF00F463B3 /* Shared */ = {
 			isa = PBXGroup;
 			children = (
@@ -575,8 +594,10 @@
 		4A5F10AC23CF754E00DA043B /* Hotkeys */ = {
 			isa = PBXGroup;
 			children = (
-				4A4D392123C4FAE500BF3FCD /* HotkeysViewController.xib */,
+				4A3BB54B27DA9322006C3256 /* AdvancedHotkeyViewController.swift */,
+				4A3BB54C27DA9322006C3256 /* AdvancedHotkeyViewController.xib */,
 				4A4D392023C4FAE500BF3FCD /* HotkeysViewController.swift */,
+				4A4D392123C4FAE500BF3FCD /* HotkeysViewController.xib */,
 				4A6A3BDF23CD1C39002C20AE /* GlobalKeybindPrefs.swift */,
 				4A6A3BE123CD1C7A002C20AE /* Storage.swift */,
 				4A3BDFA023E4C3B6001EA7FF /* DefaultHotkeys.swift */,
@@ -647,6 +668,7 @@
 		4AA9ADB92608EFD3009B77B5 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				4A4F8F9D27A8C048008CA49E /* PossibleTimeSaveComponent */,
 				4A8C96C9269F577100AF372A /* SegmentComponent */,
 				4AC24DBD23EB4F73003008BF /* SplitsComponent */,
 				4ACFB1C4262F52BF00EA79B6 /* TitleComponent */,
@@ -674,6 +696,7 @@
 			children = (
 				4AE2CF3A2631F43100CC6CF7 /* SplitsComponent.swift */,
 				4A520E322693774500F463B3 /* SplitsComponentOptions.swift */,
+				4A8C644C27AC24AE0036095C /* SplitsComponentAdvancedOptions.swift */,
 				4ACFB1E6262F53B100EA79B6 /* SplitsComponent.xib */,
 				4A9D8BF5243A38C40048EA15 /* SplitterTableView.swift */,
 				4AC24DBB23EB4F17003008BF /* SplitterTableDelegate.swift */,
@@ -985,12 +1008,14 @@
 				4A7DDCE223BBDD0900A36AD1 /* Credits.html in Resources */,
 				4AF9E8AC24CE31CA00DFD5BE /* DebugPrefsViewController.xib in Resources */,
 				4A388FCF25D4B00B00A63C9E /* PrevNextRow.xib in Resources */,
+				4A4F8F9C27A8C041008CA49E /* PossibleTimeSaveComponent.xib in Resources */,
 				4A0981AC24E4816A00E44792 /* AccountProfileView.xib in Resources */,
 				4A4D391F23C4F29C00BF3FCD /* blankWindow.xib in Resources */,
 				4A75579D255C47F400ACE826 /* SplitterDocSplitsio.icns in Resources */,
 				4AA9ADBB2608F02D009B77B5 /* StartRow.xib in Resources */,
 				4A6A965924EC3516008EFD2B /* LoadingViewController.xib in Resources */,
 				4A5F10AE23CFAA1F00DA043B /* Assets.xcassets in Resources */,
+				4A3BB54E27DA9322006C3256 /* AdvancedHotkeyViewController.xib in Resources */,
 				4A1C23A2269917F5003A05D6 /* AppearanceViewController.xib in Resources */,
 				4A75578D255C426A00ACE826 /* SplitterDocLSS.icns in Resources */,
 				4ACFB1E7262F53B100EA79B6 /* SplitsComponent.xib in Resources */,
@@ -1197,6 +1222,7 @@
 				4AB92AC2261F69ED00E8B814 /* ThemedPopUpButton.swift in Sources */,
 				4A66A43223DE2C88005952FA /* SplitTableColumnIdentifiers.swift in Sources */,
 				4A230E9323B00A1D00959C57 /* AppDelegate.swift in Sources */,
+				4A3BB54D27DA9322006C3256 /* AdvancedHotkeyViewController.swift in Sources */,
 				4A470BB02695FABA001F0081 /* Themeable.swift in Sources */,
 				4AAD470A248432540094A31F /* Colors.swift in Sources */,
 				4AC24DBC23EB4F17003008BF /* SplitterTableDelegate.swift in Sources */,
@@ -1232,10 +1258,12 @@
 				4A6A3BE423CD621A002C20AE /* MainWindow.swift in Sources */,
 				4A520E332693774500F463B3 /* SplitsComponentOptions.swift in Sources */,
 				4AF9E8AB24CE31CA00DFD5BE /* DebugPrefsViewController.swift in Sources */,
+				4A8C644D27AC24AE0036095C /* SplitsComponentAdvancedOptions.swift in Sources */,
 				4A968C7C23F1F5FE001B74E8 /* lss.swift in Sources */,
 				4AC0E3A52767B3F3004D71D6 /* GeneralPrefsViewController.swift in Sources */,
 				4A6A3BE023CD1C39002C20AE /* GlobalKeybindPrefs.swift in Sources */,
 				4A1C1469240ED30C0056B104 /* InfoOptionsViewController.swift in Sources */,
+				4A4F8F9B27A8C041008CA49E /* PossibleTimeSaveComponent.swift in Sources */,
 				4A01B802268631FC00F15A50 /* SplitsEditorViewController.swift in Sources */,
 				4A09819F24E3089B00E44792 /* LoginView.swift in Sources */,
 				4A0981AF24E4844300E44792 /* AccountProfileView.swift in Sources */,
@@ -1473,7 +1501,7 @@
 					"$(PROJECT_DIR)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = 4.3.1;
+				MARKETING_VERSION = 5.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mibe.Splitter;
@@ -1520,7 +1548,7 @@
 					"$(PROJECT_DIR)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = 4.3.1;
+				MARKETING_VERSION = 5.0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mibe.Splitter;

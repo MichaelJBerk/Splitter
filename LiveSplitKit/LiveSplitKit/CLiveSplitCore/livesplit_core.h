@@ -403,6 +403,7 @@ char const* SplitsComponentState_column_value(void* self, size_t index, size_t c
 char const* SplitsComponentState_column_semantic_color(void* self, size_t index, size_t column_index);
 bool SplitsComponentState_is_current_split(void* self, size_t index);
 char const* SplitsComponentState_column_name(void* self, size_t index);
+char const* SplitsComponentState_column_visual_color(void* self, size_t index, size_t column_index);
 
 void SumOfBestCleaner_drop(void* self);
 void* SumOfBestCleaner_next_potential_clean_up(void* self);

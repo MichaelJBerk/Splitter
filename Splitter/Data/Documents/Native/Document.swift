@@ -73,7 +73,6 @@ class Document: SplitterDocBundle {
 				beforeSplitter4 = true
 			}
 		}
-			
 		if beforeSplitter4 {
 			readOlderThanSplitter4(from: fileWrapper)
 		} else {
@@ -85,6 +84,7 @@ class Document: SplitterDocBundle {
 					let lsRun = Run.parse(ptr.baseAddress, ptr.count, "", true)
 					if lsRun.parsedSuccessfully() {
 						run = SplitterRun(run: lsRun.unwrap())
+						
 						run?.document = self
 					} else {
 						fatalError()
@@ -96,6 +96,14 @@ class Document: SplitterDocBundle {
 			   let layoutData = layoutFile.regularFileContents,
 			   let json = String(data: layoutData, encoding: .utf8) {
 				run?.layout = Layout.parseJson(json)!
+				//Add The title/icon columns if from Splitter < 5.0
+				//Need to do this now, since even though this is done when loading the run, we have just changed the layout to be the layout in the Split file, which would remove the columns.
+				if versionUsed ?? 0 < 5 {
+					if var layout = LayoutEditor(run!.layout) {
+						_ = SplitterRun.handleIconTitleColumns(editor: &layout)
+						run?.layout = layout.close()
+					}
+				}
 			}
 
 			if let bgImage = fileWrapper.fileWrappers?[bgImageName],
