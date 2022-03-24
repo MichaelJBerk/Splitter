@@ -9,7 +9,26 @@
 import Cocoa
 import LiveSplitKit
 
-class SplitsComponentAdvancedOptions: NSViewController {
+class AdvancedOptionsOutlineView: NSOutlineView {
+	override func validateProposedFirstResponder(_ responder: NSResponder, for event: NSEvent?) -> Bool {
+		return true
+	}
+}
+
+class ColumnNameTextField: NSTextField {
+	
+	convenience init(string: String, run: SplitterRun, lsColumn: Int) {
+		self.init(string: string)
+		self.run = run
+		self.lsColumn = lsColumn
+	}
+	
+	var run: SplitterRun!
+	var lsColumn: Int!
+	
+}
+
+class SplitsComponentAdvancedOptions: NSViewController, NSTextFieldDelegate {
 	
 	convenience init(splitsComp: SplitsComponent) {
 		self.init()
@@ -35,10 +54,66 @@ class SplitsComponentAdvancedOptions: NSViewController {
         super.viewDidLoad()
         // Do view setup here.
 		
-		outlineView = NSOutlineView()
+		//observe .splitsEdited so that it updates when the user undoes a column swap
+		NotificationCenter.default.addObserver(forName: .runEdited, object: run, queue: nil, using: { _ in
+			self.outlineView.reloadData()
+		})
+		
+		outlineView = AdvancedOptionsOutlineView()
 		let scrollView = NSScrollView(frame: view.frame)
 		scrollView.documentView = outlineView
-		self.view = scrollView
+		
+		let plusMinusStack = NSStackView()
+		plusMinusStack.orientation = .horizontal
+		
+		let plusButton = ComponentOptionsButton(image: NSImage(named: NSImage.addTemplateName)!, clickAction: plusAction(button:))
+		let minusButton = ComponentOptionsButton(image: NSImage(named: NSImage.removeTemplateName)!, clickAction: minusAction(button:))
+		plusButton.isBordered = false
+		plusButton.bezelStyle = .smallSquare
+		plusButton.setButtonType(.momentaryPushIn)
+		
+		minusButton.isBordered = false
+		minusButton.bezelStyle = .smallSquare
+		minusButton.setButtonType(.momentaryPushIn)
+		
+		plusMinusStack.addArrangedSubview(plusButton)
+		plusMinusStack.addArrangedSubview(minusButton)
+		
+		//TODO: Make help page on Github, explaining what the different column options do
+		let helpButton = ComponentOptionsButton(title: "", clickAction: {_ in
+			let alert = NSAlert()
+			alert.messageText = "Column options help will be implemented in a future build"
+			alert.addButton(withTitle: "OK")
+			alert.beginSheetModal(for: self.view.window!)
+		})
+		helpButton.bezelStyle = .helpButton
+		helpButton.setButtonType(.momentaryPushIn)
+		
+		self.view.addSubview(scrollView)
+		self.view.addSubview(plusMinusStack)
+		self.view.addSubview(helpButton)
+		plusMinusStack.translatesAutoresizingMaskIntoConstraints = false
+		scrollView.translatesAutoresizingMaskIntoConstraints = false
+		helpButton.translatesAutoresizingMaskIntoConstraints = false
+		NSLayoutConstraint.activate([
+			scrollView.topAnchor.constraint(equalTo: view.topAnchor),
+			scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+			scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+			scrollView.widthAnchor.constraint(lessThanOrEqualTo: view.widthAnchor),
+			plusButton.heightAnchor.constraint(equalToConstant: 16),
+			minusButton.heightAnchor.constraint(equalToConstant: 16),
+			plusButton.widthAnchor.constraint(equalToConstant: 16),
+			minusButton.widthAnchor.constraint(equalToConstant: 16),
+			plusMinusStack.heightAnchor.constraint(equalToConstant: 16),
+			helpButton.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -10),
+			helpButton.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -10),
+			helpButton.heightAnchor.constraint(equalToConstant: 20),
+			helpButton.widthAnchor.constraint(equalToConstant: 20),
+			plusMinusStack.trailingAnchor.constraint(lessThanOrEqualTo: helpButton.leadingAnchor),
+			plusMinusStack.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+			plusMinusStack.centerYAnchor.constraint(equalTo: helpButton.centerYAnchor),
+			scrollView.bottomAnchor.constraint(equalTo: helpButton.topAnchor, constant: -10)
+		])
 		
 		outlineView.delegate = self
 		outlineView.dataSource = self
@@ -56,6 +131,24 @@ class SplitsComponentAdvancedOptions: NSViewController {
 		outlineView.intercellSpacing = .init(width: 0, height: 5)
 		
     }
+	
+	func plusAction(button: NSButton) {
+		run.addColumn(component: splitsComponent.componentIndex)
+		splitsComponent.addColumn()
+		splitsTableView.reloadData()
+		outlineView.reloadData()
+		let lastID = splitsTableView.tableColumns.last!.identifier
+		let lastObj = ColObject(colID: lastID)
+		outlineView.expandItem(lastObj)
+	}
+	
+	func minusAction(button: NSButton) {
+		run.removeColumn(component: splitsComponent.componentIndex)
+		let lastCol = splitsTableView.tableColumns.last!
+		splitsTableView.removeTableColumn(lastCol)
+		splitsTableView.reloadData()
+		outlineView.reloadData()
+	}
     
 }
 
@@ -110,9 +203,6 @@ extension SplitsComponentAdvancedOptions: NSOutlineViewDelegate, NSOutlineViewDa
 	}
 	
 	func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
-		if let item = item as? ColObject, !item.isSubitem {
-			return true
-		}
 		return false
 	}
 	
@@ -124,9 +214,8 @@ extension SplitsComponentAdvancedOptions: NSOutlineViewDelegate, NSOutlineViewDa
 		
 		let ci = splitsTableView.column(withIdentifier: item.colID)
 		
-		var title = splitsComponent.nameInLayoutForColumn(at: ci)
-		
-		if title == STVColumnID.iconColumnTitle {
+		var title: String
+		if item.colID == STVColumnID.imageColumn {
 			title = "Icon"
 			if item.isSubitem {
 				let check = ComponentOptionsButton(checkboxWithTitle: "Hidden", clickAction: { button in
@@ -137,8 +226,7 @@ extension SplitsComponentAdvancedOptions: NSOutlineViewDelegate, NSOutlineViewDa
 				cell.heightAnchor.constraint(equalTo: check.heightAnchor).isActive = true
 				return cell
 			}
-		}
-		if title == STVColumnID.titleColumnTitle {
+		} else if item.colID == STVColumnID.splitTitleColumn {
 			title = "Title"
 			if item.isSubitem {
 				let check = ComponentOptionsButton(checkboxWithTitle: "Hidden", clickAction: { button in
@@ -149,6 +237,8 @@ extension SplitsComponentAdvancedOptions: NSOutlineViewDelegate, NSOutlineViewDa
 				cell.heightAnchor.constraint(equalTo: check.heightAnchor).isActive = true
 				return cell
 			}
+		} else {
+			title = splitsComponent.nameInLayoutForColumn(at: ci - 2)
 		}
 		
 		if item.isSubitem {
@@ -158,9 +248,14 @@ extension SplitsComponentAdvancedOptions: NSOutlineViewDelegate, NSOutlineViewDa
 			return cell
 		}
 		
-		let tf = NSTextField(labelWithString: title)
+		let tf = ColumnNameTextField(string: title, run: run, lsColumn: ci - 2)
+		tf.placeholderString = "Untitled Column"
+		tf.isBordered = false
+		tf.drawsBackground = false
+		tf.delegate = self
 		cell.addSubview(tf)
 		cell.textField = tf
+		
 		tf.translatesAutoresizingMaskIntoConstraints = false
 		
 		NSLayoutConstraint.activate([
@@ -173,6 +268,16 @@ extension SplitsComponentAdvancedOptions: NSOutlineViewDelegate, NSOutlineViewDa
 		return cell
 	}
 	
+	func controlTextDidEndEditing(_ obj: Notification) {
+		if let tf = obj.object as? ColumnNameTextField {
+			if tf.lsColumn >= 0 {
+				run.setColumnName(name: tf.stringValue, lsColumn: tf.lsColumn, component: splitsComponent.componentIndex)
+			}
+		}
+	}
+	
+	//MARK: - Drag and Drop
+	
 	func outlineView(_ outlineView: NSOutlineView, pasteboardWriterForItem item: Any) -> NSPasteboardWriting? {
 		if let item = item as? ColObject, !item.isSubitem {
 			return item.colID.rawValue as NSString
@@ -184,8 +289,13 @@ extension SplitsComponentAdvancedOptions: NSOutlineViewDelegate, NSOutlineViewDa
 		guard let item = item as? ColObject, let ds = info.draggingSource as? NSOutlineView, ds == outlineView else {return [] } 
 		let di = splitsTableView.tableColumns.firstIndex(where: {$0.identifier.rawValue == item.colID.rawValue
 		})!
-		outlineView.setDropItem(nil, dropChildIndex: di)
-		return .generic
+		//Disable dragging the first two items - icon and title
+		if di > 1 {
+			outlineView.setDropItem(nil, dropChildIndex: di)
+			return .generic
+		} else {
+			return []
+		}
 	}
 	
 	func outlineView(_ outlineView: NSOutlineView, acceptDrop info: NSDraggingInfo, item: Any?, childIndex index: Int) -> Bool {
@@ -197,35 +307,39 @@ extension SplitsComponentAdvancedOptions: NSOutlineViewDelegate, NSOutlineViewDa
 		return true
 	}
 }
+//MARK: -
 
 extension SplitsComponentAdvancedOptions {
 	
 	//MARK: Advanced Column Options
+	/// Creates the options for the given column
+	/// - Parameter index: index in the list (**not** LiveSplitCore) for the column
+	/// - Returns: View containing column options
 	func advancedOptions(for index: Int) -> NSView {
-		
+		let lsIndex = index - 2
 		let optionsStack = NSStackView(views: [])
 		optionsStack.orientation = .vertical
 		
-		let startPop = startWithPopup(index: index)
+		let startPop = startWithPopup(index: lsIndex)
 		let startPopLabel = NSTextField(labelWithString: "Start With")
 		let startStack = NSStackView(views: [startPopLabel, startPop])
 		startStack.orientation = .horizontal
 		
 		optionsStack.addArrangedSubview(startStack)
 		
-		let updatePop = updateWithPopup(index: index)
+		let updatePop = updateWithPopup(index: lsIndex)
 		let updateWithLabel = NSTextField(labelWithString: "Update With")
 		let uwStack = NSStackView(views: [updateWithLabel, updatePop])
 		uwStack.orientation = .horizontal
 		optionsStack.addArrangedSubview(uwStack)
 		
-		let updateTriggerPop = updateTriggerPop(index: index)
+		let updateTriggerPop = updateTriggerPop(index: lsIndex)
 		let updateTriggerLabel = NSTextField(labelWithString: "Update Trigger")
 		let utStack = NSStackView(views: [updateTriggerLabel, updateTriggerPop])
 		utStack.orientation = .horizontal
 		optionsStack.addArrangedSubview(utStack)
 		
-		let comparisonPop = comparisonPop(index: index)
+		let comparisonPop = comparisonPop(index: lsIndex)
 		let comparisonLabel = NSTextField(labelWithString: "Comparison")
 		let compStack = NSStackView(views: [comparisonLabel, comparisonPop])
 		compStack.orientation = .horizontal
@@ -302,7 +416,9 @@ extension SplitsComponentAdvancedOptions {
 	
 	func comparisonPop(index: Int) -> ComponentPopUpButton {
 		//TODO: Default comparison should list the run's default comparison
-		let defaultCompItem = NSMenuItem(title: "Default Comparison", action: nil, keyEquivalent: "")
+		let runComp = run.timer.lsTimer.currentComparison()
+		let defaultCompString = "Default (\(runComp))"
+		let defaultCompItem = NSMenuItem(title: defaultCompString, action: nil, keyEquivalent: "")
 		let pop = ComponentPopUpButton(title: "", selectAction: {
 			if $0.selectedItem?.title == defaultCompItem.title {
 				self.run.setColumnComparison(nil, for: index)

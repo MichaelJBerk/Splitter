@@ -64,62 +64,68 @@ class SplitsComponentDelegate: NSObject, NSTableViewDelegate, NSTableViewDataSou
 	
 	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
 		guard let id = tableColumn?.identifier else {return nil}
+		
 		let colIdx = tableView.column(withIdentifier: id)
 		let layoutState = run.layout.state(run.timer.lsTimer)
 		let splitsState = layoutState.componentAsSplits(1)
-		let lsColName = splitsState.columnName(colIdx)
+		var lsColName: String
+		///Column index for interfacing with LiveSplitCore
+		let lsColIndex = colIdx - 2
+		switch colIdx {
+		case 0:
+			//Icon Column
+			lsColName = ""
+		case 1:
+			//Title Column
+			lsColName = "Title"
+		default:
+			lsColName = splitsState.columnName(lsColIndex)
+		}
 		
-		var colID: NSUserInterfaceItemIdentifier = id
 		tableView.tableColumns[colIdx].title = lsColName
-		
-		if lsColName == STVColumnID.iconColumnTitle {
-			colID = STVColumnID.imageColumn
-			tableView.tableColumns[colIdx].title = ""
-		}
-		if lsColName == STVColumnID.titleColumnTitle {
+		var colID: NSUserInterfaceItemIdentifier = id
+		if colID.rawValue.prefix(2) == "LS" {
 			colID = STVColumnID.splitTitleColumn
-			tableView.tableColumns[colIdx].title = "Title"
 		}
 		
-		if let cell = tableView.makeView(withIdentifier: colID, owner: nil) as? NSTableCellView {
-			
-			//Highlight the current row if the user is in the middle of a run
-			let isCurrentSplit = run.layoutSplits.splits[row].isCurrentSplit
-			if timerState != .stopped && isCurrentSplit {
-				tableView.selectRowIndexes(IndexSet(arrayLiteral: row), byExtendingSelection: false)
-			}
-			
-			let setThemeColor = { (textField: NSTextField) in
-				let color = splitsState.textColor(for: row, column: colIdx)
-				textField.textColor = color
-			}
-			
-			if colID == STVColumnID.imageColumn {
-				let imageView = cell.imageView as! ThemedImage
-				imageView.run = self.run
-				if let image = run.icon(for: row) {
-					imageView.image = image
-				} else {
-					imageView.image = .gameControllerIcon
-					imageView.image?.isTemplate = true
-				}
-				imageView.setColor()
-				return cell
-			}
-			
-			if colID == STVColumnID.splitTitleColumn {
-				let name = splitsState.name(row)
-				cell.textField?.stringValue = name
-				cell.textField?.textColor = run.textColor
+		guard let cell = tableView.makeView(withIdentifier: colID, owner: nil) as? NSTableCellView else {return nil}
+		
+		//Highlight the current row if the user is in the middle of a run
+		let isCurrentSplit = run.layoutSplits.splits[row].isCurrentSplit
+		if timerState != .stopped && isCurrentSplit {
+			tableView.selectRowIndexes(IndexSet(arrayLiteral: row), byExtendingSelection: false)
+		}
+		
+		let setThemeColor = { (textField: NSTextField) in
+			let color = splitsState.textColor(for: row, column: lsColIndex)
+			textField.textColor = color
+		}
+		
+		if id == STVColumnID.imageColumn {
+			let imageView = cell.imageView as! ThemedImage
+			imageView.run = self.run
+			if let image = run.icon(for: row) {
+				imageView.image = image
 			} else {
-				let ct = splitsState.columnValue(row, colIdx)
-				cell.textField?.stringValue = ct
-				setThemeColor(cell.textField!)
+				imageView.image = .gameControllerIcon
+				imageView.image?.isTemplate = true
 			}
-			
+			imageView.setColor()
 			return cell
 		}
-		return nil
+		
+		if id == STVColumnID.splitTitleColumn {
+			let name = splitsState.name(row)
+			cell.textField?.stringValue = name
+			cell.textField?.textColor = run.textColor
+			return cell
+		}
+		
+		let ct = splitsState.columnValue(row, lsColIndex)
+		cell.textField?.stringValue = ct
+		setThemeColor(cell.textField!)
+		
+		return cell
 	}
 	
 	func tableViewColumnDidMove(_ notification: Notification) {
@@ -134,8 +140,25 @@ class SplitsComponentDelegate: NSObject, NSTableViewDelegate, NSTableViewDataSou
 		
 		let editor = LayoutEditor(run.layout)!
 		editor.select(splitsComponent.componentIndex)
-		editor.moveColumn(oldIdx, to: newIdx)
+		//Need to subtract here and not when I define the variable, or there will be problems when undoing, because of when the variables are captured
+		editor.moveColumn(oldIdx - 2, to: newIdx - 2)
 		run.layout = editor.close()
 		NotificationCenter.default.post(name: .runEdited, object: run)
+	}
+	
+	//MARK: - Drag and Drop
+	
+	//TODO: Don't make new columns for title and icon in LiveSplit
+	
+	func tableView(_ tableView: NSTableView, shouldReorderColumn columnIndex: Int, toColumn newColumnIndex: Int) -> Bool {
+		//If it's the title or icon - don't rearrange
+		if columnIndex < 2 {
+			return false
+		}
+		if newColumnIndex != -1 && newColumnIndex < 2 {
+			return false
+		}
+		
+		return true
 	}
 }

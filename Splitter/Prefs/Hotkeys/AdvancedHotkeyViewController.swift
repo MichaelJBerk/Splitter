@@ -13,6 +13,8 @@ class AdvancedHotkeyViewController: NSViewController {
 	
 	@IBOutlet weak var globalHotkeyCheck: NSButton!
 	var hotkeyVC: HotkeysViewController!
+	
+	@IBOutlet weak var debugPrintButton: NSButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,16 +43,23 @@ class AdvancedHotkeyViewController: NSViewController {
 	
 	@IBAction func printDebugInfo(_ sender: Any) {
 		let isTrusted = AXIsProcessTrusted()
-		print("Acessibility Permission:  \(isTrusted)")
-		print("Global Hotkeys Enabled: \(Settings.enableGlobalHotkeys)")
-		print("Keybinds:")
+		var debugText: String = ""
+		debugText.append("Acessibility Permission:  \(isTrusted)\n")
+		debugText.append("Global Hotkeys Enabled: \(Settings.enableGlobalHotkeys)\n")
+		debugText.append("\n")
+		debugText.append("Keybinds:\n")
 		guard let appDel = AppDelegate.shared else {return}
+		
 		for k in appDel.appKeybinds {
 			if let k = k {
-				
-				print("\(k.title) \(String(describing: k.keybind)) \(k.settings)")
+				debugText.append("\(k.title) \(String(describing: k.keybind)) \(k.settings)\n")
 			}
 		}
+		print(debugText)
+		let alert = NSAlert()
+		alert.messageText = "Make sure that the hotkeys are actually properly set"
+		alert.informativeText = debugText
+		alert.runModal()
 
 	}
 	

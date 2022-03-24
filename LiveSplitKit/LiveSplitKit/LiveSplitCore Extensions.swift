@@ -59,7 +59,6 @@ public extension LayoutEditor {
 		return value
 	}
 	func setNumberOfColumns(count: Int) {
-//		let sv = SettingValue.fromUInt(Int32(count))
 		let sv = SettingValue.fromUint(UInt32(count))
 		self.setComponentSettingsValue(14, sv)
 	}

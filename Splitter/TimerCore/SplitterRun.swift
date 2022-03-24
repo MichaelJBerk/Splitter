@@ -147,37 +147,37 @@ class SplitterRun: NSObject {
 			//Include all splits in layout
 			editor.setComponentSettingsValue(1, .fromUint(0))
 			editor.setComponentSettingsValue(0, .fromAlternatingNSColor(.splitterTableViewColor, .splitterTableViewColor))
-			editor.setComponentSettingsValue(14, .fromUint(4))
 			editor.setComponentSettingsValue(13, .fromBool(true))
-			
-			/*
-			 IDEA: Handling column order with LiveSplitCore
-			 - if no icon/title columns exist(i.e. older splitter or livesplit), add title and icon columns at left, and hide them
-			 */
-			
-			//Setup Diffs Column
-			editor.setColumn(1, updateWith: ColumnUpdateWith.segmentDelta)
-			editor.setColumn(1, updateTrigger: ColumnUpdateTrigger.onStartingSegment)
-			editor.setColumn(1, comparison: "Best Segments")
-			//todo: if before fix and diff column comparison is empty, replace diff column compariosn with run comparison, and set run comparison to default
-			//Setup PB column
-			editor.setColumn(2, name: "PB")
-			editor.setColumn(2, comparison: "Best Segments")
-			editor.setColumn(2, startWith: .comparsionSegmentTime)
-			editor.setColumn(2, updateWith: ColumnUpdateWith.dontUpdate)
-			editor.setColumn(2, updateTrigger: ColumnUpdateTrigger.onEndingSegment)
-			
-			//Setup Previous column
-			editor.setColumn(3, name: "Previous")
-			editor.setColumn(3, comparison: "Latest Run")
-			editor.setColumn(3, startWith: ColumnStartWith.comparsionSegmentTime)
-			editor.setColumn(3, updateWith: ColumnUpdateWith.dontUpdate)
-			editor.setColumn(3, updateTrigger: ColumnUpdateTrigger.onStartingSegment)
+			func oldColumnSetup() {
+				editor.setComponentSettingsValue(14, .fromUint(4))
+				
+				/*
+				 IDEA: Handling column order with LiveSplitCore
+				 - if no icon/title columns exist(i.e. older splitter or livesplit), add title and icon columns at left, and hide them
+				 */
+				
+				//Setup Diffs Column
+				editor.setColumn(1, updateWith: ColumnUpdateWith.segmentDelta)
+				editor.setColumn(1, updateTrigger: ColumnUpdateTrigger.onStartingSegment)
+				editor.setColumn(1, comparison: "Best Segments")
+				//todo: if before fix and diff column comparison is empty, replace diff column compariosn with run comparison, and set run comparison to default
+				//Setup PB column
+				editor.setColumn(2, name: "PB")
+				editor.setColumn(2, comparison: "Best Segments")
+				editor.setColumn(2, startWith: .comparsionSegmentTime)
+				editor.setColumn(2, updateWith: ColumnUpdateWith.dontUpdate)
+				editor.setColumn(2, updateTrigger: ColumnUpdateTrigger.onEndingSegment)
+				
+				//Setup Previous column
+				editor.setColumn(3, name: "Previous")
+				editor.setColumn(3, comparison: "Latest Run")
+				editor.setColumn(3, startWith: ColumnStartWith.comparsionSegmentTime)
+				editor.setColumn(3, updateWith: ColumnUpdateWith.dontUpdate)
+				editor.setColumn(3, updateTrigger: ColumnUpdateTrigger.onStartingSegment)
+			}
 			
 //			let state = layout.state(timer.lsTimer)
 //			print(state.componentAsSplits(1).name(1))
-			
-			_ = Self.handleIconTitleColumns(editor: &editor)
 			
 			//TODO: Set rounding
 			
@@ -206,44 +206,6 @@ class SplitterRun: NSObject {
 			fixRunAndDiffsComparison(comp)
 		}
 		setRunComparison(to: .personalBest, disableUndo: true)
-	}
-	
-	/// Adds the icon and title columns if they don't already exist.
-	///
-	/// - Parameter editor: editor for the run
-	/// - Returns: `true` if they already existed, `false` if the method had to add them
-	static func handleIconTitleColumns(editor: inout LayoutEditor) -> Bool {
-		
-		editor.select(1)
-		var titleIndex, iconIndex: Int?
-		var lastCol = editor.getNumberOfColumns()
-		for c in 0..<lastCol {
-			if iconIndex == nil, editor.getColumnName(c) == STVColumnID.iconColumnTitle {
-				iconIndex = c
-			}
-			if titleIndex == nil, editor.getColumnName(c) == STVColumnID.titleColumnTitle {
-				titleIndex = c
-			}
-		}
-		
-		if iconIndex == nil {
-			lastCol += 1
-			
-			editor.setNumberOfColumns(count: lastCol)
-			editor.setColumn(lastCol - 1, name: STVColumnID.iconColumnTitle)
-			var c = lastCol - 1
-			editor.moveColumn(c, to: 0)
-		}
-		
-		if titleIndex == nil {
-			lastCol += 1
-			editor.setNumberOfColumns(count: lastCol)
-			editor.setColumn(lastCol - 1, name: STVColumnID.titleColumnTitle)
-			var c = lastCol - 1
-			editor.moveColumn(c, to: 1)
-		}
-		if titleIndex == nil || iconIndex == nil {return false}
-		return true
 	}
 	
 	func addComponent(component: SplitterComponentType) -> Int? {
@@ -397,11 +359,21 @@ class SplitterRun: NSObject {
 			undoableEditRun(kp: \.platform, actionName: "Set Platform", newValue: newValue, edit: {$0.setPlatformName($1)})
 		}
 	}
+	/** Returns the state of the layout, using the current timer
 	
+	> Warning: LiveSplitCore may crash if you don't set the layout to a variable first. For example, the following line may crash:
+	 ```swift
+	 let name = getLayoutState().componentAsSplits(1).columnName(0)
+	 ```
+	 To work around it, make a separate variable for the LayoutState first:
+	 ```swift
+	 let ls = getLayoutState()
+	 let name = ls.componentAsSplits(1).columnName(0)
+	 ```
+	*/
 	func getLayoutState() -> LayoutState {
 		layout.state(timer.lsTimer)
 	}
-	
 	func getSplitsLayout() -> SplitsComponentStateRef {
 		getLayoutState().componentAsSplits(1)
 	}
@@ -997,6 +969,62 @@ class SplitterRun: NSObject {
 	func setRun(_ run: Run) {
 		_ = timer.lsTimer.setRun(run)
 	}
+	
+	func addColumn(component: Int) {
+		
+//		undoManager?.registerUndo(withTarget: self, handler: {r in
+//			r.removeColumn(component: component)
+//		})
+		
+		let cols = getLayoutState().componentAsSplits(1).columnsLen(0)
+		editLayout { le in
+			le.select(component)
+			le.setNumberOfColumns(count: cols + 1)
+		}
+		
+	}
+	
+	///Removes the last column from the table
+	///
+	///If there's only one column left, this method won't do aything
+	func removeColumn(component: Int) {
+		//TODO: Support for undoing
+		//Will require storing the column's settings ahead of time
+		let cols = getLayoutState().componentAsSplits(1).columnsLen(0)
+		if cols > 2 {
+			return
+		}
+		editLayout { le in
+			le.select(component)
+			le.setNumberOfColumns(count: cols - 1)
+		}
+		
+//		undoManager?.registerUndo(withTarget: self, handler: {r in
+//			r.addColumn(component: component)
+//		})
+	}
+	
+	
+	func setColumnName(name: String, lsColumn: Int, component: Int) {
+		let ls = getLayoutState()
+		let oldName = ls.componentAsSplits(component).columnName(lsColumn)
+		if name != oldName {
+			undoManager?.registerUndo(withTarget: self, handler: { r in
+				r.setColumnName(name: oldName, lsColumn: lsColumn, component: component)
+			})
+			
+			editLayout { le in
+				le.select(component)
+				le.setColumn(lsColumn, name: name)
+			}
+			undoManager?.setActionName("Set Column Name")
+			NotificationCenter.default.post(name: .runEdited, object: self)
+		}
+	}
+	
+	//The reason why so much of the editing logic is here is because it makes it easier to deal with undoing, since the run object is pretty much always going to be in memory
+	
+	//MARK: -
 	
 	//MARK: Backwards Compatibility
 	///Replaces the diffs comparison with the run's comparison

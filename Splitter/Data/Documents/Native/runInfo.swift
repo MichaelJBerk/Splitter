@@ -12,6 +12,10 @@ import LiveSplitKit
 
 //You may wonder why I don't just save Split Table rows directly to the file (since they're structs already anyway). I'm not doing that because I don't want to save the images to runInfo.json
 
+
+///Structure containing metadata for a .split file
+///
+///Most of the properties in this struct aren't used in Splitter ≥ 4.0, since the `lss` file contains them instead. Since Splitter 4.0, only `version`, `build` and `id` are used, except when importing from older versions.
 struct runInfo: Codable {
 	var title: String?
 	var category: String?
@@ -20,7 +24,6 @@ struct runInfo: Codable {
 	var gameVersion: String?
 	var compareTo: Int?
 	
-	//These two are backed by LiveSplitCore, and thus aren't optional
 	var platform: String?
 	var gameRegion: String?
 	
@@ -32,8 +35,6 @@ struct runInfo: Codable {
 	var id: String?
 }
 
-
-
 struct splitSegment: Codable {
 	var name: String
 	var currentTime: String
@@ -44,8 +45,13 @@ struct splitSegment: Codable {
 	
 
 }
+
 class splitToJSON {
 	//Can't have this as an initalizer of the runInfo struct becuase then i'd have to re-implement the default initalizer
+	
+	///Loads runInfo from JSON
+	///
+	///This method used for all runInfo files, even from Splitter ≥ 4.0
 	func runInfoFromJSON(json: JSON) -> runInfo {
 		var splitsegs: [splitSegment] = []
 		if let segs = json.dictionary?["segments"]?.array {
@@ -71,12 +77,12 @@ class splitToJSON {
 		
 	}
 }
-
-
+//MARK: - Loading older runInfo files
 
 extension ViewController {
 	
-	func loadFromOldRunInfo(icons: [NSImage?]) {
+	///Load data from a Splitter ≤ 3.x file
+	func loadFromV3RunInfo(icons: [NSImage?]) {
 		if let ri = runInfoData {
 			runTitleField.stringValue = ri.title ?? ""
 			categoryField.stringValue = ri.category ?? ""
@@ -129,13 +135,15 @@ extension ViewController {
 			}
 		}
 	}
-	
+}
+
+//MARK: - Saving runInfo
+
+extension ViewController {
 	func saveToRunInfo() -> runInfo {
 		let ri = runInfo(version: otherConstants.version,
 						 build: otherConstants.build,
 						 id: fileID)
 		return ri
 	}
-	
 }
-

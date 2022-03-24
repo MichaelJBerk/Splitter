@@ -34,29 +34,26 @@ class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent {
 		}
 	}
 	
-	var showAdvancedSettings: Bool = false
-	
 	let showHeaderKey = "showHeader"
-	let advancedSettingsKey = "showAdvancedSettings"
 	func saveState() throws -> ComponentState {
 		var state = saveBasicState()
 		state.properties[showHeaderKey] = showHeader
-		state.properties[advancedSettingsKey] = showAdvancedSettings
 		return state
 	}
 	func loadState(from state: ComponentState) throws {
 		loadBasicState(from: state.properties)
 		showHeader = (state.properties[showHeaderKey] as? JSONAny)?.value as? Bool ?? true
-		showAdvancedSettings = (state.properties[advancedSettingsKey] as? JSONAny)?.value as? Bool ?? true
 	}
 	
 	//MARK: - LiveSplit Layout
 	
 	var componentIndex = 1
 	
-	///Returns the title for the column managed by LiveSplitCore
+	/// Returns the title for the column managed by LiveSplitCore
 	///
-	///This is typically used to check if a column is the Title or Icon column, which is managed by Splitter.
+	/// This is typically used to check if a column is the Title or Icon column, which is managed by Splitter.
+	/// - Parameter index: The index in LiveSplit (i.e. ignoring the icon/title columns)
+	/// - Returns: Name of the given column
 	func nameInLayoutForColumn(at index: Int) -> String {
 		let timer = run.timer.lsTimer
 		let layout =  run.layout.state(timer)
@@ -85,6 +82,15 @@ class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent {
 		splitsTableView.delegate = delegate
 		splitsTableView.dataSource = delegate
 		
+		let lsComp = run.getLayoutState().componentAsSplits(componentIndex)
+		let numberOfColumns = lsComp.columnsLen(0)
+		for column in 0..<numberOfColumns {
+			addColumn()
+		}
+		NotificationCenter.default.addObserver(forName: .runEdited, object: self.run, queue: nil, using: { _ in
+			self.splitsTableView.reloadData()
+		})
+		
 		//Get rows past the header to be hidden
 		NotificationCenter.default.addObserver(forName: NSScrollView.didLiveScrollNotification, object: self, queue: nil, using: { notification in
 			let scrollView = notification.object as! SplitsComponent
@@ -106,6 +112,13 @@ class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent {
 		if #available(macOS 11.0, *) {
 			splitsTableView.style = .fullWidth
 		}
+	}
+	
+	func addColumn() {
+		let id = UUID()
+		let itemID = NSUserInterfaceItemIdentifier(rawValue: "LS \(id.uuidString)")
+		let column = NSTableColumn(identifier: itemID)
+		splitsTableView.addTableColumn(column)
 	}
 	
 	var leadingConstraint: NSLayoutConstraint {

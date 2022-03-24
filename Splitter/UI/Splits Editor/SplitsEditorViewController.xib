@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,17 +19,19 @@
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
-        <customView translatesAutoresizingMaskIntoConstraints="NO" id="Hz6-mo-xeY">
+        <customView id="Hz6-mo-xeY">
             <rect key="frame" x="0.0" y="0.0" width="622" height="352"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
             <subviews>
-                <scrollView autohidesScrollers="YES" horizontalLineScroll="25" horizontalPageScroll="10" verticalLineScroll="25" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZ1-er-cv8">
-                    <rect key="frame" x="0.0" y="28" width="622" height="324"/>
+                <scrollView fixedFrame="YES" autohidesScrollers="YES" horizontalLineScroll="25" horizontalPageScroll="10" verticalLineScroll="25" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CZ1-er-cv8">
+                    <rect key="frame" x="0.0" y="34" width="622" height="318"/>
+                    <autoresizingMask key="autoresizingMask" heightSizable="YES"/>
                     <clipView key="contentView" drawsBackground="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9q7-7o-5Pl">
-                        <rect key="frame" x="1" y="1" width="620" height="322"/>
+                        <rect key="frame" x="1" y="1" width="620" height="316"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" tableStyle="inset" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="25" headerView="T8k-LS-CiD" viewBased="YES" indentationPerLevel="13" outlineTableColumn="IIU-D3-jD5" id="8LC-B2-7du" customClass="SplitsEditorOutlineView" customModule="Splitter" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="0.0" width="620" height="294"/>
+                                <rect key="frame" x="0.0" y="0.0" width="620" height="288"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <size key="intercellSpacing" width="17" height="0.0"/>
                                 <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -50,17 +52,12 @@
                                                 <rect key="frame" x="18" y="0.0" width="48" height="17"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <imageView wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5cl-Wx-7rq" customClass="EditableSegmentIconView" customModule="Splitter" customModuleProvider="target">
-                                                        <rect key="frame" x="10" y="0.0" width="28" height="17"/>
+                                                    <imageView wantsLayer="YES" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5cl-Wx-7rq" customClass="EditableSegmentIconView" customModule="Splitter" customModuleProvider="target">
+                                                        <rect key="frame" x="0.0" y="0.0" width="48" height="17"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                         <imageCell key="cell" selectable="YES" editable="YES" alignment="left" animates="YES" imageScaling="proportionallyDown" id="aOg-NL-Fz4"/>
                                                     </imageView>
                                                 </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="5cl-Wx-7rq" firstAttribute="top" secondItem="jZj-eW-wju" secondAttribute="top" id="0Dc-tO-TCR"/>
-                                                    <constraint firstItem="5cl-Wx-7rq" firstAttribute="centerX" secondItem="jZj-eW-wju" secondAttribute="centerX" id="JNq-R5-kAA"/>
-                                                    <constraint firstItem="5cl-Wx-7rq" firstAttribute="centerY" secondItem="jZj-eW-wju" secondAttribute="centerY" id="TJp-JK-wQd"/>
-                                                    <constraint firstItem="5cl-Wx-7rq" firstAttribute="leading" secondItem="jZj-eW-wju" secondAttribute="leading" constant="10" id="lnP-SB-xjD"/>
-                                                </constraints>
                                                 <connections>
                                                     <outlet property="imageView" destination="5cl-Wx-7rq" id="DqG-Fg-kKr"/>
                                                 </connections>
@@ -83,8 +80,9 @@
                                                 <rect key="frame" x="83" y="0.0" width="107" height="24"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="ZAq-m7-4nO" customClass="SplitsEditorTextField" customModule="Splitter" customModuleProvider="target">
+                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZAq-m7-4nO" customClass="SplitsEditorTextField" customModule="Splitter" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="4" width="107" height="16"/>
+                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="HPR-Yl-5Rl">
                                                             <font key="font" usesAppearanceFont="YES"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -92,11 +90,6 @@
                                                         </textFieldCell>
                                                     </textField>
                                                 </subviews>
-                                                <constraints>
-                                                    <constraint firstItem="ZAq-m7-4nO" firstAttribute="centerY" secondItem="Gj1-Kl-F8o" secondAttribute="centerY" id="1KU-xJ-LNP"/>
-                                                    <constraint firstItem="ZAq-m7-4nO" firstAttribute="leading" secondItem="Gj1-Kl-F8o" secondAttribute="leading" constant="2" id="Gga-hS-YQe"/>
-                                                    <constraint firstItem="ZAq-m7-4nO" firstAttribute="centerX" secondItem="Gj1-Kl-F8o" secondAttribute="centerX" id="VKh-Yk-Hab"/>
-                                                </constraints>
                                                 <connections>
                                                     <outlet property="textField" destination="ZAq-m7-4nO" id="Tjb-ua-RzA"/>
                                                 </connections>
@@ -125,14 +118,15 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </tableHeaderView>
                 </scrollView>
-                <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="6" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CiP-Bx-D1J">
-                    <rect key="frame" x="20" y="4" width="134" height="20"/>
+                <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="18" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" id="CiP-Bx-D1J">
+                    <rect key="frame" x="20" y="7" width="155" height="20"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                     <subviews>
                         <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="P00-5O-iMW">
-                            <rect key="frame" x="0.0" y="3" width="15" height="19"/>
+                            <rect key="frame" x="0.0" y="3.5" width="15.5" height="19"/>
                             <constraints>
-                                <constraint firstAttribute="width" constant="15" id="A4x-PY-Ecn"/>
-                                <constraint firstAttribute="height" constant="15" id="qWZ-5h-cxp"/>
+                                <constraint firstAttribute="height" constant="15" id="4Qt-v9-O3N"/>
+                                <constraint firstAttribute="width" constant="15" id="E5b-K8-Yko"/>
                             </constraints>
                             <buttonCell key="cell" type="smallSquare" title="Add Segment" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="0xY-qg-brb">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -144,10 +138,10 @@
                             </connections>
                         </button>
                         <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Y4c-Xh-vEL">
-                            <rect key="frame" x="21" y="8" width="15" height="10"/>
+                            <rect key="frame" x="33" y="8" width="15.5" height="10"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="15" id="wCG-CP-C2a"/>
-                                <constraint firstAttribute="width" constant="15" id="yVy-EK-lC9"/>
+                                <constraint firstAttribute="height" constant="15" id="NQr-R2-ib1"/>
+                                <constraint firstAttribute="width" constant="15" id="hqn-av-0XG"/>
                             </constraints>
                             <buttonCell key="cell" type="smallSquare" title="Remove Segment" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="s2F-WS-Hwu">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -159,7 +153,7 @@
                             </connections>
                         </button>
                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BUF-bq-gPY">
-                            <rect key="frame" x="35" y="-7" width="106" height="32"/>
+                            <rect key="frame" x="59" y="-7" width="103" height="32"/>
                             <buttonCell key="cell" type="push" title="Clear Times" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6ci-xi-hBM">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
@@ -181,14 +175,11 @@
                     </customSpacing>
                 </stackView>
                 <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="5" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" id="0v7-f4-Ek7">
-                    <rect key="frame" x="488" y="6" width="114" height="20"/>
+                    <rect key="frame" x="496" y="7" width="106" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                     <subviews>
                         <button horizontalHuggingPriority="1000" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a8q-Uj-3JJ">
-                            <rect key="frame" x="-7" y="-7" width="83" height="32"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="69" id="VeK-tb-awK"/>
-                            </constraints>
+                            <rect key="frame" x="-7" y="-7" width="76" height="32"/>
                             <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nD4-Cg-jBG">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
@@ -201,10 +192,7 @@ Gw
                             </connections>
                         </button>
                         <button horizontalHuggingPriority="1000" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WmS-DJ-piX">
-                            <rect key="frame" x="67" y="-7" width="54" height="32"/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="40" id="TdL-ys-Flp"/>
-                            </constraints>
+                            <rect key="frame" x="60" y="-7" width="53" height="32"/>
                             <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Bwx-o6-cYc">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
@@ -228,19 +216,11 @@ DQ
                     </customSpacing>
                 </stackView>
             </subviews>
-            <constraints>
-                <constraint firstItem="CiP-Bx-D1J" firstAttribute="top" secondItem="CZ1-er-cv8" secondAttribute="bottom" constant="4" id="6DN-oW-3LX"/>
-                <constraint firstAttribute="trailing" secondItem="CZ1-er-cv8" secondAttribute="trailing" id="DN9-CW-t3U"/>
-                <constraint firstItem="CZ1-er-cv8" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" id="SI9-Ch-hhM"/>
-                <constraint firstItem="CiP-Bx-D1J" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" symbolic="YES" id="oVx-56-qA8"/>
-                <constraint firstItem="CZ1-er-cv8" firstAttribute="top" secondItem="Hz6-mo-xeY" secondAttribute="top" id="u2u-9G-BRe"/>
-                <constraint firstAttribute="bottom" secondItem="CiP-Bx-D1J" secondAttribute="bottom" constant="4" id="vsg-RQ-Dgr"/>
-            </constraints>
             <point key="canvasLocation" x="211" y="188"/>
         </customView>
     </objects>
     <resources>
-        <image name="NSAddTemplate" width="15" height="13"/>
-        <image name="NSRemoveTemplate" width="15" height="4"/>
+        <image name="NSAddTemplate" width="14" height="13"/>
+        <image name="NSRemoveTemplate" width="14" height="4"/>
     </resources>
 </document>

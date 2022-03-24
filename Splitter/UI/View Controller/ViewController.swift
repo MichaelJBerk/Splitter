@@ -164,8 +164,12 @@ class ViewController: NSViewController {
 	var hotkeysController: HotkeysViewController?
 	
 	@objc func breakFunc() {
-		let layout = columnOptionsPopover?.contentViewController as! LayoutEditorViewController
-		print(layout.outlineView.tableColumns[0].width)
+//		let layout = columnOptionsPopover?.contentViewController as! LayoutEditorViewController
+//		print(layout.outlineView.tableColumns[0].width)
+		let state = run.getLayoutState().asJson()
+		let pasteboard = NSPasteboard.general
+		pasteboard.declareTypes([.string], owner: nil)
+		pasteboard.setString(state, forType: .string)
 		
 	}
 	
@@ -273,22 +277,22 @@ class ViewController: NSViewController {
 	}
 	
 	private func setupDefaultStack() {
-		setupTitleRow()
-		setupSplitTable()
-		setupOptionsRow()
-		setupTimeRow()
-		setupStartRow()
-		setupPrevNextRow()
+		addComponent(.title)
+		addComponent(.splits)
+		addComponent(.tableOptions)
+		addComponent(.time)
+		addComponent(.start)
+		addComponent(.prevNext)
 		func hideComponent() {
 			(mainStackView.views.last as? SplitterComponent)?.isHidden = true
 		}
-		setupKeyValueComponent(key: .sumOfBest)
+		addComponent(.sumOfBest)
 		hideComponent()
-		setupKeyValueComponent(key: .previousSegment)
+		addComponent(.previousSegment)
 		hideComponent()
-		setupKeyValueComponent(key: .totalPlaytime)
+		addComponent(.totalPlaytime)
 		hideComponent()
-		setupKeyValueComponent(key: .currentSegment)
+		addComponent(.segment)
 		hideComponent()
 	}
 	///Handles various window-related tasks
@@ -399,7 +403,7 @@ class ViewController: NSViewController {
 			if let doc = document as? Document,
 			   let v = doc.versionUsed {
 				if v < 4 {
-					loadFromOldRunInfo(icons: doc.iconArray)
+					loadFromV3RunInfo(icons: doc.iconArray)
 				} else {
 					if let ri = runInfoData {
 						self.fileID = ri.id

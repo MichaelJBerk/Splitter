@@ -3838,7 +3838,6 @@ public class SplitsComponentStateRef {
 		assert(self.ptr != nil)
 		let result = CLiveSplitCore.SplitsComponentState_column_name(self.ptr, index)
 		return String(cString: result!)
-//		return ""
 	}
 	
 	public func columnVisualColor(_ index: size_t, columnIndex: size_t) -> String {
