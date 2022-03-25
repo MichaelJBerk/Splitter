@@ -36,7 +36,7 @@ class SplitterRun: NSObject {
 	var document: SplitterDoc!
 	
 	var undoManager: UndoManager? {
-		return document!.undoManager
+		return document?.undoManager
 	}
 	
 	///Used to prevent crash with numberOfRowsInTableView
@@ -88,7 +88,7 @@ class SplitterRun: NSObject {
 		} catch {
 			print("Decode error: \(error)")
 		}
-		if var editor = LayoutEditor(layout) {
+		if let editor = LayoutEditor(layout) {
 			/**
 			# General Layout Settings
 			0: Layout Direction
@@ -563,6 +563,8 @@ class SplitterRun: NSObject {
 			timer.lsTimer.switchToNextComparison()
 		}
 	}
+	
+	//I forget why I had to use `disableUndo` here instead of disabling undo registration.
 	private func setRunComparison(to comparison: TimeComparison, disableUndo: Bool = false) {
 		let oldValue = self.getRunComparision()
 		if !disableUndo {
@@ -578,6 +580,7 @@ class SplitterRun: NSObject {
 	///If you need to set the comparison for a single column, use `setColumnComparison(_:for:)` instead
 	func setRunComparison(to comparison: TimeComparison) {
 		self.setRunComparison(to: comparison, disableUndo: false)
+		NotificationCenter.default.post(name: .runEdited, object: self)
 	}
 	
 	func getRunComparision() -> TimeComparison {
@@ -972,36 +975,69 @@ class SplitterRun: NSObject {
 	
 	func addColumn(component: Int) {
 		
-//		undoManager?.registerUndo(withTarget: self, handler: {r in
-//			r.removeColumn(component: component)
-//		})
+		undoManager?.registerUndo(withTarget: self, handler: {r in
+			r.removeColumn(component: component)
+		})
 		
 		let cols = getLayoutState().componentAsSplits(1).columnsLen(0)
 		editLayout { le in
 			le.select(component)
 			le.setNumberOfColumns(count: cols + 1)
 		}
+		NotificationCenter.default.post(name: .runEdited, object: self)
 		
 	}
 	
 	///Removes the last column from the table
 	///
-	///If there's only one column left, this method won't do aything
+	///If there's no columns left, this method won't do aything
 	func removeColumn(component: Int) {
-		//TODO: Support for undoing
-		//Will require storing the column's settings ahead of time
-		let cols = getLayoutState().componentAsSplits(1).columnsLen(0)
-		if cols > 2 {
+		let ls = getLayoutState()
+		let splits = ls.componentAsSplits(component)
+		let cols = splits.columnsLen(0)
+		if cols < 1 {
 			return
 		}
+		
+		var columnName: String!
+		var startWith: ColumnStartWith!
+		var updateWith: ColumnUpdateWith!
+		var updateTrigger: ColumnUpdateTrigger!
+		var comparison: TimeComparison?
+		var timingMethod: TimingMethod?
+		let lastIndex = cols - 1
+		editLayout { le in
+			le.select(component)
+			columnName =  le.getColumnName(lastIndex)
+			startWith = le.getStartWith(for: lastIndex)
+			updateWith = le.getUpdateWith(for: lastIndex)
+			updateTrigger = le.getUpdateTrigger(for: lastIndex)
+			comparison = le.getColumnComparison(for: lastIndex)
+			timingMethod = le.getTimingMethod(for: lastIndex)
+		}
+		
+		undoManager?.registerUndo(withTarget: self, handler: { r in
+			r.addColumn(component: component)
+			r.editLayout { le in
+				le.select(component)
+				let nli = le.getNumberOfColumns() - 1
+				le.setColumn(nli, name: columnName)
+				le.setColumn(nli, startWith: startWith)
+				le.setColumn(nli, updateWith: updateWith)
+				le.setColumn(nli, updateTrigger: updateTrigger)
+				le.setColumn(nli, comparison: comparison?.rawValue)
+				le.setColumn(nli, timingMethod: timingMethod)
+			}
+			NotificationCenter.default.post(name: .runEdited, object: self)
+		})
+		
 		editLayout { le in
 			le.select(component)
 			le.setNumberOfColumns(count: cols - 1)
 		}
+		undoManager?.setActionName("Remove Column")
 		
-//		undoManager?.registerUndo(withTarget: self, handler: {r in
-//			r.addColumn(component: component)
-//		})
+		NotificationCenter.default.post(name: .runEdited, object: self)
 	}
 	
 	

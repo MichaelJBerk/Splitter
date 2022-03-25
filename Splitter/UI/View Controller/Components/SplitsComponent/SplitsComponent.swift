@@ -84,7 +84,7 @@ class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent {
 		
 		let lsComp = run.getLayoutState().componentAsSplits(componentIndex)
 		let numberOfColumns = lsComp.columnsLen(0)
-		for column in 0..<numberOfColumns {
+		for _ in 0..<numberOfColumns {
 			addColumn()
 		}
 		NotificationCenter.default.addObserver(forName: .runEdited, object: self.run, queue: nil, using: { _ in
@@ -114,11 +114,35 @@ class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent {
 		}
 	}
 	
+	func removeColumn(fromLS: Bool = true) {
+		run.undoManager?.beginUndoGrouping()
+		run.undoManager?.registerUndo(withTarget: self, handler: { sc in
+			sc.addColumn()
+			NotificationCenter.default.post(name: .runEdited, object: sc.run)
+		})
+		let lastCol = splitsTableView.tableColumns.last!
+		splitsTableView.removeTableColumn(lastCol)
+		if fromLS {
+			run.removeColumn(component: componentIndex)
+			
+		}
+		run.undoManager?.endUndoGrouping()
+		splitsTableView.reloadData()
+	}
+	
 	func addColumn() {
+		run.undoManager?.beginUndoGrouping()
+		run.undoManager?.registerUndo(withTarget: self, handler: {sc in
+			sc.removeColumn(fromLS: false)
+			NotificationCenter.default.post(name: .runEdited, object: sc.run)
+		})
 		let id = UUID()
 		let itemID = NSUserInterfaceItemIdentifier(rawValue: "LS \(id.uuidString)")
 		let column = NSTableColumn(identifier: itemID)
 		splitsTableView.addTableColumn(column)
+		splitsTableView.setHeaderColor(textColor: run.textColor, bgColor: run.tableColor)
+		splitsTableView.setCornerColor(cornerColor: run.tableColor)
+		run.undoManager?.endUndoGrouping()
 	}
 	
 	var leadingConstraint: NSLayoutConstraint {

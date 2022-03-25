@@ -99,7 +99,7 @@ class Document: SplitterDocBundle {
 				//Add The title/icon columns if from Splitter < 5.0
 				//Need to do this now, since even though this is done when loading the run, we have just changed the layout to be the layout in the Split file, which would remove the columns.
 				if versionUsed ?? 0 < 5 {
-					if var layout = LayoutEditor(run!.layout) {
+					if let layout = LayoutEditor(run!.layout) {
 						run?.layout = layout.close()
 					}
 				}

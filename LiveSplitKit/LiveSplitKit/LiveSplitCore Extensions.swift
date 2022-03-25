@@ -188,6 +188,16 @@ public extension LayoutEditor {
 		return .init(rawValue: rawValue!)!
 	}
 	
+	func getTimingMethod(for column: Int) -> TimingMethod? {
+		let settingIndex = settingsStartIndex(for: column) + 5
+		let jsonString = self.state().fieldValue(true, settingIndex).asJson()
+		let jd = try? JSONSerialization.jsonObject(with: jsonString.data(using: .utf8)!, options: .fragmentsAllowed) as? [String: String]
+		if let rawValue = jd?["OptionalTimingMethod"] {
+			return .init(rawValue: rawValue)
+		}
+		return nil
+	}
+	
 	func setColumn(_ index: Int, updateTrigger: ColumnUpdateTrigger) {
 		let settingIndex = settingsStartIndex(for: index) + 3
 		if let updateTrigger = SettingValue.fromColumnUpdateTrigger(updateTrigger.rawValue) {
@@ -200,11 +210,15 @@ public extension LayoutEditor {
 			self.setComponentSettingsValue(settingIndex, SettingValue.fromOptionalString(comparison))
 		}
 	}
-	func setColumn(_ index: Int, timingMethod: TimingMethod) {
+	func setColumn(_ index: Int, timingMethod: TimingMethod?) {
 		let settingIndex = settingsStartIndex(for: index) + 5
-		if let timingMethod = SettingValue.fromOptionalTimingMethod(timingMethod.rawValue) {
-			self.setComponentSettingsValue(settingIndex, timingMethod)
+		var value: SettingValue
+		if let timingMethod = timingMethod {
+			value = SettingValue.fromOptionalTimingMethod(timingMethod.rawValue)!
+		} else {
+			value = SettingValue.fromOptionalEmptyTimingMethod()
 		}
+		self.setComponentSettingsValue(settingIndex, value)
 	}
 }
 

@@ -38,7 +38,7 @@ class SplitsComponentAdvancedOptions: NSViewController, NSTextFieldDelegate {
 	var outlineView: NSOutlineView!
 	var splitsComponent: SplitsComponent!
 	
-	var splitsTableView: NSTableView {
+	var splitsTableView: SplitterTableView {
 		splitsComponent.splitsTableView
 	}
 	
@@ -49,6 +49,8 @@ class SplitsComponentAdvancedOptions: NSViewController, NSTextFieldDelegate {
 	override func loadView() {
 		self.view = .init(frame: .init(x: 0, y: 0, width: 400, height: 250))
 	}
+	
+	var minusButton: NSButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -57,6 +59,7 @@ class SplitsComponentAdvancedOptions: NSViewController, NSTextFieldDelegate {
 		//observe .splitsEdited so that it updates when the user undoes a column swap
 		NotificationCenter.default.addObserver(forName: .runEdited, object: run, queue: nil, using: { _ in
 			self.outlineView.reloadData()
+			self.enableDisableMinus()
 		})
 		
 		outlineView = AdvancedOptionsOutlineView()
@@ -67,7 +70,7 @@ class SplitsComponentAdvancedOptions: NSViewController, NSTextFieldDelegate {
 		plusMinusStack.orientation = .horizontal
 		
 		let plusButton = ComponentOptionsButton(image: NSImage(named: NSImage.addTemplateName)!, clickAction: plusAction(button:))
-		let minusButton = ComponentOptionsButton(image: NSImage(named: NSImage.removeTemplateName)!, clickAction: minusAction(button:))
+		minusButton = ComponentOptionsButton(image: NSImage(named: NSImage.removeTemplateName)!, clickAction: minusAction(button:))
 		plusButton.isBordered = false
 		plusButton.bezelStyle = .smallSquare
 		plusButton.setButtonType(.momentaryPushIn)
@@ -129,7 +132,7 @@ class SplitsComponentAdvancedOptions: NSViewController, NSTextFieldDelegate {
 		outlineView.registerForDraggedTypes([.string])
 		outlineView.indentationPerLevel = 5
 		outlineView.intercellSpacing = .init(width: 0, height: 5)
-		
+		enableDisableMinus()
     }
 	
 	func plusAction(button: NSButton) {
@@ -143,11 +146,17 @@ class SplitsComponentAdvancedOptions: NSViewController, NSTextFieldDelegate {
 	}
 	
 	func minusAction(button: NSButton) {
-		run.removeColumn(component: splitsComponent.componentIndex)
-		let lastCol = splitsTableView.tableColumns.last!
-		splitsTableView.removeTableColumn(lastCol)
+		splitsComponent.removeColumn()
 		splitsTableView.reloadData()
 		outlineView.reloadData()
+	}
+	
+	///Determines if the minus button should be enabled or diabled
+	func enableDisableMinus() {
+		let ls = run.getLayoutState()
+		let splits = ls.componentAsSplits(splitsComponent.componentIndex)
+		let len = splits.columnsLen(0)
+		minusButton.isEnabled = len > 0
 	}
     
 }

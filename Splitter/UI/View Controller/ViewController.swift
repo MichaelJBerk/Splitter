@@ -166,10 +166,6 @@ class ViewController: NSViewController {
 	@objc func breakFunc() {
 //		let layout = columnOptionsPopover?.contentViewController as! LayoutEditorViewController
 //		print(layout.outlineView.tableColumns[0].width)
-		let state = run.getLayoutState().asJson()
-		let pasteboard = NSPasteboard.general
-		pasteboard.declareTypes([.string], owner: nil)
-		pasteboard.setString(state, forType: .string)
 		
 	}
 	
@@ -181,7 +177,7 @@ class ViewController: NSViewController {
 		let pasteboard = NSPasteboard.general
 		pasteboard.declareTypes([.string], owner: nil)
 		pasteboard.setString(es, forType: .string)
-		editor.close()
+		_ = editor.close()
 	}
 	
 	var breakID = NSUserInterfaceItemIdentifier("break")

@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import LiveSplitKit
 
 
 
@@ -25,6 +26,8 @@ class InfoOptionsViewController: NSViewController, NSPopoverDelegate, NSTextFiel
 	
 	@IBOutlet weak var offsetField: NSTextField!
 	
+	@IBOutlet weak var comparisonPopUp: NSPopUpButton!
+	
 	override func viewDidLoad() {
         super.viewDidLoad()
 		getDataFromRun()
@@ -42,11 +45,29 @@ class InfoOptionsViewController: NSViewController, NSPopoverDelegate, NSTextFiel
 		versionField.delegate = self
 		regionField.delegate = self
 		
+		comparisonPopUp.target = self
+		comparisonPopUp.action = #selector(comparisonSelected(_:))
+		
 		NotificationCenter.default.addObserver(forName: .runEdited, object: run, queue: nil, using: { _ in
 			self.getDataFromRun()
 		})
 		
     }
+	
+	var cComparisons: [String] {
+		let r = run.timer.lsRun
+		let compLen = r.customComparisonsLen()
+		var comps = [String]()
+		for i in 0..<compLen {
+			comps.append(r.customComparison(i))
+		}
+		return comps
+		
+	}
+	
+	@objc func breakFunc() {
+		
+	}
 	
 	@IBAction func offsetTextFieldEdited(_ sender: Any?) {
 		run.offset = Double(offsetField.stringValue) ?? 0
@@ -79,6 +100,24 @@ class InfoOptionsViewController: NSViewController, NSPopoverDelegate, NSTextFiel
 			platformField.stringValue = run.platform
 			versionField.stringValue = run.gameVersion
 			regionField.stringValue = run.region
+			
+			let current = run.getRunComparision()
+
+			comparisonPopUp.menu = NSMenu()
+			for comp in TimeComparison.allCases {
+				comparisonPopUp.menu?.addItem(.init(title: comp.menuItemTitle, action: nil, keyEquivalent: ""))
+			}
+			comparisonPopUp.selectItem(withTitle: current.menuItemTitle)
+		}
+	}
+	
+	@objc func comparisonSelected(_ sender: NSPopUpButton) {
+		guard let selectedItem = sender.selectedItem else {return}
+		for comp in TimeComparison.allCases {
+			if comp.menuItemTitle == selectedItem.title {
+				run.setRunComparison(to: comp)
+				return
+			}
 		}
 	}
 	

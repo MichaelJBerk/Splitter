@@ -113,9 +113,12 @@ class SplitterTimer {
 		postSplitChange()
 	}
 	
+	///Reset all previous histories of the run
 	func resetHistories() {
 		var customComparisons = [String]()
 		let run = lsTimer.getRun().clone()
+		
+		//To reset all histories, we need to re-add all custom comparisons
 		let compsLen = run.customComparisonsLen()
 		for i in 0..<compsLen {
 			customComparisons.append(run.customComparison(i))

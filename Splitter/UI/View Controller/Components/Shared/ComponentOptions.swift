@@ -11,7 +11,9 @@ class ComponentOptionsButton: NSButton {
 	var clickAction: (NSButton) -> () = {_ in}
 	override func mouseDown(with event: NSEvent) {
 		super.mouseDown(with: event)
-		clickAction(self)
+		if isEnabled {
+			clickAction(self)
+		}
 	}
 	
 	convenience init (checkboxWithTitle title: String, clickAction: @escaping (NSButton) -> ()) {

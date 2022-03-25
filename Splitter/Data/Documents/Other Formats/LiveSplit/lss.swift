@@ -22,7 +22,6 @@ class lss: SplitterDoc {
     override func windowControllerDidLoadNib(_ aController: NSWindowController) {
         super.windowControllerDidLoadNib(aController)
 		
-		
         // Add any code here that needs to be executed once the windowController has loaded the document's window.
     }
 	
@@ -37,7 +36,6 @@ class lss: SplitterDoc {
 			return nil
 	}
 	var template: Bool = false
-	
 	
 	override func makeWindowControllers() {
 		let load = loadViewController()
@@ -60,24 +58,15 @@ class lss: SplitterDoc {
 		
 	}
 	
-	
-	
     override func data(ofType typeName: String) throws -> Data {
-//		
-//		
-//		
-//		
-//		
-//		
+		
         throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
     }
     
     override func read(from data: Data, ofType typeName: String) throws {
         // Insert code here to read your document from the given data of the specified type, throwing an error in case of failure.
         // Alternatively, you could remove this method and override read(from:ofType:) instead.  If you do, you should also override isEntireFileLoaded to return false if the contents are lazily loaded.
-		if data == nil {
-			throw NSError(domain: NSOSStatusErrorDomain, code: unimpErr, userInfo: nil)
-		}
+		
     }
 
 }

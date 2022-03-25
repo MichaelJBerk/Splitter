@@ -139,6 +139,7 @@ class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOut
 			}
 		}
 		
+		//Only "General" and "Window" are represented by row objects, so selecting the components doesn't change this code path.
 		if let selectedItem = outlineView.item(atRow: outlineView.selectedRow) as? RowObject {
 			if selectedItem == generalRowObject {
 				
@@ -160,6 +161,9 @@ class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOut
 	}
 	
 	func setOptionsView(_ optionsView: NSView) {
+		if let oldOptions = currentOptions as? SplitsComponent.SplitsOptionsView {
+			oldOptions.removeFromSuperview()
+		}
 		if let optionsView = optionsView as? SplitsComponent.SplitsOptionsView {
 			scrollView.documentView = nil
 			scrollView.superview!.addSubview(optionsView)
@@ -175,9 +179,7 @@ class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOut
 			])
 			return
 		}
-		if let oldOptions = currentOptions as? SplitsComponent.SplitsOptionsView {
-			oldOptions.removeFromSuperview()
-		}
+		
 		scrollView.documentView = optionsView
 		currentOptions = optionsView
 		optionsView.translatesAutoresizingMaskIntoConstraints = false
@@ -209,6 +211,7 @@ class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOut
 	let windowRowObject = RowObject("Window")
 }
 
+///Object used to represent the "General" and "Window" items in the Layout Editor's outline view
 class RowObject: NSObject {
 	var string: String
 	
@@ -230,7 +233,6 @@ class HeaderObject: RowObject {}
 //MARK: - Outline View Delegate/Data Source
 extension LayoutEditorViewController {
 	
-	
 	func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
 		if item == nil {
 			return 2
@@ -251,6 +253,15 @@ extension LayoutEditorViewController {
 		}
 		return false
 	}
+	
+	/**
+	 Returns the child item at the specified index of a given item.
+
+	 The General and Window options are each represented with a ``RowObject``.
+	 The headings are represented by ``HeaderObject``s.
+	 The options for each component are represented by the components themselves
+	 */
+	
 	func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
 		if item == nil {
 			if index == 0 {
