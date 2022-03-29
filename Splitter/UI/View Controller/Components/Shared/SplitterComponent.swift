@@ -62,6 +62,9 @@ extension SplitterComponent {
 		let visibleCheck = NSButton(checkboxWithTitle: "Hidden", target: self, action: #selector(hide(_:)))
 		visibleCheck.state = .init(bool: isHidden)
 		let spacingSetting = NSTextField()
+		NSLayoutConstraint.activate([
+			spacingSetting.widthAnchor.constraint(greaterThanOrEqualToConstant: 50)
+		])
 		spacingSetting.stringValue = "\(afterSpacing)"
 		
 		NotificationCenter.default.addObserver(forName: NSTextField.textDidChangeNotification, object: spacingSetting, queue: nil, using: { notification in

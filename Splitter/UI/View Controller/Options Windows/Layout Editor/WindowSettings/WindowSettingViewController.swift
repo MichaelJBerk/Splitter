@@ -1,55 +1,47 @@
 //
-//  AppearanceViewController.swift
+//  WindowSettingViewController.swift
 //  Splitter
 //
-//  Created by Michael Berk on 3/12/20.
-//  Copyright © 2020 Michael Berk. All rights reserved.
+//  Created by Michael Berk on 3/29/22.
+//  Copyright © 2022 Michael Berk. All rights reserved.
 //
 
 import Cocoa
-import Preferences
 
-class AppearanceViewController: NSViewController, LoadableNib {
-	var delegate: ViewController?
-	var run: SplitterRun!
-	@IBOutlet var contentView: NSView!
-	override var view: NSView {
-		get {
-			return contentView
-		}
-		set {
-			contentView = newValue
-		}
+class WindowSettingViewController: NSViewController, LoadableNib {
+	
+	var runViewController: ViewController!
+	var run: SplitterRun {
+		runViewController.run
 	}
+	
+	@IBOutlet weak var gridView: NSGridView!
+	var contentView: NSView!
 	
 	@IBOutlet weak var hideTitleBarCheck: NSButton!
 	@IBOutlet weak var keepOnTopCheck: NSButton!
 	@IBOutlet weak var hideTitleCheck: NSButton!
 	
-	@IBOutlet weak var titleHelp: helpButton!
-	@IBOutlet weak var topHelp: helpButton!
+	@IBOutlet weak var titleHelp: HelpButton!
+	@IBOutlet weak var topHelp: HelpButton!
 	
 	@IBOutlet weak var noteLabel: NSTextField!
 	
+	
 	override func viewDidLoad() {
         super.viewDidLoad()
+        // Do view setup here.
 		viewDidAppear()
 		NotificationCenter.default.addObserver(forName: .menuBarModeChanged, object: nil, queue: nil, using: { _ in
 			self.toggleTopCheckDisable()
 		})
 		toggleTopCheckDisable()
-        // Do view setup here.
     }
+	
 	
 	func toggleTopCheckDisable() {
 		keepOnTopCheck.isEnabled = !Settings.menuBarMode
 	}
-	
-	@IBAction func settingsSender(_ sender: Any) {
-		sendSettings(sender)
-	}
-	
-
 	
 	var note = """
 Note: These settings will be saved to this file, and will take effect whenever the file is opened.
@@ -62,8 +54,6 @@ Hide the Title Bar for a more compact appearance.
 You can still close the window either with ⌘W or from the "Window" menu.
 """
 		
-//		topHelp.sourceView = self.view.superview!
-//		topHelp.target = self
 		topHelp.helpString = """
   Enabling this will make the window "float" above any other windows you have open.
   This is separate from Overlay Mode in Preferences.
@@ -76,7 +66,7 @@ You can still close the window either with ⌘W or from the "Window" menu.
 			hideTitleBarCheck.state = .init(bool: newValue)
 		}
 		get {
-			return hideTitleBarCheck.state.toBool() 
+			return hideTitleBarCheck.state.toBool()
 		}
 	}
 	var keepOnTop: Bool {
@@ -102,7 +92,7 @@ You can still close the window either with ⌘W or from the "Window" menu.
 		if run.undoManager?.isUndoing ?? false {
 			run.undoManager?.disableUndoRegistration()
 		}
-		if let d = delegate {
+		if let d = runViewController {
 			d.titleBarHidden = hideTitleBar
 			d.windowFloat = keepOnTop
 			d.hideTitle = hideTitle
@@ -112,7 +102,6 @@ You can still close the window either with ⌘W or from the "Window" menu.
 			d.setColorForControls()
 			d.showHideTitle()
 		}
-//		run.backgroundImage = self.backgroundImageWell.image
 		if run.undoManager?.isUndoing ?? false {
 			run.undoManager?.enableUndoRegistration()
 		}
@@ -135,7 +124,7 @@ You can still close the window either with ⌘W or from the "Window" menu.
 	}
 	
 	func loadFromDelegate() {
-		if let d = delegate {
+		if let d = runViewController {
 
 			hideTitleBar = d.titleBarHidden
 			keepOnTop = d.windowFloat
@@ -148,7 +137,6 @@ You can still close the window either with ⌘W or from the "Window" menu.
 			hideTitleBarCheck.action = #selector(sendSettings(_:))
 			keepOnTopCheck.action = #selector(sendSettings(_:))
 			hideTitleCheck.action = #selector(sendSettings(_:))
-//			backgroundImageWell.action = #selector(sendSettings(_:))
 			
 			if let doc = run.document, doc is Document {
 				noteLabel.stringValue = splitNoteText
@@ -157,14 +145,12 @@ You can still close the window either with ⌘W or from the "Window" menu.
 			}
 		}
 		
-//		backgroundImageWell.image = run.backgroundImage
-		
 		setHelpButtons()
 	}
-    
+	
 }
 
-class helpButton: NSButton {
+class HelpButton: NSButton {
 	
 	var sourceView: NSView?
 	var helpString: String?
@@ -185,12 +171,6 @@ class helpButton: NSButton {
 		setup()
 	}
 	var trackingArea: NSTrackingArea?
-//	override var bounds: NSRect {
-//		didSet {
-//			trackingArea = NSTrackingArea(rect: self.bounds, options: [.mouseEnteredAndExited, .activeInActiveApp], owner: self, userInfo: nil)
-//			addTrackingArea(trackingArea!)
-//		}
-//	}
 	
 	func setup() {
 		trackingArea = NSTrackingArea(rect: self.bounds, options: [.mouseEnteredAndExited, .activeInActiveApp], owner: self, userInfo: nil)
@@ -223,7 +203,7 @@ class helpButton: NSButton {
 	
 	@objc func displayHelpPopover() {
 		pop = NSPopover()
-		let labelView = appearanceHelpLabel(labelWithString: helpString ?? "")
+		let labelView = WindowSettingHelpLabel(labelWithString: helpString ?? "")
 		labelView.sizeToFit()
 		labelView.translatesAutoresizingMaskIntoConstraints = false
 		
@@ -245,9 +225,7 @@ class helpButton: NSButton {
 		
 		pop?.contentViewController = contentVC
 		pop?.behavior = .transient
-		
-		pop?.show(relativeTo: self.superview?.frame ?? CGRect.zero, of: self, preferredEdge: .maxY)
-		
+		pop?.show(relativeTo: .init(x: 0, y: 0, width: 0, height: 0), of: self, preferredEdge: .maxY)
 	}
 	
 	
@@ -255,14 +233,7 @@ class helpButton: NSButton {
 	
 }
 
-class appearanceCheckButton: NSButton {
-	override func draw(_ dirtyRect: NSRect) {
-		super.draw(dirtyRect)
-	}
-}
-
-
-class appearanceHelpLabel: NSTextField {
+class WindowSettingHelpLabel: NSTextField {
 	override var intrinsicContentSize: NSSize {
 		// Guard the cell exists and wraps
 		guard let cell = self.cell, cell.wraps else {return super.intrinsicContentSize}
@@ -283,3 +254,4 @@ class appearanceHelpLabel: NSTextField {
 		super.invalidateIntrinsicContentSize()
 	}
 }
+

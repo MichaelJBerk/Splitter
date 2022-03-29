@@ -134,6 +134,7 @@ class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOut
 				component.isSelected = true
 				let optionsView = component.optionsView!
 				setOptionsView(optionsView)
+				setConstraints(for: optionsView)
 			} else {
 				component.isSelected = false
 			}
@@ -147,17 +148,28 @@ class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOut
 				gsVC.run = runController.run
 				
 				setOptionsView(gsVC.view)
-				
+				setConstraints(for: gsVC.view)
 			} else {
-				//This causes constraint warnings, and I have no idea why
-				let appVC = AppearanceViewController()
-				appVC.run = runController.run
-				appVC.delegate = runController
-				appVC.loadViewFromNib()
+				let appVC = WindowSettingViewController(nibName: "WindowSettingViewController", bundle: nil)
+				appVC.runViewController = runController
 				setOptionsView(appVC.view)
+				appVC.view.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
+				appVC.view.bottomAnchor.constraint(greaterThanOrEqualTo: scrollView.bottomAnchor).isActive = true
+				appVC.view.heightAnchor.constraint(equalTo: scrollView.heightAnchor).isActive = true
 			}
 		}
 		NSColorPanel.shared.close()
+	}
+	
+	func setConstraints(for optionsView: NSView) {
+		optionsView.translatesAutoresizingMaskIntoConstraints = false
+		scrollView.contentInsets.bottom = 20
+		var constraintsToAdd = [
+			optionsView.leadingAnchor.constraint(equalTo: scrollView.contentView.leadingAnchor),
+			optionsView.trailingAnchor.constraint(equalTo: scrollView.contentView.trailingAnchor),
+		]
+		constraintsToAdd.append(optionsView.topAnchor.constraint(equalTo: scrollView.contentView.topAnchor))
+		NSLayoutConstraint.activate(constraintsToAdd)
 	}
 	
 	func setOptionsView(_ optionsView: NSView) {
@@ -179,17 +191,8 @@ class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOut
 			])
 			return
 		}
-		
 		scrollView.documentView = optionsView
 		currentOptions = optionsView
-		optionsView.translatesAutoresizingMaskIntoConstraints = false
-		scrollView.contentInsets.bottom = 20
-		var constraintsToAdd = [
-			optionsView.leadingAnchor.constraint(equalTo: scrollView.contentView.leadingAnchor),
-			optionsView.trailingAnchor.constraint(equalTo: scrollView.contentView.trailingAnchor),
-		]
-		constraintsToAdd.append(optionsView.topAnchor.constraint(equalTo: scrollView.contentView.topAnchor))
-		NSLayoutConstraint.activate(constraintsToAdd)
 	}
 	
 	func outlineViewSelectionDidChange(_ notification: Notification) {

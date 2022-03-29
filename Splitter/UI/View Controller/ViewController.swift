@@ -166,7 +166,19 @@ class ViewController: NSViewController {
 	@objc func breakFunc() {
 //		let layout = columnOptionsPopover?.contentViewController as! LayoutEditorViewController
 //		print(layout.outlineView.tableColumns[0].width)
+//		let appVC = WindowSettingViewController(nibName: "WindowSettingViewController", bundle: .main)
+//		let appVC = WinC(windowNibName: "WinC")
+//		self.presentAsSheet(appVC)
+//		appVC.loadView()
+//		appVC.preferredContentSize = .init(width: 306, height: 196)
+//		appVC.loadView()
+//		appVC.showWindow(nil)
+//		let appVC = WindowSettingViewController(nibName: "WindowSettingViewController", bundle: nil)
 		
+//		appVC.loadViewFromNib()
+//		let window = NSWindow(contentViewController: appVC)
+//		window.makeKeyAndOrderFront(nil)
+		UserDefaults.standard.set(true, forKey: "NSConstraintBasedLayoutVisualizeMutuallyExclusiveConstraints")
 	}
 	
 	func debugPrintSplitsEditor() {

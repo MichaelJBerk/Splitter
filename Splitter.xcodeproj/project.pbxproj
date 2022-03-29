@@ -33,7 +33,6 @@
 		4A18663023C5257800FEEE54 /* MenuItemConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A18662F23C5257800FEEE54 /* MenuItemConstants.swift */; };
 		4A18663223C5376900FEEE54 /* SettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A18663123C5376900FEEE54 /* SettingsKeys.swift */; };
 		4A1C1469240ED30C0056B104 /* InfoOptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1C1467240ED30C0056B104 /* InfoOptionsViewController.swift */; };
-		4A1C23A2269917F5003A05D6 /* AppearanceViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A1C23A0269917F5003A05D6 /* AppearanceViewController.xib */; };
 		4A20C46726406D4800307993 /* SplitterTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A20C46626406D4800307993 /* SplitterTimer.swift */; };
 		4A20C46E2640BDB600307993 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 4A20C46D2640BDB600307993 /* Introspect */; };
 		4A214A70255C90720006FD9F /* SplitsIOKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4A214A6F255C90720006FD9F /* SplitsIOKit */; };
@@ -42,6 +41,8 @@
 		4A230E9723B00A1D00959C57 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A230E9623B00A1D00959C57 /* Document.swift */; };
 		4A230E9C23B00A1E00959C57 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A230E9A23B00A1E00959C57 /* Main.storyboard */; };
 		4A24F20324F6E0B100278EB7 /* TouchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A24F20224F6E0B100278EB7 /* TouchBarDelegate.swift */; };
+		4A2F390627F34C1E001B0A7C /* WindowSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2F390427F34C1E001B0A7C /* WindowSettingViewController.swift */; };
+		4A2F390727F34C1E001B0A7C /* WindowSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A2F390527F34C1E001B0A7C /* WindowSettingViewController.xib */; };
 		4A327B0D23F491FB00A5CBFF /* SplitterAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A327B0C23F491FB00A5CBFF /* SplitterAppearance.swift */; };
 		4A388FC525D4AF2B00A63C9E /* PrevNextRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A388FC425D4AF2B00A63C9E /* PrevNextRow.swift */; };
 		4A388FCF25D4B00B00A63C9E /* PrevNextRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A388FCE25D4B00B00A63C9E /* PrevNextRow.xib */; };
@@ -52,7 +53,6 @@
 		4A3BB54E27DA9322006C3256 /* AdvancedHotkeyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A3BB54C27DA9322006C3256 /* AdvancedHotkeyViewController.xib */; };
 		4A3BDFA123E4C3B6001EA7FF /* DefaultHotkeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3BDFA023E4C3B6001EA7FF /* DefaultHotkeys.swift */; };
 		4A3F989925EFDB0800B2B955 /* CodableLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3F989825EFDB0800B2B955 /* CodableLayout.swift */; };
-		4A4070E1241AE2E0000927A5 /* AppearanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4070E0241AE2E0000927A5 /* AppearanceViewController.swift */; };
 		4A44FF4F24E9A9E60083013A /* SplitsIOUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A44FF4E24E9A9E60083013A /* SplitsIOUpload.swift */; };
 		4A470BB02695FABA001F0081 /* Themeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A470BAF2695FABA001F0081 /* Themeable.swift */; };
 		4A470BB22695FAE1001F0081 /* ThemedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A470BB12695FAE1001F0081 /* ThemedImage.swift */; };
@@ -204,7 +204,6 @@
 		4A18662F23C5257800FEEE54 /* MenuItemConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuItemConstants.swift; sourceTree = "<group>"; };
 		4A18663123C5376900FEEE54 /* SettingsKeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsKeys.swift; sourceTree = "<group>"; };
 		4A1C1467240ED30C0056B104 /* InfoOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoOptionsViewController.swift; sourceTree = "<group>"; };
-		4A1C23A0269917F5003A05D6 /* AppearanceViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AppearanceViewController.xib; sourceTree = "<group>"; };
 		4A20C46626406D4800307993 /* SplitterTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterTimer.swift; sourceTree = "<group>"; usesTabs = 1; };
 		4A214A64255C8FB30006FD9F /* SplitsIOKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SplitsIOKit; sourceTree = "<group>"; };
 		4A230E8F23B00A1D00959C57 /* Splitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Splitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -216,6 +215,8 @@
 		4A230E9E23B00A1E00959C57 /* Splitter.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Splitter.entitlements; sourceTree = "<group>"; };
 		4A24F20224F6E0B100278EB7 /* TouchBarDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TouchBarDelegate.swift; sourceTree = "<group>"; };
 		4A2E214B279A239700059EAC /* liblivesplit_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblivesplit_core.a; path = "Splitter/LiveSplit Core/liblivesplit_core.a"; sourceTree = "<group>"; };
+		4A2F390427F34C1E001B0A7C /* WindowSettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowSettingViewController.swift; sourceTree = "<group>"; };
+		4A2F390527F34C1E001B0A7C /* WindowSettingViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = WindowSettingViewController.xib; sourceTree = "<group>"; };
 		4A327B0C23F491FB00A5CBFF /* SplitterAppearance.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterAppearance.swift; sourceTree = "<group>"; };
 		4A388FC425D4AF2B00A63C9E /* PrevNextRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrevNextRow.swift; sourceTree = "<group>"; };
 		4A388FCE25D4B00B00A63C9E /* PrevNextRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PrevNextRow.xib; sourceTree = "<group>"; };
@@ -224,7 +225,6 @@
 		4A3BB54C27DA9322006C3256 /* AdvancedHotkeyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdvancedHotkeyViewController.xib; sourceTree = "<group>"; };
 		4A3BDFA023E4C3B6001EA7FF /* DefaultHotkeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultHotkeys.swift; sourceTree = "<group>"; };
 		4A3F989825EFDB0800B2B955 /* CodableLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableLayout.swift; sourceTree = "<group>"; };
-		4A4070E0241AE2E0000927A5 /* AppearanceViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppearanceViewController.swift; sourceTree = "<group>"; };
 		4A44FF4E24E9A9E60083013A /* SplitsIOUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitsIOUpload.swift; sourceTree = "<group>"; };
 		4A470BAF2695FABA001F0081 /* Themeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Themeable.swift; sourceTree = "<group>"; };
 		4A470BB12695FAE1001F0081 /* ThemedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedImage.swift; sourceTree = "<group>"; };
@@ -549,13 +549,13 @@
 			path = Splitter;
 			sourceTree = "<group>";
 		};
-		4A355DE526A09C150066F744 /* AppearanceViewController */ = {
+		4A2F390827F34C25001B0A7C /* WindowSettings */ = {
 			isa = PBXGroup;
 			children = (
-				4A1C23A0269917F5003A05D6 /* AppearanceViewController.xib */,
-				4A4070E0241AE2E0000927A5 /* AppearanceViewController.swift */,
+				4A2F390427F34C1E001B0A7C /* WindowSettingViewController.swift */,
+				4A2F390527F34C1E001B0A7C /* WindowSettingViewController.xib */,
 			);
-			path = AppearanceViewController;
+			path = WindowSettings;
 			sourceTree = "<group>";
 		};
 		4A470BB52695FED7001F0081 /* Themeing */ = {
@@ -711,7 +711,7 @@
 				4AAD4708248432390094A31F /* ColorsView */,
 				4AE168A526091CA900A6169B /* LayoutEditorViewController.swift */,
 				4AC2745726990E04007ED8F5 /* GeneralLayoutSettingsViewController.swift */,
-				4A355DE526A09C150066F744 /* AppearanceViewController */,
+				4A2F390827F34C25001B0A7C /* WindowSettings */,
 			);
 			path = "Layout Editor";
 			sourceTree = "<group>";
@@ -1014,9 +1014,9 @@
 				4A75579D255C47F400ACE826 /* SplitterDocSplitsio.icns in Resources */,
 				4AA9ADBB2608F02D009B77B5 /* StartRow.xib in Resources */,
 				4A6A965924EC3516008EFD2B /* LoadingViewController.xib in Resources */,
+				4A2F390727F34C1E001B0A7C /* WindowSettingViewController.xib in Resources */,
 				4A5F10AE23CFAA1F00DA043B /* Assets.xcassets in Resources */,
 				4A3BB54E27DA9322006C3256 /* AdvancedHotkeyViewController.xib in Resources */,
-				4A1C23A2269917F5003A05D6 /* AppearanceViewController.xib in Resources */,
 				4A75578D255C426A00ACE826 /* SplitterDocLSS.icns in Resources */,
 				4ACFB1E7262F53B100EA79B6 /* SplitsComponent.xib in Resources */,
 				4A01B803268631FC00F15A50 /* SplitsEditorViewController.xib in Resources */,
@@ -1213,7 +1213,6 @@
 				4A0981B224E4853A00E44792 /* AccountViewController.swift in Sources */,
 				4A9B9606261DF26D000FC89C /* TimeRow.swift in Sources */,
 				4AE168A626091CA900A6169B /* LayoutEditorViewController.swift in Sources */,
-				4A4070E1241AE2E0000927A5 /* AppearanceViewController.swift in Sources */,
 				4A87265523BD53F8003A14AF /* runInfo.swift in Sources */,
 				4A327B0D23F491FB00A5CBFF /* SplitterAppearance.swift in Sources */,
 				4A230E9523B00A1D00959C57 /* ViewController.swift in Sources */,
@@ -1227,6 +1226,7 @@
 				4AAD470A248432540094A31F /* Colors.swift in Sources */,
 				4AC24DBC23EB4F17003008BF /* SplitterTableDelegate.swift in Sources */,
 				4A18663223C5376900FEEE54 /* SettingsKeys.swift in Sources */,
+				4A2F390627F34C1E001B0A7C /* WindowSettingViewController.swift in Sources */,
 				4A470BB22695FAE1001F0081 /* ThemedImage.swift in Sources */,
 				4A1657B123EA4EF60008CB5F /* Menu Items.swift in Sources */,
 				4ADFAE4923E4A0760049F57A /* QuickAlert.swift in Sources */,

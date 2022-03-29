@@ -19,9 +19,9 @@ extension NSImage {
 }
 
 extension NSGridView {
-	open override var isFlipped: Bool {
-		return true
-	}
+//	open override var isFlipped: Bool {
+//		return true
+//	}
 }
 extension NSVisualEffectView {
 	open override var isFlipped: Bool {
