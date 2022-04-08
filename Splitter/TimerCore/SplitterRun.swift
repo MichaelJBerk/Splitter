@@ -973,13 +973,16 @@ class SplitterRun: NSObject {
 		_ = timer.lsTimer.setRun(run)
 	}
 	
+	///Adds a column to the run
+	///
+	///- WARNING: If you want to add a column, you usually want to use ``SplitsComponent/addColumn()`` instead. Using this won't update the table view to have the new column
 	func addColumn(component: Int) {
 		
 		undoManager?.registerUndo(withTarget: self, handler: {r in
 			r.removeColumn(component: component)
 		})
 		
-		let cols = getLayoutState().componentAsSplits(1).columnsLen(0)
+		let cols = getLayoutState().componentAsSplits(component).columnsLen(0)
 		editLayout { le in
 			le.select(component)
 			le.setNumberOfColumns(count: cols + 1)

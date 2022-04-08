@@ -77,7 +77,7 @@ class SplitsComponentDelegate: NSObject, NSTableViewDelegate, NSTableViewDataSou
 			lsColName = ""
 		case 1:
 			//Title Column
-			lsColName = "Title"
+			lsColName = "Split"
 		default:
 			lsColName = splitsState.columnName(lsColIndex)
 		}
@@ -106,9 +106,6 @@ class SplitsComponentDelegate: NSObject, NSTableViewDelegate, NSTableViewDataSou
 			imageView.run = self.run
 			if let image = run.icon(for: row) {
 				imageView.image = image
-			} else {
-				imageView.image = .gameControllerIcon
-				imageView.image?.isTemplate = true
 			}
 			imageView.setColor()
 			return cell

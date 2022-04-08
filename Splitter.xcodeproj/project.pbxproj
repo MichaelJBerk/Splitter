@@ -99,6 +99,7 @@
 		4A894B1C249ABA71004FEEB3 /* LoadableNib.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A894B1B249ABA71004FEEB3 /* LoadableNib.swift */; };
 		4A8C644D27AC24AE0036095C /* SplitsComponentAdvancedOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8C644C27AC24AE0036095C /* SplitsComponentAdvancedOptions.swift */; };
 		4A8C96CB269F579200AF372A /* SegmentComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8C96CA269F579200AF372A /* SegmentComponent.swift */; };
+		4A8DFAF427FD04EE0034EE71 /* StatusBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ABC0C6F2767E09900BF5747 /* StatusBarController.swift */; };
 		4A9423CA268D3A6C0033A62F /* SplitsEditorTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9423C9268D3A6C0033A62F /* SplitsEditorTextField.swift */; };
 		4A968C7C23F1F5FE001B74E8 /* lss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A968C7B23F1F5FE001B74E8 /* lss.swift */; };
 		4A99813023F9ECE50037BF98 /* KeybindHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A99812F23F9ECE50037BF98 /* KeybindHandlers.swift */; };
@@ -1315,6 +1316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4AF9E8C224CE448B00DFD5BE /* SplitterUITests.swift in Sources */,
+				4A8DFAF427FD04EE0034EE71 /* StatusBarController.swift in Sources */,
 				4A3A082626727DCB00F3EB05 /* FileTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

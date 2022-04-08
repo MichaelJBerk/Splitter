@@ -47,31 +47,6 @@ struct CodableColor: Codable {
 	}
 }
 
-struct ComponentState: Codable {
-	var type: SplitterComponentType
-	var properties: [String: Codable]
-	
-	init(type: SplitterComponentType, properties: [String: Codable]) {
-		self.type = type
-		self.properties = properties
-	}
-	
-	init(from decoder: Decoder) throws {
-		self.type = try decoder.decode("type")
-		self.properties = try decoder.decode("properties", as: [String: JSONAny].self)
-	}
-	func encode(to encoder: Encoder) throws {
-		try encoder.encode(type, for: "type")
-		let propMap: [String: JSONAny] = try properties.mapValues({
-			let e = try $0.encoded()
-			return try e.decoded(as: JSONAny.self, using: JSONDecoder())
-			
-		})
-		try encoder.encode(propMap, for: "properties")
-	}
-	
-}
-
 //for 4.0, only store order; no custom options (yet)
 
 struct SplitterAppearance: Codable {
@@ -79,8 +54,10 @@ struct SplitterAppearance: Codable {
 	var hideButtons: Bool?
 	var hideTitle: Bool?
 	var keepOnTop: Bool?
-	var hideColumns: [String: Bool]?  = [:]
-	var columnSizes: [String: CGFloat]? = [:]
+	var hideColumns: [String: Bool]?  = nil
+	///Old column sizes map
+	var columnSizes: [String: CGFloat]? = nil
+	
 	var windowWidth: CGFloat?
 	var windowHeight: CGFloat?
 	var roundTo: Int?
@@ -102,37 +79,18 @@ struct SplitterAppearance: Codable {
 	/// - Parameters:
 	///   - viewController: `ViewController` to save settings from
 	///   - postV4: Determines if values that have been migrated to `layout.lsl` are included. Defaults to `true`.
-	init(viewController: ViewController, postV4: Bool = true) {
+	init(viewController: ViewController) {
 		self.hideTitlebar = viewController.titleBarHidden
 		self.hideButtons = viewController.buttonHidden
 		self.keepOnTop = viewController.windowFloat
 		self.hideTitle = viewController.hideTitle
-		self.hideColumns = [:]
-		self.columnSizes = [:]
-		for c in colIds {
-			let colIndex = viewController.splitsTableView.column(withIdentifier: c.value)
-			let col = viewController.splitsTableView.tableColumns[colIndex]
-			let hidden = col.isHidden
-			self.hideColumns?[c.key] = hidden
-			
-			let size = col.width
-			self.columnSizes?[c.key] = size
-		}
+		
 		self.windowWidth = viewController.view.window?.frame.width
 		self.windowHeight = viewController.view.window?.frame.height
 		self.selectColor = CodableColor(nsColor: viewController.selectedColor)
-		if !postV4 {
-			self.tableColor = CodableColor(nsColor: viewController.run.tableColor)
-			self.bgColor = CodableColor(nsColor: viewController.run.backgroundColor)
-			self.textColor = CodableColor(nsColor: viewController.run.textColor)
-			self.diffsLongerColor = CodableColor(nsColor: viewController.run.longerColor)
-			self.diffsShorterColor = CodableColor(nsColor: viewController.run.shorterColor)
-		}
-		if postV4 {
-			self.components = []
-			for component in viewController.mainStackView.views.map({$0 as! SplitterComponent}) {
-				self.components!.append(try! component.saveState())
-			}
+		self.components = []
+		for component in viewController.mainStackView.views.map({$0 as! SplitterComponent}) {
+			self.components!.append(try! component.saveState())
 		}
 	}
 	
@@ -145,14 +103,6 @@ struct SplitterAppearance: Codable {
 		if let cols = json.dictionary?["hideColumns"]?.dictionary {
 			for c in cols {
 				self.hideColumns?[c.key] = c.value.bool
-			}
-		}
-
-		
-		if let sizeDict = json.dictionary?["columnSizes"]?.dictionary {
-			for s in sizeDict {
-				self.columnSizes?[s.key] = CGFloat(s.value.floatValue)
-			
 			}
 		}
 		if let bgColorDict = json.dictionary?["bgColor"] {
@@ -187,8 +137,6 @@ struct SplitterAppearance: Codable {
 			self.components = components
 			print("")
 		}
-		
-		
 	}
 	
 	
@@ -218,32 +166,13 @@ extension ViewController {
 		setFloatingWindow()
 		showHideTitle()
 		
+		if let cSizes = appearance.columnSizes {
+			migratePreV5ColumnWidths(cols: cSizes)
+		}
 		if let sc = appearance.hideColumns {
-			for c in sc {
-				if let id = colIds[c.key] {
-					let cIndex = splitsTableView.column(withIdentifier: id)
-					splitsTableView.tableColumns[cIndex].isHidden = c.value
-				}
-			}
-		} else {
-			for c in splitsTableView.tableColumns {
-				switch c.identifier {
-				case STVColumnID.previousSplitColumn:
-					c.isHidden = true
-				default:
-					c.isHidden = false
-				}
-			}
+			migratePreV5HiddenColumns(sc: sc)
 		}
 		
-		if let cSizes = appearance.columnSizes {
-			for c in cSizes {
-				if let id = colIds[c.key] {
-					let cIndex = splitsTableView.column(withIdentifier: id)
-					splitsTableView.tableColumns[cIndex].width = c.value
-				}
-			}
-		}
 		
 		if view.window != nil && appearance.windowWidth != nil && appearance.windowHeight != nil {
 		
@@ -277,5 +206,76 @@ extension ViewController {
 		splitsTableView.reloadData()
 		setColorForControls()
 		
+	}
+	
+	///Migrates Column Sizes from Splitter < 5.0
+	///
+	/// - WARNING: Run this before ``migratePreV5HiddenColumns``, since that method removes columns
+	/// - Parameter cols: ``SplitterAppearance/columnWidths`` map from ``SplitterAppearance``
+	private func migratePreV5ColumnWidths(cols: [String: CGFloat]) {
+		let columns = cols.map({ (colIds[$0.key], $0.value) })
+		for column in columns {
+			var columnIndex: Int
+			switch column.0 {
+			case STVColumnID.imageColumn:
+				columnIndex = 0
+			case STVColumnID.splitTitleColumn:
+				columnIndex = 1
+			case STVColumnID.currentSplitColumn:
+				columnIndex = 2
+			case STVColumnID.differenceColumn:
+				columnIndex = 3
+			case STVColumnID.bestSplitColumn:
+				columnIndex = 4
+			case STVColumnID.previousSplitColumn:
+				columnIndex = 5
+			default:
+				continue
+			}
+			splitsTableView.tableColumns[columnIndex].width = column.1
+		}
+		
+	}
+	/// Migrates hidden columns from Splitter < 5.0
+	///
+	/// Columns that aren't hidden should be added to layout, while those that aren't, won't
+	/// - NOTE: In old Splitter, column order wasn't saved
+	/// - Parameter sc:``SplitterAppearance/hideColumns`` map from ``SplitterAppearance``
+	private func migratePreV5HiddenColumns(sc: [String: Bool]) {
+		//It's safe to hardcode the Splits component index here, because if we're loading from a file old enough to have this, we'll be using the default layout anyway
+		let splitsCompIndex = 1
+		let comp = self.scrollViewComponent
+		for c in sc {
+			if let id = colIds[c.key] {
+				let cLen = run.getLayoutState().componentAsSplits(splitsCompIndex).columnsLen(0)
+				switch id {
+				case STVColumnID.currentSplitColumn:
+					if c.value {
+						comp?.splitsTableView.moveColumn(2, toColumn: cLen + 1)
+						comp?.removeColumn()
+					}
+				case STVColumnID.differenceColumn:
+					if c.value {
+						comp?.splitsTableView.moveColumn(3, toColumn: cLen + 1)
+						comp?.removeColumn()
+					}
+				case STVColumnID.bestSplitColumn:
+					if c.value {
+						comp?.splitsTableView.moveColumn(4, toColumn: cLen + 1)
+						comp?.removeColumn()
+					}
+				case STVColumnID.previousSplitColumn:
+					run.editLayout { le in
+						le.select(splitsCompIndex)
+						le.setColumn(cLen - 1, name: "Previous")
+					}
+					if c.value {
+						comp?.removeColumn()
+					}
+				default:
+					break
+				}
+			}
+		}
 	}
 }

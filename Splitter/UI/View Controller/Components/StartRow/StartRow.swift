@@ -10,8 +10,6 @@ import Cocoa
 @IBDesignable
 class StartRow: NSStackView, NibLoadable, SplitterComponent {
 	var run: SplitterRun!
-	var state: SplitterComponentState!
-	
 	
 	var customSpacing: CGFloat? = nil
 	

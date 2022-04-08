@@ -13,8 +13,7 @@ class SplitsIODoc: SplitterDoc {
 	
 	var splitsio: SplitsIOExchangeFormat?
 	
-	override func makeWindowControllers() {
-		// Returns the Storyboard that contains your Document window.
+	func loadIntoVC() {
 		let load = loadViewController()
 		let vc = load.vc
 		
@@ -51,7 +50,12 @@ class SplitsIODoc: SplitterDoc {
 			}
 			vc.undoManager?.enableUndoRegistration()
 		}
-		
+		vc.setupVC()
+	}
+	
+	override func makeWindowControllers() {
+		// Returns the Storyboard that contains your Document window.
+		loadIntoVC()
 	}
 	override func save(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, delegate: Any?, didSave didSaveSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
 		determineSave(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: contextInfo)

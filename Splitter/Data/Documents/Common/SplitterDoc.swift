@@ -34,15 +34,15 @@ enum DocFileType: String {
 /**
 - Note:
 This class contains the logic for saving each supported file type, since otherwise, it wouldn't be eaisliy possible to save each file from the same Save panel.
+ 
+ ### How File Loading works:
+ The following applies to all filetypes:
+ - The subclass' `makeWindowControllers()` method is called, which calls ``SplitterDoc/loadViewController()``
+ - ``loadViewController()`` creates a window controller, and loads the VC from the storyboard
+	- Once loaded from storyboard, ``ViewController/viewDidLoad()`` is called
+ - 
 */
 class SplitterDoc: NSDocument {
-	
-//
-//	convenience override init() {
-//		if TemplateFileController.shared.templateFileExists {
-//
-//		}
-//	}
 	
 	///Writes the textual representations of the given items into the standard output.
 	///

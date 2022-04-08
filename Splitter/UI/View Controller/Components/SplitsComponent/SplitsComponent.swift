@@ -13,17 +13,8 @@ class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent {
 	var delegate: SplitsComponentDelegate!
 	
 	//MARK: - State
-	var state: SplitterComponentState!
 	
 	var advancedVC: NSViewController!
-	
-	struct SplitterScrollViewState: SplitterComponentState {
-		var componentType: SplitterComponentType = .splits
-		
-		var isHidden: Bool
-		
-		var afterSpacing: Float
-	}
 	
 	var showHeader: Bool {
 		get {
@@ -34,15 +25,36 @@ class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent {
 		}
 	}
 	
+	//We save this here instead of loading this setting from LiveSplit, since LSC doesn't have a toggle for column header
 	let showHeaderKey = "showHeader"
+	let widthsKey = "columnWidths"
+	let hideIconColumnKey = "hideIconColumn"
+	let hideTitleColumnKey = "hideTitleColumn"
+	
 	func saveState() throws -> ComponentState {
 		var state = saveBasicState()
 		state.properties[showHeaderKey] = showHeader
+		let widths = splitsTableView.tableColumns.map {Float($0.width)}
+		state.properties[widthsKey] = widths
+		state.properties[hideIconColumnKey] = splitsTableView.tableColumns[0].isHidden
+		state.properties[hideTitleColumnKey] = splitsTableView.tableColumns[1].isHidden
 		return state
 	}
+	
 	func loadState(from state: ComponentState) throws {
 		loadBasicState(from: state.properties)
-		showHeader = (state.properties[showHeaderKey] as? JSONAny)?.value as? Bool ?? true
+		showHeader = state.getProperty(with: showHeaderKey, of: Bool.self) ?? true
+		if let widths = state.getProperty(with: widthsKey, of: [Float].self)?.map({CGFloat($0)}) {
+			for i in 0..<splitsTableView.tableColumns.count {
+				splitsTableView.tableColumns[i].width = widths[i]
+			}
+		}
+		if let hideIcon = state.getProperty(with: hideIconColumnKey, of: Bool.self) {
+			splitsTableView.tableColumns[0].isHidden = hideIcon
+		}
+		if let hideTitle = state.getProperty(with: hideTitleColumnKey, of: Bool.self) {
+			splitsTableView.tableColumns[1].isHidden = hideTitle
+		}
 	}
 	
 	//MARK: - LiveSplit Layout
@@ -76,6 +88,21 @@ class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent {
 		super.awakeFromNib()
 	}
 	
+	///Called when a column has been resized
+	///
+	///Used to allow the user to undo setting the column width
+	private func didResize(column: NSTableColumn, oldSize: NSNumber) {
+		run.undoManager?.registerUndo(withTarget: self, handler: { c in
+			c.run.undoManager?.registerUndo(withTarget: self, handler: { c2 in
+				c2.didResize(column: column, oldSize: oldSize)
+			})
+			let resizeColIndex = c.splitsTableView.column(withIdentifier: column.identifier)
+			let resizeCol = c.splitsTableView.tableColumns[resizeColIndex]
+			resizeCol.width = CGFloat(truncating: oldSize)
+		})
+		run.undoManager?.setActionName("Set Column Width")
+	}
+	
 	func setup() {
 		///This works even if viewController hasn't been initalized yet, since `delegate` and `dataSource` are optional properties
 		delegate = SplitsComponentDelegate(run: run, component: self)
@@ -89,6 +116,11 @@ class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent {
 		}
 		NotificationCenter.default.addObserver(forName: .runEdited, object: self.run, queue: nil, using: { _ in
 			self.splitsTableView.reloadData()
+		})
+		NotificationCenter.default.addObserver(forName: NSTableView.columnDidResizeNotification, object: splitsTableView, queue: nil, using: { notification in
+			let col = notification.userInfo?["NSTableColumn"] as! NSTableColumn
+			let old = notification.userInfo?["NSOldWidth"] as! NSNumber
+			self.didResize(column: col, oldSize: old)
 		})
 		
 		//Get rows past the header to be hidden

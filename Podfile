@@ -1,6 +1,7 @@
 # Uncomment the next line to define a global platform for your project
 platform :osx, '10.14'
   use_frameworks!
+  inhibit_all_warnings!
 
   def splitter_pods
   	pod 'Sparkle'

@@ -11,8 +11,6 @@ import Cocoa
 class OptionsRow: NSStackView, NibLoadable, SplitterComponent {
 	var run: SplitterRun!
 	
-	var state: SplitterComponentState!
-	
 	static func instantiateView(with run: SplitterRun, _ viewController: ViewController) -> OptionsRow {
 		let row: OptionsRow = OptionsRow.instantiateView()
 		row.viewController = viewController

@@ -42,10 +42,14 @@ extension ViewController {
 			
 			view.window?.styleMask.insert(.fullSizeContentView)
 			view.window?.standardWindowButton(.closeButton)?.isHidden = true
+			view.window?.standardWindowButton(.miniaturizeButton)?.isHidden = true
+			view.window?.standardWindowButton(.zoomButton)?.isHidden = true
 			view.window?.standardWindowButton(.documentIconButton)?.isHidden = true
 			view.window?.titleVisibility = .hidden
 		} else {
 			view.window?.standardWindowButton(.closeButton)?.isHidden = false
+			view.window?.standardWindowButton(.miniaturizeButton)?.isHidden = false
+			view.window?.standardWindowButton(.zoomButton)?.isHidden = false
 			view.window?.standardWindowButton(.documentIconButton)?.isHidden = false
 			view.window?.titleVisibility = .visible
 			view.window?.styleMask.remove(.fullSizeContentView)

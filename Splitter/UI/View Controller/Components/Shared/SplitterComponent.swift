@@ -8,6 +8,14 @@
 
 import Foundation
 
+/**
+ The basic skeleton for a component.
+ 
+ Each component must conform to this protocol.
+
+ Components can have various different settings that should be retained when saving the file. It's generally encouraged to piggyback on LiveSplitCore for this as much as possible, i.e. using ``SplitterRun/editLayout(_:)``. However, some settings aren't supported in LSC, or can be relatively difficult to implement in it. For these, use ``ComponentState`` - see ``SplitterComponent/saveState()-153ok`` and ``SplitterComponent/loadState(from:)-60bti`` for more info.
+ 
+**/
 protocol SplitterComponent: NSView {
 	var viewController: ViewController! {get set}
 	///View used to configure settings for this component
@@ -23,7 +31,26 @@ protocol SplitterComponent: NSView {
 	var run: SplitterRun! {get set}
 	
 	func didSetSelected()
+	
+	///Persist the component's state to a `.split` file
+	///
+	/// - Returns: The state to be saved to `appearance.json`
+	///
+	/// This method is used when saving the component to a `.split` file. Use it to save state information that is not handled by LiveSplitCore.
+	///
+	/// - NOTE: The default implementation simply returns ``saveBasicState()``. For a custom implementation of `saveState`, use ``saveBasicState()`` as the "base" state, which you then augment with whatever settings you want.
+	///
+	/// See ``ComponentState/properties`` for more information
 	func saveState() throws -> ComponentState
+	///Load the component's state from a `.split` file
+	///
+	/// - Parameter state: The state loaded from `appearance.json`
+	///
+	///This method is used when loading the component from a `.split` file. Use this to load state information that is included in the given `state` parameter.
+	///
+	/// - NOTE: The default implementation simply calls ``loadBasicState(from:)``. For a custom implementation, you should also call it, and then load whatever other state information you want.
+	///
+	///See ``ComponentState/properties`` for more information
 	func loadState(from state: ComponentState) throws
 	
 	func updateUI()

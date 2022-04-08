@@ -84,12 +84,17 @@ class DownloadViewController: NSViewController, CategoryPickerDelegate  {
 		}
 	}
 	func showGames(games: [SplitsIOGame]?) {
+		tableView.beginUpdates()
+		let iSet = IndexSet(integersIn: 0..<self.games.count)
+		self.tableView.removeRows(at: iSet)
 		if let games = games {
 			self.games = games
+			let rowIndexes = IndexSet(integersIn: 0..<games.count)
+			self.tableView.insertRows(at: rowIndexes)
 		} else {
 			self.games = []
 		}
-		self.tableView.reloadData()
+		tableView.endUpdates()
 		self.hideSpinner()
 	}
 	

@@ -11,7 +11,6 @@ import Cocoa
 @IBDesignable
 class PrevNextRow: NSStackView, NibLoadable, SplitterComponent {
 	var run: SplitterRun!
-	var state: SplitterComponentState!
 	
 	var customSpacing: CGFloat? = nil
 	

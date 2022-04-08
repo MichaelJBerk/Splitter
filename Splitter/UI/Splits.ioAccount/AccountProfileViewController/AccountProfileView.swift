@@ -10,7 +10,7 @@ import Cocoa
 import SplitsIOKit
 
 
-class AccountProfileView: NSViewController, LoadableNib {
+class AccountProfileView: NSViewController, AccountSubview {
 	var accountController: AccountViewController!
 	
 	@IBOutlet var contentView: NSView!

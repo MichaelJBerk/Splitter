@@ -164,21 +164,10 @@ class ViewController: NSViewController {
 	var hotkeysController: HotkeysViewController?
 	
 	@objc func breakFunc() {
-//		let layout = columnOptionsPopover?.contentViewController as! LayoutEditorViewController
-//		print(layout.outlineView.tableColumns[0].width)
-//		let appVC = WindowSettingViewController(nibName: "WindowSettingViewController", bundle: .main)
-//		let appVC = WinC(windowNibName: "WinC")
-//		self.presentAsSheet(appVC)
-//		appVC.loadView()
-//		appVC.preferredContentSize = .init(width: 306, height: 196)
-//		appVC.loadView()
-//		appVC.showWindow(nil)
-//		let appVC = WindowSettingViewController(nibName: "WindowSettingViewController", bundle: nil)
-		
-//		appVC.loadViewFromNib()
-//		let window = NSWindow(contentViewController: appVC)
-//		window.makeKeyAndOrderFront(nil)
-		UserDefaults.standard.set(true, forKey: "NSConstraintBasedLayoutVisualizeMutuallyExclusiveConstraints")
+		let menu = NSApp.mainMenu
+		for item in menu?.items ?? [] {
+			print(item.title)
+		}
 	}
 	
 	func debugPrintSplitsEditor() {
@@ -313,8 +302,6 @@ class ViewController: NSViewController {
 		view.window?.delegate = self
 		view.window?.isMovableByWindowBackground = true
 		
-		view.window?.standardWindowButton(.zoomButton)?.isHidden = true
-		view.window?.standardWindowButton(.miniaturizeButton)?.isHidden = true
 	}
 	///Handles various tasks to set up certain keyboard commands, as well as the Touch Bar
 	private func keyAndMenuSetup() {
@@ -473,9 +460,12 @@ class ViewController: NSViewController {
 		splitsTableView.scrollRowToVisible(run.currentSplit ?? 0)
 	}
 	
-	
-	override func viewWillAppear() {
-		super.viewWillAppear()
+	///Does the necessary steps to setup the ViewController
+	///
+	///This used to be part of ``viewWillAppear()``, but because it causes issues when minimizing + restoring, I refactored it here
+	///
+	///This method is called by a ``SplitterDoc``'s `makeWindowControllers()` method
+	func setupVC() {
 		if run == nil {
 			run = SplitterRun(run: Run(), isNewRun: true)
 			run.document = self.document
@@ -548,6 +538,11 @@ class ViewController: NSViewController {
 			self.setColorForControls()
 		})
 		undoManager?.enableUndoRegistration()
+	}
+	
+	
+	override func viewWillAppear() {
+		super.viewWillAppear()
 	}
 	
 	///Updates the run, with the current values from the view controller

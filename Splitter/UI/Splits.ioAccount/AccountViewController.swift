@@ -72,44 +72,49 @@ class AccountViewController: NSViewController, PreferencePane {
 	var loginView: LoginView!
 	
 	func makeViews() {
-		profileView = AccountProfileView()
-		profileView.loadViewFromNib()
-		profileView.accountController = self
-		loginView = LoginView()
-		loginView.loadViewFromNib()
-		loginView.accountController = self
-		container = NSView(frame: NSRect(x: 0, y: 0, width: 100, height: 500))
+//		profileView = AccountProfileView()
+//		profileView.loadViewFromNib()
+//		profileView.accountController = self
+//		loginView = LoginView()
+//		loginView.loadViewFromNib()
+//		loginView.accountController = self
 		
-		self.view = container
-		self.addChild(loginView)
-		self.addChild(profileView)
+//		container = NSView(frame: NSRect(x: 0, y: 0, width: 100, height: 500))
+		let size = NSSize(width: 480, height: 181)
+		view = NSView(frame: .init(origin: .init(x: 0, y: 0), size: size))
+//		self.addChild(loginView)
+//		self.addChild(profileView)
+		preferredContentSize = size
 	}
 	
 	
-	var currentView: NSViewController!
+	var currentView: AccountSubview?
 	
 	
 	func updateView() {
-		if container.subviews.count > 0 {
-			for sub in container.subviews {
+		if currentView?.view.subviews.count ?? 0 > 0 {
+			for sub in currentView?.view.subviews ?? [] {
 				sub.removeFromSuperview()
 			}
 		}
+//		view = NSView()
+		currentView?.removeFromParent()
 		
 		if let account = account {
+			let profileView = AccountProfileView()
+			profileView.loadViewFromNib()
+			profileView.accountController = self
 			profileView.setAccount(account: account)
 			currentView = profileView
-			
 		} else {
+			let loginView = LoginView()
+			loginView.loadViewFromNib()
+			loginView.accountController = self
 			currentView = loginView
 		}
+		self.addChild(currentView!)
 		
-		currentView.view.frame = self.container.bounds
-		container.addSubview(currentView.view)
-		currentView.view.frame = self.container.bounds
-
-		view.needsDisplay = true
-		view.canDrawSubviewsIntoLayer = true
+		self.view.addSubview(currentView!.view)
 		
 	}
 	
@@ -146,6 +151,6 @@ class AccountViewController: NSViewController, PreferencePane {
 	*/
 	
 }
-protocol AccountSubview: NSView {
+protocol AccountSubview: NSViewController, LoadableNib {
 	var accountController: AccountViewController! {get set}
 }

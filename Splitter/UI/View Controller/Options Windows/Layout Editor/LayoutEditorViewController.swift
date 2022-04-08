@@ -156,6 +156,7 @@ class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOut
 				appVC.view.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
 				appVC.view.bottomAnchor.constraint(greaterThanOrEqualTo: scrollView.bottomAnchor).isActive = true
 				appVC.view.heightAnchor.constraint(equalTo: scrollView.heightAnchor).isActive = true
+				scrollView.contentInsets.bottom = -20
 			}
 		}
 		NSColorPanel.shared.close()

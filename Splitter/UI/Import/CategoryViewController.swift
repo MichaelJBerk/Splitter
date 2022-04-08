@@ -24,6 +24,8 @@ class CategoryViewController: NSViewController {
 			view1.appearance = appearance
 		}
 	}
+	
+	@IBOutlet var tableView: NSTableView!
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -32,13 +34,12 @@ class CategoryViewController: NSViewController {
 				self.fixAppearance(c)
 			}
 		})
-		popitem = categoryPopUpButton.selectedItem
+		
 		darkSpinnerView = DarkSpinnerView(sourceView: self.view, sourceFrame: self.view.frame)
 		loadCategories { cats in
 			if let cats = cats {
 				self.categories = cats
-				self.categoryPopUpButton.menu?.items = self.makeMenuItems(categories: cats)
-//				self.categoryPopUpButton.selectItem(at: 0)
+				self.tableView.reloadData()
 			}
 			self.hideSpinner()
 		}
@@ -48,16 +49,11 @@ class CategoryViewController: NSViewController {
 	var darkSpinnerView: DarkSpinnerView?
 	
 	func showSpinner() {
-//		categoryPopUpButton.select(nil)
 		view.addSubview(darkSpinnerView!)
-		categoryPopUpButton.isEnabled = false
-		nextButton.isEnabled = false
 	}
 	
 	func hideSpinner() {
 		darkSpinnerView?.removeFromSuperview()
-		categoryPopUpButton.isEnabled = true
-		nextButton.isEnabled = true
 		fixAppearance(NSApp.effectiveAppearance)	
 	}
 	
@@ -75,12 +71,6 @@ class CategoryViewController: NSViewController {
 	
 	//MARK: Popup Button
 	
-	@IBOutlet weak var categoryPopUpButton: NSPopUpButton!
-	var popitem: NSMenuItem? = nil
-	
-	@IBAction func popUpAction(_ sender: NSPopUpButton) {
-		popitem = sender.selectedItem
-	}
 	//TODO: Get only user's categories, if download view is currently showing user's runs
 	func loadCategories(completion: @escaping ([SplitsIOCat]?) -> Void) {
 		if let game = delegate.game {
@@ -110,7 +100,8 @@ class CategoryViewController: NSViewController {
 	//MARK: - Loading the run
 	
 	func loadRun() {
-		let cat = categories[categoryPopUpButton.indexOfSelectedItem]
+		if tableView.numberOfSelectedRows != 1 { return}
+		let cat = categories[tableView.selectedRow]
 		
 		let loadingView = LoadingViewController()
 		loadingView.loadViewFromNib()
@@ -145,4 +136,28 @@ class CategoryViewController: NSViewController {
 	}
 	
 	
+}
+
+extension CategoryViewController: NSTableViewDelegate, NSTableViewDataSource {
+	func numberOfRows(in tableView: NSTableView) -> Int {
+		return categories.count
+	}
+	
+	func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
+		if let cell = tableView.makeView(withIdentifier: tableColumn!.identifier, owner: self) as? NSTableCellView {
+			cell.textField?.stringValue = categories[row].name
+			return cell
+		}
+		return nil
+		
+	}
+	
+	func tableViewSelectionDidChange(_ notification: Notification) {
+		let selection: [Int] = tableView.selectedRowIndexes.map({$0})
+		if selection.count > 0 {
+			nextButton.isEnabled = true
+		} else {
+			nextButton.isEnabled = false
+		}
+	}
 }

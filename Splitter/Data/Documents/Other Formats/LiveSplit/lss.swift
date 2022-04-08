@@ -43,6 +43,7 @@ class lss: SplitterDoc {
 		if let url = urlToLoad {
 			vc.loadLS(url: url, asTemplate: template)
 		}
+		vc.setupVC()
 	}
 	
 	override func save(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, delegate: Any?, didSave didSaveSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {

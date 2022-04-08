@@ -19,14 +19,7 @@ class StatusBarController: NSObject {
 		return quit
 	}
 	
-	var turnOffOverlayItem = NSMenuItem(title: "Turn Off Overlay Mode", action: #selector(turnOffOverlayAction(_:)), keyEquivalent: "")
-	
-	var prefsItem: NSMenuItem {
-		let item = NSMenuItem(title: "Preferences", action: #selector(showPrefsMenuItem(_:)), keyEquivalent: ",")
-		item.keyEquivalentModifierMask = [.command]
-		item.target = self
-		return item
-	}
+	var turnOffOverlayItem = NSMenuItem(title: "Turn off Overlay Mode", action: #selector(turnOffOverlayAction(_:)), keyEquivalent: "")
 	
 	func setupItem() {
 		let item = NSStatusBar.system.statusItem(withLength: NSStatusItem.squareLength)
@@ -43,10 +36,15 @@ class StatusBarController: NSObject {
 		
 		
 		statusMenu.delegate = self
-		let menuItems = [quitItem, .separator(), turnOffOverlayItem, prefsItem]
+		let menuItems = [quitItem, .separator(), turnOffOverlayItem, .separator()]
 		for item in menuItems {
 			item.target = self
 			statusMenu.addItem(item)
+		}
+		let mainMenu = NSApp.mainMenu!
+		for item in mainMenu.items {
+			let copy = item.copy() as! NSMenuItem
+			statusMenu.addItem(copy)
 		}
 		
 		
@@ -70,9 +68,6 @@ class StatusBarController: NSObject {
 	}
 	@objc func turnOffOverlayAction(_ sender: Any?) {
 		Self.setMenuBarMode(false)
-	}
-	@objc func showPrefsMenuItem(_ sender: Any?) {
-		AppDelegate.shared?.preferencesMenuItemActionHandler(sender as! NSMenuItem)
 	}
 	
 	@objc func clickItem(_ sender: Any?) {

@@ -80,11 +80,13 @@ extension ViewController {
 	@IBAction func closeMenuItem(_ sender: Any) {
 		view.window?.close()
 	}
+}
+extension AppDelegate {
 	
 	//MARK: Help Menu
 	///Opens the Splitter landing page in a browser
 	@IBAction func helpMenu(_ sender: Any?) {
-		let url = URL(string: "https://mberk.com/splitter")!
+		let url = URL(string: "splitter.mberk.com")!
 		NSWorkspace.shared.open(url)
 	}
 	///Opens the FAQ Wiki page in a browser
@@ -97,8 +99,8 @@ extension ViewController {
 		let url = URL(string: "https://mberk.com/splitter/discord")!
 		NSWorkspace.shared.open(url)
 	}
-	
-	
+}
+extension ViewController {
 	//MARK: - Other Menu Item Stuff
 	
 	///Updates the "Skip Split" menu item

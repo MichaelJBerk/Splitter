@@ -89,7 +89,7 @@
                         <gridCell row="oXc-L7-FpH" column="8ff-ag-yNI" id="Ug3-v2-MAC">
                             <textField key="contentView" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="CcX-US-VNH">
                                 <rect key="frame" x="-2" y="0.0" width="250" height="48"/>
-                                <textFieldCell key="cell" selectable="YES" title="Note: These settings will be saved to this file, and will take effect whenever the file is opened. " id="K0g-8F-Yqh">
+                                <textFieldCell key="cell" title="Note: These settings will be saved to this file, and will take effect whenever the file is opened. " id="K0g-8F-Yqh">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>

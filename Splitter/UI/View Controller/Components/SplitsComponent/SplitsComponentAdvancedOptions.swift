@@ -18,7 +18,11 @@ class AdvancedOptionsOutlineView: NSOutlineView {
 class ColumnNameTextField: NSTextField {
 	
 	convenience init(string: String, run: SplitterRun, lsColumn: Int) {
-		self.init(string: string)
+		if lsColumn < 0 {
+			self.init(labelWithString: string)
+		} else{
+			self.init(string: string)
+		}
 		self.run = run
 		self.lsColumn = lsColumn
 	}
@@ -181,6 +185,21 @@ class ColObject: NSObject {
 	
 	
 }
+extension SplitsComponent {
+	func setColumnHidden(_ bool: Bool, column: Int) {
+		let oldValue = self.splitsTableView.tableColumns[column].isHidden
+		run.undoManager?.registerUndo(withTarget: self, handler: { comp in
+			comp.setColumnHidden(oldValue, column: column)
+		})
+		if run.undoManager?.isUndoing == true {
+			run.undoManager?.setActionName(!bool ? "Hide Column" : "Show Column")
+		} else {
+			run.undoManager?.setActionName(bool ? "Hide Column" : "Show Column")
+			
+		}
+		self.splitsTableView.tableColumns[column].isHidden = bool
+	}
+}
 
 extension SplitsComponentAdvancedOptions: NSOutlineViewDelegate, NSOutlineViewDataSource {
 	
@@ -228,7 +247,7 @@ extension SplitsComponentAdvancedOptions: NSOutlineViewDelegate, NSOutlineViewDa
 			title = "Icon"
 			if item.isSubitem {
 				let check = ComponentOptionsButton(checkboxWithTitle: "Hidden", clickAction: { button in
-					self.splitsTableView.tableColumns[ci].isHidden = button.state.toBool()
+					self.splitsComponent.setColumnHidden(button.state.toBool(), column: ci)
 				})
 				check.state = .init(bool: splitsTableView.tableColumns[ci].isHidden)
 				cell.addSubview(check)

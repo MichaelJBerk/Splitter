@@ -155,6 +155,7 @@ class Document: SplitterDocBundle {
 			vc.runInfoData = ri
 			vc.appearance = appearance
 		}
+		vc.setupVC()
 	}
 	
 	override func save(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, delegate: Any?, didSave didSaveSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {

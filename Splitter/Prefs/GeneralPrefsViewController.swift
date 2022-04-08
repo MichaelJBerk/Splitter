@@ -11,11 +11,9 @@ import Preferences
 
 class GeneralPrefsViewController: NSViewController, PreferencePane {
 	
-	@IBOutlet var regularRadioButton: NSButton!
-	@IBOutlet var overlayRadioButton: NSButton!
-	@IBOutlet var menuBarCheck: NSButton!
+	@IBOutlet var menuBarSwitch: NSSwitch!
 	
-	@IBAction func setAppMode(_ sender: NSButton) {
+	@IBAction func setAppMode(_ sender: NSSwitch) {
 		if sender.state == .on {
 			StatusBarController.setMenuBarMode(true)
 			NSApp.activate(ignoringOtherApps: true)
@@ -53,9 +51,9 @@ class GeneralPrefsViewController: NSViewController, PreferencePane {
 	
 	func setMenuBarToggle() {
 		if Settings.menuBarMode {
-			menuBarCheck.state = .on
+			menuBarSwitch.state = .on
 		} else {
-			menuBarCheck.state = .off
+			menuBarSwitch.state = .off
 		}
 	}
     

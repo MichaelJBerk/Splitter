@@ -27,7 +27,7 @@
                                         <menuItem title="Check for Updates..." hidden="YES" identifier="updatesMenuItem" id="G5b-2i-GWW">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
-                                                <action selector="checkForUpdates:" target="1Jn-Zc-U5S" id="uDN-y9-AhB"/>
+                                                <action selector="checkForUpdates:" target="2s5-qe-XtT" id="D6k-6Y-xYn"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="VOq-y0-SEH"/>
@@ -448,6 +448,18 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Window" systemMenu="window" id="Td7-aD-5lo">
                                     <items>
+                                        <menuItem title="Minimize" keyEquivalent="m" id="E8w-l1-D6C">
+                                            <connections>
+                                                <action selector="performMiniaturize:" target="Ady-hI-5gd" id="9gh-oy-wWl"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Zoom" id="xcI-pw-R92">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="performZoom:" target="Ady-hI-5gd" id="FqQ-u9-agu"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="NlA-k8-Kxk"/>
                                         <menuItem title="Bring All to Front" id="LE2-aR-0XJ">
                                             <modifierMask key="keyEquivalentModifierMask"/>
                                             <connections>
@@ -507,7 +519,7 @@
                     </connections>
                 </application>
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="Splitter" customModuleProvider="target"/>
-                <customObject id="1Jn-Zc-U5S" customClass="SUUpdater"/>
+                <customObject id="2s5-qe-XtT" customClass="SPUStandardUpdaterController"/>
                 <customObject id="tug-9B-nUX" customClass="SplitterDocumentController" customModule="Splitter" customModuleProvider="target"/>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -708,15 +720,6 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bfh-zg-F2N">
-                                <rect key="frame" x="212" y="57" width="37" height="16"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Label" id="fUq-Pu-4Ur">
-                                    <font key="font" usesAppearanceFont="YES"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="77n-qC-3Oq" customClass="MetadataImage" customModule="Splitter" customModuleProvider="target">
                                 <rect key="frame" x="17" y="174" width="104" height="104"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -803,6 +806,15 @@ To remove, click and press backspace. </string>
                                     <menu key="menu" id="m8j-7w-3Yu"/>
                                 </popUpButtonCell>
                             </popUpButton>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bfh-zg-F2N">
+                                <rect key="frame" x="172" y="56" width="77" height="16"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Comparison" id="fUq-Pu-4Ur">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                     </view>
                     <connections>

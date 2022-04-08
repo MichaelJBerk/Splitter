@@ -9,7 +9,7 @@
 import Cocoa
 import SplitsIOKit
 
-class LoginView: NSViewController, LoadableNib {
+class LoginView: NSViewController, AccountSubview {
 	var accountController: AccountViewController!
 
 	override var view: NSView {
