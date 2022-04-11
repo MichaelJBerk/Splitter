@@ -59,7 +59,7 @@ class SplitterRun: NSObject {
 		layout.updateState(state, timer)
 		let state2 = layout.state(timer)
 		let splits = state2.componentAsSplits(1)
-		let name = splits.columnName(1)
+		let name = splits.columnLabel(1)
 		print(name)
 		
 		let pasteboard = NSPasteboard.general
@@ -1041,7 +1041,7 @@ class SplitterRun: NSObject {
 	
 	func setColumnName(name: String, lsColumn: Int, component: Int) {
 		let ls = getLayoutState()
-		let oldName = ls.componentAsSplits(component).columnName(lsColumn)
+		let oldName = ls.componentAsSplits(component).columnLabel(lsColumn)
 		if name != oldName {
 			undoManager?.registerUndo(withTarget: self, handler: { r in
 				r.setColumnName(name: oldName, lsColumn: lsColumn, component: component)

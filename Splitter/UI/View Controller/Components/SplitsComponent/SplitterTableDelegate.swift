@@ -79,7 +79,7 @@ class SplitsComponentDelegate: NSObject, NSTableViewDelegate, NSTableViewDataSou
 			//Title Column
 			lsColName = "Split"
 		default:
-			lsColName = splitsState.columnName(lsColIndex)
+			lsColName = splitsState.columnLabel(lsColIndex)
 		}
 		
 		tableView.tableColumns[colIdx].title = lsColName

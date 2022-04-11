@@ -3834,9 +3834,9 @@ public class SplitsComponentStateRef {
         return result
     }
 	
-	public func columnName(_ index: size_t) -> String {
+	public func columnLabel(_ index: size_t) -> String {
 		assert(self.ptr != nil)
-		let result = CLiveSplitCore.SplitsComponentState_column_name(self.ptr, index)
+		let result = CLiveSplitCore.SplitsComponentState_column_label(self.ptr, index)
 		return String(cString: result!)
 	}
 	

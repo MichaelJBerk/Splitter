@@ -80,7 +80,7 @@ class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent {
 		let timer = run.timer.lsTimer
 		let layout =  run.layout.state(timer)
 		let splits = layout.componentAsSplits(componentIndex)
-		return splits.columnName(index)
+		return splits.columnLabel(index)
 	}
 	
 	//MARK: -
