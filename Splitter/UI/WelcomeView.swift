@@ -28,7 +28,7 @@ struct WelcomeView: View {
     var body: some View {
 		HStack(spacing: 0) {
 			ZStack {
-				Color(NSColor.controlBackgroundColor)
+				Color(NSColor.windowBackgroundColor)
 					.edgesIgnoringSafeArea(.all)
 				SplitterInfoView()
 			}
@@ -39,7 +39,7 @@ struct WelcomeView: View {
 				.padding([.top, .bottom], listPadding)
 				
 		}
-		.frame(width: 800, height: 460)
+		.frame(width: 800, height: 470)
     }
 }
 
@@ -75,6 +75,7 @@ struct RecentsView: View {
 						NSWorkspace.shared.activateFileViewerSelecting([url])
 					}
 				})
+				.listRowInsets(.init(top: 2.5, leading: 5, bottom: 2.5, trailing: 5))
 		}
 		.listStyle(SidebarListStyle())
 		//This is what triggers the button's action when clicked
@@ -153,18 +154,18 @@ struct RecentsRow: View {
 				
 				AdaptiveVStack(alignment: .leading) {
 					Spacer()
-					Text(fileName()).font(.subheadline)
-					Text(filePath()).truncationMode(.head)
+					Text(fileName()).font(.headline).fontWeight(.regular)
+					Text(filePath()).font(.caption).truncationMode(.head)
 					Spacer()
 				}
 				.allowsHitTesting(shouldHitTest)
 			}
-			.frame(maxHeight: 50)
 			
 			.contentShape(Rectangle())
 		})
 		.buttonStyle(PlainButtonStyle())
 		.allowsHitTesting(shouldHitTest)
+		.frame(maxHeight: 40)
 	}
 	///Gets the file name used for the label
 	func fileName() -> String {
