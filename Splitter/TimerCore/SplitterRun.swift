@@ -176,18 +176,13 @@ class SplitterRun: NSObject {
 				editor.setColumn(3, updateTrigger: ColumnUpdateTrigger.onStartingSegment)
 			}
 			
-//			let state = layout.state(timer.lsTimer)
-//			print(state.componentAsSplits(1).name(1))
-			
 			//TODO: Set rounding
-			
+			#if DEBUG
 			let len = editor.state().fieldLen(true)
 			for i in 1..<len {
-				
 				print("\(i): \(editor.state().fieldText(true, i))")
 			}
-			
-//			editor.addComponent(LSSumOfBestComponent().intoGeneric())
+			#endif
 			self.layout = editor.close()
 		}
 		do {
