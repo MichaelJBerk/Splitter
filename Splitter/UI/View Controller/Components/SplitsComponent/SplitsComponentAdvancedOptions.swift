@@ -51,7 +51,7 @@ class SplitsComponentAdvancedOptions: NSViewController, NSTextFieldDelegate {
 	}
 	
 	override func loadView() {
-		self.view = .init(frame: .init(x: 0, y: 0, width: 400, height: 250))
+		self.view = .init(frame: .init(x: 0, y: 0, width: 337, height: 250))
 	}
 	
 	var minusButton: NSButton!
@@ -68,6 +68,7 @@ class SplitsComponentAdvancedOptions: NSViewController, NSTextFieldDelegate {
 		
 		outlineView = AdvancedOptionsOutlineView()
 		let scrollView = NSScrollView(frame: view.frame)
+		scrollView.hasVerticalScroller = true
 		scrollView.documentView = outlineView
 		
 		let plusMinusStack = NSStackView()
@@ -95,7 +96,10 @@ class SplitsComponentAdvancedOptions: NSViewController, NSTextFieldDelegate {
 		})
 		helpButton.bezelStyle = .helpButton
 		helpButton.setButtonType(.momentaryPushIn)
-		
+		scrollView.automaticallyAdjustsContentInsets = false
+		if #available(macOS 11.0, *) {
+			outlineView.style = .fullWidth
+		}
 		self.view.addSubview(scrollView)
 		self.view.addSubview(plusMinusStack)
 		self.view.addSubview(helpButton)

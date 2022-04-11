@@ -30,6 +30,8 @@ class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent {
 	let widthsKey = "columnWidths"
 	let hideIconColumnKey = "hideIconColumn"
 	let hideTitleColumnKey = "hideTitleColumn"
+	let hideVScrollKey = "hideVScroll"
+	let hideHScrollKey = "hideHScroll"
 	
 	func saveState() throws -> ComponentState {
 		var state = saveBasicState()
@@ -38,6 +40,8 @@ class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent {
 		state.properties[widthsKey] = widths
 		state.properties[hideIconColumnKey] = splitsTableView.tableColumns[0].isHidden
 		state.properties[hideTitleColumnKey] = splitsTableView.tableColumns[1].isHidden
+		state.properties[hideVScrollKey] = self.hasVerticalScroller
+		state.properties[hideHScrollKey] = self.hasHorizontalScroller
 		return state
 	}
 	
@@ -54,6 +58,12 @@ class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent {
 		}
 		if let hideTitle = state.getProperty(with: hideTitleColumnKey, of: Bool.self) {
 			splitsTableView.tableColumns[1].isHidden = hideTitle
+		}
+		if let hideVScroll = state.getProperty(with: hideVScrollKey, of: Bool.self) {
+			self.hasVerticalScroller = hideVScroll
+		}
+		if let hideHScroll = state.getProperty(with: hideHScrollKey, of: Bool.self) {
+			self.hasVerticalScroller = hideHScroll
 		}
 	}
 	

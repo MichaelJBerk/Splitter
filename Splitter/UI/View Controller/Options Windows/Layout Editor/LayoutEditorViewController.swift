@@ -37,38 +37,35 @@ class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOut
 		sidebarVE.addSubview(outlineScroll)
 		
 		let popVE = NSVisualEffectView()
+		optionsSuperView = NSView()
+		optionsSuperView.wantsLayer = true
+		optionsSuperView.layer?.backgroundColor = NSColor.clear.cgColor
+		
 		popVE.material = .popover
 		popVE.blendingMode = .behindWindow
-		
-		self.scrollView = NSScrollView()
-		scrollView.drawsBackground = false
-		popVE.addSubview(scrollView)
-		
 		
 		let view = NSView(frame: .init(x: 0, y: 0, width: 577, height: 400))
 		self.view = view
 		self.view.addSubview(sidebarVE)
 		self.view.addSubview(popVE)
+		popVE.addSubview(optionsSuperView)
 		sidebarVE.frame = .init(x: 0, y: 0, width: 225, height: 400)
 		popVE.frame = .init(x: 225, y: 0, width: 377, height: 400)
+		///We want to inset the options view by 20 on the top, leading, and trailing edges
+		optionsSuperView.frame = .init(x: 20, y: 20, width: 337, height: 380)
 		outlineScroll.frame = .init(x: 0, y: 10, width: 225, height: 390)
 		view.wantsLayer = true
 		view.layer?.backgroundColor = NSColor.red.cgColor
-		scrollView.translatesAutoresizingMaskIntoConstraints = false
-		NSLayoutConstraint.activate([
-			scrollView.leadingAnchor.constraint(equalTo: popVE.leadingAnchor, constant: 20),
-			scrollView.topAnchor.constraint(equalTo: popVE.topAnchor, constant: 20),
-			scrollView.bottomAnchor.constraint(equalTo: popVE.bottomAnchor),
-			scrollView.trailingAnchor.constraint(equalTo: popVE.trailingAnchor, constant: -20),
-		])
+		
 		outlineScroll.hasVerticalScroller = true
-		scrollView.hasVerticalScroller = true
 	}
 	
 	@IBOutlet var stack: NSStackView!
 	var outlineView: NSOutlineView!
 	var scrollView: NSScrollView!
 	var currentOptions: NSView?
+	
+	var optionsSuperView: NSView!
 	
 	
 	override func viewWillAppear() {
@@ -79,9 +76,6 @@ class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOut
 		highlightAndShowOptions()
 	}
 	
-	var optionsView: NSView! {
-		return scrollView.documentView!
-	}
 	var rows = ["Row 1", "Row 2", "Row 3"]
 	var dropType: NSPasteboard.PasteboardType = .init("public.data")
 	var runController: ViewController!
@@ -89,7 +83,6 @@ class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOut
 
     override func viewDidLoad() {
         super.viewDidLoad()
-//		self.preferredContentSize = view.frame.size
 		outlineView.registerForDraggedTypes([dropType])
     }
 	
@@ -153,10 +146,9 @@ class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOut
 				let appVC = WindowSettingViewController(nibName: "WindowSettingViewController", bundle: nil)
 				appVC.runViewController = runController
 				setOptionsView(appVC.view)
-				appVC.view.topAnchor.constraint(equalTo: scrollView.topAnchor).isActive = true
-				appVC.view.bottomAnchor.constraint(greaterThanOrEqualTo: scrollView.bottomAnchor).isActive = true
-				appVC.view.heightAnchor.constraint(equalTo: scrollView.heightAnchor).isActive = true
-				scrollView.contentInsets.bottom = -20
+				appVC.view.topAnchor.constraint(equalTo: optionsSuperView.topAnchor).isActive = true
+				appVC.view.bottomAnchor.constraint(greaterThanOrEqualTo: optionsSuperView.bottomAnchor).isActive = true
+				appVC.view.heightAnchor.constraint(equalTo: optionsSuperView.heightAnchor).isActive = true
 			}
 		}
 		NSColorPanel.shared.close()
@@ -164,24 +156,22 @@ class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOut
 	
 	func setConstraints(for optionsView: NSView) {
 		optionsView.translatesAutoresizingMaskIntoConstraints = false
-		scrollView.contentInsets.bottom = 20
 		var constraintsToAdd = [
-			optionsView.leadingAnchor.constraint(equalTo: scrollView.contentView.leadingAnchor),
-			optionsView.trailingAnchor.constraint(equalTo: scrollView.contentView.trailingAnchor),
+			optionsView.leadingAnchor.constraint(equalTo: optionsSuperView.leadingAnchor),
+			optionsView.trailingAnchor.constraint(equalTo: optionsSuperView.trailingAnchor),
 		]
-		constraintsToAdd.append(optionsView.topAnchor.constraint(equalTo: scrollView.contentView.topAnchor))
+		constraintsToAdd.append(optionsView.topAnchor.constraint(equalTo: optionsSuperView.topAnchor))
 		NSLayoutConstraint.activate(constraintsToAdd)
 	}
 	
 	func setOptionsView(_ optionsView: NSView) {
-		if let oldOptions = currentOptions as? SplitsComponent.SplitsOptionsView {
+		if let oldOptions = currentOptions {
 			oldOptions.removeFromSuperview()
 		}
 		if let optionsView = optionsView as? SplitsComponent.SplitsOptionsView {
-			scrollView.documentView = nil
-			scrollView.superview!.addSubview(optionsView)
 			currentOptions = optionsView
-			let sv = scrollView.contentView
+			let sv = optionsSuperView!
+			sv.addSubview(optionsView)
 			optionsView.translatesAutoresizingMaskIntoConstraints = false
 			
 			NSLayoutConstraint.activate([
@@ -192,7 +182,7 @@ class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOut
 			])
 			return
 		}
-		scrollView.documentView = optionsView
+		optionsSuperView.addSubview(optionsView)
 		currentOptions = optionsView
 	}
 	

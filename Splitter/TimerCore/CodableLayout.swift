@@ -569,14 +569,3 @@ struct GeneralCodableLayoutSettings: Codable {
 		case personalBestColor = "personal_best_color"
 	}
 }
-extension SettingValue {
-	public static func fromNSColor(_ color: NSColor) -> SettingValue {
-		let floats = color.toFloat()
-		return .fromColor(floats[0], floats[1], floats[2], floats[3])
-	}
-	public static func fromAlternatingNSColor(_ color1: NSColor, _ color2: NSColor) -> SettingValue {
-		let floats1 = color1.toFloat()
-		let floats2 = color2.toFloat()
-		return .fromAlternatingGradient(floats1[0], floats1[1], floats1[2], floats1[3], floats2[0], floats2[1], floats2[2], floats2[3])
-	}
-}

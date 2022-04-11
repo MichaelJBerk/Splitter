@@ -6,8 +6,16 @@
 //
 
 import Foundation
+import SwiftyJSON
 
 public struct LiveSplitFont: Codable {
+	public init(family: String, style: LiveSplitFont.Style, weight: LiveSplitFont.Weight, stretch: LiveSplitFont.Stretch) {
+		self.family = family
+		self.style = style
+		self.weight = weight
+		self.stretch = stretch
+	}
+	
 	//TODO: Add a way to get general settings, and get the font from that
 	/**
 	 The family name of the font to use.
@@ -20,11 +28,11 @@ public struct LiveSplitFont: Codable {
 	 */
 	public var family: String
 	///The style of the font to prefer selecting.
-	public var style: Style
+	public var style: LiveSplitFont.Style
 	///The weight of the font to prefer selecting.
-	public var weight: Weight
+	public var weight: LiveSplitFont.Weight
 	///The stretch of the font to prefer selecting.
-	public var stretch: Stretch
+	public var stretch: LiveSplitFont.Stretch
 	
 	public enum Style: String, Codable {
 		case normal

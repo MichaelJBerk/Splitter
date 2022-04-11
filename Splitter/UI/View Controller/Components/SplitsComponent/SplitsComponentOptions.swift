@@ -62,6 +62,21 @@ extension SplitsComponent {
 		}
 		showHeaderButton.state = .init(bool: showHeader)
 		d.addArrangedSubview(showHeaderButton)
+		let hasVScrollButton = ComponentOptionsButton(checkboxWithTitle: "Show Vertical Scroll", clickAction: { _ in
+			self.hasVerticalScroller.toggle()
+		})
+		hasVScrollButton.state = .init(bool: hasVerticalScroller)
+		
+		let hasHScrollButton = ComponentOptionsButton(checkboxWithTitle: "Show Horizontal Scroll", clickAction: { _ in
+			self.hasHorizontalScroller.toggle()
+		})
+		hasHScrollButton.state = .init(bool: hasHorizontalScroller)
+
+		let hideScrollStack = NSStackView()
+		hideScrollStack.orientation = .horizontal
+		hideScrollStack.addArrangedSubview(hasVScrollButton)
+		hideScrollStack.addArrangedSubview(hasHScrollButton)
+		d.addArrangedSubview(hideScrollStack)
 		
 		let separatorView = NSView()
 		separatorView.wantsLayer = true
@@ -73,7 +88,8 @@ extension SplitsComponent {
 		
 		colorOptions(stack: d)
 		
-		let scrollView = NSScrollView()
+		let scrollView = NSScrollView(frame: d.frame)
+		scrollView.hasVerticalScroller = true
 		scrollView.documentView = d
 		scrollView.drawsBackground = false
 		advancedVC = SplitsComponentAdvancedOptions(splitsComp: self)
@@ -83,6 +99,8 @@ extension SplitsComponent {
 			d.widthAnchor.constraint(equalTo: scrollView.contentView.widthAnchor),
 			superStack.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
 		])
+		scrollView.automaticallyAdjustsContentInsets = false
+		scrollView.contentInsets.bottom = 20
 		return superStack
 	}
 	

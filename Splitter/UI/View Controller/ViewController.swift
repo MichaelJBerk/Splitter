@@ -164,10 +164,7 @@ class ViewController: NSViewController {
 	var hotkeysController: HotkeysViewController?
 	
 	@objc func breakFunc() {
-		let menu = NSApp.mainMenu
-		for item in menu?.items ?? [] {
-			print(item.title)
-		}
+		
 	}
 	
 	func debugPrintSplitsEditor() {

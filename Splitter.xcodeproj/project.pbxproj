@@ -128,6 +128,7 @@
 		4AD44ADB262F463C003375C4 /* KeyValueComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AD44ADA262F463C003375C4 /* KeyValueComponent.xib */; };
 		4AD44ADF262F4CFB003375C4 /* TitleComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD44ADE262F4CFB003375C4 /* TitleComponent.swift */; };
 		4AD7662E23DA5F9A0052409C /* Files in Frameworks */ = {isa = PBXBuildFile; productRef = 4AD7662D23DA5F9A0052409C /* Files */; };
+		4AD94B202804B0B8007A1881 /* ZippyFontDecoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD94B1F2804B0B8007A1881 /* ZippyFontDecoding.swift */; };
 		4ADFAE4923E4A0760049F57A /* QuickAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADFAE4823E4A0760049F57A /* QuickAlert.swift */; };
 		4AE168A626091CA900A6169B /* LayoutEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE168A526091CA900A6169B /* LayoutEditorViewController.swift */; };
 		4AE2CF3B2631F43100CC6CF7 /* SplitsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE2CF3A2631F43100CC6CF7 /* SplitsComponent.swift */; };
@@ -299,6 +300,7 @@
 		4AD44AD6262F40E3003375C4 /* KeyValueComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyValueComponent.swift; sourceTree = "<group>"; };
 		4AD44ADA262F463C003375C4 /* KeyValueComponent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KeyValueComponent.xib; sourceTree = "<group>"; };
 		4AD44ADE262F4CFB003375C4 /* TitleComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleComponent.swift; sourceTree = "<group>"; };
+		4AD94B1F2804B0B8007A1881 /* ZippyFontDecoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZippyFontDecoding.swift; sourceTree = "<group>"; };
 		4ADFAE4823E4A0760049F57A /* QuickAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickAlert.swift; sourceTree = "<group>"; };
 		4AE168A526091CA900A6169B /* LayoutEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutEditorViewController.swift; sourceTree = "<group>"; };
 		4AE2CF3A2631F43100CC6CF7 /* SplitsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitsComponent.swift; sourceTree = "<group>"; };
@@ -497,6 +499,7 @@
 			isa = PBXGroup;
 			children = (
 				4A74D4EC25EE9DD700A3D9C7 /* SplitterRun.swift */,
+				4AD94B1F2804B0B8007A1881 /* ZippyFontDecoding.swift */,
 				4A20C46626406D4800307993 /* SplitterTimer.swift */,
 				4A3F989825EFDB0800B2B955 /* CodableLayout.swift */,
 			);
@@ -1251,6 +1254,7 @@
 				4A44FF4F24E9A9E60083013A /* SplitsIOUpload.swift in Sources */,
 				4ACCEA7823B02F520068F89E /* TimeSplit.swift in Sources */,
 				4A5C1D1523F4AFB80014E8D3 /* CommonPaths.swift in Sources */,
+				4AD94B202804B0B8007A1881 /* ZippyFontDecoding.swift in Sources */,
 				4AF953B523EB503100ED540C /* Timer Functions.swift in Sources */,
 				4A1657B523EA5C320008CB5F /* Icon Actions.swift in Sources */,
 				4A74D4ED25EE9DD700A3D9C7 /* SplitterRun.swift in Sources */,
