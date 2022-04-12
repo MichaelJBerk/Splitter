@@ -164,7 +164,10 @@ class ViewController: NSViewController {
 	var hotkeysController: HotkeysViewController?
 	
 	@objc func breakFunc() {
-		
+		let state = run.layout.stateAsJson(run.timer.lsTimer)
+		let pasteboard = NSPasteboard.general
+		pasteboard.declareTypes([.string], owner: nil)
+		pasteboard.setString(state, forType: .string)
 	}
 	
 	func debugPrintSplitsEditor() {
@@ -287,6 +290,8 @@ class ViewController: NSViewController {
 		addComponent(.totalPlaytime)
 		hideComponent()
 		addComponent(.segment)
+		hideComponent()
+		addComponent(.possibleTimeSave)
 		hideComponent()
 	}
 	///Handles various window-related tasks
@@ -441,6 +446,8 @@ class ViewController: NSViewController {
 			setupKeyValueComponent(key: .totalPlaytime)
 		case .segment:
 			setupKeyValueComponent(key: .currentSegment)
+		case .possibleTimeSave:
+			setupKeyValueComponent(key: .possibleTimeSave)
 		}
 	}
 	

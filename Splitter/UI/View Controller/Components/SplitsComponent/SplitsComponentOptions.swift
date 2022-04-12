@@ -62,12 +62,12 @@ extension SplitsComponent {
 		}
 		showHeaderButton.state = .init(bool: showHeader)
 		d.addArrangedSubview(showHeaderButton)
-		let hasVScrollButton = ComponentOptionsButton(checkboxWithTitle: "Show Vertical Scroll", clickAction: { _ in
+		let hasVScrollButton = ComponentOptionsButton(checkboxWithTitle: "Vertical Scroll Bar", clickAction: { _ in
 			self.hasVerticalScroller.toggle()
 		})
 		hasVScrollButton.state = .init(bool: hasVerticalScroller)
 		
-		let hasHScrollButton = ComponentOptionsButton(checkboxWithTitle: "Show Horizontal Scroll", clickAction: { _ in
+		let hasHScrollButton = ComponentOptionsButton(checkboxWithTitle: "Horizontal Scroll Bar", clickAction: { _ in
 			self.hasHorizontalScroller.toggle()
 		})
 		hasHScrollButton.state = .init(bool: hasHorizontalScroller)

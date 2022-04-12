@@ -18,6 +18,7 @@ enum SplitterComponentType: Int, Codable, CaseIterable {
 	case previousSegment
 	case totalPlaytime
 	case segment
+	case possibleTimeSave
 	
 	var displayTitle: String {
 		switch self {
@@ -41,6 +42,8 @@ enum SplitterComponentType: Int, Codable, CaseIterable {
 			return "Total Playtime"
 		case .segment:
 			return "Current Segment"
+		case .possibleTimeSave:
+			return "Possible Time Save"
 		}
 		
 	}
@@ -66,6 +69,8 @@ enum SplitterComponentType: Int, Codable, CaseIterable {
 		case .totalPlaytime:
 			return KeyValueComponent.self
 		case .segment:
+			return KeyValueComponent.self
+		case .possibleTimeSave:
 			return KeyValueComponent.self
 		}
 	}
@@ -94,6 +99,8 @@ enum SplitterComponentType: Int, Codable, CaseIterable {
 				return .totalPlaytime
 			case .currentSegment:
 				return .segment
+			case .possibleTimeSave:
+				return .possibleTimeSave
 			default:
 				return nil
 			}

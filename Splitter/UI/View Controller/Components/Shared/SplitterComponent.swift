@@ -102,7 +102,7 @@ extension SplitterComponent {
 			self.afterSpacing = CGFloat(Double(spacingSetting.stringValue) ?? Double(self.defaultAfterSpacing))
 		})
 		
-		let spacingLabel = NSTextField(labelWithString: "Spacing (After)")
+		let spacingLabel = NSTextField(labelWithString: "Spacing (Below)")
 		let resetButton = ComponentOptionsButton(title: "Reset", clickAction: { _ in
 			spacingSetting.stringValue = "\(self.defaultAfterSpacing)"
 			self.afterSpacing = self.defaultAfterSpacing

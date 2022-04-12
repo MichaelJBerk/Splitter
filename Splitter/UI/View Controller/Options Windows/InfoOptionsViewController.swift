@@ -131,6 +131,11 @@ class InfoOptionsViewController: NSViewController, NSPopoverDelegate, NSTextFiel
 		run.region = regionField.stringValue
 	}
 	
+	@IBAction func clickComparisionHelpButton(_ sender: NSButton) {
+		let comparisonHelpURL = URL(string: "https://github.com/MichaelJBerk/Splitter/wiki/Comparisons")!
+		NSWorkspace.shared.open(comparisonHelpURL)
+	}
+	
 }
 
 class OnlyIntegerValueFormatter: NumberFormatter {

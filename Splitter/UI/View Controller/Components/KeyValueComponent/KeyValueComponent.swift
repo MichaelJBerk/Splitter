@@ -17,9 +17,6 @@ class KeyValueComponent: NSStackView, SplitterComponent, NibLoadable {
 	internal override func awakeAfter(using coder: NSCoder) -> Any? {
 		return instantiateView() // You need to add this line to load view
 	}
-	var component: CKeyValueComponent {
-		run.codableLayout.components[componentIndex] as! CKeyValueComponent
-	}
 	
 	static func instantiateView(with run: SplitterRun, _ viewController: ViewController, type: KeyValueComponentType, layoutIndex: Int) -> KeyValueComponent {
 		let row: KeyValueComponent = KeyValueComponent.instantiateView()
@@ -45,8 +42,10 @@ class KeyValueComponent: NSStackView, SplitterComponent, NibLoadable {
 	}
 	
 	func updateFields() {
-		keyField.stringValue = component.key
-		textField.stringValue = component.value
+		let state = run.getLayoutState()
+		let kvs = state.componentAsKeyValue(componentIndex)
+		keyField.stringValue = kvs.key()
+		textField.stringValue = kvs.value()
 	}
 	
 	var viewController: ViewController!
@@ -68,6 +67,7 @@ enum KeyValueComponentType: String, Codable, CaseIterable {
 	case previousSegment = "Previous Segment"
 	case totalPlaytime = "Total Playtime"
 	case currentSegment = "Segment Time"
+	case possibleTimeSave = "Possible Time Save"
 	
 	var componentType: SplitterComponentType{
 		switch self {
@@ -79,6 +79,8 @@ enum KeyValueComponentType: String, Codable, CaseIterable {
 			return .totalPlaytime
 		case .currentSegment:
 			return .segment
+		case .possibleTimeSave:
+			return .possibleTimeSave
 		}
 	}
 	
@@ -94,6 +96,10 @@ enum KeyValueComponentType: String, Codable, CaseIterable {
 		}
 		if str == "Current Segment" {
 			self = .currentSegment
+			return
+		}
+		if str == "Possible Time Save" {
+			self = .possibleTimeSave
 			return
 		}
 		throw DecodingError.typeMismatch(Self.Type.self, .init(codingPath: decoder.codingPath, debugDescription: "Can't decode"))

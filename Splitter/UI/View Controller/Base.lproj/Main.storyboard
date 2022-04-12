@@ -650,7 +650,7 @@
             <objects>
                 <viewController storyboardIdentifier="infoTab" id="9EP-rl-sc4" customClass="InfoOptionsViewController" customModule="Splitter" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" appearanceType="darkAqua" id="cPU-ko-LXl">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="295"/>
+                        <rect key="frame" x="0.0" y="0.0" width="469" height="295"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VKN-jr-XfS">
@@ -708,7 +708,7 @@
                                 </textFieldCell>
                             </textField>
                             <box horizontalHuggingPriority="244" verticalHuggingPriority="750" boxType="separator" id="Efz-7h-PqV">
-                                <rect key="frame" x="255" y="108" width="175" height="5"/>
+                                <rect key="frame" x="255" y="108" width="194" height="5"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                             </box>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Pxz-j7-fn4">
@@ -729,7 +729,7 @@ To remove, click and press backspace. </string>
                                 <imageCell key="cell" selectable="YES" editable="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" id="sUd-0Q-URE"/>
                             </imageView>
                             <textField toolTip="Game Title" verticalHuggingPriority="750" verifyAmbiguity="off" id="UXc-S9-jFn">
-                                <rect key="frame" x="255" y="254" width="175" height="21"/>
+                                <rect key="frame" x="255" y="254" width="194" height="21"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="GMu-GZ-I0O">
                                     <font key="font" metaFont="system"/>
@@ -738,7 +738,7 @@ To remove, click and press backspace. </string>
                                 </textFieldCell>
                             </textField>
                             <textField toolTip="Speedrun Category (i.e. Any %)" verticalHuggingPriority="750" verifyAmbiguity="off" id="XqK-XY-ils">
-                                <rect key="frame" x="255" y="227" width="175" height="21"/>
+                                <rect key="frame" x="255" y="227" width="194" height="21"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="8xO-mB-dqj">
                                     <font key="font" metaFont="system"/>
@@ -747,7 +747,7 @@ To remove, click and press backspace. </string>
                                 </textFieldCell>
                             </textField>
                             <textField toolTip="Number of times this run has been attempted " verticalHuggingPriority="750" verifyAmbiguity="off" textCompletion="NO" id="xtG-uJ-IZa">
-                                <rect key="frame" x="255" y="200" width="175" height="21"/>
+                                <rect key="frame" x="255" y="200" width="194" height="21"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="zfc-Nr-qcx">
                                     <font key="font" metaFont="system"/>
@@ -759,7 +759,7 @@ To remove, click and press backspace. </string>
                                 </textFieldCell>
                             </textField>
                             <textField toolTip="Platform the game is being played on" verticalHuggingPriority="750" verifyAmbiguity="off" id="26X-Fy-Txf">
-                                <rect key="frame" x="255" y="173" width="175" height="21"/>
+                                <rect key="frame" x="255" y="173" width="194" height="21"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="Pk3-fq-DK4">
                                     <font key="font" metaFont="system"/>
@@ -768,7 +768,7 @@ To remove, click and press backspace. </string>
                                 </textFieldCell>
                             </textField>
                             <textField toolTip="Version of the game being played (i.e. 1.3.0)" verticalHuggingPriority="750" verifyAmbiguity="off" id="WAV-8P-f9h">
-                                <rect key="frame" x="255" y="146" width="175" height="21"/>
+                                <rect key="frame" x="255" y="146" width="194" height="21"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="N7c-x2-gbT">
                                     <font key="font" metaFont="system"/>
@@ -777,7 +777,7 @@ To remove, click and press backspace. </string>
                                 </textFieldCell>
                             </textField>
                             <textField toolTip="Regional version of the game being played (i.e. &quot;USA&quot;)" verticalHuggingPriority="750" verifyAmbiguity="off" id="18O-lk-nAH">
-                                <rect key="frame" x="255" y="117" width="175" height="21"/>
+                                <rect key="frame" x="255" y="117" width="194" height="21"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="oAh-Hl-ZOu">
                                     <font key="font" metaFont="system"/>
@@ -786,7 +786,7 @@ To remove, click and press backspace. </string>
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" id="ZDM-Af-2gD">
-                                <rect key="frame" x="255" y="81" width="175" height="21"/>
+                                <rect key="frame" x="255" y="81" width="194" height="21"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <textFieldCell key="cell" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" id="mGP-4l-MB3">
                                     <font key="font" usesAppearanceFont="YES"/>
@@ -798,7 +798,7 @@ To remove, click and press backspace. </string>
                                 </connections>
                             </textField>
                             <popUpButton verticalHuggingPriority="750" id="GlP-0u-pYJ">
-                                <rect key="frame" x="252" y="49" width="182" height="25"/>
+                                <rect key="frame" x="252" y="49" width="176" height="25"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <popUpButtonCell key="cell" type="push" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" id="rhf-li-3jS">
                                     <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
@@ -815,6 +815,17 @@ To remove, click and press backspace. </string>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
+                            <button horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bQs-5d-MgI">
+                                <rect key="frame" x="426" y="49" width="25" height="25"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Dtr-FF-2gi">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="clickComparisionHelpButton:" target="9EP-rl-sc4" id="8Ng-d5-p7O"/>
+                                </connections>
+                            </button>
                         </subviews>
                     </view>
                     <connections>
@@ -831,7 +842,7 @@ To remove, click and press backspace. </string>
                 </viewController>
                 <customObject id="MnP-yl-mgH" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="668" y="890.5"/>
+            <point key="canvasLocation" x="677.5" y="890.5"/>
         </scene>
     </scenes>
 </document>

@@ -44,31 +44,7 @@ class SplitterRun: NSObject {
 	
 	private var layoutSettings: CodableLayoutSettings!
 	
-	static func heyF() {
-		var layout = Layout.defaultLayout()
-		let run = Run()
-		run.pushSegment(.init("hey"))
-		let timer = LSTimer(run)!
-		let editor = LayoutEditor(layout)!
-		let sv = SettingValue.fromBool(true)
-		editor.select(1)
-		editor.setComponentSettingsValue(13, sv)
-		layout = editor.close()
-		
-		let state = layout.state(timer)
-		layout.updateState(state, timer)
-		let state2 = layout.state(timer)
-		let splits = state2.componentAsSplits(1)
-		let name = splits.columnLabel(1)
-		print(name)
-		
-		let pasteboard = NSPasteboard.general
-		pasteboard.declareTypes([.string], owner: nil)
-		pasteboard.setString(layout.stateAsJson(timer), forType: .string)
-	}
-	
 	init(run: Run, isNewRun: Bool = false) {
-		Self.heyF()
 		var vRun: Run = run
 		//LiveSplit-Core runs need to have at least one segment, so if there's a new run, we need to add a blank segment.
 		if isNewRun == true || run.len() == 0 {
@@ -220,6 +196,9 @@ class SplitterRun: NSObject {
 		case .segment:
 			compToAdd = SegmentTimeComponent().intoGeneric()
 			stringToCheck = KeyValueComponentType.currentSegment.rawValue
+		case .possibleTimeSave:
+			compToAdd = PossibleTimeSaveComponent().intoGeneric()
+			stringToCheck = KeyValueComponentType.possibleTimeSave.rawValue
 		default:
 			return nil
 		}
@@ -236,6 +215,11 @@ class SplitterRun: NSObject {
 			if index == nil {
 				index = editor.state().componentLen()
 				editor.addComponent(compToAdd)
+				if component == .possibleTimeSave {
+					editor.select(index!)
+					let val = SettingValue.fromBool(true)
+//					editor.setComponentSettingsValue(3, val)
+				}
 			}
 		})
 		return index

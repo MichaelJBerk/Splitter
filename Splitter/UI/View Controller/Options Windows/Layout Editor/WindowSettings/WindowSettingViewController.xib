@@ -21,12 +21,11 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView translatesAutoresizingMaskIntoConstraints="NO" id="BAo-jR-8l9">
-            <rect key="frame" x="0.0" y="0.0" width="278" height="168"/>
+            <rect key="frame" x="0.0" y="0.0" width="325" height="168"/>
             <subviews>
                 <gridView xPlacement="leading" yPlacement="bottom" rowAlignment="none" translatesAutoresizingMaskIntoConstraints="NO" id="DzS-Dh-TU7">
-                    <rect key="frame" x="0.0" y="0.0" width="278" height="168"/>
+                    <rect key="frame" x="0.0" y="0.0" width="325" height="168"/>
                     <constraints>
-                        <constraint firstAttribute="width" constant="278" id="1Um-4m-BPA"/>
                         <constraint firstAttribute="height" constant="168" id="jNc-oA-8mE"/>
                     </constraints>
                     <rows>
@@ -36,7 +35,7 @@
                         <gridRow id="oXc-L7-FpH"/>
                     </rows>
                     <columns>
-                        <gridColumn width="246" id="8ff-ag-yNI"/>
+                        <gridColumn width="299" id="8ff-ag-yNI"/>
                         <gridColumn id="ZcF-dk-wj0"/>
                     </columns>
                     <gridCells>
@@ -51,7 +50,7 @@
                         </gridCell>
                         <gridCell row="G2P-jX-NmL" column="ZcF-dk-wj0" id="rhY-ib-Ksz">
                             <button key="contentView" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Dfg-FX-xg9" customClass="HelpButton" customModule="Splitter" customModuleProvider="target">
-                                <rect key="frame" x="249" y="138" width="25" height="25"/>
+                                <rect key="frame" x="302" y="138" width="25" height="25"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="G91-LA-Wsm">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -69,7 +68,7 @@
                         </gridCell>
                         <gridCell row="Rw5-rH-fmd" column="ZcF-dk-wj0" id="EtL-Ww-ZW1">
                             <button key="contentView" horizontalHuggingPriority="750" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="7Pw-Ip-xz7" customClass="HelpButton" customModule="Splitter" customModuleProvider="target">
-                                <rect key="frame" x="249" y="100" width="25" height="25"/>
+                                <rect key="frame" x="302" y="100" width="25" height="25"/>
                                 <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="WWg-Go-gcS">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -88,7 +87,7 @@
                         <gridCell row="tfI-De-XIQ" column="ZcF-dk-wj0" id="88x-hF-UiS"/>
                         <gridCell row="oXc-L7-FpH" column="8ff-ag-yNI" id="Ug3-v2-MAC">
                             <textField key="contentView" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="CcX-US-VNH">
-                                <rect key="frame" x="-2" y="0.0" width="250" height="48"/>
+                                <rect key="frame" x="-2" y="0.0" width="303" height="32"/>
                                 <textFieldCell key="cell" title="Note: These settings will be saved to this file, and will take effect whenever the file is opened. " id="K0g-8F-Yqh">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -106,7 +105,7 @@
                 <constraint firstItem="DzS-Dh-TU7" firstAttribute="top" secondItem="BAo-jR-8l9" secondAttribute="top" id="qz6-Vk-JmD"/>
                 <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="DzS-Dh-TU7" secondAttribute="bottom" id="zmS-xf-UJC"/>
             </constraints>
-            <point key="canvasLocation" x="-191" y="116"/>
+            <point key="canvasLocation" x="-203.5" y="116"/>
         </customView>
     </objects>
 </document>

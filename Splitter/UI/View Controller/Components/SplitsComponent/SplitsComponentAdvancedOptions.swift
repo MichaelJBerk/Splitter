@@ -87,12 +87,9 @@ class SplitsComponentAdvancedOptions: NSViewController, NSTextFieldDelegate {
 		plusMinusStack.addArrangedSubview(plusButton)
 		plusMinusStack.addArrangedSubview(minusButton)
 		
-		//TODO: Make help page on Github, explaining what the different column options do
 		let helpButton = ComponentOptionsButton(title: "", clickAction: {_ in
-			let alert = NSAlert()
-			alert.messageText = "Column options help will be implemented in a future build"
-			alert.addButton(withTitle: "OK")
-			alert.beginSheetModal(for: self.view.window!)
+			let url = URL(string: "https://github.com/MichaelJBerk/Splitter/wiki/Splitter-Column-Settings")!
+			NSWorkspace.shared.open(url)
 		})
 		helpButton.bezelStyle = .helpButton
 		helpButton.setButtonType(.momentaryPushIn)
