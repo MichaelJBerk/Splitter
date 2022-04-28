@@ -33,17 +33,5 @@ class FileTests: XCTestCase {
         // Use XCTAssert and related functions to verify your tests produce the correct results.
     }
 	
-	func testSegTitle() {
-		
-		let untitled20Window = XCUIApplication().windows["Untitled 20"]
-		let splittitlecellTextField = untitled20Window/*@START_MENU_TOKEN@*/.tables.textFields["SplitTitleCell"]/*[[".scrollViews.tables",".tableRows",".cells.textFields[\"SplitTitleCell\"]",".textFields[\"SplitTitleCell\"]",".tables"],[[[-1,4,1],[-1,0,1]],[[-1,3],[-1,2],[-1,1,2]],[[-1,3],[-1,2]]],[0,0]]@END_MENU_TOKEN@*/
-		splittitlecellTextField.click()
-		splittitlecellTextField.doubleClick()
-		
-		let gameControllerCell = untitled20Window/*@START_MENU_TOKEN@*/.tables.cells.containing(.image, identifier:"Game Controller").element/*[[".scrollViews.tables",".tableRows.cells.containing(.image, identifier:\"Game Controller\").element",".cells.containing(.image, identifier:\"Game Controller\").element",".tables"],[[[-1,3,1],[-1,0,1]],[[-1,2],[-1,1]]],[0,0]]@END_MENU_TOKEN@*/
-		gameControllerCell.typeKey(.delete, modifierFlags:[])
-		gameControllerCell.typeText("hkhkjh")
-		
-	}
 
 }
