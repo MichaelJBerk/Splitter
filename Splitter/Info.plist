@@ -95,7 +95,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>$(CURRENT_PROJECT_VERSION)</string>
+	<string>280</string>
 	<key>INIntentsSupported</key>
 	<array>
 		<string>SplitRunIntent</string>
