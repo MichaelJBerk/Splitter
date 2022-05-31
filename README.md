@@ -42,13 +42,15 @@ In addition to the Splitter-native `.split` format, the app can edit and save th
 Note that some features (such as appearance and color settings) are only saved to a `.split` file. As such, if you don't want to have to set them every time you open the file, it's recommended to save the file as `.split` (by clicking "File" -> "Save as..." in the menubar). If you need to need to share it with someone who isn't using Splitter, just open the `.split` file, and save it in whatever other format works best.  
 	
 ## Building Splitter
+
 If you want to build Splitter yourself:
+- Install CocoaPods if you don't already have it installed
 - Clone this repo
 - run `pod install` in the project's root directory
-	- If prompted for keys, just type in whatever you like and press enter. It won't make a difference to you
 - Open Splitter.xcworkspace in Xcode
 
-Note that you'll need to have Cocoapods and Cocoapods-keys installed to build the project
+In order for certain features to work - namely Splits.io authentications, and beta updates via Sparkle - you'll need to replace the keys in `Config.xcconfig` with your own personal keys - see that file for more info.
+
 
 ### Acknowledgements
 [LiveSplit Core](https://github.com/LiveSplit/livesplit-core)

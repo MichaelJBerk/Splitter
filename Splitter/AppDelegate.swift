@@ -10,7 +10,6 @@ import Cocoa
 import Preferences
 import AppCenterAnalytics
 import AppCenterCrashes
-import Keys
 import Files
 import SwiftUI
 import SplitsIOKit
@@ -29,7 +28,22 @@ public static let build = Bundle.main.infoDictionary?["CFBundleVersion"] as! Str
 class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 	@IBOutlet private var window: NSWindow!
 	
-	static var splitsIOAuth = SplitsIOAuth(client: SplitterKeys().splitsioclient, secret: SplitterKeys().splitsiosecret, redirects: "splitter://login", url: Settings.splitsIOURL.absoluteString)
+	static func getFromInfo(key: String) -> String? {
+		return Bundle.main.object(forInfoDictionaryKey: key) as? String
+	}
+	
+	static var splitsioclient: String {
+		getFromInfo(key: "splitsioclient")!
+	}
+	static var splitsiosecret: String {
+		getFromInfo(key: "splitsiosecret")!
+	}
+	
+	static var appcenterkey: String {
+		getFromInfo(key: "appcenterkey")!
+	}
+	
+	static var splitsIOAuth = SplitsIOAuth(client: splitsioclient, secret: splitsiosecret, redirects: "splitter://login", url: Settings.splitsIOURL.absoluteString)
 	public static var splitsIOKit = SplitsIOKit(auth: splitsIOAuth, url: Settings.splitsIOURL)
 	
 	public var hotkeyController: HotkeysViewController?
@@ -157,8 +171,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 		#if !DEBUG
 		
 		Crashes.delegate = self
-		let keys = SplitterKeys()
-		AppCenter.start(withAppSecret: "\(keys.appCenter)", services:[
+		AppCenter.start(withAppSecret: "\(Self.appcenterkey)", services:[
 			Analytics.self,
 			Crashes.self
 		])
@@ -236,12 +249,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 	//MARK: -
 	func openSearchWindow() {
 		let board = NSStoryboard(name: "DownloadWindow", bundle: nil).instantiateController(withIdentifier: "windowController") as? DownloadWindowController
-        if self.searchWindow == nil, let win = board?.window {
-            self.searchWindow = win
-            win.makeKeyAndOrderFront(nil)
-        } else {
-            self.searchWindow.makeKeyAndOrderFront(nil)
-        }
+		if self.searchWindow == nil, let win = board?.window {
+			self.searchWindow = win
+			win.makeKeyAndOrderFront(nil)
+		} else {
+			self.searchWindow.makeKeyAndOrderFront(nil)
+		}
 	}
 
 	#if DEBUG

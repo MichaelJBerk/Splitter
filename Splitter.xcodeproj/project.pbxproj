@@ -130,6 +130,7 @@
 		4AE168A626091CA900A6169B /* LayoutEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE168A526091CA900A6169B /* LayoutEditorViewController.swift */; };
 		4AE2CF3B2631F43100CC6CF7 /* SplitsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE2CF3A2631F43100CC6CF7 /* SplitsComponent.swift */; };
 		4AE7437E268CF2AC003629B4 /* SplitterColorWell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE7437D268CF2AC003629B4 /* SplitterColorWell.swift */; };
+		4AE7E2B02845B91500716CF3 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4AE7E2AF2845B88E00716CF3 /* Config.xcconfig */; };
 		4AE82A1624BFD4400044B6D3 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE82A1524BFD4400044B6D3 /* WelcomeView.swift */; };
 		4AEA331B2629F024001012BD /* TimeRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AEA331A2629F023001012BD /* TimeRow.xib */; };
 		4AEA927E23C4EF32004F6CF9 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEA927D23C4EF32004F6CF9 /* MainWindowController.swift */; };
@@ -300,6 +301,7 @@
 		4AE168A526091CA900A6169B /* LayoutEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutEditorViewController.swift; sourceTree = "<group>"; };
 		4AE2CF3A2631F43100CC6CF7 /* SplitsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitsComponent.swift; sourceTree = "<group>"; };
 		4AE7437D268CF2AC003629B4 /* SplitterColorWell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterColorWell.swift; sourceTree = "<group>"; };
+		4AE7E2AF2845B88E00716CF3 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		4AE82A1524BFD4400044B6D3 /* WelcomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		4AEA331A2629F023001012BD /* TimeRow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeRow.xib; sourceTree = "<group>"; };
 		4AEA927D23C4EF32004F6CF9 /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
@@ -504,6 +506,7 @@
 		4A230E8623B00A1D00959C57 = {
 			isa = PBXGroup;
 			children = (
+				4AE7E2AF2845B88E00716CF3 /* Config.xcconfig */,
 				4A214A64255C8FB30006FD9F /* SplitsIOKit */,
 				4A230E9123B00A1D00959C57 /* Splitter */,
 				4A71054A24BE267300FA9127 /* SplitterTests */,
@@ -1010,6 +1013,7 @@
 				4A01B803268631FC00F15A50 /* SplitsEditorViewController.xib in Resources */,
 				4AC0E3A62767B3F3004D71D6 /* GeneralPrefsViewController.xib in Resources */,
 				4A0981A724E34DE400E44792 /* AccountButtonView.xib in Resources */,
+				4AE7E2B02845B91500716CF3 /* Config.xcconfig in Resources */,
 				4A05EEFD24D762E200873D07 /* DownloadWindow.storyboard in Resources */,
 				4A230E9C23B00A1E00959C57 /* Main.storyboard in Resources */,
 				4A56138A262CFB8900702B0E /* OptionsRow.xib in Resources */,
@@ -1342,6 +1346,7 @@
 /* Begin XCBuildConfiguration section */
 		4A230E9F23B00A1E00959C57 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4AE7E2AF2845B88E00716CF3 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;

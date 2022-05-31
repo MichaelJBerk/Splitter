@@ -20,19 +20,3 @@ platform :osx, '10.14'
   target 'SplitterUITests' do 
     splitter_pods
   end
-  	
-# target 'SplitterTests' do
-# 	 inherit! :search_paths
-# end
-
-plugin 'cocoapods-keys', {
-  :project => "Splitter",
-  :target => ["Splitter", "SplitterTests", "SplitterUITests"],
-  :keys => [
-    "AppCenter",
-    "edKey",
-    "splitsiosecret",
-    "splitsioclient"
-  ]
-}
-# end

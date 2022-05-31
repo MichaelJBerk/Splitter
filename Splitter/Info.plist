@@ -219,5 +219,11 @@
 			</dict>
 		</dict>
 	</array>
+	<key>appcenterkey</key>
+	<string>$(ENV_APPCENTER_KEY)</string>
+	<key>splitsioclient</key>
+	<string>$(ENV_SIO_SECRET)</string>
+	<key>splitsiosecret</key>
+	<string>$(ENV_SIO_CLIENT)</string>
 </dict>
 </plist>
