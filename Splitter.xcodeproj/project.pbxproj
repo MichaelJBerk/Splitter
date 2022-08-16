@@ -1715,7 +1715,7 @@
 			repositoryURL = "https://github.com/JohnSundell/Files";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 4.1.1;
+				minimumVersion = 4.2.0;
 			};
 		};
 		4AFD0F8725C38F4C003D3171 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */ = {
