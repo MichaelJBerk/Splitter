@@ -349,7 +349,7 @@ class ViewController: NSViewController {
 			undoManager?.endUndoGrouping()
 			
 			stopTimer()
-			self.splitsTableView.reloadData(forRowIndexes: IndexSet(arrayLiteral: 0), columnIndexes: IndexSet(arrayLiteral: 0,1,2,3,4,5))
+			self.splitsTableView.reloadData(forRowIndexes: IndexSet(arrayLiteral: 0), columnIndexes: IndexSet(columnArray()))
 			
 			if !(undoManager?.isUndoRegistrationEnabled ?? true) {
 				undoManager?.enableUndoRegistration()

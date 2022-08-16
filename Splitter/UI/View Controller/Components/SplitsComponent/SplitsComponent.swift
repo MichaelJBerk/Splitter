@@ -138,17 +138,17 @@ class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent {
 			let scrollView = notification.object as! SplitsComponent
 
 			let range = scrollView.splitsTableView.rows(in: scrollView.splitsTableView.visibleRect)
-			for i  in range.lowerBound..<range.upperBound  {
+			for i in range.lowerBound..<range.upperBound  {
 				let rowView = scrollView.splitsTableView.rowView(atRow: i, makeIfNecessary: false) as! SplitterRowView
 				
 				let header = scrollView.splitsTableView.headerView
 				let p = header!.convert(NSPoint(x: 0, y: header!.frame.minY), to: rowView)
-
-				if p.y >= 0 {
-					rowView.isHidden = true
-				} else {
-					rowView.isHidden = false
-				}
+//
+//				if p.y >= 0 {
+//					rowView.isHidden = true
+//				} else {
+//					rowView.isHidden = false
+//				}
 			}
 		})
 		if #available(macOS 11.0, *) {
