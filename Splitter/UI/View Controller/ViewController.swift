@@ -316,7 +316,6 @@ class ViewController: NSViewController {
 		NSApp.mainMenu?.item(at: 0)?.submenu?.addItem(breakMI)
 		#endif
 		
-		setMenuItemEnabled(item: timerStopItem, enabled: false)
 		setRightClickMenus()
 	}
 	
@@ -329,7 +328,6 @@ class ViewController: NSViewController {
 	}
 	private func addSplitChangedObserver() {
 		NotificationCenter.default.addObserver(forName: .splitChanged, object: run.timer, queue: nil, using: { notification in
-			self.updateSkipItem()
 			self.updateButtonTitles()
 		})
 	}
@@ -344,17 +342,10 @@ class ViewController: NSViewController {
 	}
 	
 	private func timerStateChanged(timerState: TimerState) {
-		updateSkipItem()
-		let prevSplitItem = view.window?.menu?.item(withIdentifier: menuIdentifiers.runMenu.back)
 		if timerState == .stopped {
-			setMenuItemEnabled(item: timerStopItem, enabled: false)
 			timerStopItem?.title = "Cancel Run"
 			startSplitItem?.title = "Start Timer"
 			
-			setMenuItemEnabled(item: startSplitItem, enabled: true)
-			setMenuItemEnabled(item: prevSplitItem, enabled: false)
-			setMenuItemEnabled(item: skipSplitMenuitem, enabled: false)
-			setMenuItemEnabled(item: pauseMenuItem, enabled: false)
 			undoManager?.endUndoGrouping()
 			
 			stopTimer()
@@ -365,31 +356,14 @@ class ViewController: NSViewController {
 			}
 		} else if timerState == .running {
 			timerStopItem?.title = "Cancel Run"
-			setMenuItemEnabled(item: timerStopItem, enabled: true)
 			startSplitItem?.title = "Split"
-			setMenuItemEnabled(item: startSplitItem, enabled: true)
-			setMenuItemEnabled(item: prevSplitItem, enabled: true)
-			if let cs = run.currentSplit, cs < run.segmentCount - 1, run.segmentCount > 1 {
-				setMenuItemEnabled(item: skipSplitMenuitem, enabled: true)
-			} else {
-				setMenuItemEnabled(item: skipSplitMenuitem, enabled: false)
-			}
-			setMenuItemEnabled(item: pauseMenuItem, enabled: true)
 			pauseMenuItem?.title = "Pause Timer"
 			
 			touchBarDelegate.startSplitTitle = run.nextButtonTitle
 			
 		} else if timerState == .paused {
-			setMenuItemEnabled(item: timerStopItem, enabled: true)
 			timerStopItem?.title = "Cancel Run"
-			setMenuItemEnabled(item: prevSplitItem, enabled: false)
-			setMenuItemEnabled(item: skipSplitMenuitem, enabled: false)
-			setMenuItemEnabled(item: pauseMenuItem, enabled: true)
-			
 			pauseMenuItem?.title = "Resume Timer"
-			
-			
-			setMenuItemEnabled(item: startSplitItem, enabled: false)
 		}
 		touchBarDelegate.enableDisableButtons()
 	}
@@ -562,13 +536,6 @@ class ViewController: NSViewController {
 		runTitleField.stringValue = run.title
 		categoryField.stringValue = run.subtitle
 		attemptField.stringValue = "\(run.attempts)"
-	}
-	
-	
-	func setMenuItemEnabled(item: NSMenuItem?, enabled: Bool) {
-		if let id = item?.identifier {
-			enabledMenuItems[id] = enabled
-		}
 	}
 	
 	var gameToViewEdgeConstraint: NSLayoutConstraint?

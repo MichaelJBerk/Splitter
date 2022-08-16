@@ -13,6 +13,9 @@ import Preferences
 extension ViewController {
 	//MARK: - Actions for the Menu Bar
 	
+	
+	
+	
 	@IBAction func hotkeysMenuItem(_ sender: Any?) {
 		if let app = NSApp.delegate as? AppDelegate {
 			app.preferencesWindowController.show(preferencePane: Preferences.PaneIdentifier.hotkeys)
@@ -100,20 +103,6 @@ extension AppDelegate {
 		NSWorkspace.shared.open(url)
 	}
 }
-extension ViewController {
-	//MARK: - Other Menu Item Stuff
-	
-	///Updates the "Skip Split" menu item
-	func updateSkipItem() {
-		if let currentSplit = self.run.timer.currentSplit {
-			var enabled = true
-			if currentSplit >= self.run.segmentCount - 1 {
-				enabled = false
-			}
-			setMenuItemEnabled(item: skipSplitMenuitem, enabled: enabled)
-		}
-	}
-}
 
 extension ViewController: NSMenuItemValidation {
 	///Sets which menu items should be enabled
@@ -133,6 +122,19 @@ extension ViewController: NSMenuItemValidation {
 					return true
 				}
 				return false
+			case menuIdentifiers.runMenu.StartSplit:
+				return timerState != .paused
+			case menuIdentifiers.runMenu.pause,
+				menuIdentifiers.runMenu.stop:
+				return timerState != .stopped
+			case menuIdentifiers.runMenu.back:
+				return timerState == .running
+			case menuIdentifiers.runMenu.skipSplit:
+				if timerState == .running, let cs = run.currentSplit, cs < run.segmentCount - 1, run.segmentCount > 1 {
+					return true
+				} else {
+					return false
+				}
 			default:
 				break
 			}
