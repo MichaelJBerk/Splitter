@@ -15,8 +15,8 @@ class SplitterTableView: NSTableView {
 		var adjRect = newVisible
 		var h = adjRect.origin.y
 		let amount: CGFloat = 31
-		
-		if (h+28).truncatingRemainder(dividingBy: amount) != 0 {
+		let headerHeight = self.headerView?.frame.height ?? 0
+		if (h+headerHeight).truncatingRemainder(dividingBy: amount) != 0 {
 			let mul = CGFloat(Int((h) / amount))
 			let lower = abs(mul * amount)
 			let higher = abs(mul + 1) * amount
@@ -37,7 +37,7 @@ class SplitterTableView: NSTableView {
 	/// Sets the background color for the view under the scroll bar
 	/// - Parameter cornerColor: Background color for the view under the scroll bar
 	func setCornerColor(cornerColor: NSColor) {
-		let vSize = self.headerView!.frame.size.height
+		let vSize = self.headerView?.frame.size.height ?? 0
 		let hSize = self.enclosingScrollView!.verticalScroller!.frame.size.height
 		let cRect = NSRect(x: 0, y: 0, width: hSize, height: vSize)
 		
@@ -68,17 +68,19 @@ class SplitterTableView: NSTableView {
 	///   - textColor: Color for the header's text
 	///   - bgColor: Background color for the header
 	func setHeaderColor(textColor: NSColor, bgColor: NSColor) {
-		for c in self.tableColumns {
-			if !c.isHidden {
-				let headerStr = c.headerCell.stringValue
-				let head = SplitterTableHeaderCell(textCell: headerStr)
-				head.drawsBackground = true
-				head.backgroundColor = .clear
-				head.backgroundStyle = .raised
-				head.tintColor = viewController.run.tableColor
-				head.textColor = textColor
-				head.attributedStringValue = NSAttributedString(string: headerStr, attributes: [.foregroundColor: textColor])
-				c.headerCell = head
+		if self.headerView != nil {
+			for c in self.tableColumns {
+				if !c.isHidden {
+					let headerStr = c.headerCell.stringValue
+					let head = SplitterTableHeaderCell(textCell: headerStr)
+					head.drawsBackground = true
+					head.backgroundColor = .clear
+					head.backgroundStyle = .raised
+					head.tintColor = viewController.run.tableColor
+					head.textColor = textColor
+					head.attributedStringValue = NSAttributedString(string: headerStr, attributes: [.foregroundColor: textColor])
+					c.headerCell = head
+				}
 			}
 		}
 	}
