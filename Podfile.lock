@@ -1,11 +1,11 @@
 PODS:
   - JJLISO8601DateFormatter (0.1.4)
   - MASShortcut (2.4.0)
-  - Sparkle (2.1.0)
-  - ZippyJSON (1.2.4):
+  - Sparkle (2.2.1)
+  - ZippyJSON (1.2.5):
     - JJLISO8601DateFormatter (= 0.1.4)
-    - ZippyJSONCFamily (= 1.2.4)
-  - ZippyJSONCFamily (1.2.4)
+    - ZippyJSONCFamily (= 1.2.5)
+  - ZippyJSONCFamily (1.2.5)
 
 DEPENDENCIES:
   - MASShortcut
@@ -23,9 +23,9 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   JJLISO8601DateFormatter: 9a5cb2f717c6a4f6a36f50b9015813b67f9f38f0
   MASShortcut: d9e4909e878661cc42877cc9d6efbe638273ab57
-  Sparkle: 7f5f6d4328458515e23272f4138e610c1fa3e32d
-  ZippyJSON: fd3ee54ad169ba2d3c2d9216222dab8c12de6ff5
-  ZippyJSONCFamily: 23021697519e64bef73263c4d4108c6811dab6e8
+  Sparkle: 6a2f272343187c1e7866a5c786a799183c2bceaa
+  ZippyJSON: 3169f08f49c796b9d3aef56c086f47275753d5ab
+  ZippyJSONCFamily: db211d72cdf5cb6767c28ed11211fab8eb5b9418
 
 PODFILE CHECKSUM: 291aaf0d76437c59487ecc5582812a8671142910
 
