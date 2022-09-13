@@ -106,6 +106,8 @@ class SplitsComponentDelegate: NSObject, NSTableViewDelegate, NSTableViewDataSou
 			imageView.run = self.run
 			if let image = run.icon(for: row) {
 				imageView.image = image
+			} else {
+				imageView.image = nil
 			}
 			imageView.setColor()
 			return cell
