@@ -111,12 +111,6 @@ class SplitsEditorViewController: NSViewController, NibLoadable {
 	///Pasteboard type for segments in the outline view
 	let segmentPasteboardType = NSPasteboard.PasteboardType(rawValue: "splitter.runSegment")
 	
-	func getSegment(_ index: Int) -> SplitsEditorRowContainer {
-		let segments = editorState.segments!
-		let seg = segments[index]
-		return SplitsEditorRowContainer(seg)
-	}
-	
 	@objc func addSegmentBelow() {
 		editor.insertSegmentBelow()
 		processIconChanges()
@@ -227,8 +221,8 @@ extension SplitsEditorViewController: NSOutlineViewDataSource {
 		// Each row has a unique identifier, referred to as `item` by the outline view
 		// item == nil means it's the "root" row of the outline view, which is not visible
 		if item == nil {
-			let segment = getSegment(index)
-			return segment
+//			let segment = getSegment(index)
+			return SplitsEditorRowContainer(index)
 		} else {
 			return -1
 		}
@@ -251,9 +245,7 @@ extension SplitsEditorViewController: NSOutlineViewDataSource {
 	//MARK: Dragging
 	func outlineView(_ outlineView: NSOutlineView, pasteboardWriterForItem item: Any) -> NSPasteboardWriting? {
 		let item = item as! SplitsEditorRowContainer
-		let segment = item.segment
-		let segs = editorState.segments!
-		guard let index = segs.firstIndex(of: segment) else {return nil}
+		let index = item.index
 		let pasteboardItem = NSPasteboardItem()
 		pasteboardItem.setString("\(index.description)", forType: segmentPasteboardType)
 		return pasteboardItem
@@ -308,12 +300,12 @@ extension SplitsEditorViewController: NSOutlineViewDataSource {
 extension SplitsEditorViewController: SplitsEditorOutlineViewDelegate {
 	
 	func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
-		if let container = item as? SplitsEditorRowContainer {
-			let item = container.segment
+		if let container = item as? SplitsEditorRowContainer,
+		   let item = editorState.segments?[container.index] {
+			let index = container.index
 			if tableColumn?.identifier == self.imageColumnIdentifier {
 				let cellIdentifier = NSUserInterfaceItemIdentifier("outlineViewImageCell")
 				let cell = outlineView.makeView(withIdentifier: cellIdentifier, owner: self) as! NSTableCellView
-				let index = editorState.segments!.firstIndex(of: item)!
 				var image: NSImage = .gameControllerIcon
 				let segments = editorState.segments!
 				if index < segmentIcons.count {
@@ -352,6 +344,8 @@ extension SplitsEditorViewController: SplitsEditorOutlineViewDelegate {
 			}
 			let tf = cell.textField as! SplitsEditorTextField
 			tf.column = tableColumn!.identifier
+			tf.row = index
+			tf.outlineView = self.outlineView
 			tf.delegate = self
 			tf.stringValue = cellText
 			return cell
@@ -419,16 +413,17 @@ extension SplitsEditorViewController: NSTextFieldDelegate {
 ///As it turns out, `NSOutlineView` relies on the items being `NSObject`, and uses their `isEqual` function. Without it, it won't display the lines between rows when dragging.
 ///Structs of course can't conform `NSObject`, thus leading to the workaround you see here.
 ///
-///Also wanted to mention https://github.com/KinematicSystems/NSOutlineViewReorder which helped me out here
+///I'm wrapping the index of the segment, rather than the row state itself, since we want to be able to uniquely identify each row, and it's possible that multiple rows hash to the same thing (i.e. if they're blank)
+///
+///Also wanted to mention [](https://github.com/KinematicSystems/NSOutlineViewReorder) which helped me out here
 class SplitsEditorRowContainer: NSObject {
-	init(_ segment: RunEditorSegmentState) {
-		self.segment = segment
+	init(_ index: Int) {
+		self.index = index
 	}
-	var segment: RunEditorSegmentState
+	var index: Int
 	
-	override func isEqual(_ object: Any?) -> Bool {
-		if let object = object as? SplitsEditorRowContainer,
-		   object.segment == self.segment {
+	override func isEqual(to object: Any?) -> Bool {
+		if let object = object as? SplitsEditorRowContainer, object.index == self.index {
 			return true
 		}
 		return false

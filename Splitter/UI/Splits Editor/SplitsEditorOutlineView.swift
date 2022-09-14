@@ -69,21 +69,20 @@ class SplitsEditorOutlineView: NSOutlineView {
 		editorState.segments?[row].selected.bool() ?? false
 	}
 	
-//	override func moveItem(at fromIndex: Int, inParent oldParent: Any?, to toIndex: Int, inParent newParent: Any?) {
-		
-		
-//		super.moveItem(at: fromIndex, inParent: oldParent, to: toIndex, inParent: newParent)
-		
-//	}
 	var splitsDelegate: SplitsEditorOutlineViewDelegate {
 		delegate as! SplitsEditorOutlineViewDelegate
 	}
 	
-	///Used to make the segment icons selectable
+	///Used to make the segment icons selectable, and so that clicking a text field both selects the row and begins editing
 	override func validateProposedFirstResponder(_ responder: NSResponder, for event: NSEvent?) -> Bool {
 		if let view = responder as? NSView,
 		   let sup = view.superview {
 			let row = self.row(for: sup)
+			
+			//Make sure that the text field handles selecting the row and then becomes first responder
+			if view is SplitsEditorTextField {
+				return true
+			}
 			if row > -1, selectedRowIndexes.contains(row) {
 				return true
 			}
