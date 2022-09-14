@@ -113,6 +113,20 @@ extension HotkeysViewController: NSTableViewDelegate {
 				let set = app.appKeybinds[row]!.settings.rawValue
 				short?.associatedUserDefaultsKey = set
 				short?.shortcutValueChange = { (sender) in
+					if let shortcut = sender?.shortcutValue, shortcut.isFunctionKey == true {
+						let alert = NSAlert()
+						let keyString = shortcut.keyCodeString.description
+						alert.messageText = "\(keyString) isn't supported as a global hotkey."
+						alert.informativeText = "Function keys, such as \(keyString) aren't currently supported supported as global hotkeys. They will only work while Splitter is active."
+						alert.showsSuppressionButton = true
+						if !Settings.warningSuppresed(.hotkeysCantBeFunctionKey) {
+							alert.beginSheetModal(for: self.view.window!) { response in
+								if alert.suppressionButton?.state == .on {
+									Settings.setWarning(.hotkeysCantBeFunctionKey, suppresed: true)
+								}
+							}
+						}
+					}
 					app.appKeybinds[row]?.keybind = short?.shortcutValue
 					app.updateKeyEquivs()
 				}
@@ -153,4 +167,35 @@ class SplitterShortcutValdator: MASShortcutValidator {
 		return true
 	}
 	
+}
+
+extension MASShortcut {
+	var isFunctionKey: Bool {
+		switch self.keyCode {
+		case
+			kVK_F1,
+			kVK_F2,
+			kVK_F3,
+			kVK_F4,
+			kVK_F5,
+			kVK_F6,
+			kVK_F7,
+			kVK_F8,
+			kVK_F9,
+			kVK_F10,
+			kVK_F11,
+			kVK_F12,
+			kVK_F13,
+			kVK_F14,
+			kVK_F15,
+			kVK_F16,
+			kVK_F17,
+			kVK_F18,
+		kVK_F19:
+			return true
+		default:
+			return false
+		}
+		
+	}
 }

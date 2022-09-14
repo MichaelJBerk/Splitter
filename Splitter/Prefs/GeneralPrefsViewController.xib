@@ -1,32 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21225" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21225"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="GeneralPrefsViewController" customModule="Splitter" customModuleProvider="target">
             <connections>
                 <outlet property="menuBarSwitch" destination="YzU-hD-tcw" id="lbg-Fn-sVb"/>
+                <outlet property="resetWarningsButton" destination="cc2-Ty-NlT" id="2QD-uu-KGP"/>
                 <outlet property="view" destination="bXu-B5-B3o" id="VDk-Qi-qiQ"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="bXu-B5-B3o">
-            <rect key="frame" x="0.0" y="0.0" width="454" height="181"/>
+            <rect key="frame" x="0.0" y="0.0" width="454" height="205"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
                 <switch horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" baseWritingDirection="leftToRight" alignment="left" translatesAutoresizingMaskIntoConstraints="NO" id="YzU-hD-tcw">
-                    <rect key="frame" x="83" y="137" width="42" height="25"/>
+                    <rect key="frame" x="83" y="161" width="42" height="25"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <connections>
                         <action selector="setAppMode:" target="-2" id="yRD-nM-ow6"/>
                     </connections>
                 </switch>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w3T-y8-n6l">
-                    <rect key="frame" x="18" y="142" width="61" height="16"/>
+                    <rect key="frame" x="18" y="166" width="61" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Behavior:" id="VIG-p5-9yw">
                         <font key="font" metaFont="system"/>
@@ -35,7 +36,7 @@
                     </textFieldCell>
                 </textField>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YQB-PI-gjj">
-                    <rect key="frame" x="129" y="142" width="88" height="16"/>
+                    <rect key="frame" x="129" y="166" width="88" height="16"/>
                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Overlay Mode" id="vgL-6H-2ZN">
                         <font key="font" metaFont="system"/>
@@ -44,7 +45,7 @@
                     </textFieldCell>
                 </textField>
                 <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZwO-En-fUH">
-                    <rect key="frame" x="83" y="19" width="353" height="112"/>
+                    <rect key="frame" x="83" y="43" width="353" height="112"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                     <textFieldCell key="cell" id="ERf-6N-IA7">
                         <font key="font" usesAppearanceFont="YES"/>
@@ -55,8 +56,28 @@ When in Overlay Mode, Splitter won't appear in the Dock, but will appear in the 
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RXx-fB-EKj">
+                    <rect key="frame" x="11" y="20" width="68" height="16"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Advanced:" id="jEM-xi-IjS">
+                        <font key="font" metaFont="system"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cc2-Ty-NlT">
+                    <rect key="frame" x="78" y="11" width="129" height="32"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="push" title="Reset Warnings" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="O78-Jt-OHB">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="resetWarningsClicked:" target="-2" id="kCT-pL-G5f"/>
+                    </connections>
+                </button>
             </subviews>
-            <point key="canvasLocation" x="126" y="99"/>
+            <point key="canvasLocation" x="126" y="110.5"/>
         </customView>
     </objects>
 </document>

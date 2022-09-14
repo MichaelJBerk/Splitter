@@ -12,6 +12,13 @@ import Preferences
 class GeneralPrefsViewController: NSViewController, PreferencePane {
 	
 	@IBOutlet var menuBarSwitch: NSSwitch!
+	@IBOutlet var resetWarningsButton: NSButton!
+	
+	@IBAction func resetWarningsClicked(_ sender: Any?) {
+		for warning in Warning.allCases {
+			Settings.setWarning(warning, suppresed: false)
+		}
+	}
 	
 	@IBAction func setAppMode(_ sender: NSSwitch) {
 		if sender.state == .on {

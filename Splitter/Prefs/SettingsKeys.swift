@@ -23,8 +23,9 @@ extension Notification.Name {
 	static let menuBarModeChanged = Notification.Name("menuBarModeChanged")
 }
 
-public enum Warning: String {
+public enum Warning: String, CaseIterable {
 	case overwritingSplitsFromOlderVersion
+	case hotkeysCantBeFunctionKey
 }
 
 public struct Settings {
