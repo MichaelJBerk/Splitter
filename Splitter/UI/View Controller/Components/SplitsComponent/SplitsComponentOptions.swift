@@ -114,6 +114,7 @@ extension SplitsComponent {
 		stack.addArrangedSubview(selectedColor.stack)
 		
 		let diffsLabel = NSTextField(labelWithString: "Diffs")
+		diffsLabel.font = .headingFont
 		stack.addArrangedSubview(diffsLabel)
 		
 		
