@@ -415,3 +415,6 @@ extension LayoutEditorViewController {
 		return cell
 	}
 }
+extension NSFont {
+	static let headingFont = NSFont.systemFont(ofSize: NSFont.systemFontSize, weight: .bold)
+}

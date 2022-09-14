@@ -25,7 +25,7 @@ class GeneralLayoutSettingsViewController: NSViewController {
 	
 	func buildColorsSection() {
 		let colorsLabel = NSTextField(labelWithString: "Colors")
-		colorsLabel.font = NSFont.systemFont(ofSize: NSFont.systemFontSize, weight: .bold)
+		colorsLabel.font = .headingFont
 		stackView.addArrangedSubview(colorsLabel)
 		let bgColorLabel = NSTextField(labelWithString: "Background Color")
 		let bgColorWell = SplitterColorWell()
@@ -80,7 +80,7 @@ class GeneralLayoutSettingsViewController: NSViewController {
 	
 	func buildBGImageSection() {
 		let imageLabel = NSTextField(labelWithString: "Background Image")
-		imageLabel.font = NSFont.systemFont(ofSize: NSFont.systemFontSize, weight: .bold)
+		imageLabel.font = .headingFont
 		backgroundImageWell = NSImageView(image: #imageLiteral(resourceName: "Hotkeys"))
 		backgroundImageWell.isEditable = true
 		backgroundImageWell.animates = true
