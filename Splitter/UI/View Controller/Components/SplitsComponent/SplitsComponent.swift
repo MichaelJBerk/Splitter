@@ -127,7 +127,8 @@ class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent {
 		splitsTableView.delegate = delegate
 		splitsTableView.dataSource = delegate
 		
-		let lsComp = run.getLayoutState().componentAsSplits(componentIndex)
+		let ls = run.getLayoutState()
+		let lsComp = ls.componentAsSplits(componentIndex)
 		let numberOfColumns = lsComp.columnsLen(0)
 		for _ in 0..<numberOfColumns {
 			addColumn()
