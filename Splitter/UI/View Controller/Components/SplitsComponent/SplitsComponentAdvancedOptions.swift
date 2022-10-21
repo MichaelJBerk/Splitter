@@ -282,17 +282,32 @@ extension SplitsComponentAdvancedOptions: NSOutlineViewDelegate, NSOutlineViewDa
 		tf.isBordered = false
 		tf.drawsBackground = false
 		tf.delegate = self
-		cell.addSubview(tf)
+		
+		let stack = NSStackView()
+		stack.orientation = .horizontal
+		stack.distribution = .fill
+		cell.addSubview(stack)
+		stack.addArrangedSubview(tf)
 		cell.textField = tf
 		
 		tf.translatesAutoresizingMaskIntoConstraints = false
+		stack.translatesAutoresizingMaskIntoConstraints = false
 		
 		NSLayoutConstraint.activate([
 			cell.heightAnchor.constraint(equalTo: tf.heightAnchor, constant: 8),
-			tf.widthAnchor.constraint(equalTo: cell.widthAnchor),
-			tf.centerYAnchor.constraint(equalTo: cell.centerYAnchor),
-			tf.centerXAnchor.constraint(equalTo: cell.centerXAnchor)
+			stack.leadingAnchor.constraint(equalTo: cell.leadingAnchor),
+			stack.centerYAnchor.constraint(equalTo: cell.centerYAnchor),
+			stack.centerXAnchor.constraint(equalTo: cell.centerXAnchor)
 		])
+		
+		if #available(macOS 11.0, *), item.colID != STVColumnID.splitTitleColumn && item.colID != STVColumnID.imageColumn {
+			let dragView = DragIndicator()
+			stack.addArrangedSubview(dragView)
+			NSLayoutConstraint.activate([
+				dragView.heightAnchor.constraint(equalTo: tf.heightAnchor),
+				dragView.widthAnchor.constraint(equalToConstant: 20)
+			])
+		}
 		
 		return cell
 	}
@@ -308,7 +323,11 @@ extension SplitsComponentAdvancedOptions: NSOutlineViewDelegate, NSOutlineViewDa
 	//MARK: - Drag and Drop
 	
 	func outlineView(_ outlineView: NSOutlineView, pasteboardWriterForItem item: Any) -> NSPasteboardWriting? {
+		 
 		if let item = item as? ColObject, !item.isSubitem {
+			if item.colID == STVColumnID.splitTitleColumn || item.colID == STVColumnID.imageColumn {
+				return nil
+			}
 			return item.colID.rawValue as NSString
 		}
 		return nil

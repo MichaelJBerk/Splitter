@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import LiveSplitKit
 class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent {
 	
 	var run: SplitterRun!
@@ -85,10 +86,17 @@ class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent {
 	/// - Parameter index: The index in LiveSplit (i.e. ignoring the icon/title columns)
 	/// - Returns: Name of the given column
 	func nameInLayoutForColumn(at index: Int) -> String {
-		let timer = run.timer.lsTimer
-		let layout =  run.layout.state(timer)
-		let splits = layout.componentAsSplits(componentIndex)
-		return splits.columnLabel(index)
+//		let timer = run.timer.lsTimer
+		let layout = run.layout
+//		let layout =  run.layout.state(timer)
+//		let splits = layout.componentAsSplits(componentIndex)
+		if let le = LayoutEditor(layout) {
+			le.select(componentIndex)
+			let name = le.getColumnName(index)
+			run.layout = le.close()
+			return name
+		}
+		return "hey"
 	}
 	
 	//MARK: -

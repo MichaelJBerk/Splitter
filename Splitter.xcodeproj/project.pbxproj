@@ -67,6 +67,7 @@
 		4A520E332693774500F463B3 /* SplitsComponentOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A520E322693774500F463B3 /* SplitsComponentOptions.swift */; };
 		4A561386262CFB7F00702B0E /* OptionsRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A561385262CFB7F00702B0E /* OptionsRow.swift */; };
 		4A56138A262CFB8900702B0E /* OptionsRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A561389262CFB8900702B0E /* OptionsRow.xib */; };
+		4A5B867829033834004D09C8 /* DragIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5B867729033834004D09C8 /* DragIndicator.swift */; };
 		4A5C1D1523F4AFB80014E8D3 /* CommonPaths.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A5C1D1423F4AFB80014E8D3 /* CommonPaths.swift */; };
 		4A5F10AE23CFAA1F00DA043B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4A5F10AD23CFAA1F00DA043B /* Assets.xcassets */; };
 		4A61438424801A28007C38E0 /* ColorsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A61438324801A28007C38E0 /* ColorsView.swift */; };
@@ -239,6 +240,7 @@
 		4A520E322693774500F463B3 /* SplitsComponentOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitsComponentOptions.swift; sourceTree = "<group>"; };
 		4A561385262CFB7F00702B0E /* OptionsRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsRow.swift; sourceTree = "<group>"; };
 		4A561389262CFB8900702B0E /* OptionsRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = OptionsRow.xib; sourceTree = "<group>"; };
+		4A5B867729033834004D09C8 /* DragIndicator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DragIndicator.swift; sourceTree = "<group>"; };
 		4A5C1D1423F4AFB80014E8D3 /* CommonPaths.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommonPaths.swift; sourceTree = "<group>"; };
 		4A5F10AD23CFAA1F00DA043B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		4A61438324801A28007C38E0 /* ColorsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorsView.swift; sourceTree = "<group>"; };
@@ -702,6 +704,7 @@
 			children = (
 				4AAD4708248432390094A31F /* ColorsView */,
 				4AE168A526091CA900A6169B /* LayoutEditorViewController.swift */,
+				4A5B867729033834004D09C8 /* DragIndicator.swift */,
 				4AC2745726990E04007ED8F5 /* GeneralLayoutSettingsViewController.swift */,
 				4A2F390827F34C25001B0A7C /* WindowSettings */,
 			);
@@ -1229,6 +1232,7 @@
 				4AD44ADF262F4CFB003375C4 /* TitleComponent.swift in Sources */,
 				4AE7437E268CF2AC003629B4 /* SplitterColorWell.swift in Sources */,
 				4A669373268BBB4400FEF745 /* SplitsEditorOutlineView.swift in Sources */,
+				4A5B867829033834004D09C8 /* DragIndicator.swift in Sources */,
 				4A18663023C5257800FEEE54 /* MenuItemConstants.swift in Sources */,
 				4A09E2A824D75D6B0013D7BC /* CategoryViewController.swift in Sources */,
 				4A0F716323F4A9E400E5948E /* SplitterDocBundle.swift in Sources */,

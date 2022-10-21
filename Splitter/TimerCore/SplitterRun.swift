@@ -961,9 +961,9 @@ class SplitterRun: NSObject {
 			r.removeColumn(component: component)
 		})
 		
-		let cols = getLayoutState().componentAsSplits(component).columnsLen(0)
 		editLayout { le in
 			le.select(component)
+			let cols = le.getNumberOfColumns()
 			le.setNumberOfColumns(count: cols + 1)
 		}
 		NotificationCenter.default.post(name: .runEdited, object: self)
@@ -1025,7 +1025,8 @@ class SplitterRun: NSObject {
 	
 	func setColumnName(name: String, lsColumn: Int, component: Int) {
 		let ls = getLayoutState()
-		let oldName = ls.componentAsSplits(component).columnLabel(lsColumn)
+		let sc = ls.componentAsSplits(component)
+		let oldName = sc.columnLabel(lsColumn)
 		if name != oldName {
 			undoManager?.registerUndo(withTarget: self, handler: { r in
 				r.setColumnName(name: oldName, lsColumn: lsColumn, component: component)
