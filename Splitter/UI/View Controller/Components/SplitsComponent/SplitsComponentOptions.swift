@@ -129,6 +129,7 @@ extension SplitsComponent {
 		
 		NSLayoutConstraint.activate([
 			tableColor.stack.heightAnchor.constraint(equalToConstant: 30),
+			tableColor.stack.trailingAnchor.constraint(equalTo: stack.trailingAnchor),
 			selectedColor.stack.heightAnchor.constraint(equalToConstant: 30),
 			selectedColor.well.widthAnchor.constraint(equalTo: tableColor.well.widthAnchor),
 			selectedColor.well.leadingAnchor.constraint(equalTo: tableColor.well.leadingAnchor),
@@ -150,6 +151,9 @@ extension SplitsComponent {
 			self.run[keyPath: runProperty] = well.color
 		})
 		well.allowsOpacity = allowsOpacity
+		if #available(macOS 13.0, *) {
+			well.colorWellStyle = .expanded
+		}
 		well.color = self.run[keyPath: runProperty]
 		let resetButton = ComponentOptionsButton(title: "Reset", clickAction: { _ in
 			well.color = defaultColor
@@ -162,6 +166,10 @@ extension SplitsComponent {
 			let color = run[keyPath: runProperty]
 			well.color = color
 		})
+		//Ensure that the color well grows, but the reset button does not
+		stack.distribution = .fill
+		well.setContentHuggingPriority(.defaultLow, for: .horizontal)
+		resetButton.setContentHuggingPriority(.defaultHigh, for: .horizontal)
 		return (stack, well)
 	}
 	

@@ -55,10 +55,21 @@ class GeneralLayoutSettingsViewController: NSViewController {
 		let textColorStack = NSStackView(views: [textColorLabel, textColorWell, textResetButton])
 		textColorStack.orientation = .horizontal
 		stackView.addArrangedSubview(textColorStack)
+		bgColorStack.distribution = .fill
+		bgColorWell.setContentHuggingPriority(.defaultLow, for: .horizontal)
+		bgResetButton.setContentHuggingPriority(.defaultHigh, for: .horizontal)
+		
+		if #available(macOS 13.0, *) {
+			bgColorWell.colorWellStyle = .expanded
+			textColorWell.colorWellStyle = .expanded
+		}
 		
 		NSLayoutConstraint.activate([
 			bgColorStack.heightAnchor.constraint(equalToConstant: 30),
+			bgResetButton.trailingAnchor.constraint(equalTo: bgColorStack.trailingAnchor),
+			bgColorStack.trailingAnchor.constraint(equalTo: stackView.trailingAnchor),
 			textColorStack.heightAnchor.constraint(equalToConstant: 30),
+			textColorWell.widthAnchor.constraint(equalTo: bgColorWell.widthAnchor),
 			textColorWell.widthAnchor.constraint(equalTo: bgColorWell.widthAnchor),
 			textColorWell.leadingAnchor.constraint(equalTo: bgColorWell.leadingAnchor)
 		])
