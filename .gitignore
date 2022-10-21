@@ -104,3 +104,4 @@ iOSInjectionProject/
 /archive.xcarchive/
 Package.resolved
 archiveLog.txt
+Config.xcconfig
