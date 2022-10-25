@@ -36,6 +36,8 @@ class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent {
 	
 	//We save this here instead of loading this setting from LiveSplit, since LSC doesn't have a toggle for column header
 	let showHeaderKey = "showHeader"
+	
+	///NOTE: Column widths are stored as strings, because it's oddly difficult to decode them in later if they're not integers.
 	let widthsKey = "columnWidths"
 	let hideIconColumnKey = "hideIconColumn"
 	let hideTitleColumnKey = "hideTitleColumn"
@@ -45,7 +47,7 @@ class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent {
 	func saveState() throws -> ComponentState {
 		var state = saveBasicState()
 		state.properties[showHeaderKey] = showHeader
-		let widths = splitsTableView.tableColumns.map {Float($0.width)}
+		let widths = splitsTableView.tableColumns.map {"\(Float($0.width))"}
 		state.properties[widthsKey] = widths
 		state.properties[hideIconColumnKey] = splitsTableView.tableColumns[0].isHidden
 		state.properties[hideTitleColumnKey] = splitsTableView.tableColumns[1].isHidden
@@ -57,7 +59,7 @@ class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent {
 	func loadState(from state: ComponentState) throws {
 		loadBasicState(from: state.properties)
 		showHeader = state.getProperty(with: showHeaderKey, of: Bool.self) ?? true
-		if let widths = state.getProperty(with: widthsKey, of: [Float].self)?.map({CGFloat($0)}) {
+		if let widths = state.getProperty(with: widthsKey, of: [String].self)?.compactMap({Float($0)}).compactMap({CGFloat($0)}) {
 			for i in 0..<splitsTableView.tableColumns.count {
 				splitsTableView.tableColumns[i].width = widths[i]
 			}
