@@ -164,10 +164,12 @@ class ViewController: NSViewController {
 	var hotkeysController: HotkeysViewController?
 	
 	@objc func breakFunc() {
-		let state = run.layout.stateAsJson(run.timer.lsTimer)
-		let pasteboard = NSPasteboard.general
-		pasteboard.declareTypes([.string], owner: nil)
-		pasteboard.setString(state, forType: .string)
+		let rect = splitsTableView.visibleRect
+//		splitsTableView.adjustScroll(<#T##newVisible: NSRect##NSRect#>)
+//		let state = run.layout.stateAsJson(run.timer.lsTimer)
+//		let pasteboard = NSPasteboard.general
+//		pasteboard.declareTypes([.string], owner: nil)
+//		pasteboard.setString(state, forType: .string)
 	}
 	
 	func debugPrintSplitsEditor() {

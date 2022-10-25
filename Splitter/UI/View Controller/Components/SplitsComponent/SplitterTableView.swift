@@ -13,15 +13,20 @@ class SplitterTableView: NSTableView {
 	
 	override func adjustScroll(_ newVisible: NSRect) -> NSRect {
 		var adjRect = newVisible
+		let headerHeight = self.headerView?.frame.height ?? 0
 		var h = adjRect.origin.y
 		let amount: CGFloat = 31
-		let headerHeight = self.headerView?.frame.height ?? 0
 		if (h+headerHeight).truncatingRemainder(dividingBy: amount) != 0 {
 			let mul = CGFloat(Int((h) / amount))
 			let lower = abs(mul * amount)
 			let higher = abs(mul + 1) * amount
 			if lower < higher {
-				h = lower
+				//Make sure that it's not possible for the top of the view to be "stuck" under the header
+				if h < 0 && lower == 0 && headerView != nil {
+					h = -1 * headerHeight
+				} else {
+					h = lower
+				}
 			} else {
 				h = higher
 			}

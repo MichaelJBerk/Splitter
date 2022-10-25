@@ -37,7 +37,7 @@ class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent {
 	//We save this here instead of loading this setting from LiveSplit, since LSC doesn't have a toggle for column header
 	let showHeaderKey = "showHeader"
 	
-	///NOTE: Column widths are stored as strings, because it's oddly difficult to decode them in later if they're not integers.
+	//NOTE: Column widths are stored as strings, because it's oddly difficult to decode them in later if they're not integers.
 	let widthsKey = "columnWidths"
 	let hideIconColumnKey = "hideIconColumn"
 	let hideTitleColumnKey = "hideTitleColumn"
