@@ -56,7 +56,7 @@ You can still close the window either with ⌘W or from the "Window" menu.
 		
 		topHelp.helpString = """
   Enabling this will make the window "float" above any other windows you have open.
-  This is separate from Overlay Mode in Preferences.
+  This is separate from Overlay Mode in \(Settings.prefsText).
 """
 	}
 	
