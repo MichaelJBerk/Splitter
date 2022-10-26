@@ -21,11 +21,18 @@ class AdvancedHotkeyViewController: NSViewController {
         // Do view setup here.
 		self.preferredContentSize = .init(width: 480, height: 310)
 		globalHotkeyCheck.state = .init(bool: Settings.enableGlobalHotkeys)
+		globalHotkeyCheck.isEnabled = AppDelegate.isAccessibilityGranted
+		DistributedNotificationCenter.default().addObserver(forName: AppDelegate.acessibilityNotificationName, object: nil, queue: nil) { thing in
+			//Wait a second, otherwise `isAccessibilityGranted` may return the incorrect value
+				DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+					self.globalHotkeyCheck.isEnabled = AppDelegate.isAccessibilityGranted
+			}
+		}
     }
 	
 	@IBAction func globalHotkeyCheckClick(_ sender: NSButton) {
 		guard let appDel = AppDelegate.shared else {return}
-		if appDel.accessibilityGranted() {
+		if AppDelegate.isAccessibilityGranted {
 			Settings.enableGlobalHotkeys = globalHotkeyCheck.state.toBool()
 		} else {
 			sender.state = .init(bool: false)

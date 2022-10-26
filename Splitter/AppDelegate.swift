@@ -80,15 +80,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 			NSWorkspace.shared.open(URL(string: "https://mberk.com/splitter/notAnotherTripToSystemPreferences.html")!)
 		}
 	}
-	func reopenToApplyKeybindAlert() {
-		let alert = NSAlert()
-		alert.messageText = "Splitter's privacy settings have been changed"
-		alert.informativeText = "In order for these changes to take effect, you will need to quit and reopen Splitter."
-		alert.addButton(withTitle: "Dismiss")
-		alert.runModal()
+	
+	static var acessibilityNotificationName: NSNotification.Name {
+		NSNotification.Name("com.apple.accessibility.api")
 	}
+	
 	///Checks if Accessibility permissions are granted
-	func accessibilityGranted() -> Bool {
+	static var isAccessibilityGranted: Bool {
 		return AXIsProcessTrusted()
 	}
 	
@@ -151,11 +149,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 		Settings.lastOpenedBuild = otherConstants.build
 		setupKeybinds()
 		
-		DistributedNotificationCenter.default().addObserver(forName: NSNotification.Name("com.apple.accessibility.api"), object: nil, queue: nil) { _ in
-		  DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-			self.reopenToApplyKeybindAlert()
-		  }
-		}
 		print("Auth Enabled: ", SplitsIOKit.shared.hasAuth)
 		
 		//Add the hotkey event monitor

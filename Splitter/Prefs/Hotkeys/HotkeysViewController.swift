@@ -13,6 +13,8 @@ import Files
 final class HotkeysViewController: NSViewController, PreferencePane {
 	let preferencePaneIdentifier = Preferences.PaneIdentifier.hotkeys
 	let preferencePaneTitle = "Hotkeys"
+	
+	var shortcutsRequiringGlobalHotkeys = Set<MASShortcutView>()
     var toolbarItemIcon: NSImage {
         if #available(macOS 10.16, *) {
             return NSImage(systemSymbolName: "text.and.command.macwindow", accessibilityDescription: "Hotkeys")!
@@ -46,6 +48,12 @@ final class HotkeysViewController: NSViewController, PreferencePane {
 		context = UnsafeMutableRawPointer(observationInfo)
 		for key in KeybindSettingsKey.allCases {
 			NSUserDefaultsController.shared.addObserver(self, forKeyPath: "@values.\(key.rawValue)", options: .new, context: context)
+		}
+		DistributedNotificationCenter.default().addObserver(forName: AppDelegate.acessibilityNotificationName, object: nil, queue: nil) { thing in
+			//Wait a second, otherwise `isAccessibilityGranted` may return the incorrect value
+				DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+					self.updateGlobalOnlyHotkeysEnabled()
+			}
 		}
 	}
 	
@@ -130,13 +138,10 @@ extension HotkeysViewController: NSTableViewDelegate {
 					app.appKeybinds[row]?.keybind = short?.shortcutValue
 					app.updateKeyEquivs()
 				}
-				if !(Settings.enableGlobalHotkeys) {
-					if let title = app.appKeybinds[row]?.title, title == .BringToFront {
-						short?.isEnabled = false
-					}
-				} else {
-					short?.isEnabled = true
+				if let short, app.appKeybinds[row]?.title == .BringToFront {
+					shortcutsRequiringGlobalHotkeys.insert(short)
 				}
+				updateGlobalOnlyHotkeysEnabled()
 				return cell
 			}
 			
@@ -147,7 +152,18 @@ extension HotkeysViewController: NSTableViewDelegate {
 		
 	}
 	
+	///Indicates if hotkeys that are only available when Global Hotkeys are turned on should be enabled
+	var shouldEnableGlobalOnlyHotkeys: Bool {
+		AppDelegate.isAccessibilityGranted && Settings.enableGlobalHotkeys
+	}
 	
+	///
+	func updateGlobalOnlyHotkeysEnabled() {
+		for shortcut in shortcutsRequiringGlobalHotkeys {
+			shortcut.isEnabled = shouldEnableGlobalOnlyHotkeys
+		}
+		
+	}
 }
 
 class buttonCell: NSTableCellView {
