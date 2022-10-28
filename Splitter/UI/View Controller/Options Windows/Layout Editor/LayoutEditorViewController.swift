@@ -13,6 +13,7 @@ class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOut
 	override func loadView() {
 		
 		outlineView = NSOutlineView()
+		outlineView.setAccessibilityIdentifier("Component List")
 		outlineView.dataSource = self
 		outlineView.delegate = self
 		let column = NSTableColumn()
@@ -284,23 +285,27 @@ extension LayoutEditorViewController {
 			if item == componentsHeaderObject {
 				let cell = makeHeaderCell()
 				cell.textField?.stringValue = "Components"
+				cell.textField?.setAccessibilityIdentifier("Components")
 				return cell
 			}
 			if item == generalHeaderObject {
 				let cell = makeHeaderCell()
 				cell.textField?.stringValue = "General"
+				cell.textField?.setAccessibilityIdentifier("General")
 				return cell
 			}
 		}
 		if let item = item as? RowObject, !(item is HeaderObject) {
 			let cell = makeTextCell()
 			cell.textField?.stringValue = item.string
+			cell.textField?.setAccessibilityIdentifier("\(item.string) Settings")
 			return cell
 		}
 		if let component = item as? SplitterComponent,
 		   let type = SplitterComponentType.FromType(component){
 			let cell = makeTextCell()
 			cell.textField?.stringValue = type.displayTitle
+			cell.textField?.setAccessibilityIdentifier("\(type.displayTitle) Settings" )
 			return cell
 		}
 		return nil

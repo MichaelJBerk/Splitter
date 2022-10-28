@@ -31,6 +31,7 @@ class GeneralLayoutSettingsViewController: NSViewController {
 		let bgColorWell = SplitterColorWell()
 		bgColorWell.color = run.backgroundColor
 		bgColorWell.allowsOpacity = true
+		bgColorWell.setAccessibilityIdentifier("Background Color Well")
 		bgColorWell.target = self
 		bgColorWell.action = #selector(colorWellAction(_:))
 		let bgResetButton = ComponentOptionsButton(title: "Reset", clickAction: { _ in
@@ -45,6 +46,7 @@ class GeneralLayoutSettingsViewController: NSViewController {
 		let textColorWell = SplitterColorWell()
 		textColorWell.color = run.textColor
 		textColorWell.allowsOpacity = false
+		textColorWell.setAccessibilityIdentifier("Text Color Well")
 		textColorWell.target = self
 		textColorWell.action = #selector(textColorWellAction(_:))
 		let textResetButton = ComponentOptionsButton(title: "Reset", clickAction: { _ in

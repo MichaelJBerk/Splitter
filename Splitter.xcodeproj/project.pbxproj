@@ -60,6 +60,9 @@
 		4A4D391F23C4F29C00BF3FCD /* blankWindow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A4D391E23C4F29C00BF3FCD /* blankWindow.xib */; };
 		4A4D392223C4FAE500BF3FCD /* HotkeysViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4D392023C4FAE500BF3FCD /* HotkeysViewController.swift */; };
 		4A4D392323C4FAE500BF3FCD /* HotkeysViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A4D392123C4FAE500BF3FCD /* HotkeysViewController.xib */; };
+		4A4EC4FE2908A8F2009C2F3A /* SetupForUITesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4EC4FD2908A8F2009C2F3A /* SetupForUITesting.swift */; };
+		4A4EC5012908AEEA009C2F3A /* LongList.split in Resources */ = {isa = PBXBuildFile; fileRef = 4A4EC5002908AEEA009C2F3A /* LongList.split */; };
+		4A4EC5032908BED1009C2F3A /* LayoutEditorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A4EC5022908BED1009C2F3A /* LayoutEditorTests.swift */; };
 		4A520E2B2693735C00F463B3 /* ComponentState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A520E2A2693735C00F463B3 /* ComponentState.swift */; };
 		4A520E2D2693737800F463B3 /* SplitterComponentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A520E2C2693737800F463B3 /* SplitterComponentType.swift */; };
 		4A520E2F269373D100F463B3 /* ComponentOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A520E2E269373D100F463B3 /* ComponentOptions.swift */; };
@@ -233,6 +236,9 @@
 		4A4D391E23C4F29C00BF3FCD /* blankWindow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = blankWindow.xib; sourceTree = "<group>"; };
 		4A4D392023C4FAE500BF3FCD /* HotkeysViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HotkeysViewController.swift; sourceTree = "<group>"; };
 		4A4D392123C4FAE500BF3FCD /* HotkeysViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = HotkeysViewController.xib; sourceTree = "<group>"; };
+		4A4EC4FD2908A8F2009C2F3A /* SetupForUITesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupForUITesting.swift; sourceTree = "<group>"; };
+		4A4EC5002908AEEA009C2F3A /* LongList.split */ = {isa = PBXFileReference; lastKnownFileType = wrapper; path = LongList.split; sourceTree = "<group>"; };
+		4A4EC5022908BED1009C2F3A /* LayoutEditorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutEditorTests.swift; sourceTree = "<group>"; };
 		4A520E2A2693735C00F463B3 /* ComponentState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentState.swift; sourceTree = "<group>"; };
 		4A520E2C2693737800F463B3 /* SplitterComponentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterComponentType.swift; sourceTree = "<group>"; };
 		4A520E2E269373D100F463B3 /* ComponentOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentOptions.swift; sourceTree = "<group>"; };
@@ -541,6 +547,7 @@
 				4A75579C255C47F300ACE826 /* SplitterDocSplitsio.icns */,
 				4A9CA2A6263A2D4C0054D624 /* Extensions.swift */,
 				4A230E9223B00A1D00959C57 /* AppDelegate.swift */,
+				4A4EC4FD2908A8F2009C2F3A /* SetupForUITesting.swift */,
 				4ABC0C6F2767E09900BF5747 /* StatusBarController.swift */,
 				4AFCC52423C63F3E002216F1 /* UI */,
 				4A7DDCE123BBDD0900A36AD1 /* Credits.html */,
@@ -573,6 +580,14 @@
 				4A470BB32695FB06001F0081 /* MetadataImage.swift */,
 			);
 			path = Themeing;
+			sourceTree = "<group>";
+		};
+		4A4EC4FF2908AEEA009C2F3A /* UITest Sample Files */ = {
+			isa = PBXGroup;
+			children = (
+				4A4EC5002908AEEA009C2F3A /* LongList.split */,
+			);
+			path = "UITest Sample Files";
 			sourceTree = "<group>";
 		};
 		4A520E29269372EF00F463B3 /* Shared */ = {
@@ -797,7 +812,9 @@
 			isa = PBXGroup;
 			children = (
 				4AF9E8C124CE448B00DFD5BE /* SplitterUITests.swift */,
+				4A4EC5022908BED1009C2F3A /* LayoutEditorTests.swift */,
 				4A3A082526727DCB00F3EB05 /* FileTests.swift */,
+				4A4EC4FF2908AEEA009C2F3A /* UITest Sample Files */,
 				4AF9E8C324CE448B00DFD5BE /* Info.plist */,
 			);
 			path = SplitterUITests;
@@ -1038,6 +1055,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A4EC5012908AEEA009C2F3A /* LongList.split in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1217,6 +1235,7 @@
 				4A66A43223DE2C88005952FA /* SplitTableColumnIdentifiers.swift in Sources */,
 				4A230E9323B00A1D00959C57 /* AppDelegate.swift in Sources */,
 				4A3BB54D27DA9322006C3256 /* AdvancedHotkeyViewController.swift in Sources */,
+				4A4EC4FE2908A8F2009C2F3A /* SetupForUITesting.swift in Sources */,
 				4A470BB02695FABA001F0081 /* Themeable.swift in Sources */,
 				4AAD470A248432540094A31F /* Colors.swift in Sources */,
 				4AC24DBC23EB4F17003008BF /* SplitterTableDelegate.swift in Sources */,
@@ -1312,6 +1331,7 @@
 			files = (
 				4AF9E8C224CE448B00DFD5BE /* SplitterUITests.swift in Sources */,
 				4A3A082626727DCB00F3EB05 /* FileTests.swift in Sources */,
+				4A4EC5032908BED1009C2F3A /* LayoutEditorTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1474,7 +1494,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 285;
+				CURRENT_PROJECT_VERSION = 286;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 39SZK2C73D;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1521,7 +1541,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 285;
+				CURRENT_PROJECT_VERSION = 286;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 39SZK2C73D;
 				ENABLE_HARDENED_RUNTIME = YES;

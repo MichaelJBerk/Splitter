@@ -211,6 +211,15 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 		if CommandLine.arguments.contains("-newFile") {
 			Settings.showWelcomeWindow = false
 		}
+		if isUITesting {
+			NSApp.windows.forEach({$0.close()})
+		}
+		if let pathToOpen = ProcessInfo.processInfo.environment["openFile"] {
+			let fileToOpen = URL(fileURLWithPath: pathToOpen)
+			NSDocumentController.shared.openDocument(withContentsOf: fileToOpen, display: true, completionHandler: {(doc, alreadyOpen, error) in
+				
+			})
+		}
 		#endif
 	}
 	//MARK: - Welcome window
