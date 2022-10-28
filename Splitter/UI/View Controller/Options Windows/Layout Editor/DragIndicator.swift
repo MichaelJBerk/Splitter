@@ -8,18 +8,40 @@
 
 import AppKit
 
-@available(macOS 11.0, *)
+@IBDesignable
 class DragIndicator: NSView {
 	
-	var imageView: NSView!
+	var imageView: NSImageView!
 	
 	override init(frame frameRect: NSRect) {
 		super.init(frame: frameRect)
-		imageView = NSImageView(image: NSImage(systemSymbolName: "line.3.horizontal", accessibilityDescription: nil)!)
+		setup()
+	}
+	func setup() {
+		var image: NSImage
+		if #available(macOS 11.0, *) {
+			image = NSImage(systemSymbolName: "line.3.horizontal", accessibilityDescription: nil)!
+		} else {
+			image = NSImage(named: "lines")!
+		}
+		let imageView = NSImageView(image: image)
+		self.imageView = imageView
+		
 		self.addSubview(imageView)
 	}
 	
-	required init?(coder: NSCoder) {
-		fatalError("init(coder:) has not been implemented")
+	override func layout() {
+		super.layout()
+		let x = (self.frame.width - 16) * 0.5
+		let y = (self.frame.height - 9) * 0.5
+		let f = NSRect(x: x, y: y, width: 16, height: 9)
+		imageView.frame = f
+		imageView.autoresizingMask = [.minXMargin, .maxXMargin, .minYMargin, .maxYMargin]
 	}
+	
+	required init?(coder: NSCoder) {
+		super.init(coder: coder)
+		setup()
+	}
+	
 }

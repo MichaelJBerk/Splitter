@@ -13,6 +13,8 @@ class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOut
 	override func loadView() {
 		
 		outlineView = NSOutlineView()
+		let nib = NSNib(nibNamed: "LayoutEditorListCell", bundle: .main)
+		outlineView.register(nib, forIdentifier: .init("DragListCell"))
 		outlineView.setAccessibilityIdentifier("Component List")
 		outlineView.dataSource = self
 		outlineView.delegate = self
@@ -22,7 +24,7 @@ class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOut
 		outlineView.columnAutoresizingStyle = .noColumnAutoresizing
 		outlineView.headerView = nil
 		outlineView.backgroundColor = .clear
-		column.width = 150
+		column.width = 160
 		outlineView.frame = .init(x: 0, y: 0, width: 170, height: 200)
 		if #available(macOS 11.0, *) {
 			outlineView.style = .inset
@@ -303,7 +305,7 @@ extension LayoutEditorViewController {
 		}
 		if let component = item as? SplitterComponent,
 		   let type = SplitterComponentType.FromType(component){
-			let cell = makeTextCell()
+			let cell = outlineView.makeView(withIdentifier: .init("DragListCell"), owner: nil) as! NSTableCellView
 			cell.textField?.stringValue = type.displayTitle
 			cell.textField?.setAccessibilityIdentifier("\(type.displayTitle) Settings" )
 			return cell

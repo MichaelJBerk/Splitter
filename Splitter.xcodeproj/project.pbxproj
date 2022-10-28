@@ -135,6 +135,8 @@
 		4AE2CF3B2631F43100CC6CF7 /* SplitsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE2CF3A2631F43100CC6CF7 /* SplitsComponent.swift */; };
 		4AE7437E268CF2AC003629B4 /* SplitterColorWell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE7437D268CF2AC003629B4 /* SplitterColorWell.swift */; };
 		4AE7E2B02845B91500716CF3 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4AE7E2AF2845B88E00716CF3 /* Config.xcconfig */; };
+		4AE82354290B434000D8100B /* LayoutEditorListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AE82353290B434000D8100B /* LayoutEditorListCell.xib */; };
+		4AE82356290B435000D8100B /* LayoutEditorListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE82355290B435000D8100B /* LayoutEditorListCell.swift */; };
 		4AE82A1624BFD4400044B6D3 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE82A1524BFD4400044B6D3 /* WelcomeView.swift */; };
 		4AEA331B2629F024001012BD /* TimeRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AEA331A2629F023001012BD /* TimeRow.xib */; };
 		4AEA927E23C4EF32004F6CF9 /* MainWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AEA927D23C4EF32004F6CF9 /* MainWindowController.swift */; };
@@ -310,6 +312,8 @@
 		4AE2CF3A2631F43100CC6CF7 /* SplitsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitsComponent.swift; sourceTree = "<group>"; };
 		4AE7437D268CF2AC003629B4 /* SplitterColorWell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterColorWell.swift; sourceTree = "<group>"; };
 		4AE7E2AF2845B88E00716CF3 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
+		4AE82353290B434000D8100B /* LayoutEditorListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LayoutEditorListCell.xib; sourceTree = "<group>"; };
+		4AE82355290B435000D8100B /* LayoutEditorListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutEditorListCell.swift; sourceTree = "<group>"; };
 		4AE82A1524BFD4400044B6D3 /* WelcomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		4AEA331A2629F023001012BD /* TimeRow.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TimeRow.xib; sourceTree = "<group>"; };
 		4AEA927D23C4EF32004F6CF9 /* MainWindowController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainWindowController.swift; sourceTree = "<group>"; };
@@ -720,6 +724,8 @@
 				4AAD4708248432390094A31F /* ColorsView */,
 				4AE168A526091CA900A6169B /* LayoutEditorViewController.swift */,
 				4A5B867729033834004D09C8 /* DragIndicator.swift */,
+				4AE82353290B434000D8100B /* LayoutEditorListCell.xib */,
+				4AE82355290B435000D8100B /* LayoutEditorListCell.swift */,
 				4AC2745726990E04007ED8F5 /* GeneralLayoutSettingsViewController.swift */,
 				4A2F390827F34C25001B0A7C /* WindowSettings */,
 			);
@@ -1031,6 +1037,7 @@
 				4A75578D255C426A00ACE826 /* SplitterDocLSS.icns in Resources */,
 				4ACFB1E7262F53B100EA79B6 /* SplitsComponent.xib in Resources */,
 				4A01B803268631FC00F15A50 /* SplitsEditorViewController.xib in Resources */,
+				4AE82354290B434000D8100B /* LayoutEditorListCell.xib in Resources */,
 				4AC0E3A62767B3F3004D71D6 /* GeneralPrefsViewController.xib in Resources */,
 				4A0981A724E34DE400E44792 /* AccountButtonView.xib in Resources */,
 				4AE7E2B02845B91500716CF3 /* Config.xcconfig in Resources */,
@@ -1307,6 +1314,7 @@
 				4AC401F324BE145F005180F1 /* (null) in Sources */,
 				4AE82A1624BFD4400044B6D3 /* WelcomeView.swift in Sources */,
 				4A6A3BE223CD1C7A002C20AE /* Storage.swift in Sources */,
+				4AE82356290B435000D8100B /* LayoutEditorListCell.swift in Sources */,
 				4A68FCFF270A4518009A12B7 /* Intents.intentdefinition in Sources */,
 				4AE2CF3B2631F43100CC6CF7 /* SplitsComponent.swift in Sources */,
 				4A99813023F9ECE50037BF98 /* KeybindHandlers.swift in Sources */,

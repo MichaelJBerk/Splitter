@@ -304,8 +304,8 @@ extension SplitsComponentAdvancedOptions: NSOutlineViewDelegate, NSOutlineViewDa
 			let dragView = DragIndicator()
 			stack.addArrangedSubview(dragView)
 			NSLayoutConstraint.activate([
-				dragView.heightAnchor.constraint(equalTo: tf.heightAnchor),
-				dragView.widthAnchor.constraint(equalToConstant: 20)
+				dragView.widthAnchor.constraint(equalToConstant: 20),
+				dragView.heightAnchor.constraint(equalToConstant: 20)
 			])
 		}
 		
