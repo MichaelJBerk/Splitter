@@ -30,7 +30,7 @@ public enum Warning: String, CaseIterable {
 
 public struct Settings {
 	
-	///Returns the string "Settings" or Preferences depending on the current macOS version
+	///Returns the string "Settings" or "Preferences" depending on the current macOS version
 	static var prefsText: String {
 		if #available(macOS 13.0, *) {
 			return "Settings"

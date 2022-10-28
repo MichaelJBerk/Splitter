@@ -52,35 +52,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 
 	var statusBarController: StatusBarController!
 	
-	///Displays a dialog box informing the user to give Splitter the requisite permissions for Global Hotkeys to work.
-	func keybindAlert() {
-		let alert = NSAlert()
-		alert.messageText = "A brief note about Global Hotkeys"
-		alert.informativeText = """
-		In order for Global Hotkeys to work, you'll need to give Splitter permission to see what you're typing, even if Splitter isn't the currently active app.
-		
-		Of course, even if you don't give Splitter permission to have Global Hotkeys, you can still continue to use all of its other features just fine.
-		"""
-		alert.addButton(withTitle: "Allow")
-		alert.addButton(withTitle: "Dismiss")
-		alert.showsHelp = true
-		alert.delegate = keybindAlertDel
-		switch alert.runModal() {
-			
-		case .alertFirstButtonReturn:
-			NSWorkspace.shared.open(URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility")!)
-		default:
-			return
-		}
-	}
-	var keybindAlertDel = KeybindAlertDelegate()
-	
-	class KeybindAlertDelegate: NSObject, NSAlertDelegate {
-		func alertShowHelp(_ alert: NSAlert) -> Bool {
-			NSWorkspace.shared.open(URL(string: "https://mberk.com/splitter/notAnotherTripToSystemPreferences.html")!)
-		}
-	}
-	
 	static var acessibilityNotificationName: NSNotification.Name {
 		NSNotification.Name("com.apple.accessibility.api")
 	}
@@ -131,7 +102,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 			//Set default values for settings
 			Settings.enableGlobalHotkeys = false
 			Settings.notFirstUse = true
-			keybindAlert()
 		} else {
 			if Settings.lastOpenedBuild != otherConstants.build {
 			}

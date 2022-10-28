@@ -11,7 +11,11 @@ import Carbon
 
 class AdvancedHotkeyViewController: NSViewController {
 	
-	@IBOutlet weak var globalHotkeyCheck: NSButton!
+	@IBOutlet weak var globalHotkeySwitch: NSSwitch!
+	@IBOutlet weak var goToSettingsSection: NSView!
+	@IBOutlet weak var goToSettingsButton: NSButton!
+	@IBOutlet weak var enableGlobalHotkeyLabel: NSTextField!
+	
 	var hotkeyVC: HotkeysViewController!
 	
 	@IBOutlet weak var debugPrintButton: NSButton!
@@ -19,24 +23,31 @@ class AdvancedHotkeyViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
-		self.preferredContentSize = .init(width: 480, height: 310)
-		globalHotkeyCheck.state = .init(bool: Settings.enableGlobalHotkeys)
-		globalHotkeyCheck.isEnabled = AppDelegate.isAccessibilityGranted
+		globalHotkeySwitch.state = .init(bool: Settings.enableGlobalHotkeys)
+		
+		setAccessibilityPermissionState()
+		goToSettingsButton.title = "Open System \(Settings.prefsText)"
+		
 		DistributedNotificationCenter.default().addObserver(forName: AppDelegate.acessibilityNotificationName, object: nil, queue: nil) { thing in
 			//Wait a second, otherwise `isAccessibilityGranted` may return the incorrect value
 				DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
-					self.globalHotkeyCheck.isEnabled = AppDelegate.isAccessibilityGranted
+					self.setAccessibilityPermissionState()
 			}
 		}
     }
 	
-	@IBAction func globalHotkeyCheckClick(_ sender: NSButton) {
-		guard let appDel = AppDelegate.shared else {return}
+	///Sets the state of views that change depending on whether or not accessibility permission has ben granted
+	func setAccessibilityPermissionState() {
+		globalHotkeySwitch.isEnabled = AppDelegate.isAccessibilityGranted
+		enableGlobalHotkeyLabel.textColor = AppDelegate.isAccessibilityGranted ? .textColor : .disabledControlTextColor
+		goToSettingsSection.isHidden = AppDelegate.isAccessibilityGranted
+	}
+	
+	@IBAction func globalHotkeySwitchClick(_ sender: Any?) {
 		if AppDelegate.isAccessibilityGranted {
-			Settings.enableGlobalHotkeys = globalHotkeyCheck.state.toBool()
+			Settings.enableGlobalHotkeys = globalHotkeySwitch.state.toBool()
 		} else {
-			sender.state = .init(bool: false)
-			appDel.keybindAlert()
+			globalHotkeySwitch.state = .init(bool: false)
 		}
 		let rowIndexes = IndexSet(arrayLiteral: 0)
 		let colIndexes = IndexSet(arrayLiteral: 1)
@@ -68,6 +79,14 @@ class AdvancedHotkeyViewController: NSViewController {
 		alert.informativeText = debugText
 		alert.runModal()
 
+	}
+	
+	@IBAction func goToSettingsButtonClicked(_ sender: NSButton) {
+		openSystemPrefs()
+	}
+	
+	func openSystemPrefs() {
+		NSWorkspace.shared.open(URL(string: "x-apple.systempreferences:com.apple.preference.security?Privacy_Accessibility")!)
 	}
 	
 	func openTellMeMore() {

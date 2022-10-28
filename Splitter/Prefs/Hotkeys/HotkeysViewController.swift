@@ -9,6 +9,7 @@
 import Cocoa
 import Preferences
 import Files
+import SwiftUI
 
 final class HotkeysViewController: NSViewController, PreferencePane {
 	let preferencePaneIdentifier = Preferences.PaneIdentifier.hotkeys
@@ -70,6 +71,7 @@ final class HotkeysViewController: NSViewController, PreferencePane {
 		let advanced = AdvancedHotkeyViewController(nibName: "AdvancedHotkeyViewController", bundle: nil)
 		advanced.hotkeyVC = self
 		self.presentAsSheet(advanced)
+		
 	}
 	
 	@IBAction func clearHotkeyButtons(_ sender: Any) {
