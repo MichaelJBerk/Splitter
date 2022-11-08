@@ -83,6 +83,10 @@ class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOut
 	var dropType: NSPasteboard.PasteboardType = .init("public.data")
 	var runController: ViewController!
 	var draggingItem: Any?
+	
+	override var undoManager: UndoManager? {
+		runController.run.undoManager
+	}
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -329,21 +333,33 @@ extension LayoutEditorViewController {
 		return false
 	}
 	
+//MARK: - Drag & Drop
+	
 	func outlineView(_ outlineView: NSOutlineView, acceptDrop info: NSDraggingInfo, item: Any?, childIndex index: Int) -> Bool {
 		if let dragItem = draggingItem {
 			if let component = dragItem as? SplitterComponent {
-				let oldIndex = runController.mainStackView.views.firstIndex(of: component)!
-				var views = runController.mainStackView.views
-				views.move(fromOffsets: IndexSet([oldIndex]), toOffset: index)
-				runController.mainStackView.update(runController.mainStackView, views)
-				outlineView.reloadData()
-				let indexToSelect = outlineView.row(forItem: component)
-				outlineView.selectRowIndexes(IndexSet([indexToSelect]), byExtendingSelection: false)
+				move(component, to: index)
 				return true
 			}
 		}
 		return false
 	}
+	
+	func move(_ component: SplitterComponent, to index: Int) {
+		let oldIndex = runController.mainStackView.views.firstIndex(of: component)!
+		undoManager?.registerUndo(withTarget: self, handler: { layoutEditor in
+			layoutEditor.move(component, to: oldIndex)
+		})
+		undoManager?.setActionName("Move Component")
+		var views = runController.mainStackView.views
+		views.move(fromOffsets: IndexSet([oldIndex]), toOffset: index)
+		
+		runController.mainStackView.update(runController.mainStackView, views)
+		outlineView.reloadData()
+		let indexToSelect = outlineView.row(forItem: component)
+		outlineView.selectRowIndexes(IndexSet([indexToSelect]), byExtendingSelection: false)
+	}
+	
 	func outlineView(_ outlineView: NSOutlineView, draggingSession session: NSDraggingSession, willBeginAt screenPoint: NSPoint, forItems draggedItems: [Any]) {
 		draggingItem = draggedItems[0] as Any?
 		session.draggingPasteboard.setData(Data(), forType: dropType)
