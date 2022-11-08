@@ -85,6 +85,7 @@ extension SplitterComponent {
 			self.layer?.sublayers?.filter({$0.name == "borderLayer"}).forEach({$0.removeFromSuperlayer()})
 		}
 	}
+	
 	func defaultComponentOptions() -> NSView {
 		let visibleCheck = NSButton(checkboxWithTitle: "Hidden", target: self, action: #selector(hide(_:)))
 		visibleCheck.state = .init(bool: isHidden)
@@ -93,13 +94,22 @@ extension SplitterComponent {
 			spacingSetting.widthAnchor.constraint(greaterThanOrEqualToConstant: 50)
 		])
 		spacingSetting.stringValue = "\(afterSpacing)"
-		
+		NotificationCenter.default.addObserver(forName: NSTextField.textDidBeginEditingNotification, object: spacingSetting, queue: nil, using: { _ in
+			if self.run.undoManager?.groupingLevel == 0 {
+				self.run.undoManager?.beginUndoGrouping()
+			}
+		})
 		NotificationCenter.default.addObserver(forName: NSTextField.textDidChangeNotification, object: spacingSetting, queue: nil, using: { notification in
 			//NOTE: Can still enter invalid numbers like 6.0.0
 			let charSet = NSCharacterSet(charactersIn: "1234567890.").inverted
 			let chars = spacingSetting.stringValue.components(separatedBy: charSet)
 			spacingSetting.stringValue = chars.joined()
 			self.afterSpacing = CGFloat(Double(spacingSetting.stringValue) ?? Double(self.defaultAfterSpacing))
+		})
+		NotificationCenter.default.addObserver(forName: NSTextField.textDidEndEditingNotification, object: spacingSetting, queue: nil, using: { _ in
+			if self.run.undoManager?.groupingLevel ?? 0 > 0 {
+				self.run.undoManager?.endUndoGrouping()
+			}
 		})
 		
 		let spacingLabel = NSTextField(labelWithString: "Spacing (Below)")
@@ -117,6 +127,7 @@ extension SplitterComponent {
 		
 		return vStack
 	}
+	
 	var defaultAfterSpacing: CGFloat {
 		return 5
 	}
@@ -129,6 +140,11 @@ extension SplitterComponent {
 			}
 		}
 		set {
+			let oldValue = afterSpacing
+			run.undoManager?.registerUndo(withTarget: self, handler: { comp in
+				comp.afterSpacing = oldValue
+			})
+			run.undoManager?.setActionName("Set Component Spacing")
 			customSpacing = newValue
 			viewController.mainStackView.setCustomSpacing(customSpacing ?? defaultAfterSpacing, after: self)
 		}
