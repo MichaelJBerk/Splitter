@@ -8,8 +8,6 @@
 
 import Cocoa
 import Preferences
-import AppCenter
-import AppCenterCrashes
 import SplitsIOKit
 import LiveSplitKit
 extension Notification.Name {

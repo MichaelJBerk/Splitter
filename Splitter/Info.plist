@@ -95,7 +95,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>287</string>
+	<string>292</string>
 	<key>INIntentsSupported</key>
 	<array>
 		<string>SplitRunIntent</string>
@@ -103,6 +103,8 @@
 		<string>GetOpenRunsIntent</string>
 		<string>UndoSplitIntent</string>
 	</array>
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.utilities</string>
 	<key>LSMinimumSystemVersion</key>
@@ -128,10 +130,6 @@
 		<string>OpenRunIntent</string>
 		<string>UndoSplitIntent</string>
 	</array>
-	<key>SUFeedURL</key>
-	<string>https://api.appcenter.ms/v0.1/public/sparkle/apps/4c70aada-2995-4f98-9cf3-5b87d595ee01</string>
-	<key>SUPublicEDKey</key>
-	<string>hEthjojeukXyt2xgDLphaQhJs9qCiqrkrxCOgvpZekE=</string>
 	<key>UTExportedTypeDeclarations</key>
 	<array>
 		<dict>
@@ -219,8 +217,6 @@
 			</dict>
 		</dict>
 	</array>
-	<key>appcenterkey</key>
-	<string>$(ENV_APPCENTER_KEY)</string>
 	<key>splitsioclient</key>
 	<string>$(ENV_SIO_CLIENT)</string>
 	<key>splitsiosecret</key>

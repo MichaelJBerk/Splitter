@@ -4,7 +4,6 @@ platform :osx, '10.14'
   inhibit_all_warnings!
 
   def splitter_pods
-  	pod 'Sparkle'
   	pod 'MASShortcut'
     pod 'ZippyJSON'
   end

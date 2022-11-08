@@ -46,8 +46,6 @@
 		4A327B0D23F491FB00A5CBFF /* SplitterAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A327B0C23F491FB00A5CBFF /* SplitterAppearance.swift */; };
 		4A388FC525D4AF2B00A63C9E /* PrevNextRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A388FC425D4AF2B00A63C9E /* PrevNextRow.swift */; };
 		4A388FCF25D4B00B00A63C9E /* PrevNextRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A388FCE25D4B00B00A63C9E /* PrevNextRow.xib */; };
-		4A3A082226727B5F00F3EB05 /* AppCenterAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4A3A082126727B5F00F3EB05 /* AppCenterAnalytics */; };
-		4A3A082426727B5F00F3EB05 /* AppCenterCrashes in Frameworks */ = {isa = PBXBuildFile; productRef = 4A3A082326727B5F00F3EB05 /* AppCenterCrashes */; };
 		4A3A082626727DCB00F3EB05 /* FileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3A082526727DCB00F3EB05 /* FileTests.swift */; };
 		4A3BB54D27DA9322006C3256 /* AdvancedHotkeyViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3BB54B27DA9322006C3256 /* AdvancedHotkeyViewController.swift */; };
 		4A3BB54E27DA9322006C3256 /* AdvancedHotkeyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A3BB54C27DA9322006C3256 /* AdvancedHotkeyViewController.xib */; };
@@ -88,8 +86,6 @@
 		4A6A965824EC3516008EFD2B /* LoadingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6A965624EC3516008EFD2B /* LoadingViewController.swift */; };
 		4A6A965924EC3516008EFD2B /* LoadingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A6A965724EC3516008EFD2B /* LoadingViewController.xib */; };
 		4A6B4F7423F07C3900CB781F /* libresolv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A73B75023F0722800010F30 /* libresolv.tbd */; };
-		4A6C4D55279B331C004D818C /* LiveSplitKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A6C4D54279B331C004D818C /* LiveSplitKit.framework */; };
-		4A6C4D56279B331C004D818C /* LiveSplitKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4A6C4D54279B331C004D818C /* LiveSplitKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4A71054C24BE267300FA9127 /* SplitterTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A71054B24BE267300FA9127 /* SplitterTests.swift */; };
 		4A74D4ED25EE9DD700A3D9C7 /* SplitterRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A74D4EC25EE9DD700A3D9C7 /* SplitterRun.swift */; };
 		4A75578D255C426A00ACE826 /* SplitterDocLSS.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4A75578C255C426A00ACE826 /* SplitterDocLSS.icns */; };
@@ -129,6 +125,8 @@
 		4AD44ADB262F463C003375C4 /* KeyValueComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AD44ADA262F463C003375C4 /* KeyValueComponent.xib */; };
 		4AD44ADF262F4CFB003375C4 /* TitleComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD44ADE262F4CFB003375C4 /* TitleComponent.swift */; };
 		4AD7662E23DA5F9A0052409C /* Files in Frameworks */ = {isa = PBXBuildFile; productRef = 4AD7662D23DA5F9A0052409C /* Files */; };
+		4AD7C6CB291494ED006645A6 /* LiveSplitKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A6C4D54279B331C004D818C /* LiveSplitKit.framework */; };
+		4AD7C6CC291494ED006645A6 /* LiveSplitKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4A6C4D54279B331C004D818C /* LiveSplitKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4AD94B202804B0B8007A1881 /* ZippyFontDecoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD94B1F2804B0B8007A1881 /* ZippyFontDecoding.swift */; };
 		4ADFAE4923E4A0760049F57A /* QuickAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADFAE4823E4A0760049F57A /* QuickAlert.swift */; };
 		4AE168A626091CA900A6169B /* LayoutEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE168A526091CA900A6169B /* LayoutEditorViewController.swift */; };
@@ -146,8 +144,6 @@
 		4AF9E8AC24CE31CA00DFD5BE /* DebugPrefsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AF9E8AA24CE31CA00DFD5BE /* DebugPrefsViewController.xib */; };
 		4AF9E8C224CE448B00DFD5BE /* SplitterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF9E8C124CE448B00DFD5BE /* SplitterUITests.swift */; };
 		4AFAD84524CF2CF8006FC480 /* WelcomeWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFAD84424CF2CF8006FC480 /* WelcomeWindowController.swift */; };
-		4AFD0F8B25C38F4C003D3171 /* AppCenterCrashes in Frameworks */ = {isa = PBXBuildFile; productRef = 4AFD0F8A25C38F4C003D3171 /* AppCenterCrashes */; };
-		4AFD0F8D25C38F4C003D3171 /* AppCenterAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4AFD0F8C25C38F4C003D3171 /* AppCenterAnalytics */; };
 		8804F3EC8981B4A4FF1AB102 /* Pods_SplitterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E128E02F492B64176861511 /* Pods_SplitterTests.framework */; };
 		CE3CEB918F0A74684203013F /* Pods_SplitterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2184CE06522900A3336AB98 /* Pods_SplitterUITests.framework */; };
 /* End PBXBuildFile section */
@@ -160,6 +156,20 @@
 			remoteGlobalIDString = 4A230E8E23B00A1D00959C57;
 			remoteInfo = Splitter;
 		};
+		4AD7C6C029149382006645A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4AD7C6BB29149382006645A6 /* LiveSplitKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4A6C4D11279B2681004D818C;
+			remoteInfo = LiveSplitKit;
+		};
+		4AD7C6C229149382006645A6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4AD7C6BB29149382006645A6 /* LiveSplitKit.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 4A6C4D1B279B2681004D818C;
+			remoteInfo = LiveSplitKitTests;
+		};
 		4AF9E8C424CE448B00DFD5BE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 4A230E8723B00A1D00959C57 /* Project object */;
@@ -170,13 +180,13 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		4AD7665C23DB5CFC0052409C /* Embed Frameworks */ = {
+		4AD7C6CD291494ED006645A6 /* Embed Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				4A6C4D56279B331C004D818C /* LiveSplitKit.framework in Embed Frameworks */,
+				4AD7C6CC291494ED006645A6 /* LiveSplitKit.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -306,6 +316,7 @@
 		4AD44AD6262F40E3003375C4 /* KeyValueComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyValueComponent.swift; sourceTree = "<group>"; };
 		4AD44ADA262F463C003375C4 /* KeyValueComponent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KeyValueComponent.xib; sourceTree = "<group>"; };
 		4AD44ADE262F4CFB003375C4 /* TitleComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleComponent.swift; sourceTree = "<group>"; };
+		4AD7C6BB29149382006645A6 /* LiveSplitKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LiveSplitKit.xcodeproj; path = LiveSplitKit/LiveSplitKit.xcodeproj; sourceTree = "<group>"; };
 		4AD94B1F2804B0B8007A1881 /* ZippyFontDecoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZippyFontDecoding.swift; sourceTree = "<group>"; };
 		4ADFAE4823E4A0760049F57A /* QuickAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickAlert.swift; sourceTree = "<group>"; };
 		4AE168A526091CA900A6169B /* LayoutEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutEditorViewController.swift; sourceTree = "<group>"; };
@@ -342,15 +353,13 @@
 			files = (
 				4ACF41B626B3166E006DF2C8 /* SwiftUI.framework in Frameworks */,
 				4AD7662E23DA5F9A0052409C /* Files in Frameworks */,
-				4AFD0F8B25C38F4C003D3171 /* AppCenterCrashes in Frameworks */,
 				4ABB38A8255C79B00037536E /* SwiftyJSON in Frameworks */,
-				4A6C4D55279B331C004D818C /* LiveSplitKit.framework in Frameworks */,
 				4A20C46E2640BDB600307993 /* Introspect in Frameworks */,
+				4AD7C6CB291494ED006645A6 /* LiveSplitKit.framework in Frameworks */,
 				4A214A70255C90720006FD9F /* SplitsIOKit in Frameworks */,
 				4A1767B224EE095100571A6C /* Preferences in Frameworks */,
 				4A7F94AA26332DBE002861E3 /* Codextended in Frameworks */,
 				4A6B4F7423F07C3900CB781F /* libresolv.tbd in Frameworks */,
-				4AFD0F8D25C38F4C003D3171 /* AppCenterAnalytics in Frameworks */,
 				071F8D0A9AB0317E095AA9EA /* Pods_Splitter.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -367,8 +376,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4A3A082226727B5F00F3EB05 /* AppCenterAnalytics in Frameworks */,
-				4A3A082426727B5F00F3EB05 /* AppCenterCrashes in Frameworks */,
 				CE3CEB918F0A74684203013F /* Pods_SplitterUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -518,6 +525,7 @@
 		4A230E8623B00A1D00959C57 = {
 			isa = PBXGroup;
 			children = (
+				4AD7C6BB29149382006645A6 /* LiveSplitKit.xcodeproj */,
 				4AE7E2AF2845B88E00716CF3 /* Config.xcconfig */,
 				4A214A64255C8FB30006FD9F /* SplitsIOKit */,
 				4A230E9123B00A1D00959C57 /* Splitter */,
@@ -780,6 +788,15 @@
 			path = Native;
 			sourceTree = "<group>";
 		};
+		4AD7C6BC29149382006645A6 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4AD7C6C129149382006645A6 /* LiveSplitKit.framework */,
+				4AD7C6C329149382006645A6 /* LiveSplitKitTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		4AEA33132629EFC4001012BD /* TimeRow */ = {
 			isa = PBXGroup;
 			children = (
@@ -895,15 +912,13 @@
 				4A230E8B23B00A1D00959C57 /* Sources */,
 				4A230E8C23B00A1D00959C57 /* Frameworks */,
 				4A230E8D23B00A1D00959C57 /* Resources */,
-				4AD7665C23DB5CFC0052409C /* Embed Frameworks */,
 				4A66573523E3E0D900D14A67 /* ShellScript */,
 				0B8E043ACE44C9951BB8C2E3 /* [CP] Embed Pods Frameworks */,
+				4AD7C6CD291494ED006645A6 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
-				4AFD0F9C25C390EF003D3171 /* PBXTargetDependency */,
-				4AFD0F9A25C390EC003D3171 /* PBXTargetDependency */,
 			);
 			name = Splitter;
 			packageProductDependencies = (
@@ -912,8 +927,6 @@
 				4A1767B124EE095100571A6C /* Preferences */,
 				4ABB38A7255C79B00037536E /* SwiftyJSON */,
 				4A214A6F255C90720006FD9F /* SplitsIOKit */,
-				4AFD0F8A25C38F4C003D3171 /* AppCenterCrashes */,
-				4AFD0F8C25C38F4C003D3171 /* AppCenterAnalytics */,
 				4A7F94A926332DBE002861E3 /* Codextended */,
 				4A20C46D2640BDB600307993 /* Introspect */,
 			);
@@ -958,8 +971,6 @@
 			);
 			name = SplitterUITests;
 			packageProductDependencies = (
-				4A3A082126727B5F00F3EB05 /* AppCenterAnalytics */,
-				4A3A082326727B5F00F3EB05 /* AppCenterCrashes */,
 			);
 			productName = SplitterUITests;
 			productReference = 4AF9E8BF24CE448B00DFD5BE /* SplitterUITests.xctest */;
@@ -1001,12 +1012,17 @@
 				4AD7662C23DA5F9A0052409C /* XCRemoteSwiftPackageReference "Files" */,
 				4AB5627724338FB000D7F8D1 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				4A1767B024EE095100571A6C /* XCRemoteSwiftPackageReference "Preferences" */,
-				4AFD0F8725C38F4C003D3171 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */,
 				4A7F94A826332DBE002861E3 /* XCRemoteSwiftPackageReference "Codextended" */,
 				4A20C46C2640BDB600307993 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 			);
 			productRefGroup = 4A230E9023B00A1D00959C57 /* Products */;
 			projectDirPath = "";
+			projectReferences = (
+				{
+					ProductGroup = 4AD7C6BC29149382006645A6 /* Products */;
+					ProjectRef = 4AD7C6BB29149382006645A6 /* LiveSplitKit.xcodeproj */;
+				},
+			);
 			projectRoot = "";
 			targets = (
 				4A230E8E23B00A1D00959C57 /* Splitter */,
@@ -1015,6 +1031,23 @@
 			);
 		};
 /* End PBXProject section */
+
+/* Begin PBXReferenceProxy section */
+		4AD7C6C129149382006645A6 /* LiveSplitKit.framework */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.framework;
+			path = LiveSplitKit.framework;
+			remoteRef = 4AD7C6C029149382006645A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		4AD7C6C329149382006645A6 /* LiveSplitKitTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = LiveSplitKitTests.xctest;
+			remoteRef = 4AD7C6C229149382006645A6 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+/* End PBXReferenceProxy section */
 
 /* Begin PBXResourcesBuildPhase section */
 		4A230E8D23B00A1D00959C57 /* Resources */ = {
@@ -1356,12 +1389,6 @@
 			target = 4A230E8E23B00A1D00959C57 /* Splitter */;
 			targetProxy = 4AF9E8C424CE448B00DFD5BE /* PBXContainerItemProxy */;
 		};
-		4AFD0F9A25C390EC003D3171 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-		};
-		4AFD0F9C25C390EF003D3171 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-		};
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
@@ -1502,7 +1529,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 287;
+				CURRENT_PROJECT_VERSION = 292;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 39SZK2C73D;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1512,7 +1539,6 @@
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/Preferences/Preferences.framework/Headers\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/SWXMLHash/SWXMLHash.framework/Headers\"",
 					"\"${PODS_CONFIGURATION_BUILD_DIR}/SwiftyXMLParser/SwiftyXMLParser.framework/Headers\"",
-					"\"$(PROJECT_DIR)/Splitter/LiveSplit Core/\"",
 				);
 				INFOPLIST_FILE = Splitter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -1520,10 +1546,6 @@
 					"\"@executable_path/\"",
 					"@executable_path/../Frameworks",
 					"$(BUILT_PRODUCTS_DIR)",
-				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 5.0;
@@ -1549,7 +1571,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 287;
+				CURRENT_PROJECT_VERSION = 292;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 39SZK2C73D;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1567,10 +1589,6 @@
 					"\"@executable_path/\"",
 					"@executable_path/../Frameworks",
 					"$(BUILT_PRODUCTS_DIR)",
-				);
-				LIBRARY_SEARCH_PATHS = (
-					"$(inherited)",
-					"$(PROJECT_DIR)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
 				MARKETING_VERSION = 5.0;
@@ -1750,14 +1768,6 @@
 				minimumVersion = 4.2.0;
 			};
 		};
-		4AFD0F8725C38F4C003D3171 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/microsoft/appcenter-sdk-apple.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 4.1.0;
-			};
-		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1775,16 +1785,6 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = SplitsIOKit;
 		};
-		4A3A082126727B5F00F3EB05 /* AppCenterAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4AFD0F8725C38F4C003D3171 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
-			productName = AppCenterAnalytics;
-		};
-		4A3A082326727B5F00F3EB05 /* AppCenterCrashes */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4AFD0F8725C38F4C003D3171 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
-			productName = AppCenterCrashes;
-		};
 		4A7F94A926332DBE002861E3 /* Codextended */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4A7F94A826332DBE002861E3 /* XCRemoteSwiftPackageReference "Codextended" */;
@@ -1799,16 +1799,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4AD7662C23DA5F9A0052409C /* XCRemoteSwiftPackageReference "Files" */;
 			productName = Files;
-		};
-		4AFD0F8A25C38F4C003D3171 /* AppCenterCrashes */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4AFD0F8725C38F4C003D3171 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
-			productName = AppCenterCrashes;
-		};
-		4AFD0F8C25C38F4C003D3171 /* AppCenterAnalytics */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4AFD0F8725C38F4C003D3171 /* XCRemoteSwiftPackageReference "appcenter-sdk-apple" */;
-			productName = AppCenterAnalytics;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

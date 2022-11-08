@@ -8,8 +8,6 @@
 
 import XCTest
 @testable import Splitter
-import AppCenter
-import AppCenterAnalytics
 import AppCenterCrashes
 
 class SplitterUITests: XCTestCase {

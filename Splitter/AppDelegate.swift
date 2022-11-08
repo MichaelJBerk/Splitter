@@ -8,8 +8,6 @@
 
 import Cocoa
 import Preferences
-import AppCenterAnalytics
-import AppCenterCrashes
 import Files
 import SwiftUI
 import SplitsIOKit
@@ -25,7 +23,7 @@ public static let build = Bundle.main.infoDictionary?["CFBundleVersion"] as! Str
 }
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
+class AppDelegate: NSObject, NSApplicationDelegate {
 	@IBOutlet private var window: NSWindow!
 	
 	static func getFromInfo(key: String) -> String? {
@@ -37,10 +35,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 	}
 	static var splitsiosecret: String {
 		getFromInfo(key: "splitsiosecret")!
-	}
-	
-	static var appcenterkey: String {
-		getFromInfo(key: "appcenterkey")!
 	}
 	
 	static var splitsIOAuth = SplitsIOAuth(client: splitsioclient, secret: splitsiosecret, redirects: "splitter://login", url: Settings.splitsIOURL.absoluteString)
@@ -128,47 +122,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, CrashesDelegate{
 			NSApp.activate(ignoringOtherApps: true)
 			newWindowIfNone()
 		}
-		
-		//MSAppCenter stuff
-		NSApp.mainMenu?.item(withIdentifier: menuIdentifiers.appMenu.updatesMenuItem)?.isHidden = false
-		#if !DEBUG
-		
-		Crashes.delegate = self
-		AppCenter.start(withAppSecret: "\(Self.appcenterkey)", services:[
-			Analytics.self,
-			Crashes.self
-		])
-		AppCenter.logLevel = .verbose
-		Crashes.enabled = true
-		UserDefaults.standard.register(defaults: ["NSApplicationCrashOnExceptions": true])
-		Crashes.userConfirmationHandler = { (errorReports: [ErrorReport]) in
-			
-			// Your code to present your UI to the user, e.g. an NSAlert.
-			let alert: NSAlert = NSAlert()
-			alert.messageText = "Sorry about that!"
-			alert.informativeText = "Do you want to send an anonymous crash report so we can fix the issue?"
-			alert.addButton(withTitle: "Always send")
-			alert.addButton(withTitle: "Send")
-			alert.addButton(withTitle: "Don't send")
-			alert.alertStyle = .warning
-			
-			switch (alert.runModal()) {
-			case .alertFirstButtonReturn:
-				Crashes.notify(with: .always)
-				break;
-			case .alertSecondButtonReturn:
-				Crashes.notify(with: .send)
-				break;
-			case .alertThirdButtonReturn:
-				Crashes.notify(with: .dontSend)
-				break;
-			default:
-				break;
-			}
-			
-			return true // Return true if the SDK should await user confirmation, otherwise return false.
-		}
-		#endif
 		
 		#if DEBUG
 		if CommandLine.arguments.contains("-newFile") {
