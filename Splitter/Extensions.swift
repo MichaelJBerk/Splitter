@@ -35,8 +35,8 @@ extension NSMenuItem {
 	}
 }
 extension NSView {
-	///Used mostly for Splitter Components
-	@objc func hide(_ sender: Any?) {
+	///Toggles whether the view is hidden`
+	func hide() {
 		self.isHidden.toggle()
 	}
 }

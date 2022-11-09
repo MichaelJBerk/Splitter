@@ -219,11 +219,6 @@ class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent {
 	
 	override func draw(_ dirtyRect: NSRect) {}
 	
-	override func hide(_ sender: Any?) {
-		super.hide(sender)
-		//TODO: After showing, make window bigger
-		
-	}
 }
 
 class SplitterScroller: NSScroller {

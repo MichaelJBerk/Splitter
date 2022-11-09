@@ -57,7 +57,13 @@ protocol SplitterComponent: NSView {
 }
 
 extension SplitterComponent {
+	//TODO: Make component options into a separate class
+	
 	func updateUI() { }
+	
+	var displayName: String {
+		SplitterComponentType.FromType(self)!.displayTitle
+	}
 	
 	var leadingConstraint: NSLayoutConstraint {
 		self.leadingAnchor.constraint(equalTo: viewController.view.leadingAnchor, constant: 7)
@@ -86,8 +92,48 @@ extension SplitterComponent {
 		}
 	}
 	
+	func undoableSetting<T: Equatable>(actionName: String?, oldValue: T, newValue: T, edit: @escaping(Self, T) -> ()) {
+		run.undoManager?.registerUndo(withTarget: self, handler: { comp in
+			comp.undoableSetting(actionName: actionName, oldValue: newValue, newValue: oldValue, edit: edit)
+		})
+		if let actionName {
+			run.undoManager?.setActionName(actionName)
+		}
+		edit(self, newValue)
+									  
+	}
+	
+	
+	///Action when clicking the "Hidden" checkbox for this component
+	///
+	///In addition to toggling ``NSView.hide()``, it also handles undo management, and setting the button state correctly
+	private func hiddenToggleAction(_ button: NSButton) {
+		undoableSetting(actionName: "Hide \(displayName)", oldValue: self.isHidden, newValue: !self.isHidden, edit: { comp, val  in
+			self.hide()
+			button.state = .init(bool: val)
+		})
+	}
+	
+	
+	///Method used by the "Spacing (After)" text field
+	///
+	///When the "Spacing (After)" text field is edited, it calls this method to actually set the value.
+	///This method also handles undo registration for it, including the ability to update the text field in accordance with the new value.
+	private func setAfterSpacing(tf: NSTextField, from current: CGFloat?, to new: CGFloat?) {
+		run.undoManager?.registerUndo(withTarget: self, handler: { comp in
+			comp.setAfterSpacing(tf: tf, from: new, to: current)
+			comp.run.undoManager?.disableUndoRegistration()
+			tf.stringValue = "\(current ?? self.defaultAfterSpacing)"
+			comp.run.undoManager?.enableUndoRegistration()
+		})
+		run.undoManager?.setActionName("Set \(self.displayName) Spacing")
+		afterSpacing = new ?? defaultAfterSpacing
+	}
+	
 	func defaultComponentOptions() -> NSView {
-		let visibleCheck = NSButton(checkboxWithTitle: "Hidden", target: self, action: #selector(hide(_:)))
+		let visibleCheck = ComponentOptionsButton(checkboxWithTitle: "Hidden", clickAction: { button in
+			self.hiddenToggleAction(button)
+		})
 		visibleCheck.state = .init(bool: isHidden)
 		let spacingSetting = NSTextField()
 		NSLayoutConstraint.activate([
@@ -104,7 +150,10 @@ extension SplitterComponent {
 			let charSet = NSCharacterSet(charactersIn: "1234567890.").inverted
 			let chars = spacingSetting.stringValue.components(separatedBy: charSet)
 			spacingSetting.stringValue = chars.joined()
-			self.afterSpacing = CGFloat(Double(spacingSetting.stringValue) ?? Double(self.defaultAfterSpacing))
+			let oldValue = self.afterSpacing;
+			let newValue = CGFloat(Double(spacingSetting.stringValue) ?? Double(self.defaultAfterSpacing))
+			let tf = notification.object as! NSTextField
+			self.setAfterSpacing(tf: tf, from: oldValue, to: newValue)
 		})
 		NotificationCenter.default.addObserver(forName: NSTextField.textDidEndEditingNotification, object: spacingSetting, queue: nil, using: { _ in
 			if self.run.undoManager?.groupingLevel ?? 0 > 0 {
@@ -115,7 +164,11 @@ extension SplitterComponent {
 		let spacingLabel = NSTextField(labelWithString: "Spacing (Below)")
 		let resetButton = ComponentOptionsButton(title: "Reset", clickAction: { _ in
 			spacingSetting.stringValue = "\(self.defaultAfterSpacing)"
-			self.afterSpacing = self.defaultAfterSpacing
+			let oldValue = self.afterSpacing
+			self.undoableSetting(actionName: "Set \(self.displayName) Spacing", oldValue: oldValue, newValue: self.defaultAfterSpacing, edit: {
+				$0.afterSpacing = $1
+				spacingSetting.stringValue = "\($1)"
+			})
 		})
 		let spacingStack = NSStackView(views: [spacingLabel, spacingSetting, resetButton])
 		spacingStack.orientation = .horizontal
@@ -140,11 +193,6 @@ extension SplitterComponent {
 			}
 		}
 		set {
-			let oldValue = afterSpacing
-			run.undoManager?.registerUndo(withTarget: self, handler: { comp in
-				comp.afterSpacing = oldValue
-			})
-			run.undoManager?.setActionName("Set Component Spacing")
 			customSpacing = newValue
 			viewController.mainStackView.setCustomSpacing(customSpacing ?? defaultAfterSpacing, after: self)
 		}
