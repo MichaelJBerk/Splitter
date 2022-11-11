@@ -27,6 +27,10 @@ class WindowSettingViewController: NSViewController, LoadableNib {
 	
 	@IBOutlet weak var noteLabel: NSTextField!
 	
+	override var undoManager: UndoManager? {
+		run.undoManager
+	}
+	
 	
 	override func viewDidLoad() {
         super.viewDidLoad()
@@ -60,6 +64,35 @@ You can still close the window either with ⌘W or from the "Window" menu.
 """
 	}
 	
+	@IBAction func hideTitleBarButtonAction(_ sender: NSButton) {
+		let oldValue = !sender.state.toBool()
+		undoManager?.registerUndo(withTarget: self, handler: { vc in
+			sender.state = .init(bool: oldValue)
+			vc.hideTitleBarButtonAction(sender)
+		})
+		undoManager?.setActionName("Set Title Bar Hidden")
+		sendSettings(sender)
+	}
+	
+	@IBAction func keepOnTopButtonAction(_ sender: NSButton) {
+		let oldValue = !sender.state.toBool()
+		undoManager?.registerUndo(withTarget: self, handler: { vc in
+			sender.state = .init(bool: oldValue)
+			vc.keepOnTopButtonAction(sender)
+		})
+		undoManager?.setActionName("Set Keep On Top")
+		sendSettings(sender)
+	}
+	
+	@IBAction func hideTitleButtonAction(_ sender: NSButton) {
+		let oldValue = !sender.state.toBool()
+		undoManager?.registerUndo(withTarget: self, handler: { vc in
+			sender.state = .init(bool: oldValue)
+			vc.hideTitleButtonAction(sender)
+		})
+		undoManager?.setActionName("Set Keep On Top")
+		sendSettings(sender)
+	}
 	
 	var hideTitleBar: Bool {
 		set {
@@ -134,9 +167,9 @@ You can still close the window either with ⌘W or from the "Window" menu.
 			keepOnTopCheck.target = self
 			hideTitleCheck.target = self
 			
-			hideTitleBarCheck.action = #selector(sendSettings(_:))
-			keepOnTopCheck.action = #selector(sendSettings(_:))
-			hideTitleCheck.action = #selector(sendSettings(_:))
+			hideTitleBarCheck.action = #selector(hideTitleBarButtonAction(_:))
+			keepOnTopCheck.action = #selector(keepOnTopButtonAction(_:))
+			hideTitleCheck.action = #selector(hideTitleButtonAction(_:))
 			
 			if let doc = run.document, doc is Document {
 				noteLabel.stringValue = splitNoteText

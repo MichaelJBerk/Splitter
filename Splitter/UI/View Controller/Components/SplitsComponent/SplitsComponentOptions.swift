@@ -57,18 +57,30 @@ extension SplitsComponent {
 	//MARK: - Main Options View
 	var optionsView: NSView! {
 		let d = defaultComponentOptions() as! ComponentOptionsVstack
-		let showHeaderButton = ComponentOptionsButton(checkboxWithTitle: "Show Header") {_ in
-			self.showHeader.toggle()
+		let showHeaderButton = ComponentOptionsButton(checkboxWithTitle: "Show Header") {button in
+			let oldValue = self.showHeader
+			self.undoableSetting(actionName: "Set Show Header", oldValue: oldValue, newValue: !oldValue, edit: { comp, value in
+				comp.showHeader = value
+				button.state = .init(bool: value)
+			})
 		}
 		showHeaderButton.state = .init(bool: showHeader)
 		d.addArrangedSubview(showHeaderButton)
-		let hasVScrollButton = ComponentOptionsButton(checkboxWithTitle: "Vertical Scroll Bar", clickAction: { _ in
-			self.hasVerticalScroller.toggle()
+		let hasVScrollButton = ComponentOptionsButton(checkboxWithTitle: "Vertical Scroll Bar", clickAction: { button in
+			let oldValue = self.hasVerticalScroller
+			self.undoableSetting(actionName: "Set Show Vertical Scroll Bar", oldValue: oldValue, newValue: !oldValue, edit: {comp, val in
+				comp.hasVerticalScroller = val
+				button.state = .init(bool: val)
+			})
 		})
 		hasVScrollButton.state = .init(bool: hasVerticalScroller)
 		
-		let hasHScrollButton = ComponentOptionsButton(checkboxWithTitle: "Horizontal Scroll Bar", clickAction: { _ in
-			self.hasHorizontalScroller.toggle()
+		let hasHScrollButton = ComponentOptionsButton(checkboxWithTitle: "Horizontal Scroll Bar", clickAction: { button in
+			let oldValue = self.hasHorizontalScroller
+			self.undoableSetting(actionName: "Set Show Horizontal Scroll Bar", oldValue: oldValue, newValue: !oldValue, edit: {comp, val in
+				comp.hasHorizontalScroller = val
+				button.state = .init(bool: val)
+			})
 		})
 		hasHScrollButton.state = .init(bool: hasHorizontalScroller)
 

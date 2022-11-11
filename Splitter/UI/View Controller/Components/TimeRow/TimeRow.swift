@@ -73,10 +73,21 @@ class TimeRow: NSStackView, NibLoadable, SplitterComponent, NSTextFieldDelegate 
 	
 	var optionsView: NSView! {
 		let d = defaultComponentOptions() as! ComponentOptionsVstack
-		let showAttemptsLabelButton = ComponentOptionsButton(checkboxWithTitle: "Show Attempts Label", clickAction: { _ in self.showAttemptsLabel.toggle()})
-		let showAttemptsButton = ComponentOptionsButton(checkboxWithTitle: "Show Attempts", clickAction: {_ in 
-			self.showAttempts.toggle()
-			showAttemptsLabelButton.isEnabled = self.showAttempts
+		let showAttemptsLabelButton = ComponentOptionsButton(checkboxWithTitle: "Show Attempts Label", clickAction: { button in
+			let oldValue = self.showAttempts
+			self.undoableSetting(actionName: "Set Show Attempts Label", oldValue: oldValue, newValue: !oldValue, edit: { comp, value in
+				comp.showAttemptsLabel = value
+				button.state = .init(bool: value)
+			})
+			
+		})
+		let showAttemptsButton = ComponentOptionsButton(checkboxWithTitle: "Show Attempts", clickAction: {button in
+			let oldValue = self.showAttempts
+			self.undoableSetting(actionName: "Set Show Attempts", oldValue: oldValue, newValue: !oldValue, edit: {comp, value in
+				comp.showAttempts = value
+				button.state = .init(bool: value)
+				showAttemptsLabelButton.isEnabled = value
+			})
 		})
 		showAttemptsButton.state = .init(bool: showAttempts)
 		
