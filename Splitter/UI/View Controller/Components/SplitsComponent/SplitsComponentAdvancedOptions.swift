@@ -302,6 +302,7 @@ extension SplitsComponentAdvancedOptions: NSOutlineViewDelegate, NSOutlineViewDa
 		
 		if #available(macOS 11.0, *), item.colID != STVColumnID.splitTitleColumn && item.colID != STVColumnID.imageColumn {
 			let dragView = DragIndicator()
+			dragView.alwaysShowIcon = true
 			stack.addArrangedSubview(dragView)
 			NSLayoutConstraint.activate([
 				dragView.widthAnchor.constraint(equalToConstant: 20),

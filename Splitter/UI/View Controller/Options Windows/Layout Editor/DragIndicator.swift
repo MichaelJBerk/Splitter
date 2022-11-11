@@ -11,6 +11,12 @@ import AppKit
 @IBDesignable
 class DragIndicator: NSView {
 	
+	@IBInspectable var alwaysShowIcon: Bool = false {
+		didSet {
+			imageView.isHidden = !alwaysShowIcon
+		}
+	}
+	
 	var imageView: NSImageView!
 	
 	override init(frame frameRect: NSRect) {
@@ -28,6 +34,9 @@ class DragIndicator: NSView {
 		self.imageView = imageView
 		
 		self.addSubview(imageView)
+		let trackingArea = NSTrackingArea(rect: bounds, options: [.activeInKeyWindow, .mouseEnteredAndExited], owner: self)
+		addTrackingArea(trackingArea)
+		self.imageView.isHidden = !alwaysShowIcon
 	}
 	
 	override func layout() {
@@ -42,6 +51,27 @@ class DragIndicator: NSView {
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)
 		setup()
+	}
+	
+	override func mouseEntered(with event: NSEvent) {
+		super.mouseEntered(with: event)
+		if !alwaysShowIcon {
+			self.imageView.isHidden = false
+		}
+	}
+	
+	override func mouseExited(with event: NSEvent) {
+		super.mouseExited(with: event)
+		if !alwaysShowIcon {
+			self.imageView.isHidden = true
+		}
+	}
+	
+	override func mouseUp(with event: NSEvent) {
+		super.mouseUp(with: event)
+		if !alwaysShowIcon {
+			self.imageView.isHidden = true
+		}
 	}
 	
 }

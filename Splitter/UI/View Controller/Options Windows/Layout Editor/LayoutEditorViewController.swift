@@ -351,13 +351,11 @@ extension LayoutEditorViewController {
 			layoutEditor.move(component, to: oldIndex)
 		})
 		undoManager?.setActionName("Move Component")
-		var views = runController.mainStackView.views
-		views.move(fromOffsets: IndexSet([oldIndex]), toOffset: index)
-		
-		runController.mainStackView.update(runController.mainStackView, views)
+		runController.mainStackView.moveView(from: oldIndex, to: index)
 		outlineView.reloadData()
 		let indexToSelect = outlineView.row(forItem: component)
 		outlineView.selectRowIndexes(IndexSet([indexToSelect]), byExtendingSelection: false)
+		NotificationCenter.default.post(.init(name: .layoutEditorItemDragged))
 	}
 	
 	func outlineView(_ outlineView: NSOutlineView, draggingSession session: NSDraggingSession, willBeginAt screenPoint: NSPoint, forItems draggedItems: [Any]) {
@@ -440,4 +438,11 @@ extension LayoutEditorViewController {
 }
 extension NSFont {
 	static let headingFont = NSFont.systemFont(ofSize: NSFont.systemFontSize, weight: .bold)
+}
+
+extension Notification.Name {
+	///Notification that the user has rearranged a component using the Layout Editor
+	///
+	///After dragging a component, the drag indicator still appears at the old index, since for some reason, it doesn't get the mouseExited event. To fix this, each ``LayoutEditorListCell`` observes this notification, and hides the drag indicator when the notification is recieved.
+	static let layoutEditorItemDragged = Self("layoutEditorItemDragged")
 }
