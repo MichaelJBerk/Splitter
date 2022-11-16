@@ -26,6 +26,9 @@ class DraggingStackView: NSStackView {
 		
 		insertArrangedSubview(viewToMove, at: newIndex)
 		layoutSubtreeIfNeeded()
+		if let component = viewToMove as? SplitterComponent {
+			setCustomSpacing(component.afterSpacing, after: component)
+		}
 		
 	}
 
