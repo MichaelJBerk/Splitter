@@ -10,8 +10,18 @@ import Cocoa
 
 class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOutlineViewDataSource {
 	
+	///Constant that defines the height of the layout editor
+	private let layoutEditorHeight: CGFloat = 400
+	
+	override var preferredContentSize: NSSize {
+		set {}
+		get {
+			.init(width: 602, height: layoutEditorHeight)
+		}
+	}
+	
 	override func loadView() {
-		
+		setupCompObjects()
 		outlineView = NSOutlineView()
 		let nib = NSNib(nibNamed: "LayoutEditorListCell", bundle: .main)
 		outlineView.register(nib, forIdentifier: .init("DragListCell"))
@@ -47,16 +57,16 @@ class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOut
 		popVE.material = .popover
 		popVE.blendingMode = .behindWindow
 		
-		let view = NSView(frame: .init(x: 0, y: 0, width: 577, height: 400))
+		let view = NSView(frame: .init(x: 0, y: 0, width: 577, height: layoutEditorHeight))
 		self.view = view
 		self.view.addSubview(sidebarVE)
 		self.view.addSubview(popVE)
 		popVE.addSubview(optionsSuperView)
-		sidebarVE.frame = .init(x: 0, y: 0, width: 225, height: 400)
-		popVE.frame = .init(x: 225, y: 0, width: 377, height: 400)
-		///We want to inset the options view by 20 on the top, leading, and trailing edges
-		optionsSuperView.frame = .init(x: 20, y: 20, width: 337, height: 380)
-		outlineScroll.frame = .init(x: 0, y: 10, width: 225, height: 390)
+		sidebarVE.frame = .init(x: 0, y: 0, width: 225, height: layoutEditorHeight)
+		popVE.frame = .init(x: 225, y: 0, width: 377, height: layoutEditorHeight)
+		//We want to inset the options view by 20 on the top, leading, and trailing edges
+		optionsSuperView.frame = .init(x: 20, y: 20, width: 337, height: layoutEditorHeight - 20)
+		outlineScroll.frame = .init(x: 0, y: 10, width: 225, height: layoutEditorHeight - 10)
 		view.wantsLayer = true
 		view.layer?.backgroundColor = NSColor.red.cgColor
 		
@@ -129,7 +139,8 @@ class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOut
 	func highlightAndShowOptions() {
 		for view in runController.mainStackView.views {
 			let component = view as! SplitterComponent
-			let outlineRow = outlineView.row(forItem: component)
+			let compRow = compRows.first(where: {$0.component == component})!
+			let outlineRow = outlineView.row(forItem: compRow)
 			if outlineRow == outlineView.selectedRow {
 				component.isSelected = true
 				let optionsView = component.optionsView!
@@ -138,6 +149,9 @@ class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOut
 			} else {
 				component.isSelected = false
 			}
+		}
+		if outlineView.item(atRow: outlineView.selectedRow) is ComponentRowObject {
+			return
 		}
 		
 		//Only "General" and "Window" are represented by row objects, so selecting the components doesn't change this code path.
@@ -206,10 +220,24 @@ class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOut
 		
 		super.viewWillDisappear()
 	}
+	
+	//MARK: Row Objects
 	let generalHeaderObject = HeaderObject("General")
 	let componentsHeaderObject = HeaderObject("Components")
 	let generalRowObject = RowObject("General")
 	let windowRowObject = RowObject("Window")
+	
+	var compRows: [ComponentRowObject] = []
+	
+	///Builds the row objects array, which the outline view will use to display the list of components
+	private func setupCompObjects() {
+		var compRows = [ComponentRowObject]()
+		for component in runController.mainStackView.views.compactMap({$0 as? SplitterComponent}) {
+			let rowObject = ComponentRowObject(component: component)
+			compRows.append(rowObject)
+		}
+		self.compRows = compRows
+	}
 }
 
 ///Object used to represent the "General" and "Window" items in the Layout Editor's outline view
@@ -231,6 +259,22 @@ class RowObject: NSObject {
 
 class HeaderObject: RowObject {}
 
+class ComponentRowObject: RowObject {
+	
+	var component: SplitterComponent
+	
+	///Unsupported for ComponentRowObject
+	override init(_ string: String) {
+		fatalError("\"init(_ string: String)\" initializer is not supported for this subclass")
+	}
+	
+	init(component: SplitterComponent) {
+		self.component = component
+		super.init(component.displayName)
+	}
+	
+}
+
 //MARK: - Outline View Delegate/Data Source
 extension LayoutEditorViewController {
 	
@@ -240,7 +284,7 @@ extension LayoutEditorViewController {
 		}
 		if let item = item as? HeaderObject {
 			if item == componentsHeaderObject {
-				return runController.mainStackView.views.count
+				return compRows.count
 			}
 			if item == generalHeaderObject {
 				return 2
@@ -273,7 +317,7 @@ extension LayoutEditorViewController {
 		}
 		if let item = item as? HeaderObject {
 			if item == componentsHeaderObject {
-				return runController.mainStackView.views[index]
+				return compRows[index]
 				
 			}
 			if item == generalHeaderObject {
@@ -301,17 +345,16 @@ extension LayoutEditorViewController {
 				return cell
 			}
 		}
+		if let item = item as? ComponentRowObject {
+			let cell = outlineView.makeView(withIdentifier: .init("DragListCell"), owner: nil) as! NSTableCellView
+			cell.textField?.stringValue = item.string
+			cell.textField?.setAccessibilityIdentifier("\(item.string) Settings" )
+			return cell
+		}
 		if let item = item as? RowObject, !(item is HeaderObject) {
 			let cell = makeTextCell()
 			cell.textField?.stringValue = item.string
 			cell.textField?.setAccessibilityIdentifier("\(item.string) Settings")
-			return cell
-		}
-		if let component = item as? SplitterComponent,
-		   let type = SplitterComponentType.FromType(component){
-			let cell = outlineView.makeView(withIdentifier: .init("DragListCell"), owner: nil) as! NSTableCellView
-			cell.textField?.stringValue = type.displayTitle
-			cell.textField?.setAccessibilityIdentifier("\(type.displayTitle) Settings" )
 			return cell
 		}
 		return nil
@@ -337,21 +380,43 @@ extension LayoutEditorViewController {
 	
 	func outlineView(_ outlineView: NSOutlineView, acceptDrop info: NSDraggingInfo, item: Any?, childIndex index: Int) -> Bool {
 		if let dragItem = draggingItem {
-			if let component = dragItem as? SplitterComponent {
-				move(component, to: index)
-				return true
+			if let component = dragItem as? ComponentRowObject {
+				if let oldIndex = compRows.firstIndex(of: component),
+				   oldIndex != index,
+				   index >= 0 {
+					move(component, from: oldIndex, to: index)
+					return true
+				}
 			}
 		}
 		return false
 	}
 	
-	func move(_ component: SplitterComponent, to index: Int) {
-		let oldIndex = runController.mainStackView.views.firstIndex(of: component)!
+	func move(_ component: ComponentRowObject, from oldIndex: Int, to index: Int) {
+		/*
+		NSOutlineView seems to give the "wrong" child index for dragging, but I think its just because of how it expects "moving" the rows to be implemented (i.e. by inserting and removing).
+		To accommodate this, we have to indert/remove the rows in the way below, depending on whether the row is moving up or down.
+		We need to have a separate "final" index, which denotes the component's true final resting place, to give to the stack view, so it moves the correct views
+		The "wrong" child index also causes issues with undo, since it only gives the "wrong" index when moving down. Thus, we have the custom logic below to fix it.
+		 */
+		
+		if (oldIndex < index) {
+			compRows.insert(component, at: index)
+			compRows.remove(at: oldIndex)
+		} else {
+			compRows.insert(compRows.remove(at: oldIndex), at: index)
+		}
+		let finalIndex = compRows.firstIndex(of: component)!
+		print("Old: \(oldIndex)\tNew: \(index)\tFinal: \(finalIndex)")
 		undoManager?.registerUndo(withTarget: self, handler: { layoutEditor in
-			layoutEditor.move(component, to: oldIndex)
+			var undoOldIndex = oldIndex
+			if undoOldIndex > index && undoOldIndex < layoutEditor.compRows.count {
+				undoOldIndex += 1
+			}
+			layoutEditor.move(component, from: finalIndex, to: undoOldIndex)
 		})
 		undoManager?.setActionName("Move Component")
-		runController.mainStackView.moveView(from: oldIndex, to: index)
+		runController.mainStackView.moveView(from: oldIndex, to: finalIndex)
 		outlineView.reloadData()
 		let indexToSelect = outlineView.row(forItem: component)
 		outlineView.selectRowIndexes(IndexSet([indexToSelect]), byExtendingSelection: false)
@@ -364,12 +429,12 @@ extension LayoutEditorViewController {
 	}
 	
 	func outlineView(_ outlineView: NSOutlineView, pasteboardWriterForItem item: Any) -> NSPasteboardWriting? {
-		if item is RowObject {
-			return nil
+		if item is ComponentRowObject {
+			let pbItem = NSPasteboardItem()
+			pbItem.setDataProvider(self, forTypes: [dropType])
+			return pbItem
 		}
-		let pbItem = NSPasteboardItem()
-		pbItem.setDataProvider(self, forTypes: [dropType])
-		return pbItem
+		return nil
 	}
 	
 	func outlineView(_ outlineView: NSOutlineView, draggingSession session: NSDraggingSession, endedAt screenPoint: NSPoint, operation: NSDragOperation) {
@@ -378,13 +443,10 @@ extension LayoutEditorViewController {
 	
 	func outlineView(_ outlineView: NSOutlineView, validateDrop info: NSDraggingInfo, proposedItem item: Any?, proposedChildIndex index: Int) -> NSDragOperation {
 		guard let ds = info.draggingSource as? NSOutlineView, ds == outlineView else {return []}
-		if index < 0 {
-			return .init()
+		if let item = item as? HeaderObject, item == componentsHeaderObject, index >= 0 {
+			return .move
 		}
-		if let item = item as? RowObject {
-			outlineView.setDropItem(item, dropChildIndex: index)
-		}
-		return .generic
+		return .init()
 	}
 }
 extension LayoutEditorViewController: NSPasteboardItemDataProvider {
