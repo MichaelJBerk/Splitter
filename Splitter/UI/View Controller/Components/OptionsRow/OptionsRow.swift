@@ -86,8 +86,12 @@ class OptionsRow: NSStackView, NibLoadable, SplitterComponent {
 	
 	var optionsView: NSView! {
 		let defaultOptions = defaultComponentOptions() as! ComponentOptionsVstack
-		let showLabelButton = ComponentOptionsButton(checkboxWithTitle: "Show Label", clickAction: {_ in 
-			self.showLabel.toggle()			
+		let showLabelButton = ComponentOptionsButton(checkboxWithTitle: "Show Label", clickAction: {button in
+			let oldValue = self.showLabel
+			self.undoableSetting(actionName: "Show Label", oldValue: oldValue, newValue: !oldValue, edit: { comp, value in
+				comp.showLabel = value
+				button.state = .init(bool: value)
+			})
 		})
 		
 		showLabelButton.state = .init(bool: showLabel)
@@ -95,7 +99,15 @@ class OptionsRow: NSStackView, NibLoadable, SplitterComponent {
 		return defaultOptions
 		
 	}
-	@objc func toggleLabel(sender: Any?) {
-		showLabel.toggle()
+	
+	private func toggleShowLabel(_ val: Bool, button: NSButton) {
+		let showLabel = self.showLabel
+		run.undoManager?.registerUndo(withTarget: self, handler: { comp in
+			self.toggleShowLabel(showLabel, button: button)
+		})
+		button.state = .init(bool: val)
+		undoManager?.setActionName("Show Label")
+		self.showLabel = val
 	}
+	
 }

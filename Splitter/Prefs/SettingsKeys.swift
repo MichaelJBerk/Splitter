@@ -18,6 +18,9 @@ enum SettingsKeys {
 	public static let showWelcomeWindow = "showWelcomeWindow"
 	public static let splitsIOURL = "splitsIOURL"
 	public static let menuBarMode = "menuBarMode"
+	public static let sioClientOverride = "sioClientOverride"
+	public static let sioSecretOverride = "sioSecretOverride"
+	public static let placeholderSIO = "placeholderSIO"
 }
 extension Notification.Name {
 	static let menuBarModeChanged = Notification.Name("menuBarModeChanged")
@@ -113,6 +116,36 @@ public struct Settings {
 			
 		}
 	}
+	
+	public static var splitsIOClientOverride: String? {
+		get {
+			UserDefaults.standard.string(forKey: SettingsKeys.sioClientOverride)
+		}
+		set {
+			UserDefaults.standard.set(newValue, forKey: SettingsKeys.sioClientOverride)
+			
+			
+		}
+	}
+	public static var splitsIOSecretOverride: String? {
+		get {
+			UserDefaults.standard.string(forKey: SettingsKeys.sioSecretOverride)
+		}
+		set {
+			UserDefaults.standard.set(newValue, forKey: SettingsKeys.sioSecretOverride)
+		}
+	}
+	
+	public static var placeholderSIO: Bool {
+		get {
+			UserDefaults.standard.bool(forKey: SettingsKeys.placeholderSIO)
+		}
+		set {
+			UserDefaults.standard.set(newValue, forKey: SettingsKeys.placeholderSIO)
+		}
+	}
+	
+	
 	public static var splitsIOUser: SplitsIORunner? {
 		set {
 			let encodedData = try? PropertyListEncoder().encode(newValue)
@@ -126,6 +159,7 @@ public struct Settings {
 			return nil
 		}
 	}
+	
 	
 	///`true` if warning is suppresed, `false` if not
 	public static func warningSuppresed(_ warning: Warning) -> Bool {

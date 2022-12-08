@@ -31,10 +31,20 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 	
 	static var splitsioclient: String {
-		getFromInfo(key: "splitsioclient")!
+		#if DEBUG
+		if let clientOverride = Settings.splitsIOClientOverride {
+			return clientOverride
+		}
+		#endif
+		return getFromInfo(key: "splitsioclient")!
 	}
 	static var splitsiosecret: String {
-		getFromInfo(key: "splitsiosecret")!
+		#if DEBUG
+		if let secretOverride = Settings.splitsIOSecretOverride {
+			return secretOverride
+		}
+		#endif
+		return getFromInfo(key: "splitsiosecret")!
 	}
 	
 	static var splitsIOAuth = SplitsIOAuth(client: splitsioclient, secret: splitsiosecret, redirects: "splitter://login", url: Settings.splitsIOURL.absoluteString)

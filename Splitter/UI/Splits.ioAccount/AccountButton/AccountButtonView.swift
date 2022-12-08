@@ -27,6 +27,12 @@ class AccountButtonView: NSView, LoadableNib {
 		setAccountImage()
 	}
 	func setAccountLabel() {
+#if DEBUG
+		if Settings.placeholderSIO {
+			accountLabel.stringValue = "Splitter"
+			return
+		}
+#endif
 		if let account = account {
 			accountLabel.stringValue = account.displayName
 		} else {

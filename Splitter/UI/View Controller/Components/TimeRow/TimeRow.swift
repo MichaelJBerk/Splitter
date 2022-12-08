@@ -74,7 +74,7 @@ class TimeRow: NSStackView, NibLoadable, SplitterComponent, NSTextFieldDelegate 
 	var optionsView: NSView! {
 		let d = defaultComponentOptions() as! ComponentOptionsVstack
 		let showAttemptsLabelButton = ComponentOptionsButton(checkboxWithTitle: "Show Attempts Label", clickAction: { button in
-			let oldValue = self.showAttempts
+			let oldValue = self.showAttemptsLabel
 			self.undoableSetting(actionName: "Set Show Attempts Label", oldValue: oldValue, newValue: !oldValue, edit: { comp, value in
 				comp.showAttemptsLabel = value
 				button.state = .init(bool: value)
@@ -125,8 +125,4 @@ class TimeRow: NSStackView, NibLoadable, SplitterComponent, NSTextFieldDelegate 
 	func controlTextDidEndEditing(_ obj: Notification) {
 		self.run.attempts = Int(attemptsField.stringValue) ?? 0
 	}
-	
-//	@IBAction func attemptEdited(_ sender: Any) {
-//
-//	}
 }
