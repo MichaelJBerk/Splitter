@@ -161,13 +161,19 @@ class ViewController: NSViewController {
 	
 	var hotkeysController: HotkeysViewController?
 	
+	var rf = true
+	
 	@objc func breakFunc() {
-		let rect = splitsTableView.visibleRect
-//		splitsTableView.adjustScroll(<#T##newVisible: NSRect##NSRect#>)
-//		let state = run.layout.stateAsJson(run.timer.lsTimer)
-//		let pasteboard = NSPasteboard.general
-//		pasteboard.declareTypes([.string], owner: nil)
-//		pasteboard.setString(state, forType: .string)
+		rf.toggle()
+		var newFont: NSFont? = nil
+		if rf {
+			newFont = NSFont(name: "Comic Sans MS", size: 20)
+		}
+		run.runFont = newFont
+		splitsTableView.reloadData()
+		run.backgroundColor = run.backgroundColor
+		let h = splitsTableView.view(atColumn: 0, row: 0, makeIfNecessary: false)?.frame.height
+		print("Height: \(h)")
 	}
 	
 	func debugPrintSplitsEditor() {
@@ -189,6 +195,9 @@ class ViewController: NSViewController {
 	
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)
+#if DEBUG
+		makeDebugMenu()
+#endif
 	}
 	
 	var timeRow: TimeRow!
@@ -305,19 +314,31 @@ class ViewController: NSViewController {
 		view.window?.isMovableByWindowBackground = true
 		
 	}
-	///Handles various tasks to set up certain keyboard commands, as well as the Touch Bar
-	private func keyAndMenuSetup() {
+	///Sets up the right-click menus, as well as the Touch Bar
+	private func miscMenuSetup() {
 		touchBarDelegate = RunTouchBarDelegate(splitFunc: startSplitTimer, pauseFunc: pauseResumeTimer, prevFunc: run.timer.previousSplit, stopFunc: cancelRun, sourceVC: self)
-		
-		#if DEBUG
-		let breakMI = NSMenuItem(title: "Break", action: #selector(breakFunc), keyEquivalent: "b")
-		breakMI.keyEquivalentModifierMask = .command
-		breakMI.identifier = breakID
-		NSApp.mainMenu?.item(at: 0)?.submenu?.addItem(breakMI)
-		#endif
 		
 		setRightClickMenus()
 	}
+	
+	#if DEBUG
+	func makeDebugMenu() {
+		let debugId = NSUserInterfaceItemIdentifier("debugID")
+		let mainMenu = NSApp.mainMenu
+		if mainMenu?.items.contains(where: {$0.identifier == debugId}) == false {
+			let debugMI = NSMenuItem(title: "Debug", action: nil, keyEquivalent: "")
+			debugMI.identifier = debugId
+			mainMenu?.addItem(debugMI)
+			let debugMenu = NSMenu(title: "dbg")
+			mainMenu?.setSubmenu(debugMenu, for: debugMI)
+			
+			let breakMI = NSMenuItem(title: "Break", action: #selector(breakFunc), keyEquivalent: "b")
+			breakMI.keyEquivalentModifierMask = .command
+			breakMI.identifier = breakID
+			debugMenu.addItem(breakMI)
+		}
+	}
+	#endif
 	
 	private func addTimerStateChangedObserver() {
 		NotificationCenter.default.addObserver(forName: .timerStateChanged, object: self.run.timer, queue: nil) {notification in
@@ -467,7 +488,7 @@ class ViewController: NSViewController {
 		
 		windowSetup()
 		loadRunInfo()
-		keyAndMenuSetup()
+		miscMenuSetup()
 		run.document = document
 	
 		//Load the SplitterAppearance file if it exists. Otherwise, use the default appearance

@@ -8,22 +8,26 @@
 
 import Cocoa
 
-class ThemedTextField: NSTextField, Themeable {
+class ThemedTextField: NSTextField, Themeable, Fontable {
 	var run: SplitterRun!
 	
+	@IBInspectable var fontable: Bool = true
 	@IBInspectable var themeable: Bool = true
 	
 	override init(frame frameRect: NSRect) {
 		super.init(frame: frameRect)
 		setColorObserver()
+		setFontObserver()
 	}
 	
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)
 		setColorObserver()
+		setFontObserver()
 	}
 	func setColor() {
 		self.textColor = run.textColor
 	}
+
     
 }

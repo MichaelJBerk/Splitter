@@ -8,15 +8,17 @@
 
 import Cocoa
 
-class ThemedButton: NSButton, Themeable {
+class ThemedButton: NSButton, Themeable, Fontable {
 	var run: SplitterRun!
 	override init(frame frameRect: NSRect) {
 		super.init(frame: frameRect)
 		setColorObserver()
+		setFontObserver()
 	}
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)
 		setColorObserver()
+		setFontObserver()
 	}
 	func setColor() {
 		var newImage = self.image
@@ -30,7 +32,7 @@ class ThemedButton: NSButton, Themeable {
 	}
 	
 	var themeable: Bool = true
-	
+	var fontable: Bool = true
 
     override func draw(_ dirtyRect: NSRect) {
         super.draw(dirtyRect)

@@ -19,6 +19,7 @@ extension Notification.Name {
 	static let gameIconEdited = Notification.Name("gameIconEdited")
 	static let segmentIconEdited = Notification.Name("segmentIconChanged")
 	static let backgroundImageEdited = Notification.Name("backgroundImageEdited")
+	static let fontChanged = Notification.Name("fontChanged")
 }
 ///Layout notifications
 extension Notification.Name {
@@ -34,6 +35,11 @@ class SplitterRun: NSObject {
 	var runString: String?
 	var refreshTimer: Timer?
 	var document: SplitterDoc!
+	var runFont: NSFont? {
+		didSet {
+			NotificationCenter.default.post(name: .fontChanged, object: self)
+		}
+	}
 	
 	var undoManager: UndoManager? {
 		return document?.undoManager
@@ -169,7 +175,7 @@ class SplitterRun: NSObject {
 		}
 		super.init()
 		self.timer.splitterRun = self
-		
+		self.runFont = nil
 		setObservers()
 		
 		//If there's a "currentComparison" variable here, it's a pre-4.3 Splitter file, and thus we need to update it using `fixRunAndDiffsComparison`

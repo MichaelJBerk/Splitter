@@ -10,12 +10,21 @@ import Cocoa
 
 class SplitterTableView: NSTableView {
 	var viewController: ViewController!
-	
+
+	override var rowHeight: CGFloat {
+		get {
+			let font = viewController?.run.runFont ?? NSFont.systemFont(ofSize: 13)
+			return font.pointSize + 15 + ((font.pointSize - 12) * 4)
+		}
+		set {}
+	}
+	//NOTE: I have this mostly working, but I need to fix the scrolling behavior to work with resizable rows.
+	//TODO: Fix broken scrolling
 	override func adjustScroll(_ newVisible: NSRect) -> NSRect {
 		var adjRect = newVisible
 		let headerHeight = self.headerView?.frame.height ?? 0
 		var h = adjRect.origin.y
-		let amount: CGFloat = 31
+		let amount: CGFloat = rowHeight
 		if (h+headerHeight).truncatingRemainder(dividingBy: amount) != 0 {
 			let mul = CGFloat(Int((h) / amount))
 			let lower = abs(mul * amount)
@@ -83,10 +92,17 @@ class SplitterTableView: NSTableView {
 					head.backgroundStyle = .raised
 					head.tintColor = viewController.run.tableColor
 					head.textColor = textColor
-					head.attributedStringValue = NSAttributedString(string: headerStr, attributes: [.foregroundColor: textColor])
+					if let font = viewController.run.runFont {
+						head.font = font
+					}
+					head.attributedStringValue = NSAttributedString(string: headerStr, attributes: [
+						.foregroundColor: textColor,
+					])
 					c.headerCell = head
 				}
 			}
+//			let newHeight = SplitterTableHeader.defaultTableHeaderHeight + (viewController.run.runFont?.pointSize ?? 0)
+			self.headerView!.frame = NSRect(origin: self.headerView!.frame.origin, size: .init(width: self.headerView!.frame.width, height: rowHeight))
 		}
 	}
     
@@ -107,6 +123,11 @@ class SplitterTableView: NSTableView {
 }
 
 class SplitterTableHeader: NSTableHeaderView {
+	
+	static var defaultTableHeaderHeight: CGFloat {
+		return 28
+	}
+	
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
@@ -136,6 +157,14 @@ class SplitterTableHeaderCell: NSTableHeaderCell {
     override init(textCell: String) {
         super.init(textCell: textCell)
     }
+	
+	override var font: NSFont? {
+		didSet {
+			guard let frame = self.controlView?.frame else {return}
+			
+			
+		}
+	}
 	
 	func colorfulDraw(withFrame cellFrame: NSRect, in controlView: NSView, systemEffect: NSColor.SystemEffect) {
 		if let tintColor = self.tintColor {
@@ -176,6 +205,11 @@ class SplitterTableHeaderCell: NSTableHeaderCell {
     override func draw(withFrame cellFrame: NSRect, in controlView: NSView) {
 		colorfulDraw(withFrame: cellFrame, in: controlView, systemEffect: .none)
     }
+	
+	override func drawInterior(withFrame cellFrame: NSRect, in controlView: NSView) {
+		let titleRect = self.titleRect(forBounds: cellFrame)
+		self.attributedStringValue.draw(in: titleRect)
+	}
 	
 	override func highlight(_ flag: Bool, withFrame cellFrame: NSRect, in controlView: NSView) {
 		colorfulDraw(withFrame: cellFrame, in: controlView, systemEffect: .pressed)

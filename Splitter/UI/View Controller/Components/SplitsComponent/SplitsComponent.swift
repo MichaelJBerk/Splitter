@@ -24,7 +24,7 @@ class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent {
 		set {
 			if newValue {
 				splitsTableView.headerView = NSTableHeaderView()
-				splitsTableView.enclosingScrollView?.contentView.contentInsets.top = 28
+				splitsTableView.enclosingScrollView?.contentView.contentInsets.top = splitsTableView.rowHeight //splitsTableView.headerView!.frame.height
 //				self.contentInsets.top = 28
 			} else {
 				splitsTableView.headerView = nil

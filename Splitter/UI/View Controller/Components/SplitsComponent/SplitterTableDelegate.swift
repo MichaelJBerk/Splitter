@@ -100,6 +100,16 @@ class SplitsComponentDelegate: NSObject, NSTableViewDelegate, NSTableViewDataSou
 			let color = splitsState.textColor(for: row, column: lsColIndex)
 			textField.textColor = color
 		}
+		let setFont = { (textField: NSTextField) in
+//			if let csize = textField.font?.pointSize {
+				if let font = self.run.runFont {
+					textField.font = font
+				} else {
+					textField.font = NSFont.systemFont(ofSize: 13)
+				}
+			
+//			}
+		}
 		
 		if id == STVColumnID.imageColumn {
 			let imageView = cell.imageView as! ThemedImage
@@ -112,6 +122,7 @@ class SplitsComponentDelegate: NSObject, NSTableViewDelegate, NSTableViewDataSou
 			imageView.setColor()
 			return cell
 		}
+		setFont(cell.textField!)
 		
 		if id == STVColumnID.splitTitleColumn {
 			let name = splitsState.name(row)
@@ -159,5 +170,10 @@ class SplitsComponentDelegate: NSObject, NSTableViewDelegate, NSTableViewDataSou
 		}
 		
 		return true
+	}
+	
+	func tableView(_ tableView: NSTableView, heightOfRow row: Int) -> CGFloat {
+//		let font = run.runFont ?? NSFont.systemFont(ofSize: 13)
+		return tableView.rowHeight
 	}
 }
