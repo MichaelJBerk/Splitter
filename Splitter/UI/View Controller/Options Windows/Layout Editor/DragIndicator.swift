@@ -47,11 +47,13 @@ class DragIndicator: NSView {
 	
 	override func layout() {
 		super.layout()
-		let x = (self.frame.width - 16) * 0.5
-		let y = (self.frame.height - 9) * 0.5
-		let f = NSRect(x: x, y: y, width: 16, height: 9)
-		imageView.frame = f
-		imageView.autoresizingMask = [.minXMargin, .maxXMargin, .minYMargin, .maxYMargin]
+		if let imageView {
+			let x = (self.frame.width - 16) * 0.5
+			let y = (self.frame.height - 9) * 0.5
+			let f = NSRect(x: x, y: y, width: 16, height: 9)
+			imageView.frame = f
+			imageView.autoresizingMask = [.minXMargin, .maxXMargin, .minYMargin, .maxYMargin]
+		}
 	}
 	
 	required init?(coder: NSCoder) {
