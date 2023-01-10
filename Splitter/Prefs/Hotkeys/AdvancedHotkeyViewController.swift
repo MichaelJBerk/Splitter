@@ -90,6 +90,6 @@ class AdvancedHotkeyViewController: NSViewController {
 	}
 	
 	func openTellMeMore() {
-		NSWorkspace.shared.open(URL(string: "https://splitter.mberk.com/notAnotherTripToSystemPreferences.html")!)
+		NSWorkspace.shared.open(URL(string: "https://splitter.mberk.com/HotkeyPrivacy.html")!)
 	}
 }

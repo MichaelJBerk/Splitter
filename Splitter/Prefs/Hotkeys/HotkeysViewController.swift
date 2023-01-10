@@ -17,7 +17,7 @@ final class HotkeysViewController: NSViewController, PreferencePane {
 	
 	var shortcutsRequiringGlobalHotkeys = Set<MASShortcutView>()
     var toolbarItemIcon: NSImage {
-        if #available(macOS 10.16, *) {
+        if #available(macOS 11, *) {
             return NSImage(systemSymbolName: "text.and.command.macwindow", accessibilityDescription: "Hotkeys")!
         } else {
             return #imageLiteral(resourceName: "Hotkeys")

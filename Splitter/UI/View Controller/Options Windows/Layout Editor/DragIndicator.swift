@@ -25,8 +25,14 @@ class DragIndicator: NSView {
 	}
 	func setup() {
 		var image: NSImage
+		
 		if #available(macOS 11.0, *) {
-			image = NSImage(systemSymbolName: "line.3.horizontal", accessibilityDescription: nil)!
+			//macOS ≥ 12 has a different name for the symbol, so we need to use the proper name on macOS 11
+			var imageName = "line.3.horizontal"
+			if ProcessInfo.processInfo.operatingSystemVersion.majorVersion == 11 {
+				imageName = "line.horizontal.3"
+			}
+			image = NSImage(systemSymbolName: imageName, accessibilityDescription: nil)!
 		} else {
 			image = NSImage(named: "lines")!
 		}
@@ -41,11 +47,12 @@ class DragIndicator: NSView {
 	
 	override func layout() {
 		super.layout()
-		let x = (self.frame.width - 16) * 0.5
-		let y = (self.frame.height - 9) * 0.5
-		let f = NSRect(x: x, y: y, width: 16, height: 9)
-		imageView.frame = f
-		imageView.autoresizingMask = [.minXMargin, .maxXMargin, .minYMargin, .maxYMargin]
+		if let imageView {
+			let x = (self.frame.width - 16) * 0.5
+			let y = (self.frame.height - 9) * 0.5
+			let f = NSRect(x: x, y: y, width: 16, height: 9)
+			imageView.frame = f
+		}
 	}
 	
 	required init?(coder: NSCoder) {

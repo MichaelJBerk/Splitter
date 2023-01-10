@@ -269,6 +269,7 @@
 		4A66A43123DE2C88005952FA /* SplitTableColumnIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitTableColumnIdentifiers.swift; sourceTree = "<group>"; };
 		4A68FCFE270A4518009A12B7 /* Intents.intentdefinition */ = {isa = PBXFileReference; lastKnownFileType = file.intentdefinition; path = Intents.intentdefinition; sourceTree = "<group>"; };
 		4A68FD00270A45E8009A12B7 /* IntentHandling.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntentHandling.swift; sourceTree = "<group>"; };
+		4A69E2C4295E10F3001FDA79 /* Programming-Notes.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = "Programming-Notes.md"; sourceTree = "<group>"; };
 		4A6A3BDF23CD1C39002C20AE /* GlobalKeybindPrefs.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalKeybindPrefs.swift; sourceTree = "<group>"; };
 		4A6A3BE123CD1C7A002C20AE /* Storage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Storage.swift; sourceTree = "<group>"; };
 		4A6A3BE323CD621A002C20AE /* MainWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainWindow.swift; sourceTree = "<group>"; };
@@ -525,6 +526,7 @@
 		4A230E8623B00A1D00959C57 = {
 			isa = PBXGroup;
 			children = (
+				4A69E2C4295E10F3001FDA79 /* Programming-Notes.md */,
 				4AD7C6BB29149382006645A6 /* LiveSplitKit.xcodeproj */,
 				4AE7E2AF2845B88E00716CF3 /* Config.xcconfig */,
 				4A214A64255C8FB30006FD9F /* SplitsIOKit */,
@@ -1530,6 +1532,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 297;
+				CURRENT_PROJECT_VERSION = 298;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 39SZK2C73D;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1572,6 +1575,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				CURRENT_PROJECT_VERSION = 297;
+				CURRENT_PROJECT_VERSION = 298;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 39SZK2C73D;
 				ENABLE_HARDENED_RUNTIME = YES;
