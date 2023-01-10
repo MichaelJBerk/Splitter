@@ -52,7 +52,6 @@ class DragIndicator: NSView {
 			let y = (self.frame.height - 9) * 0.5
 			let f = NSRect(x: x, y: y, width: 16, height: 9)
 			imageView.frame = f
-			imageView.autoresizingMask = [.minXMargin, .maxXMargin, .minYMargin, .maxYMargin]
 		}
 	}
 	
