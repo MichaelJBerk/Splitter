@@ -16,13 +16,14 @@ enum DocFileType: String {
 	case liveSplit = "LiveSplit File"
 	case splitsioFile = "Splits.io File"
 	
-	static func fileExtension(fileExtension: String) -> DocFileType {
+	static func fileType(for fileExtension: String) -> DocFileType {
+		//For some reason, the `NSDocument.save` method's `fileType` parameter can either return the actual file extension or the file name description, so we need to account for both possibilities.
 		switch fileExtension {
-		case "split":
+		case "split", splitFile.rawValue:
 			return .splitFile
-		case "lss":
+		case "lss", liveSplit.rawValue:
 			return .liveSplit
-		case "json":
+		case "json", splitsioFile.rawValue:
 			return .splitsioFile
 		default:
 			return .splitFile
@@ -257,15 +258,14 @@ class SplitterDoc: NSDocument {
 	
 	///Determines which format to save to
 	func determineSave(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, delegate: Any?, didSave didSaveSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
-		switch typeName {
-		case DocFileType.splitFile.rawValue:
+		let fileType = DocFileType.fileType(for: typeName)
+		switch fileType {
+		case DocFileType.splitFile:
 			saveSplitFile(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: 	contextInfo)
-		case DocFileType.liveSplit.rawValue:
+		case DocFileType.liveSplit:
 			saveLiveSplitFile(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: 	contextInfo)
-		case DocFileType.splitsioFile.rawValue:
+		case DocFileType.splitsioFile:
 			saveSplitsio(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: contextInfo)
-		default:
-			break
 		}
 		
 	}

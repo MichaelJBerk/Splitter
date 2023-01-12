@@ -125,7 +125,7 @@ struct RecentsRow: View {
 	}
 	///Image to represent the file, depending on its file type
 	var icon: NSImage {
-		let format = DocFileType.fileExtension(fileExtension: url.pathExtension)
+		let format = DocFileType.fileType(for: url.pathExtension)
 		switch format {
 		case .liveSplit:
 			return NSImage(contentsOf: Bundle.main.url(forResource: "SplitterDocLSS", withExtension: "icns")!)!
