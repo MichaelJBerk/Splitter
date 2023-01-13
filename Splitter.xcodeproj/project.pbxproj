@@ -22,6 +22,8 @@
 		4A09E29C24D754520013D7BC /* DownloadWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09E29B24D754520013D7BC /* DownloadWindowController.swift */; };
 		4A09E29E24D7555E0013D7BC /* DownloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09E29D24D7555E0013D7BC /* DownloadView.swift */; };
 		4A09E2A824D75D6B0013D7BC /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09E2A624D75D6B0013D7BC /* CategoryViewController.swift */; };
+		4A0ACE882971C24C0020F7ED /* lssTestFile.lss in Resources */ = {isa = PBXBuildFile; fileRef = 4A0ACE872971C24C0020F7ED /* lssTestFile.lss */; };
+		4A0ACE8A2971C3140020F7ED /* Files in Frameworks */ = {isa = PBXBuildFile; productRef = 4A0ACE892971C3140020F7ED /* Files */; };
 		4A0D10DE269790F6003A5E04 /* SplitterDocumentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0D10DD269790F6003A5E04 /* SplitterDocumentController.swift */; };
 		4A0DC28624186C6200FC959A /* SplitsIODoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0DC28524186C6200FC959A /* SplitsIODoc.swift */; };
 		4A0F715F23F4A0A500E5948E /* SplitterDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0F715E23F4A0A500E5948E /* SplitterDoc.swift */; };
@@ -210,6 +212,7 @@
 		4A09E29B24D754520013D7BC /* DownloadWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadWindowController.swift; sourceTree = "<group>"; };
 		4A09E29D24D7555E0013D7BC /* DownloadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadView.swift; sourceTree = "<group>"; };
 		4A09E2A624D75D6B0013D7BC /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
+		4A0ACE872971C24C0020F7ED /* lssTestFile.lss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = lssTestFile.lss; sourceTree = "<group>"; };
 		4A0D10DD269790F6003A5E04 /* SplitterDocumentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterDocumentController.swift; sourceTree = "<group>"; };
 		4A0DC28524186C6200FC959A /* SplitsIODoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitsIODoc.swift; sourceTree = "<group>"; };
 		4A0F715E23F4A0A500E5948E /* SplitterDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterDoc.swift; sourceTree = "<group>"; };
@@ -377,6 +380,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A0ACE8A2971C3140020F7ED /* Files in Frameworks */,
 				CE3CEB918F0A74684203013F /* Pods_SplitterUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -600,6 +604,7 @@
 			isa = PBXGroup;
 			children = (
 				4A4EC5002908AEEA009C2F3A /* LongList.split */,
+				4A0ACE872971C24C0020F7ED /* lssTestFile.lss */,
 			);
 			path = "UITest Sample Files";
 			sourceTree = "<group>";
@@ -973,6 +978,7 @@
 			);
 			name = SplitterUITests;
 			packageProductDependencies = (
+				4A0ACE892971C3140020F7ED /* Files */,
 			);
 			productName = SplitterUITests;
 			productReference = 4AF9E8BF24CE448B00DFD5BE /* SplitterUITests.xctest */;
@@ -1097,6 +1103,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A0ACE882971C24C0020F7ED /* lssTestFile.lss in Resources */,
 				4A4EC5012908AEEA009C2F3A /* LongList.split in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1773,6 +1780,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		4A0ACE892971C3140020F7ED /* Files */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4AD7662C23DA5F9A0052409C /* XCRemoteSwiftPackageReference "Files" */;
+			productName = Files;
+		};
 		4A1767B124EE095100571A6C /* Preferences */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4A1767B024EE095100571A6C /* XCRemoteSwiftPackageReference "Preferences" */;

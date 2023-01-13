@@ -128,11 +128,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		//Add the hotkey event monitor
 		NSEvent.addGlobalMonitorForEvents(matching: .keyUp, handler: performGlobalKeybindAction(event:))
 		
-		if Settings.menuBarMode {
-			NSApp.activate(ignoringOtherApps: true)
-			newWindowIfNone()
-		}
-		
 		#if DEBUG
 		if CommandLine.arguments.contains("-newFile") {
 			Settings.showWelcomeWindow = false
@@ -147,6 +142,11 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			})
 		}
 		#endif
+		if Settings.menuBarMode {
+			NSApp.activate(ignoringOtherApps: true)
+			newWindowIfNone()
+		}
+		
 	}
 	//MARK: - Welcome window
 	//Need to store this as a var on the class or the app will crash when closing the welcome window
