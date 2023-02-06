@@ -19,32 +19,21 @@
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView translatesAutoresizingMaskIntoConstraints="NO" id="Hz6-mo-xeY">
-            <rect key="frame" x="0.0" y="0.0" width="490" height="186"/>
+            <rect key="frame" x="0.0" y="0.0" width="468" height="186"/>
             <subviews>
-                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="92s-l9-HR5">
-                    <rect key="frame" x="446" y="147" width="25" height="25"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sLm-FP-DMh">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="globalHotkeysHelpButton:" target="-2" id="Ebe-P8-ylR"/>
-                    </connections>
-                </button>
                 <scrollView borderType="none" horizontalLineScroll="10" horizontalPageScroll="10" verticalLineScroll="10" verticalPageScroll="10" hasHorizontalScroller="NO" hasVerticalScroller="NO" id="SHx-3A-xcE">
-                    <rect key="frame" x="18" y="111" width="454" height="32"/>
+                    <rect key="frame" x="18" y="111" width="421" height="32"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <clipView key="contentView" drawsBackground="NO" copiesOnScroll="NO" id="xqc-FB-v1m">
-                        <rect key="frame" x="0.0" y="0.0" width="454" height="32"/>
+                        <rect key="frame" x="0.0" y="0.0" width="421" height="32"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textView wantsLayer="YES" editable="NO" selectable="NO" drawsBackground="NO" importsGraphics="NO" richText="NO" verticallyResizable="YES" spellingCorrection="YES" smartInsertDelete="YES" id="5Rk-DH-01J">
-                                <rect key="frame" x="0.0" y="0.0" width="454" height="32"/>
+                                <rect key="frame" x="0.0" y="0.0" width="421" height="32"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                <size key="minSize" width="454" height="32"/>
+                                <size key="minSize" width="421" height="32"/>
                                 <size key="maxSize" width="466" height="10000000"/>
                                 <attributedString key="textStorage">
                                     <fragment content="When enabled, hotkeys will activate even when Splitter is not the currently active app">
@@ -71,10 +60,10 @@
                     </scroller>
                 </scrollView>
                 <box titlePosition="noTitle" id="haN-nf-gEI">
-                    <rect key="frame" x="15" y="45" width="449" height="58"/>
+                    <rect key="frame" x="15" y="45" width="438" height="58"/>
                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                     <view key="contentView" id="cTq-Uq-IFh">
-                        <rect key="frame" x="4" y="5" width="441" height="50"/>
+                        <rect key="frame" x="4" y="5" width="430" height="50"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="4dv-sS-hdF">
@@ -87,7 +76,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" id="fK2-w2-iCu">
-                                <rect key="frame" x="260" y="5" width="167" height="40"/>
+                                <rect key="frame" x="249" y="5" width="167" height="40"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMinX="YES"/>
                                 <buttonCell key="cell" type="push" title="Open System Settings" bezelStyle="rounded" alignment="center" controlSize="large" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="i5a-Il-d2b">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -100,8 +89,8 @@
                         </subviews>
                     </view>
                 </box>
-                <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="268" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" id="qKT-qn-ODE">
-                    <rect key="frame" x="18" y="16" width="439" height="20"/>
+                <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="259" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" id="qKT-qn-ODE">
+                    <rect key="frame" x="18" y="16" width="432" height="20"/>
                     <autoresizingMask key="autoresizingMask"/>
                     <subviews>
                         <button verticalHuggingPriority="750" id="O7B-r3-a4u">
@@ -116,7 +105,7 @@
                             </connections>
                         </button>
                         <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="LLL-cx-MmK">
-                            <rect key="frame" x="380" y="-7" width="66" height="32"/>
+                            <rect key="frame" x="371" y="-7" width="68" height="32"/>
                             <buttonCell key="cell" type="push" title="Done" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="V8d-TU-0SG">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
@@ -154,12 +143,23 @@ DQ
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
                 </textField>
+                <button horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="92s-l9-HR5">
+                    <rect key="frame" x="427" y="147" width="25" height="25"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                    <buttonCell key="cell" type="help" bezelStyle="helpButton" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="sLm-FP-DMh">
+                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                        <font key="font" metaFont="system"/>
+                    </buttonCell>
+                    <connections>
+                        <action selector="globalHotkeysHelpButton:" target="-2" id="Ebe-P8-ylR"/>
+                    </connections>
+                </button>
             </subviews>
             <constraints>
                 <constraint firstAttribute="height" constant="186" id="LMx-b0-ncA"/>
-                <constraint firstAttribute="width" constant="490" id="fC5-hR-Gr9"/>
+                <constraint firstAttribute="width" constant="468" id="fC5-hR-Gr9"/>
             </constraints>
-            <point key="canvasLocation" x="127" y="178"/>
+            <point key="canvasLocation" x="116" y="178"/>
         </customView>
     </objects>
 </document>
