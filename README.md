@@ -26,8 +26,6 @@ If you're a _"thrill seeker"_, want to help test the next version of Splitter, o
 
 If you can't use TestFlight, [download from the Releases page](https://github.com/MichaelJBerk/Splitter/releases)
 
-If you'd like to see what features are in the works, you can look at the [Roadmap](https://github.com/MichaelJBerk/Splitter/wiki/Roadmap)
-
 ## Discussion 
 
 You can suggest features, report issues, and contribute to the overall discussion about Splitter on the official [Discord Server](https://discord.gg/S6zCHYq). 
