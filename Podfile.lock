@@ -1,10 +1,10 @@
 PODS:
   - JJLISO8601DateFormatter (0.1.5)
   - MASShortcut (2.4.0)
-  - ZippyJSON (1.2.6):
+  - ZippyJSON (1.2.10):
     - JJLISO8601DateFormatter (= 0.1.5)
-    - ZippyJSONCFamily (= 1.2.5)
-  - ZippyJSONCFamily (1.2.5)
+    - ZippyJSONCFamily (= 1.2.9)
+  - ZippyJSONCFamily (1.2.9)
 
 DEPENDENCIES:
   - MASShortcut
@@ -20,9 +20,9 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   JJLISO8601DateFormatter: 36bc0fc8fbd77440fe8b33e0281a4c57170781e4
   MASShortcut: d9e4909e878661cc42877cc9d6efbe638273ab57
-  ZippyJSON: fa4caeb7845260ed0fb78d158ab44e55c34c2ff8
-  ZippyJSONCFamily: db211d72cdf5cb6767c28ed11211fab8eb5b9418
+  ZippyJSON: 565d1cbf09c1fac147ae6323356b04caaf9e1397
+  ZippyJSONCFamily: a6fdeeb750d4891d68b8324dd90d87111f314388
 
 PODFILE CHECKSUM: a9af0fe5b221c4b8e6faf72223f4bca50de60a39
 
-COCOAPODS: 1.11.3
+COCOAPODS: 1.12.0
