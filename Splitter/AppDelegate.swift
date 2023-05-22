@@ -11,6 +11,7 @@ import Preferences
 import Files
 import SwiftUI
 import SplitsIOKit
+import BasicUpdater
 
 extension NSApplication {
 	static let appDelegate = NSApp.delegate as! AppDelegate
@@ -25,6 +26,8 @@ public static let build = Bundle.main.infoDictionary?["CFBundleVersion"] as! Str
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
 	@IBOutlet private var window: NSWindow!
+	
+	let updateController = UpdateController.shared
 	
 	static func getFromInfo(key: String) -> String? {
 		return Bundle.main.object(forInfoDictionaryKey: key) as? String
@@ -100,6 +103,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	}
 	
 	func applicationDidFinishLaunching(_ notification: Notification) {
+		updateController.addUpdateCommand()
 		statusBarController = StatusBarController()
 		statusBarController.setupItem()
 		if !Settings.notFirstUse {

@@ -18,6 +18,7 @@ enum menuIdentifiers {
 	
 	//MARK: - App Menu
 	enum appMenu {
+		static let settingsMenuItem = NSUserInterfaceItemIdentifier("settingsMenuItem")
 		static let updatesMenuItem = NSUserInterfaceItemIdentifier("updatesMenuItem")
 		static let customizeTouchBarItem = NSUserInterfaceItemIdentifier("customizeTouchBarItem")
 	}

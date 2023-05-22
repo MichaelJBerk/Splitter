@@ -38,6 +38,7 @@
 		4A20C46726406D4800307993 /* SplitterTimer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A20C46626406D4800307993 /* SplitterTimer.swift */; };
 		4A20C46E2640BDB600307993 /* Introspect in Frameworks */ = {isa = PBXBuildFile; productRef = 4A20C46D2640BDB600307993 /* Introspect */; };
 		4A214A70255C90720006FD9F /* SplitsIOKit in Frameworks */ = {isa = PBXBuildFile; productRef = 4A214A6F255C90720006FD9F /* SplitsIOKit */; };
+		4A225FA1299C201A0087CBF4 /* UpdateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A225FA0299C201A0087CBF4 /* UpdateController.swift */; };
 		4A230E9323B00A1D00959C57 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A230E9223B00A1D00959C57 /* AppDelegate.swift */; };
 		4A230E9523B00A1D00959C57 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A230E9423B00A1D00959C57 /* ViewController.swift */; };
 		4A230E9723B00A1D00959C57 /* Document.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A230E9623B00A1D00959C57 /* Document.swift */; };
@@ -46,6 +47,7 @@
 		4A2F390627F34C1E001B0A7C /* WindowSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2F390427F34C1E001B0A7C /* WindowSettingViewController.swift */; };
 		4A2F390727F34C1E001B0A7C /* WindowSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A2F390527F34C1E001B0A7C /* WindowSettingViewController.xib */; };
 		4A327B0D23F491FB00A5CBFF /* SplitterAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A327B0C23F491FB00A5CBFF /* SplitterAppearance.swift */; };
+		4A35F98D299C383B008A3841 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 4A35F98C299C383B008A3841 /* Defaults */; };
 		4A388FC525D4AF2B00A63C9E /* PrevNextRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A388FC425D4AF2B00A63C9E /* PrevNextRow.swift */; };
 		4A388FCF25D4B00B00A63C9E /* PrevNextRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A388FCE25D4B00B00A63C9E /* PrevNextRow.xib */; };
 		4A3A082626727DCB00F3EB05 /* FileTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3A082526727DCB00F3EB05 /* FileTests.swift */; };
@@ -133,6 +135,7 @@
 		4ADFAE4923E4A0760049F57A /* QuickAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADFAE4823E4A0760049F57A /* QuickAlert.swift */; };
 		4AE168A626091CA900A6169B /* LayoutEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE168A526091CA900A6169B /* LayoutEditorViewController.swift */; };
 		4AE2CF3B2631F43100CC6CF7 /* SplitsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE2CF3A2631F43100CC6CF7 /* SplitsComponent.swift */; };
+		4AE5B0EE2A1C2080003F1288 /* BasicUpdater in Frameworks */ = {isa = PBXBuildFile; productRef = 4AE5B0ED2A1C2080003F1288 /* BasicUpdater */; };
 		4AE7437E268CF2AC003629B4 /* SplitterColorWell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE7437D268CF2AC003629B4 /* SplitterColorWell.swift */; };
 		4AE7E2B02845B91500716CF3 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4AE7E2AF2845B88E00716CF3 /* Config.xcconfig */; };
 		4AE82354290B434000D8100B /* LayoutEditorListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AE82353290B434000D8100B /* LayoutEditorListCell.xib */; };
@@ -225,6 +228,7 @@
 		4A1C1467240ED30C0056B104 /* InfoOptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoOptionsViewController.swift; sourceTree = "<group>"; };
 		4A20C46626406D4800307993 /* SplitterTimer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterTimer.swift; sourceTree = "<group>"; usesTabs = 1; };
 		4A214A64255C8FB30006FD9F /* SplitsIOKit */ = {isa = PBXFileReference; lastKnownFileType = folder; path = SplitsIOKit; sourceTree = "<group>"; };
+		4A225FA0299C201A0087CBF4 /* UpdateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateController.swift; sourceTree = "<group>"; };
 		4A230E8F23B00A1D00959C57 /* Splitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Splitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A230E9223B00A1D00959C57 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4A230E9423B00A1D00959C57 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -360,7 +364,9 @@
 				4ABB38A8255C79B00037536E /* SwiftyJSON in Frameworks */,
 				4A20C46E2640BDB600307993 /* Introspect in Frameworks */,
 				4AD7C6CB291494ED006645A6 /* LiveSplitKit.framework in Frameworks */,
+				4A35F98D299C383B008A3841 /* Defaults in Frameworks */,
 				4A214A70255C90720006FD9F /* SplitsIOKit in Frameworks */,
+				4AE5B0EE2A1C2080003F1288 /* BasicUpdater in Frameworks */,
 				4A1767B224EE095100571A6C /* Preferences in Frameworks */,
 				4A7F94AA26332DBE002861E3 /* Codextended in Frameworks */,
 				4A6B4F7423F07C3900CB781F /* libresolv.tbd in Frameworks */,
@@ -558,6 +564,7 @@
 			isa = PBXGroup;
 			children = (
 				4AF9D76223ECD59A0019BC9A /* Splitter-Bridging-Header.h */,
+				4A225FA0299C201A0087CBF4 /* UpdateController.swift */,
 				4A20C46526406D0400307993 /* TimerCore */,
 				4AD780C323D5065B0068CDE3 /* Data */,
 				4AFCC52323C63F1E002216F1 /* Prefs */,
@@ -936,6 +943,8 @@
 				4A214A6F255C90720006FD9F /* SplitsIOKit */,
 				4A7F94A926332DBE002861E3 /* Codextended */,
 				4A20C46D2640BDB600307993 /* Introspect */,
+				4A35F98C299C383B008A3841 /* Defaults */,
+				4AE5B0ED2A1C2080003F1288 /* BasicUpdater */,
 			);
 			productName = Splitter;
 			productReference = 4A230E8F23B00A1D00959C57 /* Splitter.app */;
@@ -1022,6 +1031,8 @@
 				4A1767B024EE095100571A6C /* XCRemoteSwiftPackageReference "Preferences" */,
 				4A7F94A826332DBE002861E3 /* XCRemoteSwiftPackageReference "Codextended" */,
 				4A20C46C2640BDB600307993 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
+				4A35F98B299C383B008A3841 /* XCRemoteSwiftPackageReference "Defaults" */,
+				4AE5B0EC2A1C2080003F1288 /* XCRemoteSwiftPackageReference "BasicUpdater" */,
 			);
 			productRefGroup = 4A230E9023B00A1D00959C57 /* Products */;
 			projectDirPath = "";
@@ -1294,6 +1305,7 @@
 				4A1657B123EA4EF60008CB5F /* Menu Items.swift in Sources */,
 				4ADFAE4923E4A0760049F57A /* QuickAlert.swift in Sources */,
 				4A561386262CFB7F00702B0E /* OptionsRow.swift in Sources */,
+				4A225FA1299C201A0087CBF4 /* UpdateController.swift in Sources */,
 				4A0D10DE269790F6003A5E04 /* SplitterDocumentController.swift in Sources */,
 				4A01B805268632D400F15A50 /* NibLoadable.swift in Sources */,
 				4A18662E23C51D2800FEEE54 /* UISettings.swift in Sources */,
@@ -1538,7 +1550,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 313;
+				CURRENT_PROJECT_VERSION = 310;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 39SZK2C73D;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1580,7 +1592,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 313;
+				CURRENT_PROJECT_VERSION = 310;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 39SZK2C73D;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1753,6 +1765,14 @@
 				minimumVersion = 0.1.3;
 			};
 		};
+		4A35F98B299C383B008A3841 /* XCRemoteSwiftPackageReference "Defaults" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sindresorhus/Defaults.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 		4A7F94A826332DBE002861E3 /* XCRemoteSwiftPackageReference "Codextended" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/JohnSundell/Codextended.git";
@@ -1777,6 +1797,14 @@
 				minimumVersion = 4.2.0;
 			};
 		};
+		4AE5B0EC2A1C2080003F1288 /* XCRemoteSwiftPackageReference "BasicUpdater" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/michaeljberk/BasicUpdater.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1799,6 +1827,11 @@
 			isa = XCSwiftPackageProductDependency;
 			productName = SplitsIOKit;
 		};
+		4A35F98C299C383B008A3841 /* Defaults */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4A35F98B299C383B008A3841 /* XCRemoteSwiftPackageReference "Defaults" */;
+			productName = Defaults;
+		};
 		4A7F94A926332DBE002861E3 /* Codextended */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4A7F94A826332DBE002861E3 /* XCRemoteSwiftPackageReference "Codextended" */;
@@ -1813,6 +1846,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4AD7662C23DA5F9A0052409C /* XCRemoteSwiftPackageReference "Files" */;
 			productName = Files;
+		};
+		4AE5B0ED2A1C2080003F1288 /* BasicUpdater */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4AE5B0EC2A1C2080003F1288 /* XCRemoteSwiftPackageReference "BasicUpdater" */;
+			productName = BasicUpdater;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
