@@ -14,7 +14,7 @@ class SplitterTableView: NSTableView {
 	override var rowHeight: CGFloat {
 		get {
 			let font = viewController?.run.runFont ?? NSFont.systemFont(ofSize: 13)
-			return font.pointSize + 15 + ((font.pointSize - 12) * 4)
+			return font.pointSize + 15 + (font.pointSize/2)
 		}
 		set {}
 	}
