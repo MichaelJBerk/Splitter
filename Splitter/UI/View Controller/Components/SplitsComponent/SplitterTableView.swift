@@ -18,8 +18,7 @@ class SplitterTableView: NSTableView {
 		}
 		set {}
 	}
-	//NOTE: I have this mostly working, but I need to fix the scrolling behavior to work with resizable rows.
-	//TODO: Fix broken scrolling
+	
 	override func adjustScroll(_ newVisible: NSRect) -> NSRect {
 		var adjRect = newVisible
 		let headerHeight = self.headerView?.frame.height ?? 0
@@ -41,7 +40,16 @@ class SplitterTableView: NSTableView {
 			}
 		}
 		adjRect.origin.y = h
-		return super.adjustScroll(adjRect)
+		
+		//Manually adjust the content insets to fix scroll view bouncing/cutting off part of row
+		//
+		//We add the height of a row to the bottom inset so that it doesn't bounce when scrolling past it. We add the negative amount of this to the bottom scroller inset so that it properly reflects the view.
+		//Note: the clip view has automatic inset adjustment ON in the Xib, and the scroll view has it OFF - this is intentional for it to work
+		self.enclosingScrollView?.contentInsets.bottom = amount
+		self.enclosingScrollView?.scrollerInsets.bottom = -amount
+		self.enclosingScrollView?.reflectScrolledClipView(self.enclosingScrollView!.contentView)
+		
+		return adjRect
 	}
 	
 	

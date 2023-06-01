@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		071F8D0A9AB0317E095AA9EA /* Pods_Splitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D71AF7430571AF37A188FFE /* Pods_Splitter.framework */; };
+		23941C7EDE602BE2BBC90CEC /* Pods_Splitter_SplitterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CE78ED356BF049ED372819E /* Pods_Splitter_SplitterUITests.framework */; };
 		4A01B802268631FC00F15A50 /* SplitsEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A01B800268631FC00F15A50 /* SplitsEditorViewController.swift */; };
 		4A01B803268631FC00F15A50 /* SplitsEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A01B801268631FC00F15A50 /* SplitsEditorViewController.xib */; };
 		4A01B805268632D400F15A50 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A01B804268632D400F15A50 /* NibLoadable.swift */; };
@@ -150,8 +151,7 @@
 		4AF9E8AC24CE31CA00DFD5BE /* DebugPrefsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AF9E8AA24CE31CA00DFD5BE /* DebugPrefsViewController.xib */; };
 		4AF9E8C224CE448B00DFD5BE /* SplitterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF9E8C124CE448B00DFD5BE /* SplitterUITests.swift */; };
 		4AFAD84524CF2CF8006FC480 /* WelcomeWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFAD84424CF2CF8006FC480 /* WelcomeWindowController.swift */; };
-		8804F3EC8981B4A4FF1AB102 /* Pods_SplitterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E128E02F492B64176861511 /* Pods_SplitterTests.framework */; };
-		CE3CEB918F0A74684203013F /* Pods_SplitterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2184CE06522900A3336AB98 /* Pods_SplitterUITests.framework */; };
+		8884A9865F72639024E10008 /* Pods_Splitter_SplitterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A320C5616D0FF6BE75E45CA /* Pods_Splitter_SplitterTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -201,6 +201,7 @@
 
 /* Begin PBXFileReference section */
 		066C91AF0C3A6BFBCF13D462 /* Pods-SplitterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SplitterTests.debug.xcconfig"; path = "Target Support Files/Pods-SplitterTests/Pods-SplitterTests.debug.xcconfig"; sourceTree = "<group>"; };
+		0A320C5616D0FF6BE75E45CA /* Pods_Splitter_SplitterTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Splitter_SplitterTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D71AF7430571AF37A188FFE /* Pods_Splitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Splitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A01B800268631FC00F15A50 /* SplitsEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitsEditorViewController.swift; sourceTree = "<group>"; };
 		4A01B801268631FC00F15A50 /* SplitsEditorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplitsEditorViewController.xib; sourceTree = "<group>"; };
@@ -347,12 +348,15 @@
 		4AF9E8C124CE448B00DFD5BE /* SplitterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterUITests.swift; sourceTree = "<group>"; };
 		4AF9E8C324CE448B00DFD5BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4AFAD84424CF2CF8006FC480 /* WelcomeWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WelcomeWindowController.swift; path = "View Controller/WelcomeWindowController.swift"; sourceTree = "<group>"; };
+		5CE78ED356BF049ED372819E /* Pods_Splitter_SplitterUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Splitter_SplitterUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6761EE8748C7A21FE9D7C3A3 /* Pods-Splitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitter.release.xcconfig"; path = "Target Support Files/Pods-Splitter/Pods-Splitter.release.xcconfig"; sourceTree = "<group>"; };
-		6E128E02F492B64176861511 /* Pods_SplitterTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SplitterTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F3DBFB45CA433BA0B73792A /* Pods-SplitterUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SplitterUITests.debug.xcconfig"; path = "Target Support Files/Pods-SplitterUITests/Pods-SplitterUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		8168F4983C9B2D9CE8D5119B /* Pods-Splitter-SplitterUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitter-SplitterUITests.release.xcconfig"; path = "Target Support Files/Pods-Splitter-SplitterUITests/Pods-Splitter-SplitterUITests.release.xcconfig"; sourceTree = "<group>"; };
 		854963043C5D93DC7DF61ABB /* Pods-Splitter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitter.debug.xcconfig"; path = "Target Support Files/Pods-Splitter/Pods-Splitter.debug.xcconfig"; sourceTree = "<group>"; };
+		8AF8124CBF7D9A20F6683398 /* Pods-Splitter-SplitterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitter-SplitterTests.debug.xcconfig"; path = "Target Support Files/Pods-Splitter-SplitterTests/Pods-Splitter-SplitterTests.debug.xcconfig"; sourceTree = "<group>"; };
+		91EE25089815223FA57BF89A /* Pods-Splitter-SplitterUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitter-SplitterUITests.debug.xcconfig"; path = "Target Support Files/Pods-Splitter-SplitterUITests/Pods-Splitter-SplitterUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		9D3CF1F286B5C9C5EFDD3D95 /* Pods-Splitter-SplitterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitter-SplitterTests.release.xcconfig"; path = "Target Support Files/Pods-Splitter-SplitterTests/Pods-Splitter-SplitterTests.release.xcconfig"; sourceTree = "<group>"; };
 		B0DC1FCA7DE270DBAC506EF5 /* Pods-SplitterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SplitterTests.release.xcconfig"; path = "Target Support Files/Pods-SplitterTests/Pods-SplitterTests.release.xcconfig"; sourceTree = "<group>"; };
-		C2184CE06522900A3336AB98 /* Pods_SplitterUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SplitterUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D269489EC44490F22172292B /* Pods-SplitterUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SplitterUITests.release.xcconfig"; path = "Target Support Files/Pods-SplitterUITests/Pods-SplitterUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -380,7 +384,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8804F3EC8981B4A4FF1AB102 /* Pods_SplitterTests.framework in Frameworks */,
+				8884A9865F72639024E10008 /* Pods_Splitter_SplitterTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -389,7 +393,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A0ACE8A2971C3140020F7ED /* Files in Frameworks */,
-				CE3CEB918F0A74684203013F /* Pods_SplitterUITests.framework in Frameworks */,
+				23941C7EDE602BE2BBC90CEC /* Pods_Splitter_SplitterUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,8 +410,8 @@
 				4AA357B42416F79900219E65 /* liblivesplit_core.a */,
 				4AB3B93D23D96C10009C6AA6 /* Quartz.framework */,
 				3D71AF7430571AF37A188FFE /* Pods_Splitter.framework */,
-				6E128E02F492B64176861511 /* Pods_SplitterTests.framework */,
-				C2184CE06522900A3336AB98 /* Pods_SplitterUITests.framework */,
+				0A320C5616D0FF6BE75E45CA /* Pods_Splitter_SplitterTests.framework */,
+				5CE78ED356BF049ED372819E /* Pods_Splitter_SplitterUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -913,6 +917,10 @@
 				B0DC1FCA7DE270DBAC506EF5 /* Pods-SplitterTests.release.xcconfig */,
 				6F3DBFB45CA433BA0B73792A /* Pods-SplitterUITests.debug.xcconfig */,
 				D269489EC44490F22172292B /* Pods-SplitterUITests.release.xcconfig */,
+				8AF8124CBF7D9A20F6683398 /* Pods-Splitter-SplitterTests.debug.xcconfig */,
+				9D3CF1F286B5C9C5EFDD3D95 /* Pods-Splitter-SplitterTests.release.xcconfig */,
+				91EE25089815223FA57BF89A /* Pods-Splitter-SplitterUITests.debug.xcconfig */,
+				8168F4983C9B2D9CE8D5119B /* Pods-Splitter-SplitterUITests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -1205,15 +1213,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SplitterUITests/Pods-SplitterUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Splitter-SplitterUITests/Pods-Splitter-SplitterUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SplitterUITests/Pods-SplitterUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Splitter-SplitterUITests/Pods-Splitter-SplitterUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SplitterUITests/Pods-SplitterUITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Splitter-SplitterUITests/Pods-Splitter-SplitterUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		663369104CAE1CBF1648D0F0 /* [CP] Embed Pods Frameworks */ = {
@@ -1222,15 +1230,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SplitterTests/Pods-SplitterTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Splitter-SplitterTests/Pods-Splitter-SplitterTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SplitterTests/Pods-SplitterTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Splitter-SplitterTests/Pods-Splitter-SplitterTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SplitterTests/Pods-SplitterTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Splitter-SplitterTests/Pods-Splitter-SplitterTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		79E596C692C72203D439FAFF /* [CP] Check Pods Manifest.lock */ = {
@@ -1248,7 +1256,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SplitterTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Splitter-SplitterTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1270,7 +1278,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SplitterUITests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Splitter-SplitterUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1554,8 +1562,6 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 310;
-				CURRENT_PROJECT_VERSION = 307;
 				CURRENT_PROJECT_VERSION = 313;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 39SZK2C73D;
@@ -1598,8 +1604,6 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 310;
-				CURRENT_PROJECT_VERSION = 307;
 				CURRENT_PROJECT_VERSION = 313;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 39SZK2C73D;
@@ -1635,7 +1639,7 @@
 		};
 		4A71055124BE267300FA9127 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 066C91AF0C3A6BFBCF13D462 /* Pods-SplitterTests.debug.xcconfig */;
+			baseConfigurationReference = 8AF8124CBF7D9A20F6683398 /* Pods-Splitter-SplitterTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1656,7 +1660,7 @@
 		};
 		4A71055224BE267300FA9127 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B0DC1FCA7DE270DBAC506EF5 /* Pods-SplitterTests.release.xcconfig */;
+			baseConfigurationReference = 9D3CF1F286B5C9C5EFDD3D95 /* Pods-Splitter-SplitterTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1677,7 +1681,7 @@
 		};
 		4AF9E8C724CE448B00DFD5BE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6F3DBFB45CA433BA0B73792A /* Pods-SplitterUITests.debug.xcconfig */;
+			baseConfigurationReference = 91EE25089815223FA57BF89A /* Pods-Splitter-SplitterUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1697,7 +1701,7 @@
 		};
 		4AF9E8C824CE448B00DFD5BE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D269489EC44490F22172292B /* Pods-SplitterUITests.release.xcconfig */;
+			baseConfigurationReference = 8168F4983C9B2D9CE8D5119B /* Pods-Splitter-SplitterUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
