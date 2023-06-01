@@ -111,6 +111,7 @@
 		4AA9ADBB2608F02D009B77B5 /* StartRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AA9ADBA2608F02D009B77B5 /* StartRow.xib */; };
 		4AA9ADBF2608F035009B77B5 /* StartRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA9ADBE2608F035009B77B5 /* StartRow.swift */; };
 		4AAD470A248432540094A31F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAD4709248432540094A31F /* Colors.swift */; };
+		4AB038142A2943B20048D0B2 /* VerticalCenteredTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB038132A2943B20048D0B2 /* VerticalCenteredTextFieldCell.swift */; };
 		4AB92ABE261F67B700E8B814 /* ThemedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB92ABD261F67B700E8B814 /* ThemedButton.swift */; };
 		4AB92AC2261F69ED00E8B814 /* ThemedPopUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB92AC1261F69ED00E8B814 /* ThemedPopUpButton.swift */; };
 		4AB92AC6261F6CD600E8B814 /* ThemedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB92AC5261F6CD600E8B814 /* ThemedTextField.swift */; };
@@ -309,6 +310,7 @@
 		4AA9ADBA2608F02D009B77B5 /* StartRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartRow.xib; sourceTree = "<group>"; };
 		4AA9ADBE2608F035009B77B5 /* StartRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRow.swift; sourceTree = "<group>"; };
 		4AAD4709248432540094A31F /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		4AB038132A2943B20048D0B2 /* VerticalCenteredTextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalCenteredTextFieldCell.swift; sourceTree = "<group>"; };
 		4AB3B93D23D96C10009C6AA6 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		4AB92ABD261F67B700E8B814 /* ThemedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedButton.swift; sourceTree = "<group>"; };
 		4AB92AC1261F69ED00E8B814 /* ThemedPopUpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedPopUpButton.swift; sourceTree = "<group>"; };
@@ -739,6 +741,7 @@
 				4AE2CF3A2631F43100CC6CF7 /* SplitsComponent.swift */,
 				4A520E322693774500F463B3 /* SplitsComponentOptions.swift */,
 				4A8C644C27AC24AE0036095C /* SplitsComponentAdvancedOptions.swift */,
+				4AB038132A2943B20048D0B2 /* VerticalCenteredTextFieldCell.swift */,
 				4ACFB1E6262F53B100EA79B6 /* SplitsComponent.xib */,
 				4A9D8BF5243A38C40048EA15 /* SplitterTableView.swift */,
 				4AC24DBB23EB4F17003008BF /* SplitterTableDelegate.swift */,
@@ -1311,6 +1314,7 @@
 				4AAD470A248432540094A31F /* Colors.swift in Sources */,
 				4AC24DBC23EB4F17003008BF /* SplitterTableDelegate.swift in Sources */,
 				4A18663223C5376900FEEE54 /* SettingsKeys.swift in Sources */,
+				4AB038142A2943B20048D0B2 /* VerticalCenteredTextFieldCell.swift in Sources */,
 				4A2F390627F34C1E001B0A7C /* WindowSettingViewController.swift in Sources */,
 				4A470BB22695FAE1001F0081 /* ThemedImage.swift in Sources */,
 				4A1657B123EA4EF60008CB5F /* Menu Items.swift in Sources */,
