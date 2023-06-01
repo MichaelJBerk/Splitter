@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		071F8D0A9AB0317E095AA9EA /* Pods_Splitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D71AF7430571AF37A188FFE /* Pods_Splitter.framework */; };
+		3F3A93531B465FC3B659662D /* Pods_Splitter_SplitterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6FB99AAEB902659C313CC6E3 /* Pods_Splitter_SplitterUITests.framework */; };
 		4A01B802268631FC00F15A50 /* SplitsEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A01B800268631FC00F15A50 /* SplitsEditorViewController.swift */; };
 		4A01B803268631FC00F15A50 /* SplitsEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A01B801268631FC00F15A50 /* SplitsEditorViewController.xib */; };
 		4A01B805268632D400F15A50 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A01B804268632D400F15A50 /* NibLoadable.swift */; };
@@ -119,7 +120,7 @@
 		4AC0E3A62767B3F3004D71D6 /* GeneralPrefsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AC0E3A42767B3F3004D71D6 /* GeneralPrefsViewController.xib */; };
 		4AC24DBC23EB4F17003008BF /* SplitterTableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC24DBB23EB4F17003008BF /* SplitterTableDelegate.swift */; };
 		4AC2745826990E04007ED8F5 /* GeneralLayoutSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC2745726990E04007ED8F5 /* GeneralLayoutSettingsViewController.swift */; };
-		4AC401F324BE145F005180F1 /* (null) in Sources */ = {isa = PBXBuildFile; };
+		4AC401F324BE145F005180F1 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
 		4ACCEA7823B02F520068F89E /* TimeSplit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACCEA7723B02F520068F89E /* TimeSplit.swift */; };
 		4ACF41B626B3166E006DF2C8 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ACF41B526B3166E006DF2C8 /* SwiftUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		4ACFB1BD262F4E9700EA79B6 /* TitleComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ACFB1BC262F4E9700EA79B6 /* TitleComponent.xib */; };
@@ -149,8 +150,7 @@
 		4AF9E8AC24CE31CA00DFD5BE /* DebugPrefsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AF9E8AA24CE31CA00DFD5BE /* DebugPrefsViewController.xib */; };
 		4AF9E8C224CE448B00DFD5BE /* SplitterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF9E8C124CE448B00DFD5BE /* SplitterUITests.swift */; };
 		4AFAD84524CF2CF8006FC480 /* WelcomeWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFAD84424CF2CF8006FC480 /* WelcomeWindowController.swift */; };
-		8804F3EC8981B4A4FF1AB102 /* Pods_SplitterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E128E02F492B64176861511 /* Pods_SplitterTests.framework */; };
-		CE3CEB918F0A74684203013F /* Pods_SplitterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2184CE06522900A3336AB98 /* Pods_SplitterUITests.framework */; };
+		BBACCB63B381066DF7FCB7D7 /* Pods_Splitter_SplitterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 91435A3092AF235FF41FA186 /* Pods_Splitter_SplitterTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -200,6 +200,8 @@
 
 /* Begin PBXFileReference section */
 		066C91AF0C3A6BFBCF13D462 /* Pods-SplitterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SplitterTests.debug.xcconfig"; path = "Target Support Files/Pods-SplitterTests/Pods-SplitterTests.debug.xcconfig"; sourceTree = "<group>"; };
+		08A7DB2987256D1854C300B4 /* Pods-Splitter-SplitterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitter-SplitterTests.debug.xcconfig"; path = "Target Support Files/Pods-Splitter-SplitterTests/Pods-Splitter-SplitterTests.debug.xcconfig"; sourceTree = "<group>"; };
+		2EBD48E35222817F3F1E3256 /* Pods-Splitter-SplitterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitter-SplitterTests.release.xcconfig"; path = "Target Support Files/Pods-Splitter-SplitterTests/Pods-Splitter-SplitterTests.release.xcconfig"; sourceTree = "<group>"; };
 		3D71AF7430571AF37A188FFE /* Pods_Splitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Splitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A01B800268631FC00F15A50 /* SplitsEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitsEditorViewController.swift; sourceTree = "<group>"; };
 		4A01B801268631FC00F15A50 /* SplitsEditorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplitsEditorViewController.xib; sourceTree = "<group>"; };
@@ -346,12 +348,14 @@
 		4AF9E8C324CE448B00DFD5BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4AFAD84424CF2CF8006FC480 /* WelcomeWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WelcomeWindowController.swift; path = "View Controller/WelcomeWindowController.swift"; sourceTree = "<group>"; };
 		6761EE8748C7A21FE9D7C3A3 /* Pods-Splitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitter.release.xcconfig"; path = "Target Support Files/Pods-Splitter/Pods-Splitter.release.xcconfig"; sourceTree = "<group>"; };
-		6E128E02F492B64176861511 /* Pods_SplitterTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SplitterTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F3DBFB45CA433BA0B73792A /* Pods-SplitterUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SplitterUITests.debug.xcconfig"; path = "Target Support Files/Pods-SplitterUITests/Pods-SplitterUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		6FB99AAEB902659C313CC6E3 /* Pods_Splitter_SplitterUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Splitter_SplitterUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		854963043C5D93DC7DF61ABB /* Pods-Splitter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitter.debug.xcconfig"; path = "Target Support Files/Pods-Splitter/Pods-Splitter.debug.xcconfig"; sourceTree = "<group>"; };
+		91435A3092AF235FF41FA186 /* Pods_Splitter_SplitterTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Splitter_SplitterTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0DC1FCA7DE270DBAC506EF5 /* Pods-SplitterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SplitterTests.release.xcconfig"; path = "Target Support Files/Pods-SplitterTests/Pods-SplitterTests.release.xcconfig"; sourceTree = "<group>"; };
-		C2184CE06522900A3336AB98 /* Pods_SplitterUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SplitterUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D269489EC44490F22172292B /* Pods-SplitterUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SplitterUITests.release.xcconfig"; path = "Target Support Files/Pods-SplitterUITests/Pods-SplitterUITests.release.xcconfig"; sourceTree = "<group>"; };
+		DD121BFBF1A30C06E659A0BF /* Pods-Splitter-SplitterUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitter-SplitterUITests.debug.xcconfig"; path = "Target Support Files/Pods-Splitter-SplitterUITests/Pods-Splitter-SplitterUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		F4B2D49415951D70875193F0 /* Pods-Splitter-SplitterUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitter-SplitterUITests.release.xcconfig"; path = "Target Support Files/Pods-Splitter-SplitterUITests/Pods-Splitter-SplitterUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -378,7 +382,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8804F3EC8981B4A4FF1AB102 /* Pods_SplitterTests.framework in Frameworks */,
+				BBACCB63B381066DF7FCB7D7 /* Pods_Splitter_SplitterTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,7 +391,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A0ACE8A2971C3140020F7ED /* Files in Frameworks */,
-				CE3CEB918F0A74684203013F /* Pods_SplitterUITests.framework in Frameworks */,
+				3F3A93531B465FC3B659662D /* Pods_Splitter_SplitterUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,8 +408,8 @@
 				4AA357B42416F79900219E65 /* liblivesplit_core.a */,
 				4AB3B93D23D96C10009C6AA6 /* Quartz.framework */,
 				3D71AF7430571AF37A188FFE /* Pods_Splitter.framework */,
-				6E128E02F492B64176861511 /* Pods_SplitterTests.framework */,
-				C2184CE06522900A3336AB98 /* Pods_SplitterUITests.framework */,
+				91435A3092AF235FF41FA186 /* Pods_Splitter_SplitterTests.framework */,
+				6FB99AAEB902659C313CC6E3 /* Pods_Splitter_SplitterUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -910,6 +914,10 @@
 				B0DC1FCA7DE270DBAC506EF5 /* Pods-SplitterTests.release.xcconfig */,
 				6F3DBFB45CA433BA0B73792A /* Pods-SplitterUITests.debug.xcconfig */,
 				D269489EC44490F22172292B /* Pods-SplitterUITests.release.xcconfig */,
+				08A7DB2987256D1854C300B4 /* Pods-Splitter-SplitterTests.debug.xcconfig */,
+				2EBD48E35222817F3F1E3256 /* Pods-Splitter-SplitterTests.release.xcconfig */,
+				DD121BFBF1A30C06E659A0BF /* Pods-Splitter-SplitterUITests.debug.xcconfig */,
+				F4B2D49415951D70875193F0 /* Pods-Splitter-SplitterUITests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -1027,12 +1035,12 @@
 			mainGroup = 4A230E8623B00A1D00959C57;
 			packageReferences = (
 				4AD7662C23DA5F9A0052409C /* XCRemoteSwiftPackageReference "Files" */,
-				4AB5627724338FB000D7F8D1 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
+				4AB5627724338FB000D7F8D1 /* XCRemoteSwiftPackageReference "SwiftyJSON.git" */,
 				4A1767B024EE095100571A6C /* XCRemoteSwiftPackageReference "Preferences" */,
-				4A7F94A826332DBE002861E3 /* XCRemoteSwiftPackageReference "Codextended" */,
+				4A7F94A826332DBE002861E3 /* XCRemoteSwiftPackageReference "Codextended.git" */,
 				4A20C46C2640BDB600307993 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
-				4A35F98B299C383B008A3841 /* XCRemoteSwiftPackageReference "Defaults" */,
-				4AE5B0EC2A1C2080003F1288 /* XCRemoteSwiftPackageReference "BasicUpdater" */,
+				4A35F98B299C383B008A3841 /* XCRemoteSwiftPackageReference "Defaults.git" */,
+				4AE5B0EC2A1C2080003F1288 /* XCRemoteSwiftPackageReference "BasicUpdater.git" */,
 			);
 			productRefGroup = 4A230E9023B00A1D00959C57 /* Products */;
 			projectDirPath = "";
@@ -1202,15 +1210,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SplitterUITests/Pods-SplitterUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Splitter-SplitterUITests/Pods-Splitter-SplitterUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SplitterUITests/Pods-SplitterUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Splitter-SplitterUITests/Pods-Splitter-SplitterUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SplitterUITests/Pods-SplitterUITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Splitter-SplitterUITests/Pods-Splitter-SplitterUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		663369104CAE1CBF1648D0F0 /* [CP] Embed Pods Frameworks */ = {
@@ -1219,15 +1227,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SplitterTests/Pods-SplitterTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Splitter-SplitterTests/Pods-Splitter-SplitterTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SplitterTests/Pods-SplitterTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Splitter-SplitterTests/Pods-Splitter-SplitterTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SplitterTests/Pods-SplitterTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Splitter-SplitterTests/Pods-Splitter-SplitterTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		79E596C692C72203D439FAFF /* [CP] Check Pods Manifest.lock */ = {
@@ -1245,7 +1253,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SplitterTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Splitter-SplitterTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1267,7 +1275,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SplitterUITests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Splitter-SplitterUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1365,7 +1373,7 @@
 				4A6A965824EC3516008EFD2B /* LoadingViewController.swift in Sources */,
 				4A20C46726406D4800307993 /* SplitterTimer.swift in Sources */,
 				4A230E9723B00A1D00959C57 /* Document.swift in Sources */,
-				4AC401F324BE145F005180F1 /* (null) in Sources */,
+				4AC401F324BE145F005180F1 /* BuildFile in Sources */,
 				4AE82A1624BFD4400044B6D3 /* WelcomeView.swift in Sources */,
 				4A6A3BE223CD1C7A002C20AE /* Storage.swift in Sources */,
 				4AE82356290B435000D8100B /* LayoutEditorListCell.swift in Sources */,
@@ -1550,7 +1558,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 310;
+				CURRENT_PROJECT_VERSION = 314;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 39SZK2C73D;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1592,7 +1600,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 310;
+				CURRENT_PROJECT_VERSION = 314;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 39SZK2C73D;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1627,7 +1635,7 @@
 		};
 		4A71055124BE267300FA9127 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 066C91AF0C3A6BFBCF13D462 /* Pods-SplitterTests.debug.xcconfig */;
+			baseConfigurationReference = 08A7DB2987256D1854C300B4 /* Pods-Splitter-SplitterTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1648,7 +1656,7 @@
 		};
 		4A71055224BE267300FA9127 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B0DC1FCA7DE270DBAC506EF5 /* Pods-SplitterTests.release.xcconfig */;
+			baseConfigurationReference = 2EBD48E35222817F3F1E3256 /* Pods-Splitter-SplitterTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1669,7 +1677,7 @@
 		};
 		4AF9E8C724CE448B00DFD5BE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6F3DBFB45CA433BA0B73792A /* Pods-SplitterUITests.debug.xcconfig */;
+			baseConfigurationReference = DD121BFBF1A30C06E659A0BF /* Pods-Splitter-SplitterUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1689,7 +1697,7 @@
 		};
 		4AF9E8C824CE448B00DFD5BE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D269489EC44490F22172292B /* Pods-SplitterUITests.release.xcconfig */;
+			baseConfigurationReference = F4B2D49415951D70875193F0 /* Pods-Splitter-SplitterUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1765,7 +1773,7 @@
 				minimumVersion = 0.1.3;
 			};
 		};
-		4A35F98B299C383B008A3841 /* XCRemoteSwiftPackageReference "Defaults" */ = {
+		4A35F98B299C383B008A3841 /* XCRemoteSwiftPackageReference "Defaults.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/Defaults.git";
 			requirement = {
@@ -1773,7 +1781,7 @@
 				minimumVersion = 7.0.0;
 			};
 		};
-		4A7F94A826332DBE002861E3 /* XCRemoteSwiftPackageReference "Codextended" */ = {
+		4A7F94A826332DBE002861E3 /* XCRemoteSwiftPackageReference "Codextended.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/JohnSundell/Codextended.git";
 			requirement = {
@@ -1781,7 +1789,7 @@
 				minimumVersion = 0.3.0;
 			};
 		};
-		4AB5627724338FB000D7F8D1 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
+		4AB5627724338FB000D7F8D1 /* XCRemoteSwiftPackageReference "SwiftyJSON.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
 			requirement = {
@@ -1797,7 +1805,7 @@
 				minimumVersion = 4.2.0;
 			};
 		};
-		4AE5B0EC2A1C2080003F1288 /* XCRemoteSwiftPackageReference "BasicUpdater" */ = {
+		4AE5B0EC2A1C2080003F1288 /* XCRemoteSwiftPackageReference "BasicUpdater.git" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/michaeljberk/BasicUpdater.git";
 			requirement = {
@@ -1829,17 +1837,17 @@
 		};
 		4A35F98C299C383B008A3841 /* Defaults */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4A35F98B299C383B008A3841 /* XCRemoteSwiftPackageReference "Defaults" */;
+			package = 4A35F98B299C383B008A3841 /* XCRemoteSwiftPackageReference "Defaults.git" */;
 			productName = Defaults;
 		};
 		4A7F94A926332DBE002861E3 /* Codextended */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4A7F94A826332DBE002861E3 /* XCRemoteSwiftPackageReference "Codextended" */;
+			package = 4A7F94A826332DBE002861E3 /* XCRemoteSwiftPackageReference "Codextended.git" */;
 			productName = Codextended;
 		};
 		4ABB38A7255C79B00037536E /* SwiftyJSON */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4AB5627724338FB000D7F8D1 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
+			package = 4AB5627724338FB000D7F8D1 /* XCRemoteSwiftPackageReference "SwiftyJSON.git" */;
 			productName = SwiftyJSON;
 		};
 		4AD7662D23DA5F9A0052409C /* Files */ = {
@@ -1849,7 +1857,7 @@
 		};
 		4AE5B0ED2A1C2080003F1288 /* BasicUpdater */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4AE5B0EC2A1C2080003F1288 /* XCRemoteSwiftPackageReference "BasicUpdater" */;
+			package = 4AE5B0EC2A1C2080003F1288 /* XCRemoteSwiftPackageReference "BasicUpdater.git" */;
 			productName = BasicUpdater;
 		};
 /* End XCSwiftPackageProductDependency section */
