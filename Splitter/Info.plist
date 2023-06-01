@@ -80,7 +80,7 @@
 	<key>CFBundlePackageType</key>
 	<string>$(PRODUCT_BUNDLE_PACKAGE_TYPE)</string>
 	<key>CFBundleShortVersionString</key>
-	<string>5.0.4</string>
+	<string>5.0.3</string>
 	<key>CFBundleURLTypes</key>
 	<array>
 		<dict>
@@ -95,7 +95,7 @@
 		</dict>
 	</array>
 	<key>CFBundleVersion</key>
-	<string>313</string>
+	<string>307</string>
 	<key>INIntentsSupported</key>
 	<array>
 		<string>SplitRunIntent</string>
