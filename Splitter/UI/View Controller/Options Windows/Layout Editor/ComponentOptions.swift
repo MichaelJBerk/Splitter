@@ -58,4 +58,15 @@ class ComponentOptionsVstack: NSStackView {
 	override var isFlipped: Bool {
 		return true
 	}
+	
+	@discardableResult func addSeparator() -> NSView {
+		let separatorView = NSView()
+		separatorView.wantsLayer = true
+		separatorView.layer?.backgroundColor = NSColor.separatorColor.cgColor
+		self.addArrangedSubview(separatorView)
+		NSLayoutConstraint.activate([
+			separatorView.heightAnchor.constraint(equalToConstant: 1)
+		])
+		return separatorView
+	}
 }

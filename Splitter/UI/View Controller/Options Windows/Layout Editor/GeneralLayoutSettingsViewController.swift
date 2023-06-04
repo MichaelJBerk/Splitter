@@ -14,11 +14,11 @@ class GeneralLayoutSettingsViewController: NSViewController {
 		self.view = stackView
 	}
 	var run: SplitterRun!
-	var stackView: NSStackView!
+	var stackView: ComponentOptionsVstack!
 	
 	func buildStack() {
 		buildColorsSection()
-		buildSeparator()
+		stackView.addSeparator()
 		buildBGImageSection()
 	}
 	var backgroundImageWell: NSImageView!

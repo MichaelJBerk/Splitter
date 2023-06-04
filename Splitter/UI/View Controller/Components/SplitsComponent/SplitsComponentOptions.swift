@@ -90,13 +90,7 @@ extension SplitsComponent {
 		hideScrollStack.addArrangedSubview(hasHScrollButton)
 		d.addArrangedSubview(hideScrollStack)
 		
-		let separatorView = NSView()
-		separatorView.wantsLayer = true
-		separatorView.layer?.backgroundColor = NSColor.separatorColor.cgColor
-		d.addArrangedSubview(separatorView)
-		NSLayoutConstraint.activate([
-			separatorView.heightAnchor.constraint(equalToConstant: 1)
-		])
+		d.addSeparator()
 		
 		colorOptions(stack: d)
 		

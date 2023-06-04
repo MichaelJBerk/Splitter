@@ -29,6 +29,7 @@
 		4A0DC28624186C6200FC959A /* SplitsIODoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0DC28524186C6200FC959A /* SplitsIODoc.swift */; };
 		4A0F715F23F4A0A500E5948E /* SplitterDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0F715E23F4A0A500E5948E /* SplitterDoc.swift */; };
 		4A0F716323F4A9E400E5948E /* SplitterDocBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0F716223F4A9E400E5948E /* SplitterDocBundle.swift */; };
+		4A14AD752A2D1E93001E28A7 /* TimeRowOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A14AD742A2D1E93001E28A7 /* TimeRowOptions.swift */; };
 		4A1657B123EA4EF60008CB5F /* Menu Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1657B023EA4EF60008CB5F /* Menu Items.swift */; };
 		4A1657B523EA5C320008CB5F /* Icon Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1657B423EA5C320008CB5F /* Icon Actions.swift */; };
 		4A1767B224EE095100571A6C /* Preferences in Frameworks */ = {isa = PBXBuildFile; productRef = 4A1767B124EE095100571A6C /* Preferences */; };
@@ -223,6 +224,7 @@
 		4A0DC28524186C6200FC959A /* SplitsIODoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitsIODoc.swift; sourceTree = "<group>"; };
 		4A0F715E23F4A0A500E5948E /* SplitterDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterDoc.swift; sourceTree = "<group>"; };
 		4A0F716223F4A9E400E5948E /* SplitterDocBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterDocBundle.swift; sourceTree = "<group>"; };
+		4A14AD742A2D1E93001E28A7 /* TimeRowOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRowOptions.swift; sourceTree = "<group>"; };
 		4A1657B023EA4EF60008CB5F /* Menu Items.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Menu Items.swift"; sourceTree = "<group>"; };
 		4A1657B423EA5C320008CB5F /* Icon Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Icon Actions.swift"; sourceTree = "<group>"; };
 		4A18662D23C51D2800FEEE54 /* UISettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISettings.swift; sourceTree = "<group>"; };
@@ -629,7 +631,6 @@
 			isa = PBXGroup;
 			children = (
 				4AD026EA26090ED300F6CD0C /* SplitterComponent.swift */,
-				4A520E2E269373D100F463B3 /* ComponentOptions.swift */,
 				4A520E2A2693735C00F463B3 /* ComponentState.swift */,
 				4A520E2C2693737800F463B3 /* SplitterComponentType.swift */,
 			);
@@ -755,6 +756,7 @@
 			children = (
 				4AAD4708248432390094A31F /* ColorsView */,
 				4AE168A526091CA900A6169B /* LayoutEditorViewController.swift */,
+				4A520E2E269373D100F463B3 /* ComponentOptions.swift */,
 				4A5B867729033834004D09C8 /* DragIndicator.swift */,
 				4AE82353290B434000D8100B /* LayoutEditorListCell.xib */,
 				4AE82355290B435000D8100B /* LayoutEditorListCell.swift */,
@@ -826,6 +828,7 @@
 			children = (
 				4A9B9605261DF26D000FC89C /* TimeRow.swift */,
 				4AEA331A2629F023001012BD /* TimeRow.xib */,
+				4A14AD742A2D1E93001E28A7 /* TimeRowOptions.swift */,
 			);
 			path = TimeRow;
 			sourceTree = "<group>";
@@ -1345,6 +1348,7 @@
 				4AF953B523EB503100ED540C /* Timer Functions.swift in Sources */,
 				4A1657B523EA5C320008CB5F /* Icon Actions.swift in Sources */,
 				4A74D4ED25EE9DD700A3D9C7 /* SplitterRun.swift in Sources */,
+				4A14AD752A2D1E93001E28A7 /* TimeRowOptions.swift in Sources */,
 				4ABC0C702767E09900BF5747 /* StatusBarController.swift in Sources */,
 				4AA9ADBF2608F035009B77B5 /* StartRow.swift in Sources */,
 				4A6A3BE423CD621A002C20AE /* MainWindow.swift in Sources */,
