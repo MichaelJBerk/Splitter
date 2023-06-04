@@ -30,7 +30,7 @@ extension Fontable {
 extension NSCell {
 	func setFont(run: SplitterRun) {
 		if let csize = self.font?.pointSize {
-			if let font = run.runFont {
+			if let font = run.textFont {
 				let nf = NSFont(name: font.fontName, size: csize)
 				self.font = nf
 			} else {
@@ -55,7 +55,7 @@ extension Fontable where Self: NSControl {
 extension NSControl {
 	@objc func setFont(run: SplitterRun) {
 		if let csize = self.font?.pointSize {
-			if let font = run.runFont {
+			if let font = run.textFont {
 				let nf = NSFont(name: font.fontName, size: csize)
 				self.font = nf
 			} else {

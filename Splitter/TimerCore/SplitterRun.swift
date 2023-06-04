@@ -35,11 +35,36 @@ class SplitterRun: NSObject {
 	var runString: String?
 	var refreshTimer: Timer?
 	var document: SplitterDoc!
-	var runFont: NSFont? {
+	
+	///Font used for the timer component
+	///
+	///Analagous to the `timerFont` in LiveSplitCore
+	var timerFont: NSFont? {
 		didSet {
 			NotificationCenter.default.post(name: .fontChanged, object: self)
 		}
 	}
+	
+	///Font used for labels in the run window
+	///
+	///Analagous to the `textFont` in LiveSplitCore
+	///>NOTE: Unlike LiveSplit, this does not control the font for the splits component header. The splits component header uses ``splitsFont``
+	var textFont: NSFont? {
+		didSet {
+			NotificationCenter.default.post(name: .fontChanged, object: self)
+		}
+	}
+	
+	///Font used for the Splits component
+	///
+	///Analagous to the `timesFont` in LiveSplitCore
+	///>NOTE: Unlike LiveSplit, this controls the font for the splits component header, instead of ``textFont``, so that the header will be the same height as the table rows.
+	var splitsFont: NSFont? {
+		didSet {
+			NotificationCenter.default.post(name: .fontChanged, object: self)
+		}
+	}
+	
 	
 	var undoManager: UndoManager? {
 		return document?.undoManager
@@ -175,7 +200,7 @@ class SplitterRun: NSObject {
 		}
 		super.init()
 		self.timer.splitterRun = self
-		self.runFont = nil
+		self.textFont = nil
 		setObservers()
 		
 		//If there's a "currentComparison" variable here, it's a pre-4.3 Splitter file, and thus we need to update it using `fixRunAndDiffsComparison`

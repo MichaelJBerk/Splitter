@@ -101,14 +101,11 @@ class SplitsComponentDelegate: NSObject, NSTableViewDelegate, NSTableViewDataSou
 			textField.textColor = color
 		}
 		let setFont = { (textField: NSTextField) in
-//			if let csize = textField.font?.pointSize {
-				if let font = self.run.runFont {
-					textField.font = font
-				} else {
-					textField.font = NSFont.systemFont(ofSize: 13)
-				}
-			
-//			}
+			if let font = self.run.splitsFont {
+				textField.font = font
+			} else {
+				textField.font = NSFont.systemFont(ofSize: 13)
+			}
 		}
 		
 		if id == STVColumnID.imageColumn {

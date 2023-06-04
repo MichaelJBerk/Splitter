@@ -13,7 +13,7 @@ class SplitterTableView: NSTableView {
 
 	override var rowHeight: CGFloat {
 		get {
-			let font = viewController?.run.runFont ?? NSFont.systemFont(ofSize: 13)
+			let font = viewController?.run.splitsFont ?? NSFont.systemFont(ofSize: 13)
 			return font.pointSize + 15 + (font.pointSize/2)
 		}
 		set {}
@@ -100,7 +100,8 @@ class SplitterTableView: NSTableView {
 					head.backgroundStyle = .raised
 					head.tintColor = viewController.run.tableColor
 					head.textColor = textColor
-					if let font = viewController.run.runFont {
+					//Header uses text font, not splits font
+					if let font = viewController.run.splitsFont {
 						head.font = font
 					}
 					head.attributedStringValue = NSAttributedString(string: headerStr, attributes: [
@@ -165,14 +166,6 @@ class SplitterTableHeaderCell: NSTableHeaderCell {
     override init(textCell: String) {
         super.init(textCell: textCell)
     }
-	
-	override var font: NSFont? {
-		didSet {
-			guard let frame = self.controlView?.frame else {return}
-			
-			
-		}
-	}
 	
 	func colorfulDraw(withFrame cellFrame: NSRect, in controlView: NSView, systemEffect: NSColor.SystemEffect) {
 		if let tintColor = self.tintColor {

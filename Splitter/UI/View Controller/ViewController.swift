@@ -169,11 +169,10 @@ class ViewController: NSViewController {
 		if rf {
 			newFont = NSFont(name: "Times", size: 20)
 		}
-		run.runFont = newFont
+		run.splitsFont = newFont
 		splitsTableView.reloadData()
 		run.backgroundColor = run.backgroundColor
 		let h = splitsTableView.view(atColumn: 0, row: 0, makeIfNecessary: false)?.frame.height
-//		print("Height: \(h)")
 	}
 	
 	func debugPrintSplitsEditor() {
