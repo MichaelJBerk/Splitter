@@ -7,7 +7,15 @@
 
 import Cocoa
 
-class TimeRow: NSStackView, NibLoadable, SplitterComponent, NSTextFieldDelegate {
+class TimeRow: NSStackView, NibLoadable, SplitterComponent, NSTextFieldDelegate, Fontable {
+	
+	var fontable: Bool = true
+	
+	///Font used for displaying the time
+	var timeFont: NSFont? {
+		get {timeLabel.font}
+		set {timeLabel.font = newValue}
+	}
 	var run: SplitterRun!
 	var customSpacing: CGFloat? = nil
 	var refreshUITimer = Timer()
@@ -32,6 +40,7 @@ class TimeRow: NSStackView, NibLoadable, SplitterComponent, NSTextFieldDelegate 
 		attemptsStackView.detachesHiddenViews = false
 		attemptsField.delegate = self
 		run.updateFunctions.append(updateUI)
+		setFontObserver()
 	}
 	func updateUI() {
 		self.viewController.updateTimer()
@@ -124,5 +133,16 @@ class TimeRow: NSStackView, NibLoadable, SplitterComponent, NSTextFieldDelegate 
 	}
 	func controlTextDidEndEditing(_ obj: Notification) {
 		self.run.attempts = Int(attemptsField.stringValue) ?? 0
+	}
+	
+	func setFont() {
+		if let csize = self.timeFont?.pointSize {
+			if let font = self.run.timerFont {
+				let nf = NSFont(name: font.fontName, size: csize)
+				self.timeFont = nf
+			} else {
+				self.timeFont = NSFont.systemFont(ofSize: csize)
+			}
+		}
 	}
 }

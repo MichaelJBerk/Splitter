@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21701"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,7 +15,10 @@
             <subviews>
                 <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tK9-YK-iFx" customClass="ThemedTextField" customModule="Splitter" customModuleProvider="target">
                     <rect key="frame" x="-2" y="0.0" width="206" height="42"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="00:00:00.00" placeholderString="00:00:00.00" id="Nw5-ZN-JLc">
+                    <constraints>
+                        <constraint firstAttribute="height" constant="42" id="Sw4-rH-qkw"/>
+                    </constraints>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="00:00:00.00" placeholderString="00:00:00.00" id="Nw5-ZN-JLc" customClass="VerticalCenteredTextFieldCell" customModule="Splitter" customModuleProvider="target">
                         <font key="font" metaFont="system" size="36"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -56,6 +59,7 @@
                 <constraint firstAttribute="bottom" secondItem="tK9-YK-iFx" secondAttribute="bottom" id="1Kx-xc-LSA"/>
                 <constraint firstAttribute="bottom" secondItem="w2h-zj-jyc" secondAttribute="bottom" constant="6" id="9sj-V7-bGv"/>
                 <constraint firstItem="tK9-YK-iFx" firstAttribute="top" secondItem="feY-pv-Cdy" secondAttribute="top" id="awd-XT-mhI"/>
+                <constraint firstItem="tK9-YK-iFx" firstAttribute="height" secondItem="feY-pv-Cdy" secondAttribute="height" id="h1b-OM-W8O"/>
                 <constraint firstItem="tK9-YK-iFx" firstAttribute="leading" secondItem="feY-pv-Cdy" secondAttribute="leading" id="tHk-7b-IlU"/>
                 <constraint firstAttribute="trailing" secondItem="w2h-zj-jyc" secondAttribute="trailing" id="yht-nZ-edS"/>
             </constraints>

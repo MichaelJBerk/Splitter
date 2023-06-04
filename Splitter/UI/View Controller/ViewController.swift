@@ -166,13 +166,14 @@ class ViewController: NSViewController {
 	@objc func breakFunc() {
 		rf.toggle()
 		var newFont: NSFont? = nil
+		var newTimeFont: NSFont? = nil
 		if rf {
 			newFont = NSFont(name: "Times", size: 20)
+			newTimeFont = NSFont(name: "OMORI_GAME", size: 20)
 		}
 		run.splitsFont = newFont
+		run.timerFont = newTimeFont
 		splitsTableView.reloadData()
-		run.backgroundColor = run.backgroundColor
-		let h = splitsTableView.view(atColumn: 0, row: 0, makeIfNecessary: false)?.frame.height
 	}
 	
 	func debugPrintSplitsEditor() {
