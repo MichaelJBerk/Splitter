@@ -53,7 +53,7 @@ extension Fontable where Self: NSControl {
 }
 
 extension NSControl {
-	func setFont(run: SplitterRun) {
+	@objc func setFont(run: SplitterRun) {
 		if let csize = self.font?.pointSize {
 			if let font = run.runFont {
 				let nf = NSFont(name: font.fontName, size: csize)
