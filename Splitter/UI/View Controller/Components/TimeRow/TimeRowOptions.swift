@@ -92,15 +92,14 @@ class TimeRowOptionsController: NSObject {
 		//Ensure that the font label is what gets stretched, and not one of the other buttons
 		fontLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
 		fontButton = ComponentOptionsButton(title: "FONT", clickAction: { _ in
-//			self.timeRow.run.timerFont = NSFont(name: "OMORI_GAME", size: 20)
 			if let font = self.timeRow.run.timerFont {
 				NSFontPanel.shared.setPanelFont(font, isMultiple: false)
 			}
 			NSFontManager.shared.orderFrontFontPanel(self)
-//			NSFontPanel.shared.makeKeyAndOrderFront(self)
 		})
 		fontResetButton = ComponentOptionsButton(title: "Reset", clickAction: { _ in
 			self.timeRow.run.timerFont = nil
+			NSFontPanel.shared.close()
 		})
 		let fontStack = NSStackView(views: [fontLabel, fontButton, fontResetButton])
 		fontStack.orientation = .horizontal
