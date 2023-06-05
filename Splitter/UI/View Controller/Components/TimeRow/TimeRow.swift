@@ -10,6 +10,7 @@ import Cocoa
 class TimeRow: NSStackView, NibLoadable, SplitterComponent, NSTextFieldDelegate, Fontable {
 	
 	var fontable: Bool = true
+	var optionsController: TimeRowOptionsController!
 	
 	///Font used for displaying the time
 	var timeFont: NSFont? {
@@ -25,6 +26,7 @@ class TimeRow: NSStackView, NibLoadable, SplitterComponent, NSTextFieldDelegate,
 		row.viewController = viewController
 		row.run = run
 		row.setup()
+		row.optionsController = TimeRowOptionsController(timeRow: row)
 		return row
 	}
 	

@@ -59,6 +59,9 @@ class ComponentOptionsVstack: NSStackView {
 		return true
 	}
 	
+	var onFontChanged: ((_ sender: NSFontManager?) -> Void) = {_ in}
+	var fontPanelModes: NSFontPanel.ModeMask = [.standardModes]
+	
 	@discardableResult func addSeparator() -> NSView {
 		let separatorView = NSView()
 		separatorView.wantsLayer = true
@@ -69,4 +72,15 @@ class ComponentOptionsVstack: NSStackView {
 		])
 		return separatorView
 	}
+}
+
+extension ComponentOptionsVstack: NSFontChanging {
+	func changeFont(_ sender: NSFontManager?) {
+		self.onFontChanged(sender)
+	}
+	
+	func validModesForFontPanel(_ fontPanel: NSFontPanel) -> NSFontPanel.ModeMask {
+		return fontPanelModes
+	}
+	
 }

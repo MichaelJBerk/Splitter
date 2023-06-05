@@ -173,6 +173,7 @@ class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOut
 			}
 		}
 		NSColorPanel.shared.close()
+		NSFontPanel.shared.close()
 	}
 	
 	func setConstraints(for optionsView: NSView) {
@@ -507,4 +508,20 @@ extension Notification.Name {
 	///
 	///After dragging a component, the drag indicator still appears at the old index, since for some reason, it doesn't get the mouseExited event. To fix this, each ``LayoutEditorListCell`` observes this notification, and hides the drag indicator when the notification is recieved.
 	static let layoutEditorItemDragged = Self("layoutEditorItemDragged")
+}
+
+extension LayoutEditorViewController:NSFontChanging {
+	
+	func changeFont(_ sender: NSFontManager?) {
+		if let currentOptions = self.currentOptions as? NSFontChanging {
+			currentOptions.changeFont?(sender)
+		}
+	}
+	
+	func validModesForFontPanel(_ fontPanel: NSFontPanel) -> NSFontPanel.ModeMask {
+		if let currentOptions = self.currentOptions as? NSFontChanging {
+			return currentOptions.validModesForFontPanel?(fontPanel) ?? .allModes
+		}
+		return .allModes
+	}
 }
