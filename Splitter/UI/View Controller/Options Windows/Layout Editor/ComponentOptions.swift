@@ -73,14 +73,3 @@ class ComponentOptionsVstack: NSStackView {
 		return separatorView
 	}
 }
-
-extension ComponentOptionsVstack: NSFontChanging {
-	func changeFont(_ sender: NSFontManager?) {
-		self.onFontChanged(sender)
-	}
-	
-	func validModesForFontPanel(_ fontPanel: NSFontPanel) -> NSFontPanel.ModeMask {
-		return fontPanelModes
-	}
-	
-}

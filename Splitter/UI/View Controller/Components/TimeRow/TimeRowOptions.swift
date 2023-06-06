@@ -6,6 +6,7 @@
 //  Copyright © 2023 Michael Berk. All rights reserved.
 //
 import AppKit
+import FontPopUp
 
 class TimeRowOptionsController: NSObject {
 	
@@ -13,33 +14,16 @@ class TimeRowOptionsController: NSObject {
 		self.timeRow = timeRow
 		super.init()
 		NotificationCenter.default.addObserver(forName: .fontChanged, object: self.timeRow.run, queue: nil, using: { _ in
-			self.fontChanged(to: self.timeRow.run.timerFont)
+			self.fontPopUp.selectedFont = self.timeRow.run.timerFont
 		})
 	}
 	
-	func fontChanged(to: NSFont?) {
-		updateFontButtonTitle()
-		updateFontResetState()
-	}
-	
-	func updateFontButtonTitle() {
-		var buttonTitle: String
-		if let timerFont = self.timeRow.run.timerFont {
-			buttonTitle = timerFont.displayName ?? "????"
-		} else {
-			buttonTitle = "Default"
-		}
-		fontButton.title = buttonTitle
-		fontButton.font = self.timeRow.run.timerFont
-	}
-	
-	func updateFontResetState() {
-		fontResetButton?.isEnabled = !(timeRow.run.timerFont.isNil)
+	func fontChanged(to newFont: NSFont?) {
+		self.timeRow.run.timerFont = newFont
 	}
 	
 	var timeRow: TimeRow!
-	var fontButton: ComponentOptionsButton!
-	var fontResetButton: ComponentOptionsButton!
+	var fontPopUp: FontPopUpButton!
 	
 	
 	var showAttemptsLabelButton: ComponentOptionsButton {
@@ -54,8 +38,6 @@ class TimeRowOptionsController: NSObject {
 
 	var optionsView: NSView! {
 		let d = timeRow.defaultComponentOptions() as! ComponentOptionsVstack
-		d.onFontChanged = self.changeFont(_:)
-		d.fontPanelModes = [.face, .collection]
 		let showAttemptsLabelButton = self.showAttemptsLabelButton
 		//Can't move this outside of class since it needs the label button to exist
 		let showAttemptsButton = ComponentOptionsButton(checkboxWithTitle: "Show Attempts", clickAction: {button in
@@ -90,32 +72,17 @@ class TimeRowOptionsController: NSObject {
 		
 		let fontLabel = NSTextField(labelWithString: "Timer Font")
 		//Ensure that the font label is what gets stretched, and not one of the other buttons
-		fontLabel.setContentHuggingPriority(.defaultLow, for: .horizontal)
-		fontButton = ComponentOptionsButton(title: "FONT", clickAction: { _ in
-			if let font = self.timeRow.run.timerFont {
-				NSFontPanel.shared.setPanelFont(font, isMultiple: false)
-			}
-			NSFontManager.shared.orderFrontFontPanel(self)
-		})
-		fontResetButton = ComponentOptionsButton(title: "Reset", clickAction: { _ in
-			self.timeRow.run.timerFont = nil
-			NSFontPanel.shared.close()
-		})
-		let fontStack = NSStackView(views: [fontLabel, fontButton, fontResetButton])
+		fontPopUp = FontPopUpButton(frame: .zero, callback: fontChanged(to:))
+		let fontStack = NSStackView(views: [fontLabel, fontPopUp])
 		fontStack.orientation = .horizontal
 		d.addArrangedSubview(fontStack)
-		fontStack.distribution = .fill
 		NSLayoutConstraint.activate([
 			fontStack.leadingAnchor.constraint(equalTo: d.leadingAnchor),
 			fontStack.trailingAnchor.constraint(equalTo: d.trailingAnchor),
+			//This constraint prevents the "Timer Font" label from being clipped by the font picker
+			NSLayoutConstraint(item: fontPopUp!, attribute: .width, relatedBy: .lessThanOrEqual, toItem: d, attribute: .width, multiplier: 0.9, constant: 1)
 		])
-		fontChanged(to: self.timeRow.run.timerFont)
 		return d
-	}
-	
-	func changeFont(_ sender: NSFontManager?) {
-		let newFont = sender?.convert(self.timeRow.run.timerFont ?? .systemFont(ofSize: NSFont.systemFontSize))
-		self.timeRow.run.timerFont = newFont
 	}
 	
 }

@@ -57,6 +57,7 @@
 		4A3BB54E27DA9322006C3256 /* AdvancedHotkeyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A3BB54C27DA9322006C3256 /* AdvancedHotkeyViewController.xib */; };
 		4A3BDFA123E4C3B6001EA7FF /* DefaultHotkeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3BDFA023E4C3B6001EA7FF /* DefaultHotkeys.swift */; };
 		4A3F989925EFDB0800B2B955 /* CodableLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3F989825EFDB0800B2B955 /* CodableLayout.swift */; };
+		4A44370D2A2E4A9B00A54412 /* FontPopUp in Frameworks */ = {isa = PBXBuildFile; productRef = 4A44370C2A2E4A9B00A54412 /* FontPopUp */; };
 		4A44FF4F24E9A9E60083013A /* SplitsIOUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A44FF4E24E9A9E60083013A /* SplitsIOUpload.swift */; };
 		4A470BB02695FABA001F0081 /* Themeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A470BAF2695FABA001F0081 /* Themeable.swift */; };
 		4A470BB22695FAE1001F0081 /* ThemedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A470BB12695FAE1001F0081 /* ThemedImage.swift */; };
@@ -377,6 +378,7 @@
 				4A35F98D299C383B008A3841 /* Defaults in Frameworks */,
 				4A214A70255C90720006FD9F /* SplitsIOKit in Frameworks */,
 				4AE5B0EE2A1C2080003F1288 /* BasicUpdater in Frameworks */,
+				4A44370D2A2E4A9B00A54412 /* FontPopUp in Frameworks */,
 				4A1767B224EE095100571A6C /* Preferences in Frameworks */,
 				4A7F94AA26332DBE002861E3 /* Codextended in Frameworks */,
 				4A6B4F7423F07C3900CB781F /* libresolv.tbd in Frameworks */,
@@ -962,6 +964,7 @@
 				4A20C46D2640BDB600307993 /* Introspect */,
 				4A35F98C299C383B008A3841 /* Defaults */,
 				4AE5B0ED2A1C2080003F1288 /* BasicUpdater */,
+				4A44370C2A2E4A9B00A54412 /* FontPopUp */,
 			);
 			productName = Splitter;
 			productReference = 4A230E8F23B00A1D00959C57 /* Splitter.app */;
@@ -1050,6 +1053,7 @@
 				4A20C46C2640BDB600307993 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				4A35F98B299C383B008A3841 /* XCRemoteSwiftPackageReference "Defaults" */,
 				4AE5B0EC2A1C2080003F1288 /* XCRemoteSwiftPackageReference "BasicUpdater" */,
+				4A44370B2A2E4A9B00A54412 /* XCRemoteSwiftPackageReference "FontPopUp" */,
 			);
 			productRefGroup = 4A230E9023B00A1D00959C57 /* Products */;
 			projectDirPath = "";
@@ -1793,6 +1797,14 @@
 				minimumVersion = 7.0.0;
 			};
 		};
+		4A44370B2A2E4A9B00A54412 /* XCRemoteSwiftPackageReference "FontPopUp" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MichaelJBerk/FontPopUp";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.0.1;
+			};
+		};
 		4A7F94A826332DBE002861E3 /* XCRemoteSwiftPackageReference "Codextended" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/JohnSundell/Codextended.git";
@@ -1851,6 +1863,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4A35F98B299C383B008A3841 /* XCRemoteSwiftPackageReference "Defaults" */;
 			productName = Defaults;
+		};
+		4A44370C2A2E4A9B00A54412 /* FontPopUp */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4A44370B2A2E4A9B00A54412 /* XCRemoteSwiftPackageReference "FontPopUp" */;
+			productName = FontPopUp;
 		};
 		4A7F94A926332DBE002861E3 /* Codextended */ = {
 			isa = XCSwiftPackageProductDependency;
