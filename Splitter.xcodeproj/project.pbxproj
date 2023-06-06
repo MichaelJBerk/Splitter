@@ -120,7 +120,7 @@
 		4AC0E3A62767B3F3004D71D6 /* GeneralPrefsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AC0E3A42767B3F3004D71D6 /* GeneralPrefsViewController.xib */; };
 		4AC24DBC23EB4F17003008BF /* SplitterTableDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC24DBB23EB4F17003008BF /* SplitterTableDelegate.swift */; };
 		4AC2745826990E04007ED8F5 /* GeneralLayoutSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC2745726990E04007ED8F5 /* GeneralLayoutSettingsViewController.swift */; };
-		4AC401F324BE145F005180F1 /* BuildFile in Sources */ = {isa = PBXBuildFile; };
+		4AC401F324BE145F005180F1 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		4ACCEA7823B02F520068F89E /* TimeSplit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACCEA7723B02F520068F89E /* TimeSplit.swift */; };
 		4ACF41B626B3166E006DF2C8 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ACF41B526B3166E006DF2C8 /* SwiftUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		4ACFB1BD262F4E9700EA79B6 /* TitleComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ACFB1BC262F4E9700EA79B6 /* TitleComponent.xib */; };
@@ -1035,12 +1035,12 @@
 			mainGroup = 4A230E8623B00A1D00959C57;
 			packageReferences = (
 				4AD7662C23DA5F9A0052409C /* XCRemoteSwiftPackageReference "Files" */,
-				4AB5627724338FB000D7F8D1 /* XCRemoteSwiftPackageReference "SwiftyJSON.git" */,
+				4AB5627724338FB000D7F8D1 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				4A1767B024EE095100571A6C /* XCRemoteSwiftPackageReference "Preferences" */,
-				4A7F94A826332DBE002861E3 /* XCRemoteSwiftPackageReference "Codextended.git" */,
+				4A7F94A826332DBE002861E3 /* XCRemoteSwiftPackageReference "Codextended" */,
 				4A20C46C2640BDB600307993 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
-				4A35F98B299C383B008A3841 /* XCRemoteSwiftPackageReference "Defaults.git" */,
-				4AE5B0EC2A1C2080003F1288 /* XCRemoteSwiftPackageReference "BasicUpdater.git" */,
+				4A35F98B299C383B008A3841 /* XCRemoteSwiftPackageReference "Defaults" */,
+				4AE5B0EC2A1C2080003F1288 /* XCRemoteSwiftPackageReference "BasicUpdater" */,
 			);
 			productRefGroup = 4A230E9023B00A1D00959C57 /* Products */;
 			projectDirPath = "";
@@ -1373,7 +1373,7 @@
 				4A6A965824EC3516008EFD2B /* LoadingViewController.swift in Sources */,
 				4A20C46726406D4800307993 /* SplitterTimer.swift in Sources */,
 				4A230E9723B00A1D00959C57 /* Document.swift in Sources */,
-				4AC401F324BE145F005180F1 /* BuildFile in Sources */,
+				4AC401F324BE145F005180F1 /* (null) in Sources */,
 				4AE82A1624BFD4400044B6D3 /* WelcomeView.swift in Sources */,
 				4A6A3BE223CD1C7A002C20AE /* Storage.swift in Sources */,
 				4AE82356290B435000D8100B /* LayoutEditorListCell.swift in Sources */,
@@ -1558,7 +1558,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 314;
+				CURRENT_PROJECT_VERSION = 315;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 39SZK2C73D;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1600,7 +1600,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 314;
+				CURRENT_PROJECT_VERSION = 315;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 39SZK2C73D;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1773,7 +1773,7 @@
 				minimumVersion = 0.1.3;
 			};
 		};
-		4A35F98B299C383B008A3841 /* XCRemoteSwiftPackageReference "Defaults.git" */ = {
+		4A35F98B299C383B008A3841 /* XCRemoteSwiftPackageReference "Defaults" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/sindresorhus/Defaults.git";
 			requirement = {
@@ -1781,7 +1781,7 @@
 				minimumVersion = 7.0.0;
 			};
 		};
-		4A7F94A826332DBE002861E3 /* XCRemoteSwiftPackageReference "Codextended.git" */ = {
+		4A7F94A826332DBE002861E3 /* XCRemoteSwiftPackageReference "Codextended" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/JohnSundell/Codextended.git";
 			requirement = {
@@ -1789,7 +1789,7 @@
 				minimumVersion = 0.3.0;
 			};
 		};
-		4AB5627724338FB000D7F8D1 /* XCRemoteSwiftPackageReference "SwiftyJSON.git" */ = {
+		4AB5627724338FB000D7F8D1 /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
 			requirement = {
@@ -1805,7 +1805,7 @@
 				minimumVersion = 4.2.0;
 			};
 		};
-		4AE5B0EC2A1C2080003F1288 /* XCRemoteSwiftPackageReference "BasicUpdater.git" */ = {
+		4AE5B0EC2A1C2080003F1288 /* XCRemoteSwiftPackageReference "BasicUpdater" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/michaeljberk/BasicUpdater.git";
 			requirement = {
@@ -1837,17 +1837,17 @@
 		};
 		4A35F98C299C383B008A3841 /* Defaults */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4A35F98B299C383B008A3841 /* XCRemoteSwiftPackageReference "Defaults.git" */;
+			package = 4A35F98B299C383B008A3841 /* XCRemoteSwiftPackageReference "Defaults" */;
 			productName = Defaults;
 		};
 		4A7F94A926332DBE002861E3 /* Codextended */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4A7F94A826332DBE002861E3 /* XCRemoteSwiftPackageReference "Codextended.git" */;
+			package = 4A7F94A826332DBE002861E3 /* XCRemoteSwiftPackageReference "Codextended" */;
 			productName = Codextended;
 		};
 		4ABB38A7255C79B00037536E /* SwiftyJSON */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4AB5627724338FB000D7F8D1 /* XCRemoteSwiftPackageReference "SwiftyJSON.git" */;
+			package = 4AB5627724338FB000D7F8D1 /* XCRemoteSwiftPackageReference "SwiftyJSON" */;
 			productName = SwiftyJSON;
 		};
 		4AD7662D23DA5F9A0052409C /* Files */ = {
@@ -1857,7 +1857,7 @@
 		};
 		4AE5B0ED2A1C2080003F1288 /* BasicUpdater */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 4AE5B0EC2A1C2080003F1288 /* XCRemoteSwiftPackageReference "BasicUpdater.git" */;
+			package = 4AE5B0EC2A1C2080003F1288 /* XCRemoteSwiftPackageReference "BasicUpdater" */;
 			productName = BasicUpdater;
 		};
 /* End XCSwiftPackageProductDependency section */
