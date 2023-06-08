@@ -14,7 +14,7 @@ class TimeRowOptionsController: NSObject {
 		self.timeRow = timeRow
 		super.init()
 		NotificationCenter.default.addObserver(forName: .fontChanged, object: self.timeRow.run, queue: nil, using: { _ in
-			self.fontPopUp.selectedFont = self.timeRow.run.timerFont
+			self.fontStack.fontPopUp.selectedFont = self.timeRow.run.timerFont
 		})
 	}
 	
@@ -23,8 +23,7 @@ class TimeRowOptionsController: NSObject {
 	}
 	
 	var timeRow: TimeRow!
-	var fontPopUp: FontPopUpButton!
-	
+	var fontStack: ComponentOptionsFontStack!
 	
 	var showAttemptsLabelButton: ComponentOptionsButton {
 		ComponentOptionsButton(checkboxWithTitle: "Show Attempts Label", clickAction: { button in
@@ -70,18 +69,8 @@ class TimeRowOptionsController: NSObject {
 		
 		d.addSeparator()
 		
-		let fontLabel = NSTextField(labelWithString: "Timer Font")
-		//Ensure that the font label is what gets stretched, and not one of the other buttons
-		fontPopUp = FontPopUpButton(frame: .zero, callback: fontChanged(to:))
-		let fontStack = NSStackView(views: [fontLabel, fontPopUp])
-		fontStack.orientation = .horizontal
+		fontStack = ComponentOptionsFontStack(onFontChange: fontChanged(to:))
 		d.addArrangedSubview(fontStack)
-		NSLayoutConstraint.activate([
-			fontStack.leadingAnchor.constraint(equalTo: d.leadingAnchor),
-			fontStack.trailingAnchor.constraint(equalTo: d.trailingAnchor),
-			//This constraint prevents the "Timer Font" label from being clipped by the font picker
-			NSLayoutConstraint(item: fontPopUp!, attribute: .width, relatedBy: .lessThanOrEqual, toItem: d, attribute: .width, multiplier: 0.9, constant: 1)
-		])
 		return d
 	}
 	

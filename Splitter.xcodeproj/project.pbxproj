@@ -1802,7 +1802,7 @@
 			repositoryURL = "https://github.com/MichaelJBerk/FontPopUp";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.0.1;
+				minimumVersion = 1.0.0;
 			};
 		};
 		4A7F94A826332DBE002861E3 /* XCRemoteSwiftPackageReference "Codextended" */ = {

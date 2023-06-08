@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import FontPopUp
 class ComponentOptionsButton: NSButton {
 	var clickAction: (NSButton) -> () = {_ in}
 	override func mouseDown(with event: NSEvent) {
@@ -71,5 +72,31 @@ class ComponentOptionsVstack: NSStackView {
 			separatorView.heightAnchor.constraint(equalToConstant: 1)
 		])
 		return separatorView
+	}
+}
+
+class ComponentOptionsFontStack: NSStackView {
+	typealias SizeChangeHandler = (Int?) -> ()
+	
+	var fontLabel = NSTextField(labelWithString: "Timer Font")
+	var fontPopUp: FontPopUpButton!
+	var onFontChange: FontChangeHandler!
+	var onSizeChange: SizeChangeHandler!
+	
+	convenience init(onFontChange: @escaping FontChangeHandler = {_ in}, onSizeChange: @escaping SizeChangeHandler = {_ in}) {
+		self.init(views: [])
+		self.orientation = .horizontal
+		self.onFontChange = onFontChange
+		self.onSizeChange = onSizeChange
+		self.fontPopUp = FontPopUpButton(frame: .zero, callback: onFontChange)
+		self.addArrangedSubview(fontLabel)
+		self.addArrangedSubview(fontPopUp)
+		NSLayoutConstraint.activate([
+			NSLayoutConstraint(item: fontPopUp!, attribute: .width, relatedBy: .lessThanOrEqual, toItem: self, attribute: .width, multiplier: 0.9, constant: 1)
+		])
+	}
+	
+	private func sizeChanged(to: Int?) {
+		
 	}
 }
