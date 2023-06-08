@@ -61,7 +61,8 @@ public struct LiveSplitFont: Codable {
 		case black
 		case extraBlack = "extra-black"
 		
-		var displayName: String {
+		///User-friendly name for the weight
+		public var displayName: String {
 			switch self {
 			case .thin:
 				return "Thin"
@@ -85,6 +86,34 @@ public struct LiveSplitFont: Codable {
 				return "Black"
 			case .extraBlack:
 				return "Extra Black"
+			}
+		}
+		
+		///Representation of the font's weight that can be used in CSS
+		public var cssWeight: Int {
+			switch self {
+			case .normal:
+				return 400
+			case .thin:
+				return 100
+			case .extraLight:
+				return 200
+			case .light:
+				return 300
+			case .semiLight:
+				return 350
+			case .medium:
+				return 500
+			case .semiBold:
+				return 600
+			case .bold:
+				return 700
+			case .extraBold:
+				return 800
+			case .black:
+				return 900
+			case .extraBlack:
+				return 950
 			}
 		}
 	}

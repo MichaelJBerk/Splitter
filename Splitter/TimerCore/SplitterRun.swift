@@ -73,8 +73,6 @@ class SplitterRun: NSObject {
 	///Used to prevent crash with numberOfRowsInTableView
 	var hasSetLayout = false
 	
-	private var layoutSettings: CodableLayoutSettings!
-	
 	init(run: Run, isNewRun: Bool = false) {
 		var vRun: Run = run
 		//LiveSplit-Core runs need to have at least one segment, so if there's a new run, we need to add a blank segment.
@@ -90,11 +88,6 @@ class SplitterRun: NSObject {
 		layout = .defaultLayout()
 		layout.updateState(layout.state(timer.lsTimer), timer.lsTimer)
 		let settings = layout.settingsAsJson()
-		do {
-			self.layoutSettings = try JSONDecoder().decode(CodableLayoutSettings.self, from: settings.data(using: .utf8)!)
-		} catch {
-			print("Decode error: \(error)")
-		}
 		if let editor = LayoutEditor(layout) {
 			/**
 			# General Layout Settings
