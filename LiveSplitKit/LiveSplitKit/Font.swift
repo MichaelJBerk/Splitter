@@ -34,11 +34,11 @@ public struct LiveSplitFont: Codable {
 	///The stretch of the font to prefer selecting.
 	public var stretch: LiveSplitFont.Stretch
 	
-	public enum Style: String, Codable {
+	public enum Style: String, Codable, CaseIterable {
 		case normal
 		case italic
 		
-		var displayName: String {
+		public var displayName: String {
 			switch self {
 			case .normal:
 				return "Normal"
@@ -48,7 +48,7 @@ public struct LiveSplitFont: Codable {
 		}
 	}
 	
-	public enum Weight: String, Codable {
+	public enum Weight: String, Codable, CaseIterable {
 		case normal
 		case thin
 		case extraLight = "extra-light"
@@ -118,7 +118,7 @@ public struct LiveSplitFont: Codable {
 		}
 	}
 	
-	public enum Stretch: String, Codable {
+	public enum Stretch: String, Codable, CaseIterable {
 		case normal
 		case ultraCondensed = "ultra-condensed"
 		case extraCondesned = "extra-condensed"
@@ -129,7 +129,7 @@ public struct LiveSplitFont: Codable {
 		case extraExpanded = "extra-expanded"
 		case ultraExpanded = "ultra-expanded"
 		
-		var displayName: String {
+		public var displayName: String {
 			switch self {
 			case .ultraCondensed:
 				return "Ultra Condensed"

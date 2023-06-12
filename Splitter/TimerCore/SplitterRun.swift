@@ -41,8 +41,29 @@ class SplitterRun: NSObject {
 	///Analagous to the `timerFont` in LiveSplitCore
 	var timerFont: NSFont? {
 		didSet {
+			
+		}
+	}
+	
+	var timerLSFont: LiveSplitFont? {
+		get {
+			codableLayout.timerFont
+		}
+		set {
+			editLayout { editor in
+				if let newValue {
+					editor.setGeneralSettingsValue(1, .fromFont(newValue)!)
+				} else {
+					editor.setGeneralSettingsValue(1, .fromEmptyFont())
+				}
+			}
+//			self.timerFont = newValue?.toNSFont()
 			NotificationCenter.default.post(name: .fontChanged, object: self)
 		}
+	}
+	
+	func setTimerLSFont(_ lsFont: LiveSplitFont?) {
+		
 	}
 	
 	///Font used for labels in the run window

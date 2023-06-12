@@ -14,12 +14,14 @@ class TimeRowOptionsController: NSObject {
 		self.timeRow = timeRow
 		super.init()
 		NotificationCenter.default.addObserver(forName: .fontChanged, object: self.timeRow.run, queue: nil, using: { _ in
-			self.fontStack.fontPopUp.selectedFont = self.timeRow.run.timerFont
+//			self.fontStack.font = self.timeRow.run.codableLayout.timerFont
 		})
 	}
 	
 	func fontChanged(to newFont: NSFont?) {
-		self.timeRow.run.timerFont = newFont
+//		self.timeRow.timeFont = newFont
+		self.timeRow.run.timerLSFont = self.fontStack.font
+//		self.timeRow.run.timerFont = newFont
 	}
 	
 	var timeRow: TimeRow!
@@ -69,7 +71,7 @@ class TimeRowOptionsController: NSObject {
 		
 		d.addSeparator()
 		
-		fontStack = ComponentOptionsFontStack(onFontChange: fontChanged(to:))
+		fontStack = ComponentOptionsFontStack(title: "Timer Font", font: self.timeRow.run.codableLayout.timerFont, onFontChange: fontChanged(to:))
 		d.addArrangedSubview(fontStack)
 		return d
 	}

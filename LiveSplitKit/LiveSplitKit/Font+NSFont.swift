@@ -56,4 +56,27 @@ extension LiveSplitFont.Weight {
 		}
 	}
 }
+
+
+public extension LiveSplitFont {
+	///Create an NSFont based on the LiveSplitFont
+	func toNSFont() -> NSFont? {
+		var fontSlant = 0.0
+		if style == .italic {
+			fontSlant = 1
+		} 
+		//Cannot add stretch since there's no equivalent in NSFont.
+		let med = 0.23000000417232513
+		let num = round(weight.nsFontWeight * 10)/10
+		let descriptor = NSFontDescriptor(fontAttributes: [
+			.family: family,
+			.traits: [
+				.slant: fontSlant,
+				NSFontDescriptor.TraitKey.weight: num,
+			]
+		])
+		let font = NSFont(descriptor: descriptor, size: NSFont.systemFontSize)
+		return font
+	}
+}
 #endif
