@@ -9,6 +9,8 @@
 import Cocoa
 import LiveSplitKit
 extension SplitsComponent {
+	
+	///The view containing all options tabs, as well as the segmented control to pick between them
 	class SplitsOptionsView: ComponentOptionsVstack {
 		typealias OptionsTab =  (view: NSView, title: String)
 		var viewIndex: Int = 0 {
@@ -56,7 +58,7 @@ extension SplitsComponent {
 	
 	//MARK: - Main Options View
 	var optionsView: NSView! {
-		let d = defaultComponentOptions() as! ComponentOptionsVstack
+		let optionsStack = defaultComponentOptions() as! ComponentOptionsVstack
 		let showHeaderButton = ComponentOptionsButton(checkboxWithTitle: "Show Header") {button in
 			let oldValue = self.showHeader
 			self.undoableSetting(actionName: "Set Show Header", oldValue: oldValue, newValue: !oldValue, edit: { comp, value in
@@ -65,7 +67,7 @@ extension SplitsComponent {
 			})
 		}
 		showHeaderButton.state = .init(bool: showHeader)
-		d.addArrangedSubview(showHeaderButton)
+		optionsStack.addArrangedSubview(showHeaderButton)
 		let hasVScrollButton = ComponentOptionsButton(checkboxWithTitle: "Vertical Scroll Bar", clickAction: { button in
 			let oldValue = self.hasVerticalScroller
 			self.undoableSetting(actionName: "Set Show Vertical Scroll Bar", oldValue: oldValue, newValue: !oldValue, edit: {comp, val in
@@ -88,21 +90,21 @@ extension SplitsComponent {
 		hideScrollStack.orientation = .horizontal
 		hideScrollStack.addArrangedSubview(hasVScrollButton)
 		hideScrollStack.addArrangedSubview(hasHScrollButton)
-		d.addArrangedSubview(hideScrollStack)
+		optionsStack.addArrangedSubview(hideScrollStack)
 		
-		d.addSeparator()
+		optionsStack.addSeparator()
 		
-		colorOptions(stack: d)
+		colorOptions(stack: optionsStack)
 		
-		let scrollView = NSScrollView(frame: d.frame)
+		let scrollView = NSScrollView(frame: optionsStack.frame)
 		scrollView.hasVerticalScroller = true
-		scrollView.documentView = d
+		scrollView.documentView = optionsStack
 		scrollView.drawsBackground = false
 		advancedVC = SplitsComponentAdvancedOptions(splitsComp: self)
 		let co = advancedVC.view
 		let superStack = SplitsOptionsView.makeView(tabs: [(scrollView, "Options"), (co, "Columns")])
 		NSLayoutConstraint.activate([
-			d.widthAnchor.constraint(equalTo: scrollView.contentView.widthAnchor),
+			optionsStack.widthAnchor.constraint(equalTo: scrollView.contentView.widthAnchor),
 			superStack.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
 		])
 		scrollView.automaticallyAdjustsContentInsets = false
