@@ -171,8 +171,8 @@ class ViewController: NSViewController {
 			newFont = NSFont(name: "Times", size: 20)
 			newTimeFont = NSFont(name: "OMORI_GAME", size: 20)
 		}
-		run.splitsFont = newFont
-		run.timerFont = newTimeFont
+//		run.splitsFont = newFont
+//		run.timerFont = newTimeFont
 		splitsTableView.reloadData()
 	}
 	

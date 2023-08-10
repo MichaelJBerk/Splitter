@@ -11,7 +11,7 @@ import Cocoa
 class ThemedTextField: NSTextField, Themeable, Fontable {
 	var run: SplitterRun!
 	
-	@IBInspectable var fontable: Bool = false
+	@IBInspectable var fontable: Bool = true
 	@IBInspectable var themeable: Bool = true
 	
 	override init(frame frameRect: NSRect) {

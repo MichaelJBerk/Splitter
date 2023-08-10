@@ -36,54 +36,77 @@ class SplitterRun: NSObject {
 	var refreshTimer: Timer?
 	var document: SplitterDoc!
 	
+	
+	//we have separate methods to set fonts instead of using getters, since it's possible that we have to fall back to the default font
+	
 	///Font used for the timer component
 	///
-	///Analagous to the `timerFont` in LiveSplitCore
-	var timerFont: NSFont? {
-		didSet {
-			
-		}
-	}
+	///This property is analagous to the `timerFont` in LiveSplitCore.
+	///
+	///- Important: You cannot set this field directly. Instead, use ``setTimerFont(to:)`` to change it.
+	private(set) var timerFont: NSFont?
 	
-	var timerLSFont: LiveSplitFont? {
-		get {
-			codableLayout.timerFont
+	/// Sets the timer font to the given `LiveSplitFont`
+	///
+	/// - Parameter lsFont: Font to set the timer font to
+	/// - NOTE: If a valid NSFont can't be generated from the given `LiveSplitFont`, the default system font will be used instead
+	func setTimerFont(to lsFont: LiveSplitFont?) {
+		if let lsFont, let font = lsFont.toNSFont() {
+			editLayout { $0.setGeneralSettingsValue(1, .fromFont(lsFont)!)}
+			self.timerFont = font
+		} else {
+			editLayout {$0.setGeneralSettingsValue(1, .fromEmptyFont())}
+			self.timerFont = nil
 		}
-		set {
-			editLayout { editor in
-				if let newValue {
-					editor.setGeneralSettingsValue(1, .fromFont(newValue)!)
-				} else {
-					editor.setGeneralSettingsValue(1, .fromEmptyFont())
-				}
-			}
-//			self.timerFont = newValue?.toNSFont()
-			NotificationCenter.default.post(name: .fontChanged, object: self)
-		}
-	}
-	
-	func setTimerLSFont(_ lsFont: LiveSplitFont?) {
-		
+		NotificationCenter.default.post(name: .fontChanged, object: self)
 	}
 	
 	///Font used for labels in the run window
 	///
-	///Analagous to the `textFont` in LiveSplitCore
-	///>NOTE: Unlike LiveSplit, this does not control the font for the splits component header. The splits component header uses ``splitsFont``
-	var textFont: NSFont? {
-		didSet {
-			NotificationCenter.default.post(name: .fontChanged, object: self)
+	///This property is analagous to the `textFont` in LiveSplitCore.
+	///
+	///Unlike LiveSplit, this does not control the font for the splits component header. The splits component header uses ``splitsFont``
+	///
+	///- Important: You cannot set this field directly. Instead, use ``setTextFont(to:)`` to change it.
+	private(set) var textFont: NSFont?
+	
+	/// Sets the text font to the given `LiveSplitFont`
+	///
+	/// - Parameter lsFont: Font to set the timer font to
+	/// - NOTE: If a valid NSFont can't be generated from the given `LiveSplitFont`, the default system font will be used instead
+	func setTextFont(to lsFont: LiveSplitFont?) {
+		if let lsFont, let font = lsFont.toNSFont() {
+			editLayout({$0.setGeneralSettingsValue(3, .fromFont(lsFont)!)})
+			self.textFont = font
+		} else {
+			editLayout{$0.setGeneralSettingsValue(3, .fromEmptyFont())}
+			self.textFont = nil
 		}
+		NotificationCenter.default.post(name: .fontChanged, object: self)
 	}
 	
 	///Font used for the Splits component
 	///
-	///Analagous to the `timesFont` in LiveSplitCore
-	///>NOTE: Unlike LiveSplit, this controls the font for the splits component header, instead of ``textFont``, so that the header will be the same height as the table rows.
-	var splitsFont: NSFont? {
-		didSet {
-			NotificationCenter.default.post(name: .fontChanged, object: self)
+	///This property is analagous to the `timesFont` in LiveSplitCore
+	///
+	///Unlike LiveSplit, this controls the font for the splits component header, instead of ``textFont``, so that the header will be the same height as the table rows.
+	///
+	///- Important: You cannot set this field directly. Instead, use ``setSplitsFont(to:)`` to change it.
+	private(set) var splitsFont: NSFont?
+	
+	/// Sets the splits font to the given `LiveSplitFont`
+	///
+	/// - Parameter lsFont: Font to set the splits font to.
+	/// - NOTE: If a valid NSFont can't be generated from the given `LiveSplitFont`, the default system font will be used instead
+	func setSplitsFont(to lsFont: LiveSplitFont?) {
+		if let lsFont, let font = lsFont.toNSFont() {
+			editLayout({$0.setGeneralSettingsValue(2, .fromFont(lsFont)!)})
+			self.splitsFont = font
+		} else {
+			editLayout{$0.setGeneralSettingsValue(2, .fromEmptyFont())}
+			self.splitsFont = nil
 		}
+		NotificationCenter.default.post(name: .fontChanged, object: self)
 	}
 	
 	

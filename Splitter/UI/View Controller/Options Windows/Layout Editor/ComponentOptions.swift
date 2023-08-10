@@ -80,21 +80,17 @@ class ComponentOptionsVstack: NSStackView {
 class ComponentOptionsFontStack: NSGridView {
 	//default font size is system 36
 	
-	/*
-	 TODO: Setup state
-	 - If default font, disable the other options
-	 */
-	
 	var font: LiveSplitFont? = nil
 	
 	
 	typealias SizeChangeHandler = (Int?) -> ()
+	typealias SplitterFontChangeHandler = (LiveSplitFont?) -> ()
 	
 	var titleLabel: NSTextField!
 	var fontLabel = NSTextField(labelWithString: "Font")
 	private var fontFamilyPopUp: FontPopUpButton!
 	private var stylePopUp, weightPopUp: NSPopUpButton!
-	var onFontChange: FontChangeHandler!
+	var onFontChange: SplitterFontChangeHandler!
 	var onSizeChange: SizeChangeHandler!
 	var defaultStyleItem, defaultWeightItem, defaultStretchItem: NSMenuItem!
 	
@@ -105,7 +101,7 @@ class ComponentOptionsFontStack: NSGridView {
 		return NSFont.boldSystemFont(ofSize: NSFont.systemFontSize)
 	}
 	
-	convenience init(title: String, font: LiveSplitFont?, onFontChange: @escaping FontChangeHandler = {_ in}, onSizeChange: @escaping SizeChangeHandler = {_ in}) {
+	convenience init(title: String, font: LiveSplitFont?, onFontChange: @escaping SplitterFontChangeHandler = {_ in}, onSizeChange: @escaping SizeChangeHandler = {_ in}) {
 		self.init(numberOfColumns: 2, rows: 0)
 		self.titleLabel = NSTextField(labelWithString: title)
 		self.titleLabel.font = headlineFont
@@ -146,8 +142,7 @@ class ComponentOptionsFontStack: NSGridView {
 		stylePopUp.isEnabled = !font.isNil
 		weightPopUp.isEnabled = !font.isNil
 		if callFontChange {
-			let nsFont = self.font?.toNSFont()
-			onFontChange(nsFont)
+			onFontChange(self.font)
 		}
 	}
 	

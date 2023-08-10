@@ -7,6 +7,7 @@
 //
 import AppKit
 import FontPopUp
+import LiveSplitKit
 
 class TimeRowOptionsController: NSObject {
 	
@@ -18,10 +19,8 @@ class TimeRowOptionsController: NSObject {
 		})
 	}
 	
-	func fontChanged(to newFont: NSFont?) {
-//		self.timeRow.timeFont = newFont
-		self.timeRow.run.timerLSFont = self.fontStack.font
-//		self.timeRow.run.timerFont = newFont
+	func fontChanged(to newFont: LiveSplitFont?) {
+		self.timeRow.run.setTimerFont(to: newFont)
 	}
 	
 	var timeRow: TimeRow!

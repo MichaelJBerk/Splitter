@@ -97,9 +97,9 @@ class TimeRow: NSStackView, NibLoadable, SplitterComponent, NSTextFieldDelegate,
 	
 	func setFont() {
 		if let csize = self.timeFont?.pointSize {
-			if let lsFont = self.run.timerLSFont, let font = lsFont.toNSFont() {
+			if let font = run.timerFont {
+				//use custom font, with existing weight
 				let dict = font.fontDescriptor.object(forKey: .traits) as! [NSFontDescriptor.TraitKey: Any?]
-				let weight = dict[.weight]
 				print(font.fontName)
 				let nf = NSFontManager.shared.convert(font, toSize: csize)
 				self.timeFont = nf

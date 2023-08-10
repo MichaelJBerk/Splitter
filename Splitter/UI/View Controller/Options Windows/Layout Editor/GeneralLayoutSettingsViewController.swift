@@ -7,6 +7,7 @@
 //
 
 import Cocoa
+import LiveSplitKit
 
 class GeneralLayoutSettingsViewController: NSViewController {
 	override func loadView() {
@@ -15,13 +16,16 @@ class GeneralLayoutSettingsViewController: NSViewController {
 	}
 	var run: SplitterRun!
 	var stackView: ComponentOptionsVstack!
+	var backgroundImageWell: NSImageView!
+	var fontStack: ComponentOptionsFontStack!
 	
 	func buildStack() {
 		buildColorsSection()
 		stackView.addSeparator()
 		buildBGImageSection()
+		stackView.addSeparator()
+		buildFontStackSection()
 	}
-	var backgroundImageWell: NSImageView!
 	
 	func buildColorsSection() {
 		let colorsLabel = NSTextField(labelWithString: "Colors")
@@ -118,7 +122,15 @@ class GeneralLayoutSettingsViewController: NSViewController {
 				}
 			}
 		})
-		
+	}
+	
+	func buildFontStackSection() {
+		fontStack = ComponentOptionsFontStack(title: "Text Font", font: self.run.codableLayout.textFont, onFontChange: fontChanged(to:))
+		stackView.addArrangedSubview(fontStack)
+	}
+	
+	func fontChanged(to newFont: LiveSplitFont?) {
+		run.setTextFont(to: newFont)
 	}
 	
 	@objc func colorWellAction(_ sender: NSColorWell) {
