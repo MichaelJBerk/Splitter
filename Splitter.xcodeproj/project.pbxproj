@@ -13,6 +13,7 @@
 		4A01B803268631FC00F15A50 /* SplitsEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A01B801268631FC00F15A50 /* SplitsEditorViewController.xib */; };
 		4A01B805268632D400F15A50 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A01B804268632D400F15A50 /* NibLoadable.swift */; };
 		4A05EEFD24D762E200873D07 /* DownloadWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A05EEFC24D762E200873D07 /* DownloadWindow.storyboard */; };
+		4A09177B2A856E500027B336 /* ComponentOptionsFontStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09177A2A856E500027B336 /* ComponentOptionsFontStack.swift */; };
 		4A09819F24E3089B00E44792 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09819D24E3089B00E44792 /* LoginView.swift */; };
 		4A0981A024E3089B00E44792 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A09819E24E3089B00E44792 /* LoginView.xib */; };
 		4A0981A624E34DE400E44792 /* AccountButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0981A424E34DE400E44792 /* AccountButtonView.swift */; };
@@ -210,6 +211,7 @@
 		4A01B801268631FC00F15A50 /* SplitsEditorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplitsEditorViewController.xib; sourceTree = "<group>"; };
 		4A01B804268632D400F15A50 /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
 		4A05EEFC24D762E200873D07 /* DownloadWindow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DownloadWindow.storyboard; sourceTree = "<group>"; };
+		4A09177A2A856E500027B336 /* ComponentOptionsFontStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentOptionsFontStack.swift; sourceTree = "<group>"; };
 		4A09819D24E3089B00E44792 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		4A09819E24E3089B00E44792 /* LoginView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
 		4A0981A424E34DE400E44792 /* AccountButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountButtonView.swift; sourceTree = "<group>"; };
@@ -759,6 +761,7 @@
 				4AAD4708248432390094A31F /* ColorsView */,
 				4AE168A526091CA900A6169B /* LayoutEditorViewController.swift */,
 				4A520E2E269373D100F463B3 /* ComponentOptions.swift */,
+				4A09177A2A856E500027B336 /* ComponentOptionsFontStack.swift */,
 				4A5B867729033834004D09C8 /* DragIndicator.swift */,
 				4AE82353290B434000D8100B /* LayoutEditorListCell.xib */,
 				4AE82355290B435000D8100B /* LayoutEditorListCell.swift */,
@@ -1339,6 +1342,7 @@
 				4A09E2A824D75D6B0013D7BC /* CategoryViewController.swift in Sources */,
 				4A0F716323F4A9E400E5948E /* SplitterDocBundle.swift in Sources */,
 				4A4D392223C4FAE500BF3FCD /* HotkeysViewController.swift in Sources */,
+				4A09177B2A856E500027B336 /* ComponentOptionsFontStack.swift in Sources */,
 				4AD44AD7262F40E3003375C4 /* KeyValueComponent.swift in Sources */,
 				4A09E29E24D7555E0013D7BC /* DownloadView.swift in Sources */,
 				4A61438424801A28007C38E0 /* ColorsView.swift in Sources */,
