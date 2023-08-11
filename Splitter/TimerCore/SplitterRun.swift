@@ -51,6 +51,11 @@ class SplitterRun: NSObject {
 	/// - Parameter lsFont: Font to set the timer font to
 	/// - NOTE: If a valid NSFont can't be generated from the given `LiveSplitFont`, the default system font will be used instead
 	func setTimerFont(to lsFont: LiveSplitFont?) {
+		let oldLSFont = codableLayout.timerFont
+		undoManager?.registerUndo(withTarget: self, handler: { run in
+			run.setTimerFont(to: oldLSFont)
+		})
+		undoManager?.setActionName("Set Timer Font")
 		if let lsFont, let font = lsFont.toNSFont() {
 			editLayout { $0.setGeneralSettingsValue(1, .fromFont(lsFont)!)}
 			self.timerFont = font
@@ -75,6 +80,11 @@ class SplitterRun: NSObject {
 	/// - Parameter lsFont: Font to set the timer font to
 	/// - NOTE: If a valid NSFont can't be generated from the given `LiveSplitFont`, the default system font will be used instead
 	func setTextFont(to lsFont: LiveSplitFont?) {
+		let oldLSFont = codableLayout.textFont
+		undoManager?.registerUndo(withTarget: self, handler: { run in
+			run.setTextFont(to: oldLSFont)
+		})
+		undoManager?.setActionName("Set Text Font")
 		if let lsFont, let font = lsFont.toNSFont() {
 			editLayout({$0.setGeneralSettingsValue(3, .fromFont(lsFont)!)})
 			self.textFont = font
@@ -99,6 +109,10 @@ class SplitterRun: NSObject {
 	/// - Parameter lsFont: Font to set the splits font to.
 	/// - NOTE: If a valid NSFont can't be generated from the given `LiveSplitFont`, the default system font will be used instead
 	func setSplitsFont(to lsFont: LiveSplitFont?) {
+		let oldLSFont = codableLayout.timesFont
+		undoManager?.registerUndo(withTarget: self, handler: { run in
+			run.setSplitsFont(to: oldLSFont)
+		})
 		if let lsFont, let font = lsFont.toNSFont() {
 			editLayout({$0.setGeneralSettingsValue(2, .fromFont(lsFont)!)})
 			self.splitsFont = font
