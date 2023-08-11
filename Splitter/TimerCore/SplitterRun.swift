@@ -251,14 +251,23 @@ class SplitterRun: NSObject {
 		}
 		super.init()
 		self.timer.splitterRun = self
+		
 		self.textFont = nil
 		setObservers()
-		
 		//If there's a "currentComparison" variable here, it's a pre-4.3 Splitter file, and thus we need to update it using `fixRunAndDiffsComparison`
 		if let comp = getCustomVariable(name: "currentComparison") {
 			fixRunAndDiffsComparison(comp)
 		}
 		setRunComparison(to: .personalBest, disableUndo: true)
+	}
+	
+	///Reads the fonts from the current CodableLayout into the run.
+	///
+	///This isn't called at `init`, because for some reason, the codableLayout properties are `nil` at that time. Instead, we call this when the View Controller is trying to update the appearance for the components
+	func updateFonts() {
+		setTextFont(to: codableLayout.textFont)
+		setTimerFont(to: codableLayout.timerFont)
+		setSplitsFont(to: codableLayout.timesFont)
 	}
 	
 	func addComponent(component: SplitterComponentType) -> Int? {

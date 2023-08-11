@@ -132,7 +132,7 @@ You can still close the window either with ⌘W or from the "Window" menu.
 			d.showHideTitleBar()
 			d.setFloatingWindow()
 			
-			d.setColorForControls()
+			d.setAppearanceForControls()
 			d.showHideTitle()
 		}
 		if run.undoManager?.isUndoing ?? false {

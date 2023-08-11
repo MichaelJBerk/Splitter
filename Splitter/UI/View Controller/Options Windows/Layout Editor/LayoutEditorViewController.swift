@@ -126,7 +126,7 @@ class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOut
 		if let sender = sender as? NSMenuItem,
 		   let type = sender.representedObject as? SplitterComponentType {
 			runController.addComponent(type)
-			runController.setColorForControls()
+			runController.setAppearanceForControls()
 			outlineView.reloadData()
 		}
 	}
