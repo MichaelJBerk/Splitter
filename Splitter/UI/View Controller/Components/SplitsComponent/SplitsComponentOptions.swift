@@ -71,8 +71,13 @@ extension SplitsComponent {
 		scrollView.documentView = optionsStack
 		scrollView.drawsBackground = false
 		advancedVC = SplitsComponentAdvancedOptions(splitsComp: self)
+		
+		let fontOptions = ComponentOptionsFontStack(title: "Splits Font", font: run.codableLayout.timesFont, onFontChange: run.setSplitsFont(to:))
+		//add empty row so that the popup buttons are pushed to the top of the view
+		fontOptions.addRow(with: [.init()])
+		
 		let co = advancedVC.view
-		let superStack = SplitsOptionsView.makeView(tabs: [(scrollView, "Options"), (co, "Columns")])
+		let superStack = SplitsOptionsView.makeView(tabs: [(scrollView, "Options"), (fontOptions, "Font"), (co, "Columns")])
 		NSLayoutConstraint.activate([
 			optionsStack.widthAnchor.constraint(equalTo: scrollView.contentView.widthAnchor),
 			superStack.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
@@ -115,6 +120,11 @@ extension SplitsComponent {
 		hideScrollStack.addArrangedSubview(hasVScrollButton)
 		hideScrollStack.addArrangedSubview(hasHScrollButton)
 		stack.addArrangedSubview(hideScrollStack)
+	}
+	
+	//MARK: - Font Options
+	func fontOptions(stack: ComponentOptionsVstack) {
+//		stack.addArrangedSubview()
 	}
 	
 	//MARK: - Color Options

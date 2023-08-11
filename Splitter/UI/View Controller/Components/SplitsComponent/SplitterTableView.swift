@@ -52,7 +52,6 @@ class SplitterTableView: NSTableView {
 		return adjRect
 	}
 	
-	
     override func draw(_ dirtyRect: NSRect) {}
 	
 	
@@ -83,13 +82,13 @@ class SplitterTableView: NSTableView {
 		(enclosingScrollView as? SplitsComponent)?.tableBGColor = cornerColor
 	}
 	
-	/// Sets the background color of the table header to the specified color
+	/// Sets the appearance of the table header using the specified colors
 	///
-	/// In addition to setting the backrgound and text for the header, it also makes the header opaque.
+	/// In addition to setting the font, backrgound, and text for the header, it also makes the header opaque.
 	/// - Parameters:
 	///   - textColor: Color for the header's text
 	///   - bgColor: Background color for the header
-	func setHeaderColor(textColor: NSColor, bgColor: NSColor) {
+	func setHeaderAppearance(textColor: NSColor, bgColor: NSColor) {
 		if self.headerView != nil {
 			for c in self.tableColumns {
 				if !c.isHidden {
@@ -100,19 +99,20 @@ class SplitterTableView: NSTableView {
 					head.backgroundStyle = .raised
 					head.tintColor = viewController.run.tableColor
 					head.textColor = textColor
-					//Header uses text font, not splits font
 					if let font = viewController.run.splitsFont {
 						head.font = font
 					}
-					head.attributedStringValue = NSAttributedString(string: headerStr, attributes: [
-						.foregroundColor: textColor,
-					])
+					head.stringValue = headerStr
 					c.headerCell = head
 				}
 			}
-//			let newHeight = SplitterTableHeader.defaultTableHeaderHeight + (viewController.run.runFont?.pointSize ?? 0)
 			self.headerView!.frame = NSRect(origin: self.headerView!.frame.origin, size: .init(width: self.headerView!.frame.width, height: rowHeight))
 		}
+	}
+	
+	func updateFont() {
+		self.setHeaderAppearance(textColor: viewController.run.textColor, bgColor: viewController.run.tableColor)
+		self.reloadData()
 	}
     
 	//Overriding keyDown so that typing a letter for a hotkey doesn't select that segment

@@ -120,7 +120,7 @@ extension ViewController {
 		
 		splitsTableView.viewController = self
 		
-		splitsTableView.setHeaderColor(textColor: run.textColor, bgColor: run.tableColor)
+		splitsTableView.setHeaderAppearance(textColor: run.textColor, bgColor: run.tableColor)
 		splitsTableView.setCornerColor(cornerColor: run.tableColor)
 		
 		view.window?.backgroundColor = run.backgroundColor
