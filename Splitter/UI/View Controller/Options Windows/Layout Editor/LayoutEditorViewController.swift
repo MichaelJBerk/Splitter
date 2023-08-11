@@ -22,6 +22,10 @@ class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOut
 	
 	override func loadView() {
 		setupCompObjects()
+		DispatchQueue.global(qos: .userInitiated).async {
+			//Doing this in the background before creating the view makes it load faster - maybe it's because something's being cached?
+			_ = FontPopUpButton.makeMenu().menu
+		}
 		outlineView = NSOutlineView()
 		let nib = NSNib(nibNamed: "LayoutEditorListCell", bundle: .main)
 		outlineView.register(nib, forIdentifier: .init("DragListCell"))

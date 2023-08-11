@@ -14,6 +14,7 @@
 		4A01B805268632D400F15A50 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A01B804268632D400F15A50 /* NibLoadable.swift */; };
 		4A05EEFD24D762E200873D07 /* DownloadWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A05EEFC24D762E200873D07 /* DownloadWindow.storyboard */; };
 		4A09177B2A856E500027B336 /* ComponentOptionsFontStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09177A2A856E500027B336 /* ComponentOptionsFontStack.swift */; };
+		4A0917BB2A85DE490027B336 /* FontPopUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0917BA2A85DE490027B336 /* FontPopUpButton.swift */; };
 		4A09819F24E3089B00E44792 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09819D24E3089B00E44792 /* LoginView.swift */; };
 		4A0981A024E3089B00E44792 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A09819E24E3089B00E44792 /* LoginView.xib */; };
 		4A0981A624E34DE400E44792 /* AccountButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0981A424E34DE400E44792 /* AccountButtonView.swift */; };
@@ -58,7 +59,6 @@
 		4A3BB54E27DA9322006C3256 /* AdvancedHotkeyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A3BB54C27DA9322006C3256 /* AdvancedHotkeyViewController.xib */; };
 		4A3BDFA123E4C3B6001EA7FF /* DefaultHotkeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3BDFA023E4C3B6001EA7FF /* DefaultHotkeys.swift */; };
 		4A3F989925EFDB0800B2B955 /* CodableLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3F989825EFDB0800B2B955 /* CodableLayout.swift */; };
-		4A44370D2A2E4A9B00A54412 /* FontPopUp in Frameworks */ = {isa = PBXBuildFile; productRef = 4A44370C2A2E4A9B00A54412 /* FontPopUp */; };
 		4A44FF4F24E9A9E60083013A /* SplitsIOUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A44FF4E24E9A9E60083013A /* SplitsIOUpload.swift */; };
 		4A470BB02695FABA001F0081 /* Themeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A470BAF2695FABA001F0081 /* Themeable.swift */; };
 		4A470BB22695FAE1001F0081 /* ThemedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A470BB12695FAE1001F0081 /* ThemedImage.swift */; };
@@ -212,6 +212,7 @@
 		4A01B804268632D400F15A50 /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
 		4A05EEFC24D762E200873D07 /* DownloadWindow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DownloadWindow.storyboard; sourceTree = "<group>"; };
 		4A09177A2A856E500027B336 /* ComponentOptionsFontStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentOptionsFontStack.swift; sourceTree = "<group>"; };
+		4A0917BA2A85DE490027B336 /* FontPopUpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontPopUpButton.swift; sourceTree = "<group>"; };
 		4A09819D24E3089B00E44792 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		4A09819E24E3089B00E44792 /* LoginView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
 		4A0981A424E34DE400E44792 /* AccountButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountButtonView.swift; sourceTree = "<group>"; };
@@ -380,7 +381,6 @@
 				4A35F98D299C383B008A3841 /* Defaults in Frameworks */,
 				4A214A70255C90720006FD9F /* SplitsIOKit in Frameworks */,
 				4AE5B0EE2A1C2080003F1288 /* BasicUpdater in Frameworks */,
-				4A44370D2A2E4A9B00A54412 /* FontPopUp in Frameworks */,
 				4A1767B224EE095100571A6C /* Preferences in Frameworks */,
 				4A7F94AA26332DBE002861E3 /* Codextended in Frameworks */,
 				4A6B4F7423F07C3900CB781F /* libresolv.tbd in Frameworks */,
@@ -766,6 +766,7 @@
 				4AE82353290B434000D8100B /* LayoutEditorListCell.xib */,
 				4AE82355290B435000D8100B /* LayoutEditorListCell.swift */,
 				4AC2745726990E04007ED8F5 /* GeneralLayoutSettingsViewController.swift */,
+				4A0917BA2A85DE490027B336 /* FontPopUpButton.swift */,
 				4A2F390827F34C25001B0A7C /* WindowSettings */,
 			);
 			path = "Layout Editor";
@@ -967,7 +968,6 @@
 				4A20C46D2640BDB600307993 /* Introspect */,
 				4A35F98C299C383B008A3841 /* Defaults */,
 				4AE5B0ED2A1C2080003F1288 /* BasicUpdater */,
-				4A44370C2A2E4A9B00A54412 /* FontPopUp */,
 			);
 			productName = Splitter;
 			productReference = 4A230E8F23B00A1D00959C57 /* Splitter.app */;
@@ -1056,7 +1056,6 @@
 				4A20C46C2640BDB600307993 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				4A35F98B299C383B008A3841 /* XCRemoteSwiftPackageReference "Defaults" */,
 				4AE5B0EC2A1C2080003F1288 /* XCRemoteSwiftPackageReference "BasicUpdater" */,
-				4A44370B2A2E4A9B00A54412 /* XCRemoteSwiftPackageReference "FontPopUp" */,
 			);
 			productRefGroup = 4A230E9023B00A1D00959C57 /* Products */;
 			projectDirPath = "";
@@ -1328,6 +1327,7 @@
 				4A2F390627F34C1E001B0A7C /* WindowSettingViewController.swift in Sources */,
 				4A470BB22695FAE1001F0081 /* ThemedImage.swift in Sources */,
 				4A1657B123EA4EF60008CB5F /* Menu Items.swift in Sources */,
+				4A0917BB2A85DE490027B336 /* FontPopUpButton.swift in Sources */,
 				4ADFAE4923E4A0760049F57A /* QuickAlert.swift in Sources */,
 				4A561386262CFB7F00702B0E /* OptionsRow.swift in Sources */,
 				4A225FA1299C201A0087CBF4 /* UpdateController.swift in Sources */,
@@ -1809,14 +1809,6 @@
 				minimumVersion = 7.0.0;
 			};
 		};
-		4A44370B2A2E4A9B00A54412 /* XCRemoteSwiftPackageReference "FontPopUp" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/MichaelJBerk/FontPopUp";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
-			};
-		};
 		4A7F94A826332DBE002861E3 /* XCRemoteSwiftPackageReference "Codextended" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/JohnSundell/Codextended.git";
@@ -1875,11 +1867,6 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4A35F98B299C383B008A3841 /* XCRemoteSwiftPackageReference "Defaults" */;
 			productName = Defaults;
-		};
-		4A44370C2A2E4A9B00A54412 /* FontPopUp */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4A44370B2A2E4A9B00A54412 /* XCRemoteSwiftPackageReference "FontPopUp" */;
-			productName = FontPopUp;
 		};
 		4A7F94A926332DBE002861E3 /* Codextended */ = {
 			isa = XCSwiftPackageProductDependency;
