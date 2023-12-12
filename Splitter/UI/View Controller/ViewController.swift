@@ -165,15 +165,29 @@ class ViewController: NSViewController {
 	
 	@objc func breakFunc() {
 		rf.toggle()
-		var newFont: NSFont? = nil
-		var newTimeFont: NSFont? = nil
+		let splitsFont = run.codableLayout.timesFont
+		let textFont = run.codableLayout.textFont
+		
 		if rf {
-			newFont = NSFont(name: "Times", size: 20)
-			newTimeFont = NSFont(name: "OMORI_GAME", size: 20)
+//			newFont = NSFont(name: "Times", size: 20)
+//			newTimeFont = NSFont(name: "OMORI_GAME", size: 20)
+			
+			run.splitsFontSize = 20
+			run.textFontSize = 20
+			run.setSplitsFont(to: splitsFont)
+			run.setTextFont(to: textFont)
+			
+		} else {
+			run.splitsFontSize = 0
+			run.textFontSize = 0
+			run.setSplitsFont(to: splitsFont)
+			run.setTextFont(to: textFont)
 		}
 //		run.splitsFont = newFont
 //		run.timerFont = newTimeFont
 		splitsTableView.reloadData()
+		print("Font Size: \(String(describing: run.splitsFont?.pointSize))")
+		print("Row Height: \(splitsTableView.rowHeight)")
 	}
 	
 	func debugPrintSplitsEditor() {

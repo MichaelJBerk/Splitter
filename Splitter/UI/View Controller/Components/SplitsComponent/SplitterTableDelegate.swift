@@ -104,7 +104,8 @@ class SplitsComponentDelegate: NSObject, NSTableViewDelegate, NSTableViewDataSou
 			if let font = self.run.splitsFont {
 				textField.font = font
 			} else {
-				textField.font = NSFont.systemFont(ofSize: 13)
+				let size = NSFont.systemFontSize + self.run.splitsFontSize
+				textField.font = NSFont.systemFont(ofSize: size)
 			}
 		}
 		

@@ -125,7 +125,7 @@ class GeneralLayoutSettingsViewController: NSViewController {
 	}
 	
 	func buildFontStackSection() {
-		fontStack = ComponentOptionsFontStack(title: "Text Font", font: self.run.codableLayout.textFont, onFontChange: fontChanged(to:))
+		fontStack = ComponentOptionsFontStack(title: "Text Font", helpText: "Font used for most text in the Run window.", font: self.run.codableLayout.textFont, onFontChange: fontChanged(to:))
 		stackView.addArrangedSubview(fontStack)
 	}
 	

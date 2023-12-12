@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="19529" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="19529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -19,30 +19,30 @@
             <rect key="frame" x="0.0" y="0.0" width="481" height="20"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ngc-Sv-8GD" customClass="ThemedTextField" customModule="Splitter" customModuleProvider="target">
+                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ngc-Sv-8GD" customClass="ThemedTextField" customModule="Splitter" customModuleProvider="target">
                     <rect key="frame" x="-2" y="4" width="326" height="16"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="16" id="aYc-XY-WYM"/>
-                    </constraints>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="Current Time:" id="4rP-ch-fHH">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </textFieldCell>
+                    <userDefinedRuntimeAttributes>
+                        <userDefinedRuntimeAttribute type="boolean" keyPath="fixedFontSize" value="YES"/>
+                    </userDefinedRuntimeAttributes>
                 </textField>
-                <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B89-EN-CgZ">
+                <stackView distribution="fill" orientation="horizontal" alignment="centerY" spacing="2" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="B89-EN-CgZ">
                     <rect key="frame" x="429" y="0.0" width="52" height="20"/>
                     <subviews>
                         <button toolTip="Edit Segments" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="l5I-Qs-qXP" customClass="ThemedButton" customModule="Splitter" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="-1" width="25" height="22"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="20" id="0b5-pa-qSp"/>
-                                <constraint firstAttribute="width" constant="25" id="M1E-Bg-vod"/>
-                            </constraints>
                             <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="pencil" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="jrP-7t-rkI">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="0b5-pa-qSp"/>
+                                <constraint firstAttribute="width" constant="25" id="M1E-Bg-vod"/>
+                            </constraints>
                             <accessibility description="Edit Segments" help="Edit the segments and times for your run" identifier="AddSplit"/>
                             <connections>
                                 <action selector="splitsEditorButtonClick:" target="QLr-sF-5L1" id="JoI-5A-fL1"/>
@@ -50,14 +50,14 @@
                         </button>
                         <button toolTip="Edit Layout" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ypb-Uc-5tX" customClass="ThemedButton" customModule="Splitter" customModuleProvider="target">
                             <rect key="frame" x="27" y="-1" width="25" height="22"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="20" id="Cgj-2J-1MS"/>
-                                <constraint firstAttribute="width" constant="25" id="R9t-nR-Eac"/>
-                            </constraints>
                             <buttonCell key="cell" type="smallSquare" bezelStyle="smallSquare" image="NSQuickLookTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="YuD-xH-Gdj">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="20" id="Cgj-2J-1MS"/>
+                                <constraint firstAttribute="width" constant="25" id="R9t-nR-Eac"/>
+                            </constraints>
                             <accessibility description="Edit Components" help="Edit the Components visible in the Run window"/>
                             <connections>
                                 <action selector="columnOptionsButtonClick:" target="QLr-sF-5L1" id="nhX-KX-db5"/>
@@ -66,7 +66,6 @@
                     </subviews>
                     <constraints>
                         <constraint firstItem="l5I-Qs-qXP" firstAttribute="centerY" secondItem="ypb-Uc-5tX" secondAttribute="centerY" id="dGW-Ww-M9u"/>
-                        <constraint firstAttribute="height" constant="20" id="lzg-No-Y3D"/>
                     </constraints>
                     <visibilityPriorities>
                         <integer value="1000"/>
@@ -78,6 +77,9 @@
                     </customSpacing>
                 </stackView>
             </subviews>
+            <constraints>
+                <constraint firstItem="B89-EN-CgZ" firstAttribute="centerY" secondItem="QLr-sF-5L1" secondAttribute="centerY" id="BMa-av-TcV"/>
+            </constraints>
             <visibilityPriorities>
                 <integer value="1000"/>
                 <integer value="1000"/>
@@ -92,11 +94,11 @@
                 <outlet property="tableButtonsStack" destination="B89-EN-CgZ" id="vEZ-7w-QNn"/>
                 <outlet property="timeLabel" destination="Ngc-Sv-8GD" id="lDr-Uk-jzV"/>
             </connections>
-            <point key="canvasLocation" x="-296.5" y="116"/>
+            <point key="canvasLocation" x="-286" y="155"/>
         </stackView>
     </objects>
     <resources>
-        <image name="NSQuickLookTemplate" width="20" height="13"/>
+        <image name="NSQuickLookTemplate" width="26" height="17"/>
         <image name="pencil" width="256" height="256"/>
     </resources>
 </document>

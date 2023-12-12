@@ -7,10 +7,15 @@
 
 import Cocoa
 
+
+//This component itself conforms to Fontable (rather than just the controls within it) so that it can have its own `setFont` implementation
 class TimeRow: NSStackView, NibLoadable, SplitterComponent, NSTextFieldDelegate, Fontable {
 	
 	var fontable: Bool = true
 	var optionsController: TimeRowOptionsController!
+	
+	///Stubbed property from protocol
+	var defaultFontSize: CGFloat?
 	
 	///Font used for displaying the time
 	var timeFont: NSFont? {
@@ -39,7 +44,7 @@ class TimeRow: NSStackView, NibLoadable, SplitterComponent, NSTextFieldDelegate,
 		attemptsField.run = run
 		attemptsField.formatter = OnlyIntegerValueFormatter()
 		detachesHiddenViews = false
-		attemptsStackView.detachesHiddenViews = false
+
 		attemptsField.delegate = self
 		run.updateFunctions.append(updateUI)
 		setFontObserver()
@@ -100,12 +105,14 @@ class TimeRow: NSStackView, NibLoadable, SplitterComponent, NSTextFieldDelegate,
 			if let font = run.timerFont {
 				//use custom font, with existing weight
 				let dict = font.fontDescriptor.object(forKey: .traits) as! [NSFontDescriptor.TraitKey: Any?]
-				print(font.fontName)
 				let nf = NSFontManager.shared.convert(font, toSize: csize)
 				self.timeFont = nf
 			} else {
 				self.timeFont = NSFont.systemFont(ofSize: csize)
 			}
+//			if let textFont = run.textFont {
+//				self.attemptsLabel.font = textFont.withSize(textFont.pointSize * 0.85)
+//			}
 		}
 	}
 }

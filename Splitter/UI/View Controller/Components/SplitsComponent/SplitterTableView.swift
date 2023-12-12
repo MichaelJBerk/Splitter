@@ -13,8 +13,13 @@ class SplitterTableView: NSTableView {
 
 	override var rowHeight: CGFloat {
 		get {
-			let font = viewController?.run.splitsFont ?? NSFont.systemFont(ofSize: 13)
-			return font.pointSize + 15 + (font.pointSize/2)
+//			let font = viewController?.run.splitsFont ?? NSFont.systemFont(ofSize: 13)
+			var fontSize = viewController?.run?.splitsFontSize ?? 0
+			if fontSize == 0 {
+				fontSize = NSFont.systemFont(ofSize: 13).pointSize
+			}
+//			return fontSize + 15 + (fontSize/2)
+			return fontSize * 2.75
 		}
 		set {}
 	}
@@ -101,6 +106,9 @@ class SplitterTableView: NSTableView {
 					head.textColor = textColor
 					if let font = viewController.run.splitsFont {
 						head.font = font
+					} else {
+						let size = viewController.run.splitsFontSize + NSFont.systemFontSize
+						head.font = NSFont.systemFont(ofSize: size)
 					}
 					head.stringValue = headerStr
 					c.headerCell = head
@@ -199,7 +207,7 @@ class SplitterTableHeaderCell: NSTableHeaderCell {
 		path.stroke()
 		
 		//Without this custom inset, the header text will appear at the top of the cell, instead of the center.
-		let inset = cellFrame.insetBy(dx: 5, dy: offset)
+		let inset = cellFrame.insetBy(dx: 5, dy: offset - 2)
 		drawInterior(withFrame: inset, in: controlView)
 	}
 

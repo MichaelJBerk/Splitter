@@ -9,7 +9,13 @@
 import Cocoa
 
 class ThemedButton: NSButton, Themeable, Fontable {
+	
 	var run: SplitterRun!
+	var defaultFontSize: CGFloat?
+	var fixedFontSize: Bool {
+		return true
+	}
+
 	override init(frame frameRect: NSRect) {
 		super.init(frame: frameRect)
 		setColorObserver()
@@ -20,6 +26,7 @@ class ThemedButton: NSButton, Themeable, Fontable {
 		setColorObserver()
 		setFontObserver()
 	}
+	
 	func setColor() {
 		var newImage = self.image
 		newImage?.isTemplate = true

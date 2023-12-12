@@ -7,7 +7,6 @@
 //
 
 import Cocoa
-import FontPopUp
 import LiveSplitKit
 
 class ComponentOptionsButton: NSButton {

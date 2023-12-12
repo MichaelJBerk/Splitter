@@ -72,7 +72,7 @@ extension SplitsComponent {
 		scrollView.drawsBackground = false
 		advancedVC = SplitsComponentAdvancedOptions(splitsComp: self)
 		
-		let fontOptions = ComponentOptionsFontStack(title: "Splits Font", font: run.codableLayout.timesFont, onFontChange: run.setSplitsFont(to:))
+		let fontOptions = ComponentOptionsFontStack(title: "Splits Font", helpText: "Font used for the Splits component and header.", font: run.codableLayout.timesFont, onFontChange: run.setSplitsFont(to:))
 		//add empty row so that the popup buttons are pushed to the top of the view
 		fontOptions.addRow(with: [.init()])
 		

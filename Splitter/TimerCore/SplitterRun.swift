@@ -46,6 +46,12 @@ class SplitterRun: NSObject {
 	///- Important: You cannot set this field directly. Instead, use ``setTimerFont(to:)`` to change it.
 	private(set) var timerFont: NSFont?
 	
+	var textFontSize: CGFloat = 0 {
+		didSet {
+			NotificationCenter.default.post(name: .fontChanged, object: self)
+		}
+	}
+	
 	/// Sets the timer font to the given `LiveSplitFont`
 	///
 	/// - Parameter lsFont: Font to set the timer font to
@@ -95,6 +101,12 @@ class SplitterRun: NSObject {
 		NotificationCenter.default.post(name: .fontChanged, object: self)
 	}
 	
+	var splitsFontSize: CGFloat = 0 {
+		didSet {
+			NotificationCenter.default.post(name: .fontChanged, object: self)
+		}
+	}
+	
 	///Font used for the Splits component
 	///
 	///This property is analagous to the `timesFont` in LiveSplitCore
@@ -113,7 +125,7 @@ class SplitterRun: NSObject {
 		undoManager?.registerUndo(withTarget: self, handler: { run in
 			run.setSplitsFont(to: oldLSFont)
 		})
-		if let lsFont, let font = lsFont.toNSFont() {
+		if let lsFont, let font = lsFont.toNSFont(size: NSFont.systemFont(ofSize: 13).pointSize + splitsFontSize) {
 			editLayout({$0.setGeneralSettingsValue(2, .fromFont(lsFont)!)})
 			self.splitsFont = font
 		} else {

@@ -6,7 +6,6 @@
 //  Copyright © 2023 Michael Berk. All rights reserved.
 //
 import AppKit
-import FontPopUp
 import LiveSplitKit
 
 class TimeRowOptionsController: NSObject {
@@ -70,7 +69,7 @@ class TimeRowOptionsController: NSObject {
 		
 		d.addSeparator()
 		
-		fontStack = ComponentOptionsFontStack(title: "Timer Font", font: self.timeRow.run.codableLayout.timerFont, onFontChange: fontChanged(to:))
+		fontStack = ComponentOptionsFontStack(title: "Timer Font", helpText: "Font used to display the current time.", font: self.timeRow.run.codableLayout.timerFont, onFontChange: fontChanged(to:))
 		d.addArrangedSubview(fontStack)
 		return d
 	}

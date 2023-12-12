@@ -8,7 +8,6 @@
 
 import Cocoa
 import LiveSplitKit
-import FontPopUp
 
 class ComponentOptionsFontStack: NSGridView {
 	//default font size is system 36
@@ -33,14 +32,17 @@ class ComponentOptionsFontStack: NSGridView {
 		return NSFont.boldSystemFont(ofSize: NSFont.systemFontSize)
 	}
 	
-	convenience init(title: String, font: LiveSplitFont?, onFontChange: @escaping SplitterFontChangeHandler = {_ in}, onSizeChange: @escaping SizeChangeHandler = {_ in}) {
+	convenience init(title: String, helpText: String, font: LiveSplitFont?, onFontChange: @escaping SplitterFontChangeHandler = {_ in}, onSizeChange: @escaping SizeChangeHandler = {_ in}) {
 		self.init(numberOfColumns: 2, rows: 0)
 		self.titleLabel = NSTextField(labelWithString: title)
 		self.titleLabel.font = headlineFont
 		self.titleLabel.alignment = .left
 		self.onFontChange = onFontChange
 		self.onSizeChange = onSizeChange
-		addRow(with: [titleLabel, NSView()])
+		let helpButton = HelpButton()
+		helpButton.helpString = helpText + "\n\nNote: Not all features are supported by every font"
+		
+		addRow(with: [titleLabel, NSView(), helpButton])
 		mergeCells(inHorizontalRange: .init(0...1), verticalRange: .init(0...0))
 		
 		self.fontFamilyPopUp = FontPopUpButton(frame: .zero, callback: fontSelected(_:))
@@ -68,6 +70,9 @@ class ComponentOptionsFontStack: NSGridView {
 		}
 		
 		updateState(callFontChange: false)
+	}
+	@objc func helpButtonClick() {
+		
 	}
 	
 	func updateState(callFontChange: Bool = true) {

@@ -12,7 +12,14 @@ protocol Fontable {
 	func setFont()
 	func setFontObserver()
 	var run: SplitterRun! {get}
+	///Initial font size for the control
+	///
+	///- NOTE: The default implementation does not set this. The `NSControl` implemention _does_ set this when ``setFont()-75x2j`` is run.
+	var defaultFontSize: CGFloat? {get set}
+	///Option to opt in/out of Fontable behaviors
 	var fontable: Bool {get set}
+	///Determines if the control responds to Splitter's font size adjustment
+	var fixedFontSize: Bool {get}
 }
 
 extension Fontable {
@@ -22,6 +29,9 @@ extension Fontable {
 				setFont()
 			}
 		})
+	}
+	var fixedFontSize: Bool {
+		return false
 	}
 }
 
@@ -54,7 +64,20 @@ extension Fontable where Self: NSControl {
 
 extension NSControl {
 	@objc func setFont(run: SplitterRun) {
-		if let csize = self.font?.pointSize {
+		if var control = self as? Fontable {
+			if control.defaultFontSize == nil {
+				if let size = self.font?.pointSize {
+					control.defaultFontSize = size
+				} else {
+					control.defaultFontSize = 12
+				}
+			}
+			let defaultSize = control.defaultFontSize!
+			
+			var csize = defaultSize
+			if !control.fixedFontSize {
+				csize = csize + run.textFontSize
+			}
 			if let font = run.textFont {
 				let nf = NSFont(name: font.fontName, size: csize)
 				self.font = nf

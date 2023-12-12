@@ -9,10 +9,13 @@
 import Cocoa
 
 class ThemedTextField: NSTextField, Themeable, Fontable {
+	
 	var run: SplitterRun!
+	var defaultFontSize: CGFloat?
 	
 	@IBInspectable var fontable: Bool = true
 	@IBInspectable var themeable: Bool = true
+	@IBInspectable var fixedFontSize: Bool = false
 	
 	override init(frame frameRect: NSRect) {
 		super.init(frame: frameRect)
@@ -25,6 +28,7 @@ class ThemedTextField: NSTextField, Themeable, Fontable {
 		setColorObserver()
 		setFontObserver()
 	}
+	
 	func setColor() {
 		self.textColor = run.textColor
 	}
