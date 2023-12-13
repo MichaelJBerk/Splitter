@@ -19,7 +19,7 @@ class TimeRowOptionsController: NSObject {
 	}
 	
 	func fontChanged(to newFont: LiveSplitFont?) {
-		self.timeRow.run.setTimerFont(to: newFont)
+		self.timeRow.run.fontManager.setTimerFont(to: newFont)
 	}
 	
 	var timeRow: TimeRow!

@@ -130,7 +130,7 @@ class GeneralLayoutSettingsViewController: NSViewController {
 	}
 	
 	func fontChanged(to newFont: LiveSplitFont?) {
-		run.setTextFont(to: newFont)
+		run.fontManager.setTextFont(to: newFont)
 	}
 	
 	@objc func colorWellAction(_ sender: NSColorWell) {

@@ -36,168 +36,7 @@ class SplitterRun: NSObject {
 	var refreshTimer: Timer?
 	var document: SplitterDoc!
 	
-	//MARK: - Font
-	
-	private func getFont(font: KeyPath<SplitterRun, NSFont?>, fontSize:KeyPath<SplitterRun, CGFloat>,  fixedFontSize: Bool, defaultSize: CGFloat) -> NSFont {
-		var size = defaultSize
-		if !fixedFontSize {
-			size += self[keyPath: fontSize]
-		}
-		if let font = self[keyPath: font],
-		   let adjusted = NSFont(name: font.fontName, size: size) {
-			return adjusted
-		}
-		return NSFont.systemFont(ofSize: size)
-	}
-	
-	//MARK: Timer Font
-	
-	///Property storing underlying font used for the timer component
-	///
-	///The font stored in this property is used by ``getTimerFont(fixedFontSize:defaultSize:)``, ``textFontSize``, and ``setTimerFont(to:)``
-	///
-	///- Important: You cannot set this field directly. Instead, use ``setTimerFont(to:)`` to change it.
-	private var timerFont: NSFont?
-	
-	/// Sets the timer font to the given `LiveSplitFont`
-	///
-	/// - Parameter lsFont: Font to set the timer font to
-	/// - NOTE: If a valid NSFont can't be generated from the given `LiveSplitFont`, the default system font will be used instead
-	func setTimerFont(to lsFont: LiveSplitFont?) {
-		let oldLSFont = codableLayout.timerFont
-		undoManager?.registerUndo(withTarget: self, handler: { run in
-			run.setTimerFont(to: oldLSFont)
-		})
-		undoManager?.setActionName("Set Timer Font")
-		if let lsFont, let font = lsFont.toNSFont() {
-			editLayout { $0.setGeneralSettingsValue(1, .fromFont(lsFont)!)}
-			self.timerFont = font
-		} else {
-			editLayout {$0.setGeneralSettingsValue(1, .fromEmptyFont())}
-			self.timerFont = nil
-		}
-		NotificationCenter.default.post(name: .fontChanged, object: self)
-	}
-	
-	/// Retrieves the font used for the timer component
-	///
-	/// This property is analagous to the `timerFont` in LiveSplitCore.
-	///
-	/// - Parameters:
-	///   - fixedFontSize: whether to just use `defaultSize`, or adjust it according to ``textFontSize``
-	///   - defaultSize: Baseline text size to use for the font. If `fixedFontSize` is false, it will be adjusted by ``textFontSize``
-	/// - Returns: The times font, adjusted according to the igven parameters
-	func getTimerFont(fixedFontSize: Bool, defaultSize: CGFloat) -> NSFont {
-		let font =  getFont(font: \.timerFont, fontSize: \.textFontSize, fixedFontSize: fixedFontSize, defaultSize: defaultSize)
-		//Do this to prevent timer font from getting too big
-		return NSFontManager.shared.convert(font, toSize: defaultSize)
-	}
-	
-	//MARK: Text Font
-	
-	///Property storing underlying font used for labels in the run window
-	///
-	///The font stored in this property is used by ``getTextFont(fixedFontSize:defaultSize:)``, ``textFontSize``, and ``setTextFont(to:)``
-	///
-	///- Important: You cannot set this field directly. Instead, use ``setTextFont(to:)`` to change it.
-	private var textFont: NSFont?
-	
-	
-	///Size adjustment for the Text font
-	///
-	///This property is used by ``getTextFont(fixedFontSize:defaultSize:)``
-	var textFontSize: CGFloat = 0 {
-		didSet {
-			NotificationCenter.default.post(name: .fontChanged, object: self)
-		}
-	}
-	
-	/// Sets the text font to the given `LiveSplitFont`
-	///
-	/// - Parameter lsFont: Font to set the timer font to
-	/// - NOTE: If a valid NSFont can't be generated from the given `LiveSplitFont`, the default system font will be used instead
-	func setTextFont(to lsFont: LiveSplitFont?) {
-		let oldLSFont = codableLayout.textFont
-		undoManager?.registerUndo(withTarget: self, handler: { run in
-			run.setTextFont(to: oldLSFont)
-		})
-		undoManager?.setActionName("Set Text Font")
-		if let lsFont, let font = lsFont.toNSFont() {
-			editLayout({$0.setGeneralSettingsValue(3, .fromFont(lsFont)!)})
-			self.textFont = font
-		} else {
-			editLayout{$0.setGeneralSettingsValue(3, .fromEmptyFont())}
-			self.textFont = nil
-		}
-		NotificationCenter.default.post(name: .fontChanged, object: self)
-	}
-	
-	/// Retrieves the font to use for labels in run window
-	///
-	/// This property is analagous to the `textFont` in LiveSplitCore.
-	///
-	/// Unlike LiveSplit, this does not control the font for the splits component header. The splits component header uses ``splitsFont``
-	/// - Parameters:
-	///   - fixedFontSize: whether to just use `defaultSize`, or adjust it according to ``textFontSize``
-	///   - defaultSize: Baseline text size to use for the font. If `fixedFontSize` is false, it will be adjusted by ``textFontSize``
-	/// - Returns: The text font, adjusted according to the igven parameters
-	func getTextFont(fixedFontSize: Bool, defaultSize: CGFloat = NSFont.systemFontSize) -> NSFont {
-		return getFont(font: \.textFont, fontSize: \.textFontSize, fixedFontSize: fixedFontSize, defaultSize: defaultSize)
-	}
-	
-	//MARK: Splits Font
-	
-	///Font used for the Splits component
-	///
-	///Property storing underlying font used for the Splits component.
-	///
-	///The font stored in this property is used by ``getSplitsFont(fixedFontSize:defaultSize:)``, ``splitsFontSize``, and ``setSplitsFont(to:)``
-	private var splitsFont: NSFont?
-
-	
-	///Size adjustment for the Splits font
-	///
-	///This property is used by ``getSplitsFont(fixedFontSize:defaultSize:)``
-	var splitsFontSize: CGFloat = 0 {
-		didSet {
-			NotificationCenter.default.post(name: .fontChanged, object: self)
-		}
-	}
-	
-	/// Sets the splits font to the given `LiveSplitFont`
-	///
-	/// - Parameter lsFont: Font to set the splits font to.
-	/// - NOTE: If a valid NSFont can't be generated from the given `LiveSplitFont`, the default system font will be used instead
-	func setSplitsFont(to lsFont: LiveSplitFont?) {
-		let oldLSFont = codableLayout.timesFont
-		undoManager?.registerUndo(withTarget: self, handler: { run in
-			run.setSplitsFont(to: oldLSFont)
-		})
-		if let lsFont, let font = lsFont.toNSFont(size: NSFont.systemFont(ofSize: 13).pointSize + splitsFontSize) {
-			editLayout({$0.setGeneralSettingsValue(2, .fromFont(lsFont)!)})
-			self.splitsFont = font
-		} else {
-			editLayout{$0.setGeneralSettingsValue(2, .fromEmptyFont())}
-			self.splitsFont = nil
-		}
-		NotificationCenter.default.post(name: .fontChanged, object: self)
-	}
-	
-	/// Retrieves the font to use for labels in run window
-	///
-	///
-	/// This property is analagous to the `timesFont` in LiveSplitCore.
-	///
-	/// - Parameters:
-	///   - fixedFontSize: whether to just use `defaultSize`, or adjust it according to ``splitsFontSize``
-	///   - defaultSize: Baseline text size to use for the font. If `fixedFontSize` is false, it will be adjusted by ``splitsFontSize``
-	/// - Returns: The splits font, adjusted according to the igven parameters
-	func getSplitsFont(fixedFontSize: Bool, defaultSize: CGFloat = NSFont.systemFontSize) -> NSFont {
-		return getFont(font: \.splitsFont, fontSize: \.splitsFontSize, fixedFontSize: fixedFontSize, defaultSize: defaultSize)
-	}
-	
-	//MARK: - SplitterRun
-	
+	var fontManager: FontManager!
 	
 	var undoManager: UndoManager? {
 		return document?.undoManager
@@ -326,8 +165,8 @@ class SplitterRun: NSObject {
 		}
 		super.init()
 		self.timer.splitterRun = self
-		
-		self.textFont = nil
+		self.fontManager = FontManager(run: self)
+		//Don't know why I set text font to nil
 		setObservers()
 		//If there's a "currentComparison" variable here, it's a pre-4.3 Splitter file, and thus we need to update it using `fixRunAndDiffsComparison`
 		if let comp = getCustomVariable(name: "currentComparison") {
@@ -340,9 +179,9 @@ class SplitterRun: NSObject {
 	///
 	///This isn't called at `init`, because for some reason, the codableLayout properties are `nil` at that time. Instead, we call this when the View Controller is trying to update the appearance for the components
 	func updateFonts() {
-		setTextFont(to: codableLayout.textFont)
-		setTimerFont(to: codableLayout.timerFont)
-		setSplitsFont(to: codableLayout.timesFont)
+		fontManager.setTextFont(to: codableLayout.textFont)
+		fontManager.setTimerFont(to: codableLayout.timerFont)
+		fontManager.setSplitsFont(to: codableLayout.timesFont)
 	}
 	
 	func addComponent(component: SplitterComponentType) -> Int? {

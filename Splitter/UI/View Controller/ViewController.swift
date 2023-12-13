@@ -169,19 +169,17 @@ class ViewController: NSViewController {
 		let textFont = run.codableLayout.textFont
 		
 		if rf {
-//			newFont = NSFont(name: "Times", size: 20)
-//			newTimeFont = NSFont(name: "OMORI_GAME", size: 20)
 			
-			run.splitsFontSize = 20
-			run.textFontSize = 20
-			run.setSplitsFont(to: splitsFont)
-			run.setTextFont(to: textFont)
+			run.fontManager.splitsFontSize = 20
+			run.fontManager.textFontSize = 20
+			run.fontManager.setSplitsFont(to: splitsFont)
+			run.fontManager.setTextFont(to: textFont)
 			
 		} else {
-			run.splitsFontSize = 0
-			run.textFontSize = 0
-			run.setSplitsFont(to: splitsFont)
-			run.setTextFont(to: textFont)
+			run.fontManager.splitsFontSize = 0
+			run.fontManager.textFontSize = 0
+			run.fontManager.setSplitsFont(to: splitsFont)
+			run.fontManager.setTextFont(to: textFont)
 		}
 //		run.splitsFont = newFont
 //		run.timerFont = newTimeFont

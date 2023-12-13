@@ -40,7 +40,7 @@ extension Fontable {
 extension NSCell {
 	func setFont(run: SplitterRun) {
 		if let csize = self.font?.pointSize {
-			let font = run.getTextFont(fixedFontSize: false, defaultSize: csize)
+			let font = run.fontManager.getTextFont(fixedFontSize: false, defaultSize: csize)
 			self.font = font
 		}
 	}
@@ -69,7 +69,7 @@ extension NSControl {
 				}
 			}
 			let defaultSize = control.defaultFontSize!
-			self.font = run.getTextFont(fixedFontSize: control.fixedFontSize, defaultSize: defaultSize)
+			self.font = run.fontManager.getTextFont(fixedFontSize: control.fixedFontSize, defaultSize: defaultSize)
 		}
 	}
 }

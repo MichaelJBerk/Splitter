@@ -109,6 +109,7 @@
 		4A968C7C23F1F5FE001B74E8 /* lss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A968C7B23F1F5FE001B74E8 /* lss.swift */; };
 		4A99813023F9ECE50037BF98 /* KeybindHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A99812F23F9ECE50037BF98 /* KeybindHandlers.swift */; };
 		4A9B9606261DF26D000FC89C /* TimeRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9B9605261DF26D000FC89C /* TimeRow.swift */; };
+		4A9C1D862B2A33EC00253411 /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9C1D852B2A33EC00253411 /* FontManager.swift */; };
 		4A9CA2A7263A2D4C0054D624 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9CA2A6263A2D4C0054D624 /* Extensions.swift */; };
 		4A9D8BF6243A38C40048EA15 /* SplitterTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9D8BF5243A38C40048EA15 /* SplitterTableView.swift */; };
 		4AA9ADBB2608F02D009B77B5 /* StartRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AA9ADBA2608F02D009B77B5 /* StartRow.xib */; };
@@ -310,6 +311,7 @@
 		4A968C7B23F1F5FE001B74E8 /* lss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lss.swift; sourceTree = "<group>"; };
 		4A99812F23F9ECE50037BF98 /* KeybindHandlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeybindHandlers.swift; sourceTree = "<group>"; };
 		4A9B9605261DF26D000FC89C /* TimeRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeRow.swift; sourceTree = "<group>"; };
+		4A9C1D852B2A33EC00253411 /* FontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontManager.swift; sourceTree = "<group>"; };
 		4A9CA2A6263A2D4C0054D624 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		4A9D8BF5243A38C40048EA15 /* SplitterTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterTableView.swift; sourceTree = "<group>"; };
 		4AA357B42416F79900219E65 /* liblivesplit_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblivesplit_core.a; path = "livesplit-core/target/release/liblivesplit_core.a"; sourceTree = "<group>"; };
@@ -540,6 +542,7 @@
 			isa = PBXGroup;
 			children = (
 				4A74D4EC25EE9DD700A3D9C7 /* SplitterRun.swift */,
+				4A9C1D852B2A33EC00253411 /* FontManager.swift */,
 				4ACDAC2D2954C4F4004042A8 /* Fontable.swift */,
 				4AD94B1F2804B0B8007A1881 /* ZippyFontDecoding.swift */,
 				4A20C46626406D4800307993 /* SplitterTimer.swift */,
@@ -1377,6 +1380,7 @@
 				4A520E312693744D00F463B3 /* DraggingStackView.swift in Sources */,
 				4A0981A624E34DE400E44792 /* AccountButtonView.swift in Sources */,
 				4A520E2D2693737800F463B3 /* SplitterComponentType.swift in Sources */,
+				4A9C1D862B2A33EC00253411 /* FontManager.swift in Sources */,
 				4A894B1C249ABA71004FEEB3 /* LoadableNib.swift in Sources */,
 				4AB92AC6261F6CD600E8B814 /* ThemedTextField.swift in Sources */,
 				4AB92ABE261F67B700E8B814 /* ThemedButton.swift in Sources */,
