@@ -40,12 +40,8 @@ extension Fontable {
 extension NSCell {
 	func setFont(run: SplitterRun) {
 		if let csize = self.font?.pointSize {
-			if let font = run.textFont {
-				let nf = NSFont(name: font.fontName, size: csize)
-				self.font = nf
-			} else {
-				self.font = NSFont.systemFont(ofSize: csize)
-			}
+			let font = run.getTextFont(fixedFontSize: false, defaultSize: csize)
+			self.font = font
 		}
 	}
 }
@@ -73,17 +69,7 @@ extension NSControl {
 				}
 			}
 			let defaultSize = control.defaultFontSize!
-			
-			var csize = defaultSize
-			if !control.fixedFontSize {
-				csize = csize + run.textFontSize
-			}
-			if let font = run.textFont {
-				let nf = NSFont(name: font.fontName, size: csize)
-				self.font = nf
-			} else {
-				self.font = NSFont.systemFont(ofSize: csize)
-			}
+			self.font = run.getTextFont(fixedFontSize: control.fixedFontSize, defaultSize: defaultSize)
 		}
 	}
 }

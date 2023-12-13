@@ -104,12 +104,7 @@ class SplitterTableView: NSTableView {
 					head.backgroundStyle = .raised
 					head.tintColor = viewController.run.tableColor
 					head.textColor = textColor
-					if let font = viewController.run.splitsFont {
-						head.font = font
-					} else {
-						let size = viewController.run.splitsFontSize + NSFont.systemFontSize
-						head.font = NSFont.systemFont(ofSize: size)
-					}
+					head.font = viewController.run.getSplitsFont(fixedFontSize: false)
 					head.stringValue = headerStr
 					c.headerCell = head
 				}

@@ -186,8 +186,8 @@ class ViewController: NSViewController {
 //		run.splitsFont = newFont
 //		run.timerFont = newTimeFont
 		splitsTableView.reloadData()
-		print("Font Size: \(String(describing: run.splitsFont?.pointSize))")
-		print("Row Height: \(splitsTableView.rowHeight)")
+//		print("Font Size: \(String(describing: run.splitsFont?.pointSize))")
+//		print("Row Height: \(splitsTableView.rowHeight)")
 	}
 	
 	func debugPrintSplitsEditor() {

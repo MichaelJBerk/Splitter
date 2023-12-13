@@ -36,21 +36,28 @@ class SplitterRun: NSObject {
 	var refreshTimer: Timer?
 	var document: SplitterDoc!
 	
+	//MARK: - Font
 	
-	//we have separate methods to set fonts instead of using getters, since it's possible that we have to fall back to the default font
+	private func getFont(font: KeyPath<SplitterRun, NSFont?>, fontSize:KeyPath<SplitterRun, CGFloat>,  fixedFontSize: Bool, defaultSize: CGFloat) -> NSFont {
+		var size = defaultSize
+		if !fixedFontSize {
+			size += self[keyPath: fontSize]
+		}
+		if let font = self[keyPath: font],
+		   let adjusted = NSFont(name: font.fontName, size: size) {
+			return adjusted
+		}
+		return NSFont.systemFont(ofSize: size)
+	}
 	
-	///Font used for the timer component
+	//MARK: Timer Font
+	
+	///Property storing underlying font used for the timer component
 	///
-	///This property is analagous to the `timerFont` in LiveSplitCore.
+	///The font stored in this property is used by ``getTimerFont(fixedFontSize:defaultSize:)``, ``textFontSize``, and ``setTimerFont(to:)``
 	///
 	///- Important: You cannot set this field directly. Instead, use ``setTimerFont(to:)`` to change it.
-	private(set) var timerFont: NSFont?
-	
-	var textFontSize: CGFloat = 0 {
-		didSet {
-			NotificationCenter.default.post(name: .fontChanged, object: self)
-		}
-	}
+	private var timerFont: NSFont?
 	
 	/// Sets the timer font to the given `LiveSplitFont`
 	///
@@ -72,14 +79,38 @@ class SplitterRun: NSObject {
 		NotificationCenter.default.post(name: .fontChanged, object: self)
 	}
 	
-	///Font used for labels in the run window
+	/// Retrieves the font used for the timer component
 	///
-	///This property is analagous to the `textFont` in LiveSplitCore.
+	/// This property is analagous to the `timerFont` in LiveSplitCore.
 	///
-	///Unlike LiveSplit, this does not control the font for the splits component header. The splits component header uses ``splitsFont``
+	/// - Parameters:
+	///   - fixedFontSize: whether to just use `defaultSize`, or adjust it according to ``textFontSize``
+	///   - defaultSize: Baseline text size to use for the font. If `fixedFontSize` is false, it will be adjusted by ``textFontSize``
+	/// - Returns: The times font, adjusted according to the igven parameters
+	func getTimerFont(fixedFontSize: Bool, defaultSize: CGFloat) -> NSFont {
+		let font =  getFont(font: \.timerFont, fontSize: \.textFontSize, fixedFontSize: fixedFontSize, defaultSize: defaultSize)
+		//Do this to prevent timer font from getting too big
+		return NSFontManager.shared.convert(font, toSize: defaultSize)
+	}
+	
+	//MARK: Text Font
+	
+	///Property storing underlying font used for labels in the run window
+	///
+	///The font stored in this property is used by ``getTextFont(fixedFontSize:defaultSize:)``, ``textFontSize``, and ``setTextFont(to:)``
 	///
 	///- Important: You cannot set this field directly. Instead, use ``setTextFont(to:)`` to change it.
-	private(set) var textFont: NSFont?
+	private var textFont: NSFont?
+	
+	
+	///Size adjustment for the Text font
+	///
+	///This property is used by ``getTextFont(fixedFontSize:defaultSize:)``
+	var textFontSize: CGFloat = 0 {
+		didSet {
+			NotificationCenter.default.post(name: .fontChanged, object: self)
+		}
+	}
 	
 	/// Sets the text font to the given `LiveSplitFont`
 	///
@@ -101,20 +132,37 @@ class SplitterRun: NSObject {
 		NotificationCenter.default.post(name: .fontChanged, object: self)
 	}
 	
+	/// Retrieves the font to use for labels in run window
+	///
+	/// This property is analagous to the `textFont` in LiveSplitCore.
+	///
+	/// Unlike LiveSplit, this does not control the font for the splits component header. The splits component header uses ``splitsFont``
+	/// - Parameters:
+	///   - fixedFontSize: whether to just use `defaultSize`, or adjust it according to ``textFontSize``
+	///   - defaultSize: Baseline text size to use for the font. If `fixedFontSize` is false, it will be adjusted by ``textFontSize``
+	/// - Returns: The text font, adjusted according to the igven parameters
+	func getTextFont(fixedFontSize: Bool, defaultSize: CGFloat = NSFont.systemFontSize) -> NSFont {
+		return getFont(font: \.textFont, fontSize: \.textFontSize, fixedFontSize: fixedFontSize, defaultSize: defaultSize)
+	}
+	
+	//MARK: Splits Font
+	
+	///Font used for the Splits component
+	///
+	///Property storing underlying font used for the Splits component.
+	///
+	///The font stored in this property is used by ``getSplitsFont(fixedFontSize:defaultSize:)``, ``splitsFontSize``, and ``setSplitsFont(to:)``
+	private var splitsFont: NSFont?
+
+	
+	///Size adjustment for the Splits font
+	///
+	///This property is used by ``getSplitsFont(fixedFontSize:defaultSize:)``
 	var splitsFontSize: CGFloat = 0 {
 		didSet {
 			NotificationCenter.default.post(name: .fontChanged, object: self)
 		}
 	}
-	
-	///Font used for the Splits component
-	///
-	///This property is analagous to the `timesFont` in LiveSplitCore
-	///
-	///Unlike LiveSplit, this controls the font for the splits component header, instead of ``textFont``, so that the header will be the same height as the table rows.
-	///
-	///- Important: You cannot set this field directly. Instead, use ``setSplitsFont(to:)`` to change it.
-	private(set) var splitsFont: NSFont?
 	
 	/// Sets the splits font to the given `LiveSplitFont`
 	///
@@ -134,6 +182,21 @@ class SplitterRun: NSObject {
 		}
 		NotificationCenter.default.post(name: .fontChanged, object: self)
 	}
+	
+	/// Retrieves the font to use for labels in run window
+	///
+	///
+	/// This property is analagous to the `timesFont` in LiveSplitCore.
+	///
+	/// - Parameters:
+	///   - fixedFontSize: whether to just use `defaultSize`, or adjust it according to ``splitsFontSize``
+	///   - defaultSize: Baseline text size to use for the font. If `fixedFontSize` is false, it will be adjusted by ``splitsFontSize``
+	/// - Returns: The splits font, adjusted according to the igven parameters
+	func getSplitsFont(fixedFontSize: Bool, defaultSize: CGFloat = NSFont.systemFontSize) -> NSFont {
+		return getFont(font: \.splitsFont, fontSize: \.splitsFontSize, fixedFontSize: fixedFontSize, defaultSize: defaultSize)
+	}
+	
+	//MARK: - SplitterRun
 	
 	
 	var undoManager: UndoManager? {

@@ -102,17 +102,7 @@ class TimeRow: NSStackView, NibLoadable, SplitterComponent, NSTextFieldDelegate,
 	
 	func setFont() {
 		if let csize = self.timeFont?.pointSize {
-			if let font = run.timerFont {
-				//use custom font, with existing weight
-				let dict = font.fontDescriptor.object(forKey: .traits) as! [NSFontDescriptor.TraitKey: Any?]
-				let nf = NSFontManager.shared.convert(font, toSize: csize)
-				self.timeFont = nf
-			} else {
-				self.timeFont = NSFont.systemFont(ofSize: csize)
-			}
-//			if let textFont = run.textFont {
-//				self.attemptsLabel.font = textFont.withSize(textFont.pointSize * 0.85)
-//			}
+			self.timeFont = run.getTimerFont(fixedFontSize: false, defaultSize: csize)
 		}
 	}
 }
