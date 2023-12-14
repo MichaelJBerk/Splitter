@@ -69,7 +69,7 @@ class TimeRowOptionsController: NSObject {
 		
 		d.addSeparator()
 		
-		fontStack = ComponentOptionsFontStack(title: "Timer Font", helpText: "Font used to display the current time.", font: self.timeRow.run.codableLayout.timerFont, onFontChange: fontChanged(to:))
+		fontStack = ComponentOptionsFontStack(title: "Timer Font", fontSize: nil, helpText: "Font used to display the current time.", font: self.timeRow.run.codableLayout.timerFont, onFontChange: fontChanged(to:))
 		d.addArrangedSubview(fontStack)
 		return d
 	}

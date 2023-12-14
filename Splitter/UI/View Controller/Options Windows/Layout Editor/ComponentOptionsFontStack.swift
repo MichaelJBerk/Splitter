@@ -14,7 +14,7 @@ class ComponentOptionsFontStack: NSGridView {
 	
 	var font: LiveSplitFont? = nil
 	
-	typealias SizeChangeHandler = (Int?) -> ()
+	typealias SizeChangeHandler = (CGFloat) -> ()
 	typealias SplitterFontChangeHandler = (LiveSplitFont?) -> ()
 	
 	var titleLabel: NSTextField!
@@ -25,6 +25,9 @@ class ComponentOptionsFontStack: NSGridView {
 	var onSizeChange: SizeChangeHandler!
 	var defaultStyleItem, defaultWeightItem, defaultStretchItem: NSMenuItem!
 	
+	var showFontSize: Bool = false
+	var fontSizeStepper: StepperWithNumberField!
+	
 	var headlineFont: NSFont {
 		if #available(macOS 11.0, *) {
 			return NSFont.preferredFont(forTextStyle: .headline)
@@ -32,8 +35,11 @@ class ComponentOptionsFontStack: NSGridView {
 		return NSFont.boldSystemFont(ofSize: NSFont.systemFontSize)
 	}
 	
-	convenience init(title: String, helpText: String, font: LiveSplitFont?, onFontChange: @escaping SplitterFontChangeHandler = {_ in}, onSizeChange: @escaping SizeChangeHandler = {_ in}) {
+	convenience init(title: String, fontSize: CGFloat?, helpText: String, font: LiveSplitFont?, onFontChange: @escaping SplitterFontChangeHandler = {_ in}, onSizeChange: @escaping SizeChangeHandler = {_ in}) {
 		self.init(numberOfColumns: 2, rows: 0)
+		self.fontSizeStepper = .init(minValue: 0, maxValue: 100)
+		self.fontSizeStepper.autoresizingMask = [.width, .height]
+		self.fontSizeStepper.handler = sizeSelected(stepper:)
 		self.titleLabel = NSTextField(labelWithString: title)
 		self.titleLabel.font = headlineFont
 		self.titleLabel.alignment = .left
@@ -69,17 +75,38 @@ class ComponentOptionsFontStack: NSGridView {
 			weightPopUp.selectItem(withTitle: weight.displayName)
 		}
 		
+		if let fontSize {
+			self.showFontSize = true
+			let fontSizeLabel = NSTextField(labelWithString: "Font Size")
+			let fontSizeRow = addRow(with: [fontSizeLabel, fontSizeStepper])
+			fontSizeRow.cell(at: 1).xPlacement = .fill
+			self.fontSizeStepper.floatValue = Float(fontSize + 13)
+		}
+		
 		updateState(callFontChange: false)
 	}
 	@objc func helpButtonClick() {
 		
 	}
 	
-	func updateState(callFontChange: Bool = true) {
+	func updateState(callFontChange: Bool = true, callSizeChange: Bool = true) {
 		stylePopUp.isEnabled = !font.isNil
 		weightPopUp.isEnabled = !font.isNil
 		if callFontChange {
 			onFontChange(self.font)
+		}
+		if callSizeChange {
+			sizeChanged(size: CGFloat(fontSizeStepper.floatValue - 13))
+		}
+	}
+	
+	private func sizeSelected(stepper: StepperWithNumberField) {
+		sizeChanged(size: CGFloat(stepper.floatValue - 13))
+	}
+	
+	private func sizeChanged(size: CGFloat) {
+		if showFontSize {
+			onSizeChange(size)
 		}
 	}
 	
@@ -134,8 +161,4 @@ class ComponentOptionsFontStack: NSGridView {
 		updateState()
 	}
 	
-	
-	private func sizeChanged(to: Int?) {
-		
-	}
 }

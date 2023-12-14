@@ -130,9 +130,9 @@ class FontManager {
 	///   - defaultSize: Baseline text size to use for the font. If `fixedFontSize` is false, it will be adjusted by ``textFontSize``
 	/// - Returns: The times font, adjusted according to the igven parameters
 	func getTimerFont(fixedFontSize: Bool, defaultSize: CGFloat) -> NSFont {
-		let font =  getFont(font: \.timerFont, fontSize: \.textFontSize, fixedFontSize: fixedFontSize, defaultSize: defaultSize)
+		return getFont(font: \.timerFont, fontSize: \.textFontSize, fixedFontSize: fixedFontSize, defaultSize: defaultSize)
 		//Do this to prevent timer font from getting too big
-		return NSFontManager.shared.convert(font, toSize: defaultSize)
+//		return NSFontManager.shared.convert(font, toSize: defaultSize)
 	}
 	
 	//MARK: - Splits Font

@@ -170,8 +170,8 @@ class ViewController: NSViewController {
 		
 		if rf {
 			
-			run.fontManager.splitsFontSize = 20
-			run.fontManager.textFontSize = 20
+			run.fontManager.splitsFontSize = 1
+			run.fontManager.textFontSize = 1
 			run.fontManager.setSplitsFont(to: splitsFont)
 			run.fontManager.setTextFont(to: textFont)
 			
@@ -186,6 +186,7 @@ class ViewController: NSViewController {
 		splitsTableView.reloadData()
 //		print("Font Size: \(String(describing: run.splitsFont?.pointSize))")
 //		print("Row Height: \(splitsTableView.rowHeight)")
+		print("hey")
 	}
 	
 	func debugPrintSplitsEditor() {

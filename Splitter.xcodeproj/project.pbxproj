@@ -139,6 +139,7 @@
 		4AD7C6CB291494ED006645A6 /* LiveSplitKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A6C4D54279B331C004D818C /* LiveSplitKit.framework */; };
 		4AD7C6CC291494ED006645A6 /* LiveSplitKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4A6C4D54279B331C004D818C /* LiveSplitKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4AD94B202804B0B8007A1881 /* ZippyFontDecoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD94B1F2804B0B8007A1881 /* ZippyFontDecoding.swift */; };
+		4ADAA3A82B2B6A030026F243 /* StepperWithNumberField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADAA3A72B2B6A030026F243 /* StepperWithNumberField.swift */; };
 		4ADFAE4923E4A0760049F57A /* QuickAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADFAE4823E4A0760049F57A /* QuickAlert.swift */; };
 		4AE168A626091CA900A6169B /* LayoutEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE168A526091CA900A6169B /* LayoutEditorViewController.swift */; };
 		4AE2CF3B2631F43100CC6CF7 /* SplitsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE2CF3A2631F43100CC6CF7 /* SplitsComponent.swift */; };
@@ -339,6 +340,7 @@
 		4AD44ADE262F4CFB003375C4 /* TitleComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleComponent.swift; sourceTree = "<group>"; };
 		4AD7C6BB29149382006645A6 /* LiveSplitKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LiveSplitKit.xcodeproj; path = LiveSplitKit/LiveSplitKit.xcodeproj; sourceTree = "<group>"; };
 		4AD94B1F2804B0B8007A1881 /* ZippyFontDecoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZippyFontDecoding.swift; sourceTree = "<group>"; };
+		4ADAA3A72B2B6A030026F243 /* StepperWithNumberField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperWithNumberField.swift; sourceTree = "<group>"; };
 		4ADFAE4823E4A0760049F57A /* QuickAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickAlert.swift; sourceTree = "<group>"; };
 		4AE168A526091CA900A6169B /* LayoutEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutEditorViewController.swift; sourceTree = "<group>"; };
 		4AE2CF3A2631F43100CC6CF7 /* SplitsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitsComponent.swift; sourceTree = "<group>"; };
@@ -692,6 +694,7 @@
 			children = (
 				4A470BB52695FED7001F0081 /* Themeing */,
 				4A1657B423EA5C320008CB5F /* Icon Actions.swift */,
+				4ADAA3A72B2B6A030026F243 /* StepperWithNumberField.swift */,
 				4A1657B023EA4EF60008CB5F /* Menu Items.swift */,
 			);
 			path = Controls;
@@ -1368,6 +1371,7 @@
 				4A8C644D27AC24AE0036095C /* SplitsComponentAdvancedOptions.swift in Sources */,
 				4A968C7C23F1F5FE001B74E8 /* lss.swift in Sources */,
 				4AC0E3A52767B3F3004D71D6 /* GeneralPrefsViewController.swift in Sources */,
+				4ADAA3A82B2B6A030026F243 /* StepperWithNumberField.swift in Sources */,
 				4A6A3BE023CD1C39002C20AE /* GlobalKeybindPrefs.swift in Sources */,
 				4A1C1469240ED30C0056B104 /* InfoOptionsViewController.swift in Sources */,
 				4A01B802268631FC00F15A50 /* SplitsEditorViewController.swift in Sources */,
