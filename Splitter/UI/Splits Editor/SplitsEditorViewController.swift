@@ -21,7 +21,9 @@ class SplitsEditorViewController: NSViewController, NibLoadable {
 	//MARK: Control Actions
 	
 	@IBAction func clearMenuAction(_ sender: Any?) {
-		clearTimes()
+		Task {
+			await self.clearTimes()
+		}
 	}
 	
 	@IBAction func compEditorAction(_ sender: Any?) {
@@ -29,10 +31,23 @@ class SplitsEditorViewController: NSViewController, NibLoadable {
 		self.presentAsSheet(comparisonList)
 	}
 	
-	func clearTimes() {
-		editor.clearTimes()
-		resetColumns()
-		outlineView.reloadData()
+	func clearTimes() async {
+		
+		let clearAlert = NSAlert()
+		clearAlert.messageText = "Are you sure you want to clear all times?"
+		clearAlert.informativeText = "Doing so will also remove any custom comparisons you have added"
+		clearAlert.addButton(withTitle: "Cancel")
+		clearAlert.addButton(withTitle: "Clear Times")
+		if #available(macOS 11.0, *) {
+			clearAlert.buttons.last?.hasDestructiveAction = true
+		}
+		clearAlert.buttons.first?.keyEquivalent = "\r"
+		let response = await clearAlert.beginSheetModal(for: self.view.window!)
+		if response == .alertSecondButtonReturn {
+			editor.clearTimes()
+			resetColumns()
+			outlineView.reloadData()
+		}
 	}
 	
 	@IBAction func cancelButtonAction(_ sender: NSButton?) {
