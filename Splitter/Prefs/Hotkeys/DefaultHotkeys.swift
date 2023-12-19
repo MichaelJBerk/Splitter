@@ -18,6 +18,7 @@ enum KeybindTitle: String {
 	case StopTimer = "Cancel Run"
 	case ShowInfoPanel = "Get Info..."
 	case ShowColumnOptions = "Edit Layout..."
+	case ShowSplitsEditor = "Edit Splits..."
 	
 }
 
@@ -34,6 +35,7 @@ enum KeybindSettingsKey: String, CaseIterable {
 	case resetCurrentSplit = "ResetCurrentSplit"
 	case showInfoPanel = "showInfoPanel"
 	case showColumnOptions = "showColumnOptions"
+	case showSplitsEditor = "showSplitsEditor"
 }
 
 struct SplitterKeybind: Equatable {
@@ -74,11 +76,9 @@ extension AppDelegate {
 			SplitterKeybind(settings: .prevSplit, title: .PrevSplit, menuItemID: menuIdentifiers.runMenu.back),
 			SplitterKeybind(settings: .skipSplit, title: .SkipSplit, menuItemID: menuIdentifiers.runMenu.skipSplit),
 			SplitterKeybind(settings: .stopTimer, title: .StopTimer, menuItemID: menuIdentifiers.runMenu.stop),
-			//TODO: See if it should be removed permanantly
-			//Removing this for now, because LiveSplit doesn't seem to have this as a feature
-//			SplitterKeybind(settings: .resetCurrentSplit, title: .ResetCurrentSplit, menuItemID: menuIdentifiers.runMenu.reset),
 			SplitterKeybind(settings: .showInfoPanel, title: .ShowInfoPanel, menuItemID: menuIdentifiers.runMenu.info),
-			SplitterKeybind(settings: .showColumnOptions, title: .ShowColumnOptions, menuItemID: menuIdentifiers.appearanceMenu.showLayoutEditor)
+			SplitterKeybind(settings: .showColumnOptions, title: .ShowColumnOptions, menuItemID: menuIdentifiers.appearanceMenu.showLayoutEditor),
+			SplitterKeybind(settings: .showSplitsEditor, title: .ShowSplitsEditor, menuItemID: menuIdentifiers.runMenu.editSegments)
 		]
 	}
 	
@@ -150,8 +150,12 @@ extension AppDelegate {
 				self.showInfoHandler()
 			}
 		case .ShowColumnOptions:
-		return {
-			self.showColumnOptionsHandler()
+			return {
+				self.showLayoutEditorHandler()
+			}
+		case .ShowSplitsEditor:
+			return {
+				self.showSplitsEditorHandler()
 			}
 		}
 	}

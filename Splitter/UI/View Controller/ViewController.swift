@@ -708,7 +708,7 @@ class ViewController: NSViewController {
 		displayLayoutEditorPopover(nil)
 	}
 	
-	func displaySegmentEditor() {
+	func displaySplitsEditor() {
 		let tvc = SplitsEditorViewController.instantiateView(with: run)
 		presentAsSheet(tvc)
 	}
