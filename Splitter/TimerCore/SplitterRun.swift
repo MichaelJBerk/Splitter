@@ -53,7 +53,7 @@ class SplitterRun: NSObject {
 		}
 		
 		if let editor = RunEditor(vRun) {
-			_ = editor.addComparison(TimeComparison.latest.rawValue)
+			_ = editor.addComparison(TimeComparison.latest.liveSplitID)
 			vRun = editor.close()
 		}
 		timer = SplitterTimer(run: vRun)
@@ -557,7 +557,7 @@ class SplitterRun: NSObject {
 			})
 			undoManager?.setActionName("Set Comparison")
 		}
-		setComparison(comparison.rawValue)
+		setComparison(comparison.liveSplitID)
 	}
 	///Sets the comparison for the run
 	///
@@ -568,8 +568,7 @@ class SplitterRun: NSObject {
 	}
 	
 	func getRunComparision() -> TimeComparison {
-		//TODO: Handle if custom comparison?
-		return TimeComparison(rawValue: timer.lsTimer.currentComparison())!
+		return TimeComparison.fromLSComparison(timer.lsTimer.currentComparison())
 	}
 	
 	var comparisons: [String] {
@@ -586,9 +585,12 @@ class SplitterRun: NSObject {
 			comparisons.append(currentComparison)
 			newTimer.switchToNextComparison()
 			currentComparison = newTimer.currentComparison()
-			
 		}
 		return comparisons
+	}
+	
+	var allTimeComparisons: [TimeComparison] {
+		comparisons.map {TimeComparison.fromLSComparison($0)}
 	}
 	
 	
@@ -718,7 +720,7 @@ class SplitterRun: NSObject {
 		})
 		editLayout { editor in
 			editor.select(1)
-			editor.setColumn(index, comparison: comparison?.rawValue ?? nil)
+			editor.setColumn(index, comparison: comparison?.liveSplitID ?? nil)
 		}
 		undoManager?.setActionName("Set Column Comparison")
 		NotificationCenter.default.post(name: .splitsEdited, object: self)
@@ -945,7 +947,7 @@ class SplitterRun: NSObject {
 		DispatchQueue.main.async {
 			self.editRun({ editor in
 				editor.addCustomVariable("currentComparison")
-				editor.setCustomVariable("currentComparison", comparison.rawValue)
+				editor.setCustomVariable("currentComparison", comparison.liveSplitID)
 			})
 		}
 		return timer.lsTimer.saveAsLss()
@@ -1012,7 +1014,7 @@ class SplitterRun: NSObject {
 				le.setColumn(nli, startWith: startWith)
 				le.setColumn(nli, updateWith: updateWith)
 				le.setColumn(nli, updateTrigger: updateTrigger)
-				le.setColumn(nli, comparison: comparison?.rawValue)
+				le.setColumn(nli, comparison: comparison?.liveSplitID)
 				le.setColumn(nli, timingMethod: timingMethod)
 			}
 			NotificationCenter.default.post(name: .runEdited, object: self)

@@ -8,15 +8,23 @@
 
 import Cocoa
 
-class SplitsEditorTextField: NSTextField {
+class TableViewTextField: NSTextField {
 	var column: NSUserInterfaceItemIdentifier!
 	
 	var row: Int!
-	var outlineView: SplitsEditorOutlineView!
 	
 	override func validateProposedFirstResponder(_ responder: NSResponder, for event: NSEvent?) -> Bool {
 		return true
 	}
+}
+
+class SplitsEditorTextField: TableViewTextField {
+	
+	var outlineView: SplitsEditorOutlineView!
+	///Previous of the text field before the user edited it
+	///
+	///This is used to prevent changing text in LiveSplit if text didn't change, in ``SplitsEditorViewController/controlTextDidEndEditing(_:)``
+	var previousValue: String!
 	
 	///Make sure that clicking text field selects the segment in the segment editor
 	override func becomeFirstResponder() -> Bool {

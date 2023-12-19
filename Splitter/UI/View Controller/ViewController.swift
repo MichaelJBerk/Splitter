@@ -164,29 +164,46 @@ class ViewController: NSViewController {
 	var rf = true
 	
 	@objc func breakFunc() {
-		rf.toggle()
-		let splitsFont = run.codableLayout.timesFont
-		let textFont = run.codableLayout.textFont
+//		rf.toggle()
+//		let splitsFont = run.codableLayout.timesFont
+//		let textFont = run.codableLayout.textFont
+//		
+//		if rf {
+//			
+//			run.fontManager.splitsFontSize = 1
+//			run.fontManager.textFontSize = 1
+//			run.fontManager.setSplitsFont(to: splitsFont)
+//			run.fontManager.setTextFont(to: textFont)
+//			
+//		} else {
+//			run.fontManager.splitsFontSize = 0
+//			run.fontManager.textFontSize = 0
+//			run.fontManager.setSplitsFont(to: splitsFont)
+//			run.fontManager.setTextFont(to: textFont)
+//		}
+////		run.splitsFont = newFont
+////		run.timerFont = newTimeFont
+//		splitsTableView.reloadData()
+////		print("Font Size: \(String(describing: run.splitsFont?.pointSize))")
+////		print("Row Height: \(splitsTableView.rowHeight)")
 		
-		if rf {
-			
-			run.fontManager.splitsFontSize = 1
-			run.fontManager.textFontSize = 1
-			run.fontManager.setSplitsFont(to: splitsFont)
-			run.fontManager.setTextFont(to: textFont)
-			
-		} else {
-			run.fontManager.splitsFontSize = 0
-			run.fontManager.textFontSize = 0
-			run.fontManager.setSplitsFont(to: splitsFont)
-			run.fontManager.setTextFont(to: textFont)
+		let editor = RunEditor(run.timer.lsTimer.getRun().clone())!
+		let segs = editor.getState().segments!.count
+		let hey = editor.addComparison("blah")
+		print(hey)
+		for i in 0..<segs {
+			editor.selectOnly(i)
+			let suc = editor.activeParseAndSetComparisonTime("blah", "01:00")
+			print("\(i): suc: \(suc)")
 		}
-//		run.splitsFont = newFont
-//		run.timerFont = newTimeFont
-		splitsTableView.reloadData()
-//		print("Font Size: \(String(describing: run.splitsFont?.pointSize))")
-//		print("Row Height: \(splitsTableView.rowHeight)")
-		print("hey")
+		let s = run.timer.lsTimer.setRun(editor.close())
+		print(s)
+		let compsLen = run.timer.lsTimer.getRun().customComparisonsLen()
+		var comps = [String]()
+		for i in 0..<compsLen {
+			comps.append(run.timer.lsTimer.getRun().customComparison(i))
+		}
+
 	}
 	
 	func debugPrintSplitsEditor() {

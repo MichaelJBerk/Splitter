@@ -16,12 +16,22 @@ class SplitsEditorViewController: NSViewController, NibLoadable {
 	@IBOutlet weak var removeButton: NSButton!
 	@IBOutlet weak var cancelButton: NSButton!
 	@IBOutlet weak var okButton: NSButton!
-	@IBOutlet weak var clearButton: NSButton!
+	@IBOutlet weak var actionButton: NSPopUpButton!
 	
 	//MARK: Control Actions
 	
-	@IBAction func clearButtonAction(_ sender: NSButton) {
+	@IBAction func clearMenuAction(_ sender: Any?) {
+		clearTimes()
+	}
+	
+	@IBAction func compEditorAction(_ sender: Any?) {
+		let comparisonList = CustomComparisonList.instantiateView(with: run, editor: editor)
+		self.presentAsSheet(comparisonList)
+	}
+	
+	func clearTimes() {
 		editor.clearTimes()
+		resetColumns()
 		outlineView.reloadData()
 	}
 	
@@ -74,6 +84,13 @@ class SplitsEditorViewController: NSViewController, NibLoadable {
 	}
 	var segmentIcons: [NSImage?] = []
 	var editorSelected: Int? = nil
+	
+	///A mapping of Custom Comparison names to their respective indicies in the run
+	///
+	///This is used when drawing the contents of the cells for custom comparison columns, so
+	///we want to pre-compute this when the VC is initalized so we don't have to constantly
+	///iterate through it
+	var customComparisonIndicies: [String: Int]!
 	
 	//MARK: - Columns/Segments
 	//MARK: Columns
@@ -154,22 +171,46 @@ class SplitsEditorViewController: NSViewController, NibLoadable {
 		super.viewDidLoad()
 		outlineView.registerForDraggedTypes([segmentPasteboardType])
 		
+		addColumns()
+		
+		let bestIndex = outlineView.column(withIdentifier: bestSegmentTimeColumnIdentifier)
+		outlineView.tableColumns[bestIndex].width = 110
+	}
+	
+	func addColumns() {
 		var tableColumnsToAdd = [
 			(column: NSTableColumn(identifier: self.splitTimeColumnIdentifier), name: "Split Time"),
 			(column: NSTableColumn(identifier: segmentTimeColumnIdentifier), name: "Segment Time"),
 			(column: NSTableColumn(identifier: bestSegmentTimeColumnIdentifier), name: "Best Segment Time")
 		]
-		editorState.comparisonNames?.forEach({ name in
-			tableColumnsToAdd.append((column: NSTableColumn(identifier: columnIdentifierFor(comparison: name)), name: name))
-		})
+		customComparisonIndicies = [:]
+		if let comparisonNames = editorState.comparisonNames {
+			for i in 0..<comparisonNames.count {
+				let name = comparisonNames[i]
+				tableColumnsToAdd.append((column: NSTableColumn(identifier: columnIdentifierFor(comparison: name)), name: name))
+				customComparisonIndicies[name] = i
+			}
+		}
 		for column in tableColumnsToAdd {
 			column.column.title = column.name
 			outlineView.addTableColumn(column.column)
 		}
-		let bestIndex = outlineView.column(withIdentifier: bestSegmentTimeColumnIdentifier)
-		outlineView.tableColumns[bestIndex].width = 110
-		
-		// Do view setup here.
+	}
+	
+	func removeColumns() {
+		var columnsToRemove = [NSTableColumn]()
+		for col in self.outlineView.tableColumns {
+			if ![imageColumnIdentifier, nameColumnIdentifier].contains(col.identifier) {
+				columnsToRemove.append(col)
+			}
+		}
+		for col in columnsToRemove {
+			outlineView.removeTableColumn(col)
+		}
+	}
+	func resetColumns() {
+		removeColumns()
+		addColumns()
 	}
 	
 	//MARK: - Debug Stuff
@@ -330,6 +371,7 @@ extension SplitsEditorViewController: SplitsEditorOutlineViewDelegate {
 			let cellIdentifier = NSUserInterfaceItemIdentifier("outlineViewTextCell")
 			let cell = outlineView.makeView(withIdentifier: cellIdentifier, owner: self) as! NSTableCellView
 			var cellText: String
+			
 			switch tableColumn?.identifier {
 			case self.nameColumnIdentifier:
 				cellText = item.name
@@ -337,10 +379,20 @@ extension SplitsEditorViewController: SplitsEditorOutlineViewDelegate {
 				cellText = item.splitTime
 			case self.segmentTimeColumnIdentifier:
 				cellText = item.segmentTime
+				if index == 1 {
+					print(item.segmentTime)
+				}
 			case self.bestSegmentTimeColumnIdentifier:
 				cellText = item.bestSegmentTime
 			default:
-				return nil
+				guard let id = tableColumn?.identifier.rawValue else {return nil}
+				if id.hasSuffix("Column") {
+					let comparisonName = String(id.dropLast("Column".count))
+					let compIndex = self.customComparisonIndicies[comparisonName]!
+					cellText = item.comparisonTimes[compIndex]
+				} else {
+					return nil
+				}
 			}
 			let tf = cell.textField as! SplitsEditorTextField
 			tf.column = tableColumn!.identifier
@@ -348,6 +400,7 @@ extension SplitsEditorViewController: SplitsEditorOutlineViewDelegate {
 			tf.outlineView = self.outlineView
 			tf.delegate = self
 			tf.stringValue = cellText
+			tf.previousValue = cellText
 			return cell
 		} else {
 			return nil
@@ -360,6 +413,18 @@ extension SplitsEditorViewController: SplitsEditorOutlineViewDelegate {
 			editor.selectOnly(selection)
 			editorSelected = selection
 		}
+	}
+	
+	func outlineView(_ outlineView: NSOutlineView, sizeToFitWidthOfColumn column: Int) -> CGFloat {
+		let col = outlineView.tableColumns[column]
+		col.sizeToFit()
+		var minSize = col.headerCell.cellSize.width
+		for row in 0..<outlineView.numberOfRows {
+			let cell = outlineView.view(atColumn: column, row: row, makeIfNecessary: false) as! NSTableCellView
+			minSize = max(cell.textField!.frame.width, minSize)
+		}
+		//If it's not an integer, it will be too small for some reason...
+		return ceil(minSize)
 	}
 }
 
@@ -382,6 +447,11 @@ extension SplitsEditorViewController: NSTextFieldDelegate {
 	public func controlTextDidEndEditing(_ obj: Notification) {
 		if let textfield = obj.object as? SplitsEditorTextField {
 			let text = textfield.stringValue
+			//Don't set text if it's the same as the previous value
+			//See `previousValue` documentation
+			if text == textfield.previousValue {
+				return
+			}
 			let id = textfield.column!
 			switch id {
 			case self.nameColumnIdentifier:
@@ -393,7 +463,10 @@ extension SplitsEditorViewController: NSTextFieldDelegate {
 			case self.bestSegmentTimeColumnIdentifier:
 				_ = self.editor.activeParseAndSetBestSegmentTime(text)
 			default:
-				break
+				if id.rawValue.hasSuffix("Column") {
+					let comparisonName = String(id.rawValue.dropLast("Column".count))
+					_ = self.editor.activeParseAndSetComparisonTime(comparisonName, text)
+				}
 			}
 			NotificationCenter.default.post(name: .splitsEdited, object: outlineView)
 		}

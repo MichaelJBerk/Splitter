@@ -98,6 +98,8 @@
 		4A74D4ED25EE9DD700A3D9C7 /* SplitterRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A74D4EC25EE9DD700A3D9C7 /* SplitterRun.swift */; };
 		4A75578D255C426A00ACE826 /* SplitterDocLSS.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4A75578C255C426A00ACE826 /* SplitterDocLSS.icns */; };
 		4A75579D255C47F400ACE826 /* SplitterDocSplitsio.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4A75579C255C47F300ACE826 /* SplitterDocSplitsio.icns */; };
+		4A7C077F2B30B90800EB88D2 /* CustomComparisonList.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A7C077D2B30B90800EB88D2 /* CustomComparisonList.xib */; };
+		4A7C07802B30B90800EB88D2 /* CustomComparisonList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7C077E2B30B90800EB88D2 /* CustomComparisonList.swift */; };
 		4A7DDCE223BBDD0900A36AD1 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 4A7DDCE123BBDD0900A36AD1 /* Credits.html */; };
 		4A7F94AA26332DBE002861E3 /* Codextended in Frameworks */ = {isa = PBXBuildFile; productRef = 4A7F94A926332DBE002861E3 /* Codextended */; };
 		4A87265523BD53F8003A14AF /* runInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87265423BD53F8003A14AF /* runInfo.swift */; };
@@ -302,6 +304,8 @@
 		4A74D4EC25EE9DD700A3D9C7 /* SplitterRun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterRun.swift; sourceTree = "<group>"; usesTabs = 1; };
 		4A75578C255C426A00ACE826 /* SplitterDocLSS.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = SplitterDocLSS.icns; sourceTree = "<group>"; };
 		4A75579C255C47F300ACE826 /* SplitterDocSplitsio.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = SplitterDocSplitsio.icns; sourceTree = "<group>"; };
+		4A7C077D2B30B90800EB88D2 /* CustomComparisonList.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomComparisonList.xib; sourceTree = "<group>"; };
+		4A7C077E2B30B90800EB88D2 /* CustomComparisonList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomComparisonList.swift; sourceTree = "<group>"; };
 		4A7DDCE123BBDD0900A36AD1 /* Credits.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
 		4A87265423BD53F8003A14AF /* runInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = runInfo.swift; sourceTree = "<group>"; };
 		4A87265623BD5423003A14AF /* PrefPanes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefPanes.swift; sourceTree = "<group>"; };
@@ -685,6 +689,8 @@
 				4A9423C9268D3A6C0033A62F /* SplitsEditorTextField.swift */,
 				4A01B800268631FC00F15A50 /* SplitsEditorViewController.swift */,
 				4A01B801268631FC00F15A50 /* SplitsEditorViewController.xib */,
+				4A7C077D2B30B90800EB88D2 /* CustomComparisonList.xib */,
+				4A7C077E2B30B90800EB88D2 /* CustomComparisonList.swift */,
 			);
 			path = "Splits Editor";
 			sourceTree = "<group>";
@@ -1109,6 +1115,7 @@
 				4A388FCF25D4B00B00A63C9E /* PrevNextRow.xib in Resources */,
 				4A0981AC24E4816A00E44792 /* AccountProfileView.xib in Resources */,
 				4A4D391F23C4F29C00BF3FCD /* blankWindow.xib in Resources */,
+				4A7C077F2B30B90800EB88D2 /* CustomComparisonList.xib in Resources */,
 				4A75579D255C47F400ACE826 /* SplitterDocSplitsio.icns in Resources */,
 				4AA9ADBB2608F02D009B77B5 /* StartRow.xib in Resources */,
 				4A6A965924EC3516008EFD2B /* LoadingViewController.xib in Resources */,
@@ -1345,6 +1352,7 @@
 				4A669373268BBB4400FEF745 /* SplitsEditorOutlineView.swift in Sources */,
 				4A5B867829033834004D09C8 /* DragIndicator.swift in Sources */,
 				4A18663023C5257800FEEE54 /* MenuItemConstants.swift in Sources */,
+				4A7C07802B30B90800EB88D2 /* CustomComparisonList.swift in Sources */,
 				4A09E2A824D75D6B0013D7BC /* CategoryViewController.swift in Sources */,
 				4A0F716323F4A9E400E5948E /* SplitterDocBundle.swift in Sources */,
 				4A4D392223C4FAE500BF3FCD /* HotkeysViewController.swift in Sources */,

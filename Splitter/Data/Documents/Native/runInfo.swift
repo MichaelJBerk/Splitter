@@ -118,7 +118,7 @@ extension ViewController {
 						_ = editor.activeParseAndSetSplitTime(segment.currentTime)
 						
 						if let previousTime = segment.previousTime {
-							_ = editor.activeParseAndSetComparisonTime(TimeComparison.latest.rawValue, previousTime)
+							_ = editor.activeParseAndSetComparisonTime(TimeComparison.latest.liveSplitID, previousTime)
 						}
 						
 						if s < icons.count, let image = icons[s] {

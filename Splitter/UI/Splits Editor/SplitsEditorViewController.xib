@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="SplitsEditorViewController" customModule="Splitter" customModuleProvider="target">
             <connections>
+                <outlet property="actionButton" destination="TOL-bd-6W1" id="4VJ-IS-k7x"/>
                 <outlet property="addButton" destination="P00-5O-iMW" id="fJv-dO-jQ0"/>
                 <outlet property="cancelButton" destination="a8q-Uj-3JJ" id="ddh-7o-jrF"/>
-                <outlet property="clearButton" destination="BUF-bq-gPY" id="y4M-Tm-iAN"/>
                 <outlet property="okButton" destination="WmS-DJ-piX" id="DNH-Th-fjF"/>
                 <outlet property="outlineView" destination="8LC-B2-7du" id="L29-4P-foy"/>
                 <outlet property="removeButton" destination="Y4c-Xh-vEL" id="E5U-tA-HRD"/>
@@ -30,7 +30,7 @@
                         <rect key="frame" x="1" y="1" width="620" height="316"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" tableStyle="inset" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="25" headerView="T8k-LS-CiD" viewBased="YES" indentationPerLevel="13" outlineTableColumn="IIU-D3-jD5" id="8LC-B2-7du" customClass="SplitsEditorOutlineView" customModule="Splitter" customModuleProvider="target">
+                            <outlineView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" tableStyle="inset" columnReordering="NO" multipleSelection="NO" autosaveColumns="NO" rowHeight="25" headerView="T8k-LS-CiD" viewBased="YES" indentationMarkerFollowsCell="NO" autoresizesOutlineColumn="YES" outlineTableColumn="IIU-D3-jD5" id="8LC-B2-7du" customClass="SplitsEditorOutlineView" customModule="Splitter" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="620" height="288"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 <size key="intercellSpacing" width="17" height="0.0"/>
@@ -65,7 +65,7 @@
                                         </prototypeCellViews>
                                     </tableColumn>
                                     <tableColumn identifier="nameColumn" width="110" minWidth="40" maxWidth="1000" id="IIU-D3-jD5">
-                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" title="Name">
+                                        <tableHeaderCell key="headerCell" lineBreakMode="truncatingTail" borderStyle="border" alignment="left" title="Name">
                                             <color key="textColor" name="headerTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="headerColor" catalog="System" colorSpace="catalog"/>
                                         </tableHeaderCell>
@@ -78,11 +78,11 @@
                                         <prototypeCellViews>
                                             <tableCellView identifier="outlineViewTextCell" id="Gj1-Kl-F8o">
                                                 <rect key="frame" x="83" y="0.0" width="107" height="24"/>
-                                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                                <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                 <subviews>
-                                                    <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZAq-m7-4nO" customClass="SplitsEditorTextField" customModule="Splitter" customModuleProvider="target">
+                                                    <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZAq-m7-4nO" customClass="SplitsEditorTextField" customModule="Splitter" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="4" width="107" height="16"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                                        <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                                         <textFieldCell key="cell" lineBreakMode="truncatingTail" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" title="Table View Cell" id="HPR-Yl-5Rl">
                                                             <font key="font" usesAppearanceFont="YES"/>
                                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -122,50 +122,72 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </tableHeaderView>
                 </scrollView>
-                <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="18" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" id="CiP-Bx-D1J">
-                    <rect key="frame" x="20" y="7" width="155" height="20"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
+                <stackView distribution="fill" orientation="horizontal" alignment="top" spacing="18" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="CiP-Bx-D1J">
+                    <rect key="frame" x="20" y="12" width="100" height="15"/>
                     <subviews>
                         <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="P00-5O-iMW">
-                            <rect key="frame" x="0.0" y="3.5" width="15.5" height="19"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="15" id="4Qt-v9-O3N"/>
-                                <constraint firstAttribute="width" constant="15" id="E5b-K8-Yko"/>
-                            </constraints>
+                            <rect key="frame" x="0.0" y="-1.5" width="15.5" height="19"/>
                             <buttonCell key="cell" type="smallSquare" title="Add Segment" bezelStyle="smallSquare" image="NSAddTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="0xY-qg-brb">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="15" id="4Qt-v9-O3N"/>
+                                <constraint firstAttribute="width" constant="15" id="E5b-K8-Yko"/>
+                            </constraints>
                             <accessibility description="Add Segment"/>
                             <connections>
                                 <action selector="addButtonAction:" target="-2" id="bFy-jB-rjO"/>
                             </connections>
                         </button>
                         <button wantsLayer="YES" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Y4c-Xh-vEL">
-                            <rect key="frame" x="33" y="8" width="15.5" height="10"/>
-                            <constraints>
-                                <constraint firstAttribute="height" constant="15" id="NQr-R2-ib1"/>
-                                <constraint firstAttribute="width" constant="15" id="hqn-av-0XG"/>
-                            </constraints>
+                            <rect key="frame" x="33" y="3" width="15.5" height="10"/>
                             <buttonCell key="cell" type="smallSquare" title="Remove Segment" bezelStyle="smallSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="s2F-WS-Hwu">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
                             </buttonCell>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="15" id="NQr-R2-ib1"/>
+                                <constraint firstAttribute="width" constant="15" id="hqn-av-0XG"/>
+                            </constraints>
                             <accessibility description="Remove Segment"/>
                             <connections>
                                 <action selector="removeButtonAction:" target="-2" id="v15-Lx-AX9"/>
                             </connections>
                         </button>
-                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="BUF-bq-gPY">
-                            <rect key="frame" x="59" y="-7" width="103" height="32"/>
-                            <buttonCell key="cell" type="push" title="Clear Times" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="6ci-xi-hBM">
+                        <popUpButton translatesAutoresizingMaskIntoConstraints="NO" id="TOL-bd-6W1">
+                            <rect key="frame" x="61" y="0.0" width="39" height="15"/>
+                            <popUpButtonCell key="cell" type="smallSquare" bezelStyle="smallSquare" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" imageScaling="proportionallyDown" inset="2" pullsDown="YES" altersStateOfSelectedItem="NO" id="JKS-VD-dJH">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                <font key="font" metaFont="system"/>
-                            </buttonCell>
-                            <connections>
-                                <action selector="clearButtonAction:" target="-2" id="Btz-TO-W7o"/>
-                            </connections>
-                        </button>
+                                <font key="font" metaFont="menu"/>
+                                <menu key="menu" showsStateColumn="NO" id="3tx-6h-gKm">
+                                    <items>
+                                        <menuItem image="NSActionTemplate" hidden="YES" id="0Fc-ZI-EVg">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="clearMenuAction:" target="-2" id="sll-8g-0kD"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Clear Times" id="0vI-pe-9hZ">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="clearMenuAction:" target="-2" id="jUg-IJ-PQm"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Edit Comparisons" id="DAN-3q-Jc6">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="compEditorAction:" target="-2" id="fOn-QS-K2F"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </popUpButtonCell>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="34" id="xDM-oE-96F"/>
+                                <constraint firstAttribute="height" constant="15" id="xXc-sV-zxm"/>
+                            </constraints>
+                        </popUpButton>
                     </subviews>
                     <visibilityPriorities>
                         <integer value="1000"/>
@@ -182,8 +204,8 @@
                     <rect key="frame" x="496" y="7" width="106" height="20"/>
                     <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
                     <subviews>
-                        <button horizontalHuggingPriority="1000" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="a8q-Uj-3JJ">
-                            <rect key="frame" x="-7" y="-7" width="75" height="32"/>
+                        <button horizontalHuggingPriority="1000" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="a8q-Uj-3JJ">
+                            <rect key="frame" x="-7" y="-7" width="76" height="32"/>
                             <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="nD4-Cg-jBG">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
@@ -195,8 +217,8 @@ Gw
                                 <action selector="cancelButtonAction:" target="-2" id="RjY-iC-xwb"/>
                             </connections>
                         </button>
-                        <button horizontalHuggingPriority="1000" verticalHuggingPriority="750" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="WmS-DJ-piX">
-                            <rect key="frame" x="59" y="-7" width="54" height="32"/>
+                        <button horizontalHuggingPriority="1000" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="WmS-DJ-piX">
+                            <rect key="frame" x="60" y="-7" width="53" height="32"/>
                             <buttonCell key="cell" type="push" title="OK" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Bwx-o6-cYc">
                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                 <font key="font" metaFont="system"/>
@@ -220,11 +242,17 @@ DQ
                     </customSpacing>
                 </stackView>
             </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="CiP-Bx-D1J" secondAttribute="bottom" constant="12" id="VoA-Qn-j4B"/>
+                <constraint firstItem="CiP-Bx-D1J" firstAttribute="leading" secondItem="Hz6-mo-xeY" secondAttribute="leading" constant="20" symbolic="YES" id="WHh-Fi-8ah"/>
+                <constraint firstItem="CiP-Bx-D1J" firstAttribute="top" secondItem="CZ1-er-cv8" secondAttribute="bottom" constant="7" id="d4s-fJ-ikH"/>
+            </constraints>
             <point key="canvasLocation" x="211" y="188"/>
         </customView>
     </objects>
     <resources>
-        <image name="NSAddTemplate" width="14" height="13"/>
-        <image name="NSRemoveTemplate" width="14" height="4"/>
+        <image name="NSActionTemplate" width="20" height="20"/>
+        <image name="NSAddTemplate" width="18" height="17"/>
+        <image name="NSRemoveTemplate" width="18" height="5"/>
     </resources>
 </document>
