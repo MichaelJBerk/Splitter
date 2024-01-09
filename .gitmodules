@@ -1,3 +1,6 @@
 [submodule "Preferences"]
 	path = Preferences
 	url = https://github.com/MichaelJBerk/Preferences.git
+[submodule "FontPopUp"]
+	path = FontPopUp
+	url = https://github.com/MichaelJBerk/FontPopUp
