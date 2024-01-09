@@ -22,9 +22,7 @@ The latest stable release of Splitter is available on the Mac App Store:
 
 If you're a _"thrill seeker"_, want to help test the next version of Splitter, or just like living on the edge, you can try out the latest beta release, which is based on the `dev` branch
 
-[Download Latest Beta](https://testflight.apple.com/join/UtXpw5Gja)
-
-If you can't use TestFlight, [download from the Releases page](https://github.com/MichaelJBerk/Splitter/releases)
+(https://github.com/MichaelJBerk/Splitter/releases)
 
 ## Discussion 
 
@@ -65,5 +63,3 @@ In order for certain features to work - namely Splits.io authentications, and be
 [Sparkle by Sparkle Project](https://github.com/sparkle-project/Sparkle)
 
 [Cocoapods](https://cocoapods.org)
-
-[Microsoft App Center](https://appcenter.ms)
