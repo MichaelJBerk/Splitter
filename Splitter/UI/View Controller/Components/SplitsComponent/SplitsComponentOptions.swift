@@ -9,6 +9,8 @@
 import Cocoa
 import LiveSplitKit
 extension SplitsComponent {
+	
+	///The view containing all options tabs, as well as the segmented control to pick between them
 	class SplitsOptionsView: ComponentOptionsVstack {
 		typealias OptionsTab =  (view: NSView, title: String)
 		var viewIndex: Int = 0 {
@@ -56,7 +58,34 @@ extension SplitsComponent {
 	
 	//MARK: - Main Options View
 	var optionsView: NSView! {
-		let d = defaultComponentOptions() as! ComponentOptionsVstack
+		let optionsStack = defaultComponentOptions() as! ComponentOptionsVstack
+		
+		makeGeneralOptions(stack: optionsStack)
+		
+		optionsStack.addSeparator()
+		
+		colorOptions(stack: optionsStack)
+		
+		let scrollView = NSScrollView(frame: optionsStack.frame)
+		scrollView.hasVerticalScroller = true
+		scrollView.documentView = optionsStack
+		scrollView.drawsBackground = false
+		advancedVC = SplitsComponentAdvancedOptions(splitsComp: self)
+		
+		let fontOptions = fontOptions()
+		
+		let co = advancedVC.view
+		let superStack = SplitsOptionsView.makeView(tabs: [(scrollView, "Options"), (fontOptions, "Font"), (co, "Columns")])
+		NSLayoutConstraint.activate([
+			optionsStack.widthAnchor.constraint(equalTo: scrollView.contentView.widthAnchor),
+			superStack.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
+		])
+		scrollView.automaticallyAdjustsContentInsets = false
+		scrollView.contentInsets.bottom = 20
+		return superStack
+	}
+	
+	func makeGeneralOptions(stack: ComponentOptionsVstack) {
 		let showHeaderButton = ComponentOptionsButton(checkboxWithTitle: "Show Header") {button in
 			let oldValue = self.showHeader
 			self.undoableSetting(actionName: "Set Show Header", oldValue: oldValue, newValue: !oldValue, edit: { comp, value in
@@ -65,7 +94,7 @@ extension SplitsComponent {
 			})
 		}
 		showHeaderButton.state = .init(bool: showHeader)
-		d.addArrangedSubview(showHeaderButton)
+		stack.addArrangedSubview(showHeaderButton)
 		let hasVScrollButton = ComponentOptionsButton(checkboxWithTitle: "Vertical Scroll Bar", clickAction: { button in
 			let oldValue = self.hasVerticalScroller
 			self.undoableSetting(actionName: "Set Show Vertical Scroll Bar", oldValue: oldValue, newValue: !oldValue, edit: {comp, val in
@@ -88,32 +117,19 @@ extension SplitsComponent {
 		hideScrollStack.orientation = .horizontal
 		hideScrollStack.addArrangedSubview(hasVScrollButton)
 		hideScrollStack.addArrangedSubview(hasHScrollButton)
-		d.addArrangedSubview(hideScrollStack)
-		
-		let separatorView = NSView()
-		separatorView.wantsLayer = true
-		separatorView.layer?.backgroundColor = NSColor.separatorColor.cgColor
-		d.addArrangedSubview(separatorView)
-		NSLayoutConstraint.activate([
-			separatorView.heightAnchor.constraint(equalToConstant: 1)
-		])
-		
-		colorOptions(stack: d)
-		
-		let scrollView = NSScrollView(frame: d.frame)
-		scrollView.hasVerticalScroller = true
-		scrollView.documentView = d
-		scrollView.drawsBackground = false
-		advancedVC = SplitsComponentAdvancedOptions(splitsComp: self)
-		let co = advancedVC.view
-		let superStack = SplitsOptionsView.makeView(tabs: [(scrollView, "Options"), (co, "Columns")])
-		NSLayoutConstraint.activate([
-			d.widthAnchor.constraint(equalTo: scrollView.contentView.widthAnchor),
-			superStack.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-		])
-		scrollView.automaticallyAdjustsContentInsets = false
-		scrollView.contentInsets.bottom = 20
-		return superStack
+		stack.addArrangedSubview(hideScrollStack)
+	}
+	
+	//MARK: - Font Options
+	func fontOptions() -> ComponentOptionsFontStack {
+		let fontOptions = ComponentOptionsFontStack(title: "Splits Font", fontSize: run.fontManager.splitsFontSize, helpText: "Font used for the Splits component and header.", font: run.codableLayout.timesFont, onFontChange: run.fontManager.setSplitsFont(to:), onSizeChange: setSplitsFontSize(to:))
+		//add empty row so that the popup buttons are pushed to the top of the view
+		fontOptions.addRow(with: [.init()])
+		return fontOptions
+	}
+	
+	func setSplitsFontSize(to size: CGFloat) {
+		run.fontManager.splitsFontSize = size
 	}
 	
 	//MARK: - Color Options

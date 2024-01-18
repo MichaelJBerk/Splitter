@@ -22,6 +22,7 @@
 		4A6C4D53279B3280004D818C /* RunEditorState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A6C4D30279B26AD004D818C /* RunEditorState.swift */; };
 		4A7425DA27ED0F14005BD6F6 /* LSCoreTesting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7425D927ED0F13005BD6F6 /* LSCoreTesting.swift */; };
 		4A7425DE27ED1799005BD6F6 /* Font.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7425DD27ED1799005BD6F6 /* Font.swift */; };
+		4A8104F32A3235BF00B64272 /* Font+NSFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A8104F22A3235BF00B64272 /* Font+NSFont.swift */; };
 		4AC24203291AE34D009C641A /* liblivesplit_core.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 4AC241F8291AE33B009C641A /* liblivesplit_core.a */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +52,7 @@
 		4A6C4D51279B3257004D818C /* Color.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Color.swift; sourceTree = "<group>"; };
 		4A7425D927ED0F13005BD6F6 /* LSCoreTesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSCoreTesting.swift; sourceTree = "<group>"; };
 		4A7425DD27ED1799005BD6F6 /* Font.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Font.swift; sourceTree = "<group>"; };
+		4A8104F22A3235BF00B64272 /* Font+NSFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Font+NSFont.swift"; sourceTree = "<group>"; };
 		4AC241E8291ADE3A009C641A /* liblivesplit_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = liblivesplit_core.a; sourceTree = "<group>"; };
 		4AC241EF291AE33B009C641A /* LiveSplitKitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveSplitKitTests.swift; sourceTree = "<group>"; };
 		4AC241F0291AE33B009C641A /* LSCoreTesting.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LSCoreTesting.swift; sourceTree = "<group>"; };
@@ -119,6 +121,7 @@
 				4A6C4D2D279B26AD004D818C /* LiveSplitCore.swift */,
 				4A6C4D30279B26AD004D818C /* RunEditorState.swift */,
 				4A7425DD27ED1799005BD6F6 /* Font.swift */,
+				4A8104F22A3235BF00B64272 /* Font+NSFont.swift */,
 				4A6C4D4D279B31B5004D818C /* TimeComparison.swift */,
 				4A6C4D51279B3257004D818C /* Color.swift */,
 				4A6C4D2F279B26AD004D818C /* module.map */,
@@ -345,6 +348,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4A8104F32A3235BF00B64272 /* Font+NSFont.swift in Sources */,
 				4A6C4D4B279B2E15004D818C /* LiveSplitCore.swift in Sources */,
 				4A6C4D53279B3280004D818C /* RunEditorState.swift in Sources */,
 				4A6C4D4E279B31B5004D818C /* TimeComparison.swift in Sources */,

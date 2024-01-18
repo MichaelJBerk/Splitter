@@ -3,15 +3,18 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		071F8D0A9AB0317E095AA9EA /* Pods_Splitter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3D71AF7430571AF37A188FFE /* Pods_Splitter.framework */; };
+		23941C7EDE602BE2BBC90CEC /* Pods_Splitter_SplitterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5CE78ED356BF049ED372819E /* Pods_Splitter_SplitterUITests.framework */; };
 		4A01B802268631FC00F15A50 /* SplitsEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A01B800268631FC00F15A50 /* SplitsEditorViewController.swift */; };
 		4A01B803268631FC00F15A50 /* SplitsEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A01B801268631FC00F15A50 /* SplitsEditorViewController.xib */; };
 		4A01B805268632D400F15A50 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A01B804268632D400F15A50 /* NibLoadable.swift */; };
 		4A05EEFD24D762E200873D07 /* DownloadWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A05EEFC24D762E200873D07 /* DownloadWindow.storyboard */; };
+		4A09177B2A856E500027B336 /* ComponentOptionsFontStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09177A2A856E500027B336 /* ComponentOptionsFontStack.swift */; };
+		4A0917BB2A85DE490027B336 /* FontPopUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0917BA2A85DE490027B336 /* FontPopUpButton.swift */; };
 		4A09819F24E3089B00E44792 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09819D24E3089B00E44792 /* LoginView.swift */; };
 		4A0981A024E3089B00E44792 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A09819E24E3089B00E44792 /* LoginView.xib */; };
 		4A0981A624E34DE400E44792 /* AccountButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0981A424E34DE400E44792 /* AccountButtonView.swift */; };
@@ -28,6 +31,7 @@
 		4A0DC28624186C6200FC959A /* SplitsIODoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0DC28524186C6200FC959A /* SplitsIODoc.swift */; };
 		4A0F715F23F4A0A500E5948E /* SplitterDoc.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0F715E23F4A0A500E5948E /* SplitterDoc.swift */; };
 		4A0F716323F4A9E400E5948E /* SplitterDocBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0F716223F4A9E400E5948E /* SplitterDocBundle.swift */; };
+		4A14AD752A2D1E93001E28A7 /* TimeRowOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A14AD742A2D1E93001E28A7 /* TimeRowOptions.swift */; };
 		4A1657B123EA4EF60008CB5F /* Menu Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1657B023EA4EF60008CB5F /* Menu Items.swift */; };
 		4A1657B523EA5C320008CB5F /* Icon Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1657B423EA5C320008CB5F /* Icon Actions.swift */; };
 		4A1767B224EE095100571A6C /* Preferences in Frameworks */ = {isa = PBXBuildFile; productRef = 4A1767B124EE095100571A6C /* Preferences */; };
@@ -94,6 +98,8 @@
 		4A74D4ED25EE9DD700A3D9C7 /* SplitterRun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A74D4EC25EE9DD700A3D9C7 /* SplitterRun.swift */; };
 		4A75578D255C426A00ACE826 /* SplitterDocLSS.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4A75578C255C426A00ACE826 /* SplitterDocLSS.icns */; };
 		4A75579D255C47F400ACE826 /* SplitterDocSplitsio.icns in Resources */ = {isa = PBXBuildFile; fileRef = 4A75579C255C47F300ACE826 /* SplitterDocSplitsio.icns */; };
+		4A7C077F2B30B90800EB88D2 /* CustomComparisonList.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A7C077D2B30B90800EB88D2 /* CustomComparisonList.xib */; };
+		4A7C07802B30B90800EB88D2 /* CustomComparisonList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A7C077E2B30B90800EB88D2 /* CustomComparisonList.swift */; };
 		4A7DDCE223BBDD0900A36AD1 /* Credits.html in Resources */ = {isa = PBXBuildFile; fileRef = 4A7DDCE123BBDD0900A36AD1 /* Credits.html */; };
 		4A7F94AA26332DBE002861E3 /* Codextended in Frameworks */ = {isa = PBXBuildFile; productRef = 4A7F94A926332DBE002861E3 /* Codextended */; };
 		4A87265523BD53F8003A14AF /* runInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A87265423BD53F8003A14AF /* runInfo.swift */; };
@@ -105,11 +111,13 @@
 		4A968C7C23F1F5FE001B74E8 /* lss.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A968C7B23F1F5FE001B74E8 /* lss.swift */; };
 		4A99813023F9ECE50037BF98 /* KeybindHandlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A99812F23F9ECE50037BF98 /* KeybindHandlers.swift */; };
 		4A9B9606261DF26D000FC89C /* TimeRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9B9605261DF26D000FC89C /* TimeRow.swift */; };
+		4A9C1D862B2A33EC00253411 /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9C1D852B2A33EC00253411 /* FontManager.swift */; };
 		4A9CA2A7263A2D4C0054D624 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9CA2A6263A2D4C0054D624 /* Extensions.swift */; };
 		4A9D8BF6243A38C40048EA15 /* SplitterTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9D8BF5243A38C40048EA15 /* SplitterTableView.swift */; };
 		4AA9ADBB2608F02D009B77B5 /* StartRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AA9ADBA2608F02D009B77B5 /* StartRow.xib */; };
 		4AA9ADBF2608F035009B77B5 /* StartRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA9ADBE2608F035009B77B5 /* StartRow.swift */; };
 		4AAD470A248432540094A31F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAD4709248432540094A31F /* Colors.swift */; };
+		4AB038142A2943B20048D0B2 /* VerticalCenteredTextFieldCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB038132A2943B20048D0B2 /* VerticalCenteredTextFieldCell.swift */; };
 		4AB92ABE261F67B700E8B814 /* ThemedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB92ABD261F67B700E8B814 /* ThemedButton.swift */; };
 		4AB92AC2261F69ED00E8B814 /* ThemedPopUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB92AC1261F69ED00E8B814 /* ThemedPopUpButton.swift */; };
 		4AB92AC6261F6CD600E8B814 /* ThemedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AB92AC5261F6CD600E8B814 /* ThemedTextField.swift */; };
@@ -121,6 +129,7 @@
 		4AC2745826990E04007ED8F5 /* GeneralLayoutSettingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AC2745726990E04007ED8F5 /* GeneralLayoutSettingsViewController.swift */; };
 		4AC401F324BE145F005180F1 /* (null) in Sources */ = {isa = PBXBuildFile; };
 		4ACCEA7823B02F520068F89E /* TimeSplit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACCEA7723B02F520068F89E /* TimeSplit.swift */; };
+		4ACDAC2E2954C4F4004042A8 /* Fontable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ACDAC2D2954C4F4004042A8 /* Fontable.swift */; };
 		4ACF41B626B3166E006DF2C8 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4ACF41B526B3166E006DF2C8 /* SwiftUI.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		4ACFB1BD262F4E9700EA79B6 /* TitleComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ACFB1BC262F4E9700EA79B6 /* TitleComponent.xib */; };
 		4ACFB1E7262F53B100EA79B6 /* SplitsComponent.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4ACFB1E6262F53B100EA79B6 /* SplitsComponent.xib */; };
@@ -132,10 +141,12 @@
 		4AD7C6CB291494ED006645A6 /* LiveSplitKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4A6C4D54279B331C004D818C /* LiveSplitKit.framework */; };
 		4AD7C6CC291494ED006645A6 /* LiveSplitKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 4A6C4D54279B331C004D818C /* LiveSplitKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		4AD94B202804B0B8007A1881 /* ZippyFontDecoding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AD94B1F2804B0B8007A1881 /* ZippyFontDecoding.swift */; };
+		4ADAA3A82B2B6A030026F243 /* StepperWithNumberField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADAA3A72B2B6A030026F243 /* StepperWithNumberField.swift */; };
 		4ADFAE4923E4A0760049F57A /* QuickAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ADFAE4823E4A0760049F57A /* QuickAlert.swift */; };
 		4AE168A626091CA900A6169B /* LayoutEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE168A526091CA900A6169B /* LayoutEditorViewController.swift */; };
 		4AE2CF3B2631F43100CC6CF7 /* SplitsComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE2CF3A2631F43100CC6CF7 /* SplitsComponent.swift */; };
 		4AE5B0EE2A1C2080003F1288 /* BasicUpdater in Frameworks */ = {isa = PBXBuildFile; productRef = 4AE5B0ED2A1C2080003F1288 /* BasicUpdater */; };
+		4AE662DC2B4E086300D0F968 /* FontPopUp in Frameworks */ = {isa = PBXBuildFile; productRef = 4AE662DB2B4E086300D0F968 /* FontPopUp */; };
 		4AE7437E268CF2AC003629B4 /* SplitterColorWell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE7437D268CF2AC003629B4 /* SplitterColorWell.swift */; };
 		4AE7E2B02845B91500716CF3 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4AE7E2AF2845B88E00716CF3 /* Config.xcconfig */; };
 		4AE82354290B434000D8100B /* LayoutEditorListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AE82353290B434000D8100B /* LayoutEditorListCell.xib */; };
@@ -149,8 +160,7 @@
 		4AF9E8AC24CE31CA00DFD5BE /* DebugPrefsViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AF9E8AA24CE31CA00DFD5BE /* DebugPrefsViewController.xib */; };
 		4AF9E8C224CE448B00DFD5BE /* SplitterUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AF9E8C124CE448B00DFD5BE /* SplitterUITests.swift */; };
 		4AFAD84524CF2CF8006FC480 /* WelcomeWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AFAD84424CF2CF8006FC480 /* WelcomeWindowController.swift */; };
-		8804F3EC8981B4A4FF1AB102 /* Pods_SplitterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E128E02F492B64176861511 /* Pods_SplitterTests.framework */; };
-		CE3CEB918F0A74684203013F /* Pods_SplitterUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C2184CE06522900A3336AB98 /* Pods_SplitterUITests.framework */; };
+		8884A9865F72639024E10008 /* Pods_Splitter_SplitterTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A320C5616D0FF6BE75E45CA /* Pods_Splitter_SplitterTests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -200,11 +210,14 @@
 
 /* Begin PBXFileReference section */
 		066C91AF0C3A6BFBCF13D462 /* Pods-SplitterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SplitterTests.debug.xcconfig"; path = "Target Support Files/Pods-SplitterTests/Pods-SplitterTests.debug.xcconfig"; sourceTree = "<group>"; };
+		0A320C5616D0FF6BE75E45CA /* Pods_Splitter_SplitterTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Splitter_SplitterTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		3D71AF7430571AF37A188FFE /* Pods_Splitter.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Splitter.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4A01B800268631FC00F15A50 /* SplitsEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitsEditorViewController.swift; sourceTree = "<group>"; };
 		4A01B801268631FC00F15A50 /* SplitsEditorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplitsEditorViewController.xib; sourceTree = "<group>"; };
 		4A01B804268632D400F15A50 /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
 		4A05EEFC24D762E200873D07 /* DownloadWindow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DownloadWindow.storyboard; sourceTree = "<group>"; };
+		4A09177A2A856E500027B336 /* ComponentOptionsFontStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentOptionsFontStack.swift; sourceTree = "<group>"; };
+		4A0917BA2A85DE490027B336 /* FontPopUpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontPopUpButton.swift; sourceTree = "<group>"; };
 		4A09819D24E3089B00E44792 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
 		4A09819E24E3089B00E44792 /* LoginView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
 		4A0981A424E34DE400E44792 /* AccountButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountButtonView.swift; sourceTree = "<group>"; };
@@ -220,6 +233,7 @@
 		4A0DC28524186C6200FC959A /* SplitsIODoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitsIODoc.swift; sourceTree = "<group>"; };
 		4A0F715E23F4A0A500E5948E /* SplitterDoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterDoc.swift; sourceTree = "<group>"; };
 		4A0F716223F4A9E400E5948E /* SplitterDocBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterDocBundle.swift; sourceTree = "<group>"; };
+		4A14AD742A2D1E93001E28A7 /* TimeRowOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeRowOptions.swift; sourceTree = "<group>"; };
 		4A1657B023EA4EF60008CB5F /* Menu Items.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Menu Items.swift"; sourceTree = "<group>"; };
 		4A1657B423EA5C320008CB5F /* Icon Actions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Icon Actions.swift"; sourceTree = "<group>"; };
 		4A18662D23C51D2800FEEE54 /* UISettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UISettings.swift; sourceTree = "<group>"; };
@@ -291,6 +305,8 @@
 		4A74D4EC25EE9DD700A3D9C7 /* SplitterRun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterRun.swift; sourceTree = "<group>"; usesTabs = 1; };
 		4A75578C255C426A00ACE826 /* SplitterDocLSS.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = SplitterDocLSS.icns; sourceTree = "<group>"; };
 		4A75579C255C47F300ACE826 /* SplitterDocSplitsio.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; path = SplitterDocSplitsio.icns; sourceTree = "<group>"; };
+		4A7C077D2B30B90800EB88D2 /* CustomComparisonList.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomComparisonList.xib; sourceTree = "<group>"; };
+		4A7C077E2B30B90800EB88D2 /* CustomComparisonList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomComparisonList.swift; sourceTree = "<group>"; };
 		4A7DDCE123BBDD0900A36AD1 /* Credits.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = Credits.html; sourceTree = "<group>"; };
 		4A87265423BD53F8003A14AF /* runInfo.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = runInfo.swift; sourceTree = "<group>"; };
 		4A87265623BD5423003A14AF /* PrefPanes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrefPanes.swift; sourceTree = "<group>"; };
@@ -301,12 +317,14 @@
 		4A968C7B23F1F5FE001B74E8 /* lss.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = lss.swift; sourceTree = "<group>"; };
 		4A99812F23F9ECE50037BF98 /* KeybindHandlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeybindHandlers.swift; sourceTree = "<group>"; };
 		4A9B9605261DF26D000FC89C /* TimeRow.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeRow.swift; sourceTree = "<group>"; };
+		4A9C1D852B2A33EC00253411 /* FontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontManager.swift; sourceTree = "<group>"; };
 		4A9CA2A6263A2D4C0054D624 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		4A9D8BF5243A38C40048EA15 /* SplitterTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterTableView.swift; sourceTree = "<group>"; };
 		4AA357B42416F79900219E65 /* liblivesplit_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblivesplit_core.a; path = "livesplit-core/target/release/liblivesplit_core.a"; sourceTree = "<group>"; };
 		4AA9ADBA2608F02D009B77B5 /* StartRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartRow.xib; sourceTree = "<group>"; };
 		4AA9ADBE2608F035009B77B5 /* StartRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRow.swift; sourceTree = "<group>"; };
 		4AAD4709248432540094A31F /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
+		4AB038132A2943B20048D0B2 /* VerticalCenteredTextFieldCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerticalCenteredTextFieldCell.swift; sourceTree = "<group>"; };
 		4AB3B93D23D96C10009C6AA6 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		4AB92ABD261F67B700E8B814 /* ThemedButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedButton.swift; sourceTree = "<group>"; };
 		4AB92AC1261F69ED00E8B814 /* ThemedPopUpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedPopUpButton.swift; sourceTree = "<group>"; };
@@ -317,6 +335,7 @@
 		4AC24DBB23EB4F17003008BF /* SplitterTableDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterTableDelegate.swift; sourceTree = "<group>"; };
 		4AC2745726990E04007ED8F5 /* GeneralLayoutSettingsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeneralLayoutSettingsViewController.swift; sourceTree = "<group>"; };
 		4ACCEA7723B02F520068F89E /* TimeSplit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimeSplit.swift; sourceTree = "<group>"; };
+		4ACDAC2D2954C4F4004042A8 /* Fontable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Fontable.swift; sourceTree = "<group>"; };
 		4ACF41B526B3166E006DF2C8 /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		4ACFB1BC262F4E9700EA79B6 /* TitleComponent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TitleComponent.xib; sourceTree = "<group>"; };
 		4ACFB1E6262F53B100EA79B6 /* SplitsComponent.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplitsComponent.xib; sourceTree = "<group>"; };
@@ -326,6 +345,7 @@
 		4AD44ADE262F4CFB003375C4 /* TitleComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleComponent.swift; sourceTree = "<group>"; };
 		4AD7C6BB29149382006645A6 /* LiveSplitKit.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LiveSplitKit.xcodeproj; path = LiveSplitKit/LiveSplitKit.xcodeproj; sourceTree = "<group>"; };
 		4AD94B1F2804B0B8007A1881 /* ZippyFontDecoding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ZippyFontDecoding.swift; sourceTree = "<group>"; };
+		4ADAA3A72B2B6A030026F243 /* StepperWithNumberField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperWithNumberField.swift; sourceTree = "<group>"; };
 		4ADFAE4823E4A0760049F57A /* QuickAlert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuickAlert.swift; sourceTree = "<group>"; };
 		4AE168A526091CA900A6169B /* LayoutEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutEditorViewController.swift; sourceTree = "<group>"; };
 		4AE2CF3A2631F43100CC6CF7 /* SplitsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitsComponent.swift; sourceTree = "<group>"; };
@@ -345,12 +365,15 @@
 		4AF9E8C124CE448B00DFD5BE /* SplitterUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterUITests.swift; sourceTree = "<group>"; };
 		4AF9E8C324CE448B00DFD5BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4AFAD84424CF2CF8006FC480 /* WelcomeWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = WelcomeWindowController.swift; path = "View Controller/WelcomeWindowController.swift"; sourceTree = "<group>"; };
+		5CE78ED356BF049ED372819E /* Pods_Splitter_SplitterUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Splitter_SplitterUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6761EE8748C7A21FE9D7C3A3 /* Pods-Splitter.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitter.release.xcconfig"; path = "Target Support Files/Pods-Splitter/Pods-Splitter.release.xcconfig"; sourceTree = "<group>"; };
-		6E128E02F492B64176861511 /* Pods_SplitterTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SplitterTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6F3DBFB45CA433BA0B73792A /* Pods-SplitterUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SplitterUITests.debug.xcconfig"; path = "Target Support Files/Pods-SplitterUITests/Pods-SplitterUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		8168F4983C9B2D9CE8D5119B /* Pods-Splitter-SplitterUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitter-SplitterUITests.release.xcconfig"; path = "Target Support Files/Pods-Splitter-SplitterUITests/Pods-Splitter-SplitterUITests.release.xcconfig"; sourceTree = "<group>"; };
 		854963043C5D93DC7DF61ABB /* Pods-Splitter.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitter.debug.xcconfig"; path = "Target Support Files/Pods-Splitter/Pods-Splitter.debug.xcconfig"; sourceTree = "<group>"; };
+		8AF8124CBF7D9A20F6683398 /* Pods-Splitter-SplitterTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitter-SplitterTests.debug.xcconfig"; path = "Target Support Files/Pods-Splitter-SplitterTests/Pods-Splitter-SplitterTests.debug.xcconfig"; sourceTree = "<group>"; };
+		91EE25089815223FA57BF89A /* Pods-Splitter-SplitterUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitter-SplitterUITests.debug.xcconfig"; path = "Target Support Files/Pods-Splitter-SplitterUITests/Pods-Splitter-SplitterUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		9D3CF1F286B5C9C5EFDD3D95 /* Pods-Splitter-SplitterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Splitter-SplitterTests.release.xcconfig"; path = "Target Support Files/Pods-Splitter-SplitterTests/Pods-Splitter-SplitterTests.release.xcconfig"; sourceTree = "<group>"; };
 		B0DC1FCA7DE270DBAC506EF5 /* Pods-SplitterTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SplitterTests.release.xcconfig"; path = "Target Support Files/Pods-SplitterTests/Pods-SplitterTests.release.xcconfig"; sourceTree = "<group>"; };
-		C2184CE06522900A3336AB98 /* Pods_SplitterUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SplitterUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		D269489EC44490F22172292B /* Pods-SplitterUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SplitterUITests.release.xcconfig"; path = "Target Support Files/Pods-SplitterUITests/Pods-SplitterUITests.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -367,6 +390,7 @@
 				4A35F98D299C383B008A3841 /* Defaults in Frameworks */,
 				4A214A70255C90720006FD9F /* SplitsIOKit in Frameworks */,
 				4AE5B0EE2A1C2080003F1288 /* BasicUpdater in Frameworks */,
+				4AE662DC2B4E086300D0F968 /* FontPopUp in Frameworks */,
 				4A1767B224EE095100571A6C /* Preferences in Frameworks */,
 				4A7F94AA26332DBE002861E3 /* Codextended in Frameworks */,
 				4A6B4F7423F07C3900CB781F /* libresolv.tbd in Frameworks */,
@@ -378,7 +402,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				8804F3EC8981B4A4FF1AB102 /* Pods_SplitterTests.framework in Frameworks */,
+				8884A9865F72639024E10008 /* Pods_Splitter_SplitterTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -387,7 +411,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				4A0ACE8A2971C3140020F7ED /* Files in Frameworks */,
-				CE3CEB918F0A74684203013F /* Pods_SplitterUITests.framework in Frameworks */,
+				23941C7EDE602BE2BBC90CEC /* Pods_Splitter_SplitterUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -404,8 +428,8 @@
 				4AA357B42416F79900219E65 /* liblivesplit_core.a */,
 				4AB3B93D23D96C10009C6AA6 /* Quartz.framework */,
 				3D71AF7430571AF37A188FFE /* Pods_Splitter.framework */,
-				6E128E02F492B64176861511 /* Pods_SplitterTests.framework */,
-				C2184CE06522900A3336AB98 /* Pods_SplitterUITests.framework */,
+				0A320C5616D0FF6BE75E45CA /* Pods_Splitter_SplitterTests.framework */,
+				5CE78ED356BF049ED372819E /* Pods_Splitter_SplitterUITests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -526,6 +550,8 @@
 			isa = PBXGroup;
 			children = (
 				4A74D4EC25EE9DD700A3D9C7 /* SplitterRun.swift */,
+				4A9C1D852B2A33EC00253411 /* FontManager.swift */,
+				4ACDAC2D2954C4F4004042A8 /* Fontable.swift */,
 				4AD94B1F2804B0B8007A1881 /* ZippyFontDecoding.swift */,
 				4A20C46626406D4800307993 /* SplitterTimer.swift */,
 				4A3F989825EFDB0800B2B955 /* CodableLayout.swift */,
@@ -620,7 +646,6 @@
 			isa = PBXGroup;
 			children = (
 				4AD026EA26090ED300F6CD0C /* SplitterComponent.swift */,
-				4A520E2E269373D100F463B3 /* ComponentOptions.swift */,
 				4A520E2A2693735C00F463B3 /* ComponentState.swift */,
 				4A520E2C2693737800F463B3 /* SplitterComponentType.swift */,
 			);
@@ -666,6 +691,8 @@
 				4A9423C9268D3A6C0033A62F /* SplitsEditorTextField.swift */,
 				4A01B800268631FC00F15A50 /* SplitsEditorViewController.swift */,
 				4A01B801268631FC00F15A50 /* SplitsEditorViewController.xib */,
+				4A7C077D2B30B90800EB88D2 /* CustomComparisonList.xib */,
+				4A7C077E2B30B90800EB88D2 /* CustomComparisonList.swift */,
 			);
 			path = "Splits Editor";
 			sourceTree = "<group>";
@@ -675,6 +702,7 @@
 			children = (
 				4A470BB52695FED7001F0081 /* Themeing */,
 				4A1657B423EA5C320008CB5F /* Icon Actions.swift */,
+				4ADAA3A72B2B6A030026F243 /* StepperWithNumberField.swift */,
 				4A1657B023EA4EF60008CB5F /* Menu Items.swift */,
 			);
 			path = Controls;
@@ -732,6 +760,7 @@
 				4AE2CF3A2631F43100CC6CF7 /* SplitsComponent.swift */,
 				4A520E322693774500F463B3 /* SplitsComponentOptions.swift */,
 				4A8C644C27AC24AE0036095C /* SplitsComponentAdvancedOptions.swift */,
+				4AB038132A2943B20048D0B2 /* VerticalCenteredTextFieldCell.swift */,
 				4ACFB1E6262F53B100EA79B6 /* SplitsComponent.xib */,
 				4A9D8BF5243A38C40048EA15 /* SplitterTableView.swift */,
 				4AC24DBB23EB4F17003008BF /* SplitterTableDelegate.swift */,
@@ -745,10 +774,13 @@
 			children = (
 				4AAD4708248432390094A31F /* ColorsView */,
 				4AE168A526091CA900A6169B /* LayoutEditorViewController.swift */,
+				4A520E2E269373D100F463B3 /* ComponentOptions.swift */,
+				4A09177A2A856E500027B336 /* ComponentOptionsFontStack.swift */,
 				4A5B867729033834004D09C8 /* DragIndicator.swift */,
 				4AE82353290B434000D8100B /* LayoutEditorListCell.xib */,
 				4AE82355290B435000D8100B /* LayoutEditorListCell.swift */,
 				4AC2745726990E04007ED8F5 /* GeneralLayoutSettingsViewController.swift */,
+				4A0917BA2A85DE490027B336 /* FontPopUpButton.swift */,
 				4A2F390827F34C25001B0A7C /* WindowSettings */,
 			);
 			path = "Layout Editor";
@@ -816,6 +848,7 @@
 			children = (
 				4A9B9605261DF26D000FC89C /* TimeRow.swift */,
 				4AEA331A2629F023001012BD /* TimeRow.xib */,
+				4A14AD742A2D1E93001E28A7 /* TimeRowOptions.swift */,
 			);
 			path = TimeRow;
 			sourceTree = "<group>";
@@ -910,6 +943,10 @@
 				B0DC1FCA7DE270DBAC506EF5 /* Pods-SplitterTests.release.xcconfig */,
 				6F3DBFB45CA433BA0B73792A /* Pods-SplitterUITests.debug.xcconfig */,
 				D269489EC44490F22172292B /* Pods-SplitterUITests.release.xcconfig */,
+				8AF8124CBF7D9A20F6683398 /* Pods-Splitter-SplitterTests.debug.xcconfig */,
+				9D3CF1F286B5C9C5EFDD3D95 /* Pods-Splitter-SplitterTests.release.xcconfig */,
+				91EE25089815223FA57BF89A /* Pods-Splitter-SplitterUITests.debug.xcconfig */,
+				8168F4983C9B2D9CE8D5119B /* Pods-Splitter-SplitterUITests.release.xcconfig */,
 			);
 			path = Pods;
 			sourceTree = "<group>";
@@ -945,6 +982,7 @@
 				4A20C46D2640BDB600307993 /* Introspect */,
 				4A35F98C299C383B008A3841 /* Defaults */,
 				4AE5B0ED2A1C2080003F1288 /* BasicUpdater */,
+				4AE662DB2B4E086300D0F968 /* FontPopUp */,
 			);
 			productName = Splitter;
 			productReference = 4A230E8F23B00A1D00959C57 /* Splitter.app */;
@@ -1033,6 +1071,7 @@
 				4A20C46C2640BDB600307993 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				4A35F98B299C383B008A3841 /* XCRemoteSwiftPackageReference "Defaults" */,
 				4AE5B0EC2A1C2080003F1288 /* XCRemoteSwiftPackageReference "BasicUpdater" */,
+				4AE662DA2B4E086300D0F968 /* XCRemoteSwiftPackageReference "FontPopUp" */,
 			);
 			productRefGroup = 4A230E9023B00A1D00959C57 /* Products */;
 			projectDirPath = "";
@@ -1080,6 +1119,7 @@
 				4A388FCF25D4B00B00A63C9E /* PrevNextRow.xib in Resources */,
 				4A0981AC24E4816A00E44792 /* AccountProfileView.xib in Resources */,
 				4A4D391F23C4F29C00BF3FCD /* blankWindow.xib in Resources */,
+				4A7C077F2B30B90800EB88D2 /* CustomComparisonList.xib in Resources */,
 				4A75579D255C47F400ACE826 /* SplitterDocSplitsio.icns in Resources */,
 				4AA9ADBB2608F02D009B77B5 /* StartRow.xib in Resources */,
 				4A6A965924EC3516008EFD2B /* LoadingViewController.xib in Resources */,
@@ -1202,15 +1242,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SplitterUITests/Pods-SplitterUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Splitter-SplitterUITests/Pods-Splitter-SplitterUITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SplitterUITests/Pods-SplitterUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Splitter-SplitterUITests/Pods-Splitter-SplitterUITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SplitterUITests/Pods-SplitterUITests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Splitter-SplitterUITests/Pods-Splitter-SplitterUITests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		663369104CAE1CBF1648D0F0 /* [CP] Embed Pods Frameworks */ = {
@@ -1219,15 +1259,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SplitterTests/Pods-SplitterTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Splitter-SplitterTests/Pods-Splitter-SplitterTests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-SplitterTests/Pods-SplitterTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Splitter-SplitterTests/Pods-Splitter-SplitterTests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-SplitterTests/Pods-SplitterTests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Splitter-SplitterTests/Pods-Splitter-SplitterTests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		79E596C692C72203D439FAFF /* [CP] Check Pods Manifest.lock */ = {
@@ -1245,7 +1285,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SplitterTests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Splitter-SplitterTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1267,7 +1307,7 @@
 			outputFileListPaths = (
 			);
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-SplitterUITests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-Splitter-SplitterUITests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -1300,9 +1340,11 @@
 				4AAD470A248432540094A31F /* Colors.swift in Sources */,
 				4AC24DBC23EB4F17003008BF /* SplitterTableDelegate.swift in Sources */,
 				4A18663223C5376900FEEE54 /* SettingsKeys.swift in Sources */,
+				4AB038142A2943B20048D0B2 /* VerticalCenteredTextFieldCell.swift in Sources */,
 				4A2F390627F34C1E001B0A7C /* WindowSettingViewController.swift in Sources */,
 				4A470BB22695FAE1001F0081 /* ThemedImage.swift in Sources */,
 				4A1657B123EA4EF60008CB5F /* Menu Items.swift in Sources */,
+				4A0917BB2A85DE490027B336 /* FontPopUpButton.swift in Sources */,
 				4ADFAE4923E4A0760049F57A /* QuickAlert.swift in Sources */,
 				4A561386262CFB7F00702B0E /* OptionsRow.swift in Sources */,
 				4A225FA1299C201A0087CBF4 /* UpdateController.swift in Sources */,
@@ -1314,9 +1356,11 @@
 				4A669373268BBB4400FEF745 /* SplitsEditorOutlineView.swift in Sources */,
 				4A5B867829033834004D09C8 /* DragIndicator.swift in Sources */,
 				4A18663023C5257800FEEE54 /* MenuItemConstants.swift in Sources */,
+				4A7C07802B30B90800EB88D2 /* CustomComparisonList.swift in Sources */,
 				4A09E2A824D75D6B0013D7BC /* CategoryViewController.swift in Sources */,
 				4A0F716323F4A9E400E5948E /* SplitterDocBundle.swift in Sources */,
 				4A4D392223C4FAE500BF3FCD /* HotkeysViewController.swift in Sources */,
+				4A09177B2A856E500027B336 /* ComponentOptionsFontStack.swift in Sources */,
 				4AD44AD7262F40E3003375C4 /* KeyValueComponent.swift in Sources */,
 				4A09E29E24D7555E0013D7BC /* DownloadView.swift in Sources */,
 				4A61438424801A28007C38E0 /* ColorsView.swift in Sources */,
@@ -1330,6 +1374,7 @@
 				4AF953B523EB503100ED540C /* Timer Functions.swift in Sources */,
 				4A1657B523EA5C320008CB5F /* Icon Actions.swift in Sources */,
 				4A74D4ED25EE9DD700A3D9C7 /* SplitterRun.swift in Sources */,
+				4A14AD752A2D1E93001E28A7 /* TimeRowOptions.swift in Sources */,
 				4ABC0C702767E09900BF5747 /* StatusBarController.swift in Sources */,
 				4AA9ADBF2608F035009B77B5 /* StartRow.swift in Sources */,
 				4A6A3BE423CD621A002C20AE /* MainWindow.swift in Sources */,
@@ -1338,6 +1383,7 @@
 				4A8C644D27AC24AE0036095C /* SplitsComponentAdvancedOptions.swift in Sources */,
 				4A968C7C23F1F5FE001B74E8 /* lss.swift in Sources */,
 				4AC0E3A52767B3F3004D71D6 /* GeneralPrefsViewController.swift in Sources */,
+				4ADAA3A82B2B6A030026F243 /* StepperWithNumberField.swift in Sources */,
 				4A6A3BE023CD1C39002C20AE /* GlobalKeybindPrefs.swift in Sources */,
 				4A1C1469240ED30C0056B104 /* InfoOptionsViewController.swift in Sources */,
 				4A01B802268631FC00F15A50 /* SplitsEditorViewController.swift in Sources */,
@@ -1350,6 +1396,7 @@
 				4A520E312693744D00F463B3 /* DraggingStackView.swift in Sources */,
 				4A0981A624E34DE400E44792 /* AccountButtonView.swift in Sources */,
 				4A520E2D2693737800F463B3 /* SplitterComponentType.swift in Sources */,
+				4A9C1D862B2A33EC00253411 /* FontManager.swift in Sources */,
 				4A894B1C249ABA71004FEEB3 /* LoadableNib.swift in Sources */,
 				4AB92AC6261F6CD600E8B814 /* ThemedTextField.swift in Sources */,
 				4AB92ABE261F67B700E8B814 /* ThemedButton.swift in Sources */,
@@ -1361,6 +1408,7 @@
 				4A87265723BD5423003A14AF /* PrefPanes.swift in Sources */,
 				4A3F989925EFDB0800B2B955 /* CodableLayout.swift in Sources */,
 				4AFAD84524CF2CF8006FC480 /* WelcomeWindowController.swift in Sources */,
+				4ACDAC2E2954C4F4004042A8 /* Fontable.swift in Sources */,
 				4A520E2B2693735C00F463B3 /* ComponentState.swift in Sources */,
 				4A6A965824EC3516008EFD2B /* LoadingViewController.swift in Sources */,
 				4A20C46726406D4800307993 /* SplitterTimer.swift in Sources */,
@@ -1550,7 +1598,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 310;
+				CURRENT_PROJECT_VERSION = 318;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 39SZK2C73D;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1569,12 +1617,16 @@
 					"$(BUILT_PRODUCTS_DIR)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = 5.0;
+				MARKETING_VERSION = 6.0;
 				ONLY_ACTIVE_ARCH = YES;
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mibe.Splitter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Splitter/Splitter-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "${PODS_ROOT}/**";
@@ -1592,7 +1644,7 @@
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				CURRENT_PROJECT_VERSION = 310;
+				CURRENT_PROJECT_VERSION = 318;
 				DEFINES_MODULE = YES;
 				DEVELOPMENT_TEAM = 39SZK2C73D;
 				ENABLE_HARDENED_RUNTIME = YES;
@@ -1612,12 +1664,16 @@
 					"$(BUILT_PRODUCTS_DIR)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.15;
-				MARKETING_VERSION = 5.0;
+				MARKETING_VERSION = 6.0;
 				ONLY_ACTIVE_ARCH = NO;
 				OTHER_CODE_SIGN_FLAGS = "";
 				PRODUCT_BUNDLE_IDENTIFIER = com.mibe.Splitter;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
+				SUPPORTED_PLATFORMS = macosx;
+				SUPPORTS_MACCATALYST = NO;
+				SUPPORTS_MAC_DESIGNED_FOR_IPHONE_IPAD = NO;
+				SUPPORTS_XR_DESIGNED_FOR_IPHONE_IPAD = NO;
 				SWIFT_OBJC_BRIDGING_HEADER = "$(PROJECT_DIR)/Splitter/Splitter-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				USER_HEADER_SEARCH_PATHS = "${PODS_ROOT}/**";
@@ -1627,7 +1683,7 @@
 		};
 		4A71055124BE267300FA9127 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 066C91AF0C3A6BFBCF13D462 /* Pods-SplitterTests.debug.xcconfig */;
+			baseConfigurationReference = 8AF8124CBF7D9A20F6683398 /* Pods-Splitter-SplitterTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1648,7 +1704,7 @@
 		};
 		4A71055224BE267300FA9127 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = B0DC1FCA7DE270DBAC506EF5 /* Pods-SplitterTests.release.xcconfig */;
+			baseConfigurationReference = 9D3CF1F286B5C9C5EFDD3D95 /* Pods-Splitter-SplitterTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
@@ -1669,7 +1725,7 @@
 		};
 		4AF9E8C724CE448B00DFD5BE /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 6F3DBFB45CA433BA0B73792A /* Pods-SplitterUITests.debug.xcconfig */;
+			baseConfigurationReference = 91EE25089815223FA57BF89A /* Pods-Splitter-SplitterUITests.debug.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1689,7 +1745,7 @@
 		};
 		4AF9E8C824CE448B00DFD5BE /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D269489EC44490F22172292B /* Pods-SplitterUITests.release.xcconfig */;
+			baseConfigurationReference = 8168F4983C9B2D9CE8D5119B /* Pods-Splitter-SplitterUITests.release.xcconfig */;
 			buildSettings = {
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -1805,6 +1861,14 @@
 				minimumVersion = 0.0.1;
 			};
 		};
+		4AE662DA2B4E086300D0F968 /* XCRemoteSwiftPackageReference "FontPopUp" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MichaelJBerk/FontPopUp.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1851,6 +1915,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4AE5B0EC2A1C2080003F1288 /* XCRemoteSwiftPackageReference "BasicUpdater" */;
 			productName = BasicUpdater;
+		};
+		4AE662DB2B4E086300D0F968 /* FontPopUp */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4AE662DA2B4E086300D0F968 /* XCRemoteSwiftPackageReference "FontPopUp" */;
+			productName = FontPopUp;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -161,13 +161,49 @@ class ViewController: NSViewController {
 	
 	var hotkeysController: HotkeysViewController?
 	
+	var rf = true
+	
 	@objc func breakFunc() {
-		let rect = splitsTableView.visibleRect
-//		splitsTableView.adjustScroll(<#T##newVisible: NSRect##NSRect#>)
-//		let state = run.layout.stateAsJson(run.timer.lsTimer)
-//		let pasteboard = NSPasteboard.general
-//		pasteboard.declareTypes([.string], owner: nil)
-//		pasteboard.setString(state, forType: .string)
+//		rf.toggle()
+//		let splitsFont = run.codableLayout.timesFont
+//		let textFont = run.codableLayout.textFont
+//		
+//		if rf {
+//			
+//			run.fontManager.splitsFontSize = 1
+//			run.fontManager.textFontSize = 1
+//			run.fontManager.setSplitsFont(to: splitsFont)
+//			run.fontManager.setTextFont(to: textFont)
+//			
+//		} else {
+//			run.fontManager.splitsFontSize = 0
+//			run.fontManager.textFontSize = 0
+//			run.fontManager.setSplitsFont(to: splitsFont)
+//			run.fontManager.setTextFont(to: textFont)
+//		}
+////		run.splitsFont = newFont
+////		run.timerFont = newTimeFont
+//		splitsTableView.reloadData()
+////		print("Font Size: \(String(describing: run.splitsFont?.pointSize))")
+////		print("Row Height: \(splitsTableView.rowHeight)")
+		
+		let editor = RunEditor(run.timer.lsTimer.getRun().clone())!
+		let segs = editor.getState().segments!.count
+		let hey = editor.addComparison("blah")
+		print(hey)
+		for i in 0..<segs {
+			editor.selectOnly(i)
+			let suc = editor.activeParseAndSetComparisonTime("blah", "01:00")
+			print("\(i): suc: \(suc)")
+		}
+		let s = run.timer.lsTimer.setRun(editor.close())
+		print(s)
+		let compsLen = run.timer.lsTimer.getRun().customComparisonsLen()
+		var comps = [String]()
+		for i in 0..<compsLen {
+			comps.append(run.timer.lsTimer.getRun().customComparison(i))
+		}
+
 	}
 	
 	func debugPrintSplitsEditor() {
@@ -189,6 +225,9 @@ class ViewController: NSViewController {
 	
 	required init?(coder: NSCoder) {
 		super.init(coder: coder)
+#if DEBUG
+		makeDebugMenu()
+#endif
 	}
 	
 	var timeRow: TimeRow!
@@ -305,19 +344,31 @@ class ViewController: NSViewController {
 		view.window?.isMovableByWindowBackground = true
 		
 	}
-	///Handles various tasks to set up certain keyboard commands, as well as the Touch Bar
-	private func keyAndMenuSetup() {
+	///Sets up the right-click menus, as well as the Touch Bar
+	private func miscMenuSetup() {
 		touchBarDelegate = RunTouchBarDelegate(splitFunc: startSplitTimer, pauseFunc: pauseResumeTimer, prevFunc: run.timer.previousSplit, stopFunc: cancelRun, sourceVC: self)
-		
-		#if DEBUG
-		let breakMI = NSMenuItem(title: "Break", action: #selector(breakFunc), keyEquivalent: "b")
-		breakMI.keyEquivalentModifierMask = .command
-		breakMI.identifier = breakID
-		NSApp.mainMenu?.item(at: 0)?.submenu?.addItem(breakMI)
-		#endif
 		
 		setRightClickMenus()
 	}
+	
+	#if DEBUG
+	func makeDebugMenu() {
+		let debugId = NSUserInterfaceItemIdentifier("debugID")
+		let mainMenu = NSApp.mainMenu
+		if mainMenu?.items.contains(where: {$0.identifier == debugId}) == false {
+			let debugMI = NSMenuItem(title: "Debug", action: nil, keyEquivalent: "")
+			debugMI.identifier = debugId
+			mainMenu?.addItem(debugMI)
+			let debugMenu = NSMenu(title: "dbg")
+			mainMenu?.setSubmenu(debugMenu, for: debugMI)
+			
+			let breakMI = NSMenuItem(title: "Break", action: #selector(breakFunc), keyEquivalent: "b")
+			breakMI.keyEquivalentModifierMask = .command
+			breakMI.identifier = breakID
+			debugMenu.addItem(breakMI)
+		}
+	}
+	#endif
 	
 	private func addTimerStateChangedObserver() {
 		NotificationCenter.default.addObserver(forName: .timerStateChanged, object: self.run.timer, queue: nil) {notification in
@@ -467,7 +518,7 @@ class ViewController: NSViewController {
 		
 		windowSetup()
 		loadRunInfo()
-		keyAndMenuSetup()
+		miscMenuSetup()
 		run.document = document
 	
 		//Load the SplitterAppearance file if it exists. Otherwise, use the default appearance
@@ -500,7 +551,7 @@ class ViewController: NSViewController {
 		updateTextFields()
 		
 		splitsTableView.reloadData()
-		setColorForControls()
+		setAppearanceForControls()
 		
 		NotificationCenter.default.addObserver(forName: .runEdited, object: self.run, queue: nil, using: { notification in
 			self.updateTextFields()
@@ -513,7 +564,7 @@ class ViewController: NSViewController {
 			self.document.updateChangeCount(.changeDone)
 		})
 		NotificationCenter.default.addObserver(forName: .runColorChanged, object: self.run, queue: nil, using: { _ in
-			self.setColorForControls()
+			self.setAppearanceForControls()
 		})
 		undoManager?.enableUndoRegistration()
 	}
@@ -657,7 +708,7 @@ class ViewController: NSViewController {
 		displayLayoutEditorPopover(nil)
 	}
 	
-	func displaySegmentEditor() {
+	func displaySplitsEditor() {
 		let tvc = SplitsEditorViewController.instantiateView(with: run)
 		presentAsSheet(tvc)
 	}

@@ -22,6 +22,10 @@ class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOut
 	
 	override func loadView() {
 		setupCompObjects()
+		DispatchQueue.global(qos: .userInitiated).async {
+			//Doing this in the background before creating the view makes it load faster - maybe it's because something's being cached?
+			_ = FontPopUpButton.makeMenu().menu
+		}
 		outlineView = NSOutlineView()
 		let nib = NSNib(nibNamed: "LayoutEditorListCell", bundle: .main)
 		outlineView.register(nib, forIdentifier: .init("DragListCell"))
@@ -122,7 +126,7 @@ class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOut
 		if let sender = sender as? NSMenuItem,
 		   let type = sender.representedObject as? SplitterComponentType {
 			runController.addComponent(type)
-			runController.setColorForControls()
+			runController.setAppearanceForControls()
 			outlineView.reloadData()
 		}
 	}
@@ -173,6 +177,7 @@ class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOut
 			}
 		}
 		NSColorPanel.shared.close()
+		NSFontPanel.shared.close()
 	}
 	
 	func setConstraints(for optionsView: NSView) {

@@ -19,6 +19,7 @@ extension Notification.Name {
 	static let gameIconEdited = Notification.Name("gameIconEdited")
 	static let segmentIconEdited = Notification.Name("segmentIconChanged")
 	static let backgroundImageEdited = Notification.Name("backgroundImageEdited")
+	static let fontChanged = Notification.Name("fontChanged")
 }
 ///Layout notifications
 extension Notification.Name {
@@ -35,14 +36,14 @@ class SplitterRun: NSObject {
 	var refreshTimer: Timer?
 	var document: SplitterDoc!
 	
+	var fontManager: FontManager!
+	
 	var undoManager: UndoManager? {
 		return document?.undoManager
 	}
 	
 	///Used to prevent crash with numberOfRowsInTableView
 	var hasSetLayout = false
-	
-	private var layoutSettings: CodableLayoutSettings!
 	
 	init(run: Run, isNewRun: Bool = false) {
 		var vRun: Run = run
@@ -52,18 +53,13 @@ class SplitterRun: NSObject {
 		}
 		
 		if let editor = RunEditor(vRun) {
-			_ = editor.addComparison(TimeComparison.latest.rawValue)
+			_ = editor.addComparison(TimeComparison.latest.liveSplitID)
 			vRun = editor.close()
 		}
 		timer = SplitterTimer(run: vRun)
 		layout = .defaultLayout()
 		layout.updateState(layout.state(timer.lsTimer), timer.lsTimer)
 		let settings = layout.settingsAsJson()
-		do {
-			self.layoutSettings = try JSONDecoder().decode(CodableLayoutSettings.self, from: settings.data(using: .utf8)!)
-		} catch {
-			print("Decode error: \(error)")
-		}
 		if let editor = LayoutEditor(layout) {
 			/**
 			# General Layout Settings
@@ -169,14 +165,23 @@ class SplitterRun: NSObject {
 		}
 		super.init()
 		self.timer.splitterRun = self
-		
+		self.fontManager = FontManager(run: self)
+		//Don't know why I set text font to nil
 		setObservers()
-		
 		//If there's a "currentComparison" variable here, it's a pre-4.3 Splitter file, and thus we need to update it using `fixRunAndDiffsComparison`
 		if let comp = getCustomVariable(name: "currentComparison") {
 			fixRunAndDiffsComparison(comp)
 		}
 		setRunComparison(to: .personalBest, disableUndo: true)
+	}
+	
+	///Reads the fonts from the current CodableLayout into the run.
+	///
+	///This isn't called at `init`, because for some reason, the codableLayout properties are `nil` at that time. Instead, we call this when the View Controller is trying to update the appearance for the components
+	func updateFonts() {
+		fontManager.setTextFont(to: codableLayout.textFont)
+		fontManager.setTimerFont(to: codableLayout.timerFont)
+		fontManager.setSplitsFont(to: codableLayout.timesFont)
 	}
 	
 	func addComponent(component: SplitterComponentType) -> Int? {
@@ -552,7 +557,7 @@ class SplitterRun: NSObject {
 			})
 			undoManager?.setActionName("Set Comparison")
 		}
-		setComparison(comparison.rawValue)
+		setComparison(comparison.liveSplitID)
 	}
 	///Sets the comparison for the run
 	///
@@ -563,8 +568,7 @@ class SplitterRun: NSObject {
 	}
 	
 	func getRunComparision() -> TimeComparison {
-		//TODO: Handle if custom comparison?
-		return TimeComparison(rawValue: timer.lsTimer.currentComparison())!
+		return TimeComparison.fromLSComparison(timer.lsTimer.currentComparison())
 	}
 	
 	var comparisons: [String] {
@@ -581,9 +585,12 @@ class SplitterRun: NSObject {
 			comparisons.append(currentComparison)
 			newTimer.switchToNextComparison()
 			currentComparison = newTimer.currentComparison()
-			
 		}
 		return comparisons
+	}
+	
+	var allTimeComparisons: [TimeComparison] {
+		comparisons.map {TimeComparison.fromLSComparison($0)}
 	}
 	
 	
@@ -713,7 +720,7 @@ class SplitterRun: NSObject {
 		})
 		editLayout { editor in
 			editor.select(1)
-			editor.setColumn(index, comparison: comparison?.rawValue ?? nil)
+			editor.setColumn(index, comparison: comparison?.liveSplitID ?? nil)
 		}
 		undoManager?.setActionName("Set Column Comparison")
 		NotificationCenter.default.post(name: .splitsEdited, object: self)
@@ -940,7 +947,7 @@ class SplitterRun: NSObject {
 		DispatchQueue.main.async {
 			self.editRun({ editor in
 				editor.addCustomVariable("currentComparison")
-				editor.setCustomVariable("currentComparison", comparison.rawValue)
+				editor.setCustomVariable("currentComparison", comparison.liveSplitID)
 			})
 		}
 		return timer.lsTimer.saveAsLss()
@@ -1007,7 +1014,7 @@ class SplitterRun: NSObject {
 				le.setColumn(nli, startWith: startWith)
 				le.setColumn(nli, updateWith: updateWith)
 				le.setColumn(nli, updateTrigger: updateTrigger)
-				le.setColumn(nli, comparison: comparison?.rawValue)
+				le.setColumn(nli, comparison: comparison?.liveSplitID)
 				le.setColumn(nli, timingMethod: timingMethod)
 			}
 			NotificationCenter.default.post(name: .runEdited, object: self)

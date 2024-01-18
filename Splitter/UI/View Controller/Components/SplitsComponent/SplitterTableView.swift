@@ -10,12 +10,22 @@ import Cocoa
 
 class SplitterTableView: NSTableView {
 	var viewController: ViewController!
+
+	override var rowHeight: CGFloat {
+		get {
+			var fontSize: CGFloat = NSFont.systemFontSize
+			fontSize = fontSize + (viewController?.run?.fontManager.splitsFontSize ?? 0)
+//			return fontSize + 15 + (fontSize/2)
+			return fontSize * 2.5
+		}
+		set {}
+	}
 	
 	override func adjustScroll(_ newVisible: NSRect) -> NSRect {
 		var adjRect = newVisible
 		let headerHeight = self.headerView?.frame.height ?? 0
 		var h = adjRect.origin.y
-		let amount: CGFloat = 31
+		let amount: CGFloat = rowHeight
 		if (h+headerHeight).truncatingRemainder(dividingBy: amount) != 0 {
 			let mul = CGFloat(Int((h) / amount))
 			let lower = abs(mul * amount)
@@ -32,9 +42,17 @@ class SplitterTableView: NSTableView {
 			}
 		}
 		adjRect.origin.y = h
-		return super.adjustScroll(adjRect)
+		
+		//Manually adjust the content insets to fix scroll view bouncing/cutting off part of row
+		//
+		//We add the height of a row to the bottom inset so that it doesn't bounce when scrolling past it. We add the negative amount of this to the bottom scroller inset so that it properly reflects the view.
+		//Note: the clip view has automatic inset adjustment ON in the Xib, and the scroll view has it OFF - this is intentional for it to work
+		self.enclosingScrollView?.contentInsets.bottom = amount
+		self.enclosingScrollView?.scrollerInsets.bottom = -amount
+		self.enclosingScrollView?.reflectScrolledClipView(self.enclosingScrollView!.contentView)
+		
+		return adjRect
 	}
-	
 	
     override func draw(_ dirtyRect: NSRect) {}
 	
@@ -66,13 +84,13 @@ class SplitterTableView: NSTableView {
 		(enclosingScrollView as? SplitsComponent)?.tableBGColor = cornerColor
 	}
 	
-	/// Sets the background color of the table header to the specified color
+	/// Sets the appearance of the table header using the specified colors
 	///
-	/// In addition to setting the backrgound and text for the header, it also makes the header opaque.
+	/// In addition to setting the font, backrgound, and text for the header, it also makes the header opaque.
 	/// - Parameters:
 	///   - textColor: Color for the header's text
 	///   - bgColor: Background color for the header
-	func setHeaderColor(textColor: NSColor, bgColor: NSColor) {
+	func setHeaderAppearance(textColor: NSColor, bgColor: NSColor) {
 		if self.headerView != nil {
 			for c in self.tableColumns {
 				if !c.isHidden {
@@ -83,11 +101,18 @@ class SplitterTableView: NSTableView {
 					head.backgroundStyle = .raised
 					head.tintColor = viewController.run.tableColor
 					head.textColor = textColor
-					head.attributedStringValue = NSAttributedString(string: headerStr, attributes: [.foregroundColor: textColor])
+					head.font = viewController.run.fontManager.getSplitsFont(fixedFontSize: false)
+					head.stringValue = headerStr
 					c.headerCell = head
 				}
 			}
+			self.headerView!.frame = NSRect(origin: self.headerView!.frame.origin, size: .init(width: self.headerView!.frame.width, height: rowHeight))
 		}
+	}
+	
+	func updateFont() {
+		self.setHeaderAppearance(textColor: viewController.run.textColor, bgColor: viewController.run.tableColor)
+		self.reloadData()
 	}
     
 	//Overriding keyDown so that typing a letter for a hotkey doesn't select that segment
@@ -107,6 +132,11 @@ class SplitterTableView: NSTableView {
 }
 
 class SplitterTableHeader: NSTableHeaderView {
+	
+	static var defaultTableHeaderHeight: CGFloat {
+		return 28
+	}
+	
     required init?(coder: NSCoder) {
         super.init(coder: coder)
     }
@@ -169,13 +199,18 @@ class SplitterTableHeaderCell: NSTableHeaderCell {
 		path.stroke()
 		
 		//Without this custom inset, the header text will appear at the top of the cell, instead of the center.
-		let inset = cellFrame.insetBy(dx: 5, dy: offset)
+		let inset = cellFrame.insetBy(dx: 5, dy: offset - 2)
 		drawInterior(withFrame: inset, in: controlView)
 	}
 
     override func draw(withFrame cellFrame: NSRect, in controlView: NSView) {
 		colorfulDraw(withFrame: cellFrame, in: controlView, systemEffect: .none)
     }
+	
+	override func drawInterior(withFrame cellFrame: NSRect, in controlView: NSView) {
+		let titleRect = self.titleRect(forBounds: cellFrame)
+		self.attributedStringValue.draw(in: titleRect)
+	}
 	
 	override func highlight(_ flag: Bool, withFrame cellFrame: NSRect, in controlView: NSView) {
 		colorfulDraw(withFrame: cellFrame, in: controlView, systemEffect: .pressed)

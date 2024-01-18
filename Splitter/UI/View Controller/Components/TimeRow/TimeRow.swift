@@ -7,7 +7,21 @@
 
 import Cocoa
 
-class TimeRow: NSStackView, NibLoadable, SplitterComponent, NSTextFieldDelegate {
+
+//This component itself conforms to Fontable (rather than just the controls within it) so that it can have its own `setFont` implementation
+class TimeRow: NSStackView, NibLoadable, SplitterComponent, NSTextFieldDelegate, Fontable {
+	
+	var fontable: Bool = true
+	var optionsController: TimeRowOptionsController!
+	
+	///Stubbed property from protocol
+	var defaultFontSize: CGFloat?
+	
+	///Font used for displaying the time
+	var timeFont: NSFont? {
+		get {timeLabel.font}
+		set {timeLabel.font = newValue}
+	}
 	var run: SplitterRun!
 	var customSpacing: CGFloat? = nil
 	var refreshUITimer = Timer()
@@ -17,6 +31,7 @@ class TimeRow: NSStackView, NibLoadable, SplitterComponent, NSTextFieldDelegate 
 		row.viewController = viewController
 		row.run = run
 		row.setup()
+		row.optionsController = TimeRowOptionsController(timeRow: row)
 		return row
 	}
 	
@@ -29,9 +44,10 @@ class TimeRow: NSStackView, NibLoadable, SplitterComponent, NSTextFieldDelegate 
 		attemptsField.run = run
 		attemptsField.formatter = OnlyIntegerValueFormatter()
 		detachesHiddenViews = false
-		attemptsStackView.detachesHiddenViews = false
+
 		attemptsField.delegate = self
 		run.updateFunctions.append(updateUI)
+		setFontObserver()
 	}
 	func updateUI() {
 		self.viewController.updateTimer()
@@ -71,48 +87,6 @@ class TimeRow: NSStackView, NibLoadable, SplitterComponent, NSTextFieldDelegate 
 		showAttemptsLabel = (state.properties[showAttemptsLabelKey] as? JSONAny)?.value as? Bool ?? true
 	}
 	
-	var optionsView: NSView! {
-		let d = defaultComponentOptions() as! ComponentOptionsVstack
-		let showAttemptsLabelButton = ComponentOptionsButton(checkboxWithTitle: "Show Attempts Label", clickAction: { button in
-			let oldValue = self.showAttemptsLabel
-			self.undoableSetting(actionName: "Set Show Attempts Label", oldValue: oldValue, newValue: !oldValue, edit: { comp, value in
-				comp.showAttemptsLabel = value
-				button.state = .init(bool: value)
-			})
-			
-		})
-		let showAttemptsButton = ComponentOptionsButton(checkboxWithTitle: "Show Attempts", clickAction: {button in
-			let oldValue = self.showAttempts
-			self.undoableSetting(actionName: "Set Show Attempts", oldValue: oldValue, newValue: !oldValue, edit: {comp, value in
-				comp.showAttempts = value
-				button.state = .init(bool: value)
-				showAttemptsLabelButton.isEnabled = value
-			})
-		})
-		showAttemptsButton.state = .init(bool: showAttempts)
-		
-		showAttemptsLabelButton.state = .init(bool: showAttemptsLabel)
-		showAttemptsLabelButton.sizeToFit()
-		showAttemptsLabelButton.isEnabled = showAttempts
-		let bv = NSView(frame: NSRect(x: 0, y: 0, width: 20, height: showAttemptsLabelButton.frame.height))
-		NSLayoutConstraint.activate([
-			bv.widthAnchor.constraint(equalToConstant: 20)
-		])
-		bv.setContentHuggingPriority(.required, for: .horizontal)
-		showAttemptsLabelButton.setContentHuggingPriority(.defaultLow, for: .horizontal)
-		let attemptsLabelButtonStack = NSStackView(views: [bv, showAttemptsLabelButton])
-		attemptsLabelButtonStack.distribution = .equalSpacing
-		attemptsLabelButtonStack.spacing = 0
-		attemptsLabelButtonStack.alignment = .leading
-		attemptsLabelButtonStack.orientation = .horizontal
-		
-		d.addArrangedSubview(showAttemptsButton)
-		d.addArrangedSubview(attemptsLabelButtonStack)
-		
-		
-		return d
-	}
-	
 	@IBOutlet var contentView: NSView!
 	@IBOutlet var timeLabel: ThemedTextField!
 	@IBOutlet var attemptsField: ThemedTextField!
@@ -124,5 +98,13 @@ class TimeRow: NSStackView, NibLoadable, SplitterComponent, NSTextFieldDelegate 
 	}
 	func controlTextDidEndEditing(_ obj: Notification) {
 		self.run.attempts = Int(attemptsField.stringValue) ?? 0
+	}
+	
+	func setFont() {
+		if defaultFontSize == nil {
+			let size = self.timeFont!.pointSize
+			defaultFontSize = size
+		}
+		self.timeFont = run.fontManager.getTimerFont(fixedFontSize: false, defaultSize: defaultFontSize!)
 	}
 }

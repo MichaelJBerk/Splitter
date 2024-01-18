@@ -204,7 +204,7 @@ extension ViewController {
 		}
 		
 		splitsTableView.reloadData()
-		setColorForControls()
+		setAppearanceForControls()
 		
 	}
 	

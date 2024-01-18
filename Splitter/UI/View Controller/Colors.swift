@@ -104,7 +104,11 @@ extension NSColor {
     }
 }
 extension ViewController {
-	func setColorForControls() {
+	func setAppearanceForControls() {
+		
+		run.updateFonts()
+		
+		
 		view.window?.backgroundColor = run.backgroundColor
 		splitsTableView.backgroundColor = .clear
 		splitsTableView.enclosingScrollView?.backgroundColor = run.tableColor
@@ -120,7 +124,7 @@ extension ViewController {
 		
 		splitsTableView.viewController = self
 		
-		splitsTableView.setHeaderColor(textColor: run.textColor, bgColor: run.tableColor)
+		splitsTableView.setHeaderAppearance(textColor: run.textColor, bgColor: run.tableColor)
 		splitsTableView.setCornerColor(cornerColor: run.tableColor)
 		
 		view.window?.backgroundColor = run.backgroundColor

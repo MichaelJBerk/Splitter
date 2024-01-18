@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21701"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
         <capability name="NSView safe area layout guides" minToolsVersion="12.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -645,7 +645,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="469" height="295"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VKN-jr-XfS">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VKN-jr-XfS">
                                 <rect key="frame" x="209" y="256" width="40" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Game" id="cLY-Ee-Nk3">
@@ -654,7 +654,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hkc-VA-73h">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hkc-VA-73h">
                                 <rect key="frame" x="139" y="229" width="110" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Category/Subtitle" id="lau-Xq-hGf">
@@ -663,7 +663,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rnO-UB-KXn">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rnO-UB-KXn">
                                 <rect key="frame" x="184" y="202" width="65" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Attempt #" id="G8L-LF-gCD">
@@ -672,7 +672,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UHu-l3-PdP">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UHu-l3-PdP">
                                 <rect key="frame" x="193" y="175" width="56" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Platform" id="i1g-gf-40P">
@@ -681,7 +681,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qp6-5m-HwK">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="qp6-5m-HwK">
                                 <rect key="frame" x="160" y="148" width="89" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Game Version" id="Ed9-d1-ucr">
@@ -690,7 +690,7 @@
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eVU-ZF-veB">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="eVU-ZF-veB">
                                 <rect key="frame" x="164" y="121" width="85" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" alignment="right" title="Game Region" id="LaR-3m-OjI">
@@ -703,7 +703,7 @@
                                 <rect key="frame" x="255" y="108" width="194" height="5"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                             </box>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Pxz-j7-fn4">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Pxz-j7-fn4">
                                 <rect key="frame" x="141" y="81" width="108" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Offset (Seconds)" id="mL5-lZ-qMj">
@@ -720,7 +720,7 @@
 To remove, click and press backspace. </string>
                                 <imageCell key="cell" selectable="YES" editable="YES" alignment="left" imageScaling="proportionallyDown" imageFrameStyle="grayBezel" id="sUd-0Q-URE"/>
                             </imageView>
-                            <textField toolTip="Game Title" verticalHuggingPriority="750" verifyAmbiguity="off" id="UXc-S9-jFn">
+                            <textField toolTip="Game Title" focusRingType="none" verticalHuggingPriority="750" verifyAmbiguity="off" id="UXc-S9-jFn">
                                 <rect key="frame" x="255" y="254" width="194" height="21"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="GMu-GZ-I0O">
@@ -729,7 +729,7 @@ To remove, click and press backspace. </string>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField toolTip="Speedrun Category (i.e. Any %)" verticalHuggingPriority="750" verifyAmbiguity="off" id="XqK-XY-ils">
+                            <textField toolTip="Speedrun Category (i.e. Any %)" focusRingType="none" verticalHuggingPriority="750" verifyAmbiguity="off" id="XqK-XY-ils">
                                 <rect key="frame" x="255" y="227" width="194" height="21"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="8xO-mB-dqj">
@@ -738,7 +738,7 @@ To remove, click and press backspace. </string>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField toolTip="Number of times this run has been attempted " verticalHuggingPriority="750" verifyAmbiguity="off" textCompletion="NO" id="xtG-uJ-IZa">
+                            <textField toolTip="Number of times this run has been attempted " focusRingType="none" verticalHuggingPriority="750" verifyAmbiguity="off" textCompletion="NO" id="xtG-uJ-IZa">
                                 <rect key="frame" x="255" y="200" width="194" height="21"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="zfc-Nr-qcx">
@@ -750,7 +750,7 @@ To remove, click and press backspace. </string>
                                     </allowedInputSourceLocales>
                                 </textFieldCell>
                             </textField>
-                            <textField toolTip="Platform the game is being played on" verticalHuggingPriority="750" verifyAmbiguity="off" id="26X-Fy-Txf">
+                            <textField toolTip="Platform the game is being played on" focusRingType="none" verticalHuggingPriority="750" verifyAmbiguity="off" id="26X-Fy-Txf">
                                 <rect key="frame" x="255" y="173" width="194" height="21"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="Pk3-fq-DK4">
@@ -759,7 +759,7 @@ To remove, click and press backspace. </string>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField toolTip="Version of the game being played (i.e. 1.3.0)" verticalHuggingPriority="750" verifyAmbiguity="off" id="WAV-8P-f9h">
+                            <textField toolTip="Version of the game being played (i.e. 1.3.0)" focusRingType="none" verticalHuggingPriority="750" verifyAmbiguity="off" id="WAV-8P-f9h">
                                 <rect key="frame" x="255" y="146" width="194" height="21"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="N7c-x2-gbT">
@@ -768,7 +768,7 @@ To remove, click and press backspace. </string>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField toolTip="Regional version of the game being played (i.e. &quot;USA&quot;)" verticalHuggingPriority="750" verifyAmbiguity="off" id="18O-lk-nAH">
+                            <textField toolTip="Regional version of the game being played (i.e. &quot;USA&quot;)" focusRingType="none" verticalHuggingPriority="750" verifyAmbiguity="off" id="18O-lk-nAH">
                                 <rect key="frame" x="255" y="117" width="194" height="21"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="oAh-Hl-ZOu">
@@ -777,7 +777,7 @@ To remove, click and press backspace. </string>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </textFieldCell>
                             </textField>
-                            <textField verticalHuggingPriority="750" id="ZDM-Af-2gD">
+                            <textField focusRingType="none" verticalHuggingPriority="750" id="ZDM-Af-2gD">
                                 <rect key="frame" x="255" y="81" width="194" height="21"/>
                                 <autoresizingMask key="autoresizingMask" widthSizable="YES"/>
                                 <textFieldCell key="cell" selectable="YES" editable="YES" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" id="mGP-4l-MB3">
@@ -798,7 +798,7 @@ To remove, click and press backspace. </string>
                                     <menu key="menu" id="m8j-7w-3Yu"/>
                                 </popUpButtonCell>
                             </popUpButton>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bfh-zg-F2N">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bfh-zg-F2N">
                                 <rect key="frame" x="172" y="56" width="77" height="16"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Comparison" id="fUq-Pu-4Ur">

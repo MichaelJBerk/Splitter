@@ -20,7 +20,7 @@ import LiveSplitKit
 struct CLayout: Codable {
 	var components: [CComponentable]
 	let direction: String
-	let timerFont, timesFont, textFont: JSONNull?
+	let timerFont, timesFont, textFont: LiveSplitFont?
 	let background: CLayoutBackground
 	let thinSeparatorsColor, separatorsColor: [Double]
 	let textColor: [Double]
@@ -66,9 +66,9 @@ struct CLayout: Codable {
 			}
 		}
 		self.components = realComponents
-		self.timerFont = nil
-		self.timesFont = nil
-		self.textFont = nil
+		self.timerFont = try container.decodeIfPresent(LiveSplitFont.self, forKey: .timerFont)
+		self.timesFont = try container.decodeIfPresent(LiveSplitFont.self, forKey: .timesFont)
+		self.textFont = try container.decodeIfPresent(LiveSplitFont.self, forKey: .textFont)
 	}
 	func encode(to encoder: Encoder) throws {
 		var container = encoder.container(keyedBy: CodingKeys.self)
@@ -549,23 +549,5 @@ class JSONAny: Codable {
 			var container = encoder.singleValueContainer()
 			try JSONAny.encode(to: &container, value: self.value)
 		}
-	}
-}
-
-struct CodableLayoutSettings: Codable {
-	
-	var general: GeneralCodableLayoutSettings
-	
-}
-struct GeneralCodableLayoutSettings: Codable {
-	
-	var aheadGainingTimeColor, aheadLosingTimeColor, behindGainingTimeColor, behindLosingTimeColor, personalBestColor: [Double]?
-	
-	enum CodingKeys: String, CodingKey {
-		case aheadGainingTimeColor = "ahead_gaining_time_color"
-		case aheadLosingTimeColor = "ahead_losing_time_color"
-		case behindGainingTimeColor = "behind_gaining_time_color"
-		case behindLosingTimeColor = "behind_losing_time_color"
-		case personalBestColor = "personal_best_color"
 	}
 }

@@ -24,7 +24,7 @@ class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent {
 		set {
 			if newValue {
 				splitsTableView.headerView = NSTableHeaderView()
-				splitsTableView.enclosingScrollView?.contentView.contentInsets.top = 28
+				splitsTableView.enclosingScrollView?.contentView.contentInsets.top = splitsTableView.rowHeight //splitsTableView.headerView!.frame.height
 //				self.contentInsets.top = 28
 			} else {
 				splitsTableView.headerView = nil
@@ -151,6 +151,9 @@ class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent {
 			let old = notification.userInfo?["NSOldWidth"] as! NSNumber
 			self.didResize(column: col, oldSize: old)
 		})
+		NotificationCenter.default.addObserver(forName: .fontChanged, object: self.run, queue: nil, using: { _ in
+			self.splitsTableView.updateFont()
+		})
 		
 		if #available(macOS 11.0, *) {
 			splitsTableView.style = .fullWidth
@@ -183,7 +186,7 @@ class SplitsComponent: NSScrollView, NibLoadable, SplitterComponent {
 		let itemID = NSUserInterfaceItemIdentifier(rawValue: "LS \(id.uuidString)")
 		let column = NSTableColumn(identifier: itemID)
 		splitsTableView.addTableColumn(column)
-		splitsTableView.setHeaderColor(textColor: run.textColor, bgColor: run.tableColor)
+		splitsTableView.setHeaderAppearance(textColor: run.textColor, bgColor: run.tableColor)
 		splitsTableView.setCornerColor(cornerColor: run.tableColor)
 		run.undoManager?.endUndoGrouping()
 	}

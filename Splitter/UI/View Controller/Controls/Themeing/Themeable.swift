@@ -15,6 +15,7 @@ protocol Themeable {
 	var themeable: Bool {get set}
 }
 extension Themeable {
+	//TODO: What was this used for?
 	static var runKey: String {
 		return "run"
 	}

@@ -104,17 +104,17 @@ class InfoOptionsViewController: NSViewController, NSPopoverDelegate, NSTextFiel
 			let current = run.getRunComparision()
 
 			comparisonPopUp.menu = NSMenu()
-			for comp in TimeComparison.allCases {
-				comparisonPopUp.menu?.addItem(.init(title: comp.menuItemTitle, action: nil, keyEquivalent: ""))
+			for comp in run.allTimeComparisons {
+				comparisonPopUp.menu?.addItem(.init(title: comp.displayTitle, action: nil, keyEquivalent: ""))
 			}
-			comparisonPopUp.selectItem(withTitle: current.menuItemTitle)
+			comparisonPopUp.selectItem(withTitle: current.displayTitle)
 		}
 	}
 	
 	@objc func comparisonSelected(_ sender: NSPopUpButton) {
 		guard let selectedItem = sender.selectedItem else {return}
-		for comp in TimeComparison.allCases {
-			if comp.menuItemTitle == selectedItem.title {
+		for comp in run.allTimeComparisons {
+			if comp.displayTitle == selectedItem.title {
 				run.setRunComparison(to: comp)
 				return
 			}

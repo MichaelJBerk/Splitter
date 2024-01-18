@@ -66,7 +66,7 @@ extension ViewController {
 	}
 	
 	@IBAction func editSegmentsMenuItem(_ sender: Any) {
-		displaySegmentEditor()
+		displaySplitsEditor()
 	}
 	
 	

@@ -260,6 +260,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	
 	func applicationWillTerminate(_ notification: Notification) {
 		NSColorPanel.shared.close()
+		NSFontPanel.shared.close()
 	}
 	
 	func newWindowIfNone() {

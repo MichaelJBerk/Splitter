@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -32,7 +32,7 @@
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="AE7E9EBE-6A07-4831-BFDF-E2427E68882F" explicitItemIdentifier="searchItem" label="Search" paletteLabel="Search" tag="-1" visibilityPriority="1" sizingBehavior="auto" autovalidates="NO" id="xIt-tD-0DU">
                                     <nil key="toolTip"/>
-                                    <searchField key="view" wantsLayer="YES" verticalHuggingPriority="750" tag="-1" preferredMaxLayoutWidth="122" textCompletion="NO" id="712-bf-mEW">
+                                    <searchField key="view" wantsLayer="YES" focusRingType="none" verticalHuggingPriority="750" tag="-1" preferredMaxLayoutWidth="122" textCompletion="NO" id="712-bf-mEW">
                                         <rect key="frame" x="0.0" y="14" width="620" height="22"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <searchFieldCell key="cell" selectable="YES" editable="YES" borderStyle="bezel" placeholderString="Search Splits.io for a game" usesSingleLineMode="YES" bezelStyle="round" id="giG-xu-sX0">
@@ -105,7 +105,7 @@
                                                             <rect key="frame" x="1" y="1" width="773" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rtU-3Q-5v7">
+                                                                <textField focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rtU-3Q-5v7">
                                                                     <rect key="frame" x="0.0" y="0.0" width="773" height="17"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="fid-VP-AH1">
@@ -140,9 +140,6 @@
                             </scrollView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cii-vw-vP3">
                                 <rect key="frame" x="712" y="1" width="79" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="67" id="bf8-PT-JhJ"/>
-                                </constraints>
                                 <buttonCell key="cell" type="push" title="Next" bezelStyle="rounded" alignment="center" controlSize="large" lineBreakMode="truncatingTail" enabled="NO" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="BlG-jk-1gz">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -150,6 +147,9 @@
 DQ
 </string>
                                 </buttonCell>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="67" id="bf8-PT-JhJ"/>
+                                </constraints>
                                 <connections>
                                     <action selector="nbcThing:" target="BVZ-iD-p8g" id="TCX-Up-Whs"/>
                                     <segue destination="4u8-VA-zwt" kind="sheet" identifier="pickCategorySegue" id="eHg-2j-sXP"/>
@@ -182,7 +182,7 @@ DQ
                         <rect key="frame" x="0.0" y="0.0" width="450" height="425"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TSh-k7-7vZ">
+                            <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="TSh-k7-7vZ">
                                 <rect key="frame" x="18" y="389" width="110" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Select a category" id="eVa-te-3ja">
                                     <font key="font" usesAppearanceFont="YES"/>
@@ -192,9 +192,6 @@ DQ
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="taP-zD-gcl">
                                 <rect key="frame" x="343" y="6" width="93" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="81" id="CNG-QT-BWc"/>
-                                </constraints>
                                 <buttonCell key="cell" type="push" title="Download" bezelStyle="rounded" alignment="center" controlSize="large" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="hAC-Fa-P2e">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -202,15 +199,15 @@ DQ
 DQ
 </string>
                                 </buttonCell>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="81" id="CNG-QT-BWc"/>
+                                </constraints>
                                 <connections>
                                     <action selector="nextButtonAction:" target="4u8-VA-zwt" id="qvc-2F-pX7"/>
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="lSD-qm-rN7">
                                 <rect key="frame" x="269" y="6" width="82" height="40"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="70" id="3B4-yA-YO9"/>
-                                </constraints>
                                 <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" controlSize="large" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="LRc-Hb-Q36">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
@@ -218,6 +215,9 @@ DQ
 Gw
 </string>
                                 </buttonCell>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="70" id="3B4-yA-YO9"/>
+                                </constraints>
                                 <connections>
                                     <action selector="cancelButtonAction:" target="4u8-VA-zwt" id="4h1-r1-lLW"/>
                                 </connections>
@@ -251,7 +251,7 @@ Gw
                                                             <rect key="frame" x="18" y="0.0" width="371" height="24"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rJd-Jh-s7i">
+                                                                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="rJd-Jh-s7i">
                                                                     <rect key="frame" x="0.0" y="4" width="371" height="16"/>
                                                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="Qza-Th-tGN">

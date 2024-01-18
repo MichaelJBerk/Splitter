@@ -464,7 +464,6 @@ extension SplitsComponentAdvancedOptions {
 	}
 	
 	func comparisonPop(index: Int) -> ComponentPopUpButton {
-		//TODO: Default comparison should list the run's default comparison
 		let runComp = run.timer.lsTimer.currentComparison()
 		let defaultCompString = "Default (\(runComp))"
 		let defaultCompItem = NSMenuItem(title: defaultCompString, action: nil, keyEquivalent: "")
@@ -472,20 +471,20 @@ extension SplitsComponentAdvancedOptions {
 			if $0.selectedItem?.title == defaultCompItem.title {
 				self.run.setColumnComparison(nil, for: index)
 			}
-			for v in TimeComparison.allCases {
-				if v.menuItemTitle == $0.selectedItem?.title {
+			for v in self.run.allTimeComparisons {
+				if v.displayTitle == $0.selectedItem?.title {
 					self.run.setColumnComparison(v, for: index)
 				}
 			}
 		})
 		let menu = NSMenu()
-		for i in TimeComparison.allCases {
-			menu.addItem(.init(title: i.menuItemTitle, action: nil, keyEquivalent: ""))
+		for i in self.run.allTimeComparisons {
+			menu.addItem(.init(title: i.displayTitle, action: nil, keyEquivalent: ""))
 		}
 		menu.addItem(defaultCompItem)
 		pop.menu = menu
 		if let comp = run.getColumnComparison(for: index) {
-			pop.selectItem(withTitle: comp.menuItemTitle)
+			pop.selectItem(withTitle: comp.displayTitle)
 		} else {
 			pop.selectItem(withTitle: defaultCompItem.title)
 		}
@@ -494,28 +493,6 @@ extension SplitsComponentAdvancedOptions {
 	}
 }
 
-extension TimeComparison {
-	var menuItemTitle: String {
-		switch self {
-		case .averageSegments:
-			return "Average Segments"
-		case .latest:
-			return "Latest"
-		case .personalBest:
-			return "Personal Best"
-		case .balancedPB:
-			return "Balanced PB"
-		case .bestSegments:
-			return "Best Segments"
-		case .bestSplitTimes:
-			return "Best Split Times"
-		case .medianSegments:
-			return "Median Segments"
-		case .worstSegments:
-			return "Worst Segments"
-		}
-	}
-}
 extension ColumnStartWith {
 	var menuItemTitle: String {
 		switch self {

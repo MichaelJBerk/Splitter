@@ -62,9 +62,14 @@ extension AppDelegate {
 			vc.displayInfoPopover(self)
 		}
 	}
-	func showColumnOptionsHandler() {
+	func showLayoutEditorHandler() {
 		if let vc = viewController {
 			vc.showLayoutEditor()
+		}
+	}
+	func showSplitsEditorHandler() {
+		if let vc = viewController {
+			vc.displaySplitsEditor()
 		}
 	}
 }

@@ -51,7 +51,7 @@ class OptionsRow: NSStackView, NibLoadable, SplitterComponent {
 		}
 	}
 	@IBAction func splitsEditorButtonClick(_ sender: Any) {
-		viewController!.displaySegmentEditor()
+		viewController!.displaySplitsEditor()
 	}
 	
 	@IBAction func columnOptionsButtonClick(_ sender: Any) {

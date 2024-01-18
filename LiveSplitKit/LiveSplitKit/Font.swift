@@ -34,11 +34,11 @@ public struct LiveSplitFont: Codable {
 	///The stretch of the font to prefer selecting.
 	public var stretch: LiveSplitFont.Stretch
 	
-	public enum Style: String, Codable {
+	public enum Style: String, Codable, CaseIterable {
 		case normal
 		case italic
 		
-		var displayName: String {
+		public var displayName: String {
 			switch self {
 			case .normal:
 				return "Normal"
@@ -48,7 +48,7 @@ public struct LiveSplitFont: Codable {
 		}
 	}
 	
-	public enum Weight: String, Codable {
+	public enum Weight: String, Codable, CaseIterable {
 		case normal
 		case thin
 		case extraLight = "extra-light"
@@ -61,7 +61,8 @@ public struct LiveSplitFont: Codable {
 		case black
 		case extraBlack = "extra-black"
 		
-		var displayName: String {
+		///User-friendly name for the weight
+		public var displayName: String {
 			switch self {
 			case .thin:
 				return "Thin"
@@ -87,9 +88,37 @@ public struct LiveSplitFont: Codable {
 				return "Extra Black"
 			}
 		}
+		
+		///Representation of the font's weight that can be used in CSS
+		public var cssWeight: Int {
+			switch self {
+			case .normal:
+				return 400
+			case .thin:
+				return 100
+			case .extraLight:
+				return 200
+			case .light:
+				return 300
+			case .semiLight:
+				return 350
+			case .medium:
+				return 500
+			case .semiBold:
+				return 600
+			case .bold:
+				return 700
+			case .extraBold:
+				return 800
+			case .black:
+				return 900
+			case .extraBlack:
+				return 950
+			}
+		}
 	}
 	
-	public enum Stretch: String, Codable {
+	public enum Stretch: String, Codable, CaseIterable {
 		case normal
 		case ultraCondensed = "ultra-condensed"
 		case extraCondesned = "extra-condensed"
@@ -100,7 +129,7 @@ public struct LiveSplitFont: Codable {
 		case extraExpanded = "extra-expanded"
 		case ultraExpanded = "ultra-expanded"
 		
-		var displayName: String {
+		public var displayName: String {
 			switch self {
 			case .ultraCondensed:
 				return "Ultra Condensed"

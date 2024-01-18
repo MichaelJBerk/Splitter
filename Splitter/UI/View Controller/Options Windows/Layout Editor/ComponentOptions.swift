@@ -7,6 +7,8 @@
 //
 
 import Cocoa
+import LiveSplitKit
+
 class ComponentOptionsButton: NSButton {
 	var clickAction: (NSButton) -> () = {_ in}
 	override func mouseDown(with event: NSEvent) {
@@ -57,5 +59,19 @@ class ComponentOptionsVstack: NSStackView {
 	
 	override var isFlipped: Bool {
 		return true
+	}
+	
+	var onFontChanged: ((_ sender: NSFontManager?) -> Void) = {_ in}
+	var fontPanelModes: NSFontPanel.ModeMask = [.standardModes]
+	
+	@discardableResult func addSeparator() -> NSView {
+		let separatorView = NSView()
+		separatorView.wantsLayer = true
+		separatorView.layer?.backgroundColor = NSColor.separatorColor.cgColor
+		self.addArrangedSubview(separatorView)
+		NSLayoutConstraint.activate([
+			separatorView.heightAnchor.constraint(equalToConstant: 1)
+		])
+		return separatorView
 	}
 }
