@@ -12,6 +12,7 @@ import Files
 import SwiftUI
 import SplitsIOKit
 import BasicUpdater
+import Keys
 
 extension NSApplication {
 	static let appDelegate = NSApp.delegate as! AppDelegate
@@ -29,17 +30,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	
 	let updateController = UpdateController.shared
 	
-	static func getFromInfo(key: String) -> String? {
-		return Bundle.main.object(forInfoDictionaryKey: key) as? String
-	}
-	
 	static var splitsioclient: String {
 		#if DEBUG
 		if let clientOverride = Settings.splitsIOClientOverride {
 			return clientOverride
 		}
 		#endif
-		return getFromInfo(key: "splitsioclient")!
+		return SplitterKeys().sPLIT_SIO_CLIENT
 	}
 	static var splitsiosecret: String {
 		#if DEBUG
@@ -47,7 +44,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			return secretOverride
 		}
 		#endif
-		return getFromInfo(key: "splitsiosecret")!
+		return SplitterKeys().sPLIT_SIO_SECRET
 	}
 	
 	static var splitsIOAuth = SplitsIOAuth(client: splitsioclient, secret: splitsiosecret, redirects: "splitter://login", url: Settings.splitsIOURL.absoluteString)

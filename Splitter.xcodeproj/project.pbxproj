@@ -148,7 +148,6 @@
 		4AE5B0EE2A1C2080003F1288 /* BasicUpdater in Frameworks */ = {isa = PBXBuildFile; productRef = 4AE5B0ED2A1C2080003F1288 /* BasicUpdater */; };
 		4AE662DC2B4E086300D0F968 /* FontPopUp in Frameworks */ = {isa = PBXBuildFile; productRef = 4AE662DB2B4E086300D0F968 /* FontPopUp */; };
 		4AE7437E268CF2AC003629B4 /* SplitterColorWell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE7437D268CF2AC003629B4 /* SplitterColorWell.swift */; };
-		4AE7E2B02845B91500716CF3 /* Config.xcconfig in Resources */ = {isa = PBXBuildFile; fileRef = 4AE7E2AF2845B88E00716CF3 /* Config.xcconfig */; };
 		4AE82354290B434000D8100B /* LayoutEditorListCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AE82353290B434000D8100B /* LayoutEditorListCell.xib */; };
 		4AE82356290B435000D8100B /* LayoutEditorListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE82355290B435000D8100B /* LayoutEditorListCell.swift */; };
 		4AE82A1624BFD4400044B6D3 /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AE82A1524BFD4400044B6D3 /* WelcomeView.swift */; };
@@ -350,7 +349,6 @@
 		4AE168A526091CA900A6169B /* LayoutEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutEditorViewController.swift; sourceTree = "<group>"; };
 		4AE2CF3A2631F43100CC6CF7 /* SplitsComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitsComponent.swift; sourceTree = "<group>"; };
 		4AE7437D268CF2AC003629B4 /* SplitterColorWell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterColorWell.swift; sourceTree = "<group>"; };
-		4AE7E2AF2845B88E00716CF3 /* Config.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Config.xcconfig; sourceTree = "<group>"; };
 		4AE82353290B434000D8100B /* LayoutEditorListCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LayoutEditorListCell.xib; sourceTree = "<group>"; };
 		4AE82355290B435000D8100B /* LayoutEditorListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutEditorListCell.swift; sourceTree = "<group>"; };
 		4AE82A1524BFD4400044B6D3 /* WelcomeView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
@@ -564,7 +562,6 @@
 			children = (
 				4A69E2C4295E10F3001FDA79 /* Programming-Notes.md */,
 				4AD7C6BB29149382006645A6 /* LiveSplitKit.xcodeproj */,
-				4AE7E2AF2845B88E00716CF3 /* Config.xcconfig */,
 				4A214A64255C8FB30006FD9F /* SplitsIOKit */,
 				4A230E9123B00A1D00959C57 /* Splitter */,
 				4A71054A24BE267300FA9127 /* SplitterTests */,
@@ -959,11 +956,9 @@
 			buildConfigurationList = 4A230EA123B00A1E00959C57 /* Build configuration list for PBXNativeTarget "Splitter" */;
 			buildPhases = (
 				3F959CA5F8D8667C869A9E69 /* [CP] Check Pods Manifest.lock */,
-				4A66573423E3E0CE00D14A67 /* Run Script */,
 				4A230E8B23B00A1D00959C57 /* Sources */,
 				4A230E8C23B00A1D00959C57 /* Frameworks */,
 				4A230E8D23B00A1D00959C57 /* Resources */,
-				4A66573523E3E0D900D14A67 /* ShellScript */,
 				0B8E043ACE44C9951BB8C2E3 /* [CP] Embed Pods Frameworks */,
 				4AD7C6CD291494ED006645A6 /* Embed Frameworks */,
 			);
@@ -1132,7 +1127,6 @@
 				4AE82354290B434000D8100B /* LayoutEditorListCell.xib in Resources */,
 				4AC0E3A62767B3F3004D71D6 /* GeneralPrefsViewController.xib in Resources */,
 				4A0981A724E34DE400E44792 /* AccountButtonView.xib in Resources */,
-				4AE7E2B02845B91500716CF3 /* Config.xcconfig in Resources */,
 				4A05EEFD24D762E200873D07 /* DownloadWindow.storyboard in Resources */,
 				4A230E9C23B00A1E00959C57 /* Main.storyboard in Resources */,
 				4A56138A262CFB8900702B0E /* OptionsRow.xib in Resources */,
@@ -1200,41 +1194,6 @@
 			shellPath = /bin/sh;
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
-		};
-		4A66573423E3E0CE00D14A67 /* Run Script */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			name = "Run Script";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n#if [ $CONFIGURATION == Release ]; then\n   # echo \"Bumping build number...\"\n#    plist=${PROJECT_DIR}/${INFOPLIST_FILE}\n\n# increment the build number (ie 115 to 116)\n #   buildnum=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${plist}\")\n  #  if [[ \"${buildnum}\" == \"\" ]]; then\n   #     echo \"No build number in $plist\"\n    #    exit 2\n    #fi\n\n    #buildnum=$(expr $buildnum + 1)\n    #/usr/libexec/Plistbuddy -c \"Set CFBundleVersion $buildnum\" \"${plist}\"\n    #echo \"Bumped build number to $buildnum\"\n\n#else\n #   echo $CONFIGURATION \" build - Not bumping build number.\"\n#fi\n";
-		};
-		4A66573523E3E0D900D14A67 /* ShellScript */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-			);
-			outputFileListPaths = (
-			);
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n#if [ $CONFIGURATION == Release ]; then\n#    echo \"Bumping build number...\"\n#    plist=${PROJECT_DIR}/${INFOPLIST_FILE}\n\n# increment the build number (ie 115 to 116)\n #   buildnum=$(/usr/libexec/PlistBuddy -c \"Print CFBundleVersion\" \"${plist}\")\n  #  if [[ \"${buildnum}\" == \"\" ]]; then\n   #     echo \"No build number in $plist\"\n    #    exit 2\n    #fi\n\n    #buildnum=$(expr $buildnum + 1)\n    #/usr/libexec/Plistbuddy -c \"Set CFBundleVersion $buildnum\" \"${plist}\"\n    #echo \"Bumped build number to $buildnum\"\n\n#else\n #   echo $CONFIGURATION \" build - Not bumping build number.\"\n#fi\n";
 		};
 		5C74E688F4239AE0D1302A28 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -1474,7 +1433,6 @@
 /* Begin XCBuildConfiguration section */
 		4A230E9F23B00A1E00959C57 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4AE7E2AF2845B88E00716CF3 /* Config.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ANALYZER_NONNULL = YES;
@@ -1636,7 +1594,6 @@
 		};
 		4A230EA323B00A1E00959C57 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4AE7E2AF2845B88E00716CF3 /* Config.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";

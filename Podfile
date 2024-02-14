@@ -1,5 +1,5 @@
 # Uncomment the next line to define a global platform for your project
-platform :osx, '10.14'
+platform :osx, '10.15'
   use_frameworks!
   inhibit_all_warnings!
 
@@ -29,5 +29,13 @@ platform :osx, '10.14'
       puts "Fix MASShortcut"
     end
   end
+  
+  plugin 'cocoapods-keys', {
+  	:project => "splitter_pods",
+  	:keys => [
+  		"SPLIT_SIO_SECRET",
+  		"SPLIT_SIO_CLIENT"
+  	]
+  }
   
 end

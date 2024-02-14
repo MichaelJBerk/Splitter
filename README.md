@@ -44,9 +44,8 @@ If you want to build Splitter yourself:
 - Install CocoaPods if you don't already have it installed
 - Clone this repo
 - run `pod install` in the project's root directory
+	- You'll be prompted to set the secret and client keys for Splits.io, but you can press the Return key to leave them blank. See [cocoapods-keys](https://github.com/orta/cocoapods-keys?tab=readme-ov-file) for more info.
 - Open Splitter.xcworkspace in Xcode
-
-In order for certain features to work - namely Splits.io authentications, and beta updates via Sparkle - you'll need to replace the keys in `Config.xcconfig` with your own personal keys - see that file for more info.
 
 
 ### Acknowledgements
