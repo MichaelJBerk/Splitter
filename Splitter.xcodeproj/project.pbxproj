@@ -1815,7 +1815,7 @@
 			repositoryURL = "https://github.com/michaeljberk/BasicUpdater.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 0.0.1;
+				minimumVersion = 0.0.3;
 			};
 		};
 		4AE662DA2B4E086300D0F968 /* XCRemoteSwiftPackageReference "FontPopUp" */ = {
