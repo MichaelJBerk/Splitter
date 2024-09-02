@@ -42,7 +42,7 @@ class TimeRow: NSStackView, NibLoadable, SplitterComponent, NSTextFieldDelegate,
 		attemptsLabel.run = self.run
 		timeLabel.run = run
 		attemptsField.run = run
-		attemptsField.formatter = OnlyIntegerValueFormatter()
+//		attemptsField.formatter = OnlyIntegerValueFormatter()
 		detachesHiddenViews = false
 
 		attemptsField.delegate = self
@@ -98,6 +98,11 @@ class TimeRow: NSStackView, NibLoadable, SplitterComponent, NSTextFieldDelegate,
 	}
 	func controlTextDidEndEditing(_ obj: Notification) {
 		self.run.attempts = Int(attemptsField.stringValue) ?? 0
+		//No idea why, but `makeFirstResponder()` won't make the text field resign first responder unless it's in a task
+		Task {
+			window?.makeFirstResponder(nil)
+		}
+		
 	}
 	
 	func setFont() {

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="22154" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="32700.99.1234" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22154"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="22689"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -13,7 +13,7 @@
             <rect key="frame" x="0.0" y="0.0" width="263" height="43"/>
             <autoresizingMask key="autoresizingMask"/>
             <subviews>
-                <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tK9-YK-iFx" customClass="ThemedTextField" customModule="Splitter" customModuleProvider="target">
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="tK9-YK-iFx" customClass="ThemedTextField" customModule="Splitter" customModuleProvider="target">
                     <rect key="frame" x="-2" y="0.0" width="206" height="43"/>
                     <textFieldCell key="cell" lineBreakMode="clipping" title="00:00:00.00" placeholderString="00:00:00.00" id="Nw5-ZN-JLc" customClass="VerticalCenteredTextFieldCell" customModule="Splitter" customModuleProvider="target">
                         <font key="font" metaFont="system" size="36"/>
@@ -27,7 +27,7 @@
                 <stackView distribution="equalSpacing" orientation="vertical" alignment="trailing" spacing="0.0" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w2h-zj-jyc">
                     <rect key="frame" x="210" y="0.0" width="53" height="43"/>
                     <subviews>
-                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uGM-ou-HQW" customClass="ThemedTextField" customModule="Splitter" customModuleProvider="target">
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="uGM-ou-HQW" customClass="ThemedTextField" customModule="Splitter" customModuleProvider="target">
                             <rect key="frame" x="2" y="27" width="53" height="16"/>
                             <textFieldCell key="cell" lineBreakMode="clipping" title="Attempt" id="4dI-mD-a8H">
                                 <font key="font" metaFont="system"/>
@@ -38,10 +38,10 @@
                                 <userDefinedRuntimeAttribute type="boolean" keyPath="fixedFontSize" value="YES"/>
                             </userDefinedRuntimeAttributes>
                         </textField>
-                        <textField focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" id="w9Z-NV-iTD" customClass="ThemedTextField" customModule="Splitter" customModuleProvider="target">
+                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" textCompletion="NO" id="w9Z-NV-iTD" customClass="ThemedTextField" customModule="Splitter" customModuleProvider="target">
                             <rect key="frame" x="-2" y="0.0" width="57" height="20"/>
                             <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
-                            <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" editable="YES" alignment="right" placeholderString="0" id="XX4-ho-Xfj">
+                            <textFieldCell key="cell" lineBreakMode="clipping" selectable="YES" editable="YES" refusesFirstResponder="YES" alignment="right" placeholderString="0" id="XX4-ho-Xfj">
                                 <font key="font" metaFont="system" size="17"/>
                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
