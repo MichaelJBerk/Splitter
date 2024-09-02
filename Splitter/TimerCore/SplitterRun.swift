@@ -168,9 +168,15 @@ class SplitterRun: NSObject {
 		self.fontManager = FontManager(run: self)
 		//Don't know why I set text font to nil
 		setObservers()
-		//If there's a "currentComparison" variable here, it's a pre-4.3 Splitter file, and thus we need to update it using `fixRunAndDiffsComparison`
-		if let comp = getCustomVariable(name: "currentComparison") {
-			fixRunAndDiffsComparison(comp)
+		
+		if let splitFile = document as? Document,
+		   let versionUsed = splitFile.versionUsed,
+		   versionUsed < 4.3 {
+			//If it's a pre-4.3 Splitter file, and there's a `currentComparison` variable, we need to update it using `fixRunAndDiffsComparison`
+			//
+			if let comp = getCustomVariable(name: "currentComparison") {
+				fixRunAndDiffsComparison(comp)
+			}
 		}
 		setRunComparison(to: .personalBest, disableUndo: true)
 	}
@@ -539,8 +545,6 @@ class SplitterRun: NSObject {
 		if !comparisons.contains(comparison) {
 			editRun { editor in
 				_ = editor.addComparison(comparison)
-                editor.addCustomVariable("currentComparison")
-                editor.setCustomVariable("currentComparison", comparison)
 			}
 		}
 		while timer.lsTimer.currentComparison() != comparison {
@@ -941,15 +945,6 @@ class SplitterRun: NSObject {
 	}
 	
 	func saveToLSS() -> String {
-		let comparison = self.getRunComparision()
-		
-		//Need to put it in a DispatchQueue, or it won't save the times properly for some reason
-		DispatchQueue.main.async {
-			self.editRun({ editor in
-				editor.addCustomVariable("currentComparison")
-				editor.setCustomVariable("currentComparison", comparison.liveSplitID)
-			})
-		}
 		return timer.lsTimer.saveAsLss()
 	}
 	func layoutToJSON() -> String {
