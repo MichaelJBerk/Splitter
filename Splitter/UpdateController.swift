@@ -14,11 +14,14 @@ class UpdateController:NSObject {
 	static let shared = UpdateController()
 	
 	let updater = Updater(projectURL: URL(string: "https://github.com/michaeljberk/Splitter"), shouldUpdateTo: { release in
-		let regexStr = #"\d*$"#
+		let regexStr = #"[\d .]*-\d*"#
 		let tag = release.tagName
-		let range = tag.range(of: regexStr, options: .regularExpression)!
-		let newBuildStr = String(tag[range])
-		let newBuildNum = Int(newBuildStr)!
+		guard let tagVerRange = tag.range(of: regexStr, options: .regularExpression) else {return false}
+		let tagVer = tag[tagVerRange]
+		let tagVerSplit = tagVer.split(separator: "-")
+		guard tagVerSplit.count > 1 else {return false}
+		let newBuildStr = tagVerSplit[1]
+		guard let newBuildNum = Int(newBuildStr) else {return false}
 		let currentBuildStr = Bundle.main.infoDictionary?["CFBundleVersion"] as! String
 		let currentBuildNum = Int(currentBuildStr)!
 		return newBuildNum > currentBuildNum
