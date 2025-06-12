@@ -147,9 +147,6 @@ class ViewController: NSViewController {
 	var appearance: SplitterAppearance?
 	var shouldLoadSplits = false
 	
-	//MARK: Splits.io Uploading
-	var splitsIOUploader: SplitsIOUploader!
-	
 	//MARK: - Settings
 	var enabledMenuItems:[NSUserInterfaceItemIdentifier: Bool] = [:]
 	
@@ -537,8 +534,6 @@ class ViewController: NSViewController {
 		//Need to add a blank split b/c of how LiveSplit-Core works
 		
 		view.window?.makeFirstResponder(splitsTableView)
-		
-		splitsIOUploader = SplitsIOUploader(viewController: self)
 		
 		self.addTimerStateChangedObserver()
 		//This line of code looks redundant, but it's here in order to make the timerState's notification trigger

@@ -25,10 +25,6 @@ extension ViewController {
 	
 	//MARK - File Menu
 	
-	@IBAction func uploadToSplitsIOMenuItem(_ sender: Any?) {
-		splitsIOUploader.uploadToSplitsIO()
-	}
-	
 	@IBAction func useRunAsDefaultMenuItem(_ sender: Any?) {
 		SplitterDocumentController.sShared.useAsTemplate(doc: document)
 	}

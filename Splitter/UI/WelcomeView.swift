@@ -267,35 +267,6 @@ struct OpenFileButton: View {
 		}).buttonStyle(WelcomeButtonStyle())
 	}
 }
-@available(macOS 10.15, *)
-/// Button for the user to download a run from Splits.io in the Welcome window
-struct DownloadFileButton: View {
-	var body: some View {
-		Button(action: {
-			let board = NSStoryboard(name: "DownloadWindow", bundle: nil).instantiateController(withIdentifier: "windowController") as? DownloadWindowController
-			if let win = board?.window {
-				AppDelegate.shared?.searchWindow = win
-			}
-			board?.window?.makeKeyAndOrderFront(nil)
-			
-			
-		}, label: {
-		HStack {
-			Image("square.and.arrow.down.fill")
-				.resizable()
-				.aspectRatio(contentMode: .fit)
-				.frame(width: 30, height: 30)
-				.foregroundColor(.accentColor)
-			VStack(alignment: WelcomeAlignment.welcomeAlignment) {
-				Text("Download a run from Splits.io").font(.headline)
-				Text("Use the splits from an existing run on Splits.io ").font(.subheadline)
-			}
-			.alignmentGuide(WelcomeAlignment.welcomeAlignment) { d in d[HorizontalAlignment.center]}
-			
-		}
-		}).buttonStyle(WelcomeButtonStyle())
-	}
-}
 
 @available(macOS 10.15, *)
 /// Alignment used for the Welcome window
@@ -336,7 +307,6 @@ struct SplitterInfoView: View {
 					.frame(height: 15)
 				CreateNewFileButton()
 				OpenFileButton()
-				DownloadFileButton()
 				HStack {
 					Button("Configure Hotkeys"){
 						(NSApp.delegate as? AppDelegate)?.preferencesWindowController.show(preferencePane: .hotkeys)

@@ -92,7 +92,7 @@ class SplitterDoc: NSDocument {
 	}
 	///Returns the types that Splitter supports
 	override func writableTypes(for saveOperation: NSDocument.SaveOperationType) -> [String] {
-		return [DocFileType.splitFile.rawValue, DocFileType.liveSplit.rawValue, DocFileType.splitsioFile.rawValue]
+		return [DocFileType.splitFile.rawValue, DocFileType.liveSplit.rawValue]
 	}
 	///Folder of the File Bundle. Used for `.split` files
 	var bundleFolder: Folder? {
@@ -239,20 +239,6 @@ class SplitterDoc: NSDocument {
 		}
 		super.save(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: contextInfo)
 	}
-	///Saves a file in the  Splits.io Exchange Format (`.json`)
-	func saveSplitsio(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, delegate: Any?, didSave didSaveSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
-		if let vc = viewController {
-			if let sioString = vc.splitsIOUploader.makeSplitsIOJSON() {
-				fileWrapperURL = url.absoluteString
-				
-				if let sioData = sioString.data(using: .utf8) {
-					wrapper = FileWrapper(regularFileWithContents: sioData)
-				}
-				
-			}
-		}
-		super.save(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: contextInfo)
-	}
 	
 	
 	
@@ -264,8 +250,8 @@ class SplitterDoc: NSDocument {
 			saveSplitFile(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: 	contextInfo)
 		case DocFileType.liveSplit:
 			saveLiveSplitFile(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: 	contextInfo)
-		case DocFileType.splitsioFile:
-			saveSplitsio(to: url, ofType: typeName, for: saveOperation, delegate: delegate, didSave: didSaveSelector, contextInfo: contextInfo)
+		default:
+			break
 		}
 		
 	}

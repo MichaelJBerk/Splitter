@@ -10,7 +10,6 @@ import Cocoa
 import Preferences
 import Files
 import SwiftUI
-import SplitsIOKit
 import BasicUpdater
 import Keys
 
@@ -46,9 +45,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		#endif
 		return SplitterKeys().sPLIT_SIO_SECRET
 	}
-	
-	static var splitsIOAuth = SplitsIOAuth(client: splitsioclient, secret: splitsiosecret, redirects: "splitter://login", url: Settings.splitsIOURL.absoluteString)
-	public static var splitsIOKit = SplitsIOKit(auth: splitsIOAuth, url: Settings.splitsIOURL)
 	
 	public var hotkeyController: HotkeysViewController?
 	public static var shared: AppDelegate? = NSApplication.shared.delegate as? AppDelegate
@@ -124,8 +120,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		Settings.lastOpenedBuild = otherConstants.build
 		setupKeybinds()
 		
-		print("Auth Enabled: ", SplitsIOKit.shared.hasAuth)
-		
 		//Add the hotkey event monitor
 		NSEvent.addGlobalMonitorForEvents(matching: .keyUp, handler: performGlobalKeybindAction(event:))
 		
@@ -178,27 +172,13 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		}
 	}
 	
-	@IBAction func searchWindowMenuItem( _ sender: Any) {
-		self.openSearchWindow()
-	}
-	
 	//MARK: -
-	func openSearchWindow() {
-		let board = NSStoryboard(name: "DownloadWindow", bundle: nil).instantiateController(withIdentifier: "windowController") as? DownloadWindowController
-		if self.searchWindow == nil, let win = board?.window {
-			self.searchWindow = win
-			win.makeKeyAndOrderFront(nil)
-		} else {
-			self.searchWindow.makeKeyAndOrderFront(nil)
-		}
-	}
 
 	#if DEBUG
 	lazy var preferencesWindowController = PreferencesWindowController(
 		preferencePanes: [
 			GeneralPrefsViewController(),
 			HotkeysViewController(),
-			AccountViewController(),
 			DebugPrefsViewController()
 			]
 	)
@@ -207,7 +187,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		preferencePanes: [
 			GeneralPrefsViewController(),
 			HotkeysViewController(),
-			AccountViewController()
 			]
 		
 	)
@@ -234,21 +213,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			}
 			return viewC
 		}
-	}
-	
-	//Handles the URL scheme for logging in to splits.io
-	func application(_ application: NSApplication, open urls: [URL]) {
-		if let authURL = urls.first(where: { url in
-			let comps = URLComponents(string: url.absoluteString)
-			return comps?.host == "login"
-		}) {
-			do {
-				try SplitsIOKit.shared.handleRedirectURL(url: authURL)
-			} catch {
-				print("Redirect Error: ", error)
-			}
-		}
-		
 	}
 
 	@IBAction func preferencesMenuItemActionHandler(_ sender: NSMenuItem) {
@@ -280,8 +244,4 @@ extension AppDelegate: NSMenuItemValidation {
 		}
 		return true
 	}
-}
-
-extension SplitsIOKit {
-	public static var shared = AppDelegate.splitsIOKit
 }

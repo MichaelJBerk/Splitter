@@ -12,19 +12,8 @@
 		4A01B802268631FC00F15A50 /* SplitsEditorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A01B800268631FC00F15A50 /* SplitsEditorViewController.swift */; };
 		4A01B803268631FC00F15A50 /* SplitsEditorViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A01B801268631FC00F15A50 /* SplitsEditorViewController.xib */; };
 		4A01B805268632D400F15A50 /* NibLoadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A01B804268632D400F15A50 /* NibLoadable.swift */; };
-		4A05EEFD24D762E200873D07 /* DownloadWindow.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4A05EEFC24D762E200873D07 /* DownloadWindow.storyboard */; };
 		4A09177B2A856E500027B336 /* ComponentOptionsFontStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09177A2A856E500027B336 /* ComponentOptionsFontStack.swift */; };
 		4A0917BB2A85DE490027B336 /* FontPopUpButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0917BA2A85DE490027B336 /* FontPopUpButton.swift */; };
-		4A09819F24E3089B00E44792 /* LoginView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09819D24E3089B00E44792 /* LoginView.swift */; };
-		4A0981A024E3089B00E44792 /* LoginView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A09819E24E3089B00E44792 /* LoginView.xib */; };
-		4A0981A624E34DE400E44792 /* AccountButtonView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0981A424E34DE400E44792 /* AccountButtonView.swift */; };
-		4A0981A724E34DE400E44792 /* AccountButtonView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A0981A524E34DE400E44792 /* AccountButtonView.xib */; };
-		4A0981AC24E4816A00E44792 /* AccountProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A0981AA24E4816A00E44792 /* AccountProfileView.xib */; };
-		4A0981AF24E4844300E44792 /* AccountProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0981AE24E4844200E44792 /* AccountProfileView.swift */; };
-		4A0981B224E4853A00E44792 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0981B124E4853A00E44792 /* AccountViewController.swift */; };
-		4A09E29C24D754520013D7BC /* DownloadWindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09E29B24D754520013D7BC /* DownloadWindowController.swift */; };
-		4A09E29E24D7555E0013D7BC /* DownloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09E29D24D7555E0013D7BC /* DownloadView.swift */; };
-		4A09E2A824D75D6B0013D7BC /* CategoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A09E2A624D75D6B0013D7BC /* CategoryViewController.swift */; };
 		4A0ACE882971C24C0020F7ED /* lssTestFile.lss in Resources */ = {isa = PBXBuildFile; fileRef = 4A0ACE872971C24C0020F7ED /* lssTestFile.lss */; };
 		4A0ACE8A2971C3140020F7ED /* Files in Frameworks */ = {isa = PBXBuildFile; productRef = 4A0ACE892971C3140020F7ED /* Files */; };
 		4A0D10DE269790F6003A5E04 /* SplitterDocumentController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A0D10DD269790F6003A5E04 /* SplitterDocumentController.swift */; };
@@ -59,7 +48,6 @@
 		4A3BB54E27DA9322006C3256 /* AdvancedHotkeyViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A3BB54C27DA9322006C3256 /* AdvancedHotkeyViewController.xib */; };
 		4A3BDFA123E4C3B6001EA7FF /* DefaultHotkeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3BDFA023E4C3B6001EA7FF /* DefaultHotkeys.swift */; };
 		4A3F989925EFDB0800B2B955 /* CodableLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A3F989825EFDB0800B2B955 /* CodableLayout.swift */; };
-		4A44FF4F24E9A9E60083013A /* SplitsIOUpload.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A44FF4E24E9A9E60083013A /* SplitsIOUpload.swift */; };
 		4A470BB02695FABA001F0081 /* Themeable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A470BAF2695FABA001F0081 /* Themeable.swift */; };
 		4A470BB22695FAE1001F0081 /* ThemedImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A470BB12695FAE1001F0081 /* ThemedImage.swift */; };
 		4A470BB42695FB06001F0081 /* MetadataImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A470BB32695FB06001F0081 /* MetadataImage.swift */; };
@@ -214,19 +202,8 @@
 		4A01B800268631FC00F15A50 /* SplitsEditorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitsEditorViewController.swift; sourceTree = "<group>"; };
 		4A01B801268631FC00F15A50 /* SplitsEditorViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SplitsEditorViewController.xib; sourceTree = "<group>"; };
 		4A01B804268632D400F15A50 /* NibLoadable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibLoadable.swift; sourceTree = "<group>"; };
-		4A05EEFC24D762E200873D07 /* DownloadWindow.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = DownloadWindow.storyboard; sourceTree = "<group>"; };
 		4A09177A2A856E500027B336 /* ComponentOptionsFontStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComponentOptionsFontStack.swift; sourceTree = "<group>"; };
 		4A0917BA2A85DE490027B336 /* FontPopUpButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontPopUpButton.swift; sourceTree = "<group>"; };
-		4A09819D24E3089B00E44792 /* LoginView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginView.swift; sourceTree = "<group>"; };
-		4A09819E24E3089B00E44792 /* LoginView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LoginView.xib; sourceTree = "<group>"; };
-		4A0981A424E34DE400E44792 /* AccountButtonView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountButtonView.swift; sourceTree = "<group>"; };
-		4A0981A524E34DE400E44792 /* AccountButtonView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountButtonView.xib; sourceTree = "<group>"; };
-		4A0981AA24E4816A00E44792 /* AccountProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AccountProfileView.xib; sourceTree = "<group>"; };
-		4A0981AE24E4844200E44792 /* AccountProfileView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountProfileView.swift; sourceTree = "<group>"; };
-		4A0981B124E4853A00E44792 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
-		4A09E29B24D754520013D7BC /* DownloadWindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadWindowController.swift; sourceTree = "<group>"; };
-		4A09E29D24D7555E0013D7BC /* DownloadView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadView.swift; sourceTree = "<group>"; };
-		4A09E2A624D75D6B0013D7BC /* CategoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryViewController.swift; sourceTree = "<group>"; };
 		4A0ACE872971C24C0020F7ED /* lssTestFile.lss */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = lssTestFile.lss; sourceTree = "<group>"; };
 		4A0D10DD269790F6003A5E04 /* SplitterDocumentController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterDocumentController.swift; sourceTree = "<group>"; };
 		4A0DC28524186C6200FC959A /* SplitsIODoc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitsIODoc.swift; sourceTree = "<group>"; };
@@ -261,7 +238,6 @@
 		4A3BB54C27DA9322006C3256 /* AdvancedHotkeyViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AdvancedHotkeyViewController.xib; sourceTree = "<group>"; };
 		4A3BDFA023E4C3B6001EA7FF /* DefaultHotkeys.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultHotkeys.swift; sourceTree = "<group>"; };
 		4A3F989825EFDB0800B2B955 /* CodableLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableLayout.swift; sourceTree = "<group>"; };
-		4A44FF4E24E9A9E60083013A /* SplitsIOUpload.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitsIOUpload.swift; sourceTree = "<group>"; };
 		4A470BAF2695FABA001F0081 /* Themeable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Themeable.swift; sourceTree = "<group>"; };
 		4A470BB12695FAE1001F0081 /* ThemedImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThemedImage.swift; sourceTree = "<group>"; };
 		4A470BB32695FB06001F0081 /* MetadataImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MetadataImage.swift; sourceTree = "<group>"; };
@@ -430,55 +406,6 @@
 				5CE78ED356BF049ED372819E /* Pods_Splitter_SplitterUITests.framework */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		4A0981A124E308A100E44792 /* Login */ = {
-			isa = PBXGroup;
-			children = (
-				4A09819D24E3089B00E44792 /* LoginView.swift */,
-				4A09819E24E3089B00E44792 /* LoginView.xib */,
-			);
-			path = Login;
-			sourceTree = "<group>";
-		};
-		4A0981A824E34DED00E44792 /* AccountButton */ = {
-			isa = PBXGroup;
-			children = (
-				4A0981A424E34DE400E44792 /* AccountButtonView.swift */,
-				4A0981A524E34DE400E44792 /* AccountButtonView.xib */,
-			);
-			path = AccountButton;
-			sourceTree = "<group>";
-		};
-		4A0981AD24E4817000E44792 /* AccountProfileViewController */ = {
-			isa = PBXGroup;
-			children = (
-				4A0981AE24E4844200E44792 /* AccountProfileView.swift */,
-				4A0981AA24E4816A00E44792 /* AccountProfileView.xib */,
-			);
-			path = AccountProfileViewController;
-			sourceTree = "<group>";
-		};
-		4A0981B024E484BE00E44792 /* Splits.ioAccount */ = {
-			isa = PBXGroup;
-			children = (
-				4A0981AD24E4817000E44792 /* AccountProfileViewController */,
-				4A0981A824E34DED00E44792 /* AccountButton */,
-				4A0981B124E4853A00E44792 /* AccountViewController.swift */,
-				4A0981A124E308A100E44792 /* Login */,
-			);
-			path = Splits.ioAccount;
-			sourceTree = "<group>";
-		};
-		4A09E29F24D755680013D7BC /* Import */ = {
-			isa = PBXGroup;
-			children = (
-				4A09E2A624D75D6B0013D7BC /* CategoryViewController.swift */,
-				4A09E29B24D754520013D7BC /* DownloadWindowController.swift */,
-				4A05EEFC24D762E200873D07 /* DownloadWindow.storyboard */,
-				4A09E29D24D7555E0013D7BC /* DownloadView.swift */,
-			);
-			path = Import;
 			sourceTree = "<group>";
 		};
 		4A0DC2832418216A00FC959A /* SplitsIO */ = {
@@ -905,16 +832,13 @@
 			isa = PBXGroup;
 			children = (
 				4A9423C8268D39ED0033A62F /* Splits Editor */,
-				4A0981B024E484BE00E44792 /* Splits.ioAccount */,
 				4AFAD84424CF2CF8006FC480 /* WelcomeWindowController.swift */,
 				4AE82A1524BFD4400044B6D3 /* WelcomeView.swift */,
-				4A09E29F24D755680013D7BC /* Import */,
 				4A6A965624EC3516008EFD2B /* LoadingViewController.swift */,
 				4A6A965724EC3516008EFD2B /* LoadingViewController.xib */,
 				4A18662F23C5257800FEEE54 /* MenuItemConstants.swift */,
 				4A894B1B249ABA71004FEEB3 /* LoadableNib.swift */,
 				4A24F20224F6E0B100278EB7 /* TouchBarDelegate.swift */,
-				4A44FF4E24E9A9E60083013A /* SplitsIOUpload.swift */,
 				4A01B804268632D400F15A50 /* NibLoadable.swift */,
 				4A1657AF23EA4EE20008CB5F /* View Controller */,
 				4A9FCC7A2411A0A2000937A2 /* Controls */,
@@ -1112,7 +1036,6 @@
 				4A7DDCE223BBDD0900A36AD1 /* Credits.html in Resources */,
 				4AF9E8AC24CE31CA00DFD5BE /* DebugPrefsViewController.xib in Resources */,
 				4A388FCF25D4B00B00A63C9E /* PrevNextRow.xib in Resources */,
-				4A0981AC24E4816A00E44792 /* AccountProfileView.xib in Resources */,
 				4A4D391F23C4F29C00BF3FCD /* blankWindow.xib in Resources */,
 				4A7C077F2B30B90800EB88D2 /* CustomComparisonList.xib in Resources */,
 				4A75579D255C47F400ACE826 /* SplitterDocSplitsio.icns in Resources */,
@@ -1126,11 +1049,8 @@
 				4A01B803268631FC00F15A50 /* SplitsEditorViewController.xib in Resources */,
 				4AE82354290B434000D8100B /* LayoutEditorListCell.xib in Resources */,
 				4AC0E3A62767B3F3004D71D6 /* GeneralPrefsViewController.xib in Resources */,
-				4A0981A724E34DE400E44792 /* AccountButtonView.xib in Resources */,
-				4A05EEFD24D762E200873D07 /* DownloadWindow.storyboard in Resources */,
 				4A230E9C23B00A1E00959C57 /* Main.storyboard in Resources */,
 				4A56138A262CFB8900702B0E /* OptionsRow.xib in Resources */,
-				4A0981A024E3089B00E44792 /* LoginView.xib in Resources */,
 				4A61438624801A37007C38E0 /* ColorsView.xib in Resources */,
 				4ACFB1BD262F4E9700EA79B6 /* TitleComponent.xib in Resources */,
 				4AEA331B2629F024001012BD /* TimeRow.xib in Resources */,
@@ -1294,7 +1214,6 @@
 			files = (
 				4A470BB42695FB06001F0081 /* MetadataImage.swift in Sources */,
 				4A6726EA23F05D17006F4BC4 /* LiveSplit.swift in Sources */,
-				4A0981B224E4853A00E44792 /* AccountViewController.swift in Sources */,
 				4A9B9606261DF26D000FC89C /* TimeRow.swift in Sources */,
 				4AE168A626091CA900A6169B /* LayoutEditorViewController.swift in Sources */,
 				4A87265523BD53F8003A14AF /* runInfo.swift in Sources */,
@@ -1328,17 +1247,14 @@
 				4A5B867829033834004D09C8 /* DragIndicator.swift in Sources */,
 				4A18663023C5257800FEEE54 /* MenuItemConstants.swift in Sources */,
 				4A7C07802B30B90800EB88D2 /* CustomComparisonList.swift in Sources */,
-				4A09E2A824D75D6B0013D7BC /* CategoryViewController.swift in Sources */,
 				4A0F716323F4A9E400E5948E /* SplitterDocBundle.swift in Sources */,
 				4A4D392223C4FAE500BF3FCD /* HotkeysViewController.swift in Sources */,
 				4A09177B2A856E500027B336 /* ComponentOptionsFontStack.swift in Sources */,
 				4AD44AD7262F40E3003375C4 /* KeyValueComponent.swift in Sources */,
-				4A09E29E24D7555E0013D7BC /* DownloadView.swift in Sources */,
 				4A61438424801A28007C38E0 /* ColorsView.swift in Sources */,
 				4AC2745826990E04007ED8F5 /* GeneralLayoutSettingsViewController.swift in Sources */,
 				4AD026EB26090ED400F6CD0C /* SplitterComponent.swift in Sources */,
 				4A0DC28624186C6200FC959A /* SplitsIODoc.swift in Sources */,
-				4A44FF4F24E9A9E60083013A /* SplitsIOUpload.swift in Sources */,
 				4ACCEA7823B02F520068F89E /* TimeSplit.swift in Sources */,
 				4A5C1D1523F4AFB80014E8D3 /* CommonPaths.swift in Sources */,
 				4AD94B202804B0B8007A1881 /* ZippyFontDecoding.swift in Sources */,
@@ -1358,14 +1274,10 @@
 				4A6A3BE023CD1C39002C20AE /* GlobalKeybindPrefs.swift in Sources */,
 				4A1C1469240ED30C0056B104 /* InfoOptionsViewController.swift in Sources */,
 				4A01B802268631FC00F15A50 /* SplitsEditorViewController.swift in Sources */,
-				4A09819F24E3089B00E44792 /* LoginView.swift in Sources */,
-				4A0981AF24E4844300E44792 /* AccountProfileView.swift in Sources */,
-				4A09E29C24D754520013D7BC /* DownloadWindowController.swift in Sources */,
 				4A0F715F23F4A0A500E5948E /* SplitterDoc.swift in Sources */,
 				4A9423CA268D3A6C0033A62F /* SplitsEditorTextField.swift in Sources */,
 				4A66A43023DE2682005952FA /* EditableSegmentIconView.swift in Sources */,
 				4A520E312693744D00F463B3 /* DraggingStackView.swift in Sources */,
-				4A0981A624E34DE400E44792 /* AccountButtonView.swift in Sources */,
 				4A520E2D2693737800F463B3 /* SplitterComponentType.swift in Sources */,
 				4A9C1D862B2A33EC00253411 /* FontManager.swift in Sources */,
 				4A894B1C249ABA71004FEEB3 /* LoadableNib.swift in Sources */,

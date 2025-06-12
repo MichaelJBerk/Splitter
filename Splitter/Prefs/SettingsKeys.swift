@@ -112,7 +112,6 @@ public struct Settings {
 		}
 		set {
 			UserDefaults.standard.set(newValue, forKey: SettingsKeys.splitsIOURL)
-			SplitsIOKit.shared.splitsIOURL = newValue
 			
 		}
 	}
