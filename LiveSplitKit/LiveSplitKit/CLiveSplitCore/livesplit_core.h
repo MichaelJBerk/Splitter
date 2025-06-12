@@ -9,6 +9,7 @@ extern "C" {
 #include <stdint.h>
 #include <stddef.h>
 #include <stdbool.h>
+#include <sys/types.h>
 
 void* Analysis_calculate_sum_of_best(void* run, bool simple_calculation, bool use_current_run, uint8_t method);
 void* Analysis_calculate_total_playtime_for_run(void* run);
