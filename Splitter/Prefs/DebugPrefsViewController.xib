@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="23727" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="23727"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -33,7 +33,7 @@
                     </columns>
                     <gridCells>
                         <gridCell row="8VS-hq-azr" column="r5W-5y-ziV" id="x8Q-tp-Ppi">
-                            <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8gy-OF-fha">
+                            <textField key="contentView" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="8gy-OF-fha">
                                 <rect key="frame" x="-2" y="76" width="81" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Splits.io URL" id="l73-MP-IPF">
                                     <font key="font" usesAppearanceFont="YES"/>
@@ -43,7 +43,7 @@
                             </textField>
                         </gridCell>
                         <gridCell row="8VS-hq-azr" column="m29-jf-FdE" id="Gnl-ni-NBf">
-                            <textField key="contentView" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8aX-HQ-q69">
+                            <textField key="contentView" focusRingType="none" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8aX-HQ-q69">
                                 <rect key="frame" x="130" y="76" width="100" height="21"/>
                                 <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="dnA-P0-QRI">
                                     <font key="font" usesAppearanceFont="YES"/>
@@ -56,7 +56,7 @@
                             </textField>
                         </gridCell>
                         <gridCell row="zOD-VY-bad" column="r5W-5y-ziV" id="SY3-3H-fT3">
-                            <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kd5-CU-gua">
+                            <textField key="contentView" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="kd5-CU-gua">
                                 <rect key="frame" x="-2" y="49" width="69" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Splits.io ID" id="y8W-iX-Lgh">
                                     <font key="font" usesAppearanceFont="YES"/>
@@ -66,7 +66,7 @@
                             </textField>
                         </gridCell>
                         <gridCell row="zOD-VY-bad" column="m29-jf-FdE" id="DMi-sR-VaP">
-                            <textField key="contentView" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g51-sm-wv4">
+                            <textField key="contentView" focusRingType="none" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" setsMaxLayoutWidthAtFirstLayout="YES" translatesAutoresizingMaskIntoConstraints="NO" id="g51-sm-wv4">
                                 <rect key="frame" x="130" y="49" width="100" height="21"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="ba3-sa-drG">
                                     <font key="font" usesAppearanceFont="YES"/>
@@ -79,7 +79,7 @@
                             </textField>
                         </gridCell>
                         <gridCell row="kaa-NU-NXJ" column="r5W-5y-ziV" id="GIg-DK-J1z">
-                            <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3XW-mV-i2n">
+                            <textField key="contentView" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3XW-mV-i2n">
                                 <rect key="frame" x="-2" y="22" width="96" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Splits.io Secret" id="WAH-CE-Qfw">
                                     <font key="font" usesAppearanceFont="YES"/>
@@ -89,7 +89,7 @@
                             </textField>
                         </gridCell>
                         <gridCell row="kaa-NU-NXJ" column="m29-jf-FdE" id="mdf-LV-Pbn">
-                            <textField key="contentView" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" setsMaxLayoutWidthAtFirstLayout="YES" contentType="password" translatesAutoresizingMaskIntoConstraints="NO" id="eeq-d1-hgw">
+                            <textField key="contentView" focusRingType="none" verticalHuggingPriority="750" ambiguous="YES" verifyAmbiguity="off" setsMaxLayoutWidthAtFirstLayout="YES" contentType="password" translatesAutoresizingMaskIntoConstraints="NO" id="eeq-d1-hgw">
                                 <rect key="frame" x="130" y="22" width="100" height="21"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" usesSingleLineMode="YES" id="fnx-4r-o4h">
                                     <font key="font" usesAppearanceFont="YES"/>
@@ -102,7 +102,7 @@
                             </textField>
                         </gridCell>
                         <gridCell row="3jo-vt-wFD" column="r5W-5y-ziV" id="95c-u2-cce">
-                            <textField key="contentView" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dCV-kB-g3Q">
+                            <textField key="contentView" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dCV-kB-g3Q">
                                 <rect key="frame" x="-2" y="0.0" width="128" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Splits.io Placeholder" id="HEM-06-67U">
                                     <font key="font" usesAppearanceFont="YES"/>

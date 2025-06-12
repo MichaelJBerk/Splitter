@@ -65,7 +65,7 @@ class DebugPrefsViewController: NSViewController, PreferencePane {
 	
 	@IBAction func sioInfoButtonClick(_ sender: NSButton) {
 		let alert = NSAlert()
-		alert.informativeText = "The following is persisted in the DB, and is what will be used for auth on next startup:\n\n\n\n\n\n\n\n\n\n\n\nURL: \(Settings.splitsIOURL) \nClientID: \(AppDelegate.splitsioclient)\nSecret: \(AppDelegate.splitsiosecret)"
+		alert.informativeText = "The following is persisted in the DB, and is what will be used for auth on next startup:\n\n\n\n\n\n\n\n\n\n\n\nURL: \(Settings.splitsIOURL)"
 		alert.beginSheetModal(for: self.view.window!)
 	}
 	

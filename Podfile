@@ -33,8 +33,6 @@ platform :osx, '10.15'
   plugin 'cocoapods-keys', {
   	:project => "splitter_pods",
   	:keys => [
-  		"SPLIT_SIO_SECRET",
-  		"SPLIT_SIO_CLIENT"
   	]
   }
   

@@ -29,23 +29,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	
 	let updateController = UpdateController.shared
 	
-	static var splitsioclient: String {
-		#if DEBUG
-		if let clientOverride = Settings.splitsIOClientOverride {
-			return clientOverride
-		}
-		#endif
-		return SplitterKeys().sPLIT_SIO_CLIENT
-	}
-	static var splitsiosecret: String {
-		#if DEBUG
-		if let secretOverride = Settings.splitsIOSecretOverride {
-			return secretOverride
-		}
-		#endif
-		return SplitterKeys().sPLIT_SIO_SECRET
-	}
-	
 	public var hotkeyController: HotkeysViewController?
 	public static var shared: AppDelegate? = NSApplication.shared.delegate as? AppDelegate
 	var appKeybinds: [SplitterKeybind?] = []
