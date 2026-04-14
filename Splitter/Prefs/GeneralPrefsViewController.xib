@@ -1,83 +1,95 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="21507" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="24506" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="21507"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="24506"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="GeneralPrefsViewController" customModule="Splitter" customModuleProvider="target">
             <connections>
-                <outlet property="menuBarSwitch" destination="YzU-hD-tcw" id="lbg-Fn-sVb"/>
-                <outlet property="resetWarningsButton" destination="cc2-Ty-NlT" id="2QD-uu-KGP"/>
+                <outlet property="menuBarSwitch" destination="B5H-Ad-mFC" id="e12-ZO-XAU"/>
+                <outlet property="resetWarningsButton" destination="PeS-4f-BjN" id="Gvg-6F-a7x"/>
                 <outlet property="view" destination="bXu-B5-B3o" id="VDk-Qi-qiQ"/>
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
         <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <customView id="bXu-B5-B3o">
-            <rect key="frame" x="0.0" y="0.0" width="461" height="205"/>
-            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <rect key="frame" x="0.0" y="0.0" width="470" height="190"/>
+            <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
             <subviews>
-                <switch horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" baseWritingDirection="leftToRight" alignment="left" translatesAutoresizingMaskIntoConstraints="NO" id="YzU-hD-tcw">
-                    <rect key="frame" x="90" y="161" width="42" height="25"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                    <connections>
-                        <action selector="setAppMode:" target="-2" id="yRD-nM-ow6"/>
-                    </connections>
-                </switch>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="w3T-y8-n6l">
-                    <rect key="frame" x="25" y="166" width="61" height="16"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="Behavior:" id="VIG-p5-9yw">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="YQB-PI-gjj">
-                    <rect key="frame" x="136" y="166" width="88" height="16"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="Overlay Mode" id="vgL-6H-2ZN">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ZwO-En-fUH">
-                    <rect key="frame" x="90" y="43" width="353" height="112"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                    <textFieldCell key="cell" id="ERf-6N-IA7">
-                        <font key="font" usesAppearanceFont="YES"/>
-                        <string key="title">Overlay Mode allows Splitter to display a run on top of a game or other application running in full screen. 
+                <gridView xPlacement="leading" yPlacement="bottom" rowAlignment="none" rowSpacing="12" id="qI9-Zd-OY0">
+                    <rect key="frame" x="15" y="20" width="440" height="154"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" heightSizable="YES"/>
+                    <rows>
+                        <gridRow height="25" id="V2L-mx-XfF"/>
+                        <gridRow height="80" id="fYk-Bd-kBg"/>
+                        <gridRow height="25" id="l9V-ku-RpL"/>
+                    </rows>
+                    <columns>
+                        <gridColumn xPlacement="trailing" width="100" id="jDX-yJ-LmL"/>
+                        <gridColumn width="334" id="09B-I1-tJc"/>
+                    </columns>
+                    <gridCells>
+                        <gridCell row="V2L-mx-XfF" column="jDX-yJ-LmL" yPlacement="center" id="wH2-dD-Lny">
+                            <textField key="contentView" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="wJu-xO-QCw">
+                                <rect key="frame" x="10" y="134" width="92" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Overlay Mode:" id="Ug4-Bb-yFr">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </gridCell>
+                        <gridCell row="V2L-mx-XfF" column="09B-I1-tJc" yPlacement="center" id="4Xc-fj-rCk">
+                            <switch key="contentView" horizontalHuggingPriority="750" verticalHuggingPriority="750" baseWritingDirection="leftToRight" alignment="left" translatesAutoresizingMaskIntoConstraints="NO" id="B5H-Ad-mFC">
+                                <rect key="frame" x="106" y="130" width="54" height="24"/>
+                                <connections>
+                                    <action selector="setAppMode:" target="-2" id="UWu-Nm-o0Q"/>
+                                </connections>
+                            </switch>
+                        </gridCell>
+                        <gridCell row="fYk-Bd-kBg" column="jDX-yJ-LmL" yPlacement="center" id="RKP-nq-Uk0"/>
+                        <gridCell row="fYk-Bd-kBg" column="09B-I1-tJc" yPlacement="top" id="uCf-VQ-HXP">
+                            <textField key="contentView" focusRingType="none" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" translatesAutoresizingMaskIntoConstraints="NO" id="rBi-LV-Zz1">
+                                <rect key="frame" x="104" y="37" width="338" height="80"/>
+                                <textFieldCell key="cell" id="yOZ-3y-8mo">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <string key="title">Overlay Mode allows Splitter to display a run on top of a game or other application running in full screen. 
 
 When in Overlay Mode, Splitter won't appear in the Dock, but will appear in the Menu Bar.</string>
-                        <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="RXx-fB-EKj">
-                    <rect key="frame" x="18" y="20" width="68" height="16"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxY="YES"/>
-                    <textFieldCell key="cell" lineBreakMode="clipping" title="Advanced:" id="jEM-xi-IjS">
-                        <font key="font" metaFont="system"/>
-                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                    </textFieldCell>
-                </textField>
-                <button verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="cc2-Ty-NlT">
-                    <rect key="frame" x="85" y="11" width="129" height="32"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES"/>
-                    <buttonCell key="cell" type="push" title="Reset Warnings" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="O78-Jt-OHB">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="resetWarningsClicked:" target="-2" id="kCT-pL-G5f"/>
-                    </connections>
-                </button>
+                                    <color key="textColor" name="secondaryLabelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </gridCell>
+                        <gridCell row="l9V-ku-RpL" column="jDX-yJ-LmL" yPlacement="center" id="Noq-Lp-aa4">
+                            <textField key="contentView" focusRingType="none" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="us4-8d-P60">
+                                <rect key="frame" x="34" y="5" width="68" height="16"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Advanced:" id="H7J-q8-s7r">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                        </gridCell>
+                        <gridCell row="l9V-ku-RpL" column="09B-I1-tJc" yPlacement="center" id="sMM-wf-vZ8">
+                            <button key="contentView" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="PeS-4f-BjN">
+                                <rect key="frame" x="106" y="1" width="119" height="24"/>
+                                <buttonCell key="cell" type="push" title="Reset Warnings" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="S4d-bg-rbU">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="resetWarningsClicked:" target="-2" id="upd-fX-ew8"/>
+                                </connections>
+                            </button>
+                        </gridCell>
+                    </gridCells>
+                </gridView>
             </subviews>
-            <point key="canvasLocation" x="142.5" y="110.5"/>
+            <point key="canvasLocation" x="152" y="117"/>
         </customView>
     </objects>
 </document>
