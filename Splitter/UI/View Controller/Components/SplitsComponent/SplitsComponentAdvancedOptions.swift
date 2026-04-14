@@ -69,6 +69,7 @@ class SplitsComponentAdvancedOptions: NSViewController, NSTextFieldDelegate {
 		outlineView = AdvancedOptionsOutlineView()
 		let scrollView = NSScrollView(frame: view.frame)
 		scrollView.hasVerticalScroller = true
+		scrollView.autohidesScrollers = true
 		scrollView.documentView = outlineView
 		
 		let plusMinusStack = NSStackView()

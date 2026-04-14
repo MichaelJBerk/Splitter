@@ -68,6 +68,7 @@ extension SplitsComponent {
 		
 		let scrollView = NSScrollView(frame: optionsStack.frame)
 		scrollView.hasVerticalScroller = true
+		scrollView.autohidesScrollers = true
 		scrollView.documentView = optionsStack
 		scrollView.drawsBackground = false
 		advancedVC = SplitsComponentAdvancedOptions(splitsComp: self)

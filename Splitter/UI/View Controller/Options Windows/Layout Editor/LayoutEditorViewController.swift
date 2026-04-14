@@ -16,7 +16,7 @@ class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOut
 	override var preferredContentSize: NSSize {
 		set {}
 		get {
-			.init(width: 602, height: layoutEditorHeight)
+			.init(width: 612, height: layoutEditorHeight)
 		}
 	}
 	
@@ -61,20 +61,21 @@ class LayoutEditorViewController: NSViewController, NSOutlineViewDelegate, NSOut
 		popVE.material = .popover
 		popVE.blendingMode = .behindWindow
 		
-		let view = NSView(frame: .init(x: 0, y: 0, width: 577, height: layoutEditorHeight))
+		let view = NSView(frame: .init(x: 0, y: 0, width: 587, height: layoutEditorHeight))
 		self.view = view
 		self.view.addSubview(sidebarVE)
 		self.view.addSubview(popVE)
 		popVE.addSubview(optionsSuperView)
 		sidebarVE.frame = .init(x: 0, y: 0, width: 225, height: layoutEditorHeight)
-		popVE.frame = .init(x: 225, y: 0, width: 377, height: layoutEditorHeight)
+		popVE.frame = .init(x: 225, y: 0, width: 387, height: layoutEditorHeight)
 		//We want to inset the options view by 20 on the top, leading, and trailing edges
-		optionsSuperView.frame = .init(x: 20, y: 20, width: 337, height: layoutEditorHeight - 20)
+		optionsSuperView.frame = .init(x: 20, y: 20, width: 347, height: layoutEditorHeight - 20)
 		outlineScroll.frame = .init(x: 0, y: 10, width: 225, height: layoutEditorHeight - 10)
 		view.wantsLayer = true
 		view.layer?.backgroundColor = NSColor.red.cgColor
 		
 		outlineScroll.hasVerticalScroller = true
+		outlineScroll.autohidesScrollers = true
 	}
 	
 	@IBOutlet var stack: NSStackView!
