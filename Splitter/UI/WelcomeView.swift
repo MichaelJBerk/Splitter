@@ -128,11 +128,11 @@ struct RecentsRow: View {
 		let format = DocFileType.fileType(for: url.pathExtension)
 		switch format {
 		case .liveSplit:
-			return NSImage(contentsOf: Bundle.main.url(forResource: "SplitterDocLSS", withExtension: "icns")!)!
+			return NSImage(resource: .livesplit)
 		case .splitFile:
-			return NSImage(named: "splitDocIcon")!
+			return NSApplication.shared.applicationIconImage
         case .splitsioFile:
-			return NSImage(contentsOf: Bundle.main.url(forResource: "SplitterDocSplitsio", withExtension: "icns")!)!
+			return NSImage(resource: .splitsio)
 		}
 	}
 	///The currently selected URL
