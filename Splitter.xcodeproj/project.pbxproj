@@ -102,6 +102,7 @@
 		4A9C1D862B2A33EC00253411 /* FontManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9C1D852B2A33EC00253411 /* FontManager.swift */; };
 		4A9CA2A7263A2D4C0054D624 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9CA2A6263A2D4C0054D624 /* Extensions.swift */; };
 		4A9D8BF6243A38C40048EA15 /* SplitterTableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A9D8BF5243A38C40048EA15 /* SplitterTableView.swift */; };
+		4A9DE9962FCF2C890018D298 /* Splitter.icon in Resources */ = {isa = PBXBuildFile; fileRef = 4A9DE9952FCF2C890018D298 /* Splitter.icon */; };
 		4AA9ADBB2608F02D009B77B5 /* StartRow.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4AA9ADBA2608F02D009B77B5 /* StartRow.xib */; };
 		4AA9ADBF2608F035009B77B5 /* StartRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AA9ADBE2608F035009B77B5 /* StartRow.swift */; };
 		4AAD470A248432540094A31F /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4AAD4709248432540094A31F /* Colors.swift */; };
@@ -295,6 +296,7 @@
 		4A9C1D852B2A33EC00253411 /* FontManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FontManager.swift; sourceTree = "<group>"; };
 		4A9CA2A6263A2D4C0054D624 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		4A9D8BF5243A38C40048EA15 /* SplitterTableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplitterTableView.swift; sourceTree = "<group>"; };
+		4A9DE9952FCF2C890018D298 /* Splitter.icon */ = {isa = PBXFileReference; lastKnownFileType = folder.iconcomposer.icon; path = Splitter.icon; sourceTree = "<group>"; };
 		4AA357B42416F79900219E65 /* liblivesplit_core.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = liblivesplit_core.a; path = "livesplit-core/target/release/liblivesplit_core.a"; sourceTree = "<group>"; };
 		4AA9ADBA2608F02D009B77B5 /* StartRow.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StartRow.xib; sourceTree = "<group>"; };
 		4AA9ADBE2608F035009B77B5 /* StartRow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartRow.swift; sourceTree = "<group>"; };
@@ -520,6 +522,7 @@
 				4AFCC52323C63F1E002216F1 /* Prefs */,
 				4A75578C255C426A00ACE826 /* SplitterDocLSS.icns */,
 				4A75579C255C47F300ACE826 /* SplitterDocSplitsio.icns */,
+				4A9DE9952FCF2C890018D298 /* Splitter.icon */,
 				4A9CA2A6263A2D4C0054D624 /* Extensions.swift */,
 				4A230E9223B00A1D00959C57 /* AppDelegate.swift */,
 				4A4EC4FD2908A8F2009C2F3A /* SetupForUITesting.swift */,
@@ -1050,6 +1053,7 @@
 				4AE82354290B434000D8100B /* LayoutEditorListCell.xib in Resources */,
 				4AC0E3A62767B3F3004D71D6 /* GeneralPrefsViewController.xib in Resources */,
 				4A230E9C23B00A1E00959C57 /* Main.storyboard in Resources */,
+				4A9DE9962FCF2C890018D298 /* Splitter.icon in Resources */,
 				4A56138A262CFB8900702B0E /* OptionsRow.xib in Resources */,
 				4A61438624801A37007C38E0 /* ColorsView.xib in Resources */,
 				4ACFB1BD262F4E9700EA79B6 /* TitleComponent.xib in Resources */,
@@ -1474,7 +1478,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 854963043C5D93DC7DF61ABB /* Pods-Splitter.debug.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = Splitter;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CODE_SIGN_ENTITLEMENTS = Splitter/Splitter.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
@@ -1520,7 +1524,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6761EE8748C7A21FE9D7C3A3 /* Pods-Splitter.release.xcconfig */;
 			buildSettings = {
-				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_APPICON_NAME = Splitter;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = "";
 				CODE_SIGN_ENTITLEMENTS = Splitter/Splitter.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";

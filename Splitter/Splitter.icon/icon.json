@@ -1,0 +1,246 @@
+{
+  "fill" : "system-dark",
+  "groups" : [
+    {
+      "layers" : [
+        {
+          "fill-specializations" : [
+            {
+              "value" : {
+                "automatic-gradient" : "extended-gray:1.00000,1.00000"
+              }
+            },
+            {
+              "appearance" : "dark",
+              "value" : {
+                "automatic-gradient" : "extended-gray:1.00000,1.00000"
+              }
+            },
+            {
+              "appearance" : "tinted",
+              "value" : {
+                "linear-gradient" : [
+                  "extended-gray:0.50000,1.00000",
+                  "display-p3:0.90000,0.90000,0.90000,1.00000"
+                ]
+              }
+            }
+          ],
+          "image-name" : "Path copy.svg",
+          "name" : "Path copy",
+          "position" : {
+            "scale" : 0.25,
+            "translation-in-points" : [
+              -367.6640625,
+              -70.890625
+            ]
+          }
+        },
+        {
+          "fill-specializations" : [
+            {
+              "value" : {
+                "automatic-gradient" : "extended-gray:1.00000,1.00000"
+              }
+            },
+            {
+              "appearance" : "dark",
+              "value" : {
+                "automatic-gradient" : "extended-gray:1.00000,1.00000"
+              }
+            },
+            {
+              "appearance" : "tinted",
+              "value" : {
+                "linear-gradient" : [
+                  "extended-gray:0.50000,1.00000",
+                  "display-p3:0.90000,0.90000,0.90000,1.00000"
+                ]
+              }
+            }
+          ],
+          "image-name" : "Path copy.svg",
+          "name" : "Path copy",
+          "position" : {
+            "scale" : 0.25,
+            "translation-in-points" : [
+              -366.234375,
+              -174.1328125
+            ]
+          }
+        },
+        {
+          "fill-specializations" : [
+            {
+              "value" : {
+                "automatic-gradient" : "extended-gray:1.00000,1.00000"
+              }
+            },
+            {
+              "appearance" : "dark",
+              "value" : {
+                "automatic-gradient" : "extended-gray:1.00000,1.00000"
+              }
+            },
+            {
+              "appearance" : "tinted",
+              "value" : {
+                "linear-gradient" : [
+                  "extended-gray:0.50000,1.00000",
+                  "display-p3:0.90000,0.90000,0.90000,1.00000"
+                ]
+              }
+            }
+          ],
+          "image-name" : "Path copy.svg",
+          "name" : "Path copy",
+          "position" : {
+            "scale" : 0.25,
+            "translation-in-points" : [
+              -364.2890625,
+              -280.84375
+            ]
+          }
+        }
+      ],
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.5
+      }
+    },
+    {
+      "layers" : [
+        {
+          "blend-mode" : "plus-darker",
+          "fill" : {
+            "solid" : "extended-srgb:0.20392,0.78039,0.34902,1.00000"
+          },
+          "image-name" : "Rectangle copy.svg",
+          "name" : "Rectangle copy",
+          "position" : {
+            "scale" : 2,
+            "translation-in-points" : [
+              142,
+              -201.859375
+            ]
+          }
+        },
+        {
+          "blend-mode" : "plus-darker",
+          "fill" : {
+            "solid" : "extended-srgb:1.00000,0.80000,0.00000,1.00000"
+          },
+          "image-name" : "Rectangle copy.svg",
+          "name" : "Rectangle copy",
+          "position" : {
+            "scale" : 2,
+            "translation-in-points" : [
+              142,
+              -93.4375
+            ]
+          }
+        },
+        {
+          "blend-mode" : "plus-darker",
+          "fill" : {
+            "solid" : "extended-srgb:1.00000,0.21961,0.23529,1.00000"
+          },
+          "image-name" : "Rectangle copy.svg",
+          "name" : "Rectangle copy",
+          "position" : {
+            "scale" : 2,
+            "translation-in-points" : [
+              142,
+              -308.015625
+            ]
+          }
+        }
+      ],
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "translucency" : {
+        "enabled" : true,
+        "value" : 0.5
+      }
+    },
+    {
+      "blur-material" : null,
+      "layers" : [
+        {
+          "fill-specializations" : [
+            {
+              "value" : {
+                "linear-gradient" : [
+                  "extended-gray:0.00000,1.00000",
+                  "extended-gray:0.25000,1.00000"
+                ]
+              }
+            },
+            {
+              "appearance" : "tinted",
+              "value" : {
+                "automatic-gradient" : "extended-gray:0.25000,1.00000"
+              }
+            }
+          ],
+          "hidden" : false,
+          "image-name" : "Shape.svg",
+          "name" : "Shape",
+          "position" : {
+            "scale" : 2,
+            "translation-in-points" : [
+              -173.2,
+              -501.96875
+            ]
+          }
+        },
+        {
+          "fill-specializations" : [
+            {
+              "value" : {
+                "automatic-gradient" : "extended-gray:0.00000,1.00000"
+              }
+            },
+            {
+              "appearance" : "tinted",
+              "value" : {
+                "automatic-gradient" : "extended-gray:0.25000,1.00000"
+              }
+            }
+          ],
+          "hidden" : false,
+          "image-name" : "Shape.svg",
+          "name" : "Shape",
+          "position" : {
+            "scale" : 2,
+            "translation-in-points" : [
+              -108.640625,
+              500.28125
+            ]
+          }
+        }
+      ],
+      "shadow" : {
+        "kind" : "neutral",
+        "opacity" : 0.5
+      },
+      "specular" : true,
+      "translucency" : {
+        "enabled" : false,
+        "value" : 0.5
+      }
+    }
+  ],
+  "supported-platforms" : {
+    "circles" : [
+      "watchOS"
+    ],
+    "squares" : "shared"
+  }
+}
