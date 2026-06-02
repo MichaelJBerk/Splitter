@@ -146,9 +146,9 @@
 				<key>UTTypeIconBackgroundName</key>
 				<string>docBG</string>
 				<key>UTTypeIconBadgeName</key>
-				<string>splitDocIcon</string>
-				<key>UTTypeIconText</key>
 				<string>Splitter</string>
+				<key>UTTypeIconText</key>
+				<string>Split</string>
 			</dict>
 			<key>UTTypeIdentifier</key>
 			<string>mibe.split</string>
