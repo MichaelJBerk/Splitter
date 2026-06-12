@@ -7,7 +7,7 @@
 //
 
 import Cocoa
-import Preferences
+import Settings
 import Files
 import SwiftUI
 import BasicUpdater

@@ -7,9 +7,9 @@
 //
 
 import Cocoa
-import Preferences
+import Settings
 
-class GeneralPrefsViewController: NSViewController, PreferencePane {
+class GeneralPrefsViewController: NSViewController, SettingsPane {
 	
 	@IBOutlet var menuBarSwitch: NSSwitch!
 	@IBOutlet var resetWarningsButton: NSButton!
@@ -32,9 +32,9 @@ class GeneralPrefsViewController: NSViewController, PreferencePane {
 	@objc func popover(_ sender: Any) {
 		NSApp.activate(ignoringOtherApps: true)
 	}
-	var preferencePaneTitle: String = "General"
+	var paneTitle: String = "General"
 	
-	var preferencePaneIdentifier: Preferences.PaneIdentifier = .general
+	var paneIdentifier: Settings.PaneIdentifier = .general
 	
 	override var nibName: NSNib.Name? { "GeneralPrefsViewController" }
 	

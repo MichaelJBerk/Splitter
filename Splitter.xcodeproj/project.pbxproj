@@ -23,7 +23,6 @@
 		4A14AD752A2D1E93001E28A7 /* TimeRowOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A14AD742A2D1E93001E28A7 /* TimeRowOptions.swift */; };
 		4A1657B123EA4EF60008CB5F /* Menu Items.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1657B023EA4EF60008CB5F /* Menu Items.swift */; };
 		4A1657B523EA5C320008CB5F /* Icon Actions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A1657B423EA5C320008CB5F /* Icon Actions.swift */; };
-		4A1767B224EE095100571A6C /* Preferences in Frameworks */ = {isa = PBXBuildFile; productRef = 4A1767B124EE095100571A6C /* Preferences */; };
 		4A18662E23C51D2800FEEE54 /* UISettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A18662D23C51D2800FEEE54 /* UISettings.swift */; };
 		4A18663023C5257800FEEE54 /* MenuItemConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A18662F23C5257800FEEE54 /* MenuItemConstants.swift */; };
 		4A18663223C5376900FEEE54 /* SettingsKeys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A18663123C5376900FEEE54 /* SettingsKeys.swift */; };
@@ -39,6 +38,7 @@
 		4A24F20324F6E0B100278EB7 /* TouchBarDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A24F20224F6E0B100278EB7 /* TouchBarDelegate.swift */; };
 		4A2F390627F34C1E001B0A7C /* WindowSettingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A2F390427F34C1E001B0A7C /* WindowSettingViewController.swift */; };
 		4A2F390727F34C1E001B0A7C /* WindowSettingViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4A2F390527F34C1E001B0A7C /* WindowSettingViewController.xib */; };
+		4A31D0CB2FDC6AE300B3A19D /* Settings in Frameworks */ = {isa = PBXBuildFile; productRef = 4A31D0CA2FDC6AE300B3A19D /* Settings */; };
 		4A327B0D23F491FB00A5CBFF /* SplitterAppearance.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A327B0C23F491FB00A5CBFF /* SplitterAppearance.swift */; };
 		4A35F98D299C383B008A3841 /* Defaults in Frameworks */ = {isa = PBXBuildFile; productRef = 4A35F98C299C383B008A3841 /* Defaults */; };
 		4A388FC525D4AF2B00A63C9E /* PrevNextRow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4A388FC425D4AF2B00A63C9E /* PrevNextRow.swift */; };
@@ -362,12 +362,12 @@
 				4AD7662E23DA5F9A0052409C /* Files in Frameworks */,
 				4ABB38A8255C79B00037536E /* SwiftyJSON in Frameworks */,
 				4A20C46E2640BDB600307993 /* Introspect in Frameworks */,
+				4A31D0CB2FDC6AE300B3A19D /* Settings in Frameworks */,
 				4AD7C6CB291494ED006645A6 /* LiveSplitKit.framework in Frameworks */,
 				4A35F98D299C383B008A3841 /* Defaults in Frameworks */,
 				4A214A70255C90720006FD9F /* SplitsIOKit in Frameworks */,
 				4AE5B0EE2A1C2080003F1288 /* BasicUpdater in Frameworks */,
 				4AE662DC2B4E086300D0F968 /* FontPopUp in Frameworks */,
-				4A1767B224EE095100571A6C /* Preferences in Frameworks */,
 				4A7F94AA26332DBE002861E3 /* Codextended in Frameworks */,
 				4A6B4F7423F07C3900CB781F /* libresolv.tbd in Frameworks */,
 				071F8D0A9AB0317E095AA9EA /* Pods_Splitter.framework in Frameworks */,
@@ -897,7 +897,6 @@
 			packageProductDependencies = (
 				4AD7662D23DA5F9A0052409C /* Files */,
 				4AD7662D23DA5F9A0052409C /* Files */,
-				4A1767B124EE095100571A6C /* Preferences */,
 				4ABB38A7255C79B00037536E /* SwiftyJSON */,
 				4A214A6F255C90720006FD9F /* SplitsIOKit */,
 				4A7F94A926332DBE002861E3 /* Codextended */,
@@ -905,6 +904,7 @@
 				4A35F98C299C383B008A3841 /* Defaults */,
 				4AE5B0ED2A1C2080003F1288 /* BasicUpdater */,
 				4AE662DB2B4E086300D0F968 /* FontPopUp */,
+				4A31D0CA2FDC6AE300B3A19D /* Settings */,
 			);
 			productName = Splitter;
 			productReference = 4A230E8F23B00A1D00959C57 /* Splitter.app */;
@@ -988,7 +988,7 @@
 			packageReferences = (
 				4AD7662C23DA5F9A0052409C /* XCRemoteSwiftPackageReference "Files" */,
 				4AB5627724338FB000D7F8D1 /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
-				4A1767B024EE095100571A6C /* XCRemoteSwiftPackageReference "Preferences" */,
+				4A1767B024EE095100571A6C /* XCRemoteSwiftPackageReference "Settings" */,
 				4A7F94A826332DBE002861E3 /* XCRemoteSwiftPackageReference "Codextended" */,
 				4A20C46C2640BDB600307993 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */,
 				4A35F98B299C383B008A3841 /* XCRemoteSwiftPackageReference "Defaults" */,
@@ -1691,12 +1691,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		4A1767B024EE095100571A6C /* XCRemoteSwiftPackageReference "Preferences" */ = {
+		4A1767B024EE095100571A6C /* XCRemoteSwiftPackageReference "Settings" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sindresorhus/Preferences";
+			repositoryURL = "https://github.com/sindresorhus/Settings";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 2.2.1;
+				minimumVersion = 3.1.0;
 			};
 		};
 		4A20C46C2640BDB600307993 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */ = {
@@ -1763,11 +1763,6 @@
 			package = 4AD7662C23DA5F9A0052409C /* XCRemoteSwiftPackageReference "Files" */;
 			productName = Files;
 		};
-		4A1767B124EE095100571A6C /* Preferences */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 4A1767B024EE095100571A6C /* XCRemoteSwiftPackageReference "Preferences" */;
-			productName = Preferences;
-		};
 		4A20C46D2640BDB600307993 /* Introspect */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 4A20C46C2640BDB600307993 /* XCRemoteSwiftPackageReference "SwiftUI-Introspect" */;
@@ -1776,6 +1771,11 @@
 		4A214A6F255C90720006FD9F /* SplitsIOKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = SplitsIOKit;
+		};
+		4A31D0CA2FDC6AE300B3A19D /* Settings */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4A1767B024EE095100571A6C /* XCRemoteSwiftPackageReference "Settings" */;
+			productName = Settings;
 		};
 		4A35F98C299C383B008A3841 /* Defaults */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -309,7 +309,7 @@ struct SplitterInfoView: View {
 				OpenFileButton()
 				HStack {
 					Button("Configure Hotkeys"){
-						(NSApp.delegate as? AppDelegate)?.preferencesWindowController.show(preferencePane: .hotkeys)
+						(NSApp.delegate as? AppDelegate)?.preferencesWindowController.show(pane: .hotkeys)
 					}
 					Toggle("Show this screen on startup", isOn: showOnLaunch)
 						.toggleStyle(CheckboxToggleStyle())

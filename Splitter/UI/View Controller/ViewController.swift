@@ -7,7 +7,7 @@
 //
 
 import Cocoa
-import Preferences
+import Settings
 import SplitsIOKit
 import LiveSplitKit
 extension Notification.Name {

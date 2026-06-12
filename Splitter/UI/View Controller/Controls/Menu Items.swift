@@ -8,7 +8,7 @@
 
 import Foundation
 import Cocoa
-import Preferences
+import Settings
 
 extension ViewController {
 	//MARK: - Actions for the Menu Bar
@@ -18,7 +18,7 @@ extension ViewController {
 	
 	@IBAction func hotkeysMenuItem(_ sender: Any?) {
 		if let app = NSApp.delegate as? AppDelegate {
-			app.preferencesWindowController.show(preferencePane: Preferences.PaneIdentifier.hotkeys)
+			app.preferencesWindowController.show(pane: Settings.PaneIdentifier.hotkeys)
 		}
 	}
 	

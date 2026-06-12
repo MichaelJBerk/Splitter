@@ -7,13 +7,13 @@
 //
 
 import Cocoa
-import Preferences
+import Settings
 import Files
 import SwiftUI
 
-final class HotkeysViewController: NSViewController, PreferencePane {
-	let preferencePaneIdentifier = Preferences.PaneIdentifier.hotkeys
-	let preferencePaneTitle = "Hotkeys"
+final class HotkeysViewController: NSViewController, SettingsPane {
+	let paneIdentifier = Settings.PaneIdentifier.hotkeys
+	let paneTitle = "Hotkeys"
 	
 	var shortcutsRequiringGlobalHotkeys = Set<MASShortcutView>()
     var toolbarItemIcon: NSImage {

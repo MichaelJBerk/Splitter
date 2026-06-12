@@ -7,12 +7,12 @@
 //
 #if DEBUG
 import Cocoa
-import Preferences
+import Settings
 
-class DebugPrefsViewController: NSViewController, PreferencePane {
-	var preferencePaneIdentifier: Preferences.PaneIdentifier = .debug
+class DebugPrefsViewController: NSViewController, SettingsPane {
+	var paneIdentifier: Settings.PaneIdentifier = .debug
 	
-	var preferencePaneTitle: String = "Debug"
+	var paneTitle: String = "Debug"
 	var toolbarItemIcon: NSImage {
 		if #available(macOS 11.0, *), let img = NSImage(systemSymbolName: "hammer", accessibilityDescription: nil) {
 			return img
