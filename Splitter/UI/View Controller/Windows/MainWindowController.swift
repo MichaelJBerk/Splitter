@@ -19,7 +19,7 @@ class MainWindowController: NSWindowController {
     }
 	
 	func updateFromMenuBarMode() {
-		if Settings.menuBarMode {
+		if AppSettings.menuBarMode {
 			window?.level = .statusBar
 			window?.collectionBehavior = .canJoinAllSpaces
 		} else {

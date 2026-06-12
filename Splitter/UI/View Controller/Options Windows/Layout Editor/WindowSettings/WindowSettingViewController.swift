@@ -44,7 +44,7 @@ class WindowSettingViewController: NSViewController, LoadableNib {
 	
 	
 	func toggleTopCheckDisable() {
-		keepOnTopCheck.isEnabled = !Settings.menuBarMode
+		keepOnTopCheck.isEnabled = !AppSettings.menuBarMode
 	}
 	
 	var note = """
@@ -60,7 +60,7 @@ You can still close the window either with ⌘W or from the "Window" menu.
 		
 		topHelp.helpString = """
   Enabling this will make the window "float" above any other windows you have open.
-  This is separate from Overlay Mode in \(Settings.prefsText).
+  This is separate from Overlay Mode in \(AppSettings.prefsText).
 """
 	}
 	

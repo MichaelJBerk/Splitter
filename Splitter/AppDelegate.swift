@@ -50,7 +50,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	/// When run, this method will take find the key that triggered `event` and perform its associated keybind action
 	func performGlobalKeybindAction(event: NSEvent) {
 		//I'm not using MASHotkey's shortcut binding features, because it blocked events from going to the underlying app
-		if Settings.enableGlobalHotkeys {
+		if AppSettings.enableGlobalHotkeys {
 			for k in self.appKeybinds {
 				if let k = k, k == event, let action = keybindAction(keybind: k.title) {
 					action()
@@ -64,7 +64,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 	///This is used to make the welcome window appear on startup, or when there's no open file.
 	func applicationShouldOpenUntitledFile(_ sender: NSApplication) -> Bool {
 		if #available(macOS 10.15, *) {
-			if Settings.showWelcomeWindow {
+			if AppSettings.showWelcomeWindow {
 				DispatchQueue.main.async {
 					guard sender.keyWindow == nil else { return }
 					self.openWelcomeWindow()
@@ -82,12 +82,12 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		updateController.addUpdateCommand()
 		statusBarController = StatusBarController()
 		statusBarController.setupItem()
-		if !Settings.notFirstUse {
+		if !AppSettings.notFirstUse {
 			//Set default values for settings
-			Settings.enableGlobalHotkeys = false
-			Settings.notFirstUse = true
+			AppSettings.enableGlobalHotkeys = false
+			AppSettings.notFirstUse = true
 		} else {
-			if Settings.lastOpenedBuild != otherConstants.build {
+			if AppSettings.lastOpenedBuild != otherConstants.build {
 			}
 		}
 		
@@ -99,8 +99,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		}
 		
 		
-		Settings.lastOpenedVersion = otherConstants.version
-		Settings.lastOpenedBuild = otherConstants.build
+		AppSettings.lastOpenedVersion = otherConstants.version
+		AppSettings.lastOpenedBuild = otherConstants.build
 		setupKeybinds()
 		
 		//Add the hotkey event monitor
@@ -108,7 +108,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 		
 		#if DEBUG
 		if CommandLine.arguments.contains("-newFile") {
-			Settings.showWelcomeWindow = false
+			AppSettings.showWelcomeWindow = false
 		}
 		if isUITesting {
 			NSApp.windows.forEach({$0.close()})
@@ -120,7 +120,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 			})
 		}
 		#endif
-		if Settings.menuBarMode {
+		if AppSettings.menuBarMode {
 			NSApp.activate(ignoringOtherApps: true)
 			newWindowIfNone()
 		}

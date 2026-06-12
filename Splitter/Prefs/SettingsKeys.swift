@@ -31,7 +31,7 @@ public enum Warning: String, CaseIterable {
 	case hotkeysCantBeFunctionKey
 }
 
-public struct Settings {
+public struct AppSettings {
 	
 	///Returns the string "Settings" or "Preferences" depending on the current macOS version
 	static var prefsText: String {

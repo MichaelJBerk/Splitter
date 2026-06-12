@@ -160,7 +160,7 @@ class Document: SplitterDocBundle {
 	
 	override func save(to url: URL, ofType typeName: String, for saveOperation: NSDocument.SaveOperationType, delegate: Any?, didSave didSaveSelector: Selector?, contextInfo: UnsafeMutableRawPointer?) {
 		if let version = versionUsed, version < 4 {
-			if !Settings.warningSuppresed(.overwritingSplitsFromOlderVersion) {
+			if !AppSettings.warningSuppresed(.overwritingSplitsFromOlderVersion) {
 				if !saveOlderVersionAlert() {
 					return
 				}

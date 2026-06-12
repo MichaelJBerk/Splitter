@@ -16,7 +16,7 @@ class GeneralPrefsViewController: NSViewController, PreferencePane {
 	
 	@IBAction func resetWarningsClicked(_ sender: Any?) {
 		for warning in Warning.allCases {
-			Settings.setWarning(warning, suppresed: false)
+			AppSettings.setWarning(warning, suppresed: false)
 		}
 	}
 	
@@ -57,7 +57,7 @@ class GeneralPrefsViewController: NSViewController, PreferencePane {
     }
 	
 	func setMenuBarToggle() {
-		if Settings.menuBarMode {
+		if AppSettings.menuBarMode {
 			menuBarSwitch.state = .on
 		} else {
 			menuBarSwitch.state = .off

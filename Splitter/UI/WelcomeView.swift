@@ -287,9 +287,9 @@ struct SplitterInfoView: View {
 	/// Whether or not the Welcome screen should be opened upon launch
 	///
 	/// Modifying this changes the setting in UserDefaults
-	@State var showWelcomeScreenOnLaunch: Bool = Settings.showWelcomeWindow {
+	@State var showWelcomeScreenOnLaunch: Bool = AppSettings.showWelcomeWindow {
 		didSet {
-			Settings.showWelcomeWindow = self.showWelcomeScreenOnLaunch
+			AppSettings.showWelcomeWindow = self.showWelcomeScreenOnLaunch
 		}
 	}
 	func mainView(showOnLaunch: Binding<Bool>) -> some View {

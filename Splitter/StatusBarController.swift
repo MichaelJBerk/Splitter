@@ -52,11 +52,11 @@ class StatusBarController: NSObject {
 		NotificationCenter.default.addObserver(forName: .menuBarModeChanged, object: nil, queue: nil, using: { _ in
 			self.toggleVisible()
 		})
-		Self.setMenuBarMode(Settings.menuBarMode)
+		Self.setMenuBarMode(AppSettings.menuBarMode)
 	}
 	
 	func toggleVisible() {
-		if Settings.menuBarMode {
+		if AppSettings.menuBarMode {
 			statusItem.isVisible = true
 		} else {
 			statusItem.isVisible = false
@@ -83,7 +83,7 @@ class StatusBarController: NSObject {
 	}
 	
 	static func setMenuBarMode(_ bool: Bool) {
-		Settings.menuBarMode = bool
+		AppSettings.menuBarMode = bool
 		let pol: NSApplication.ActivationPolicy = bool ? .accessory : .regular
 		NSApp.setActivationPolicy(pol)
 	}

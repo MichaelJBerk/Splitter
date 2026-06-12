@@ -160,7 +160,7 @@ class SplitterDoc: NSDocument {
 		
 		let response = alert.runModal()
 		if alert.suppressionButton!.state == .on {
-			Settings.setWarning(.overwritingSplitsFromOlderVersion, suppresed: true)
+			AppSettings.setWarning(.overwritingSplitsFromOlderVersion, suppresed: true)
 		}
 		switch response {
 		case .cancel:

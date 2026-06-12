@@ -23,10 +23,10 @@ class AdvancedHotkeyViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do view setup here.
-		globalHotkeySwitch.state = .init(bool: Settings.enableGlobalHotkeys)
+		globalHotkeySwitch.state = .init(bool: AppSettings.enableGlobalHotkeys)
 		
 		setAccessibilityPermissionState()
-		goToSettingsButton.title = "Open System \(Settings.prefsText)"
+		goToSettingsButton.title = "Open System \(AppSettings.prefsText)"
 		
 		DistributedNotificationCenter.default().addObserver(forName: AppDelegate.acessibilityNotificationName, object: nil, queue: nil) { thing in
 			//Wait a second, otherwise `isAccessibilityGranted` may return the incorrect value
@@ -45,7 +45,7 @@ class AdvancedHotkeyViewController: NSViewController {
 	
 	@IBAction func globalHotkeySwitchClick(_ sender: Any?) {
 		if AppDelegate.isAccessibilityGranted {
-			Settings.enableGlobalHotkeys = globalHotkeySwitch.state.toBool()
+			AppSettings.enableGlobalHotkeys = globalHotkeySwitch.state.toBool()
 		} else {
 			globalHotkeySwitch.state = .init(bool: false)
 		}
@@ -63,7 +63,7 @@ class AdvancedHotkeyViewController: NSViewController {
 		let isTrusted = AXIsProcessTrusted()
 		var debugText: String = ""
 		debugText.append("Acessibility Permission:  \(isTrusted)\n")
-		debugText.append("Global Hotkeys Enabled: \(Settings.enableGlobalHotkeys)\n")
+		debugText.append("Global Hotkeys Enabled: \(AppSettings.enableGlobalHotkeys)\n")
 		debugText.append("\n")
 		debugText.append("Keybinds:\n")
 		guard let appDel = AppDelegate.shared else {return}

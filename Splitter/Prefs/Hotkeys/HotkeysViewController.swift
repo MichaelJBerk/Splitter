@@ -129,10 +129,10 @@ extension HotkeysViewController: NSTableViewDelegate {
 						alert.messageText = "\(keyString) isn't supported as a global hotkey."
 						alert.informativeText = "Function keys, such as \(keyString) aren't currently supported supported as global hotkeys. They will only work while Splitter is active."
 						alert.showsSuppressionButton = true
-						if !Settings.warningSuppresed(.hotkeysCantBeFunctionKey) {
+						if !AppSettings.warningSuppresed(.hotkeysCantBeFunctionKey) {
 							alert.beginSheetModal(for: self.view.window!) { response in
 								if alert.suppressionButton?.state == .on {
-									Settings.setWarning(.hotkeysCantBeFunctionKey, suppresed: true)
+									AppSettings.setWarning(.hotkeysCantBeFunctionKey, suppresed: true)
 								}
 							}
 						}
@@ -156,7 +156,7 @@ extension HotkeysViewController: NSTableViewDelegate {
 	
 	///Indicates if hotkeys that are only available when Global Hotkeys are turned on should be enabled
 	var shouldEnableGlobalOnlyHotkeys: Bool {
-		AppDelegate.isAccessibilityGranted && Settings.enableGlobalHotkeys
+		AppDelegate.isAccessibilityGranted && AppSettings.enableGlobalHotkeys
 	}
 	
 	///

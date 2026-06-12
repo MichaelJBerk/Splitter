@@ -32,45 +32,45 @@ class DebugPrefsViewController: NSViewController, PreferencePane {
 		super.viewDidLoad()
 		// Do view setup here.
 		preferredContentSize = NSSize(width: self.view.frame.size.width, height: self.view.frame.size.height)
-		placeholderSIOCheck.state = .init(bool: Settings.placeholderSIO)
+		placeholderSIOCheck.state = .init(bool: AppSettings.placeholderSIO)
 		
 	}
 	override func viewDidAppear() {
 		super.viewDidAppear()
-		splitsIOURLTextField.stringValue = Settings.splitsIOURL.absoluteString
+		splitsIOURLTextField.stringValue = AppSettings.splitsIOURL.absoluteString
 		
 	}
 	
 	@IBAction func editURLTextField(_ sender: NSTextField) {
 		if let url = URL(string: sender.stringValue) {
-			Settings.splitsIOURL = url
+			AppSettings.splitsIOURL = url
 		}
 	}
 	
 	@IBAction func editClientTextField(_ sender: NSTextField) {
 		if sender.stringValue == "" {
-			Settings.splitsIOClientOverride = nil
+			AppSettings.splitsIOClientOverride = nil
 		} else {
-			Settings.splitsIOClientOverride = sender.stringValue
+			AppSettings.splitsIOClientOverride = sender.stringValue
 		}
 	}
 	
 	@IBAction func editSecretTextField(_ sender: NSTextField) {
 		if sender.stringValue == "" {
-			Settings.splitsIOSecretOverride = nil
+			AppSettings.splitsIOSecretOverride = nil
 		} else {
-			Settings.splitsIOSecretOverride = sender.stringValue
+			AppSettings.splitsIOSecretOverride = sender.stringValue
 		}
 	}
 	
 	@IBAction func sioInfoButtonClick(_ sender: NSButton) {
 		let alert = NSAlert()
-		alert.informativeText = "The following is persisted in the DB, and is what will be used for auth on next startup:\n\n\n\n\n\n\n\n\n\n\n\nURL: \(Settings.splitsIOURL)"
+		alert.informativeText = "The following is persisted in the DB, and is what will be used for auth on next startup:\n\n\n\n\n\n\n\n\n\n\n\nURL: \(AppSettings.splitsIOURL)"
 		alert.beginSheetModal(for: self.view.window!)
 	}
 	
 	@IBAction func togglePlaceholderSIO(_ sender: NSButton) {
-		Settings.placeholderSIO = sender.state.toBool()
+		AppSettings.placeholderSIO = sender.state.toBool()
 	}
     
 }

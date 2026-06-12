@@ -15,7 +15,7 @@ class MainWindow: NSWindow {
 	override init(contentRect: NSRect, styleMask style: NSWindow.StyleMask, backing backingStoreType: NSWindow.BackingStoreType, defer flag: Bool) {
 		super.init(contentRect: contentRect, styleMask: style, backing: backingStoreType, defer: flag)
 		observer = NSWorkspace.shared.notificationCenter.addObserver(forName: NSWorkspace.activeSpaceDidChangeNotification, object: nil, queue: nil, using: { _ in
-			if Settings.menuBarMode {
+			if AppSettings.menuBarMode {
 				self.orderFront(self)
 			}
 		})
